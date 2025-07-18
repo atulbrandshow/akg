@@ -67,25 +67,6 @@ export default function PageDetailsForm({ page_id }) {
     // ... other fields
   });
 
-  // Jodit editor configuration
-  const editorConfig = {
-    readonly: false,
-    height: 400,
-    toolbarAdaptive: false,
-    buttons: [
-      'bold', 'italic', 'underline', 'strikethrough', '|',
-      'ul', 'ol', '|',
-      'font', 'fontsize', 'brush', 'paragraph', '|',
-      'align', 'outdent', 'indent', '|',
-      'table', 'link', '|',
-      'undo', 'redo', '|',
-      'hr', 'eraser', 'fullsize'
-    ],
-    style: {
-      border: '1px solid #e2e8f0',
-      borderRadius: '0.375rem'
-    }
-  };
 
   const fetchParent = async (parent_id) => {
     if (!parent_id) return "";
@@ -274,7 +255,6 @@ export default function PageDetailsForm({ page_id }) {
               <JoditEditor
                 ref={editor}
                 value={formData.shortdesc}
-                config={editorConfig}
                 onBlur={(value) => handleEditorChange(value, "shortdesc")}
                 onChange={(value) => handleEditorChange(value, "shortdesc")}
               />
@@ -288,7 +268,6 @@ export default function PageDetailsForm({ page_id }) {
               <JoditEditor
                 ref={editor}
                 value={formData.description}
-                config={editorConfig}
                 onBlur={(value) => handleEditorChange(value, "description")}
                 onChange={(value) => handleEditorChange(value, "description")}
               />

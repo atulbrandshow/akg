@@ -90,23 +90,6 @@ export default function PageDetailsForm({ page_id }) {
     keywords_tag: "",
   });
 
-
-    const config = {
-    readonly: false,
-    height: 300,
-    toolbarAdaptive: false,
-    toolbarSticky: true,
-    buttons: [
-      'bold', 'italic', 'underline', 'strikethrough', '|',
-      'ul', 'ol', '|',
-      'font', 'fontsize', 'brush', 'paragraph', '|',
-      'align', 'outdent', 'indent', '|',
-      'table', 'link', '|',
-      'undo', 'redo', '|',
-      'hr', 'eraser', 'fullsize'
-    ]
-  };
-
   const fetchParent = async (parent_id) => {
     if (parent_id) {
       try {
@@ -395,7 +378,6 @@ export default function PageDetailsForm({ page_id }) {
           <JoditEditor
             ref={editor}
             value={formData.shortdesc || ''}
-            config={config}
             onBlur={handleShortDescChange}
             onChange={handleShortDescChange}
           />
@@ -407,7 +389,6 @@ export default function PageDetailsForm({ page_id }) {
           <JoditEditor
             ref={editor}
             value={formData.description || ''}
-            config={config}
             onBlur={handleDescChange}
             onChange={handleDescChange}
           />

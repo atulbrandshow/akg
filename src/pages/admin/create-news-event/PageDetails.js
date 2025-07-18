@@ -86,30 +86,6 @@ export default function PageDetailsForm({ allData, parentPage }) {
     keywords_tag: "",
   });
 
-
-  // Jodit editor configuration
-  const editorConfig = {
-    readonly: false,
-    height: 300,
-    toolbarAdaptive: false,
-    buttons: [
-      'bold', 'italic', 'underline', 'strikethrough', '|',
-      'ul', 'ol', '|',
-      'font', 'fontsize', 'brush', 'paragraph', '|',
-      'align', '|',
-      'table', 'link', '|',
-      'undo', 'redo'
-    ],
-    style: {
-      border: '1px solid #e2e8f0',
-      borderRadius: '0.375rem'
-    },
-    uploader: {
-      insertImageAsBase64URI: true
-    }
-  };
-
-
  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -295,7 +271,6 @@ export default function PageDetailsForm({ allData, parentPage }) {
           </label>
           <JoditEditor
             value={formData.shortdesc}
-            config={editorConfig}
             onBlur={handleShortDescChange}
             className="border rounded"
           />
@@ -306,7 +281,6 @@ export default function PageDetailsForm({ allData, parentPage }) {
           </label>
           <JoditEditor
             value={formData.description}
-            config={editorConfig}
             onBlur={handleDescChange}
             className="border rounded"
           />

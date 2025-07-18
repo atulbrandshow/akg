@@ -16,27 +16,6 @@ const JoditEditor = dynamic(() => import("jodit-react"), {
 export default function PageDetailsForm({ page_id }) {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-    const editor = useRef(null);
-
- const editorConfig = {
-    readonly: false,
-    height: 300,
-    toolbarAdaptive: false,
-    buttons: [
-      'bold', 'italic', 'underline', 'strikethrough', '|',
-      'ul', 'ol', '|',
-      'font', 'fontsize', 'brush', 'paragraph', '|',
-      'align', 'outdent', 'indent', '|',
-      'table', 'link', '|',
-      'undo', 'redo', '|',
-      'hr', 'eraser', 'fullsize'
-    ],
-    style: {
-      border: '1px solid #e2e8f0',
-      borderRadius: '0.375rem'
-    }
-  };
-
   const [formData, setFormData] = useState({
     page_id: "",
     parent_id: "",
@@ -418,7 +397,6 @@ export default function PageDetailsForm({ page_id }) {
           <JoditEditor
             ref={editor}
             value={formData.shortdesc || ''}
-            config={editorConfig}
             onBlur={handleShortDescChange}
             onChange={handleShortDescChange}
           />
@@ -430,7 +408,6 @@ export default function PageDetailsForm({ page_id }) {
           <JoditEditor
             ref={editor}
             value={formData.description || ''}
-            config={editorConfig}
             onBlur={handleDescChange}
             onChange={handleDescChange}
           />

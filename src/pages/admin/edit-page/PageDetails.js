@@ -90,25 +90,6 @@ export default function PageDetailsForm({ page_id }) {
    const shortDescEditor = useRef(null);
   const descEditor = useRef(null);
 
-  // Jodit editor configuration
-  const editorConfig = {
-    readonly: false,
-    height: 300,
-    toolbarAdaptive: false,
-    buttons: [
-      'bold', 'italic', 'underline', 'strikethrough', '|',
-      'ul', 'ol', '|',
-      'font', 'fontsize', 'brush', 'paragraph', '|',
-      'align', '|',
-      'table', 'link', '|',
-      'undo', 'redo'
-    ],
-    style: {
-      border: '1px solid #e2e8f0',
-      borderRadius: '0.375rem'
-    }
-  };
-
    const handleEditorChange = (content, field) => {
     setFormData(prev => ({
       ...prev,
@@ -425,7 +406,6 @@ export default function PageDetailsForm({ page_id }) {
           <JoditEditor
             ref={shortDescEditor}
             value={formData.shortdesc}
-            config={editorConfig}
             onBlur={newContent => handleEditorChange(newContent, "shortdesc")}
             onChange={newContent => {}}
           />
@@ -437,7 +417,6 @@ export default function PageDetailsForm({ page_id }) {
           <JoditEditor
             ref={descEditor}
             value={formData.description}
-            config={editorConfig}
             onBlur={newContent => handleEditorChange(newContent, "description")}
             onChange={newContent => {}}
           />

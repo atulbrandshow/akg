@@ -12,16 +12,27 @@ const SchoolList = () => {
   const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
-    try {
-      const response = await fetch(`${API_NODE_URL}school/list`);
-      const data = await response.json();
-      setNewsAndEvents(data.data || []);
-    } catch (error) {
-      console.error("Error fetching news and events:", error);
-    } finally {
-      setLoading(false);
+  try {
+    const response = await fetch(`${API_NODE_URL}school/list`);
+    
+    // First check if the response is OK (status 200-299)
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
-  };
+    
+    // Check if response has content
+    const text = await response.text();
+    const data = text ? JSON.parse(text) : { data: [] };
+    
+    setNewsAndEvents(data.data || []);
+  } catch (error) {
+    console.error("Error fetching news and events:", error);
+    toast.error("Failed to fetch school list");
+    setNewsAndEvents([]); // Set empty array on error
+  } finally {
+    setLoading(false);
+  }
+};
 
   useEffect(() => {
     fetchData();

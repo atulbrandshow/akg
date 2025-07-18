@@ -1,0 +1,14 @@
+export { default as Form } from "@/Components/Form";
+export { default as NewsEvents } from "@/Components/NewsEvents";
+export { default as CampusSlider } from "@/Components/CampusSlider";
+export { default as TopCard } from "@/Components/TopCard";
+export { default as LogoSlider } from "@/Components/LogoSlider";
+export { default as FooterCard } from "@/Components/FooterCard";
+export { default as StudentReviews } from "@/Components/StudentReviews";
+export { default as ExploreCourses } from "@/Components/ExploreCourses";
+export { default as ResearchEnvironment } from "@/Components/ResearchEnvironment";
+export { default as StickyFooter } from "@/Components/StickyFooter";
+export { default as Button } from "@/Components/Button";
+export { default as SlickSlider } from "@/Components/SlickSlider";
+export { default as MilestonesSection } from "@/Components/MilestonesSection";
+export { default as PlacementHighlights } from "@/Components/PlacementHighlights";

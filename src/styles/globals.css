@@ -1,0 +1,224 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "proximanova-regular";
+  src: url("/fonts/proximanova-regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "proximanova-semibold";
+  src: url("/fonts/proximanova-semibold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "proximanova-bold";
+  src: url("/fonts/proximanova-bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "proximanova-light";
+  src: url("/fonts/proximanova-light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "proximanova-thin";
+  src: url("/fonts/proximanova-thin.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "slick";
+  src: url("/fonts/slick.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "montserrat";
+  src: url("/fonts/montserrat.ttf") format("truetype");
+}
+
+.marquee {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
+
+.shadow-effect-right {
+  box-shadow: 7px 0px 14px rgba(0, 0, 0, 0.4);
+
+}
+
+.marquee:hover {
+  animation-play-state: paused;
+}
+
+.bg-primary {
+  background-color: #3c5686;
+}
+
+.text-primary {
+  color: #3c5686;
+}
+
+.bg-secondary {
+  background-color: #fecc00;
+}
+
+.text-secondary {
+  color: #fecc00;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 0px;
+}
+
+.card:hover .custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.card:hover .custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.card:hover .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #aaaaaa;
+  border-radius: 10px;
+}
+
+.card:hover .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #777777;
+}
+
+.Cutout {
+  clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
+}
+/* Custom modern scrollbar */
+.modern-scrollbar::-webkit-scrollbar {
+  width: 8px; /* Adjust width for vertical scrollbar */
+}
+
+.modern-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05); /* Subtle light background for the track */
+  border-radius: 4px; /* Rounded corners */
+}
+
+.modern-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.4); /* Semi-transparent dark thumb */
+  border-radius: 8px; /* Rounded corners for a modern look */
+  border: 2px solid rgba(255, 255, 255, 0.8); /* Border for spacing effect */
+}
+
+.modern-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.6); /* Darker on hover */
+}
+
+/* For Firefox */
+.modern-scrollbar {
+  scrollbar-width: thin; /* Slim scrollbar */
+  scrollbar-color: rgba(0, 0, 0, 0.4) rgba(0, 0, 0, 0.05); /* Thumb and track color */
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float linear infinite;
+}
+
+.animate-rotate {
+  animation: rotate 20s linear infinite;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
+}
+

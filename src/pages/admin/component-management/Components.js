@@ -49,36 +49,36 @@ function EditComponentModal({ isOpen, onClose, componentData, onSave, categories
         </div>
         <form className="space-y-5">
           <div className="space-y-2">
-            <label className="block text-sm font-semibold text-gray-700">Component Type *</label>
+            <label className="block text-sm font-novaSemi text-gray-700">Component Type *</label>
             <input
               type="text"
               name="componentType"
               value={editFormData?.componentType || ""}
               onChange={handleInputChange}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+              className="w-full px-4 py-2 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
             />
           </div>
           <div className="space-y-2">
-            <label className="block text-sm font-semibold text-gray-700">Component Name *</label>
+            <label className="block text-sm font-novaSemi text-gray-700">Component Name *</label>
             <input
               type="text"
               name="componentName"
               value={editFormData?.componentName || ""}
               onChange={handleInputChange}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+              className="w-full px-4 py-2 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
             />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">Category *</label>
+              <label className="block text-sm font-novaSemi text-gray-700">Category *</label>
               <select
                 name="category"
                 value={editFormData?.category || ""}
                 onChange={handleInputChange}
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white"
+                className="w-full px-4 py-2 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white"
               >
                 <option value="">Select Category</option>
                 {categories.map((cat) => (
@@ -89,12 +89,12 @@ function EditComponentModal({ isOpen, onClose, componentData, onSave, categories
               </select>
             </div>
             <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">Status</label>
+              <label className="block text-sm font-novaSemi text-gray-700">Status</label>
               <select
                 name="status"
                 value={editFormData?.status || ""}
                 onChange={handleInputChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white"
+                className="w-full px-4 py-2 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white"
               >
                 {statusOptions.map((status) => (
                   <option key={status} value={status}>
@@ -316,26 +316,26 @@ export default function ComponentForm() {
           {/* Header */}
           <div className="bg-gradient-to-r from-blue-600 to-purple-700 px-8 py-6">
             <h1 className="text-3xl font-novaBold text-white">Component Management</h1>
-            <p className="text-blue-100 font-novaReg text-lg">Add, edit, and manage your application components with ease.</p>
+            <p className="text-blue-100 font-novaReg text-base">Add, edit, and manage your application components with ease.</p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-7 gap-8 p-8">
+          <div className="grid grid-cols-1 lg:grid-cols-7 gap-2 p-4">
             {/* Form Section */}
-            <div className="lg:col-span-2 space-y-6 bg-gray-50 p-6 rounded-xl shadow-inner">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="lg:col-span-2 space-y-6 bg-gray-50 p-4 rounded-xl shadow-inner">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between">
                 <h2 className="text-2xl font-novaBold text-gray-800">Add New Component</h2>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex whitespace-nowrap gap-1">
                   <button
                     type="button"
                     onClick={() => generateSampleData("holder")}
-                    className="px-4 py-1.5 text-xs bg-blue-100 text-blue-800 rounded-full hover:bg-blue-200 transition-colors duration-200 font-medium"
+                    className="px-4 py-1.5 text-xs bg-blue-100 text-blue-800 rounded-full hover:bg-blue-200 transition-colors duration-200 font-novaSemi"
                   >
                     Holder Sample
                   </button>
                   <button
                     type="button"
                     onClick={() => generateSampleData("page")}
-                    className="px-4 py-1.5 text-xs bg-green-100 text-green-800 rounded-full hover:bg-green-200 transition-colors duration-200 font-medium"
+                    className="px-4 py-1.5 text-xs bg-green-100 text-green-800 rounded-full hover:bg-green-200 transition-colors duration-200 font-novaSemi"
                   >
                     Page Sample
                   </button>
@@ -343,7 +343,7 @@ export default function ComponentForm() {
               </div>
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="space-y-2">
-                  <label className="block text-sm font-semibold text-gray-700">Component Type *</label>
+                  <label className="block text-sm font-novaSemi text-gray-700">Component Type *</label>
                   <input
                     type="text"
                     name="componentType"
@@ -351,11 +351,11 @@ export default function ComponentForm() {
                     onChange={handleInputChange}
                     required
                     placeholder="e.g., Holder 1, Report Page"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                    className="w-full px-4 py-2 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="block text-sm font-semibold text-gray-700">Component Name *</label>
+                  <label className="block text-sm font-novaSemi text-gray-700">Component Name *</label>
                   <input
                     type="text"
                     name="componentName"
@@ -363,17 +363,17 @@ export default function ComponentForm() {
                     onChange={handleInputChange}
                     required
                     placeholder="e.g., Holder1, Report"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                    className="w-full px-4 py-2 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="block text-sm font-semibold text-gray-700">Category *</label>
+                  <label className="block text-sm font-novaSemi text-gray-700">Category *</label>
                   <select
                     name="category"
                     value={formData.category}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white"
+                    className="w-full px-4 py-2 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white"
                   >
                     <option value="">Select Category</option>
                     {categories.map((cat) => (
@@ -384,12 +384,12 @@ export default function ComponentForm() {
                   </select>
                 </div>
                 <div className="space-y-2">
-                  <label className="block text-sm font-semibold text-gray-700">Status</label>
+                  <label className="block text-sm font-novaSemi text-gray-700">Status</label>
                   <select
                     name="status"
                     value={formData.status}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white"
+                    className="w-full px-4 py-2 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white"
                   >
                     {statusOptions.map((status) => (
                       <option key={status} value={status}>
@@ -399,14 +399,14 @@ export default function ComponentForm() {
                   </select>
                 </div>
                 <div className="space-y-2">
-                  <label className="block text-sm font-semibold text-gray-700">Added By</label>
+                  <label className="block text-sm font-novaSemi text-gray-700">Added By</label>
                   <input
                     type="text"
                     name="addedby"
                     value={formData.addedby}
                     onChange={handleInputChange}
                     placeholder="User ID or Name"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                    className="w-full px-4 py-2 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                   />
                 </div>
                 <button
@@ -426,9 +426,9 @@ export default function ComponentForm() {
               {/* Message Display */}
               {message.text && (
                 <div
-                  className={`p-4 rounded-lg text-sm font-medium ${message.type === "success"
-                      ? "bg-green-100 border border-green-300 text-green-800"
-                      : "bg-red-100 border border-red-300 text-red-800"
+                  className={`p-4 rounded-lg text-sm font-novaReg ${message.type === "success"
+                    ? "bg-green-100 border border-green-300 text-green-800"
+                    : "bg-red-100 border border-red-300 text-red-800"
                     } transition-all duration-300 animate-fadeIn`}
                 >
                   {message.text}
@@ -448,19 +448,19 @@ export default function ComponentForm() {
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
                       placeholder="Search components..."
-                      className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      className="w-full pl-10 pr-4 py-2 border font-novaReg border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                     />
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
                   </div>
                   <button
                     type="submit"
-                    className="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium"
+                    className="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-novaReg"
                   >
                     Search
                   </button>
                 </form>
               </div>
-              <div className="bg-gray-50 rounded-xl p-4 max-h-[600px] overflow-y-auto shadow-inner">
+              <div className="bg-gray-50 rounded-xl p-4 max-h-[550px] overflow-y-auto shadow-inner">
                 {loading ? (
                   <div className="flex items-center justify-center py-12">
                     <Loader2 className="w-10 h-10 text-blue-600 animate-spin" />
@@ -473,24 +473,26 @@ export default function ComponentForm() {
                         key={component._id}
                         className="bg-white p-3 rounded-lg shadow-md border border-gray-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:shadow-lg transition-shadow duration-200"
                       >
-                        <div className="flex-1">
-                          <h3 className="font-novaBold text-gray-900 text-lg">{component.componentType}</h3>
-                          <p className="text-sm text-gray-600 mt-1">Name: {component.componentName}</p>
+                        <div className="flex-1 flex gap-2 items-end">
+                          <div>
+                            <h3 className="font-novaBold text-gray-900 text-lg">{component.componentType}</h3>
+                            <p className="text-sm text-gray-600 mt-1">Name: {component.componentName}</p>
+                          </div>
                           <div className="flex flex-wrap items-center gap-2 mt-3">
                             <span
-                              className={`px-3 py-1 text-xs rounded-full font-semibold ${component.category === "Page"
-                                  ? "bg-blue-100 text-blue-800"
-                                  : component.category === "Loose"
-                                    ? "bg-green-100 text-green-800"
-                                    : "bg-gray-100 text-gray-800"
+                              className={`px-3 py-0.5 text-xs rounded-full font-novaSemi ${component.category === "Page"
+                                ? "bg-blue-100 text-blue-800"
+                                : component.category === "Loose"
+                                  ? "bg-green-100 text-green-800"
+                                  : "bg-gray-100 text-gray-800"
                                 }`}
                             >
                               {component.category}
                             </span>
                             <span
-                              className={`px-3 py-1 text-xs rounded-full font-semibold ${component.status === "Active"
-                                  ? "bg-green-100 text-green-800"
-                                  : "bg-red-100 text-red-800"
+                              className={`px-3 py-0.5 text-xs rounded-full font-novaSemi ${component.status === "Active"
+                                ? "bg-green-100 text-green-800"
+                                : "bg-red-100 text-red-800"
                                 }`}
                             >
                               {component.status}
@@ -538,9 +540,9 @@ export default function ComponentForm() {
                     <button
                       key={page}
                       onClick={() => handlePageChange(page)}
-                      className={`px-4 py-2 border rounded-lg transition-colors duration-200 font-medium ${currentPage === page
-                          ? "bg-blue-600 text-white border-blue-600 shadow-md"
-                          : "border-gray-300 hover:bg-gray-100"
+                      className={`px-4 py-2 border rounded-lg transition-colors duration-200 font-novaReg ${currentPage === page
+                        ? "bg-blue-600 text-white border-blue-600 shadow-md"
+                        : "border-gray-300 hover:bg-gray-100"
                         }`}
                     >
                       {page}

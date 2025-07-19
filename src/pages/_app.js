@@ -7,13 +7,14 @@ import Footer from '@/Components/Footer';
 import useStickyBar from '@/hooks/useStickyBar';
 
 function MyApp({ Component, pageProps }) {
-    const showStickyBar = useStickyBar();
+    // const showStickyBar = useStickyBar();
     
     return (
         <>
             <NavBar />
             <Component {...pageProps} />
-            <StickyFooter ShowState={showStickyBar} />
+            {/* <StickyFooter ShowState={showStickyBar} /> */}
+            <StickyFooter  />
             <Footer />
         </>
     )

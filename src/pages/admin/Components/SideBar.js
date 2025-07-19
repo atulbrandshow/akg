@@ -145,7 +145,7 @@ export default function SideBar() {
     >
       <div className="flex items-center justify-between p-4 border-b border-gray-700">
         <h1
-          className={`text-xl font-semibold tracking-wider ${
+          className={`text-2xl font-novaBold ${
             isOpen ? "block" : "hidden"
           }`}
         >
@@ -157,7 +157,7 @@ export default function SideBar() {
           aria-label={isOpen ? "Collapse sidebar" : "Expand sidebar"}
         >
           <svg
-            className="w-6 h-6"
+            className="w-5 h-5"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -187,11 +187,11 @@ export default function SideBar() {
                     isActive(item.href) ? "bg-gray-700" : "hover:bg-gray-700"
                   }`}
                 >
-                  <item.icon className={`w-6 h-6 ${isOpen ? "mr-4" : null}`} />
+                  <item.icon className={`w-5 h-5 ${isOpen ? "mr-3" : null}`} />
                   <span
                     className={`${
                       isOpen ? "block" : "hidden"
-                    } font-novaSemi text-lg`}
+                    } font-novaSemi text-sm`}
                   >
                     {item.label}
                   </span>
@@ -205,20 +205,20 @@ export default function SideBar() {
                 >
                   <div className="flex items-center">
                     <item.icon
-                      className={`w-6 h-6 ${isOpen ? "mr-4" : null}`}
+                      className={`w-5 h-5 ${isOpen ? "mr-3" : null}`}
                     />
                     <span
                       className={` ${
                         isOpen ? "block" : "hidden"
-                      } font-novaSemi text-lg `}
+                      } font-novaSemi text-sm `}
                     >
                       {item.label}
                     </span>
                   </div>
                   {expandedSections[index] ? (
-                    <ChevronUp className="w-5 h-5" />
+                    <ChevronUp className="w-4 h-4" />
                   ) : (
-                    <ChevronDown className="w-5 h-5" />
+                    <ChevronDown className="w-4 h-4" />
                   )}
                 </div>
               )}
@@ -232,7 +232,7 @@ export default function SideBar() {
                     <li key={nestedIndex} className="mt-2">
                       <Link
                         href={nestedItem.href}
-                        className="pl-12 block p-1.5 rounded-md font-novaSemi text-lg text-gray-400 hover:bg-gray-700 hover:text-white"
+                        className="pl-12 block p-1.5 rounded-md font-novaSemi text-sm text-gray-400 hover:bg-gray-700 hover:text-white"
                       >
                         {nestedItem.label}
                       </Link>
@@ -262,7 +262,7 @@ export default function SideBar() {
               href="/"
               className="flex items-center p-2 rounded-md hover:bg-gray-700"
             >
-              <Home className={`w-6 h-6 ${isOpen ? "mr-4" : null}`} />
+              <Home className={`w-5 h-5 ${isOpen ? "mr-3" : null}`} />
               <span className={isOpen ? "block" : "hidden"}>Home</span>
             </Link>
           </li>
@@ -271,7 +271,7 @@ export default function SideBar() {
               onClick={() => handleClick()}
               className="flex items-center w-full p-2 rounded-md hover:bg-gray-700"
             >
-              <LogOut className={`w-6 h-6 ${isOpen ? "mr-4" : null}`} />
+              <LogOut className={`w-5 h-5 ${isOpen ? "mr-3" : null}`} />
               <span className={isOpen ? "block" : "hidden"}>Logout</span>
             </button>
           </li>

@@ -15,6 +15,7 @@ const JoditEditor = dynamic(() => import("jodit-react"), {
 
 export default function PageDetailsForm({ page_id }) {
   const router = useRouter();
+  const editor = useRef();
   const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
     page_id: "",

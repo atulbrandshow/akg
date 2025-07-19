@@ -156,7 +156,7 @@ const OfflineStepSection = ({ title, steps, isOpen, toggle }) => (
     </div>
 );
 
-export const HowToApply = () => {
+const HowToApply = () => {
     const [openIndexOnline, setOpenIndexOnline] = useState(0);
     const [openIndexOffline, setOpenIndexOffline] = useState(0);
 
@@ -224,3 +224,5 @@ export const HowToApply = () => {
         </>
     );
 };
+
+export default HowToApply;

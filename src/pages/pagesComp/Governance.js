@@ -89,7 +89,7 @@ const gbody = [
     }
 ];
 
-export const Governance = () => {
+const Governance = () => {
     const [openIndex, setOpenIndex] = useState(0);
 
     const toggleContent = (index) => {
@@ -303,3 +303,5 @@ export const Governance = () => {
         </>
     );
 };
+
+export default Governance;

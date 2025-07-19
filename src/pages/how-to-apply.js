@@ -1,6 +1,6 @@
 import Header from '@/Components/Header';
 import SideBar from '@/Components/SideBar';
-import { HowToApply } from './pagesComp/HowToApply';
+import HowToApply from './pagesComp/HowToApply';
 
 const SideBarLink = [
   { name: "Our Identity", link: "/overview" },

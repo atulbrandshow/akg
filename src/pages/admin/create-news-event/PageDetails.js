@@ -8,10 +8,14 @@ import { ToastContainer } from "react-toastify";
 import { useRouter } from "next/navigation";
 
 // Dynamically import JoditEditor with SSR disabled
-const JoditEditor = dynamic(() => import("jodit-react"), { 
+const JoditEditor = dynamic(() => import("jodit-react"), {
   ssr: false,
   loading: () => <p>Loading editor...</p>
 });
+
+const isValidDate = (date) => {
+  return date && !isNaN(new Date(date).getTime());
+};
 
 export default function PageDetailsForm({ allData, parentPage }) {
   const router = useRouter();
@@ -23,7 +27,9 @@ export default function PageDetailsForm({ allData, parentPage }) {
     name: allData?.name,
     parentPage: parentPage?.name,
     pageTitle: allData?.name,
-    date: new Date(allData?.date).toISOString().split("T")[0],
+    date: isValidDate(allData?.date)
+      ? new Date(allData.date).toISOString().split("T")[0]
+      : "",
     shortdesc: "",
     description: "",
     param1: "",
@@ -86,7 +92,7 @@ export default function PageDetailsForm({ allData, parentPage }) {
     keywords_tag: "",
   });
 
- const handleChange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -94,7 +100,7 @@ export default function PageDetailsForm({ allData, parentPage }) {
     }));
   };
 
- const handleShortDescChange = (newContent) => {
+  const handleShortDescChange = (newContent) => {
     setFormData(prev => ({
       ...prev,
       shortdesc: newContent
@@ -161,7 +167,7 @@ export default function PageDetailsForm({ allData, parentPage }) {
       console.error("Error fetching parent pages:", error);
       toast.error("An error occurred while processing your request.");
     } finally {
-      progressBar.style.width ="0%";
+      progressBar.style.width = "0%";
     }
   };
   const handleSubmit = (e) => {
@@ -264,28 +270,28 @@ export default function PageDetailsForm({ allData, parentPage }) {
           </div>
         </section>
 
-         <section className="grid grid-cols-2 gap-4">
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Short Description*
-          </label>
-          <JoditEditor
-            value={formData.shortdesc}
-            onBlur={handleShortDescChange}
-            className="border rounded"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Page Description*
-          </label>
-          <JoditEditor
-            value={formData.description}
-            onBlur={handleDescChange}
-            className="border rounded"
-          />
-        </div>
-      </section>
+        <section className="grid grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Short Description*
+            </label>
+            <JoditEditor
+              value={formData.shortdesc}
+              onBlur={handleShortDescChange}
+              className="border rounded"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Page Description*
+            </label>
+            <JoditEditor
+              value={formData.description}
+              onBlur={handleDescChange}
+              className="border rounded"
+            />
+          </div>
+        </section>
 
 
         <section className="grid grid-cols-4 gap-4">

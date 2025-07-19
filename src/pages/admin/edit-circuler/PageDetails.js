@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import dynamic from "next/dynamic";
 import { API_NODE_URL } from "@/configs/config";
 import { toast } from "react-toastify";
@@ -16,6 +16,7 @@ const JoditEditor = dynamic(() => import("jodit-react"), {
 
 export default function PageDetailsForm({ page_id }) {
   const router = useRouter();
+  const editor = useRef();
   const [loading, setLoading] = useState(true);
 
   const [formData, setFormData] = useState({

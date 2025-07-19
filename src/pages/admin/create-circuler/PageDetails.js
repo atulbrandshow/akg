@@ -13,15 +13,19 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 // Dynamically import the editor with SSR disabled
 const Editor = dynamic(
   () => import('react-draft-wysiwyg').then((mod) => mod.Editor),
-  { 
+  {
     ssr: false,
     loading: () => <p>Loading editor...</p>
   }
 );
 
+const isValidDate = (date) => {
+  return date && !isNaN(new Date(date).getTime());
+};
+
 export default function PageDetailsForm({ allData, parentPage }) {
-const router = useRouter();
-  
+  const router = useRouter();
+
   // Initialize editor states
   const [shortDescEditorState, setShortDescEditorState] = useState(
     () => EditorState.createEmpty()
@@ -38,7 +42,9 @@ const router = useRouter();
     name: allData?.name,
     parentPage: parentPage?.name,
     pageTitle: allData?.name,
-    date: new Date(allData?.date).toISOString().split("T")[0],
+    date: isValidDate(allData?.date)
+      ? new Date(allData.date).toISOString().split("T")[0]
+      : "",
     shortdesc: "",
     description: "",
     param1: "",
@@ -101,7 +107,7 @@ const router = useRouter();
     keywords_tag: "",
   });
 
-   const handleChange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -134,7 +140,7 @@ const router = useRouter();
     }));
   };
 
-   const handleGalleryImg = (e, field) => {
+  const handleGalleryImg = (e, field) => {
     const files = Array.from(e.target.files);
     setFormData((prevData) => ({
       ...prevData,
@@ -142,7 +148,7 @@ const router = useRouter();
     }));
   };
 
- 
+
   const insertPage = async () => {
     const progressBar = document.getElementById("progress-bar");
     try {
@@ -212,7 +218,7 @@ const router = useRouter();
                 type="text"
                 id="parentPage"
                 name="parentPage"
-                value={formData.parentPage}
+                value={formData?.parentPage}
                 onChange={handleChange}
                 className="w-full p-2 border rounded"
                 disabled
@@ -235,7 +241,7 @@ const router = useRouter();
                 type="text"
                 id="pageTitle"
                 name="pageTitle"
-                value={formData.pageTitle}
+                value={formData?.pageTitle}
                 onChange={handleChange}
                 className="w-full p-2 border rounded"
               />
@@ -252,7 +258,7 @@ const router = useRouter();
                   type="date"
                   id="pageDate"
                   name="date"
-                  value={formData.date}
+                  value={formData?.date}
                   onChange={handleChange}
                   className="w-full p-2 border rounded"
                 />
@@ -267,7 +273,7 @@ const router = useRouter();
                 <select
                   id="type"
                   name="type"
-                  value={formData.type}
+                  value={formData?.type}
                   onChange={handleChange}
                   className="w-full p-2 border rounded"
                 >
@@ -279,7 +285,7 @@ const router = useRouter();
           </div>
         </section>
 
-      <section className="grid grid-cols-2 gap-4">
+        <section className="grid grid-cols-2 gap-4">
           <div>
             <label htmlFor="shortdesc" className="block text-sm font-medium text-gray-700 mb-1">
               Short Description*
@@ -329,7 +335,7 @@ const router = useRouter();
               type="text"
               id="tag1"
               name="tag1"
-              value={formData.tag1}
+              value={formData?.tag1}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -345,7 +351,7 @@ const router = useRouter();
               type="text"
               id="tag2"
               name="tag2"
-              value={formData.tag2}
+              value={formData?.tag2}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -361,7 +367,7 @@ const router = useRouter();
               type="text"
               id="tag3"
               name="tag3"
-              value={formData.tag3}
+              value={formData?.tag3}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -377,7 +383,7 @@ const router = useRouter();
               type="number"
               id="schemaid"
               name="schemaid"
-              value={formData.schemaid}
+              value={formData?.schemaid}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -396,7 +402,7 @@ const router = useRouter();
               type="text"
               id="nic_name"
               name="nic_name"
-              value={formData.nic_name}
+              value={formData?.nic_name}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -412,7 +418,7 @@ const router = useRouter();
               type="number"
               id="col_width"
               name="col_width"
-              value={formData.col_width}
+              value={formData?.col_width}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -427,7 +433,7 @@ const router = useRouter();
             <select
               id="featured_status"
               name="featured_status"
-              value={formData.featured_status}
+              value={formData?.featured_status}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             >
@@ -447,7 +453,7 @@ const router = useRouter();
               type="number"
               id="price"
               name="price"
-              value={formData.price}
+              value={formData?.price}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -466,7 +472,7 @@ const router = useRouter();
               type="text"
               id="video_url"
               name="video_url"
-              value={formData.video_url}
+              value={formData?.video_url}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -482,7 +488,7 @@ const router = useRouter();
               type="text"
               id="old_url"
               name="old_url"
-              value={formData.old_url}
+              value={formData?.old_url}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -673,7 +679,7 @@ const router = useRouter();
                 type="text"
                 id="metatitle"
                 name="metatitle"
-                value={formData.metatitle}
+                value={formData?.metatitle}
                 onChange={handleChange}
                 className="w-full p-2 border rounded h-12" // Set a fixed height
               />
@@ -689,7 +695,7 @@ const router = useRouter();
                 id="metadesc"
                 name="metadesc"
                 rows={1} // Set rows to 1
-                value={formData.metadesc}
+                value={formData?.metadesc}
                 onChange={handleChange}
                 className="w-full p-2 border rounded resize-none h-12" // Set a fixed height and make it non-resizable
               ></textarea>
@@ -705,7 +711,7 @@ const router = useRouter();
                 type="text"
                 id="keywords_tag"
                 name="keywords_tag"
-                value={formData.keywords_tag}
+                value={formData?.keywords_tag}
                 onChange={handleChange}
                 className="w-full p-2 border rounded h-12" // Set a fixed height
               />

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import { API_NODE_URL } from "@/configs/config";
 import { toast } from "react-toastify";
@@ -8,11 +8,14 @@ import { ToastContainer } from "react-toastify";
 import { useRouter } from "next/navigation";
 
 // Dynamically import JoditEditor with SSR disabled
-const JoditEditor = dynamic(() => import("jodit-react"), { 
+const JoditEditor = dynamic(() => import("jodit-react"), {
   ssr: false,
   loading: () => <p>Loading editor...</p>
 });
 
+const isValidDate = (date) => {
+  return date && !isNaN(new Date(date).getTime());
+};
 
 export default function PageDetailsForm({ allData, parentPage }) {
   const router = useRouter();
@@ -24,7 +27,9 @@ export default function PageDetailsForm({ allData, parentPage }) {
     name: allData?.name,
     parentPage: parentPage?.name,
     pageTitle: allData?.name,
-    date: new Date(allData?.date).toISOString().split("T")[0],
+    date: isValidDate(allData?.date)
+      ? new Date(allData.date).toISOString().split("T")[0]
+      : "",
     shortdesc: "",
     description: "",
     param1: "",
@@ -87,7 +92,7 @@ export default function PageDetailsForm({ allData, parentPage }) {
     keywords_tag: "",
   });
 
- 
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -154,7 +159,7 @@ export default function PageDetailsForm({ allData, parentPage }) {
     }
   };
 
-const handleShortDescChange = (newContent) => {
+  const handleShortDescChange = (newContent) => {
     setFormData(prev => ({
       ...prev,
       shortdesc: newContent
@@ -200,7 +205,7 @@ const handleShortDescChange = (newContent) => {
                 type="text"
                 id="parentPage"
                 name="parentPage"
-                value={formData.parentPage}
+                value={formData?.parentPage}
                 onChange={handleChange}
                 className="w-full p-2 border rounded"
                 disabled
@@ -223,7 +228,7 @@ const handleShortDescChange = (newContent) => {
                 type="text"
                 id="pageTitle"
                 name="pageTitle"
-                value={formData.pageTitle}
+                value={formData?.pageTitle}
                 onChange={handleChange}
                 className="w-full p-2 border rounded"
               />
@@ -240,7 +245,7 @@ const handleShortDescChange = (newContent) => {
                   type="date"
                   id="pageDate"
                   name="date"
-                  value={formData.date}
+                  value={formData?.date}
                   onChange={handleChange}
                   className="w-full p-2 border rounded"
                 />
@@ -255,7 +260,7 @@ const handleShortDescChange = (newContent) => {
                 <select
                   id="type"
                   name="type"
-                  value={formData.type}
+                  value={formData?.type}
                   onChange={handleChange}
                   className="w-full p-2 border rounded"
                 >
@@ -268,27 +273,27 @@ const handleShortDescChange = (newContent) => {
         </section>
 
         <section className="grid grid-cols-2 gap-4">
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Short Description*
-          </label>
-          <JoditEditor
-            value={formData.shortdesc}
-            onBlur={handleShortDescChange}
-            className="border rounded"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Page Description*
-          </label>
-          <JoditEditor
-            value={formData.description}
-            onBlur={handleDescChange}
-            className="border rounded"
-          />
-        </div>
-      </section>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Short Description*
+            </label>
+            <JoditEditor
+              value={formData?.shortdesc}
+              onBlur={handleShortDescChange}
+              className="border rounded"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Page Description*
+            </label>
+            <JoditEditor
+              value={formData?.description}
+              onBlur={handleDescChange}
+              className="border rounded"
+            />
+          </div>
+        </section>
 
         <section className="grid grid-cols-4 gap-4">
           <div>
@@ -302,7 +307,7 @@ const handleShortDescChange = (newContent) => {
               type="text"
               id="tag1"
               name="tag1"
-              value={formData.tag1}
+              value={formData?.tag1}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -318,7 +323,7 @@ const handleShortDescChange = (newContent) => {
               type="text"
               id="tag2"
               name="tag2"
-              value={formData.tag2}
+              value={formData?.tag2}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -334,7 +339,7 @@ const handleShortDescChange = (newContent) => {
               type="text"
               id="tag3"
               name="tag3"
-              value={formData.tag3}
+              value={formData?.tag3}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -350,7 +355,7 @@ const handleShortDescChange = (newContent) => {
               type="number"
               id="schemaid"
               name="schemaid"
-              value={formData.schemaid}
+              value={formData?.schemaid}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -369,7 +374,7 @@ const handleShortDescChange = (newContent) => {
               type="text"
               id="nic_name"
               name="nic_name"
-              value={formData.nic_name}
+              value={formData?.nic_name}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -385,7 +390,7 @@ const handleShortDescChange = (newContent) => {
               type="number"
               id="col_width"
               name="col_width"
-              value={formData.col_width}
+              value={formData?.col_width}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -400,7 +405,7 @@ const handleShortDescChange = (newContent) => {
             <select
               id="featured_status"
               name="featured_status"
-              value={formData.featured_status}
+              value={formData?.featured_status}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             >
@@ -420,7 +425,7 @@ const handleShortDescChange = (newContent) => {
               type="number"
               id="price"
               name="price"
-              value={formData.price}
+              value={formData?.price}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -439,7 +444,7 @@ const handleShortDescChange = (newContent) => {
               type="text"
               id="video_url"
               name="video_url"
-              value={formData.video_url}
+              value={formData?.video_url}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -455,7 +460,7 @@ const handleShortDescChange = (newContent) => {
               type="text"
               id="old_url"
               name="old_url"
-              value={formData.old_url}
+              value={formData?.old_url}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -645,7 +650,7 @@ const handleShortDescChange = (newContent) => {
                 type="text"
                 id="metatitle"
                 name="metatitle"
-                value={formData.metatitle}
+                value={formData?.metatitle}
                 onChange={handleChange}
                 className="w-full p-2 border rounded h-12"
               />
@@ -661,7 +666,7 @@ const handleShortDescChange = (newContent) => {
                 id="metadesc"
                 name="metadesc"
                 rows={1}
-                value={formData.metadesc}
+                value={formData?.metadesc}
                 onChange={handleChange}
                 className="w-full p-2 border rounded resize-none h-12"
               ></textarea>
@@ -677,7 +682,7 @@ const handleShortDescChange = (newContent) => {
                 type="text"
                 id="keywords_tag"
                 name="keywords_tag"
-                value={formData.keywords_tag}
+                value={formData?.keywords_tag}
                 onChange={handleChange}
                 className="w-full p-2 border rounded h-12"
               />

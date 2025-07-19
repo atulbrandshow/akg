@@ -1,6 +1,6 @@
 import Header from "@/Components/Header";
 import SideBar from "@/Components/SideBar";
-import { Governance } from "./pagesComp/Governance";
+import Governance from "./pagesComp/Governance";
 
 
 const SideBarLink = [

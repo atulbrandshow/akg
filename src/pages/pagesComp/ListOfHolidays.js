@@ -2,22 +2,19 @@
 
 import { useState, useEffect } from "react";
 
-
-const ITEMS_PER_PAGE = 10;
-
-const ListOfHolidays = ({holidays, activeTab}) => {
+const ListOfHolidays = ({ holidays = [], activeTab, itemsPerPage = 10 }) => {
     const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
         setCurrentPage(1);
     }, [activeTab]);
 
-    const indexOfLastEntry = currentPage * ITEMS_PER_PAGE;
-    const indexOfFirstEntry = indexOfLastEntry - ITEMS_PER_PAGE;
-    const currentEntries = holidays.slice(indexOfFirstEntry, indexOfLastEntry);
+    const totalEntries = holidays?.length || 0;
+    const totalPages = Math.ceil(totalEntries / itemsPerPage);
 
-    const totalEntries = holidays.length;
-    const totalPages = Math.ceil(totalEntries / ITEMS_PER_PAGE);
+    const indexOfLastEntry = currentPage * itemsPerPage;
+    const indexOfFirstEntry = indexOfLastEntry - itemsPerPage;
+    const currentEntries = holidays?.slice(indexOfFirstEntry, indexOfLastEntry);
 
     const handlePageChange = (pageNumber) => {
         if (pageNumber > 0 && pageNumber <= totalPages) {
@@ -32,7 +29,7 @@ const ListOfHolidays = ({holidays, activeTab}) => {
             </h1>
             <div className="mb-6">
                 <table className="min-w-full my-4 bg-white rounded-lg">
-                    <thead className="bg-indigo-950 text-white h-[44px] rounded-t-lg font-novaBold uppercase text-xs lg:text-sm">
+                    <thead className="bg-indigo-950 text-white h-[44px] rounded-t-lg font-novaReg uppercase text-xs lg:text-sm">
                         <tr className="border-b">
                             <th className="px-4 max-[350px]:px-2 py-2 text-left border-r border-white border-opacity-10 rounded-tl-lg">
                                 S.No.

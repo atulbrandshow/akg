@@ -1,23 +1,4 @@
-"use client";
-
-import React, { useState } from "react";
-
-const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevState) => ({
-        ...prevState,
-        [name]: value,
-    }));
-};
-
-// Add a submit handler for form submission
-const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form Data Submitted:", formData);
-    // Add your form submission logic here
-};
-
-export const Contact = () => {
+const Contact = () => {
     return (
         <>
             <div>
@@ -337,3 +318,5 @@ export const Contact = () => {
         </>
     );
 }
+
+export default Contact;

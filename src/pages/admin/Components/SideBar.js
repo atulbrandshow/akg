@@ -18,12 +18,18 @@ import {
   BellDot,
   Download,
   Notebook,
+  Boxes,
 } from "lucide-react";
 const navLinks = [
   {
     icon: LayoutDashboard,
     label: "Dashboard",
     href: "/admin",
+  },
+  {
+    icon: Boxes,
+    label: "Component Manage",
+    href: "/admin/component-management",
   },
   {
     icon: FilePlus2,

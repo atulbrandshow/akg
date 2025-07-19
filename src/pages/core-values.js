@@ -1,5 +1,5 @@
 import Header from "@/Components/Header";
-import CoreValue from "./CoreValue";
+import CoreValue from "./pagesComp/CoreValue";
 
 export const Home = () => {
     return (

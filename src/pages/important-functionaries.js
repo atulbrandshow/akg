@@ -1,6 +1,6 @@
 import Header from "@/Components/Header";
 import SideBar from "@/Components/SideBar";
-import ImportantFunctionaries from "./ImportantFunctionaries";
+import ImportantFunctionaries from "./pagesComp/ImportantFunctionaries";
 
 
 const SideBarLink = [

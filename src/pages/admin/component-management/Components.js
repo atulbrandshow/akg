@@ -195,14 +195,14 @@ function AddComponentModal({ isOpen, onClose, onSave, categories, statusOptions 
             <button
               type="button"
               onClick={onClose}
-              className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 transition-all duration-200"
+              className="px-6 py-2 border border-gray-300 font-novaSemi rounded-lg text-gray-700 hover:bg-gray-100 transition-all duration-200"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-200 flex items-center gap-2 disabled:opacity-60"
+              className="px-6 py-2 bg-blue-600 text-white rounded-lg font-novaSemi hover:bg-blue-700 transition-all duration-200 flex items-center gap-2 disabled:opacity-60"
             >
               {isSubmitting ? (
                 <>

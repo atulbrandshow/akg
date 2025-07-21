@@ -250,7 +250,7 @@ const ExtraParamsManager = () => {
                   onClick={handleAddNew}
                   className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors"
                 >
-                  Add New Parameter
+                  Add New 
                 </button>
                 <button
                   onClick={fetchParams}
@@ -425,41 +425,46 @@ const ExtraParamsManager = () => {
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Upload Image</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Upload Image *</label>
 
-                        {/* Preview */}
+                        {/* Preview if image exists */}
                         {formData.paramImg && (
-                          <div className="mb-3">
+                          <div className="relative inline-block mb-2">
                             <img
-                              src={formData.paramImg}
+                              src={URL.createObjectURL(formData.paramImg)}
                               alt="Preview"
-                              className="h-32 w-32 object-cover rounded-md border border-gray-300 shadow-sm"
+                              className="h-32 w-32 object-cover rounded shadow border"
                             />
+                            <button
+                              type="button"
+                              onClick={() => setFormData({ ...formData, paramImg: null })}
+                              className="absolute top-1 right-1 bg-red-600 text-white text-xs rounded-full p-1 hover:bg-red-700"
+                              title="Remove Image"
+                            >
+                              ✕
+                            </button>
                           </div>
                         )}
 
-                        {/* Upload Button */}
+                        {/* File input */}
                         <input
                           type="file"
                           accept="image/*"
                           onChange={(e) => {
-                            const file = e.target.files[0]
+                            const file = e.target.files[0];
                             if (file) {
-                              const reader = new FileReader()
-                              reader.onloadend = () => {
-                                setFormData({ ...formData, paramImg: reader.result })
-                              }
-                              reader.readAsDataURL(file)
+                              // setFormData({ ...formData, paramImg: file });
                             }
                           }}
-                          className="block w-full text-sm text-gray-700
-               file:mr-4 file:py-2 file:px-4
-               file:rounded-md file:border-0
-               file:text-sm file:font-semibold
-               file:bg-violet-50 file:text-violet-700
-               hover:file:bg-violet-100"
+                          className="block w-full text-sm text-gray-500
+      file:mr-4 file:py-2 file:px-4
+      file:rounded-full file:border-0
+      file:text-sm file:font-semibold
+      file:bg-blue-50 file:text-blue-700
+      hover:file:bg-blue-100"
                         />
                       </div>
+
 
 
                       <div>

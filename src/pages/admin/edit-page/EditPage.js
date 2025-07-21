@@ -620,7 +620,7 @@ function EditPage() {
                     value={formData.name}
                     onChange={handleChange}
                     disabled
-                    className="w-full p-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-green-500 focus:ring-4 focus:ring-green-100 transition-all duration-200"
+                    className="w-full p-4 border-2 border-gray-200 rounded-xl cursor-not-allowed focus:outline-none focus:border-green-500 focus:ring-4 focus:ring-green-100 transition-all duration-200"
                     placeholder="Enter page title..."
                   />
                 </div>

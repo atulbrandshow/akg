@@ -5,7 +5,6 @@ import { API_NODE_URL } from "@/configs/config"
 import { useRouter } from "next/navigation"
 import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
-import { ToastContainer } from "react-toastify"
 
 // Dynamically import JoditEditor with SSR disabled
 const JoditEditor = dynamic(() => import("jodit-react"), {
@@ -234,13 +233,8 @@ export default function PageDetailsForm({ allData, parentPage }) {
     metadesc: "",
     keywords_tag: "",
   })
-  const [componentSearchValue, setComponentSearchValue] = useState(allData?.ComponentType)
-  const [showComponentDropdown, setShowComponentDropdown] = useState(false)
-  const [selectedComponentType, setSelectedComponentType] = useState(allData?.ComponentType)
-  const [displayedComponents, setDisplayedComponents] = useState([])
-  const [hasMoreComponents, setHasMoreComponents] = useState(true)
-  const [allComponents, setAllComponents] = useState([])
-  
+  const [componentType, setComponentType] = useState("event-details");
+
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -293,53 +287,6 @@ export default function PageDetailsForm({ allData, parentPage }) {
     }))
   }
 
-  const fetchComponents = async (searchTerm = "", page = 1) => {
-    try {
-      const url = new URL(`${API_NODE_URL}components/category/Page`)
-      url.searchParams.append("page", page)
-      url.searchParams.append("limit", 10)
-      if (searchTerm) {
-        url.searchParams.append("search", searchTerm)
-      }
-      const response = await fetch(url)
-      const result = await response.json()
-      if (result.status) {
-        if (page === 1) {
-          setAllComponents(result.data)
-        } else {
-          setAllComponents((prev) => [...prev, ...result.data])
-        }
-        setDisplayedComponents(result.data)
-        setHasMoreComponents(result.currentPage < result.totalPages)
-      }
-    } catch (error) {
-      console.error("Error fetching components:", error)
-    }
-  }
-
-  const handleComponentInputChange = (e) => {
-    const value = e.target.value
-    setComponentSearchValue(value)
-    if (value.length > 0) {
-      fetchComponents(value)
-      setShowComponentDropdown(true)
-    } else {
-      fetchComponents()
-      setShowComponentDropdown(false)
-    }
-  }
-
-  const handleComponentSuggestionClick = (component) => {
-    setComponentSearchValue(component.componentName)
-    setSelectedComponentType(component.componentName)
-    setShowComponentDropdown(false)
-  }
-
-  const handleShowMoreComponents = () => {
-    // This would need proper pagination implementation
-    fetchComponents(componentSearchValue, 2)
-  }
-
   const insertPage = async () => {
     const progressBar = document.getElementById("progress-bar")
     try {
@@ -352,7 +299,7 @@ export default function PageDetailsForm({ allData, parentPage }) {
 
       const payload = {
         ...formData,
-        ComponentType: selectedComponentType,
+        ComponentType: componentType,
       }
 
       const response = await fetch(`${API_NODE_URL}slug/update`, {
@@ -367,8 +314,8 @@ export default function PageDetailsForm({ allData, parentPage }) {
       const fetchedPages = data.data.pages || []
 
       if (data.status) {
-        toast.success("Page inserted Successfully")
-        router.push("/admin/page-list")
+        toast.success("Event inserted Successfully")
+        router.push("/admin/event-list")
       } else {
         toast.error(`Something went wrong: ${fetchedPages?.message}`)
       }
@@ -399,8 +346,8 @@ export default function PageDetailsForm({ allData, parentPage }) {
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-3xl font-novaBold text-gray-900">Add Page Details</h1>
-                <p className="text-gray-600 font-novaReg mt-2">Create and configure your page content with all necessary details</p>
+                <h1 className="text-3xl font-novaBold text-gray-900">Add Event Details</h1>
+                <p className="text-gray-600 font-novaReg mt-2">Create and configure your event content with all necessary details</p>
               </div>
               <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg cursor-pointer hover:from-blue-600 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 shadow-lg">
                 <div className="flex items-center space-x-2">
@@ -444,68 +391,18 @@ export default function PageDetailsForm({ allData, parentPage }) {
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg bg-gray-50 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                 />
               </div>
-              <div className="relative">
-                <label htmlFor="component-type" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Component Type <span className="text-red-500">*</span>
+              <div>
+                <label htmlFor="componentType" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                  Component Type
                 </label>
-                <div className="relative">
-                  <input
-                    id="component-type"
-                    type="text"
-                    value={componentSearchValue}
-                    onChange={handleComponentInputChange}
-                    placeholder="Search and select component type..."
-                    className="w-full border-2 border-gray-200 rounded-xl py-3 px-4 pr-12 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-200 bg-white"
-                  />
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-4">
-                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                      />
-                    </svg>
-                  </div>
-                </div>
-
-                {showComponentDropdown && (
-                  <div className="absolute z-20 w-full bg-white border-2 border-gray-200 rounded-xl mt-2 max-h-64 overflow-auto shadow-2xl">
-                    {displayedComponents.map((component) => (
-                      <div
-                        key={component._id}
-                        onClick={() => handleComponentSuggestionClick(component)}
-                        className="cursor-pointer px-4 py-3 hover:bg-blue-50 border-b border-gray-100 last:border-b-0 transition-colors duration-150 flex items-center"
-                      >
-                        <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
-                          <svg
-                            className="w-4 h-4 text-blue-600"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth="2"
-                              d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"
-                            />
-                          </svg>
-                        </div>
-                        <div className="font-medium text-gray-800">{component.componentName}</div>
-                      </div>
-                    ))}
-                    {hasMoreComponents && displayedComponents.length > 0 && (
-                      <button
-                        type="button"
-                        onClick={handleShowMoreComponents}
-                        className="w-full px-4 py-3 text-blue-600 hover:bg-blue-50 font-medium transition-colors duration-150"
-                      >
-                        Load More Components
-                      </button>
-                    )}
-                  </div>
-                )}
+                <input
+                  type="text"
+                  id="componentType"
+                  name="componentType"
+                  value={componentType}
+                  disabled
+                  className="w-full px-4 py-3 border font-novaReg cursor-not-allowed border-gray-300 rounded-lg bg-gray-50 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                />
               </div>
             </div>
           </div>
@@ -527,51 +424,36 @@ export default function PageDetailsForm({ allData, parentPage }) {
             </div>
 
             <div className="space-y-6">
-              <div>
-                <label htmlFor="pageTitle" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Page Title <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  id="pageTitle"
-                  name="pageTitle"
-                  value={formData.pageTitle}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  placeholder="Enter page title"
-                />
-              </div>
-
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="pageDate" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                  <label htmlFor="name" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                    Page Title <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    disabled
+                    className="w-full px-4 cursor-not-allowed py-3 border text-gray-600 font-novaReg border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    placeholder="Enter page title"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="date" className="block text-sm font-novaSemi text-gray-700 mb-2">
                     Page Date <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="date"
-                    id="pageDate"
+                    id="date"
                     name="date"
                     value={formData.date}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    required
+                    className="w-full px-4 py-3 border font-novaReg border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   />
-                </div>
-                <div>
-                  <label htmlFor="type" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                    Page Type <span className="text-red-500">*</span>
-                  </label>
-                  <select
-                    id="type"
-                    name="type"
-                    value={formData.type}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  >
-                    <option value="">Select Page Type</option>
-                    <option value="Page">Page</option>
-                    <option value="Admission">Admission</option>
-                    <option value="Article">Article</option>
-                  </select>
                 </div>
               </div>
             </div>
@@ -1092,7 +974,7 @@ export default function PageDetailsForm({ allData, parentPage }) {
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-lg font-novaSemi text-gray-900">Ready to Submit?</h3>
-                <p className="text-gray-600 mt-1 font-novaReg">Review all information before submitting the page</p>
+                <p className="text-gray-600 font-novaReg mt-1">Review all information before submitting the page</p>
               </div>
               <button
                 type="submit"

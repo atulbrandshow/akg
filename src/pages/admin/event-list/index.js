@@ -1,5 +1,5 @@
 import SideBar from "../Components/SideBar";
-import ListNewsEvent from "./ListNewsEvent";
+import ListNewsEvent from "./ListEvent";
 
 export default function Home() {
   return (

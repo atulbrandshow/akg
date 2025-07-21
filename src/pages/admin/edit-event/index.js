@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import SideBar from "../Components/SideBar";
-import EditNewsAndEvent from "./EditNewsAndEvent";
+import EditNewsAndEvent from "./EditEvent";
 
 export default function Home() {
   return (

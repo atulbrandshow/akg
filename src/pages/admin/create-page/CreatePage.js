@@ -199,9 +199,7 @@ const fetchComponents = async (searchTerm = "", page = 1) => {
       if (result.status) {
         setAllData(result?.data)
         toast.success("Page added Successfully")
-        setTimeout(() => {
-          setShowPageDetails(true)
-        }, 1000)
+        setShowPageDetails(true)
       } else if (result.message === "Slug already exists") {
         setAllData({})
         toast.warning("Page already exists")

@@ -362,9 +362,7 @@ function EditPage() {
       const data = await response.json()
       if (data.status) {
         toast.success("Page edited Successfully")
-        setTimeout(() => {
-          router.push("/admin/page-list")
-        }, 2000)
+        router.push("/admin/page-list")
       } else {
         toast.error(`Something went wrong: ${data?.message}`)
       }

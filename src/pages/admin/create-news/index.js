@@ -1,5 +1,5 @@
 import SideBar from "../Components/SideBar";
-import CreateNewsEvent from "./CreateNewsEvent";
+import CreateNewsEvent from "./CreateNews";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

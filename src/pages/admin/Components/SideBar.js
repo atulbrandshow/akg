@@ -19,6 +19,7 @@ import {
   Download,
   Notebook,
   Boxes,
+  Newspaper,
 } from "lucide-react";
 const navLinks = [
   {
@@ -48,11 +49,19 @@ const navLinks = [
     ],
   },
   {
-    icon: CalendarRange,
-    label: "News & Event",
+    icon: Newspaper,
+    label: "News",
     nestedLinks: [
-      { label: "Add News & Event", href: "/admin/create-news-event" },
-      { label: "List of News & Event", href: "/admin/list-news-event" },
+      { label: "Add News", href: "/admin/create-news" },
+      { label: "List of News", href: "/admin/news-list" },
+    ],
+  },
+  {
+    icon: CalendarRange,
+    label: "Event",
+    nestedLinks: [
+      { label: "Add Event", href: "/admin/create-event" },
+      { label: "List of Event", href: "/admin/event-list" },
     ],
   },
   {

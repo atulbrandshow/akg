@@ -6,8 +6,8 @@ import { StickyFooter } from '@/Components';
 import Footer from '@/Components/Footer';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { ToastContainer } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function MyApp({ Component, pageProps }) {
     const [isShowNavAndFooter, setIsShowNavAndFooter] = useState(false);
@@ -27,11 +27,9 @@ function MyApp({ Component, pageProps }) {
         <>
             {isShowNavAndFooter && <NavBar />}
             <Component {...pageProps} />
-            {isShowNavAndFooter && <StickyFooter />}
-            {isShowNavAndFooter && <Footer />}
             <ToastContainer
                 position="top-right"
-                autoClose={2000}
+                autoClose={1000}
                 hideProgressBar={false}
                 closeOnClick
                 rtl={false}
@@ -39,6 +37,8 @@ function MyApp({ Component, pageProps }) {
                 draggable
                 pauseOnHover
             />
+            {isShowNavAndFooter && <StickyFooter />}
+            {isShowNavAndFooter && <Footer />}
         </>
     );
 }

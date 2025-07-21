@@ -118,7 +118,8 @@ export async function getServerSideProps(context) {
         method: "GET",
         headers: { "Content-Type": "application/json" },
     });
-
+    console.log(response);
+    
     const result = await response.json();
 
     if (!result.status || !result.data) {

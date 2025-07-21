@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { ToastContainer } from "react-toastify"
-import { Boxes } from "lucide-react"
+import { Boxes, View } from "lucide-react"
 import Link from "next/link"
 
 const PageList = () => {
@@ -138,7 +138,7 @@ const PageList = () => {
     })
   }
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="">
       {/* Progress bar */}
       <div
         className="fixed top-0 left-0 h-1 bg-gradient-to-r from-blue-500 to-purple-600 z-50 transition-all duration-500 ease-out"
@@ -148,7 +148,7 @@ const PageList = () => {
         }}
       />
 
-      <div className="max-w-7xl mx-auto">
+      <div>
         {/* Header */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
           <div className="flex items-center justify-between mb-6">
@@ -164,13 +164,13 @@ const PageList = () => {
                 </svg>
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">Page Management</h1>
-                <p className="text-gray-600 text-sm">Manage your pages, articles, and admissions</p>
+                <h1 className="text-2xl font-novaBold text-gray-900">Page Management</h1>
+                <p className="text-gray-600 text-sm font-novaReg">Manage your pages, articles, and admissions</p>
               </div>
             </div>
             <div className="text-right">
-              <p className="text-sm text-gray-500">Total Pages</p>
-              <p className="text-2xl font-bold text-gray-900">{newsAndEvents.length}</p>
+              <p className="text-sm text-gray-500 font-novaReg">Total Pages</p>
+              <p className="text-2xl font-novaBold text-gray-900">{newsAndEvents.length}</p>
             </div>
           </div>
 
@@ -193,7 +193,7 @@ const PageList = () => {
                 placeholder="Search pages..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                className="block w-full pl-10 pr-3 py-2 border font-novaReg border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
               />
             </div>
 
@@ -201,7 +201,7 @@ const PageList = () => {
             <select
               value={filterType}
               onChange={(e) => setFilterType(e.target.value)}
-              className="block w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+              className="block w-full px-3 py-2 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
             >
               {uniqueTypes.map((type) => (
                 <option key={type} value={type}>
@@ -214,7 +214,7 @@ const PageList = () => {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="block w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+              className="block w-full px-3 py-2 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
             >
               <option value="date">Sort by Date</option>
               <option value="name">Sort by Name</option>
@@ -225,7 +225,7 @@ const PageList = () => {
             <select
               value={sortOrder}
               onChange={(e) => setSortOrder(e.target.value)}
-              className="block w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+              className="block w-full px-3 py-2 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
             >
               <option value="desc">Descending</option>
               <option value="asc">Ascending</option>
@@ -235,7 +235,7 @@ const PageList = () => {
 
         {/* Results Info */}
         <div className="mb-4">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-600 font-novaSemi">
             Showing {filteredData.length} of {newsAndEvents.length} pages
             {searchTerm && (
               <span className="ml-2">
@@ -257,25 +257,25 @@ const PageList = () => {
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-4 text-left text-xs font-novaSemi text-gray-700 uppercase tracking-wider">
                       Page Details
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-4 text-left text-xs font-novaSemi text-gray-700 uppercase tracking-wider">
                       Component
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-4 text-left text-xs font-novaSemi text-gray-700 uppercase tracking-wider">
                       Path & Id
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-4 text-left text-xs font-novaSemi text-gray-700 uppercase tracking-wider">
                       Author & Date
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-4 text-left text-xs font-novaSemi text-gray-700 uppercase tracking-wider">
                       Status
                     </th>
-                    <th className="px-6 py-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-4 text-center text-xs font-novaSemi text-gray-700 uppercase tracking-wider">
                       Extra Component Data
                     </th>
-                    <th className="px-6 py-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-4 text-center text-xs font-novaSemi text-gray-700 uppercase tracking-wider">
                       Actions
                     </th>
                   </tr>
@@ -291,37 +291,38 @@ const PageList = () => {
                         <td className="px-6 py-4">
                           <div className="flex items-center">
                             <div className="ml-4">
-                              <div className="text-sm font-medium text-gray-900 line-clamp-2">{event.name}</div>
+                              <div className="text-sm font-novaSemi text-gray-900 line-clamp-2">{event.name}</div>
                             </div>
                           </div>
                         </td>
                         <td className="px-6 py-4">
                           <div className="flex flex-col space-y-1">
                             {event.ComponentType && (
-                              <span className="text-sm font-novaSemi flex gap-1 items-center w-fit text-gray-600 bg-gray-100 px-2 py-1 rounded">
-                                <Boxes className="w-4 h-4" />
+                              <span className="text-sm font-novaBold flex gap-1 items-center w-fit text-gray-600 bg-gray-100 px-2 py-1 rounded">
+                                <Boxes size={15} />
                                 {event.ComponentType}
                               </span>
                             )}
                           </div>
                         </td>
                         <td className="px-6 py-4">
-                          <div className="flex flex-col space-y-1">
+                          <div className="flex flex-col items-center space-y-1">
                             {/* <code className="text-xs bg-gray-100 px-2 py-1 rounded text-gray-800 font-mono">
                               {event.path || event.slug}
                             </code> */}
-                            <Link target="_blank" href={event.path} className="text-xs text-nowrap bg-gray-100 px-2 py-1 rounded text-gray-800 font-mono hover:bg-gray-200 ">
-                              View page
+                            <Link target="_blank" href={event.path} className="text-xs text-nowrap flex gap-1 items-center w-fit bg-blue-100 px-2 py-1 rounded text-gray-800 font-novaSemi hover:bg-gray-200 ">
+                              <View size={14} />
+                              View Page
                             </Link>
-                            <span className="text-xs text-gray-500">ID: {event.page_id}</span>
+                            <span className="text-xs font-novaSemi text-gray-500">ID: {event.page_id}</span>
                           </div>
                         </td>
                         <td className="px-6 py-4">
                           <div className="flex flex-col space-y-1">
-                            <span className="text-sm font-medium text-gray-900">{event.addedby || "Unknown"}</span>
-                            <span className="text-xs text-gray-500">{formatDate(event.addedon)}</span>
+                            <span className="text-sm font-novaSemi text-gray-900">{event.addedby || "Unknown"}</span>
+                            <span className="text-xs text-gray-500 font-novaSemi">{formatDate(event.addedon)}</span>
                             {event.editedby && (
-                              <span className="text-xs text-orange-600">
+                              <span className="text-xs text-orange-600 font-novaSemi">
                                 Edited by {event.editedby} on {formatDate(event.editedon)}
                               </span>
                             )}
@@ -329,17 +330,15 @@ const PageList = () => {
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <span
-                            className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${getStatusColor(
+                            className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-novaSemi border ${getStatusColor(
                               event.status,
                             )}`}
                           >
                             {event.status ? "Active" : "Inactive"}
                           </span>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <span
-                            className={`inline-flex items-center px-2.5 py-0.5`}
-                          >
+                        <td className="px-6 py-4 whitespace-nowrap h-full">
+                          <div className="flex justify-center items-center">
                             <button
                               onClick={() =>
                                 router.push({
@@ -347,20 +346,19 @@ const PageList = () => {
                                   query: { page_id: event.page_id }, // or whatever your page_id variable is
                                 })
                               }
-                              className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-md text-white bg-violet-400 hover:bg-violet-500 focus:outline-none transition-all duration-200 transform hover:scale-105"
+                              className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-novaSemi rounded-md text-white bg-violet-500 hover:bg-violet-600 focus:outline-none transition-all duration-200 transform hover:scale-105"
                               title="Manage Page"
                             >
                               Manage
                             </button>
-
-                          </span>
+                          </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-center">
                           <div className="flex items-center justify-center space-x-2">
                             {/* Edit Button */}
                             <button
                               onClick={() => router.push(`/admin/edit-page?page_id=${event?.page_id}`)}
-                              className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all duration-200 transform hover:scale-105"
+                              className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-novaSemi rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all duration-200 transform hover:scale-105"
                               title="Edit Page"
                             >
                               <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -377,7 +375,7 @@ const PageList = () => {
                             {/* Edit Path Button */}
                             <button
                               onClick={() => router.push(`/admin/edit-path/${event?.page_id}`)}
-                              className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 transform hover:scale-105"
+                              className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-novaSemi rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 transform hover:scale-105"
                               title="Edit Path"
                             >
                               <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -449,26 +447,26 @@ const PageList = () => {
           <div className="mt-6 bg-white rounded-xl shadow-sm border border-gray-200 p-4">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
               <div>
-                <p className="text-2xl font-bold text-blue-600">
+                <p className="text-2xl font-novaBold text-blue-600">
                   {filteredData.filter((item) => item.type === "Page").length}
                 </p>
-                <p className="text-sm text-gray-600">Pages</p>
+                <p className="text-sm text-gray-600 font-novaSemi">Pages</p>
               </div>
               <div>
-                <p className="text-2xl font-bold text-green-600">
+                <p className="text-2xl font-novaBold text-green-600">
                   {filteredData.filter((item) => item.type === "Article").length}
                 </p>
-                <p className="text-sm text-gray-600">Articles</p>
+                <p className="text-sm text-gray-600 font-novaSemi">Articles</p>
               </div>
               <div>
-                <p className="text-2xl font-bold text-purple-600">
+                <p className="text-2xl font-novaBold text-purple-600">
                   {filteredData.filter((item) => item.type === "Admission").length}
                 </p>
-                <p className="text-sm text-gray-600">Admissions</p>
+                <p className="text-sm text-gray-600 font-novaSemi">Admissions</p>
               </div>
               <div>
-                <p className="text-2xl font-bold text-green-600">{filteredData.filter((item) => item.status).length}</p>
-                <p className="text-sm text-gray-600">Active</p>
+                <p className="text-2xl font-novaBold text-green-600">{filteredData.filter((item) => item.status).length}</p>
+                <p className="text-sm text-gray-600 font-novaSemi">Active</p>
               </div>
             </div>
           </div>

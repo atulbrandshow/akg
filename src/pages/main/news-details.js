@@ -1,6 +1,6 @@
 import Breadcrumb from '@/Components/Breadcrumb';
 import React from 'react'
-
+import Holder from '@/Components/Holder';
 function NewsDetailPage({ data }) {
 
     if (!data) {
@@ -37,25 +37,16 @@ function NewsDetailPage({ data }) {
                 className="prose prose-sm sm:prose lg:prose-lg max-w-none text-gray-800"
                 dangerouslySetInnerHTML={{ __html: data.description }}
             ></div>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-6 sm:pb-8">
+                {/* Display Holders */}
+                {Array.from({ length: 40 }, (_, i) => i + 1).map((item, index) => (
+                    data?.extraComponentData?.[`Holder${index}`] && (
+                        <Holder key={`holder-${index}`} data={data.extraComponentData[`Holder${index}`]} />
+                    )
+                ))}
+            </div>
 
-            {/* Gallery Images */}
-            {Array.isArray(data.images) && data.images.length > 0 && (
-                <div className="mt-10">
-                    <h3 className="text-lg font-semibold mb-2">More Images</h3>
-                    <div className="flex gap-4 flex-wrap">
-                        {data.images.map((img, index) => (
-                            <img
-                                key={index}
-                                src={img}
-                                alt={`img-${index}`}
-                                className="w-32 h-32 object-cover rounded shadow"
-                            />
-                        ))}
-                    </div>
-                </div>
-            )}
 
-            
         </div>
     )
 }

@@ -1,11 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import CalculatorComp from "../component/CalculatorCompV2";
-import SmallCTA from "../component/SmallCTA";
-import Link from "next/link";
 
-
-export default function TopRow({ data, extra, allData }) {
+export default function Holder({ data, extra, allData }) {
 
     const descriptionRef = useRef(null);
     const buttonRef = useRef(null);
@@ -254,30 +250,6 @@ export default function TopRow({ data, extra, allData }) {
                                     <p className="max-w-xl mx-auto text-3xl font-medium tracking-tight text-gray-950 sm:text-5xl">{data.title}</p>
                                 </hgroup>
                                 <p ref={buttonRef} className="mb-5 mx-auto max-w-xl text-sm/6 text-gray-700" dangerouslySetInnerHTML={{ __html: data.description }}></p>
-                            </div>
-                        </div>
-                    </> : null}
-
-                    {data?.titleTag === "smallCTA" && <>
-                        <SmallCTA data={data} />
-                    </>}
-
-                    {data?.titleTag === "Calculator" ? <>
-                        <div className="my-5 relative rounded-xl bg-[linear-gradient(115deg,var(--tw-gradient-stops))] from-[#1f3741] from-[28%] via-[#fa9716] via-[70%] to-[#ff9100] sm:bg-[linear-gradient(145deg,var(--tw-gradient-stops))]">
-                            <div className="relative flex items-center justify-between max-lg:flex-col">
-                                <div className="w-full p-5 ">
-                                    <div className="max-w-sm m-auto">
-                                        <p className="mt-2 text-2xl font-medium tracking-tight text-gray-100 sm:text-3xl lg:text-4xl">{data.title}</p>
-                                        {data.description && <p className="mt-3 text-sm/6 text-gray-200 text-left" dangerouslySetInnerHTML={{ __html: data.description }}></p>}
-                                    </div>
-                                </div>
-                                <div className="max-w-md w-full">
-                                    {data?.calid && (
-                                        <div className="p-3">
-                                            <CalculatorComp ReportID={data?.calid} allData={allData} />
-                                        </div>
-                                    )}
-                                </div>
                             </div>
                         </div>
                     </> : null}

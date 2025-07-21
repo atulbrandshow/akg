@@ -2,7 +2,6 @@ import Breadcrumb from '@/Components/Breadcrumb';
 import React from 'react'
 
 function NewsDetailPage({ data }) {
-    console.log(data);
 
     if (!data) {
         return <div className="p-4 text-red-600">No news data available.</div>
@@ -55,6 +54,8 @@ function NewsDetailPage({ data }) {
                     </div>
                 </div>
             )}
+
+            
         </div>
     )
 }

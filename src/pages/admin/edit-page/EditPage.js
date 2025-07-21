@@ -32,6 +32,40 @@ function EditPage() {
   const [hasMoreComponents, setHasMoreComponents] = useState(true)
   const [allComponents, setAllComponents] = useState([])
   const [imagePreviews, setImagePreviews] = useState({})
+  const [schools, setSchools] = useState([]); // State to hold school options
+  const [searchQuery, setSearchQuery] = useState(""); // State for search input
+  const [showDropdown, setShowDropdown] = useState(false); // Toggle dropdown visibility
+  const handleSchoolSelect = (school) => {
+    setFormData({ ...formData, stream: school.name }); // Set selected school ID
+    setSearchQuery(school.name); // Display school name in input
+    setShowDropdown(false); // Hide dropdown
+  };
+  // Fetch schools for the dropdown
+  useEffect(() => {
+    const fetchSchools = async () => {
+      try {
+        const response = await fetch(
+          `${API_NODE_URL}school/search?search=${searchQuery}`
+        );
+        const result = await response.json();
+        
+        if (result.status) {
+          setSchools(
+            Array.isArray(result?.data?.schools) ? result?.data?.schools : []
+          );
+        } else {
+          toast.error(result.message || "Failed to fetch schools.");
+          setSchools([]);
+        }
+      } catch (err) {
+        console.error("Error fetching schools:", err);
+        toast.error("An error occurred while fetching schools.");
+        setSchools([]);
+      }
+    };
+    fetchSchools();
+  }, [searchQuery]);
+
   const [formData, setFormData] = useState({
     page_id: "",
     parent_id: "",
@@ -100,6 +134,7 @@ function EditPage() {
     metatitle: "",
     metadesc: "",
     keywords_tag: "",
+    stream: ''
   })
 
   const shortDescEditor = useRef(null)
@@ -134,7 +169,7 @@ function EditPage() {
         const response = await fetch(`${API_NODE_URL}slug/getbyid?page_id=${page_id}`)
         const data = await response.json()
         console.log(data);
-        
+
 
         if (data.status) {
           const parent_id = data?.data?.parent_id
@@ -213,8 +248,9 @@ function EditPage() {
             metatitle: data?.data?.metatitle || "",
             metadesc: data?.data?.metadesc || "",
             keywords_tag: data?.data?.keywords_tag || "",
+            stream: data?.data?.stream || "",
           })
-
+          setSearchQuery(data?.data?.stream)
           // Set up image previews for existing images
           const previews = {}
           if (data?.data?.banner_img) previews.banner_img = data.data.banner_img
@@ -585,6 +621,43 @@ function EditPage() {
                         </button>
                       )}
                     </div>
+                  )}
+                </div>
+                {/* Custom Searchable Dropdown */}
+                <div>
+                  <label
+                    htmlFor="schoolSearch"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    School
+                  </label>
+                  <input
+                    id="schoolSearch"
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onFocus={() => setShowDropdown(true)}
+                    placeholder="Search and select school..."
+                    className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  {showDropdown && (
+                    <ul className="border border-gray-300 mt-1 max-h-40 overflow-y-auto rounded-md bg-white shadow-md">
+                      {(Array.isArray(schools) ? schools : [])
+                        .filter((school) =>
+                          school.name
+                            .toLowerCase()
+                            .includes(searchQuery.toLowerCase())
+                        )
+                        .map((school) => (
+                          <li
+                            key={school.id}
+                            onClick={() => handleSchoolSelect(school)}
+                            className="px-3 py-2 cursor-pointer hover:bg-blue-500 hover:text-white"
+                          >
+                            {school.name}
+                          </li>
+                        ))}
+                    </ul>
                   )}
                 </div>
               </div>

@@ -609,3 +609,8 @@ export const ResearchInnovation = {
         ]
     }
 }
+export const News = {
+    name: 'News',
+    links: '/news',
+    sublinks: []
+}

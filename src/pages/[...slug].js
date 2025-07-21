@@ -14,7 +14,9 @@ const loadComponent = async (componentName) => {
     }
 
     try {
-        const mod = await import(`./${componentName}`);
+        const mod = await import(`./main/${componentName}`);
+        console.log(mod);
+        
         const Component = mod.default;
         componentCache[componentName] = Component;
         return Component;

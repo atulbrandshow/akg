@@ -3,23 +3,12 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import Page from "./index";
 import ShimmerContent from "@Components/ShimmerContent";
-import { API_NODE_URL, API_KEY, Domain_Secrete_Code } from "@/configs/config";
-
-// Cache loaded components in memory
-const componentCache = {};
+import { API_NODE_URL } from "@/configs/config";
 
 const loadComponent = async (componentName) => {
-    if (componentCache[componentName]) {
-        return componentCache[componentName];
-    }
-
     try {
         const mod = await import(`./main/${componentName}`);
-        console.log(mod);
-        
-        const Component = mod.default;
-        componentCache[componentName] = Component;
-        return Component;
+        return mod.default;
     } catch (error) {
         console.error(`Error loading component: ${componentName}`, error);
         return null;
@@ -34,10 +23,9 @@ export default function DynamicPage({ data }) {
         let isMounted = true;
 
         const init = async () => {
-            if (!data || !data?.data?.ComponentType) return;
+            if (!data?.data?.ComponentType) return;
 
             const dynamicComponent = await loadComponent(data.data.ComponentType);
-
             if (isMounted) {
                 setComponent(() => dynamicComponent);
             }
@@ -53,7 +41,7 @@ export default function DynamicPage({ data }) {
     const metaTitle = "AKGEC - Ajay Kumar Garg Engineering College, Ghaziabad";
     const metaDescription =
         "Explore AKGEC, Ghaziabad – a premier engineering college affiliated to Dr. A.P.J. Abdul Kalam Technical University. Discover courses, campus, placements, and admission details.";
-    const bannerImage = "https://www.akgec.ac.in/wp-content/uploads/2023/03/akgec-campus.jpg"; // use official image URL if available
+    const bannerImage = "https://www.akgec.ac.in/wp-content/uploads/2023/03/akgec-campus.jpg";
     const pageUrl = `https://www.akgec.ac.in${router.asPath}`;
 
     return (
@@ -75,26 +63,6 @@ export default function DynamicPage({ data }) {
         </Page>
     );
 }
-let serverCache = {};
-
-function getFromCache(key) {
-    const item = serverCache[key];
-    if (!item) return null;
-
-    const now = Date.now();
-    if (now - item.timestamp > 5 * 60 * 1000) {
-        delete serverCache[key];
-        return null;
-    }
-    return item.data;
-}
-
-function saveToCache(key, data) {
-    serverCache[key] = {
-        data,
-        timestamp: Date.now(),
-    };
-}
 
 export async function getServerSideProps(context) {
     const { slug = [] } = context.params || {};
@@ -108,25 +76,17 @@ export async function getServerSideProps(context) {
         return { notFound: true };
     }
 
-    const cacheKey = path;
-    const cached = getFromCache(cacheKey);
-    if (cached) {
-        return { props: { data: cached } };
-    }
-
     const response = await fetch(`${API_NODE_URL}slug?path=${encodeURIComponent(path)}`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
     });
-    console.log(response);
-    
+
     const result = await response.json();
+    console.log(result);
 
     if (!result.status || !result.data) {
         return { notFound: true };
     }
-
-    saveToCache(cacheKey, result);
 
     return {
         props: {

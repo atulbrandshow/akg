@@ -240,22 +240,23 @@ export default function PageDetailsForm({ page_id }) {
       toast.error("Form data is not ready!")
       return
     }
-    console.log(formData)
+    console.log(formData);
 
-    // Create a FormData object to send files
-    const dataToSend = new FormData()
+    const dataToSend = new FormData();
     for (const key in formData) {
-      if (key === "galleryimg") {
+      if (key === "galleryimg" && Array.isArray(formData[key])) {
         formData[key].forEach((file) => {
-          dataToSend.append(key, file)
-        })
+          dataToSend.append(key, file);
+        });
       } else if (formData[key] instanceof File || formData[key] instanceof Blob) {
-        dataToSend.append(key, formData[key])
-      } else {
-        dataToSend.append(key, formData[key])
+        dataToSend.append(key, formData[key]);
+      } else if (formData[key] !== undefined && formData[key] !== null) {
+        dataToSend.append(key, formData[key]);
       }
     }
 
+
+    // Debug: print each key/value in FormData
     try {
       // Note: When sending FormData, do NOT set 'Content-Type': 'application/json'
       // The browser will automatically set the correct 'Content-Type' header with the boundary.

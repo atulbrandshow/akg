@@ -1,14 +1,32 @@
 "use client"
 
+import { API_NODE_URL } from "@/configs/config"
+import dynamic from "next/dynamic";
 import { useState, useEffect } from "react"
-
+import { useSearchParams } from 'next/navigation'
+const JoditEditor = dynamic(() => import("jodit-react"), {
+  ssr: false,
+  loading: () => <div className="p-4 bg-gray-100 rounded">Loading editor...</div>
+});
 const ExtraParamsManager = () => {
   const [params, setParams] = useState([])
-  const [selectedPageId, setSelectedPageId] = useState("")
+  const searchParams = useSearchParams()
+  const pageIdFromQuery = searchParams.get('page_id')  // ← this grabs `123`
+  const [selectedPageId, setSelectedPageId] = useState('')
   const [usedHolders, setUsedHolders] = useState([])
   const [showForm, setShowForm] = useState(false)
   const [editingParam, setEditingParam] = useState(null)
   const [loading, setLoading] = useState(false)
+  useEffect(() => {
+    if (pageIdFromQuery) {
+      setSelectedPageId(pageIdFromQuery)
+    }
+  }, [pageIdFromQuery])
+  useEffect(() => {
+    if (selectedPageId) {
+      fetchUsedHolders(selectedPageId)
+    }
+  }, [selectedPageId])
 
   // Form state
   const [formData, setFormData] = useState({
@@ -58,7 +76,7 @@ const ExtraParamsManager = () => {
   const fetchParams = async () => {
     setLoading(true)
     try {
-      const response = await fetch("/api/extra-component-data/all")
+      const response = await fetch(`${API_NODE_URL}extra-component-data/all`)
       const result = await response.json()
       if (result.status) {
         setParams(result.data || [])
@@ -71,10 +89,14 @@ const ExtraParamsManager = () => {
 
   // Fetch used holders for a specific page
   const fetchUsedHolders = async (pageid) => {
+    console.log(pageid);
+
     if (!pageid) return
     try {
-      const response = await fetch(`/api/extra-component-data/used-holders/${pageid}`)
-      const result = await response.json()
+      const response = await fetch(`${API_NODE_URL}extra-component-data/used-holders/${pageid}`)
+      const result = await response.json();
+      console.log(result);
+
       if (result.status) {
         setUsedHolders(result.data || [])
       }
@@ -89,7 +111,7 @@ const ExtraParamsManager = () => {
     setLoading(true)
 
     try {
-      const url = editingParam ? `/api/extra-component-data/${editingParam._id}` : "/api/extra-component-data/create"
+      const url = editingParam ? `${API_NODE_URL}extra-component-data/${editingParam._id}` : `${API_NODE_URL}extra-component-data/create`
 
       const method = editingParam ? "PUT" : "POST"
 
@@ -128,7 +150,7 @@ const ExtraParamsManager = () => {
 
     setLoading(true)
     try {
-      const response = await fetch(`/api/extra-component-data/${id}`, {
+      const response = await fetch(`${API_NODE_URL}extra-component-data/${id}`, {
         method: "DELETE",
       })
 
@@ -221,21 +243,6 @@ const ExtraParamsManager = () => {
             {/* Main Content */}
             <div className="flex-1 p-6">
               {/* Page Selection */}
-              <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 mb-2">Select Page ID</label>
-                <select
-                  value={selectedPageId}
-                  onChange={(e) => setSelectedPageId(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="">All Pages</option>
-                  {uniquePageIds.map((pageId) => (
-                    <option key={pageId} value={pageId}>
-                      {pageId}
-                    </option>
-                  ))}
-                </select>
-              </div>
 
               {/* Action Buttons */}
               <div className="mb-6 flex gap-4">
@@ -303,9 +310,8 @@ const ExtraParamsManager = () => {
                               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{param.type}</td>
                               <td className="px-6 py-4 whitespace-nowrap">
                                 <span
-                                  className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                                    param.status ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
-                                  }`}
+                                  className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${param.status ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
+                                    }`}
                                 >
                                   {param.status ? "Active" : "Inactive"}
                                 </span>
@@ -349,8 +355,9 @@ const ExtraParamsManager = () => {
                         <input
                           type="text"
                           value={formData.pageid}
+                          disabled
                           onChange={(e) => setFormData({ ...formData, pageid: e.target.value })}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border cursor-not-allowed border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                           required
                         />
                       </div>
@@ -377,7 +384,7 @@ const ExtraParamsManager = () => {
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Parameter *</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Title *</label>
                         <input
                           type="text"
                           value={formData.param}
@@ -389,37 +396,74 @@ const ExtraParamsManager = () => {
 
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">Type *</label>
-                        <input
-                          type="text"
+                        <select
                           value={formData.type}
                           onChange={(e) => setFormData({ ...formData, type: e.target.value })}
                           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                           required
-                        />
+                        >
+                          <option value="">Select Type</option>
+                          <option value="h2">h2</option>
+                          <option value="h3">h3</option>
+                          <option value="h4">h4</option>
+                          <option value="h5">h5</option>
+                          <option value="h6">h6</option>
+                          <option value="Banner">Banner</option>
+                          <option value="Widget">Widget</option>
+                          <option value="Footer">Footer</option>
+                        </select>
                       </div>
 
                       <div className="md:col-span-2">
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Parameter Description</label>
-                        <textarea
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                        <JoditEditor
                           value={formData.paramDesc}
-                          onChange={(e) => setFormData({ ...formData, paramDesc: e.target.value })}
+                          onChange={(value) => setFormData({ ...formData, paramDesc: value })}
                           rows="3"
                           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Parameter Image URL</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Upload Image</label>
+
+                        {/* Preview */}
+                        {formData.paramImg && (
+                          <div className="mb-3">
+                            <img
+                              src={formData.paramImg}
+                              alt="Preview"
+                              className="h-32 w-32 object-cover rounded-md border border-gray-300 shadow-sm"
+                            />
+                          </div>
+                        )}
+
+                        {/* Upload Button */}
                         <input
-                          type="url"
-                          value={formData.paramImg}
-                          onChange={(e) => setFormData({ ...formData, paramImg: e.target.value })}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          type="file"
+                          accept="image/*"
+                          onChange={(e) => {
+                            const file = e.target.files[0]
+                            if (file) {
+                              const reader = new FileReader()
+                              reader.onloadend = () => {
+                                setFormData({ ...formData, paramImg: reader.result })
+                              }
+                              reader.readAsDataURL(file)
+                            }
+                          }}
+                          className="block w-full text-sm text-gray-700
+               file:mr-4 file:py-2 file:px-4
+               file:rounded-md file:border-0
+               file:text-sm file:font-semibold
+               file:bg-violet-50 file:text-violet-700
+               hover:file:bg-violet-100"
                         />
                       </div>
 
+
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Parameter URL</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">URL</label>
                         <input
                           type="url"
                           value={formData.paramUrl}
@@ -440,7 +484,7 @@ const ExtraParamsManager = () => {
                         />
                       </div>
 
-                      <div>
+                      {/* <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">Added By</label>
                         <input
                           type="text"
@@ -448,8 +492,8 @@ const ExtraParamsManager = () => {
                           onChange={(e) => setFormData({ ...formData, addedby: e.target.value })}
                           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
-                      </div>
-
+                      </div> */}
+                      {/* 
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">Calendar ID</label>
                         <input
@@ -458,9 +502,9 @@ const ExtraParamsManager = () => {
                           onChange={(e) => setFormData({ ...formData, calid: e.target.value })}
                           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
-                      </div>
+                      </div> */}
 
-                      <div>
+                      {/* <div>
                         <label className="flex items-center">
                           <input
                             type="checkbox"
@@ -470,7 +514,7 @@ const ExtraParamsManager = () => {
                           />
                           <span className="text-sm font-medium text-gray-700">Active Status</span>
                         </label>
-                      </div>
+                      </div> */}
                     </div>
 
                     <div className="mt-6 flex gap-4">
@@ -518,9 +562,8 @@ const ExtraParamsManager = () => {
                           return (
                             <div
                               key={holder}
-                              className={`p-2 rounded-md text-sm font-medium flex items-center justify-between ${
-                                isUsed ? "bg-green-200 text-green-800" : "bg-red-200 text-red-800"
-                              }`}
+                              className={`p-2 rounded-md text-sm font-medium flex items-center justify-between ${isUsed ? "bg-green-200 text-green-800" : "bg-red-200 text-red-800"
+                                }`}
                             >
                               <span>{holder}</span>
                               <span className="text-xs">{isUsed ? "✓" : "✗"}</span>

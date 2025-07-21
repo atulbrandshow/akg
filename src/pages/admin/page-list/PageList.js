@@ -6,6 +6,7 @@ import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { ToastContainer } from "react-toastify"
 import { Boxes } from "lucide-react"
+import Link from "next/link"
 
 const PageList = () => {
   const router = useRouter()
@@ -306,9 +307,12 @@ const PageList = () => {
                         </td>
                         <td className="px-6 py-4">
                           <div className="flex flex-col space-y-1">
-                            <code className="text-xs bg-gray-100 px-2 py-1 rounded text-gray-800 font-mono">
+                            {/* <code className="text-xs bg-gray-100 px-2 py-1 rounded text-gray-800 font-mono">
                               {event.path || event.slug}
-                            </code>
+                            </code> */}
+                            <Link target="_blank" href={event.path} className="text-xs text-nowrap bg-gray-100 px-2 py-1 rounded text-gray-800 font-mono hover:bg-gray-200 ">
+                              View page
+                            </Link>
                             <span className="text-xs text-gray-500">ID: {event.page_id}</span>
                           </div>
                         </td>

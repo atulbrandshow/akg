@@ -1,18 +1,57 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { API_NODE_URL } from "@/configs/config";
 
-export default function EditPath() {
+export default function EditPath({ pageId }) {
   const [type, setType] = useState("blogs");
   const [title, setTitle] = useState("");
   const [path, setPath] = useState("");
   const [updateChildren, setUpdateChildren] = useState(false);
+
+  // New states for page ID and parent ID
+  const [parentId, setParentId] = useState(null);
+
+  useEffect(() => {
+    if (pageId) {
+      fetch(`${API_NODE_URL}edit-path/${pageId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data?.name) setTitle(data.name);
+          if (data?.path) setPath(data.path);
+          if (data?.parent_id) setParentId(data.parent_id); // store parent ID if exists
+        })
+        .catch((err) => console.error("Error fetching page data:", err));
+    }
+  }, [pageId]);
 
   return (
     <div className="p-6 space-y-6">
       {/* Update Name Section */}
       <div className="bg-white shadow-md p-6 rounded-lg border">
         <h2 className="text-xl font-semibold mb-4">Update Name</h2>
+
+        {/* Non-editable Page ID */}
+        <div className="mb-4">
+          <label className="block font-medium mb-1">Page ID</label>
+          <input
+            type="text"
+            value={pageId || ""}
+            disabled
+            className="w-full border bg-gray-100 rounded px-3 py-2 text-gray-700"
+          />
+        </div>
+
+        {/* Non-editable Parent ID */}
+        <div className="mb-4">
+          <label className="block font-medium mb-1">Parent ID</label>
+          <input
+            type="text"
+            value={parentId || "—"}
+            disabled
+            className="w-full border bg-gray-100 rounded px-3 py-2 text-gray-700"
+          />
+        </div>
 
         <div className="mb-4">
           <label className="block font-medium mb-1">Select Type*</label>
@@ -22,7 +61,6 @@ export default function EditPath() {
             className="w-full border rounded px-3 py-2"
           >
             <option value="blogs">Blogs | blogs</option>
-            {/* Add more options if needed */}
           </select>
         </div>
 

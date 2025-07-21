@@ -8,9 +8,10 @@ export default function EditPath({ pageId }) {
   const [title, setTitle] = useState("");
   const [path, setPath] = useState("");
   const [updateChildren, setUpdateChildren] = useState(false);
-
-  // New states for page ID and parent ID
   const [parentId, setParentId] = useState(null);
+
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     if (pageId) {
@@ -19,19 +20,64 @@ export default function EditPath({ pageId }) {
         .then((data) => {
           if (data?.name) setTitle(data.name);
           if (data?.path) setPath(data.path);
-          if (data?.parent_id) setParentId(data.parent_id); // store parent ID if exists
+          if (data?.parent_id) setParentId(data.parent_id);
         })
         .catch((err) => console.error("Error fetching page data:", err));
     }
   }, [pageId]);
 
+  const handleUpdate = async () => {
+    setLoading(true);
+    setMessage("");
+
+    try {
+      const res = await fetch(`${API_NODE_URL}edit-path/all`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          page_id: pageId,
+          title,
+          path,
+          update_children: updateChildren,
+        }),
+      });
+
+      const result = await res.json();
+      if (result.status) {
+        setMessage("✅ Updated successfully.");
+      } else {
+        setMessage(`❌ ${result.message}`);
+      }
+    } catch (error) {
+      console.error("Update error:", error);
+      setMessage("❌ Something went wrong. Please try again.");
+    }
+
+    setLoading(false);
+  };
+
   return (
     <div className="p-6 space-y-6">
+      {/* Message Box */}
+      {message && (
+        <div
+          className={`px-4 py-2 rounded text-sm font-medium ${
+            message.startsWith("✅")
+              ? "bg-green-100 text-green-800"
+              : "bg-red-100 text-red-800"
+          }`}
+        >
+          {message}
+        </div>
+      )}
+
       {/* Update Name Section */}
       <div className="bg-white shadow-md p-6 rounded-lg border">
         <h2 className="text-xl font-semibold mb-4">Update Name</h2>
 
-        {/* Non-editable Page ID */}
+        {/* Page ID */}
         <div className="mb-4">
           <label className="block font-medium mb-1">Page ID</label>
           <input
@@ -42,7 +88,7 @@ export default function EditPath({ pageId }) {
           />
         </div>
 
-        {/* Non-editable Parent ID */}
+        {/* Parent ID */}
         <div className="mb-4">
           <label className="block font-medium mb-1">Parent ID</label>
           <input
@@ -76,8 +122,16 @@ export default function EditPath({ pageId }) {
         </div>
 
         <div className="flex gap-3">
-          <button className="bg-blue-900 text-white px-6 py-2 rounded">Update</button>
-          <button className="bg-gray-400 text-white px-6 py-2 rounded">Cancel</button>
+          <button
+            onClick={handleUpdate}
+            disabled={loading}
+            className="bg-blue-900 text-white px-6 py-2 rounded hover:bg-blue-800 transition"
+          >
+            {loading ? "Updating..." : "Update"}
+          </button>
+          <button className="bg-gray-400 text-white px-6 py-2 rounded">
+            Cancel
+          </button>
         </div>
       </div>
 
@@ -109,8 +163,16 @@ export default function EditPath({ pageId }) {
         </div>
 
         <div className="flex gap-3">
-          <button className="bg-blue-900 text-white px-6 py-2 rounded">Update</button>
-          <button className="bg-gray-400 text-white px-6 py-2 rounded">Cancel</button>
+          <button
+            onClick={handleUpdate}
+            disabled={loading}
+            className="bg-blue-900 text-white px-6 py-2 rounded hover:bg-blue-800 transition"
+          >
+            {loading ? "Updating..." : "Update"}
+          </button>
+          <button className="bg-gray-400 text-white px-6 py-2 rounded">
+            Cancel
+          </button>
         </div>
       </div>
     </div>

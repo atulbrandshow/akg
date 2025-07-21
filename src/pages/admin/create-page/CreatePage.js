@@ -52,35 +52,36 @@ function CreatePage() {
     }
   }
 
-  const fetchComponents = async (searchTerm = "", page = 1) => {
-    try {
-      const response = await fetch(`${API_NODE_URL}components/category/Page?page=${page}&limit=10`)
-      const result = await response.json()
-
-      if (result.status) {
-        let filteredComponents = result.data
-
-        // Filter by search term if provided
-        if (searchTerm) {
-          filteredComponents = result.data.filter((component) =>
-            component.componentName.toLowerCase().includes(searchTerm.toLowerCase()),
-          )
-        }
-
-        if (page === 1) {
-          setAllComponents(filteredComponents)
-          setDisplayedComponents(filteredComponents.slice(0, 10))
-        } else {
-          setAllComponents((prev) => [...prev, ...filteredComponents])
-          setDisplayedComponents((prev) => [...prev, ...filteredComponents.slice(0, 10)])
-        }
-
-        setHasMoreComponents(filteredComponents.length === 10)
-      }
-    } catch (error) {
-      console.error("Error fetching components:", error)
+const fetchComponents = async (searchTerm = "", page = 1) => {
+  try {
+    // URL with search parameter
+    const url = new URL(`${API_NODE_URL}components/category/Page`);
+    url.searchParams.append('page', page);
+    url.searchParams.append('limit', 10);
+    if (searchTerm) {
+      url.searchParams.append('search', searchTerm);
     }
+
+    const response = await fetch(url);
+    const result = await response.json();
+
+    if (result.status) {
+      if (page === 1) {
+        setAllComponents(result.data);
+      } else {
+        setAllComponents(prev => [...prev, ...result.data]);
+      }
+      
+      // Update displayed components
+      setDisplayedComponents(result.data);
+      
+      // Check if more pages exist
+      setHasMoreComponents(result.currentPage < result.totalPages);
+    }
+  } catch (error) {
+    console.error("Error fetching components:", error);
   }
+};
 
   const handleInputChange = (e) => {
     const value = e.target.value
@@ -230,13 +231,13 @@ function CreatePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="">
       <div
         id="progress-bar"
         className="fixed top-0 left-0 h-1 bg-gradient-to-r from-blue-500 to-purple-600 z-50 transition-all duration-500"
       ></div>
 
-      <div className="max-w-4xl">
+      <div className="">
         {/* Header */}
         <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 rounded-2xl p-6 mb-8 shadow-2xl">
           <div className="flex items-center space-x-4">
@@ -266,7 +267,7 @@ function CreatePage() {
         </div>
 
         {!showPageDetails && (
-          <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+          <div className="bg-white max-w-xl rounded-2xl shadow-xl p-8 border border-gray-100">
             <form className="space-y-6">
               {/* Parent Page Selection */}
               <div className="relative">

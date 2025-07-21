@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { faAmazon, faGoogle, faMicrosoft, faShopify, } from "@fortawesome/free-brands-svg-icons";
 import { useState, useEffect } from "react";
 import { Bars2Icon, PhoneIcon, } from "@heroicons/react/20/solid";
-import { About, Academics, Admissions, CampusLife, ResearchInnovation, Placements, Programs } from "../Json/MenuItem";
+import { About, Academics, Admissions, CampusLife, ResearchInnovation, Placements, Programs,News } from "../Json/MenuItem";
 import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import gsap from 'gsap';
@@ -678,6 +678,12 @@ export default function NavBar() {
                     </div>
                   </div>
                 </div>
+              </li>
+              <li className="group relative">
+                <button onClick={() => router.push('/news')} className={`navlinks relative px-3 max-xl:px-1 ${isScrolled ? "py-3" : "py-3"}  focus:outline-none text-gray-700 font-novaBold text-sm max-[1600px]:text-sm flex items-center gap-1 whitespace-nowrap`}>
+                  News{" "}
+                 <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
+                </button>
               </li>
             </ul>
           </nav>

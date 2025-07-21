@@ -337,12 +337,18 @@ const PageList = () => {
                             className={`inline-flex items-center px-2.5 py-0.5`}
                           >
                             <button
-                              // onClick={() => }
-                              className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-md text-white bg-violet-400 hover:bg-violet-500 focus:outline-none  transition-all duration-200 transform hover:scale-105"
-                              title="Delete Page"
+                              onClick={() =>
+                                router.push({
+                                  pathname: '/admin/extra-components/list',
+                                  query: { page_id: event.page_id }, // or whatever your page_id variable is
+                                })
+                              }
+                              className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-md text-white bg-violet-400 hover:bg-violet-500 focus:outline-none transition-all duration-200 transform hover:scale-105"
+                              title="Manage Page"
                             >
                               Manage
                             </button>
+
                           </span>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-center">

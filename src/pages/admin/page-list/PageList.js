@@ -342,7 +342,7 @@ const PageList = () => {
                             <button
                               onClick={() =>
                                 router.push({
-                                  pathname: '/admin/extra-components/list',
+                                  pathname: '/admin/extra-components',
                                   query: { page_id: event.page_id }, // or whatever your page_id variable is
                                 })
                               }

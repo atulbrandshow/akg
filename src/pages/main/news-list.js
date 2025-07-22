@@ -19,7 +19,7 @@ function NewsListPage({ data }) {
   const fetchNews = async () => {
     try {
       setLoading(true)
-      const response = await fetch(`${API_NODE_URL}news-detail-page/all?page=${page}&limit=9&search=${searchTerm}`)
+      const response = await fetch(`${API_NODE_URL}list-detail-page/all?page=${page}&limit=9&search=${searchTerm}&type=News`)
       const data = await response.json()
       if (data.status && data.data) {
         setNewsData(data.data)
@@ -75,7 +75,7 @@ function NewsListPage({ data }) {
       {/* Header */}
       <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <Breadcrumb data={data.breadCrumb} />
+          <Breadcrumb data={data.breadCrumb} />
           <div className="flex flex-col md:flex-row md:items-center md:justify-between">
             <div className="mb-4 md:mb-0">
               <h1 className="text-4xl font-bold text-gray-900 mb-1">NewsHub</h1>
@@ -118,8 +118,8 @@ function NewsListPage({ data }) {
                 key={category}
                 onClick={() => setSelectedCategory(category)}
                 className={`px-6 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${selectedCategory === category
-                    ? "bg-red-600 text-white shadow-lg transform scale-105"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-md"
+                  ? "bg-red-600 text-white shadow-lg transform scale-105"
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-md"
                   }`}
               >
                 {category === "all" ? "All News" : category}
@@ -276,8 +276,8 @@ function NewsListPage({ data }) {
                     key={pageNum}
                     onClick={() => setPage(pageNum)}
                     className={`w-10 h-10 rounded-xl font-semibold transition-all duration-200 ${page === pageNum
-                        ? "bg-red-600 text-white shadow-lg"
-                        : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-300"
+                      ? "bg-red-600 text-white shadow-lg"
+                      : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-300"
                       }`}
                   >
                     {pageNum}

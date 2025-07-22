@@ -406,50 +406,50 @@ function EditDynamicPages({ type }) {
 
     const fetchComponents = async (searchTerm = "", page = 1) => {
         try {
-          const url = new URL(`${API_NODE_URL}components/category/Page`)
-          url.searchParams.append("page", page)
-          url.searchParams.append("limit", 10)
-          if (searchTerm) {
-            url.searchParams.append("search", searchTerm)
-          }
-          const response = await fetch(url)
-          const result = await response.json()
-          if (result.status) {
-            if (page === 1) {
-              setAllComponents(result.data)
-            } else {
-              setAllComponents((prev) => [...prev, ...result.data])
+            const url = new URL(`${API_NODE_URL}components/category/Page`)
+            url.searchParams.append("page", page)
+            url.searchParams.append("limit", 10)
+            if (searchTerm) {
+                url.searchParams.append("search", searchTerm)
             }
-            setDisplayedComponents(result.data)
-            setHasMoreComponents(result.currentPage < result.totalPages)
-          }
+            const response = await fetch(url)
+            const result = await response.json()
+            if (result.status) {
+                if (page === 1) {
+                    setAllComponents(result.data)
+                } else {
+                    setAllComponents((prev) => [...prev, ...result.data])
+                }
+                setDisplayedComponents(result.data)
+                setHasMoreComponents(result.currentPage < result.totalPages)
+            }
         } catch (error) {
-          console.error("Error fetching components:", error)
+            console.error("Error fetching components:", error)
         }
-      }
-    
-      const handleComponentInputChange = (e) => {
+    }
+
+    const handleComponentInputChange = (e) => {
         const value = e.target.value
         setComponentSearchValue(value)
         if (value.length > 0) {
-          fetchComponents(value)
-          setShowComponentDropdown(true)
+            fetchComponents(value)
+            setShowComponentDropdown(true)
         } else {
-          fetchComponents()
-          setShowComponentDropdown(false)
+            fetchComponents()
+            setShowComponentDropdown(false)
         }
-      }
-    
-      const handleComponentSuggestionClick = (component) => {
+    }
+
+    const handleComponentSuggestionClick = (component) => {
         setComponentSearchValue(component.componentName)
         setSelectedComponentType(component.componentName)
         setShowComponentDropdown(false)
-      }
-    
-      const handleShowMoreComponents = () => {
+    }
+
+    const handleShowMoreComponents = () => {
         // This would need proper pagination implementation
         fetchComponents(componentSearchValue, 2)
-      }
+    }
 
     useEffect(() => {
         if (formData.parentPage) {
@@ -1040,13 +1040,10 @@ function EditDynamicPages({ type }) {
                                 </label>
                                 <div className="border font-novaReg border-gray-300 rounded-lg overflow-hidden">
                                     <JoditEditor
-                                        ref={editor}
-                                        value={formData.shortdesc || ""}
-                                        config={{
-                                            height: "400px"
-                                        }}
-                                        onBlur={handleShortDescChange}
+                                        value={formData.shortdesc}
                                         onChange={handleShortDescChange}
+                                        rows="3"
+                                        className="w-full h-max px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                 </div>
                             </div>
@@ -1056,13 +1053,10 @@ function EditDynamicPages({ type }) {
                                 </label>
                                 <div className="border font-novaReg border-gray-300 rounded-lg overflow-hidden">
                                     <JoditEditor
-                                        ref={editor}
-                                        value={formData.description || ""}
-                                        config={{
-                                            height: "400px"
-                                        }}
-                                        onBlur={handleDescChange}
+                                        value={formData.description}
                                         onChange={handleDescChange}
+                                        rows="3"
+                                        className="w-full h-max px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                                 </div>
                             </div>

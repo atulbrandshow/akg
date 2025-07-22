@@ -25,7 +25,6 @@ function CreatePage() {
   const [showComponentDropdown, setShowComponentDropdown] = useState(false)
   const [componentIndex, setComponentIndex] = useState(10)
   const [hasMoreComponents, setHasMoreComponents] = useState(true)
-  const [selectedComponent, setSelectedComponent] = useState(null)
 
   const fetchPages = async (searchTerm = "") => {
     try {
@@ -52,36 +51,36 @@ function CreatePage() {
     }
   }
 
-const fetchComponents = async (searchTerm = "", page = 1) => {
-  try {
-    // URL with search parameter
-    const url = new URL(`${API_NODE_URL}components/category/Page`);
-    url.searchParams.append('page', page);
-    url.searchParams.append('limit', 10);
-    if (searchTerm) {
-      url.searchParams.append('search', searchTerm);
-    }
-
-    const response = await fetch(url);
-    const result = await response.json();
-
-    if (result.status) {
-      if (page === 1) {
-        setAllComponents(result.data);
-      } else {
-        setAllComponents(prev => [...prev, ...result.data]);
+  const fetchComponents = async (searchTerm = "", page = 1) => {
+    try {
+      // URL with search parameter
+      const url = new URL(`${API_NODE_URL}components/category/Page`);
+      url.searchParams.append('page', page);
+      url.searchParams.append('limit', 10);
+      if (searchTerm) {
+        url.searchParams.append('search', searchTerm);
       }
-      
-      // Update displayed components
-      setDisplayedComponents(result.data);
-      
-      // Check if more pages exist
-      setHasMoreComponents(result.currentPage < result.totalPages);
+
+      const response = await fetch(url);
+      const result = await response.json();
+
+      if (result.status) {
+        if (page === 1) {
+          setAllComponents(result.data);
+        } else {
+          setAllComponents(prev => [...prev, ...result.data]);
+        }
+
+        // Update displayed components
+        setDisplayedComponents(result.data);
+
+        // Check if more pages exist
+        setHasMoreComponents(result.currentPage < result.totalPages);
+      }
+    } catch (error) {
+      console.error("Error fetching components:", error);
     }
-  } catch (error) {
-    console.error("Error fetching components:", error);
-  }
-};
+  };
 
   const handleInputChange = (e) => {
     const value = e.target.value
@@ -115,7 +114,6 @@ const fetchComponents = async (searchTerm = "", page = 1) => {
 
   const handleComponentSuggestionClick = (component) => {
     setComponentSearchValue(component.componentName)
-    setSelectedComponent(component)
     setSelectedComponentType(component.componentName)
     setShowComponentDropdown(false)
   }
@@ -145,7 +143,6 @@ const fetchComponents = async (searchTerm = "", page = 1) => {
     // Reset component selection when page type changes
     if (value !== "Page") {
       setSelectedComponentType("")
-      setSelectedComponent(null)
       setComponentSearchValue("")
     } else {
       // Fetch components when Page is selected
@@ -223,7 +220,6 @@ const fetchComponents = async (searchTerm = "", page = 1) => {
     setPageType("")
     setShowDropdown(false)
     setSelectedComponentType("")
-    setSelectedComponent(null)
     setComponentSearchValue("")
     setShowComponentDropdown(false)
   }

@@ -55,10 +55,12 @@ export default function Header({
     formKey = "applyNow",
     gradient = true,
     position = "center",
-    bgKey = "BG3"
+    bgKey = "BG3",
+    bgUrl,
+    custom=false
 }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const bg = bgImages[bgKey] || "/image/header-image.jpg";
+    const bg = custom ? bgUrl :  bgImages[bgKey] || "/image/header-image.jpg";
     const formConfig = formConfigs[formKey];
 
     return (

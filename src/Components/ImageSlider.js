@@ -107,9 +107,8 @@ const ImageSlider = ({
             {images.map((image, index) => (
               <div
                 key={index}
-                className={`absolute inset-0 ${transitionClasses[transition]} ${
-                  index === currentSlide ? "opacity-100" : "opacity-0"
-                }`}
+                className={`absolute inset-0 ${transitionClasses[transition]} ${index === currentSlide ? "opacity-100" : "opacity-0"
+                  }`}
               >
                 <img
                   src={image.src || image}
@@ -185,9 +184,8 @@ const ImageSlider = ({
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-200 ${
-                index === currentSlide ? "bg-blue-600 scale-125" : "bg-gray-300 hover:bg-gray-400"
-              }`}
+              className={`w-3 h-3 rounded-full transition-all duration-200 ${index === currentSlide ? "bg-blue-600 scale-125" : "bg-gray-300 hover:bg-gray-400"
+                }`}
             />
           ))}
         </div>
@@ -200,9 +198,8 @@ const ImageSlider = ({
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`relative overflow-hidden rounded-lg transition-all duration-200 ${
-                index === currentSlide ? "ring-2 ring-blue-600 scale-105" : "opacity-70 hover:opacity-100"
-              }`}
+              className={`relative overflow-hidden rounded-lg transition-all duration-200 ${index === currentSlide ? "ring-2 ring-blue-600 scale-105" : "opacity-70 hover:opacity-100"
+                }`}
             >
               <img src={image.src || image} alt={`Thumbnail ${index + 1}`} className="w-16 h-12 object-cover" />
             </button>

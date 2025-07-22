@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
-export default function Holder({ data, extra }) {
+export default function Holder({ data }) {
     const descriptionRef = useRef(null);
     const buttonRef = useRef(null);
     const BannerRef = useRef(null);
@@ -52,7 +52,7 @@ export default function Holder({ data, extra }) {
     const cleanedDescription = cleanDescription(data.paramDesc || "");
 
     return (
-        <div className={`rounded-xl shadow-md w-full overflow-hidden ${extra || "mt-5 bg-white"}`}>
+        <div className={`rounded-xl shadow-md w-full overflow-hidden`}>
             {data.param && (
                 <div className="w-full bg-gradient-to-r from-blue-600 to-purple-800 py-4 px-5 shadow-lg">
                     <h2 className="text-2xl font-serif text-white tracking-wide">{data.param}</h2>

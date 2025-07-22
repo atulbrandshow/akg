@@ -17,6 +17,17 @@ function CreateDynamicPages({ type, componentType }) {
     const [selectedPage, setSelectedPage] = useState(null);
     const [title, setTitle] = useState("");
     const [allData, setAllData] = useState({});
+    const [pageType, setPageType] = useState("")
+
+    // Component Type states
+    const [allComponents, setAllComponents] = useState([])
+    const [displayedComponents, setDisplayedComponents] = useState([])
+    const [componentSearchValue, setComponentSearchValue] = useState("")
+    const [showComponentDropdown, setShowComponentDropdown] = useState(false)
+    const [componentIndex, setComponentIndex] = useState(10)
+    const [hasMoreComponents, setHasMoreComponents] = useState(true)
+    const [selectedComponentType, setSelectedComponentType] = useState("")
+    const [errors, setErrors] = useState({});
 
     const fetchPages = async (searchTerm = "") => {
         try {
@@ -45,9 +56,36 @@ function CreateDynamicPages({ type, componentType }) {
         }
     };
 
-    useEffect(() => {
-        fetchPages();
-    }, []);
+    const fetchComponents = async (searchTerm = "", page = 1) => {
+        try {
+            // URL with search parameter
+            const url = new URL(`${API_NODE_URL}components/category/Page`);
+            url.searchParams.append('page', page);
+            url.searchParams.append('limit', 10);
+            if (searchTerm) {
+                url.searchParams.append('search', searchTerm);
+            }
+
+            const response = await fetch(url);
+            const result = await response.json();
+
+            if (result.status) {
+                if (page === 1) {
+                    setAllComponents(result.data);
+                } else {
+                    setAllComponents(prev => [...prev, ...result.data]);
+                }
+
+                // Update displayed components
+                setDisplayedComponents(result.data);
+
+                // Check if more pages exist
+                setHasMoreComponents(result.currentPage < result.totalPages);
+            }
+        } catch (error) {
+            console.error("Error fetching components:", error);
+        }
+    };
 
     const handleInputChange = (e) => {
         const value = e.target.value;
@@ -61,6 +99,24 @@ function CreateDynamicPages({ type, componentType }) {
             setShowDropdown(false);
         }
     };
+
+    const handleComponentInputChange = (e) => {
+        const value = e.target.value
+        setComponentSearchValue(value)
+        if (value.length > 0) {
+            fetchComponents(value)
+            setShowComponentDropdown(true)
+        } else {
+            fetchComponents()
+            setShowComponentDropdown(false)
+        }
+    }
+
+    const handleComponentSuggestionClick = (component) => {
+        setComponentSearchValue(component.componentName)
+        setSelectedComponentType(component.componentName)
+        setShowComponentDropdown(false)
+    }
 
     const handleSuggestionClick = (page) => {
         setSearchValue(page.name); // Show the name in the input
@@ -78,21 +134,62 @@ function CreateDynamicPages({ type, componentType }) {
         }
     };
 
+    const handleShowMoreComponents = () => {
+        const newIndex = componentIndex + 10
+        setDisplayedComponents(allComponents.slice(0, newIndex))
+        setComponentIndex(newIndex)
+        if (newIndex >= allComponents.length) {
+            setHasMoreComponents(false)
+        }
+    }
+
+    const handlePageTypeChange = (e) => {
+        const value = e.target.value
+        setPageType(value)
+
+        // Reset component selection when page type changes
+        if (value !== "Page") {
+            setSelectedComponentType("")
+            setComponentSearchValue("")
+        } else {
+            // Fetch components when Page is selected
+            fetchComponents()
+        }
+    }
+
 
     const handleAddClick = async () => {
+        const newErrors = {};
+
         if (!selectedPage) {
-            alert("Please select a parent page.");
-            return;
+            newErrors.selectedPage = "Please select a parent page.";
         }
+
         if (!title) {
-            alert("Please enter a title.");
+            newErrors.title = "Please enter a title.";
+        }
+
+        if (type === "Page" && !pageType) {
+            newErrors.pageType = "Please select page type.";
+        }
+
+        if (pageType === "Page" && !selectedComponentType) {
+            newErrors.selectedComponentType = "Please select a component type.";
+        }
+
+        // If there are any errors, update state and stop execution
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
             return;
         }
+
+        setErrors({}); // Clear previous errors
 
         const payload = {
             parent_id: selectedPage?.page_id,
             name: title,
-            type
+            type,
+            ComponentType: selectedComponentType,
         };
 
         const progressBar = document.getElementById("progress-bar");
@@ -136,7 +233,11 @@ function CreateDynamicPages({ type, componentType }) {
         setSearchValue("")
         setTitle("")
         setSelectedPage(null)
+        setPageType("")
         setShowDropdown(false)
+        setSelectedComponentType("")
+        setComponentSearchValue("")
+        setShowComponentDropdown(false)
     }
 
     return (
@@ -196,6 +297,7 @@ function CreateDynamicPages({ type, componentType }) {
                                     </svg>
                                 </div>
                             </div>
+                            {errors.selectedPage && <p className="text-sm text-red-600 ml-1 mt-1">{errors.selectedPage}</p>}
 
                             {showDropdown && (
                                 <div className="absolute z-20 w-full bg-white border-2 border-gray-200 rounded-xl mt-2 max-h-64 overflow-auto shadow-2xl">
@@ -235,7 +337,81 @@ function CreateDynamicPages({ type, componentType }) {
                                 onChange={(e) => setTitle(e.target.value)}
                                 className="w-full border-2 border-gray-200 font-novaReg rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
                             />
+                            {errors.title && <p className="text-sm text-red-600 ml-1 mt-1">{errors.title}</p>}
                         </div>
+
+                        {type === "Page" && (
+                            <div>
+                                <label htmlFor="page-type" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                                    Page Type
+                                    <span className="text-red-500 ml-1">*</span>
+                                </label>
+                                <select
+                                    id="page-type"
+                                    value={pageType}
+                                    onChange={handlePageTypeChange}
+                                    className="w-full border-2 border-gray-200 font-novaReg rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
+                                >
+                                    <option value="">Select page type...</option>
+                                    <option value="Page">Page</option>
+                                    <option value="Admission">Admission</option>
+                                </select>
+                                {errors.pageType && <p className="text-sm text-red-600 ml-1 mt-1">{errors.pageType}</p>}
+                            </div>
+                        )}
+
+                        {pageType === "Page" && (
+                            <div className="relative">
+                                <label htmlFor="component-type" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                                    Component Type
+                                    <span className="text-red-500 ml-1">*</span>
+                                </label>
+                                <div className="relative">
+                                    <input
+                                        id="component-type"
+                                        type="text"
+                                        value={componentSearchValue}
+                                        onChange={handleComponentInputChange}
+                                        placeholder="Search and select component type..."
+                                        className="w-full border-2 border-gray-200 font-novaReg rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
+                                    />
+                                    {errors.selectedComponentType && <p className="text-sm text-red-600 ml-1 mt-1">{errors.selectedComponentType}</p>}
+                                    <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+                                        <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                            ></path>
+                                        </svg>
+                                    </div>
+                                </div>
+
+                                {showComponentDropdown && (
+                                    <div className="absolute z-20 w-full bg-white border-2 border-gray-200 rounded-xl mt-2 max-h-64 overflow-auto shadow-2xl">
+                                        {displayedComponents.map((component, index) => (
+                                            <div
+                                                key={component._id}
+                                                onClick={() => handleComponentSuggestionClick(component)}
+                                                className="cursor-pointer px-4 py-3 hover:bg-blue-50 border-b border-gray-100 last:border-b-0 transition-colors duration-150"
+                                            >
+                                                <div className="font-novaSemi text-gray-800">{component.componentName}</div>
+                                            </div>
+                                        ))}
+                                        {hasMoreComponents && displayedComponents.length > 0 && (
+                                            <button
+                                                type="button"
+                                                onClick={handleShowMoreComponents}
+                                                className="w-full px-4 py-3 text-blue-600 hover:bg-blue-50 font-medium transition-colors duration-150"
+                                            >
+                                                Load More Components
+                                            </button>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                        )}
 
                         {/* <div>
                             <label htmlFor="page-type" className="block text-sm font-novaSemi text-gray-700 mb-2">

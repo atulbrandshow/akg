@@ -6,7 +6,7 @@ export const FOLDER_NAMES = {
   BANNER: "bannerImage",
   PROFILE: "profileImage",
   GALLERY: "gallery",
-  // add more as needed...
+  LOGO: "logoImage",
 };
 
 export async function uploadImages(files, folderName = "") {
@@ -36,11 +36,11 @@ export async function uploadImages(files, folderName = "") {
     return data.data.fileUrls.map((url) => {
       try {
         const parsedUrl = new URL(url);
-        return parsedUrl.pathname; // gives "/folder/123.png"
+        return parsedUrl.pathname;
       } catch {
         // fallback if not a full URL
         const parts = url.split("/");
-        return "/" + parts.slice(-2).join("/"); // fallback to "/folder/filename"
+        return "/" + parts.slice(-2).join("/"); 
       }
     });
   } catch (error) {

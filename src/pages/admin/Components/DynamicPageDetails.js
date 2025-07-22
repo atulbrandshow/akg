@@ -510,7 +510,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
               <h2 className="text-xl font-novaSemi text-gray-900">Basic Details</h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className={`grid grid-cols-1 md:grid-cols-2  gap-6`}>
               <div className="relative">
                 <label htmlFor="parent-page" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Choose Parent Page
@@ -640,7 +640,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
             </div>
 
             <div className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className={`grid grid-cols-1 ${type === "Page" ? "md:grid-cols-3" : "md:grid-cols-2"}  gap-6`}>
                 <div>
                   <label htmlFor="name" className="block text-sm font-novaSemi text-gray-700 mb-2">
                     Page Title <span className="text-red-500">*</span>
@@ -671,6 +671,24 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                     className="w-full px-4 py-3 border font-novaReg border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   />
                 </div>
+                {type === "Page" && (
+                  <div>
+                    <label htmlFor="type" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                      Page Type <span className="text-red-500">*</span>
+                    </label>
+                    <select
+                      id="type"
+                      name="type"
+                      value={formData.type}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    >
+                      <option value="">Select Page Type</option>
+                      <option value="Page">Page</option>
+                      <option value="Admission">Admission</option>
+                    </select>
+                  </div>
+                )}
               </div>
             </div>
           </div>

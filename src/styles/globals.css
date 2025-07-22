@@ -71,10 +71,29 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
 }
+
+/* For Chrome, Safari, and Opera */
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+/* For Firefox */
+.scrollbar-hidden {
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+/* For Internet Explorer and Edge */
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+}
+
 
 .animate-scroll {
   animation: scroll 20s linear infinite;
@@ -135,36 +154,49 @@
 .Cutout {
   clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
 }
+
 /* Custom modern scrollbar */
 .modern-scrollbar::-webkit-scrollbar {
-  width: 8px; /* Adjust width for vertical scrollbar */
+  width: 8px;
+  /* Adjust width for vertical scrollbar */
 }
 
 .modern-scrollbar::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.05); /* Subtle light background for the track */
-  border-radius: 4px; /* Rounded corners */
+  background: rgba(0, 0, 0, 0.05);
+  /* Subtle light background for the track */
+  border-radius: 4px;
+  /* Rounded corners */
 }
 
 .modern-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.4); /* Semi-transparent dark thumb */
-  border-radius: 8px; /* Rounded corners for a modern look */
-  border: 2px solid rgba(255, 255, 255, 0.8); /* Border for spacing effect */
+  background: rgba(0, 0, 0, 0.4);
+  /* Semi-transparent dark thumb */
+  border-radius: 8px;
+  /* Rounded corners for a modern look */
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  /* Border for spacing effect */
 }
 
 .modern-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.6); /* Darker on hover */
+  background: rgba(0, 0, 0, 0.6);
+  /* Darker on hover */
 }
 
 /* For Firefox */
 .modern-scrollbar {
-  scrollbar-width: thin; /* Slim scrollbar */
-  scrollbar-color: rgba(0, 0, 0, 0.4) rgba(0, 0, 0, 0.05); /* Thumb and track color */
+  scrollbar-width: thin;
+  /* Slim scrollbar */
+  scrollbar-color: rgba(0, 0, 0, 0.4) rgba(0, 0, 0, 0.05);
+  /* Thumb and track color */
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-20px);
   }
@@ -176,6 +208,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -199,10 +232,13 @@
 }
 
 @keyframes bounce {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(-25%);
     animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
   }
+
   50% {
     transform: translateY(0);
     animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
@@ -214,11 +250,13 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
   }
+
   50% {
     opacity: .5;
   }
 }
-

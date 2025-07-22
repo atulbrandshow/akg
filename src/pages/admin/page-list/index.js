@@ -1,6 +1,6 @@
 
 import SideBar from "../Components/SideBar";
-import PageList from "./PageList";
+import TableList from "../Components/TableList";
 
 export default function Home() {
   return (
@@ -8,7 +8,7 @@ export default function Home() {
       <div className="flex bg-gray-100">
         <SideBar />
         <div className="pt-10 px-10 overflow-x-auto w-full h-screen">
-          <PageList />
+          <TableList type="Page" title="Page Management" subTitle="Manage your pages here" />
         </div>
       </div>
     </>

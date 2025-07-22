@@ -1,5 +1,5 @@
 import SideBar from "../Components/SideBar";
-import ListNewsEvent from "./ListEvent";
+import TableList from "../Components/TableList";
 
 export default function Home() {
   return (
@@ -7,7 +7,7 @@ export default function Home() {
       <div className="flex bg-gray-100">
         <SideBar />
         <div className="pt-10 px-10 overflow-x-auto w-full h-screen">
-          <ListNewsEvent />
+          <TableList type="Event" title="Event Management" subTitle="Manage your event here" />
         </div>
       </div>
     </>

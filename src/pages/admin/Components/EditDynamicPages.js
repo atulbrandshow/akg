@@ -651,7 +651,7 @@ function EditDynamicPages({ type }) {
                                     name="componentType"
                                     value={componentType}
                                     disabled
-                                    className="w-full px-4 py-3 border font-novaReg cursor-not-allowed font-novaReg border-gray-300 rounded-lg bg-gray-50 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                    className="w-full px-4 py-3 border font-novaReg cursor-not-allowed border-gray-300 rounded-lg bg-gray-50 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                                 />
                             </div>
                         </div>

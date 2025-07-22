@@ -6,7 +6,7 @@ export const FOLDER_NAMES = {
   BANNER: "bannerImage",
   PROFILE: "profileImage",
   GALLERY: "gallery",
-  // add more as needed...
+  LOGO: "logoImage",
 };
 
 export async function uploadImages(files, folderName = "") {

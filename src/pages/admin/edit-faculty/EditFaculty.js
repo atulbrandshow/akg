@@ -1,134 +1,108 @@
-"use client";
-
-import React, { useState, useEffect } from "react";
-import { API_NODE_URL } from "@/configs/config";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useRouter, useSearchParams } from "next/navigation";
+"use client"
+import { useState, useEffect } from "react"
+import { API_NODE_URL } from "@/configs/config"
+import { toast, ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+import { useRouter, useSearchParams } from "next/navigation"
 
 function EditFaculty() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const _id = searchParams.get("_id");
-  const [selectedSchool, setSelectedSchool] = useState(null);
-  const [searchQuery1, setSearchQuery1] = useState("");
-  const [departmentSuggestions, setDepartmentSuggestions] = useState([]);
-  const [selectedDepartments, setSelectedDepartments] = useState([]);
-  const [schoolSuggestions, setSchoolSuggestions] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const _id = searchParams.get("_id")
+  const [selectedSchool, setSelectedSchool] = useState(null)
+  const [searchQuery1, setSearchQuery1] = useState("")
+  const [departmentSuggestions, setDepartmentSuggestions] = useState([])
+  const [selectedDepartments, setSelectedDepartments] = useState([])
+  const [schoolSuggestions, setSchoolSuggestions] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [initialLoading, setInitialLoading] = useState(true)
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     designation: "",
     school: "",
-    departments: [], // Now an array for multiple departments
-    phoneNumber: "",
-    address: "",
-    dateOfBirth: "",
-    hireDate: "",
-    salary: "",
-    subjectsTaught: "", // Added missing field
-    researchInterests: "", // Added missing field
-    profilePicture: null, // Added missing field
-    socialLinks: "", // Added missing field
-  });
+    departments: [],
+    subjectsTaught: "",
+    profilePicture: null,
+    socialLinks: "",
+  })
 
   useEffect(() => {
-    if (!_id) return;
-
-    const fetchDepartment = async () => {
+    if (!_id) return
+    const fetchFaculty = async () => {
       try {
-        const response = await fetch(
-          `${API_NODE_URL}faculty/get-by-id?_id=${_id}`
-        );
-        const result = await response.json();
-        const faculty = result.data || {};
-        console.log("Faculty:", faculty);
+        const response = await fetch(`${API_NODE_URL}faculty/get-by-id?_id=${_id}`)
+        const result = await response.json()
+        const faculty = result.data || {}
 
         if (response.ok && result.status) {
           setFormData({
             _id,
-            firstName: faculty.firstName,
-            lastName: faculty.lastName,
-            email: faculty.email,
-            designation: faculty.designation,
-            departments: faculty?.department?.map((dept) => dept._id) || [], // Get department IDs
-            phoneNumber: faculty.phoneNumber,
-            school: faculty.school[0]._id || "", // Get school ID
-            address: faculty.address,
-            dateOfBirth: faculty.dateOfBirth,
-            hireDate: faculty.hireDate,
-            salary: faculty.salary,
-            subjectsTaught: faculty.subjectsTaught,
-            researchInterests: faculty.researchInterests,
+            firstName: faculty.firstName || "",
+            lastName: faculty.lastName || "",
+            email: faculty.email || "",
+            designation: faculty.designation || "",
+            departments: faculty?.department?.map((dept) => dept._id) || [],
+            school: faculty.school?.[0]?._id || "",
+            subjectsTaught: faculty.subjectsTaught || "",
             profilePicture: null,
-            socialLinks: faculty.socialLinks,
-          });
-          setSelectedSchool(faculty.school[0] || {});
-          setSelectedDepartments(faculty.department || []);
+            socialLinks: faculty.socialLinks || "",
+          })
+          console.log(faculty?.department?.map((dept) => dept._id));
+          
+          setSelectedSchool(faculty.school?.[0] || null)
+          setSelectedDepartments(faculty.department || [])
+          setSearchQuery1(faculty.school?.[0]?.name || "")
+          console.log(faculty);
+          
+          setDepartmentSuggestions(faculty.school?.[0]?.departments || [])
         } else {
-          toast.error(result.message || "Failed to fetch Faculty details.");
+          toast.error(result.message || "Failed to fetch faculty details.")
         }
       } catch (error) {
-        console.error("Error fetching Faculty:", error);
-        toast.error("An error occurred while fetching Faculty details.");
-      }
-    };
-
-    fetchDepartment();
-  }, [_id]);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleFileChange = (e) => {
-    const { files } = e.target;
-    setFormData((prev) => ({ ...prev, profilePicture: files[0] }));
-  };
-
-  const validateForm = () => {
-    const requiredFields = [
-      "firstName",
-      "lastName",
-      "email",
-      "designation",
-      "school",
-      "departments", // Ensure at least one department is selected
-      "phoneNumber",
-      "dateOfBirth",
-      "hireDate",
-      "salary",
-      "subjectsTaught", // Ensure this field is filled
-      "researchInterests", // Ensure this field is filled
-    ];
-    for (const field of requiredFields) {
-      if (
-        !formData[field] ||
-        (field === "departments" && formData[field].length === 0)
-      ) {
-        toast.error(`Please fill out the ${field} field.`);
-        return false;
+        console.error("Error fetching faculty:", error)
+        toast.error("An error occurred while fetching faculty details.")
+      } finally {
+        setInitialLoading(false)
       }
     }
-    return true;
-  };
+
+    fetchFaculty()
+  }, [_id])
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const handleFileChange = (e) => {
+    const { files } = e.target
+    setFormData((prev) => ({ ...prev, profilePicture: files[0] }))
+  }
+
+  const validateForm = () => {
+    const requiredFields = ["firstName", "lastName", "email", "designation", "school", "departments", "subjectsTaught"]
+    for (const field of requiredFields) {
+      if (!formData[field] || (field === "departments" && formData[field].length === 0)) {
+        toast.error(`Please fill out the ${field.replace(/([A-Z])/g, " $1").toLowerCase()} field.`)
+        return false
+      }
+    }
+    return true
+  }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("Form Data:", formData);
-
-    if (!validateForm()) return;
+    e.preventDefault()
+    if (!validateForm()) return
 
     try {
-      setLoading(true);
+      setLoading(true)
       const payload = {
         ...formData,
-        department: formData.departments, // Update to use the first department
-        profilePicture: "", // Handle file uploads separately if needed
-      };
+        department: formData.departments,
+        profilePicture: "",
+      }
 
       const response = await fetch(`${API_NODE_URL}faculty/update`, {
         method: "POST",
@@ -136,298 +110,372 @@ function EditFaculty() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(payload),
-      });
+      })
 
-      const result = await response.json();
+      const result = await response.json()
       if (result.status) {
-        toast.success("Faculty member update successfully!");
-        setFormData({
-          firstName: "",
-          lastName: "",
-          email: "",
-          designation: "",
-          school: "",
-          departments: [],
-          phoneNumber: "",
-          address: "",
-          dateOfBirth: "",
-          hireDate: "",
-          salary: "",
-          subjectsTaught: "",
-          researchInterests: "",
-          profilePicture: null,
-          socialLinks: "",
-        });
-        setDepartmentSuggestions([]);
-        setSearchQuery1("");
+        toast.success("Faculty member updated successfully!")
         setTimeout(() => {
-          router.push("/admin/faculty-list");
-        }, 2000);
+          router.push("/admin/faculty-list")
+        }, 2000)
       } else {
-        toast.error(result.message || "Failed to update faculty member.");
+        toast.error(result.message || "Failed to update faculty member.")
       }
     } catch (err) {
-      console.error("Error: ", err);
-      toast.error("An error occurred while processing your request.");
+      console.error("Error: ", err)
+      toast.error("An error occurred while processing your request.")
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   const searchSchool = async (e) => {
-    setSearchQuery1(e.target.value);
-    if (e.target.value?.length < 3) return;
+    setSearchQuery1(e.target.value)
+    if (e.target.value?.length < 3) return
 
     try {
-      const response = await fetch(
-        `${API_NODE_URL}school/search?search=${searchQuery1}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const result = await response.json();
-      console.log("Schools:", result);
-
+      const response = await fetch(`${API_NODE_URL}school/search?search=${searchQuery1}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      const result = await response.json()
       if (result.status) {
         if (searchQuery1 === "") {
-          setSchoolSuggestions([]);
-          return;
+          setSchoolSuggestions([])
+          return
         }
-        setSchoolSuggestions(result.data?.schools || []);
+        setSchoolSuggestions(result.data?.schools || [])
       } else {
-        setSchoolSuggestions([]);
+        setSchoolSuggestions([])
       }
     } catch (error) {
-      console.error("Error fetching departments:", error);
+      console.error("Error fetching schools:", error)
     }
-  };
+  }
 
   const addSchool = (school) => {
-    setSelectedSchool(school);
-    setDepartmentSuggestions(school.departments || []);
+    setSelectedSchool(school)
+    setDepartmentSuggestions(school.departments || [])
     setFormData((prev) => ({
       ...prev,
       school: school._id,
-    }));
-    setSearchQuery1(school.name);
-    setSchoolSuggestions([]);
-  };
+    }))
+    setSearchQuery1(school.name)
+    setSchoolSuggestions([])
+  }
+
+  if (initialLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center">
+        <div className="bg-white rounded-2xl shadow-lg p-8 flex items-center space-x-4">
+          <svg
+            className="animate-spin h-8 w-8 text-blue-600"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+            <path
+              className="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            ></path>
+          </svg>
+          <span className="text-gray-700 font-medium">Loading faculty details...</span>
+        </div>
+      </div>
+    )
+  }
 
   return (
-    <div className="w-full mb-10">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-4 md:p-8">
       <ToastContainer
         position="top-right"
-        autoClose={2000}
+        autoClose={3000}
         hideProgressBar={false}
+        newestOnTop={false}
         closeOnClick
         rtl={false}
         pauseOnFocusLoss
         draggable
         pauseOnHover
+        className="mt-16"
       />
-      <div className="bg-gradient-to-r from-purple-600 to-blue-800 rounded-lg p-4 mb-5 shadow-lg">
-        <h2 className="font-novaSemi text-xl text-white tracking-wide">
-          Update Faculty Member
-        </h2>
-      </div>
-      <div className="max-w-md bg-white shadow-md rounded-2xl p-6">
-        <form className="space-y-4" onSubmit={handleSubmit}>
-          {/* Existing Form Fields */}
-          {[
-            { label: "First Name", name: "firstName", type: "text" },
-            { label: "Last Name", name: "lastName", type: "text" },
-            { label: "Email", name: "email", type: "email" },
-            { label: "Designation", name: "designation", type: "text" },
-            { label: "Phone Number", name: "phoneNumber", type: "tel" },
-            { label: "Address", name: "address", type: "text" },
-            { label: "Date of Birth", name: "dateOfBirth", type: "date" },
-            { label: "Hire Date", name: "hireDate", type: "date" },
-            { label: "Salary", name: "salary", type: "number" },
-          ].map((field) => (
-            <div key={field.name}>
-              <label
-                htmlFor={field.name}
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                {field.label}
-              </label>
-              <input
-                id={field.name}
-                name={field.name}
-                type={field.type}
-                value={formData[field.name]}
-                onChange={handleInputChange}
-                placeholder={`Enter ${field.label.toLowerCase()}...`}
-                className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
+
+      <div className="max-w-4xl mx-auto">
+        {/* Header */}
+        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-8">
+          <div className="flex items-center space-x-4">
+            <div className="bg-gradient-to-r from-orange-500 to-red-500 p-3 rounded-xl">
+              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                />
+              </svg>
             </div>
-          ))}
-
-          {/* School Selection */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              School
-            </label>
-            <input
-              type="text"
-              value={searchQuery1}
-              onChange={(e) => searchSchool(e)}
-              placeholder="Search school..."
-              className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            {schoolSuggestions.length > 0 && (
-              <ul className="bg-white border border-gray-300 mt-2 rounded-md shadow-md">
-                {schoolSuggestions.map((sc, index) => (
-                  <li
-                    key={index}
-                    onClick={() => addSchool(sc)}
-                    className="p-2 cursor-pointer hover:bg-blue-100"
-                  >
-                    {sc.name}
-                  </li>
-                ))}
-              </ul>
-            )}
-            {selectedSchool && (
-              <ul className="mt-2">
-                <li className="flex items-center justify-between bg-gray-100 p-2 rounded-md">
-                  <span>{selectedSchool?.name}</span>
-                </li>
-              </ul>
-            )}
-          </div>
-          {/* Department Selection */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Choose Departments
-            </label>
-            <div className="relative">
-              <select
-                className="block w-full px-4 py-2 text-gray-700 border-2 border-gray-400 bg-white  rounded-lg shadow-sm outline-none  sm:text-sm"
-                multiple
-                onChange={(e) => {
-                  const selected = Array.from(e.target.selectedOptions).map(
-                    (option) => option.value
-                  );
-                  setFormData((prev) => ({
-                    ...prev,
-                    departments: selected,
-                  }));
-                }} // Update selected departments
-                size={5} // Adjust size for visible options
-              >
-                {departmentSuggestions.map((dept, index) => (
-                  <option
-                    className="p-2 rounded-lg bg-slate-300 mb-2 "
-                    key={index}
-                    value={dept._id}
-                  >
-                    {dept.name}
-                  </option>
-                ))}
-              </select>
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900">Edit Faculty Member</h1>
+              <p className="text-gray-600 mt-1">Update the faculty member information</p>
             </div>
-            <label className="block text-sm font-medium text-gray-700 my-2">
-              Selected
-            </label>
-            <ul className="bg-gray-100 p-2 rounded-md">
-              {selectedDepartments.map((dept, index) => (
-                <li key={index} className="flex items-center justify-between">
-                  <span>
-                    {dept.name}
-                    {/* {departmentSuggestions.find((d) => d._id === dept)?.name} */}
-                  </span>
-                </li>
-              ))}
-            </ul>
           </div>
+        </div>
 
-          {/* Missing Fields: Subjects Taught, Research Interests, Profile Picture, Social Links */}
-          <div>
-            <label
-              htmlFor="subjectsTaught"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
-              Subjects Taught
-            </label>
-            <input
-              id="subjectsTaught"
-              name="subjectsTaught"
-              type="text"
-              value={formData.subjectsTaught}
-              onChange={handleInputChange}
-              placeholder="Enter subjects taught..."
-              className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
+        {/* Form */}
+        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
+          <form onSubmit={handleSubmit} className="space-y-8">
+            {/* Personal Information Section */}
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center">
+                <div className="w-2 h-6 bg-blue-600 rounded-full mr-3"></div>
+                Personal Information
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {[
+                  { label: "First Name", name: "firstName", type: "text" },
+                  { label: "Last Name", name: "lastName", type: "text" },
+                  { label: "Email Address", name: "email", type: "email" },
+                  { label: "Designation", name: "designation", type: "text" },
+                ].map((field) => (
+                  <div key={field.name} className="space-y-2">
+                    <label className="block text-sm font-medium text-gray-700">
+                      {field.label} <span className="text-red-500">*</span>
+                    </label>
+                    <div className="relative">
+                      <input
+                        id={field.name}
+                        name={field.name}
+                        type={field.type}
+                        value={formData[field.name]}
+                        onChange={handleInputChange}
+                        placeholder={`Enter ${field.label.toLowerCase()}`}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
 
-          <div>
-            <label
-              htmlFor="researchInterests"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
-              Research Interests
-            </label>
-            <input
-              id="researchInterests"
-              name="researchInterests"
-              type="text"
-              value={formData.researchInterests}
-              onChange={handleInputChange}
-              placeholder="Enter research interests..."
-              className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
+            {/* Academic Information Section */}
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center">
+                <div className="w-2 h-6 bg-purple-600 rounded-full mr-3"></div>
+                Academic Information
+              </h3>
 
-          <div>
-            <label
-              htmlFor="profilePicture"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
-              Profile Picture
-            </label>
-            <input
-              id="profilePicture"
-              name="profilePicture"
-              type="file"
-              onChange={handleFileChange}
-              className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
+              {/* School Selection */}
+              <div className="space-y-6">
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-gray-700">
+                    School <span className="text-red-500">*</span>
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      value={searchQuery1}
+                      onChange={searchSchool}
+                      placeholder="Search and select school..."
+                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white"
+                    />
+                    {schoolSuggestions.length > 0 && (
+                      <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-xl shadow-lg max-h-60 overflow-y-auto">
+                        {schoolSuggestions.map((school, index) => (
+                          <div
+                            key={index}
+                            onClick={() => addSchool(school)}
+                            className="px-4 py-3 hover:bg-blue-50 cursor-pointer border-b border-gray-100 last:border-b-0 transition-colors duration-150"
+                          >
+                            <div className="font-medium text-gray-900">{school.name}</div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  {selectedSchool && (
+                    <div className="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-xl">
+                      <div className="flex items-center justify-between">
+                        <span className="text-blue-800 font-medium">Selected: {selectedSchool.name}</span>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setSelectedSchool(null)
+                            setFormData((prev) => ({ ...prev, school: "" }))
+                            setSearchQuery1("")
+                            setDepartmentSuggestions([])
+                          }}
+                          className="text-blue-600 hover:text-blue-800"
+                        >
+                          ✕
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
 
-          <div>
-            <label
-              htmlFor="socialLinks"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
-              Social Links
-            </label>
-            <input
-              id="socialLinks"
-              name="socialLinks"
-              type="text"
-              value={formData.socialLinks}
-              onChange={handleInputChange}
-              placeholder="Enter social links..."
-              className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
+                {/* Department Selection */}
+                {departmentSuggestions.length > 0 && (
+                  <div className="space-y-2">
+                    <label className="block text-sm font-medium text-gray-700">
+                      Departments <span className="text-red-500">*</span>
+                    </label>
+                    <div className="border border-gray-300 rounded-xl bg-gray-50 p-4 max-h-48 overflow-y-auto">
+                      <div className="space-y-2">
+                        {departmentSuggestions.map((dept, index) => (
+                          console.log(dept),
 
-          <div className="mt-4 flex justify-center">
-            <button
-              type="submit"
-              className="bg-blue-600 text-white py-2 px-6 rounded-lg w-full"
-            >
-              {loading ? "Adding Faculty..." : "Add Faculty"}
-            </button>
-          </div>
-        </form>
+                          <label
+                            key={index}
+                            className="flex items-center space-x-3 p-2 hover:bg-white rounded-lg cursor-pointer transition-colors duration-150"
+                          >
+                            <input
+                              type="checkbox"
+                              value={dept._id}
+                              checked={formData.departments.includes(dept._id)}
+                              onChange={(e) => {
+                                const value = e.target.value
+                                setFormData((prev) => ({
+                                  ...prev,
+                                  departments: e.target.checked
+                                    ? [...prev.departments, value]
+                                    : prev.departments.filter((id) => id !== value),
+                                }))
+                              }}
+                              className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                            />
+                            <span className="text-gray-700">{dept.name}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Selected Departments Display */}
+                    {selectedDepartments.length > 0 && (
+                      <div className="mt-4">
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Currently Selected Departments
+                        </label>
+                        <div className="flex flex-wrap gap-2">
+                          {selectedDepartments.map((dept, index) => (
+                            <span
+                              key={index}
+                              className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800"
+                            >
+                              {dept.name}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Subjects Taught <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    name="subjectsTaught"
+                    value={formData.subjectsTaught}
+                    onChange={handleInputChange}
+                    placeholder="Enter subjects taught (comma separated)"
+                    rows="3"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white resize-none"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Additional Information Section */}
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center">
+                <div className="w-2 h-6 bg-green-600 rounded-full mr-3"></div>
+                Additional Information
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-gray-700">Profile Picture</label>
+                  <div className="relative">
+                    <input
+                      type="file"
+                      name="profilePicture"
+                      onChange={handleFileChange}
+                      accept="image/*"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-gray-700">Social Links</label>
+                  <input
+                    name="socialLinks"
+                    value={formData.socialLinks}
+                    onChange={handleInputChange}
+                    placeholder="Enter social media links"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Submit Button */}
+            <div className="flex justify-end space-x-4 pt-6 border-t border-gray-200">
+              <button
+                type="button"
+                onClick={() => router.push("/admin/faculty-list")}
+                className="px-6 py-3 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-colors duration-200 font-medium"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                disabled={loading}
+                className="px-8 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-xl hover:from-orange-600 hover:to-red-600 transition-all duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
+              >
+                {loading ? (
+                  <>
+                    <svg
+                      className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
+                    </svg>
+                    Updating Faculty...
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    Update Faculty Member
+                  </>
+                )}
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default EditFaculty;
+export default EditFaculty

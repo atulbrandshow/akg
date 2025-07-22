@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import dynamic from "next/dynamic"
 import { API_NODE_URL } from "@/configs/config"
 import { useRouter } from "next/navigation"
@@ -163,6 +163,19 @@ const FileUploadField = ({
 
 export default function DynamicPageDetails({ allData, parentPage, type, componentType }) {
   const router = useRouter()
+  const [submitting, setSubmitting] = useState(false)
+  const [searchValue, setSearchValue] = useState("");
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [displayedPages, setDisplayedPages] = useState([]);
+  const [selectedPage, setSelectedPage] = useState(null);
+  const [hasMore, setHasMore] = useState(true);
+  const [allPages, setAllPages] = useState([]);
+
+  const [searchQuery, setSearchQuery] = useState(""); // State for search input
+  const [programInput, setProgramInput] = useState("");
+  const [showSchoolDropdown, setShowSchoolDropdown] = useState(false);
+  const [schools, setSchools] = useState([]); // State to hold school options
+
   const [formData, setFormData] = useState({
     page_id: allData?.page_id,
     parent_id: allData?.parent_id,
@@ -234,6 +247,106 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
     keywords_tag: "",
   })
 
+  useEffect(() => {
+    const fetchSchools = async () => {
+      try {
+        const response = await fetch(
+          `${API_NODE_URL}school/search?search=${searchQuery}`
+        );
+        const result = await response.json();
+        if (result.status) {
+          setSchools(
+            Array.isArray(result?.data?.schools) ? result?.data?.schools : []
+          );
+        } else {
+          toast.error(result.message || "Failed to fetch schools.");
+          setSchools([]);
+        }
+      } catch (err) {
+        console.error("Error fetching schools:", err);
+        toast.error("An error occurred while fetching schools.");
+        setSchools([]);
+      }
+    };
+    fetchSchools();
+  }, [searchQuery]);
+
+  const handleSchoolSelect = (school) => {
+    setSearchQuery(school.name); // Display school name in input
+    setShowSchoolDropdown(false); // Hide dropdown
+  };
+
+  useEffect(() => {
+    if (formData.parentPage) {
+      setSearchValue(formData.parentPage);
+    }
+  }, [formData.parentPage]);
+
+  const fetchPages = async (searchTerm = "") => {
+    try {
+      const response = await fetch(`${API_NODE_URL}slug/getParents`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ query: searchTerm, page: 1, limit: 10, type }),
+      });
+      const data = await response.json();
+
+      const fetchedPages = data.data.pages || [];
+
+      if (fetchedPages.length === 0) {
+        setAllPages([]);
+        setDisplayedPages([{ name: "This is parent page", reportId: null }]);
+        setHasMore(false);
+      } else {
+        setAllPages(fetchedPages);
+        setDisplayedPages(fetchedPages.slice(0, 10));
+        setHasMore(fetchedPages.length > 10);
+      }
+    } catch (error) {
+      console.error("Error fetching parent pages:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchPages();
+  }, []);
+
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setSearchValue(value);
+
+    if (value.length > 0) {
+      fetchPages(value);
+      setShowDropdown(true);
+    } else {
+      setDisplayedPages(allPages.slice(0, 10));
+      setShowDropdown(false);
+    }
+  };
+
+  const handleSuggestionClick = (page) => {
+    setSearchValue(page.name); // Show the name in the input
+    setSelectedPage(page); // Set the selected page
+    setShowDropdown(false); // Hide the dropdown after selection
+    setFormData(prev => ({
+      ...prev,
+      parent_id: page.page_id,
+      parentPage: page.name
+    }));
+  };
+
+  // Handle 'Show More' button click
+  const handleShowMore = () => {
+    const newIndex = pageIndex + 10;
+    setDisplayedPages(allPages.slice(0, newIndex)); // Show next 10 pages
+    setPageIndex(newIndex); // Update index
+    if (newIndex >= allPages.length) {
+      setHasMore(false); // Hide 'Show More' if no more pages
+    }
+  };
+
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -298,6 +411,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
 
       const payload = {
         ...formData,
+        stream: searchQuery,
         ComponentType: componentType,
       }
 
@@ -397,21 +511,103 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label htmlFor="parentPage" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Parent Page
+              <div className="relative">
+                <label htmlFor="parent-page" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                  Choose Parent Page
+                  <span className="text-red-500 ml-1">*</span>
                 </label>
-                <input
-                  type="text"
-                  id="parentPage"
-                  name="parentPage"
-                  value={formData.parentPage}
-                  onChange={handleChange}
-                  disabled
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg bg-gray-50 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                />
+                <div className="relative">
+                  <input
+                    id="parent-page"
+                    type="text"
+                    value={searchValue}
+                    onChange={handleInputChange}
+                    placeholder="Search and select parent page..."
+                    className="w-full border-2 font-novaReg border-gray-200 rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
+                  />
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+
+                {showDropdown && (
+                  <div className="absolute z-20 w-full bg-white border-2 border-gray-200 rounded-xl mt-2 max-h-64 overflow-auto shadow-2xl">
+                    {displayedPages.map((page, index) => (
+                      <div
+                        key={index}
+                        onClick={() => handleSuggestionClick(page)}
+                        className="cursor-pointer px-4 py-3 hover:bg-blue-50 border-b border-gray-100 last:border-b-0 transition-colors duration-150"
+                      >
+                        <div className="font-novaSemi text-gray-800">{page.name}</div>
+                        {page?.page_id && <div className="text-sm text-gray-500">ID: {page.page_id}</div>}
+                      </div>
+                    ))}
+                    {hasMore && displayedPages.length > 0 && (
+                      <button
+                        type="button"
+                        onClick={handleShowMore}
+                        className="w-full px-4 py-3 text-blue-600 hover:bg-blue-50 font-novaReg transition-colors duration-150"
+                      >
+                        Load More Pages
+                      </button>
+                    )}
+                  </div>
+                )}
               </div>
-              <div>
+              <div className="relative">
+                <label htmlFor="schoolSearch" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                  Search School
+                  <span className="text-red-500 ml-1">*</span>
+                </label>
+                <div className="relative">
+                  <input
+                    id="schoolSearch"
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onFocus={() => setShowSchoolDropdown(true)}
+                    placeholder="Search and select school..."
+                    className="w-full border-2 font-novaReg border-gray-200 rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
+                  />
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                {showSchoolDropdown && (
+                  <div className="absolute z-20 w-full bg-white border-2 border-gray-200 rounded-xl mt-2 max-h-64 overflow-auto shadow-2xl">
+                    {(Array.isArray(schools) ? schools : [])
+                      .filter((school) =>
+                        school.name
+                          .toLowerCase()
+                          .includes(searchQuery.toLowerCase())
+                      )
+                      .map((school) => (
+                        <div
+                          key={school.id}
+                          onClick={() => handleSchoolSelect(school)}
+                          className="cursor-pointer px-4 py-3 hover:bg-blue-50 border-b border-gray-100 last:border-b-0 transition-colors duration-150"
+                        >
+                          <div className="font-novaSemi text-gray-800">{school.name}</div>
+                        </div>
+                      ))}
+                  </div>
+                )}
+              </div>
+              {/* <div>
                 <label htmlFor="componentType" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Component Type
                 </label>
@@ -423,7 +619,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   disabled
                   className="w-full px-4 py-3 border font-novaReg cursor-not-allowed border-gray-300 rounded-lg bg-gray-50 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                 />
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -587,7 +783,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   placeholder="Enter tag"
                 />
               </div>
-              <div>
+              {/* <div>
                 <label htmlFor="schemaid" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Schema ID
                 </label>
@@ -600,10 +796,26 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="Enter schema ID"
                 />
+              </div> */}
+              <div>
+                <label htmlFor="featured_status" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                  Featured Status
+                </label>
+                <select
+                  id="featured_status"
+                  name="featured_status"
+                  value={formData.featured_status}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                >
+                  <option value="">Select Status</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+            {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
               <div>
                 <label htmlFor="nic_name" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Nickname
@@ -632,22 +844,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   placeholder="Enter width"
                 />
               </div>
-              <div>
-                <label htmlFor="featured_status" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Featured Status
-                </label>
-                <select
-                  id="featured_status"
-                  name="featured_status"
-                  value={formData.featured_status}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                >
-                  <option value="">Select Status</option>
-                  <option value="Yes">Yes</option>
-                  <option value="No">No</option>
-                </select>
-              </div>
+
               <div>
                 <label htmlFor="price" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Price
@@ -662,7 +859,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   placeholder="Enter price"
                 />
               </div>
-            </div>
+            </div> */}
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
               <div>
@@ -679,7 +876,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   placeholder="https://example.com/video"
                 />
               </div>
-              <div>
+              {/* <div>
                 <label htmlFor="old_url" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Old URL
                 </label>
@@ -692,7 +889,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="https://example.com/old-page"
                 />
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -735,7 +932,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
 
               <FileUploadField
                 id="mainReportImage"
-                label="Main Report Image"
+                label="Extra Image"
                 file={formData.mainReportImage}
                 onChange={(e) => handleFileChange(e, "mainReportImage")}
                 onDelete={() => handleDeleteFile("mainReportImage")}
@@ -876,7 +1073,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
           </div>
 
           {/* Parameters Section */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          {/* <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <div className="flex items-center space-x-3 mb-6">
               <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
                 <svg className="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -987,7 +1184,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                 )
               })}
             </div>
-          </div>
+          </div> */}
 
           {/* Submit Section */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">

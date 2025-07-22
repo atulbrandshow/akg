@@ -350,7 +350,6 @@ const fetchComponents = async (searchTerm = "", page = 1) => {
                   <option value="">Select page type...</option>
                   <option value="Page">Page</option>
                   <option value="Admission">Admission</option>
-                  <option value="Article">Article</option>
                 </select>
               </div>
 
@@ -390,7 +389,7 @@ const fetchComponents = async (searchTerm = "", page = 1) => {
                           onClick={() => handleComponentSuggestionClick(component)}
                           className="cursor-pointer px-4 py-3 hover:bg-blue-50 border-b border-gray-100 last:border-b-0 transition-colors duration-150"
                         >
-                          <div className="font-medium text-gray-800">{component.componentName}</div>
+                          <div className="font-novaSemi text-gray-800">{component.componentName}</div>
                         </div>
                       ))}
                       {hasMoreComponents && displayedComponents.length > 0 && (

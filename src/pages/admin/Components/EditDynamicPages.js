@@ -860,8 +860,8 @@ function EditDynamicPages({ type }) {
                         </div>
 
                         <div className="space-y-6">
-                            <div className="flex flex-wrap gap-6">
-                                <div className="flex-1">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
                                     <label htmlFor="name" className="block text-sm font-novaSemi text-gray-700 mb-2">
                                         Page Title <span className="text-red-500">*</span>
                                     </label>
@@ -877,7 +877,7 @@ function EditDynamicPages({ type }) {
                                         placeholder="Enter page title"
                                     />
                                 </div>
-                                <div className="w-72">
+                                <div>
                                     <label htmlFor="date" className="block text-sm font-novaSemi text-gray-700 mb-2">
                                         Page Date <span className="text-red-500">*</span>
                                     </label>
@@ -891,25 +891,6 @@ function EditDynamicPages({ type }) {
                                         className="w-full px-4 py-3 border font-novaReg border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                                     />
                                 </div>
-                                {type === "Page" && (
-                                    <div className="w-72">
-                                        <label htmlFor="type" className="block text-sm font-semibold text-gray-700 mb-2">
-                                            Page Type <span className="text-red-500">*</span>
-                                        </label>
-                                        <select
-                                            id="type"
-                                            name="type"
-                                            value={formData.type}
-                                            onChange={handleChange}
-                                            className="w-full px-4 py-3 border font-novaReg border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                                        >
-                                            <option value="">Select Page Type</option>
-                                            <option value="Page">Page</option>
-                                            <option value="Admission">Admission</option>
-                                            <option value="Article">Article</option>
-                                        </select>
-                                    </div>
-                                )}
                             </div>
                         </div>
                     </div>

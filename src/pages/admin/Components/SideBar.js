@@ -183,7 +183,7 @@ export default function SideBar() {
     >
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-gray-700">
-        <h1 className={`text-2xl font-bold ${isOpen ? "block" : "hidden"}`}>Admin Panel</h1>
+        <h1 className={`text-2xl font-novaBold ${isOpen ? "block" : "hidden"}`}>Admin Panel</h1>
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="hidden max-lg:block p-2 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600"
@@ -245,7 +245,7 @@ export default function SideBar() {
                           }`}
                         >
                           <item.icon className={`w-5 h-5 ${isOpen ? "mr-3" : ""}`} />
-                          <span className={`${isOpen ? "block" : "hidden"} font-medium text-sm`}>{item.label}</span>
+                          <span className={`${isOpen ? "block" : "hidden"} font-novaSemi text-sm`}>{item.label}</span>
                         </Link>
                       ) : (
                         <div>
@@ -257,7 +257,7 @@ export default function SideBar() {
                           >
                             <div className="flex items-center">
                               <item.icon className={`w-5 h-5 ${isOpen ? "mr-3" : ""}`} />
-                              <span className={`${isOpen ? "block" : "hidden"} font-medium text-sm`}>{item.label}</span>
+                              <span className={`${isOpen ? "block" : "hidden"} font-novaSemi text-sm`}>{item.label}</span>
                             </div>
                             {isOpen && (
                               <div className="transition-transform duration-200">

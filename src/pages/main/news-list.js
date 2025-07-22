@@ -13,7 +13,8 @@ function NewsListPage({ data }) {
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
 
-  const categories = ["all", "Technology", "Environment", "Business", "Sports", "Science"]
+  // const categories = ["all", "Technology", "Environment", "Business", "Sports", "Science"]
+  const categories = []
 
   const fetchNews = async () => {
     try {

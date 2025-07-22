@@ -20,6 +20,7 @@ import {
   Notebook,
   Boxes,
   Newspaper,
+  Waypoints,
 } from "lucide-react";
 const navLinks = [
   {
@@ -41,19 +42,19 @@ const navLinks = [
     ],
   },
   {
-    icon: ReplaceAll,
-    label: "Meta Data",
-    nestedLinks: [
-      { label: "Add Meta Data", href: "/admin/page-metadata" },
-      { label: "List of Meta Data", href: "/admin/page-metadata-list" },
-    ],
-  },
-  {
     icon: Newspaper,
     label: "News",
     nestedLinks: [
       { label: "Add News", href: "/admin/create-news" },
       { label: "List of News", href: "/admin/news-list" },
+    ],
+  },
+  {
+    icon: Waypoints,
+    label: "Article",
+    nestedLinks: [
+      { label: "Add Article", href: "/admin/create-article" },
+      { label: "List of Article", href: "/admin/article-list" },
     ],
   },
   {

@@ -237,7 +237,7 @@ function CreateDynamicPages({ type, componentType }) {
                             />
                         </div>
 
-                        <div>
+                        {/* <div>
                             <label htmlFor="page-type" className="block text-sm font-novaSemi text-gray-700 mb-2">
                                 Page Type
                                 <span className="text-red-500 ml-1">*</span>
@@ -249,7 +249,7 @@ function CreateDynamicPages({ type, componentType }) {
                                 className="w-full border-2 border-gray-200 text-gray-500 font-novaSemi rounded-xl py-3 px-4  cursor-not-allowed"
                             >
                             </input>
-                        </div>
+                        </div> */}
 
                         <div className="flex space-x-4 pt-6">
                             <button

@@ -1,9 +1,9 @@
 "use client"
 import { useRef, useState } from "react"
 import { useRouter } from "next/navigation"
-import { toast, ToastContainer } from "react-toastify"
-import "react-toastify/dist/ReactToastify.css"
+import { toast } from "react-toastify"
 import dynamic from "next/dynamic"
+import { API_NODE_URL } from "@/configs/config"
 const JoditEditor = dynamic(() => import("jodit-react"), {
   ssr: false,
   loading: () => (
@@ -80,7 +80,7 @@ function CreateSchool() {
     setIsSubmitting(true)
 
     try {
-      const response = await fetch(`/api/school/add`, {
+      const response = await fetch(`${API_NODE_URL}school/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -308,20 +308,6 @@ function CreateSchool() {
           </form>
         </div>
       </div>
-
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        className="mt-16"
-      />
     </div>
   )
 }

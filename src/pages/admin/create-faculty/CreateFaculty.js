@@ -1,8 +1,7 @@
 "use client"
 import { useState } from "react"
 import { API_NODE_URL } from "@/configs/config"
-import { toast, ToastContainer } from "react-toastify"
-import "react-toastify/dist/ReactToastify.css"
+import { toast } from "react-toastify"
 import { useRouter } from "next/navigation"
 
 function AddFaculty() {
@@ -134,19 +133,6 @@ function AddFaculty() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-4 md:p-8">
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        className="mt-16"
-      />
-
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-8">

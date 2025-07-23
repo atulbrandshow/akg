@@ -3,8 +3,6 @@
 import React, { useState, useEffect } from "react";
 import { API_NODE_URL } from "@/configs/config";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const EditHighlightBanner = () => {
@@ -231,16 +229,6 @@ const EditHighlightBanner = () => {
           </div>
         </form>
       </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={2000}
-        hideProgressBar={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
     </div>
   );
 };

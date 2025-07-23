@@ -2,8 +2,6 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { toast } from "react-toastify"
-import "react-toastify/dist/ReactToastify.css"
-import { ToastContainer } from "react-toastify"
 import { API_NODE_URL } from "@/configs/config"
 
 const SchoolList = () => {
@@ -54,6 +52,8 @@ const SchoolList = () => {
       })
 
       const data = await response.json()
+      console.log(data);
+      
 
       if (data.status) {
         toast.success("School deleted successfully!")
@@ -418,20 +418,6 @@ const SchoolList = () => {
           </div>
         )}
       </div>
-
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        className="mt-16"
-      />
     </div>
   )
 }

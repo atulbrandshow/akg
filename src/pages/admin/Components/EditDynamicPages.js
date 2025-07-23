@@ -537,9 +537,9 @@ function EditDynamicPages({ type }) {
                 credentials: "include",
             });
             const data = await res.json();
-
             if (data.status) {
                 setSearchQuery(data?.data?.name);
+                setStreamId(data?.data?._id)
             } else {
                 setSearchQuery("")
             }
@@ -735,6 +735,9 @@ function EditDynamicPages({ type }) {
             stream: streamId,
             ComponentType: selectedComponentType || componentType
         }
+
+        console.log(payload);
+        
 
         setSubmitting(true)
         try {

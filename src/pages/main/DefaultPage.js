@@ -74,14 +74,14 @@ function Default({ data }) {
             <section className="w-full max-w-[1400px] mx-auto grid grid-cols-12 py-20 max-sm:py-5 gap-10 px-5 max-sm:px-2 max-sm:gap-0">
                 <div className="col-span-9 max-xl:col-span-8 max-lg:col-span-12 space-y-10">
                     {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}
-                     {data?.featured_img && <Banner backgroundImage={data?.featured_img} height='small' overlay={false} overlayOpacity='zero' className='rounded-lg' />}
+                    {data?.featured_img && <Banner backgroundImage={data?.featured_img} height='small' overlay={false} overlayOpacity='zero' className='rounded-lg' />}
                     {data?.extraComponentData && (
                         <div className="space-y-8">
                             {Array.from({ length: 5 }, (_, i) => i + 1).map(
                                 (item, index) =>
                                     data?.extraComponentData?.[`holder${index}`] && (
                                         <div key={`holder-${index}`} className="bg-white rounded-2xl shadow-sm overflow-hidden">
-                                            <Holder data={data?.extraComponentData[`holder${index}`]} />
+                                            <Holder data={data?.extraComponentData[`holder${index}`]} initialData={data} />
                                         </div>
                                     ),
                             )}
@@ -93,7 +93,7 @@ function Default({ data }) {
                                 (item, index) =>
                                     data?.extraComponentData?.[`holder${item}`] && (
                                         <div key={`holder-${item}`} className="bg-white rounded-2xl shadow-sm overflow-hidden">
-                                            <Holder data={data?.extraComponentData[`holder${item}`]} />
+                                            <Holder data={data?.extraComponentData[`holder${item}`]} initialData={data} />
                                         </div>
                                     )
                             )}
@@ -102,12 +102,12 @@ function Default({ data }) {
                     {data?.shortdesc && <ShortDescription text={data?.shortdesc} allowHTML={true} />}
                     {data?.description && <Description text={data?.description} />}
                     {data?.extraComponentData && (
-                        <div className="">
+                        <div className="space-y-8">
                             {Array.from({ length: 20 }, (_, i) => i + 11).map(
                                 (item) =>
                                     data?.extraComponentData?.[`holder${item}`] && (
                                         <div key={`holder-${item}`} className="bg-white rounded-2xl shadow-sm overflow-hidden">
-                                            <Holder data={data?.extraComponentData[`holder${item}`]} />
+                                            <Holder data={data?.extraComponentData[`holder${item}`]} initialData={data} />
                                         </div>
                                     )
                             )}

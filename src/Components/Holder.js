@@ -1,13 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Widget from "./Widget";
 
-export default function Holder({ data }) {
+export default function Holder({ data, initialData }) {
+    if (data.type === 'Widget') {
+        return <Widget key={data?._id} type={data?.widgetType} stream={initialData?.stream} limit={10} />
+    }
     const descriptionRef = useRef(null);
     const buttonRef = useRef(null);
     const BannerRef = useRef(null);
     const [isOpen, setIsOpen] = useState(false);
     const [readMore, setReadMore] = useState(true);
-
     const cleanDescription = (html) => {
         if (!html) return "";
         return html.replace(/&nbsp;/g, " ").replace(/<p>\s*<\/p>/g, '<br />');
@@ -48,10 +51,10 @@ export default function Holder({ data }) {
     }, [data]);
 
     if (!data) return null;
-
     const cleanedDescription = cleanDescription(data.paramDesc || "");
 
     return (
+
         <div className={`rounded-xl shadow-md w-full overflow-hidden`}>
             {data.param && (
                 <div className="w-full bg-gradient-to-r from-blue-600 to-purple-800 py-4 px-5 shadow-lg">

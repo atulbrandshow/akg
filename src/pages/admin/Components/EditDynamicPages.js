@@ -274,6 +274,7 @@ function EditDynamicPages({ type }) {
     const [displayedComponents, setDisplayedComponents] = useState([])
     const [hasMoreComponents, setHasMoreComponents] = useState(true)
     const [allComponents, setAllComponents] = useState([])
+    const [streamId, setStreamId] = useState("");
 
     const [formData, setFormData] = useState({
         page_id: "",
@@ -386,6 +387,7 @@ function EditDynamicPages({ type }) {
     }, [searchQuery]);
 
     const handleSchoolSelect = (school) => {
+        setStreamId(school?._id)
         setSearchQuery(school.name); // Display school name in input
         setShowSchoolDropdown(false); // Hide dropdown
     };
@@ -522,6 +524,21 @@ function EditDynamicPages({ type }) {
         }
     };
 
+    const fecthSchoolDetails = async (schoolId) => {
+        try {
+            const res = await fetch(`${API_NODE_URL}school/get-by-id?id=${schoolId}`);
+            const data = await res.json();
+
+            if (data.status) {
+                setSearchQuery(data?.data?.name);
+            } else {
+                setSearchQuery("")
+            }
+        } catch (error) {
+            console.error("ERROR: ", error)
+        }
+    }
+
     useEffect(() => {
         if (!page_id) return
         const fetchPageData = async () => {
@@ -533,8 +550,8 @@ function EditDynamicPages({ type }) {
                 if (data.status) {
                     const parent_id = data?.data?.parent_id
                     const parentPageName = parent_id !== 0 ? await fetchParent(parent_id) : "This is Main page"
+                    await fecthSchoolDetails(data?.data?.stream);
                     setSearchValue(parentPageName);
-                    setSearchQuery(data?.data?.stream);
                     setComponentType(data?.data?.ComponentType);
                     setComponentSearchValue(data?.data?.ComponentType);
                     setFormData({
@@ -704,7 +721,7 @@ function EditDynamicPages({ type }) {
 
         const payload = {
             ...formData,
-            stream: searchQuery,
+            stream: streamId,
             ComponentType: selectedComponentType || componentType
         }
 

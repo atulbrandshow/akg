@@ -175,6 +175,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
   const [programInput, setProgramInput] = useState("");
   const [showSchoolDropdown, setShowSchoolDropdown] = useState(false);
   const [schools, setSchools] = useState([]); // State to hold school options
+  const [streamId, setStreamId] = useState("");
 
   const [formData, setFormData] = useState({
     page_id: allData?.page_id,
@@ -272,6 +273,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
   }, [searchQuery]);
 
   const handleSchoolSelect = (school) => {
+    setStreamId(school._id);
     setSearchQuery(school.name); // Display school name in input
     setShowSchoolDropdown(false); // Hide dropdown
   };
@@ -411,7 +413,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
 
       const payload = {
         ...formData,
-        stream: searchQuery,
+        stream: streamId,
         ComponentType: componentType,
       }
 

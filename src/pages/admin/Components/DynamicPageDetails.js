@@ -417,7 +417,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
       const payload = {
         ...formData,
         stream: streamId,
-        ComponentType: componentType,
+        ComponentType: componentType || allData?.ComponentType,
       }
 
       const response = await fetch(`${API_NODE_URL}slug/update`, {

@@ -35,7 +35,9 @@ function CreateDepartment() {
   useEffect(() => {
     const fetchSchools = async () => {
       try {
-        const response = await fetch(`${API_NODE_URL}school/search?search=${searchQuery}`)
+        const response = await fetch(`${API_NODE_URL}school/search?search=${searchQuery}`, {
+          credentials: "include",
+        })
         const result = await response.json()
         if (result.status) {
           setSchools(Array.isArray(result?.data?.schools) ? result?.data?.schools : [])
@@ -137,6 +139,7 @@ function CreateDepartment() {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify(formData),
       })
 

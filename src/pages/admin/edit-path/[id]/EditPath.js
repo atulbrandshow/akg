@@ -36,6 +36,7 @@ export default function EditPath({ pageId }) {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({
           page_id: pageId,
           title,

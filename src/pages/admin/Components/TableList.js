@@ -21,7 +21,9 @@ const TableList = ({ type, title, subTitle }) => {
     const fetchData = async () => {
         try {
             setLoading(true)
-            const response = await fetch(`${API_NODE_URL}slug/getbytype?type=${type}`)
+            const response = await fetch(`${API_NODE_URL}slug/getbytype?type=${type}`, {
+                credentials: "include",
+            })
             const data = await response.json()
             const fetchedData = data.data || []
             setNewsAndEvents(fetchedData)
@@ -96,6 +98,7 @@ const TableList = ({ type, title, subTitle }) => {
                 headers: {
                     "Content-Type": "application/json",
                 },
+                credentials: "include",
                 body: JSON.stringify({
                     page_id: event.page_id,
                     name: event.name,

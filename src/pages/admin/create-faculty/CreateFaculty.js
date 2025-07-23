@@ -61,6 +61,7 @@ function AddFaculty() {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify(payload),
       })
 
@@ -104,6 +105,7 @@ function AddFaculty() {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
       })
       const result = await response.json()
       if (result.status) {

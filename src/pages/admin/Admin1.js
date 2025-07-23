@@ -15,6 +15,7 @@ import {
     RefreshCw,
 } from "lucide-react"
 import DashboardSection2 from "./Components/DashboardSection2"
+import { toast } from "react-toastify"
 
 export default function Admin() {
     const [dashboardData, setDashboardData] = useState(null)
@@ -24,9 +25,11 @@ export default function Admin() {
         try {
             setLoading(true)
             const apiUrl = `${API_NODE_URL}dashboardData/all`
-            const res = await fetch(apiUrl)
+            const res = await fetch(apiUrl, {
+                credentials: "include",
+            })
             const result = await res.json()
-            console.log(result)
+            toast.warning(result.message);
             setDashboardData(result)
         } catch (error) {
             console.error("ERROR: ", error)
@@ -119,7 +122,7 @@ export default function Admin() {
                                                 </div>
                                                 <h3 className="text-lg font-novaSemi text-gray-900">{getCategoryName(category)}</h3>
                                             </div>
-                                                <span className="text-2xl font-novaBold text-gray-900">{stats.total}</span>
+                                            <span className="text-2xl font-novaBold text-gray-900">{stats.total}</span>
 
                                         </div>
 

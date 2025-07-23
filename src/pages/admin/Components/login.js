@@ -22,6 +22,7 @@ export default function Login({setTrigger}) {
         headers: {
           "Content-Type": "application/json", // Fixed Content-Type
         },
+        credentials: "include",
         body: JSON.stringify({
           email,
           password,

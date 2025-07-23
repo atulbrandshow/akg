@@ -15,7 +15,9 @@ const SchoolList = () => {
   const fetchData = async () => {
     try {
       // Simulating API call - replace with your actual API
-      const response = await fetch(`${API_NODE_URL}school/list`)
+      const response = await fetch(`${API_NODE_URL}school/list`, {
+        credentials: "include",
+      })
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
@@ -49,6 +51,7 @@ const SchoolList = () => {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
       })
 
       const data = await response.json()

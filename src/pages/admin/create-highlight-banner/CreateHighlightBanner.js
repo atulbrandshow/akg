@@ -25,6 +25,7 @@ const CreateHighlightBanner = () => {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({ query: searchTerm, page: 1, limit: 10 }),
       });
       const data = await response.json();
@@ -91,6 +92,7 @@ const CreateHighlightBanner = () => {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify(payload),
       });
 

@@ -366,7 +366,9 @@ function EditDynamicPages({ type }) {
         const fetchSchools = async () => {
             try {
                 const response = await fetch(
-                    `${API_NODE_URL}school/search?search=${searchQuery}`
+                    `${API_NODE_URL}school/search?search=${searchQuery}`, {
+                        credentials: "include",
+                    }
                 );
                 const result = await response.json();
                 if (result.status) {
@@ -395,7 +397,9 @@ function EditDynamicPages({ type }) {
     const fetchParent = async (parent_id) => {
         if (parent_id) {
             try {
-                const response = await fetch(`${API_NODE_URL}slug/getbyid?page_id=${parent_id}`)
+                const response = await fetch(`${API_NODE_URL}slug/getbyid?page_id=${parent_id}`, {
+                    credentials: "include",
+                })
                 const result = await response.json()
                 return result?.data?.name || ""
             } catch (err) {
@@ -414,7 +418,9 @@ function EditDynamicPages({ type }) {
             if (searchTerm) {
                 url.searchParams.append("search", searchTerm)
             }
-            const response = await fetch(url)
+            const response = await fetch(url, {
+                credentials: "include",
+            })
             const result = await response.json()
             if (result.status) {
                 if (page === 1) {
@@ -466,6 +472,7 @@ function EditDynamicPages({ type }) {
                 headers: {
                     "Content-Type": "application/json",
                 },
+                credentials: "include",
                 body: JSON.stringify({ query: searchTerm, page: 1, limit: 10, type }),
             });
             const data = await response.json();
@@ -526,7 +533,9 @@ function EditDynamicPages({ type }) {
 
     const fecthSchoolDetails = async (schoolId) => {
         try {
-            const res = await fetch(`${API_NODE_URL}school/get-by-id?id=${schoolId}`);
+            const res = await fetch(`${API_NODE_URL}school/get-by-id?id=${schoolId}`, {
+                credentials: "include",
+            });
             const data = await res.json();
 
             if (data.status) {
@@ -544,7 +553,9 @@ function EditDynamicPages({ type }) {
         const fetchPageData = async () => {
             setLoading(true)
             try {
-                const response = await fetch(`${API_NODE_URL}slug/getbyid?page_id=${page_id}`)
+                const response = await fetch(`${API_NODE_URL}slug/getbyid?page_id=${page_id}`, {
+                    credentials: "include",
+                })
                 const data = await response.json()
 
                 if (data.status) {
@@ -732,6 +743,7 @@ function EditDynamicPages({ type }) {
                 headers: {
                     "Content-Type": "application/json",
                 },
+                credentials: "include",
                 body: JSON.stringify(payload),
             })
             const data = await response.json()

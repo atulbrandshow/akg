@@ -11,11 +11,10 @@ const HighlightBanner = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(`${API_NODE_URL}highlight-banner/list`);
+      const response = await fetch(`${API_NODE_URL}highlight-banner/list`, {
+        credentials: "include",
+      });
       const data = await response.json();
-      console.log("====================================");
-      console.log(data);
-      console.log("====================================");
       setNewsAndEvents(data.data || []);
     } catch (error) {
       console.error("Error fetching news and events:", error);
@@ -43,6 +42,7 @@ const HighlightBanner = () => {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({
           _id: event._id,
         }),

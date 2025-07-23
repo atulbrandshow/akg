@@ -19,7 +19,9 @@ function NewsListPage({ data }) {
   const fetchNews = async () => {
     try {
       setLoading(true)
-      const response = await fetch(`${API_NODE_URL}list-detail-page/all?page=${page}&limit=9&search=${searchTerm}&type=News`)
+      const response = await fetch(`${API_NODE_URL}list-detail-page/all?page=${page}&limit=9&search=${searchTerm}&type=News`, {
+        credentials: "include",
+      })
       const data = await response.json()
       if (data.status && data.data) {
         setNewsData(data.data)

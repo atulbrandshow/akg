@@ -16,7 +16,9 @@ const FacultyList = () => {
   const fetchData = async () => {
     try {
       setLoading(true)
-      const response = await fetch(`${API_NODE_URL}faculty/list`)
+      const response = await fetch(`${API_NODE_URL}faculty/list`, {
+        credentials: "include",
+      })
       const data = await response.json()
       setFacultyList(data.data || [])
     } catch (error) {
@@ -43,6 +45,7 @@ const FacultyList = () => {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
       })
       const data = await response.json()
 

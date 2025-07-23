@@ -134,19 +134,19 @@ function AddFaculty() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-4 md:p-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="">
+      <div className="">
         {/* Header */}
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-8">
+        <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl shadow-lg border border-gray-100 p-6 mb-8">
           <div className="flex items-center space-x-4">
-            <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-3 rounded-xl">
+            <div className="bg-white/30 p-3 rounded-xl">
               <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
               </svg>
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Add New Faculty Member</h1>
-              <p className="text-gray-600 mt-1">Fill in the details to add a new faculty member to the system</p>
+              <h1 className="text-2xl font-novaBold text-white">Add New Faculty Member</h1>
+              <p className="text-white text-sm font-novaReg">Fill in the details to add a new faculty member to the system</p>
             </div>
           </div>
         </div>
@@ -156,7 +156,7 @@ function AddFaculty() {
           <form onSubmit={handleSubmit} className="space-y-8">
             {/* Personal Information Section */}
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center">
+              <h3 className="text-lg font-novaSemi text-gray-900 mb-6 flex items-center">
                 <div className="w-2 h-6 bg-blue-600 rounded-full mr-3"></div>
                 Personal Information
               </h3>
@@ -168,7 +168,7 @@ function AddFaculty() {
                   { label: "Designation", name: "designation", type: "text", icon: "🎓" },
                 ].map((field) => (
                   <div key={field.name} className="space-y-2">
-                    <label className="block text-sm font-medium text-gray-700">
+                    <label className="block text-sm font-novaSemi text-gray-700">
                       {field.label} <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
@@ -179,7 +179,7 @@ function AddFaculty() {
                         value={formData[field.name]}
                         onChange={handleInputChange}
                         placeholder={`Enter ${field.label.toLowerCase()}`}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white"
+                        className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white"
                       />
                     </div>
                   </div>
@@ -189,7 +189,7 @@ function AddFaculty() {
 
             {/* Academic Information Section */}
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center">
+              <h3 className="text-lg font-novaSemi text-gray-900 mb-6 flex items-center">
                 <div className="w-2 h-6 bg-purple-600 rounded-full mr-3"></div>
                 Academic Information
               </h3>
@@ -197,7 +197,7 @@ function AddFaculty() {
               {/* School Selection */}
               <div className="space-y-6">
                 <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
+                  <label className="block text-sm font-novaSemi text-gray-700">
                     School <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
@@ -206,7 +206,7 @@ function AddFaculty() {
                       value={searchQuery1}
                       onChange={searchSchool}
                       placeholder="Search and select school..."
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white"
+                      className="w-full px-4 py-3 border font-novaReg border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white"
                     />
                     {schoolSuggestions.length > 0 && (
                       <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-xl shadow-lg max-h-60 overflow-y-auto">
@@ -216,7 +216,7 @@ function AddFaculty() {
                             onClick={() => addSchool(school)}
                             className="px-4 py-3 hover:bg-blue-50 cursor-pointer border-b border-gray-100 last:border-b-0 transition-colors duration-150"
                           >
-                            <div className="font-medium text-gray-900">{school.name}</div>
+                            <div className="font-novaSemi text-gray-900">{school.name}</div>
                           </div>
                         ))}
                       </div>
@@ -225,7 +225,7 @@ function AddFaculty() {
                   {selectedSchool && (
                     <div className="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-xl">
                       <div className="flex items-center justify-between">
-                        <span className="text-blue-800 font-medium">Selected: {selectedSchool.name}</span>
+                        <span className="text-blue-800 font-novaSemi">Selected: {selectedSchool.name}</span>
                         <button
                           type="button"
                           onClick={() => {
@@ -246,7 +246,7 @@ function AddFaculty() {
                 {/* Department Selection */}
                 {departmentSuggestions.length > 0 && (
                   <div className="space-y-2">
-                    <label className="block text-sm font-medium text-gray-700">
+                    <label className="block text-sm font-novaSemi text-gray-700">
                       Departments <span className="text-red-500">*</span>
                     </label>
                     <div className="border border-gray-300 rounded-xl bg-gray-50 p-4 max-h-48 overflow-y-auto">
@@ -280,7 +280,7 @@ function AddFaculty() {
                 )}
 
                 <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
+                  <label className="block text-sm font-novaSemi text-gray-700">
                     Subjects Taught <span className="text-red-500">*</span>
                   </label>
                   <textarea
@@ -289,7 +289,7 @@ function AddFaculty() {
                     onChange={handleInputChange}
                     placeholder="Enter subjects taught (comma separated)"
                     rows="3"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white resize-none"
+                    className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white resize-none"
                   />
                 </div>
               </div>
@@ -297,32 +297,32 @@ function AddFaculty() {
 
             {/* Additional Information Section */}
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center">
+              <h3 className="text-lg font-novaSemi text-gray-900 mb-6 flex items-center">
                 <div className="w-2 h-6 bg-green-600 rounded-full mr-3"></div>
                 Additional Information
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">Profile Picture</label>
+                  <label className="block text-sm font-novaSemi text-gray-700">Profile Picture</label>
                   <div className="relative">
                     <input
                       type="file"
                       name="profilePicture"
                       onChange={handleFileChange}
                       accept="image/*"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                      className="w-full px-4 py-3 border font-novaReg border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-novaSemi file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">Social Links</label>
+                  <label className="block text-sm font-novaSemi text-gray-700">Social Links</label>
                   <input
                     name="socialLinks"
                     value={formData.socialLinks}
                     onChange={handleInputChange}
                     placeholder="Enter social media links"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white"
+                    className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white"
                   />
                 </div>
               </div>
@@ -333,14 +333,14 @@ function AddFaculty() {
               <button
                 type="button"
                 onClick={() => router.push("/admin/faculty-list")}
-                className="px-6 py-3 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-colors duration-200 font-medium"
+                className="px-6 py-3 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-colors duration-200 font-novaSemi"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 disabled={loading}
-                className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
+                className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 font-novaSemi disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
               >
                 {loading ? (
                   <>

@@ -167,7 +167,7 @@ function CreateSchool() {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="">
       {/* Header Section */}
       <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 rounded-2xl p-8 mb-8 shadow-2xl">
         <div className="flex items-center justify-between">
@@ -178,8 +178,8 @@ function CreateSchool() {
               </svg>
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-white mb-2">Add New School</h1>
-              <p className="text-blue-100">Create a new educational institution profile</p>
+              <h1 className="text-3xl font-novaBold text-white ">Add New School</h1>
+              <p className="text-blue-100 font-novaReg">Create a new educational institution profile</p>
             </div>
           </div>
           <button
@@ -189,17 +189,17 @@ function CreateSchool() {
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
-            <span>Back to List</span>
+            <span className="font-novaSemi">Back to List</span>
           </button>
         </div>
       </div>
 
       {/* Form Section */}
-      <div className="max-w-7xl mx-auto">
+      <div className="">
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
           <div className="bg-gradient-to-r from-gray-50 to-gray-100 px-8 py-6 border-b border-gray-200">
-            <h2 className="text-2xl font-bold text-gray-800 mb-2">School Information</h2>
-            <p className="text-gray-600">Please fill in all the required information about the school</p>
+            <h2 className="text-2xl font-novaBold text-gray-800">School Information</h2>
+            <p className="text-gray-600 font-novaReg">Please fill in all the required information about the school</p>
           </div>
 
           <form onSubmit={handleSubmit} className="p-8">
@@ -207,7 +207,7 @@ function CreateSchool() {
               {/* Form Fields */}
               {formFields.map((field) => (
                 <div key={field.name} className="space-y-2">
-                  <label htmlFor={field.name} className="flex items-center text-sm font-semibold text-gray-700 mb-2">
+                  <label htmlFor={field.name} className="flex items-center text-sm font-novaSemi text-gray-700 mb-2">
                     <span className="text-gray-400 mr-2">{field.icon}</span>
                     {field.label}
                     {field.required && <span className="text-red-500 ml-1">*</span>}
@@ -220,7 +220,7 @@ function CreateSchool() {
                       value={formData[field.name]}
                       onChange={handleInputChange}
                       placeholder={field.placeholder}
-                      className={`w-full px-4 py-3 border-2 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors[field.name]
+                      className={`w-full px-4 py-3 border-2 font-novaReg rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors[field.name]
                         ? "border-red-300 bg-red-50"
                         : "border-gray-300 hover:border-gray-400 focus:border-blue-500"
                         }`}
@@ -256,10 +256,13 @@ function CreateSchool() {
                 <JoditEditor
                   ref={editor}
                   value={formData.description}
+                  config={{
+                    height: "400px"
+                  }}
                   onBlur={handleShortDescChange}
                   onChange={handleShortDescChange}
-                  className={`w-full border-2 rounded-xl focus:outline-none focus:ring-2 transition-all duration-200 
-      ${errors.description
+                  className={`w-full border-2 rounded-xl font-novaReg focus:outline-none focus:ring-2 transition-all duration-200 
+                    ${errors.description
                       ? "border-red-300 bg-red-50 focus:ring-red-400"
                       : "border-gray-300 hover:border-gray-400 focus:ring-blue-500"}`}
                 />
@@ -282,14 +285,14 @@ function CreateSchool() {
               <button
                 type="button"
                 onClick={() => router.push("/admin/school-list")}
-                className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-all duration-200 font-medium"
+                className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-all duration-200 font-novaSemi"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 font-semibold disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
+                className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 font-novaSemi disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
               >
                 {isSubmitting ? (
                   <>

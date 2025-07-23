@@ -46,9 +46,9 @@ const TableList = ({ type, title, subTitle }) => {
         if (searchTerm) {
             filtered = filtered.filter(
                 (item) =>
-                    item.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                    item.shortdesc?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                    item.type?.toLowerCase().includes(searchTerm.toLowerCase()),
+                    item.name?.toLowerCase().includes(searchTerm?.toLowerCase()) ||
+                    item.shortdesc?.toLowerCase().includes(searchTerm?.toLowerCase()) ||
+                    item.type?.toLowerCase().includes(searchTerm?.toLowerCase()),
             )
         }
 
@@ -66,8 +66,8 @@ const TableList = ({ type, title, subTitle }) => {
                 aValue = new Date(aValue)
                 bValue = new Date(bValue)
             } else if (typeof aValue === "string") {
-                aValue = aValue.toLowerCase()
-                bValue = bValue.toLowerCase()
+                aValue = aValue?.toLowerCase()
+                bValue = bValue?.toLowerCase()
             }
 
             if (sortOrder === "asc") {
@@ -189,7 +189,7 @@ const TableList = ({ type, title, subTitle }) => {
                             </div>
                             <input
                                 type="text"
-                                placeholder={`Search ${type.toLowerCase()}...`}
+                                placeholder={`Search ${type?.toLowerCase()}...`}
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                                 className="block w-full pl-10 pr-3 py-2 border font-novaReg border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
@@ -357,7 +357,7 @@ const TableList = ({ type, title, subTitle }) => {
                                                         {/* Edit Button */}
                                                         <button
                                                             onClick={() => router.push(
-                                                                `/admin/edit-${type.toLowerCase().replace(/\s+/g, '-')}` +
+                                                                `/admin/edit-${type?.toLowerCase().replace(/\s+/g, '-')}` +
                                                                 `?page_id=${event?.page_id}`
                                                             )}
                                                             className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-novaSemi rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all duration-200 transform hover:scale-105"

@@ -428,7 +428,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
 
       if (data.status) {
         toast.success(`${type} inserted Successfully`)
-        router.push(`/admin/${type.toLowerCase().replace(/\s+/g, '-')}-list`)
+        router.push(`/admin/${type?.toLowerCase().replace(/\s+/g, '-')}-list`)
       } else {
         toast.error(`Something went wrong: ${fetchedPages?.message}`)
       }
@@ -460,7 +460,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-3xl font-novaBold text-gray-900">Add {type} Details</h1>
-                <p className="text-gray-600 font-novaReg mt-2">Create and configure your {type.toLowerCase()} content with all necessary details</p>
+                <p className="text-gray-600 font-novaReg mt-2">Create and configure your {type?.toLowerCase()} content with all necessary details</p>
               </div>
               <div className="flex items-center space-x-4">
                 <div className="bg-gradient-to-r from-purple-500 to-pink-600 text-white px-6 py-3 rounded-lg cursor-pointer hover:from-purple-600 hover:to-pink-700 transition-all duration-200 transform hover:scale-105 shadow-lg">

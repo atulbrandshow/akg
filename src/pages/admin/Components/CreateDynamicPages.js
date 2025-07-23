@@ -265,7 +265,7 @@ function CreateDynamicPages({ type, componentType }) {
                     </div>
                     <div>
                         <h1 className="text-2xl font-novaBold text-white tracking-wide">Create {type}</h1>
-                        <p className="text-blue-100 font-novaReg text-sm mt-1">Add a {type.toLowerCase()} page to your website structure</p>
+                        <p className="text-blue-100 font-novaReg text-sm mt-1">Add a {type?.toLowerCase()} page to your website structure</p>
                     </div>
                 </div>
             </div>

@@ -141,11 +141,10 @@ const navSections = [
   },
 ]
 
-export default function SideBar() {
+export default function SideBar({ trigger, setTrigger }) {
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(true)
   const [expandedSections, setExpandedSections] = useState({})
-  const [trigger, setTrigger] = useState(false);
   const [expandedNavSections, setExpandedNavSections] = useState({ 0: true }) // Dashboard section expanded by default
 
   useEffect(() => {
@@ -179,7 +178,8 @@ export default function SideBar() {
       });
       if (res.status === 200) {
         localStorage.removeItem("user")
-        router.push("/")
+        router.push("/admin")
+        setTrigger(!trigger);
       }
     } catch (error) {
       console.error("Logout error: ", error)

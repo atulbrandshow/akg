@@ -61,7 +61,7 @@ export default function Admin() {
             downloadCenter: "Download Center",
             faculty: "Faculty",
             news: "News",
-            pages: "Pages",
+            pages: "Total Pages",
             schools: "Schools",
         }
         return nameMap[category] || category

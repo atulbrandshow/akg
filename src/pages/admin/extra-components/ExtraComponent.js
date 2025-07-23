@@ -1,27 +1,34 @@
 "use client"
-
 import { API_NODE_URL } from "@/configs/config"
-import dynamic from "next/dynamic";
+import dynamic from "next/dynamic"
 import { useState, useEffect } from "react"
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams } from "next/navigation"
+
 const JoditEditor = dynamic(() => import("jodit-react"), {
   ssr: false,
-  loading: () => <div className="p-4 bg-gray-100 rounded">Loading editor...</div>
-});
+  loading: () => <div className="p-4 bg-gray-100 rounded">Loading editor...</div>,
+})
+
 const ExtraParamsManager = () => {
   const [params, setParams] = useState([])
   const searchParams = useSearchParams()
-  const pageIdFromQuery = searchParams.get('page_id')  // ← this grabs `123`
-  const [selectedPageId, setSelectedPageId] = useState('')
+  const pageIdFromQuery = searchParams.get("page_id")
+  const [selectedPageId, setSelectedPageId] = useState("")
   const [usedHolders, setUsedHolders] = useState([])
   const [showForm, setShowForm] = useState(false)
   const [editingParam, setEditingParam] = useState(null)
   const [loading, setLoading] = useState(false)
+
+  // Widget Type search state
+  const [widgetTypeSearch, setWidgetTypeSearch] = useState("")
+  const [showWidgetTypeDropdown, setShowWidgetTypeDropdown] = useState(false)
+
   useEffect(() => {
     if (pageIdFromQuery) {
       setSelectedPageId(pageIdFromQuery)
     }
   }, [pageIdFromQuery])
+
   useEffect(() => {
     if (selectedPageId) {
       fetchUsedHolders(selectedPageId)
@@ -38,6 +45,7 @@ const ExtraParamsManager = () => {
     orderSequence: 0,
     type: "",
     holder: "",
+    widgetType: "", // New field
     status: true,
     addedby: "",
     calid: "",
@@ -72,6 +80,20 @@ const ExtraParamsManager = () => {
     Footer: ["Holder 31", "Holder 32", "Holder 33", "Holder 34", "Holder 35"],
   }
 
+  // Predefined widget types
+  const predefinedWidgetTypes = [
+    "News",
+    "Event",
+    "Article",
+    "Circular",
+    "Download Center",
+    "Announcement",
+  ]
+  // Filter widget types based on search
+  const filteredWidgetTypes = predefinedWidgetTypes.filter((type) =>
+    type.toLowerCase().includes(widgetTypeSearch.toLowerCase()),
+  )
+
   // Fetch all params
   const fetchParams = async () => {
     setLoading(true)
@@ -89,14 +111,12 @@ const ExtraParamsManager = () => {
 
   // Fetch used holders for a specific page
   const fetchUsedHolders = async (pageid) => {
-    console.log(pageid);
-
+    console.log(pageid)
     if (!pageid) return
     try {
       const response = await fetch(`${API_NODE_URL}extra-component-data/used-holders/${pageid}`)
-      const result = await response.json();
-      console.log(result);
-
+      const result = await response.json()
+      console.log(result)
       if (result.status) {
         setUsedHolders(result.data || [])
       }
@@ -109,12 +129,11 @@ const ExtraParamsManager = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
-
     try {
-      const url = editingParam ? `${API_NODE_URL}extra-component-data/${editingParam._id}` : `${API_NODE_URL}extra-component-data/create`
-
+      const url = editingParam
+        ? `${API_NODE_URL}extra-component-data/${editingParam._id}`
+        : `${API_NODE_URL}extra-component-data/create`
       const method = editingParam ? "PUT" : "POST"
-
       const response = await fetch(url, {
         method,
         headers: {
@@ -122,9 +141,7 @@ const ExtraParamsManager = () => {
         },
         body: JSON.stringify(formData),
       })
-
       const result = await response.json()
-
       if (result.status) {
         alert(result.message)
         setShowForm(false)
@@ -147,15 +164,12 @@ const ExtraParamsManager = () => {
   // Handle delete
   const handleDelete = async (id) => {
     if (!confirm("Are you sure you want to delete this parameter?")) return
-
     setLoading(true)
     try {
       const response = await fetch(`${API_NODE_URL}extra-component-data/${id}`, {
         method: "DELETE",
       })
-
       const result = await response.json()
-
       if (result.status) {
         alert(result.message)
         fetchParams()
@@ -183,10 +197,13 @@ const ExtraParamsManager = () => {
       orderSequence: 0,
       type: "",
       holder: "",
+      widgetType: "", // Reset widget type
       status: true,
       addedby: "",
       calid: "",
     })
+    setWidgetTypeSearch("")
+    setShowWidgetTypeDropdown(false)
   }
 
   // Handle edit
@@ -201,10 +218,12 @@ const ExtraParamsManager = () => {
       orderSequence: param.orderSequence || 0,
       type: param.type,
       holder: param.holder,
+      widgetType: param.widgetType || "", // Set widget type
       status: param.status,
       addedby: param.addedby || "",
       calid: param.calid || "",
     })
+    setWidgetTypeSearch(param.widgetType || "")
     setShowForm(true)
   }
 
@@ -213,6 +232,21 @@ const ExtraParamsManager = () => {
     setEditingParam(null)
     resetForm()
     setShowForm(true)
+  }
+
+  // Handle widget type selection
+  const handleWidgetTypeSelect = (widgetType) => {
+    setFormData({ ...formData, widgetType })
+    setWidgetTypeSearch(widgetType)
+    setShowWidgetTypeDropdown(false)
+  }
+
+  // Handle widget type input change
+  const handleWidgetTypeInputChange = (e) => {
+    const value = e.target.value
+    setWidgetTypeSearch(value)
+    setFormData({ ...formData, widgetType: value })
+    setShowWidgetTypeDropdown(true)
   }
 
   // Filter params by selected page
@@ -238,19 +272,17 @@ const ExtraParamsManager = () => {
           <div className="bg-blue-600 text-white p-6">
             <h1 className="text-2xl font-bold">Extra Component Data Manager</h1>
           </div>
-
           <div className="flex">
             {/* Main Content */}
             <div className="flex-1 p-6">
               {/* Page Selection */}
-
               {/* Action Buttons */}
               <div className="mb-6 flex gap-4">
                 <button
                   onClick={handleAddNew}
                   className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors"
                 >
-                  Add New 
+                  Add New
                 </button>
                 <button
                   onClick={fetchParams}
@@ -268,7 +300,6 @@ const ExtraParamsManager = () => {
                       Parameters List {selectedPageId && `(Page: ${selectedPageId})`}
                     </h2>
                   </div>
-
                   {loading ? (
                     <div className="p-6 text-center">
                       <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
@@ -294,6 +325,9 @@ const ExtraParamsManager = () => {
                               Type
                             </th>
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              Widget Type
+                            </th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                               Status
                             </th>
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -308,10 +342,14 @@ const ExtraParamsManager = () => {
                               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{param.holder}</td>
                               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{param.param}</td>
                               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{param.type}</td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                {param.type === "Widget" ? param.widgetType || "-" : "-"}
+                              </td>
                               <td className="px-6 py-4 whitespace-nowrap">
                                 <span
-                                  className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${param.status ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
-                                    }`}
+                                  className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+                                    param.status ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
+                                  }`}
                                 >
                                   {param.status ? "Active" : "Inactive"}
                                 </span>
@@ -347,7 +385,6 @@ const ExtraParamsManager = () => {
                       {editingParam ? "Edit Parameter" : "Add New Parameter"}
                     </h2>
                   </div>
-
                   <form onSubmit={handleSubmit} className="p-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
@@ -361,7 +398,6 @@ const ExtraParamsManager = () => {
                           required
                         />
                       </div>
-
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">Holder *</label>
                         <select
@@ -382,7 +418,6 @@ const ExtraParamsManager = () => {
                           ))}
                         </select>
                       </div>
-
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">Title *</label>
                         <input
@@ -393,12 +428,21 @@ const ExtraParamsManager = () => {
                           required
                         />
                       </div>
-
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">Type *</label>
                         <select
                           value={formData.type}
-                          onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+                          onChange={(e) => {
+                            setFormData({
+                              ...formData,
+                              type: e.target.value,
+                              widgetType: e.target.value !== "Widget" ? "" : formData.widgetType,
+                            })
+                            if (e.target.value !== "Widget") {
+                              setWidgetTypeSearch("")
+                              setShowWidgetTypeDropdown(false)
+                            }
+                          }}
                           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                           required
                         >
@@ -414,6 +458,47 @@ const ExtraParamsManager = () => {
                         </select>
                       </div>
 
+                      {/* Widget Type Field - Only show when Type is Widget */}
+                      {formData.type === "Widget" && (
+                        <div className="md:col-span-2">
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Widget Type *</label>
+                          <div className="relative">
+                            <input
+                              type="text"
+                              value={widgetTypeSearch}
+                              onChange={handleWidgetTypeInputChange}
+                              onFocus={() => setShowWidgetTypeDropdown(true)}
+                              onBlur={() => {
+                                // Delay hiding dropdown to allow selection
+                                setTimeout(() => setShowWidgetTypeDropdown(false), 200)
+                              }}
+                              placeholder="Search or enter widget type..."
+                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                              required
+                            />
+                            {showWidgetTypeDropdown && (
+                              <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
+                                {filteredWidgetTypes.length > 0 ? (
+                                  filteredWidgetTypes.map((widgetType) => (
+                                    <div
+                                      key={widgetType}
+                                      onClick={() => handleWidgetTypeSelect(widgetType)}
+                                      className="px-3 py-2 hover:bg-blue-50 cursor-pointer text-sm"
+                                    >
+                                      {widgetType}
+                                    </div>
+                                  ))
+                                ) : (
+                                  <div className="px-3 py-2 text-sm text-gray-500">
+                                    No matching options. Press Enter to use "{widgetTypeSearch}"
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      )}
+
                       <div className="md:col-span-2">
                         <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
                         <JoditEditor
@@ -423,15 +508,13 @@ const ExtraParamsManager = () => {
                           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">Upload Image *</label>
-
                         {/* Preview if image exists */}
                         {formData.paramImg && (
                           <div className="relative inline-block mb-2">
                             <img
-                              src={URL.createObjectURL(formData.paramImg)}
+                              src={URL.createObjectURL(formData.paramImg) || "/placeholder.svg"}
                               alt="Preview"
                               className="h-32 w-32 object-cover rounded shadow border"
                             />
@@ -445,28 +528,24 @@ const ExtraParamsManager = () => {
                             </button>
                           </div>
                         )}
-
                         {/* File input */}
                         <input
                           type="file"
                           accept="image/*"
                           onChange={(e) => {
-                            const file = e.target.files[0];
+                            const file = e.target.files[0]
                             if (file) {
                               // setFormData({ ...formData, paramImg: file });
                             }
                           }}
                           className="block w-full text-sm text-gray-500
-      file:mr-4 file:py-2 file:px-4
-      file:rounded-full file:border-0
-      file:text-sm file:font-semibold
-      file:bg-blue-50 file:text-blue-700
-      hover:file:bg-blue-100"
+    file:mr-4 file:py-2 file:px-4
+    file:rounded-full file:border-0
+    file:text-sm file:font-semibold
+    file:bg-blue-50 file:text-blue-700
+    hover:file:bg-blue-100"
                         />
                       </div>
-
-
-
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">URL</label>
                         <input
@@ -476,7 +555,6 @@ const ExtraParamsManager = () => {
                           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">Order Sequence</label>
                         <input
@@ -488,40 +566,7 @@ const ExtraParamsManager = () => {
                           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       </div>
-
-                      {/* <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Added By</label>
-                        <input
-                          type="text"
-                          value={formData.addedby}
-                          onChange={(e) => setFormData({ ...formData, addedby: e.target.value })}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        />
-                      </div> */}
-                      {/* 
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Calendar ID</label>
-                        <input
-                          type="text"
-                          value={formData.calid}
-                          onChange={(e) => setFormData({ ...formData, calid: e.target.value })}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        />
-                      </div> */}
-
-                      {/* <div>
-                        <label className="flex items-center">
-                          <input
-                            type="checkbox"
-                            checked={formData.status}
-                            onChange={(e) => setFormData({ ...formData, status: e.target.checked })}
-                            className="mr-2"
-                          />
-                          <span className="text-sm font-medium text-gray-700">Active Status</span>
-                        </label>
-                      </div> */}
                     </div>
-
                     <div className="mt-6 flex gap-4">
                       <button
                         type="submit"
@@ -546,7 +591,6 @@ const ExtraParamsManager = () => {
                 </div>
               )}
             </div>
-
             {/* Holder Status Sidebar */}
             <div className="w-80 bg-gray-50 border-l p-6">
               <div className="bg-white rounded-lg border">
@@ -554,7 +598,6 @@ const ExtraParamsManager = () => {
                   <h3 className="text-lg font-semibold">Holder Status</h3>
                   {selectedPageId && <p className="text-sm opacity-90">Page: {selectedPageId}</p>}
                 </div>
-
                 <div className="p-4 space-y-4">
                   {Object.entries(holderSections).map(([section, holders]) => (
                     <div key={section}>
@@ -567,8 +610,9 @@ const ExtraParamsManager = () => {
                           return (
                             <div
                               key={holder}
-                              className={`p-2 rounded-md text-sm font-medium flex items-center justify-between ${isUsed ? "bg-green-200 text-green-800" : "bg-red-200 text-red-800"
-                                }`}
+                              className={`p-2 rounded-md text-sm font-medium flex items-center justify-between ${
+                                isUsed ? "bg-green-200 text-green-800" : "bg-red-200 text-red-800"
+                              }`}
                             >
                               <span>{holder}</span>
                               <span className="text-xs">{isUsed ? "✓" : "✗"}</span>

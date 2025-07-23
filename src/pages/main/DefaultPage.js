@@ -102,7 +102,7 @@ function Default({ data }) {
                     {data?.shortdesc && <ShortDescription text={data?.shortdesc} allowHTML={true} />}
                     {data?.description && <Description text={data?.description} />}
                     {data?.extraComponentData && (
-                        <div className="">
+                        <div className="space-y-8">
                             {Array.from({ length: 20 }, (_, i) => i + 11).map(
                                 (item) =>
                                     data?.extraComponentData?.[`holder${item}`] && (

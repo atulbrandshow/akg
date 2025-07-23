@@ -2,6 +2,7 @@ import { API_NODE_URL } from '@/configs/config';
 import React, { useEffect, useState } from 'react';
 
 function Widget({ type, stream, limit }) {
+    
     const [widgetData, setWidgetData] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -43,9 +44,14 @@ function Widget({ type, stream, limit }) {
     if (type === "Event") {
         return <NewsWidget type="Event" initialShowCount={limit} newsData={widgetData || []} />
     }
-
+    if (type === "Download Center") {
+        return <NewsWidget type="Download Center" initialShowCount={limit} newsData={widgetData || []} />
+    }
+    if (type === "Article") {
+        return <NewsWidget type="Article" initialShowCount={limit} newsData={widgetData || []} />
+    }
     return (
-        <></>
+        <NewsWidget type="News" initialShowCount={limit} newsData={widgetData || []} />
     );
 }
 
@@ -75,7 +81,7 @@ function NewsWidget({ type = "News", initialShowCount = 3, newsData = [] }) {
     };
 
     return (
-        <section className="w-full py-12 px-4 bg-gray-50">
+        <section className="w-full py-6 px-4 bg-gray-50 ">
             <div className="max-w-7xl mx-auto">
                 {/* Section Header */}
                 <div className="mb-8">
@@ -84,7 +90,7 @@ function NewsWidget({ type = "News", initialShowCount = 3, newsData = [] }) {
                 </div>
 
                 {/* News Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {itemsToShow.map((item) => (
                         <article
                             key={item._id}
@@ -120,7 +126,7 @@ function NewsWidget({ type = "News", initialShowCount = 3, newsData = [] }) {
                             </div>
 
                             {/* Content */}
-                            <div className="p-6">
+                            <div className="p-6 ">
                                 <h3 className="text-xl font-semibold text-gray-900 mb-3 line-clamp-2 hover:text-blue-600 transition-colors">
                                     {item.name}
                                 </h3>
@@ -152,7 +158,7 @@ function NewsWidget({ type = "News", initialShowCount = 3, newsData = [] }) {
 
                 {/* Show More/Less */}
                 {hasMoreItems && (
-                    <div className="text-center">
+                    <div className="text-center mt-6">
                         <button
                             onClick={() => setShowAll(!showAll)}
                             className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md hover:shadow-lg"

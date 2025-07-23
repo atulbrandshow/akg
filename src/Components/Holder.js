@@ -4,7 +4,7 @@ import Widget from "./Widget";
 
 export default function Holder({ data, initialData }) {
     if (data.type === 'Widget') {
-        return <Widget key={data?._id} type={data?.param} stream={initialData?.stream} limit={10} />
+        return <Widget key={data?._id} type={data?.widgetType} stream={initialData?.stream} limit={10} />
     }
     const descriptionRef = useRef(null);
     const buttonRef = useRef(null);

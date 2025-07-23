@@ -47,8 +47,14 @@ function Widget({ type, stream, limit }) {
     if (type === "Download Center") {
         return <NewsWidget type="Download Center" initialShowCount={limit} newsData={widgetData || []} />
     }
+    if (type === "Circular") {
+        return <NewsWidget type="Circular" initialShowCount={limit} newsData={widgetData || []} />
+    }
     if (type === "Article") {
         return <NewsWidget type="Article" initialShowCount={limit} newsData={widgetData || []} />
+    }
+    if (type === "Announcement") {
+        return <NewsWidget type="Announcement" initialShowCount={limit} newsData={widgetData || []} />
     }
     return (
         <NewsWidget type="News" initialShowCount={limit} newsData={widgetData || []} />

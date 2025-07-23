@@ -81,7 +81,7 @@ function Default({ data }) {
                                 (item, index) =>
                                     data?.extraComponentData?.[`holder${index}`] && (
                                         <div key={`holder-${index}`} className="bg-white rounded-2xl shadow-sm overflow-hidden">
-                                            <Holder data={data?.extraComponentData[`holder${index}`]} />
+                                            <Holder data={data?.extraComponentData[`holder${index}`]} initialData={data} />
                                         </div>
                                     ),
                             )}
@@ -93,7 +93,7 @@ function Default({ data }) {
                                 (item, index) =>
                                     data?.extraComponentData?.[`holder${item}`] && (
                                         <div key={`holder-${item}`} className="bg-white rounded-2xl shadow-sm overflow-hidden">
-                                            <Holder data={data?.extraComponentData[`holder${item}`]} />
+                                            <Holder data={data?.extraComponentData[`holder${item}`]} initialData={data} />
                                         </div>
                                     )
                             )}
@@ -107,7 +107,7 @@ function Default({ data }) {
                                 (item) =>
                                     data?.extraComponentData?.[`holder${item}`] && (
                                         <div key={`holder-${item}`} className="bg-white rounded-2xl shadow-sm overflow-hidden">
-                                            <Holder data={data?.extraComponentData[`holder${item}`]} />
+                                            <Holder data={data?.extraComponentData[`holder${item}`]} initialData={data} />
                                         </div>
                                     )
                             )}

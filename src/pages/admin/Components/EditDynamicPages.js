@@ -477,7 +477,7 @@ function EditDynamicPages({ type }) {
             });
             const data = await response.json();
 
-            const fetchedPages = data.data.pages || [];
+            const fetchedPages = data?.data?.pages || [];
 
             if (fetchedPages.length === 0) {
                 setAllPages([]);

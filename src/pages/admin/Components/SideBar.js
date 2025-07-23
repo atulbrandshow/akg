@@ -70,10 +70,10 @@ const navSections = [
       },
       {
         icon: RefreshCcwDot,
-        label: "Circuler",
+        label: "Circular",
         nestedLinks: [
-          { label: "Add Circuler", href: "/admin/create-circuler" },
-          { label: "List of Circuler", href: "/admin/circuler-list" },
+          { label: "Add Circular", href: "/admin/create-circular" },
+          { label: "List of Circular", href: "/admin/circular-list" },
         ],
       },
       {

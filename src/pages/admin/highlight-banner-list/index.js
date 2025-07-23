@@ -1,6 +1,6 @@
 import SideBar from "../Components/SideBar";
 import DownloadCenter from "./HighlightBanner";
-import CirculerList from "./HighlightBanner";
+import CircularList from "./HighlightBanner";
 
 export default function Home() {
   return (

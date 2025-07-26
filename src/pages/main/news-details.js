@@ -108,9 +108,6 @@ function NewsDetailPage({ data }) {
                                 src={data.banner_img || "/placeholder.svg"}
                                 alt={data.name}
                                 className="w-full h-64 md:h-96 object-cover"
-                                onError={(e) => {
-                                    e.target.src = "/placeholder.svg?height=400&width=800&text=News+Image"
-                                }}
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                         </div>

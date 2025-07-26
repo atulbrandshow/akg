@@ -537,22 +537,6 @@ const CreateHighlightBanner = () => {
             {errors.link && <p className="text-red-500 text-sm mt-1">{errors.link}</p>}
           </div>
 
-          {/* Status */}
-          {isEdit && (
-            <div className="flex items-center">
-              <input
-                type="checkbox"
-                id="status"
-                name="status"
-                checked={formData.status}
-                onChange={handleInputChange}
-                className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
-              />
-              <label htmlFor="status" className="ml-2 block text-sm text-gray-700">
-                Active Status
-              </label>
-            </div>
-          )}
 
           {/* Action Buttons */}
           <div className="flex space-x-4 pt-4">

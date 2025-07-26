@@ -45,7 +45,9 @@ function EditDepartment() {
 
     const fetchDepartment = async () => {
       try {
-        const response = await fetch(`${API_NODE_URL}department/get-by-id?id=${_id}`)
+        const response = await fetch(`${API_NODE_URL}department/get-by-id?id=${_id}`, {
+          credentials: "include",
+        })
         const result = await response.json()
 
         if (result.status) {
@@ -85,7 +87,9 @@ function EditDepartment() {
   useEffect(() => {
     const fetchSchools = async () => {
       try {
-        const response = await fetch(`${API_NODE_URL}school/search?search=${searchQuery}`)
+        const response = await fetch(`${API_NODE_URL}school/search?search=${searchQuery}`, {
+          credentials: "include",
+        })
         const result = await response.json()
         if (result.status) {
           setSchools(Array.isArray(result?.data?.schools) ? result?.data?.schools : [])
@@ -198,6 +202,7 @@ function EditDepartment() {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({ ...formData, _id }),
       })
 

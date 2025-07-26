@@ -252,7 +252,9 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
     const fetchSchools = async () => {
       try {
         const response = await fetch(
-          `${API_NODE_URL}school/search?search=${searchQuery}`
+          `${API_NODE_URL}school/search?search=${searchQuery}`, {
+          credentials: "include",
+        }
         );
         const result = await response.json();
         if (result.status) {
@@ -291,6 +293,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({ query: searchTerm, page: 1, limit: 10, type }),
       });
       const data = await response.json();
@@ -414,7 +417,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
       const payload = {
         ...formData,
         stream: streamId,
-        ComponentType: componentType,
+        ComponentType: componentType || allData?.ComponentType,
       }
 
       const response = await fetch(`${API_NODE_URL}slug/update`, {
@@ -422,6 +425,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify(payload),
       })
 

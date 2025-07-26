@@ -16,7 +16,9 @@ const FacultyList = () => {
   const fetchData = async () => {
     try {
       setLoading(true)
-      const response = await fetch(`${API_NODE_URL}faculty/list`)
+      const response = await fetch(`${API_NODE_URL}faculty/list`, {
+        credentials: "include",
+      })
       const data = await response.json()
       setFacultyList(data.data || [])
     } catch (error) {
@@ -43,6 +45,7 @@ const FacultyList = () => {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
       })
       const data = await response.json()
 
@@ -93,15 +96,15 @@ const FacultyList = () => {
               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
             ></path>
           </svg>
-          <span className="text-gray-700 font-medium">Loading faculty list...</span>
+          <span className="text-gray-700 font-novaSemi">Loading faculty list...</span>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-4 md:p-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="">
+      <div className="">
         {/* Header */}
         <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
@@ -117,13 +120,13 @@ const FacultyList = () => {
                 </svg>
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">Faculty Management</h1>
-                <p className="text-gray-600 mt-1">Manage all faculty members in the system</p>
+                <h1 className="text-2xl font-novaBold text-gray-900">Faculty Management</h1>
+                <p className="text-gray-600 text-sm font-novaReg">Manage all faculty members in the system</p>
               </div>
             </div>
             <button
               onClick={() => router.push("/admin/create-faculty")}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 font-medium flex items-center space-x-2"
+              className="bg-gradient-to-r from-blue-600 font-novaSemi to-purple-600 text-white px-6 py-3 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 font-novaSemi flex items-center space-x-2"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -155,15 +158,15 @@ const FacultyList = () => {
                   setSearchTerm(e.target.value)
                   setCurrentPage(1)
                 }}
-                className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl leading-5 bg-gray-50 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:bg-white transition-all duration-200"
+                className="block w-full pl-10 pr-3 py-3 border font-novaReg border-gray-300 rounded-xl leading-5 bg-gray-50 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:bg-white transition-all duration-200"
               />
             </div>
             <div className="flex items-center space-x-6 text-sm text-gray-600">
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2 font-novaSemi">
                 <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
                 <span>Total Faculty: {facultyList.length}</span>
               </div>
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2 font-novaSemi">
                 <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                 <span>Showing: {filteredFaculty.length}</span>
               </div>
@@ -177,19 +180,19 @@ const FacultyList = () => {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-novaSemi text-gray-500 uppercase tracking-wider">
                     Faculty Member
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-novaSemi text-gray-500 uppercase tracking-wider">
                     Contact Info
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-novaSemi text-gray-500 uppercase tracking-wider">
                     Academic Details
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-novaSemi text-gray-500 uppercase tracking-wider">
                     Status
                   </th>
-                  <th className="px-6 py-4 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-right text-xs font-novaSemi text-gray-500 uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
@@ -207,21 +210,21 @@ const FacultyList = () => {
                             </div>
                           </div>
                           <div className="ml-4">
-                            <div className="text-sm font-medium text-gray-900">
+                            <div className="text-sm font-novaSemi text-gray-900">
                               {faculty.firstName} {faculty.lastName}
                             </div>
-                            <div className="text-sm text-gray-500">{faculty.designation}</div>
+                            <div className="text-sm font-novaSemi text-gray-500">{faculty.designation}</div>
                           </div>
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">{faculty.email}</div>
-                        <div className="text-sm text-gray-500">{faculty.phoneNumber || "N/A"}</div>
+                        <div className="text-sm text-gray-600 font-novaSemi">{faculty.email}</div>
+                        <div className="text-sm text-gray-700 font-novaSemi">{faculty.phoneNumber || "N/A"}</div>
                       </td>
                       <td className="px-6 py-4">
                         <div className="text-sm text-gray-900">
                           {faculty.subjectsTaught ? (
-                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-novaSemi bg-blue-100 text-blue-800">
                               {faculty.subjectsTaught.length > 30
                                 ? `${faculty.subjectsTaught.substring(0, 30)}...`
                                 : faculty.subjectsTaught}
@@ -236,7 +239,7 @@ const FacultyList = () => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span
-                          className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                          className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-novaSemi ${
                             faculty.status ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
                           }`}
                         >
@@ -248,7 +251,7 @@ const FacultyList = () => {
                           {faculty.status ? "Active" : "Inactive"}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-novaSemi">
                         <div className="flex items-center justify-end space-x-2">
                           <button
                             onClick={() => router.push(`/admin/edit-faculty?_id=${faculty._id}`)}
@@ -318,7 +321,7 @@ const FacultyList = () => {
                             d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                           />
                         </svg>
-                        <h3 className="text-lg font-medium text-gray-900 mb-2">No faculty members found</h3>
+                        <h3 className="text-lg font-novaSemi text-gray-900 mb-2">No faculty members found</h3>
                         <p className="text-gray-500 mb-4">
                           {searchTerm
                             ? "Try adjusting your search criteria"
@@ -327,7 +330,7 @@ const FacultyList = () => {
                         {!searchTerm && (
                           <button
                             onClick={() => router.push("/admin/create-faculty")}
-                            className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 font-medium flex items-center space-x-2"
+                            className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 font-novaSemi flex items-center space-x-2"
                           >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path
@@ -360,7 +363,7 @@ const FacultyList = () => {
                   <button
                     onClick={() => paginate(currentPage - 1)}
                     disabled={currentPage === 1}
-                    className="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-150"
+                    className="px-3 py-2 text-sm font-novaSemi text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-150"
                   >
                     Previous
                   </button>
@@ -376,7 +379,7 @@ const FacultyList = () => {
                         <button
                           key={pageNumber}
                           onClick={() => paginate(pageNumber)}
-                          className={`px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-150 ${
+                          className={`px-3 py-2 text-sm font-novaSemi rounded-lg transition-colors duration-150 ${
                             currentPage === pageNumber
                               ? "bg-blue-600 text-white"
                               : "text-gray-500 bg-white border border-gray-300 hover:bg-gray-50"
@@ -398,7 +401,7 @@ const FacultyList = () => {
                   <button
                     onClick={() => paginate(currentPage + 1)}
                     disabled={currentPage === totalPages}
-                    className="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-150"
+                    className="px-3 py-2 text-sm font-novaSemi text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-150"
                   >
                     Next
                   </button>

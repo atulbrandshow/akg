@@ -31,7 +31,9 @@ function EditFaculty() {
     if (!_id) return
     const fetchFaculty = async () => {
       try {
-        const response = await fetch(`${API_NODE_URL}faculty/get-by-id?_id=${_id}`)
+        const response = await fetch(`${API_NODE_URL}faculty/get-by-id?_id=${_id}`, {
+          credentials: "include",
+        })
         const result = await response.json()
         const faculty = result.data || {}
 
@@ -108,6 +110,7 @@ function EditFaculty() {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify(payload),
       })
 
@@ -138,6 +141,7 @@ function EditFaculty() {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
       })
       const result = await response.json()
       if (result.status) {

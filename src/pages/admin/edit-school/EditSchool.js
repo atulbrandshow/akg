@@ -40,7 +40,9 @@ function EditSchool() {
 
     const fetchSchool = async () => {
       try {
-        const response = await fetch(`${API_NODE_URL}school/get-by-id?id=${_id}`)
+        const response = await fetch(`${API_NODE_URL}school/get-by-id?id=${_id}`, {
+          credentials: "include",
+        })
         const result = await response.json()
 
         if (result.status) {
@@ -135,6 +137,7 @@ function EditSchool() {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({ ...formData, _id }),
       })
 

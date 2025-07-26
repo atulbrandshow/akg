@@ -15,7 +15,9 @@ export default function EventList({ data }) {
         try {
             setLoading(true)
             const response = await fetch(
-                `${API_NODE_URL}list-detail-page/all?page=${page}&limit=9&search=${searchTerm}&type=Event`,
+                `${API_NODE_URL}list-detail-page/all?page=${page}&limit=9&search=${searchTerm}&type=Event`, {
+                    credentials: "include",
+                }
             )
             const data = await response.json()
             if (data.status && data.data) {

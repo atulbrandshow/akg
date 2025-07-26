@@ -9,7 +9,7 @@ export default function Home() {
         <SideBar />
         <div className="pt-10 overflow-x-auto w-full h-screen px-10">
           <Suspense fallback={<div>Loading...</div>}>
-            <EditDynamicPages type="Circuler" />
+            <EditDynamicPages type="Circular" />
           </Suspense>
         </div>
       </div>

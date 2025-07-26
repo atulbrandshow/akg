@@ -20,6 +20,7 @@ import {
   Newspaper,
   Waypoints,
 } from "lucide-react"
+import { API_NODE_URL } from "@/configs/config"
 
 const navSections = [
   {
@@ -69,10 +70,10 @@ const navSections = [
       },
       {
         icon: RefreshCcwDot,
-        label: "Circuler",
+        label: "Circular",
         nestedLinks: [
-          { label: "Add Circuler", href: "/admin/create-circuler" },
-          { label: "List of Circuler", href: "/admin/circuler-list" },
+          { label: "Add Circular", href: "/admin/create-circular" },
+          { label: "List of Circular", href: "/admin/circular-list" },
         ],
       },
       {
@@ -140,7 +141,7 @@ const navSections = [
   },
 ]
 
-export default function SideBar() {
+export default function SideBar({ trigger, setTrigger }) {
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(true)
   const [expandedSections, setExpandedSections] = useState({})
@@ -170,16 +171,25 @@ export default function SideBar() {
 
   const isActive = (href) => router.pathname === href
 
-  const handleClick = () => {
-    localStorage.removeItem("user")
-    router.push("/")
+  const handleClick = async () => {
+    try {
+      const res = await fetch(`${API_NODE_URL}auth/logout`, {
+        credentials: "include"
+      });
+      if (res.status === 200) {
+        localStorage.removeItem("user")
+        router.push("/admin")
+        setTrigger(!trigger);
+      }
+    } catch (error) {
+      console.error("Logout error: ", error)
+    }
   }
 
   return (
     <div
-      className={`flex flex-col h-screen bg-gray-800 text-white transition-all duration-300 ${
-        isOpen ? "w-80" : "w-20"
-      }`}
+      className={`flex flex-col h-screen bg-gray-800 text-white transition-all duration-300 ${isOpen ? "w-80" : "w-20"
+        }`}
     >
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-gray-700">
@@ -230,9 +240,8 @@ export default function SideBar() {
 
               {/* Collapsible Section Items */}
               <div
-                className={`overflow-y-auto scrollbar-hidden transition-all duration-300 ${
-                  expandedNavSections[sectionIndex] ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-                }`}
+                className={`overflow-y-auto scrollbar-hidden transition-all duration-300 ${expandedNavSections[sectionIndex] ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                  }`}
               >
                 <ul className="space-y-2 mb-4">
                   {section.items.map((item, itemIndex) => (
@@ -240,9 +249,8 @@ export default function SideBar() {
                       {!item.nestedLinks ? (
                         <Link
                           href={item.href}
-                          className={`p-3 flex items-center rounded-lg transition-colors duration-200 ${
-                            isActive(item.href) ? "bg-blue-600 text-white" : "hover:bg-gray-700"
-                          }`}
+                          className={`p-3 flex items-center rounded-lg transition-colors duration-200 ${isActive(item.href) ? "bg-blue-600 text-white" : "hover:bg-gray-700"
+                            }`}
                         >
                           <item.icon className={`w-5 h-5 ${isOpen ? "mr-3" : ""}`} />
                           <span className={`${isOpen ? "block" : "hidden"} font-novaSemi text-sm`}>{item.label}</span>
@@ -251,9 +259,8 @@ export default function SideBar() {
                         <div>
                           <div
                             onClick={() => toggleSection(sectionIndex, itemIndex)}
-                            className={`p-3 flex justify-between items-center rounded-lg cursor-pointer transition-colors duration-200 ${
-                              expandedSections[`${sectionIndex}-${itemIndex}`] ? "bg-gray-700" : "hover:bg-gray-700"
-                            }`}
+                            className={`p-3 flex justify-between items-center rounded-lg cursor-pointer transition-colors duration-200 ${expandedSections[`${sectionIndex}-${itemIndex}`] ? "bg-gray-700" : "hover:bg-gray-700"
+                              }`}
                           >
                             <div className="flex items-center">
                               <item.icon className={`w-5 h-5 ${isOpen ? "mr-3" : ""}`} />
@@ -272,21 +279,19 @@ export default function SideBar() {
 
                           {/* Nested Links */}
                           <ul
-                            className={`mt-2 space-y-1 overflow-hidden transition-all duration-300 ${
-                              expandedSections[`${sectionIndex}-${itemIndex}`] && isOpen
-                                ? "max-h-96 opacity-100"
-                                : "max-h-0 opacity-0"
-                            }`}
+                            className={`mt-2 space-y-1 overflow-hidden transition-all duration-300 ${expandedSections[`${sectionIndex}-${itemIndex}`] && isOpen
+                              ? "max-h-96 opacity-100"
+                              : "max-h-0 opacity-0"
+                              }`}
                           >
                             {item.nestedLinks.map((nestedItem, nestedIndex) => (
                               <li key={nestedIndex}>
                                 <Link
                                   href={nestedItem.href}
-                                  className={`pl-11 pr-3 py-2 block rounded-lg font-medium text-sm transition-colors duration-200 ${
-                                    isActive(nestedItem.href)
-                                      ? "bg-blue-500 text-white"
-                                      : "text-gray-300 hover:bg-gray-600 hover:text-white"
-                                  }`}
+                                  className={`pl-11 pr-3 py-2 block rounded-lg font-medium text-sm transition-colors duration-200 ${isActive(nestedItem.href)
+                                    ? "bg-blue-500 text-white"
+                                    : "text-gray-300 hover:bg-gray-600 hover:text-white"
+                                    }`}
                                 >
                                   {nestedItem.label}
                                 </Link>

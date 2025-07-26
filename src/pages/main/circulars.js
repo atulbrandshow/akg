@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { API_NODE_URL } from "@/configs/config"
 
-export default function CirculerList({ data }) {
+export default function CircularList({ data }) {
     const [eventsData, setEventsData] = useState([])
     const [searchTerm, setSearchTerm] = useState("")
     const [loading, setLoading] = useState(true)
@@ -15,7 +15,9 @@ export default function CirculerList({ data }) {
         try {
             setLoading(true)
             const response = await fetch(
-                `${API_NODE_URL}list-detail-page/all?page=${page}&limit=9&search=${searchTerm}&type=Circuler`,
+                `${API_NODE_URL}list-detail-page/all?page=${page}&limit=9&search=${searchTerm}&type=Circular`, {
+                    credentials: "include",
+                }
             )
             const data = await response.json()
             if (data.status && data.data) {

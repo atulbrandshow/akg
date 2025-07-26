@@ -92,7 +92,9 @@ export default function PageDetailsForm({ page_id }) {
   const fetchParent = async (parent_id) => {
     if (parent_id) {
       try {
-        const response = await fetch(`${API_NODE_URL}slug/getbyid?page_id=${parent_id}`);
+        const response = await fetch(`${API_NODE_URL}slug/getbyid?page_id=${parent_id}`, {
+          credentials: "include",
+        });
         const result = await response.json();
         console.log("Parent Page Name:", result?.data?.name);
         return result?.data?.name || "";
@@ -112,7 +114,9 @@ export default function PageDetailsForm({ page_id }) {
       setLoading(true);
       try {
         const response = await fetch(
-          `${API_NODE_URL}slug/getbyid?page_id=${page_id}`
+          `${API_NODE_URL}slug/getbyid?page_id=${page_id}`, {
+            credentials: "include",
+          }
         );
         const data = await response.json();
         console.log(data);
@@ -269,6 +273,7 @@ export default function PageDetailsForm({ page_id }) {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify(formData),
       });
       const data = await response.json();

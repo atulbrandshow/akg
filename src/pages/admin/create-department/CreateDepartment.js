@@ -35,7 +35,9 @@ function CreateDepartment() {
   useEffect(() => {
     const fetchSchools = async () => {
       try {
-        const response = await fetch(`${API_NODE_URL}school/search?search=${searchQuery}`)
+        const response = await fetch(`${API_NODE_URL}school/search?search=${searchQuery}`, {
+          credentials: "include",
+        })
         const result = await response.json()
         if (result.status) {
           setSchools(Array.isArray(result?.data?.schools) ? result?.data?.schools : [])
@@ -137,6 +139,7 @@ function CreateDepartment() {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify(formData),
       })
 
@@ -189,7 +192,7 @@ function CreateDepartment() {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="">
       {/* Header Section */}
       <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 rounded-2xl p-8 mb-8 shadow-2xl">
         <div className="flex items-center justify-between">
@@ -200,13 +203,13 @@ function CreateDepartment() {
               </svg>
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-white mb-2">Add New Department</h1>
-              <p className="text-blue-100">Create a new academic department</p>
+              <h1 className="text-3xl font-novaBold text-white">Add New Department</h1>
+              <p className="text-blue-100 font-novaReg">Create a new academic department</p>
             </div>
           </div>
           <button
             onClick={() => router.push("/admin/department-list")}
-            className="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-lg hover:bg-white/30 transition-all duration-200 flex items-center space-x-2"
+            className="bg-white/20 backdrop-blur-sm font-novaSemi text-white px-4 py-2 rounded-lg hover:bg-white/30 transition-all duration-200 flex items-center space-x-2"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -217,19 +220,19 @@ function CreateDepartment() {
       </div>
 
       {/* Form Section */}
-      <div className="max-w-7xl mx-auto">
+      <div className="">
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
           <div className="bg-gradient-to-r from-gray-50 to-gray-100 px-8 py-6 border-b border-gray-200">
-            <h2 className="text-2xl font-bold text-gray-800 mb-2">Department Information</h2>
-            <p className="text-gray-600">Please fill in all the required information about the department</p>
+            <h2 className="text-2xl font-novaBold text-gray-800 mb-1">Department Information</h2>
+            <p className="text-gray-600 font-novaReg">Please fill in all the required information about the department</p>
           </div>
 
           <form onSubmit={handleSubmit} className="p-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Form Fields */}
               {formFields.map((field) => (
                 <div key={field.name} className="space-y-2">
-                  <label htmlFor={field.name} className="flex items-center text-sm font-semibold text-gray-700 mb-2">
+                  <label htmlFor={field.name} className="flex items-center text-sm font-novaSemi text-gray-700 mb-2">
                     <span className="text-gray-400 mr-2">{field.icon}</span>
                     {field.label}
                     {field.required && <span className="text-red-500 ml-1">*</span>}
@@ -242,7 +245,7 @@ function CreateDepartment() {
                       value={formData[field.name]}
                       onChange={handleInputChange}
                       placeholder={field.placeholder}
-                      className={`w-full px-4 py-3 border-2 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors[field.name]
+                      className={`w-full px-4 py-3 border-2 rounded-xl transition-all font-novaReg duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors[field.name]
                         ? "border-red-300 bg-red-50"
                         : "border-gray-300 hover:border-gray-400 focus:border-blue-500"
                         }`}
@@ -265,8 +268,8 @@ function CreateDepartment() {
               ))}
 
               {/* School Selection */}
-              <div className="lg:col-span-2 space-y-2">
-                <label htmlFor="school" className="flex items-center text-sm font-semibold text-gray-700 mb-2">
+              <div className="space-y-2">
+                <label htmlFor="school" className="flex items-center text-sm font-novaSemi text-gray-700 mb-2">
                   <span className="text-gray-400 mr-2">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path
@@ -288,7 +291,7 @@ function CreateDepartment() {
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onFocus={() => setShowDropdown(true)}
                     placeholder="Search and select school..."
-                    className={`w-full px-4 py-3 border-2 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.school
+                    className={`w-full px-4 py-3 border-2 rounded-xl font-novaReg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.school
                       ? "border-red-300 bg-red-50"
                       : "border-gray-300 hover:border-gray-400 focus:border-blue-500"
                       }`}
@@ -311,10 +314,10 @@ function CreateDepartment() {
                             className="px-4 py-3 cursor-pointer hover:bg-blue-50 border-b border-gray-100 last:border-b-0 flex items-center justify-between"
                           >
                             <div>
-                              <div className="font-medium text-gray-900">{school.name}</div>
-                              <div className="text-sm text-gray-500">{school.location}</div>
+                              <div className="font-novaSemi text-gray-900">{school.name}</div>
+                              <div className="text-sm font-novaReg text-gray-500">{school.location}</div>
                             </div>
-                            <div className="text-xs text-gray-400">{school.yearEstablished}</div>
+                            <div className="text-sm font-novaSemi text-gray-400">{school.yearEstablished}</div>
                           </div>
                         ))}
                     </div>
@@ -336,8 +339,8 @@ function CreateDepartment() {
               </div>
 
               {/* Programs Offered */}
-              <div className="lg:col-span-2 space-y-2">
-                <label htmlFor="programs" className="flex items-center text-sm font-semibold text-gray-700 mb-2">
+              <div className="space-y-2">
+                <label htmlFor="programs" className="flex items-center text-sm font-novaSemi text-gray-700 mb-2">
                   <span className="text-gray-400 mr-2">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path
@@ -359,25 +362,24 @@ function CreateDepartment() {
                     onChange={(e) => setProgramInput(e.target.value)}
                     onKeyDown={handleProgramAdd}
                     placeholder="Enter program name and press Enter..."
-                    className={`w-full px-4 py-3 border-2 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.programsOffered
+                    className={`w-full px-4 py-3 border-2 rounded-xl font-novaReg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.programsOffered
                       ? "border-red-300 bg-red-50"
                       : "border-gray-300 hover:border-gray-400 focus:border-blue-500"
                       }`}
                   />
                   <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-                    <kbd className="px-2 py-1 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">
+                    <kbd className="px-2 py-1 text-xs font-novaSemi text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">
                       Enter
                     </kbd>
                   </div>
                 </div>
                 {formData.programsOffered.length > 0 && (
                   <div className="mt-4 space-y-2">
-                    <div className="text-sm font-medium text-gray-700">Added Programs:</div>
                     <div className="flex flex-wrap gap-2">
                       {formData.programsOffered.map((program, index) => (
                         <div
                           key={index}
-                          className="flex items-center bg-blue-100 text-blue-800 px-3 py-2 rounded-lg text-sm font-medium"
+                          className="flex items-center bg-blue-100 text-blue-800 px-3 py-1.5 rounded-lg text-sm font-novaSemi"
                         >
                           <span>{program}</span>
                           <button
@@ -409,9 +411,9 @@ function CreateDepartment() {
                 )}
               </div>
 
-              <div className="lg:col-span-2 space-y-4">
+              <div className="col-span-4 space-y-4">
                 {/* Label */}
-                <label htmlFor="description" className="flex items-center text-sm font-semibold text-gray-700">
+                <label htmlFor="description" className="flex items-center text-sm font-novaSemi text-gray-700">
                   <span className="text-gray-400 mr-2">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" />
@@ -425,10 +427,13 @@ function CreateDepartment() {
                 <JoditEditor
                   ref={editor}
                   value={formData.description}
+                  config={{
+                    height: "400px"
+                  }}
                   onBlur={handleShortDescChange}
                   onChange={handleShortDescChange}
-                  className={`w-full border-2 rounded-xl focus:outline-none focus:ring-2 transition-all duration-200 
-      ${errors.description
+                  className={`w-full border-2 rounded-xl font-novaReg focus:outline-none focus:ring-2 transition-all duration-200 
+                  ${errors.description
                       ? "border-red-300 bg-red-50 focus:ring-red-400"
                       : "border-gray-300 hover:border-gray-400 focus:ring-blue-500"}`}
                 />
@@ -450,14 +455,14 @@ function CreateDepartment() {
               <button
                 type="button"
                 onClick={() => router.push("/admin/department-list")}
-                className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-all duration-200 font-medium"
+                className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-all duration-200 font-novaSemi"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 font-semibold disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
+                className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 font-novaSemi disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
               >
                 {isSubmitting ? (
                   <>

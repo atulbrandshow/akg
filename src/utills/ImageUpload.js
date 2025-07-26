@@ -24,6 +24,7 @@ export async function uploadImages(files, folderName = "") {
     const response = await fetch(`${API_NODE_URL}upload/`, {
       method: "POST",
       body: formData,
+      credentials: "include",
     });
 
     const data = await response.json();
@@ -40,7 +41,7 @@ export async function uploadImages(files, folderName = "") {
       } catch {
         // fallback if not a full URL
         const parts = url.split("/");
-        return "/" + parts.slice(-2).join("/"); 
+        return "/" + parts.slice(-2).join("/");
       }
     });
   } catch (error) {

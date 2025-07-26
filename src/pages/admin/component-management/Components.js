@@ -49,6 +49,7 @@ function AddComponentModal({ isOpen, onClose, onSave, categories, statusOptions 
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify(formData),
       })
 
@@ -257,6 +258,7 @@ function EditComponentModal({ isOpen, onClose, componentData, onSave, categories
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({ ...editFormData, editedby: "user" }),
       })
 
@@ -410,7 +412,9 @@ export default function ComponentManager() {
   const fetchComponents = async () => {
     setLoading(true)
     try {
-      const response = await fetch(`${API_NODE_URL}components?limit=1000`)
+      const response = await fetch(`${API_NODE_URL}components?limit=1000`, {
+        credentials: "include",
+      })
       const result = await response.json()
       if (result.status) {
         setComponents(result.data)
@@ -500,6 +504,7 @@ export default function ComponentManager() {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({ editedby: "user" }),
       })
 

@@ -29,7 +29,9 @@ const EditHighlightBanner = () => {
     if (pageid) {
       try {
         const response = await fetch(
-          `${API_NODE_URL}slug/getbyid?page_id=${pageid}`
+          `${API_NODE_URL}slug/getbyid?page_id=${pageid}`, {
+            credentials: "include",
+          }
         );
         const result = await response.json();
         console.log("Parent Page Name:", result?.data?.name);
@@ -51,6 +53,7 @@ const EditHighlightBanner = () => {
           headers: {
             "Content-Type": "application/json",
           },
+          credentials: "include",
         }
       );
       const data = await response.json();
@@ -112,6 +115,7 @@ const EditHighlightBanner = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(payload),
+        credentials: "include",
       });
 
       const result = await response.json();

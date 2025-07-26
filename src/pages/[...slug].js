@@ -20,6 +20,10 @@ export default function DynamicPage({ data }) {
     const [Component, setComponent] = useState(null);
 
     useEffect(() => {
+        console.log(data);
+    }, [data]);
+
+    useEffect(() => {
         let isMounted = true;
 
         const init = async () => {
@@ -82,7 +86,6 @@ export async function getServerSideProps(context) {
     });
 
     const result = await response.json();
-    console.log(result);
 
     if (!result.status || !result.data) {
         return { notFound: true };

@@ -98,7 +98,9 @@ const ExtraParamsManager = () => {
   const fetchParams = async () => {
     setLoading(true)
     try {
-      const response = await fetch(`${API_NODE_URL}extra-component-data/all`)
+      const response = await fetch(`${API_NODE_URL}extra-component-data/all`, {
+        credentials: "include",
+      })
       const result = await response.json()
       if (result.status) {
         setParams(result.data || [])
@@ -115,8 +117,9 @@ const ExtraParamsManager = () => {
     if (!pageid) return
     try {
       const response = await fetch(`${API_NODE_URL}extra-component-data/used-holders/${pageid}`)
-      const result = await response.json()
-      console.log(result)
+      const result = await response.json();
+      console.log(result);
+
       if (result.status) {
         setUsedHolders(result.data || [])
       }
@@ -139,6 +142,7 @@ const ExtraParamsManager = () => {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify(formData),
       })
       const result = await response.json()
@@ -168,6 +172,7 @@ const ExtraParamsManager = () => {
     try {
       const response = await fetch(`${API_NODE_URL}extra-component-data/${id}`, {
         method: "DELETE",
+        credentials: "include",
       })
       const result = await response.json()
       if (result.status) {

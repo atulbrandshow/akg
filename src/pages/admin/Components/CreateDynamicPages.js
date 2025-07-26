@@ -36,6 +36,7 @@ function CreateDynamicPages({ type, componentType }) {
                 headers: {
                     "Content-Type": "application/json",
                 },
+                credentials: "include",
                 body: JSON.stringify({ query: searchTerm, page: 1, limit: 10, type }),
             });
             const data = await response.json();
@@ -66,7 +67,9 @@ function CreateDynamicPages({ type, componentType }) {
                 url.searchParams.append('search', searchTerm);
             }
 
-            const response = await fetch(url);
+            const response = await fetch(url, {
+                credentials: "include",
+            });
             const result = await response.json();
 
             if (result.status) {
@@ -207,6 +210,7 @@ function CreateDynamicPages({ type, componentType }) {
                 headers: {
                     "Content-Type": "application/json",
                 },
+                credentials: "include",
                 body: JSON.stringify(payload),
             });
 

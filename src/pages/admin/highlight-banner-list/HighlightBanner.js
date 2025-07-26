@@ -71,6 +71,7 @@ const HighlightBannerList = () => {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({
           _id: banner._id,
         }),

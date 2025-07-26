@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { API_NODE_URL } from "@/configs/config";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export default function Login({setTrigger}) {
   const router = useRouter();
@@ -22,6 +23,7 @@ export default function Login({setTrigger}) {
         headers: {
           "Content-Type": "application/json", // Fixed Content-Type
         },
+        credentials: "include",
         body: JSON.stringify({
           email,
           password,
@@ -31,7 +33,7 @@ export default function Login({setTrigger}) {
       const data = await response.json();
       if (data.status) {
         localStorage.setItem("user", JSON.stringify(data.data));
-        alert("You have successfully logged in.");
+        toast.success("You have successfully logged in.");
         setUserData(data.data);
         setMessage({ type: "success", text: "Login successful!" });
         setTrigger(true);

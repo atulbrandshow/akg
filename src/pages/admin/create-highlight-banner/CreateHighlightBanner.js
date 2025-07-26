@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { API_NODE_URL } from "@/configs/config";
 import { toast } from "react-toastify";
 import { useRouter, useSearchParams } from "next/navigation";
+import { uploadImages } from "@/utills/ImageUpload";
 
 const CreateHighlightBanner = () => {
   const router = useRouter();
@@ -18,7 +19,14 @@ const CreateHighlightBanner = () => {
     link: "",
     bannerAlt: "",
     status: true,
+    size: "", // Add this line
   });
+  const SIZE_OPTIONS = {
+    "small": { label: "Small (600x300)", width: 600, height: 300 },
+    "medium": { label: "Medium (1200x600)", width: 1200, height: 600 },
+    "large": { label: "Large (1920x1080)", width: 1920, height: 1080 },
+  };
+
 
   // UI state
   const [allPages, setAllPages] = useState([]);
@@ -42,12 +50,21 @@ const CreateHighlightBanner = () => {
     }
   }, [isEdit, editId]);
 
+  const uploadBannerImage = async (file) => {
+    const urls = await uploadImages([file], 'HighlightBanner')
+    console.log(urls[0]);
+    return urls[0] || false
+  };
+
   const fetchBannerData = async (id) => {
     try {
       setLoading(true);
-      const response = await fetch(`${API_NODE_URL}highlight-banner?_id=${id}`);
+      const response = await fetch(`${API_NODE_URL}highlight-banner?_id=${id}`, {
+        method: 'GET',
+        credentials: 'include',
+      });
+
       const data = await response.json();
-      
       if (data.status && data.data) {
         const banner = data.data;
         setFormData({
@@ -57,12 +74,13 @@ const CreateHighlightBanner = () => {
           bannerAlt: banner.bannerAlt || "",
           status: banner.status,
         });
-        
+
         // Set page data
         if (banner.pageid) {
           const pageResponse = await fetch(`${API_NODE_URL}slug/getParents`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
+            credentials: "include",
             body: JSON.stringify({ query: "", page: 1, limit: 100 }),
           });
           const pageData = await pageResponse.json();
@@ -72,7 +90,7 @@ const CreateHighlightBanner = () => {
             setSearchValue(page.name);
           }
         }
-        
+
         // Set image preview
         if (banner.banner) {
           setImagePreview(`${API_NODE_URL.replace('/api/', '')}${banner.banner}`);
@@ -92,6 +110,7 @@ const CreateHighlightBanner = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query: searchTerm, page: 1, limit: 50 }),
+        credentials: "include"
       });
       const data = await response.json();
       const fetchedPages = data.data.pages || [];
@@ -111,7 +130,7 @@ const CreateHighlightBanner = () => {
       ...prev,
       [name]: type === 'checkbox' ? checked : value
     }));
-    
+
     // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: "" }));
@@ -151,38 +170,55 @@ const CreateHighlightBanner = () => {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
+
     if (file) {
-      // Validate file size (5MB)
       if (file.size > 5 * 1024 * 1024) {
         toast.error("Image size should be less than 5MB");
         return;
       }
 
-      // Validate file type
       const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
       if (!allowedTypes.includes(file.type)) {
         toast.error("Only JPEG, JPG, PNG, and WebP images are allowed");
         return;
       }
 
-      setBannerImage(file);
-      
-      // Create preview
-      const reader = new FileReader();
-      reader.onload = (e) => setImagePreview(e.target.result);
-      reader.readAsDataURL(file);
-
-      if (errors.banner) {
-        setErrors(prev => ({ ...prev, banner: "" }));
+      // Validate dimensions
+      const selectedSize = SIZE_OPTIONS[formData.size];
+      if (!selectedSize) {
+        toast.error("Please select a size before uploading the image");
+        return;
       }
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          if (img.width !== selectedSize.width || img.height !== selectedSize.height) {
+            toast.error(`Image size must be exactly ${selectedSize.width}x${selectedSize.height}`);
+          } else {
+            setBannerImage(file);
+            setImagePreview(e.target.result);
+            if (errors.banner) {
+              setErrors(prev => ({ ...prev, banner: "" }));
+            }
+          }
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
     }
   };
+
 
   const validateForm = () => {
     const newErrors = {};
 
     if (!selectedPage) {
       newErrors.page = "Please select a page";
+    }
+    if (!formData.size) {
+      newErrors.size = "Please select a banner size";
     }
 
     if (!formData.title.trim()) {
@@ -213,41 +249,59 @@ const CreateHighlightBanner = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       toast.error("Please fix the errors before submitting");
       return;
+    }
+    let bannerUrl;
+    if (bannerImage) {
+      bannerUrl = await uploadBannerImage(bannerImage);
+      if (!bannerUrl) {
+        setLoading(false);
+        return; // Stop submission if upload failed
+      }
     }
 
     setLoading(true);
 
     try {
-      const formDataToSend = new FormData();
-      formDataToSend.append('pageid', selectedPage.page_id.toString());
-      formDataToSend.append('title', formData.title.trim());
-      formDataToSend.append('description', formData.description.trim());
-      formDataToSend.append('link', formData.link.trim());
-      formDataToSend.append('bannerAlt', formData.bannerAlt.trim());
-      formDataToSend.append('status', formData.status);
+      const formDataToSend = {
+        pageid: selectedPage.page_id,
+        title: formData.title.trim(),
+        description: formData.description.trim(),
+        link: formData.link.trim(),
+        bannerAlt: formData.bannerAlt.trim(),
+        status: formData.status,
+        size: formData.size,
+      };
 
       if (bannerImage) {
-        formDataToSend.append('banner', bannerImage);
+        formDataToSend.banner = bannerUrl; // Make sure this is a URL string, not a File
       }
 
       if (isEdit) {
-        formDataToSend.append('_id', editId);
+        formDataToSend._id = editId;
       }
 
-      const url = isEdit 
+      console.log(formDataToSend);
+
+      const url = isEdit
         ? `${API_NODE_URL}highlight-banner/update`
         : `${API_NODE_URL}highlight-banner`;
 
       const response = await fetch(url, {
         method: "POST",
-        body: formDataToSend,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formDataToSend),
+        credentials: "include",
       });
 
+
       const result = await response.json();
+      console.log(result);
 
       if (result.status) {
         toast.success(`Highlight banner ${isEdit ? 'updated' : 'added'} successfully!`);
@@ -317,12 +371,11 @@ const CreateHighlightBanner = () => {
               value={searchValue}
               onChange={handlePageInputChange}
               placeholder="Search and Choose Page"
-              className={`w-full border rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors ${
-                errors.page ? 'border-red-500' : 'border-gray-300'
-              }`}
+              className={`w-full border rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors ${errors.page ? 'border-red-500' : 'border-gray-300'
+                }`}
             />
             {errors.page && <p className="text-red-500 text-sm mt-1">{errors.page}</p>}
-            
+
             {showDropdown && (
               <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg mt-1 max-h-60 overflow-auto shadow-lg">
                 {displayedPages.length > 0 ? (
@@ -369,14 +422,31 @@ const CreateHighlightBanner = () => {
               onChange={handleInputChange}
               placeholder="Enter banner title"
               maxLength={200}
-              className={`w-full border rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors ${
-                errors.title ? 'border-red-500' : 'border-gray-300'
-              }`}
+              className={`w-full border rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors ${errors.title ? 'border-red-500' : 'border-gray-300'
+                }`}
             />
             <div className="flex justify-between mt-1">
               {errors.title && <p className="text-red-500 text-sm">{errors.title}</p>}
               <p className="text-gray-400 text-sm ml-auto">{formData.title.length}/200</p>
             </div>
+          </div>
+          <div>
+            <label htmlFor="size" className="block text-sm font-medium text-gray-700 mb-2">
+              Select Banner Size <span className="text-red-500">*</span>
+            </label>
+            <select
+              id="size"
+              name="size"
+              value={formData.size}
+              onChange={handleInputChange}
+              className={`w-full border rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors ${errors.size ? 'border-red-500' : 'border-gray-300'}`}
+            >
+              <option value="">-- Select Size --</option>
+              {Object.entries(SIZE_OPTIONS).map(([key, option]) => (
+                <option key={key} value={key}>{option.label}</option>
+              ))}
+            </select>
+            {errors.size && <p className="text-red-500 text-sm mt-1">{errors.size}</p>}
           </div>
 
           {/* Banner Image */}
@@ -390,15 +460,14 @@ const CreateHighlightBanner = () => {
                 id="bannerImage"
                 onChange={handleImageChange}
                 accept="image/jpeg,image/jpg,image/png,image/webp"
-                className={`w-full border rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors ${
-                  errors.banner ? 'border-red-500' : 'border-gray-300'
-                }`}
+                className={`w-full border rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors ${errors.banner ? 'border-red-500' : 'border-gray-300'
+                  }`}
               />
               {errors.banner && <p className="text-red-500 text-sm">{errors.banner}</p>}
               <p className="text-gray-500 text-sm">
                 Supported formats: JPEG, JPG, PNG, WebP. Max size: 5MB
               </p>
-              
+
               {imagePreview && (
                 <div className="mt-4">
                   <p className="text-sm font-medium text-gray-700 mb-2">Preview:</p>
@@ -438,9 +507,8 @@ const CreateHighlightBanner = () => {
               name="description"
               value={formData.description}
               onChange={handleInputChange}
-              className={`w-full border rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors resize-none ${
-                errors.description ? 'border-red-500' : 'border-gray-300'
-              }`}
+              className={`w-full border rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors resize-none ${errors.description ? 'border-red-500' : 'border-gray-300'
+                }`}
               rows="4"
               placeholder="Enter banner description"
               maxLength={500}
@@ -463,9 +531,8 @@ const CreateHighlightBanner = () => {
               value={formData.link}
               onChange={handleInputChange}
               placeholder="https://example.com"
-              className={`w-full border rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors ${
-                errors.link ? 'border-red-500' : 'border-gray-300'
-              }`}
+              className={`w-full border rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors ${errors.link ? 'border-red-500' : 'border-gray-300'
+                }`}
             />
             {errors.link && <p className="text-red-500 text-sm mt-1">{errors.link}</p>}
           </div>

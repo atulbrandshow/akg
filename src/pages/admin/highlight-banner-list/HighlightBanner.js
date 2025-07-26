@@ -35,8 +35,12 @@ const HighlightBannerList = () => {
         ...(filters.pageid && { pageid: filters.pageid }),
       })
 
-      const response = await fetch(`${API_NODE_URL}highlight-banner/list?${queryParams}`)
-      const data = await response.json()
+      const response = await fetch(`${API_NODE_URL}highlight-banner/list?${queryParams}`, {
+        method: 'GET',
+        credentials: 'include',
+      });
+
+      const data = await response.json();
 
       if (data.status) {
         setBanners(data.data.banners || [])
@@ -412,11 +416,10 @@ const HighlightBannerList = () => {
                           <button
                             key={pageNum}
                             onClick={() => handlePageChange(pageNum)}
-                            className={`relative inline-flex items-center px-4 py-2 border text-sm font-medium ${
-                              pageNum === pagination.currentPage
+                            className={`relative inline-flex items-center px-4 py-2 border text-sm font-medium ${pageNum === pagination.currentPage
                                 ? "z-10 bg-purple-50 border-purple-500 text-purple-600"
                                 : "bg-white border-gray-300 text-gray-500 hover:bg-gray-50"
-                            }`}
+                              }`}
                           >
                             {pageNum}
                           </button>

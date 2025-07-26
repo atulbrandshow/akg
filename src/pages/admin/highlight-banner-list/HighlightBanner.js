@@ -63,11 +63,11 @@ const HighlightBannerList = () => {
   }, [filters])
 
   const handleDelete = async (banner) => {
-    if (!window.confirm(`Are you sure you want to delete "${banner.title}"?`)) {
+    if (!window.confirm(`Are you sure you want to delete "${banner?.title}"?`)) {
       return
     }
 
-    setDeleting(banner._id)
+    setDeleting(banner?._id)
 
     try {
       const response = await fetch(`${API_NODE_URL}highlight-banner/delete`, {
@@ -77,7 +77,7 @@ const HighlightBannerList = () => {
         },
         credentials: "include",
         body: JSON.stringify({
-          _id: banner._id,
+          _id: banner?._id,
         }),
       })
 
@@ -190,7 +190,6 @@ const HighlightBannerList = () => {
               onChange={(e) => handleFilterChange("sortBy", e.target.value)}
               className="w-full border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
             >
-              <option value="order">Order</option>
               <option value="title">Title</option>
               <option value="createdAt">Created Date</option>
               <option value="updatedAt">Updated Date</option>
@@ -236,9 +235,6 @@ const HighlightBannerList = () => {
                       Page ID
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Order
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Status
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -249,11 +245,11 @@ const HighlightBannerList = () => {
                 <tbody className="bg-white divide-y divide-gray-200">
                   {banners.length > 0 ? (
                     banners.map((banner) => (
-                      <tr key={banner._id} className="hover:bg-gray-50">
+                      <tr key={banner?._id} className="hover:bg-gray-50">
                         <td className="px-6 py-4 whitespace-nowrap">
                           <img
-                            src={`${API_NODE_URL.replace("/api/", "")}${banner.banner}`}
-                            alt={banner.bannerAlt || banner.title}
+                            src={`${IMAGE_PATH}${banner?.banner}`}
+                            alt={banner?.bannerAlt || banner?.title}
                             className="w-20 h-12 object-cover rounded-lg border border-gray-200"
                             onError={(e) => {
                               e.target.src = "/placeholder-image.jpg"
@@ -261,20 +257,19 @@ const HighlightBannerList = () => {
                           />
                         </td>
                         <td className="px-6 py-4">
-                          <div className="text-sm font-medium text-gray-900 max-w-xs truncate">{banner.title}</div>
+                          <div className="text-sm font-medium text-gray-900 max-w-xs truncate">{banner?.title}</div>
                         </td>
                         <td className="px-6 py-4">
-                          <div className="text-sm text-gray-500 max-w-xs truncate" title={banner.description}>
-                            {banner.description}
+                          <div className="text-sm text-gray-500 max-w-xs truncate" title={banner?.description}>
+                            {banner?.description}
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{banner.pageid}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{banner.order}</td>
-                        <td className="px-6 py-4 whitespace-nowrap">{getStatusBadge(banner.status)}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{banner?.pageid}</td>
+                        <td className="px-6 py-4 whitespace-nowrap">{getStatusBadge(banner?.status)}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                           <div className="flex space-x-2">
                             <button
-                              onClick={() => router.push(`/admin/create-highlight-banner?_id=${banner._id}`)}
+                              onClick={() => router.push(`/admin/create-highlight-banner?_id=${banner?._id}`)}
                               className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg flex items-center gap-1 transition-colors"
                             >
                               <svg
@@ -295,10 +290,10 @@ const HighlightBannerList = () => {
                             </button>
                             <button
                               onClick={() => handleDelete(banner)}
-                              disabled={deleting === banner._id}
+                              disabled={deleting === banner?._id}
                               className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg flex items-center gap-1 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                              {deleting === banner._id ? (
+                              {deleting === banner?._id ? (
                                 <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-white"></div>
                               ) : (
                                 <svg
@@ -341,7 +336,7 @@ const HighlightBannerList = () => {
                             />
                           </svg>
                           <h3 className="mt-2 text-sm font-medium text-gray-900">No banners found</h3>
-                          <p className="mt-1 text-sm text-gray-500">Get started by creating a new highlight banner.</p>
+                          <p className="mt-1 text-sm text-gray-500">Get started by creating a new highlight banner?.</p>
                           <div className="mt-6">
                             <button
                               onClick={() => router.push("/admin/create-highlight-banner")}
@@ -417,8 +412,8 @@ const HighlightBannerList = () => {
                             key={pageNum}
                             onClick={() => handlePageChange(pageNum)}
                             className={`relative inline-flex items-center px-4 py-2 border text-sm font-medium ${pageNum === pagination.currentPage
-                                ? "z-10 bg-purple-50 border-purple-500 text-purple-600"
-                                : "bg-white border-gray-300 text-gray-500 hover:bg-gray-50"
+                              ? "z-10 bg-purple-50 border-purple-500 text-purple-600"
+                              : "bg-white border-gray-300 text-gray-500 hover:bg-gray-50"
                               }`}
                           >
                             {pageNum}

@@ -1,10 +1,11 @@
 "use client"
 import React, { useState, useEffect } from "react"
 import dynamic from "next/dynamic"
-import { API_NODE_URL } from "@/configs/config"
+import { API_NODE_URL, IMAGE_PATH } from "@/configs/config"
 import { useRouter } from "next/navigation"
 import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
+import { uploadImages } from "@/utills/ImageUpload"
 
 // Dynamically import JoditEditor with SSR disabled
 const JoditEditor = dynamic(() => import("jodit-react"), {
@@ -21,19 +22,23 @@ const isValidDate = (date) => {
   return date && !isNaN(new Date(date).getTime())
 }
 
-// Image Preview Component
-const ImagePreview = ({ file, onDelete, label, dimensions }) => {
-  const [imageUrl, setImageUrl] = useState(null)
+
+const ImagePreview = ({ file, imageUrl, onDelete, label, dimensions, isUploading }) => {
+  const [previewUrl, setPreviewUrl] = useState(null)
 
   React.useEffect(() => {
-    if (file) {
+    if (imageUrl) {
+      // If we have a URL from upload, use it
+      setPreviewUrl(imageUrl)
+    } else if (file && typeof file === "object") {
+      // If we have a File object, create object URL
       const url = URL.createObjectURL(file)
-      setImageUrl(url)
+      setPreviewUrl(url)
       return () => URL.revokeObjectURL(url)
     }
-  }, [file])
+  }, [file, imageUrl])
 
-  if (!file) return null
+  if (!file && !imageUrl) return null
 
   return (
     <div className="mt-3 p-3 bg-gray-50 rounded-lg border">
@@ -41,22 +46,33 @@ const ImagePreview = ({ file, onDelete, label, dimensions }) => {
         <div className="flex-1">
           <p className="text-sm font-medium text-gray-700 mb-2">{label}</p>
           <div className="flex items-center space-x-3">
-            <img
-              src={imageUrl || "/placeholder.svg"}
-              alt="Preview"
-              className="w-16 h-16 object-cover rounded-lg border"
-            />
+            <div className="relative">
+              <img
+                src={IMAGE_PATH + previewUrl || "/placeholder.svg"}
+                alt="Preview"
+                className="w-16 h-16 object-cover rounded-lg border"
+              />
+              {isUploading && (
+                <div className="absolute inset-0 bg-black bg-opacity-50 rounded-lg flex items-center justify-center">
+                  <div className="animate-spin rounded-full h-6 w-6 border-2 border-white border-t-transparent"></div>
+                </div>
+              )}
+            </div>
             <div className="flex-1">
-              <p className="text-sm text-gray-600 truncate">{file.name}</p>
+              <p className="text-sm text-gray-600 truncate">
+                {typeof file === "string" ? "Uploaded Image" : file?.name || "Image"}
+              </p>
               <p className="text-xs text-gray-500">{dimensions}</p>
-              <p className="text-xs text-gray-500">{(file.size / 1024).toFixed(1)} KB</p>
+              {file?.size && <p className="text-xs text-gray-500">{(file.size / 1024).toFixed(1)} KB</p>}
+              {isUploading && <p className="text-xs text-blue-500">Uploading...</p>}
             </div>
           </div>
         </div>
         <button
           type="button"
           onClick={onDelete}
-          className="ml-2 p-1 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-full transition-colors"
+          disabled={isUploading}
+          className="ml-2 p-1 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           title="Delete image"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -68,29 +84,49 @@ const ImagePreview = ({ file, onDelete, label, dimensions }) => {
   )
 }
 
-// Gallery Preview Component
-const GalleryPreview = ({ files, onDeleteFile, label }) => {
-  if (!files || files.length === 0) return null
+// Gallery Preview Component - Updated to handle URLs
+const GalleryPreview = ({ files, imageUrls, onDeleteFile, label, uploadingIndexes }) => {
+  if ((!files || files.length === 0) && (!imageUrls || imageUrls.length === 0)) return null
+
+  const totalItems = Math.max(files?.length || 0, imageUrls?.length || 0)
 
   return (
     <div className="mt-3 p-3 bg-gray-50 rounded-lg border">
       <p className="text-sm font-medium text-gray-700 mb-3">
-        {label} ({files.length} files)
+        {label} ({totalItems} files)
       </p>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-        {files.map((file, index) => {
-          const imageUrl = URL.createObjectURL(file)
+        {Array.from({ length: totalItems }).map((_, index) => {
+          const file = files?.[index]
+          const imageUrl = imageUrls?.[index]
+          const isUploading = uploadingIndexes?.includes(index)
+
+          let previewUrl = null
+          if (imageUrl) {
+            previewUrl = imageUrl
+          } else if (file) {
+            previewUrl = URL.createObjectURL(file)
+          }
+
           return (
             <div key={index} className="relative group">
-              <img
-                src={imageUrl || "/placeholder.svg"}
-                alt={`Gallery ${index + 1}`}
-                className="w-full h-20 object-cover rounded-lg border"
-              />
+              <div className="relative">
+                <img
+                  src={previewUrl || "/placeholder.svg"}
+                  alt={`Gallery ${index + 1}`}
+                  className="w-full h-20 object-cover rounded-lg border"
+                />
+                {isUploading && (
+                  <div className="absolute inset-0 bg-black bg-opacity-50 rounded-lg flex items-center justify-center">
+                    <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+                  </div>
+                )}
+              </div>
               <button
                 type="button"
                 onClick={() => onDeleteFile(index)}
-                className="absolute -top-2 -right-2 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600"
+                disabled={isUploading}
+                className="absolute -top-2 -right-2 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600 disabled:opacity-50 disabled:cursor-not-allowed"
                 title="Delete image"
               >
                 <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -98,7 +134,7 @@ const GalleryPreview = ({ files, onDeleteFile, label }) => {
                 </svg>
               </button>
               <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-xs p-1 rounded-b-lg truncate">
-                {file.name}
+                {typeof file === "string" ? "Uploaded" : file?.name || "Image"}
               </div>
             </div>
           )
@@ -108,20 +144,22 @@ const GalleryPreview = ({ files, onDeleteFile, label }) => {
   )
 }
 
-// File Upload Component
+// File Upload Component - Updated to handle immediate upload
 const FileUploadField = ({
   id,
   label,
   file,
+  imageUrl,
   onChange,
   onDelete,
   accept = "image/webp",
   dimensions,
   required = false,
+  isUploading = false,
 }) => {
   return (
     <div className="space-y-2">
-      <label htmlFor={id} className="block text-sm font-novaSemi text-gray-700">
+      <label htmlFor={id} className="block text-sm font-medium text-gray-700">
         {label} {required && <span className="text-red-500">*</span>}
       </label>
       <div className="border-2 border-dashed border-gray-300 hover:border-blue-400 transition-colors rounded-lg p-6 text-center bg-gray-50 hover:bg-gray-100">
@@ -140,23 +178,40 @@ const FileUploadField = ({
             {dimensions && <p className="text-xs text-gray-500">Dimensions: {dimensions}</p>}
           </div>
         </div>
-        <input type="file" id={id} accept={accept} onChange={onChange} className="hidden" />
+        <input type="file" id={id} accept={accept} onChange={onChange} className="hidden" disabled={isUploading} />
         <label
           htmlFor={id}
-          className="mt-4 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 cursor-pointer transition-colors"
+          className={`mt-4 inline-flex items-center px-4 py-2 text-white text-sm font-medium rounded-lg cursor-pointer transition-colors ${isUploading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
+            }`}
         >
-          <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-            />
-          </svg>
-          Choose File
+          {isUploading ? (
+            <>
+              <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent mr-2"></div>
+              Uploading...
+            </>
+          ) : (
+            <>
+              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                />
+              </svg>
+              Choose File
+            </>
+          )}
         </label>
       </div>
-      <ImagePreview file={file} onDelete={onDelete} label={label} dimensions={dimensions} />
+      <ImagePreview
+        file={file}
+        imageUrl={imageUrl}
+        onDelete={onDelete}
+        label={label}
+        dimensions={dimensions}
+        isUploading={isUploading}
+      />
     </div>
   )
 }
@@ -164,18 +219,22 @@ const FileUploadField = ({
 export default function DynamicPageDetails({ allData, parentPage, type, componentType }) {
   const router = useRouter()
   const [submitting, setSubmitting] = useState(false)
-  const [searchValue, setSearchValue] = useState("");
-  const [showDropdown, setShowDropdown] = useState(false);
-  const [displayedPages, setDisplayedPages] = useState([]);
-  const [selectedPage, setSelectedPage] = useState(null);
-  const [hasMore, setHasMore] = useState(true);
-  const [allPages, setAllPages] = useState([]);
+  const [searchValue, setSearchValue] = useState("")
+  const [showDropdown, setShowDropdown] = useState(false)
+  const [displayedPages, setDisplayedPages] = useState([])
+  const [selectedPage, setSelectedPage] = useState(null)
+  const [hasMore, setHasMore] = useState(true)
+  const [allPages, setAllPages] = useState([])
+  const [pageIndex, setPageIndex] = useState(0) // Declare pageIndex state
 
-  const [searchQuery, setSearchQuery] = useState(""); // State for search input
-  const [programInput, setProgramInput] = useState("");
-  const [showSchoolDropdown, setShowSchoolDropdown] = useState(false);
-  const [schools, setSchools] = useState([]); // State to hold school options
-  const [streamId, setStreamId] = useState("");
+  const [searchQuery, setSearchQuery] = useState("") // State for search input
+  const [showSchoolDropdown, setShowSchoolDropdown] = useState(false)
+  const [schools, setSchools] = useState([]) // State to hold school options
+  const [streamId, setStreamId] = useState("")
+
+  // Upload states
+  const [uploadingStates, setUploadingStates] = useState({})
+  const [galleryUploadingIndexes, setGalleryUploadingIndexes] = useState([])
 
   const [formData, setFormData] = useState({
     page_id: allData?.page_id,
@@ -190,59 +249,59 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
     description: "",
     param1: "",
     paramvalue1: "",
-    param_img1: null,
+    param_img1: "",
     param_url1: "",
     param2: "",
     paramvalue2: "",
-    param_img2: null,
+    param_img2: "",
     param_url2: "",
     param3: "",
     paramvalue3: "",
-    param_img3: null,
+    param_img3: "",
     param_url3: "",
     param4: "",
     paramvalue4: "",
-    param_img4: null,
+    param_img4: "",
     param_url4: "",
     param5: "",
     paramvalue5: "",
-    param_img5: null,
+    param_img5: "",
     param_url5: "",
     param6: "",
     paramvalue6: "",
-    param_img6: null,
+    param_img6: "",
     param_url6: "",
     param7: "",
     paramvalue7: "",
-    param_img7: null,
+    param_img7: "",
     param_url7: "",
     param8: "",
     paramvalue8: "",
-    param_img8: null,
+    param_img8: "",
     param_url8: "",
     param9: "",
     paramvalue9: "",
-    param_img9: null,
+    param_img9: "",
     param_url9: "",
     param10: "",
     paramvalue10: "",
-    param_img10: null,
+    param_img10: "",
     param_url10: "",
-    banner_img: null,
+    banner_img: "",
     tag1: "",
     tag2: "",
     tag3: "",
     schemaid: "",
     nic_name: "",
-    featured_img: null,
+    featured_img: "",
     col_width: "",
     video_url: "",
     old_url: "",
     featured_status: "",
-    highlightBanner: null,
+    highlightBanner: "",
     galleryimg: [],
     type: allData?.type,
-    mainReportImage: null,
+    mainReportImage: "",
     metatitle: "",
     metadesc: "",
     keywords_tag: "",
@@ -251,40 +310,36 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
   useEffect(() => {
     const fetchSchools = async () => {
       try {
-        const response = await fetch(
-          `${API_NODE_URL}school/search?search=${searchQuery}`, {
+        const response = await fetch(`${API_NODE_URL}school/search?search=${searchQuery}`, {
           credentials: "include",
-        }
-        );
-        const result = await response.json();
+        })
+        const result = await response.json()
         if (result.status) {
-          setSchools(
-            Array.isArray(result?.data?.schools) ? result?.data?.schools : []
-          );
+          setSchools(Array.isArray(result?.data?.schools) ? result?.data?.schools : [])
         } else {
-          toast.error(result.message || "Failed to fetch schools.");
-          setSchools([]);
+          toast.error(result.message || "Failed to fetch schools.")
+          setSchools([])
         }
       } catch (err) {
-        console.error("Error fetching schools:", err);
-        toast.error("An error occurred while fetching schools.");
-        setSchools([]);
+        console.error("Error fetching schools:", err)
+        toast.error("An error occurred while fetching schools.")
+        setSchools([])
       }
-    };
-    fetchSchools();
-  }, [searchQuery]);
+    }
+    fetchSchools()
+  }, [searchQuery])
 
   const handleSchoolSelect = (school) => {
-    setStreamId(school._id);
-    setSearchQuery(school.name); // Display school name in input
-    setShowSchoolDropdown(false); // Hide dropdown
-  };
+    setStreamId(school._id)
+    setSearchQuery(school.name) // Display school name in input
+    setShowSchoolDropdown(false) // Hide dropdown
+  }
 
   useEffect(() => {
     if (formData.parentPage) {
-      setSearchValue(formData.parentPage);
+      setSearchValue(formData.parentPage)
     }
-  }, [formData.parentPage]);
+  }, [formData.parentPage])
 
   const fetchPages = async (searchTerm = "") => {
     try {
@@ -295,63 +350,62 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
         },
         credentials: "include",
         body: JSON.stringify({ query: searchTerm, page: 1, limit: 10, type }),
-      });
-      const data = await response.json();
+      })
+      const data = await response.json()
 
-      const fetchedPages = data.data.pages || [];
+      const fetchedPages = data.data.pages || []
 
       if (fetchedPages.length === 0) {
-        setAllPages([]);
-        setDisplayedPages([{ name: "This is parent page", reportId: null }]);
-        setHasMore(false);
+        setAllPages([])
+        setDisplayedPages([{ name: "This is parent page", reportId: null }])
+        setHasMore(false)
       } else {
-        setAllPages(fetchedPages);
-        setDisplayedPages(fetchedPages.slice(0, 10));
-        setHasMore(fetchedPages.length > 10);
+        setAllPages(fetchedPages)
+        setDisplayedPages(fetchedPages.slice(0, 10))
+        setHasMore(fetchedPages.length > 10)
       }
     } catch (error) {
-      console.error("Error fetching parent pages:", error);
+      console.error("Error fetching parent pages:", error)
     }
-  };
+  }
 
   useEffect(() => {
-    fetchPages();
-  }, []);
+    fetchPages()
+  }, [])
 
   const handleInputChange = (e) => {
-    const value = e.target.value;
-    setSearchValue(value);
+    const value = e.target.value
+    setSearchValue(value)
 
     if (value.length > 0) {
-      fetchPages(value);
-      setShowDropdown(true);
+      fetchPages(value)
+      setShowDropdown(true)
     } else {
-      setDisplayedPages(allPages.slice(0, 10));
-      setShowDropdown(false);
+      setDisplayedPages(allPages.slice(0, 10))
+      setShowDropdown(false)
     }
-  };
+  }
 
   const handleSuggestionClick = (page) => {
-    setSearchValue(page.name); // Show the name in the input
-    setSelectedPage(page); // Set the selected page
-    setShowDropdown(false); // Hide the dropdown after selection
-    setFormData(prev => ({
+    setSearchValue(page.name) // Show the name in the input
+    setSelectedPage(page) // Set the selected page
+    setShowDropdown(false) // Hide the dropdown after selection
+    setFormData((prev) => ({
       ...prev,
       parent_id: page.page_id,
-      parentPage: page.name
-    }));
-  };
+      parentPage: page.name,
+    }))
+  }
 
   // Handle 'Show More' button click
   const handleShowMore = () => {
-    const newIndex = pageIndex + 10;
-    setDisplayedPages(allPages.slice(0, newIndex)); // Show next 10 pages
-    setPageIndex(newIndex); // Update index
+    const newIndex = pageIndex + 10
+    setDisplayedPages(allPages.slice(0, newIndex)) // Show next 10 pages
+    setPageIndex(newIndex) // Update index
     if (newIndex >= allPages.length) {
-      setHasMore(false); // Hide 'Show More' if no more pages
+      setHasMore(false) // Hide 'Show More' if no more pages
     }
-  };
-
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -375,26 +429,72 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
     }))
   }
 
-  const handleFileChange = (e, field) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      [field]: e.target.files[0],
-    }))
+  // Updated file change handler to upload immediately
+  const handleFileChange = async (e, field) => {
+    const file = e.target.files[0]
+    if (!file) return
+
+    // Set uploading state
+    setUploadingStates((prev) => ({ ...prev, [field]: true }))
+
+    try {
+
+      // Upload the image
+      const imageUrls = await uploadImages([file])
+
+      // Update form data with the URL
+      setFormData((prevData) => ({
+        ...prevData,
+        [field]: imageUrls[0], // Store the URL string
+      }))
+
+      toast.success("Image uploaded successfully!")
+    } catch (error) {
+      console.error("Upload error:", error)
+      toast.error("Failed to upload image. Please try again.")
+    } finally {
+      // Clear uploading state
+      setUploadingStates((prev) => ({ ...prev, [field]: false }))
+    }
   }
 
   const handleDeleteFile = (field) => {
     setFormData((prevData) => ({
       ...prevData,
-      [field]: null,
+      [field]: "",
     }))
   }
 
-  const handleGalleryImg = (e, field) => {
+  // Updated gallery image handler
+  const handleGalleryImg = async (e, field) => {
     const files = Array.from(e.target.files)
-    setFormData((prevData) => ({
-      ...prevData,
-      [field]: [...prevData[field], ...files],
-    }))
+    if (files.length === 0) return
+
+    const currentGallery = formData[field] || []
+    const startIndex = currentGallery.length
+
+    // Set uploading states for new files
+    const newUploadingIndexes = files.map((_, index) => startIndex + index)
+    setGalleryUploadingIndexes((prev) => [...prev, ...newUploadingIndexes])
+
+    try {
+      // Upload all files
+      const imageUrls = await uploadImages(files)
+
+      // Update form data with the URLs
+      setFormData((prevData) => ({
+        ...prevData,
+        [field]: [...currentGallery, ...imageUrls],
+      }))
+
+      toast.success(`${files.length} image(s) uploaded successfully!`)
+    } catch (error) {
+      console.error("Upload error:", error)
+      toast.error("Failed to upload images. Please try again.")
+    } finally {
+      // Clear uploading states
+      setGalleryUploadingIndexes((prev) => prev.filter((index) => !newUploadingIndexes.includes(index)))
+    }
   }
 
   const handleDeleteGalleryImage = (index) => {
@@ -429,12 +529,12 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
         body: JSON.stringify(payload),
       })
 
-      const data = await response.json();
+      const data = await response.json()
       const fetchedPages = data.data.pages || []
 
       if (data.status) {
         toast.success(`${type} inserted Successfully`)
-        router.push(`/admin/${type?.toLowerCase().replace(/\s+/g, '-')}-list`)
+        router.push(`/admin/${type?.toLowerCase().replace(/\s+/g, "-")}-list`)
       } else {
         toast.error(`Something went wrong: ${fetchedPages?.message}`)
       }
@@ -465,8 +565,10 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-3xl font-novaBold text-gray-900">Add {type} Details</h1>
-                <p className="text-gray-600 font-novaReg mt-2">Create and configure your {type?.toLowerCase()} content with all necessary details</p>
+                <h1 className="text-3xl font-bold text-gray-900">Add {type} Details</h1>
+                <p className="text-gray-600 mt-2">
+                  Create and configure your {type?.toLowerCase()} content with all necessary details
+                </p>
               </div>
               <div className="flex items-center space-x-4">
                 <div className="bg-gradient-to-r from-purple-500 to-pink-600 text-white px-6 py-3 rounded-lg cursor-pointer hover:from-purple-600 hover:to-pink-700 transition-all duration-200 transform hover:scale-105 shadow-lg">
@@ -479,7 +581,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                         d="M13 10V3L4 14h7v7l9-11h-7z"
                       />
                     </svg>
-                    <span className="font-novaSemi">Generate Meta with AI</span>
+                    <span className="font-semibold">Generate Meta with AI</span>
                   </div>
                 </div>
                 <button
@@ -513,12 +615,12 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-novaSemi text-gray-900">Basic Details</h2>
+              <h2 className="text-xl font-semibold text-gray-900">Basic Details</h2>
             </div>
 
             <div className={`grid grid-cols-1 md:grid-cols-2  gap-6`}>
               <div className="relative">
-                <label htmlFor="parent-page" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                <label htmlFor="parent-page" className="block text-sm font-semibold text-gray-700 mb-2">
                   Choose Parent Page
                   <span className="text-red-500 ml-1">*</span>
                 </label>
@@ -529,7 +631,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                     value={searchValue}
                     onChange={handleInputChange}
                     placeholder="Search and select parent page..."
-                    className="w-full border-2 font-novaReg border-gray-200 rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
+                    className="w-full border-2 border-gray-200 rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
                   />
                   <div className="absolute inset-y-0 right-0 flex items-center pr-3">
                     <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -551,7 +653,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                         onClick={() => handleSuggestionClick(page)}
                         className="cursor-pointer px-4 py-3 hover:bg-blue-50 border-b border-gray-100 last:border-b-0 transition-colors duration-150"
                       >
-                        <div className="font-novaSemi text-gray-800">{page.name}</div>
+                        <div className="font-semibold text-gray-800">{page.name}</div>
                         {page?.page_id && <div className="text-sm text-gray-500">ID: {page.page_id}</div>}
                       </div>
                     ))}
@@ -559,7 +661,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                       <button
                         type="button"
                         onClick={handleShowMore}
-                        className="w-full px-4 py-3 text-blue-600 hover:bg-blue-50 font-novaReg transition-colors duration-150"
+                        className="w-full px-4 py-3 text-blue-600 hover:bg-blue-50 transition-colors duration-150"
                       >
                         Load More Pages
                       </button>
@@ -568,7 +670,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                 )}
               </div>
               <div className="relative">
-                <label htmlFor="schoolSearch" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                <label htmlFor="schoolSearch" className="block text-sm font-semibold text-gray-700 mb-2">
                   Search School
                   <span className="text-red-500 ml-1">*</span>
                 </label>
@@ -580,7 +682,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onFocus={() => setShowSchoolDropdown(true)}
                     placeholder="Search and select school..."
-                    className="w-full border-2 font-novaReg border-gray-200 rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
+                    className="w-full border-2 border-gray-200 rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
                   />
                   <div className="absolute inset-y-0 right-0 flex items-center pr-3">
                     <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -596,36 +698,19 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                 {showSchoolDropdown && (
                   <div className="absolute z-20 w-full bg-white border-2 border-gray-200 rounded-xl mt-2 max-h-64 overflow-auto shadow-2xl">
                     {(Array.isArray(schools) ? schools : [])
-                      .filter((school) =>
-                        school.name
-                          .toLowerCase()
-                          .includes(searchQuery.toLowerCase())
-                      )
+                      .filter((school) => school.name.toLowerCase().includes(searchQuery.toLowerCase()))
                       .map((school) => (
                         <div
                           key={school.id}
                           onClick={() => handleSchoolSelect(school)}
                           className="cursor-pointer px-4 py-3 hover:bg-blue-50 border-b border-gray-100 last:border-b-0 transition-colors duration-150"
                         >
-                          <div className="font-novaSemi text-gray-800">{school.name}</div>
+                          <div className="font-semibold text-gray-800">{school.name}</div>
                         </div>
                       ))}
                   </div>
                 )}
               </div>
-              {/* <div>
-                <label htmlFor="componentType" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Component Type
-                </label>
-                <input
-                  type="text"
-                  id="componentType"
-                  name="componentType"
-                  value={componentType}
-                  disabled
-                  className="w-full px-4 py-3 border font-novaReg cursor-not-allowed border-gray-300 rounded-lg bg-gray-50 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                />
-              </div> */}
             </div>
           </div>
 
@@ -642,13 +727,13 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-novaSemi text-gray-900">Page Details</h2>
+              <h2 className="text-xl font-semibold text-gray-900">Page Details</h2>
             </div>
 
             <div className="space-y-6">
               <div className={`grid grid-cols-1 ${type === "Page" ? "md:grid-cols-3" : "md:grid-cols-2"}  gap-6`}>
                 <div>
-                  <label htmlFor="name" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                  <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
                     Page Title <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -659,12 +744,12 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                     onChange={handleChange}
                     required
                     disabled
-                    className="w-full px-4 cursor-not-allowed py-3 border text-gray-600 font-novaReg border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-4 cursor-not-allowed py-3 border text-gray-600 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     placeholder="Enter page title"
                   />
                 </div>
                 <div>
-                  <label htmlFor="date" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                  <label htmlFor="date" className="block text-sm font-semibold text-gray-700 mb-2">
                     Page Date <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -674,12 +759,12 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                     value={formData.date}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border font-novaReg border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   />
                 </div>
                 {type === "Page" && (
                   <div>
-                    <label htmlFor="type" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                    <label htmlFor="type" className="block text-sm font-semibold text-gray-700 mb-2">
                       Page Type <span className="text-red-500">*</span>
                     </label>
                     <select
@@ -687,7 +772,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                       name="type"
                       value={formData.type}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     >
                       <option value="">Select Page Type</option>
                       <option value="Page">Page</option>
@@ -712,29 +797,30 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-novaSemi text-gray-900">Content</h2>
+              <h2 className="text-xl font-semibold text-gray-900">Content</h2>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-novaSemi text-gray-700 mb-2">
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
                   Short Description <span className="text-red-500">*</span>
                 </label>
-                <div className="border border-gray-300 rounded-lg font-novaReg overflow-hidden">
+                <div className="border border-gray-300 rounded-lg overflow-hidden">
                   <JoditEditor
                     value={formData.shortdesc}
                     onBlur={handleShortDescChange}
                     config={{
                       readonly: false, // Enable editing
                       height: 400, // Customize editor height
-                    }} />
+                    }}
+                  />
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-novaSemi text-gray-700 mb-2">
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
                   Page Description <span className="text-red-500">*</span>
                 </label>
-                <div className="border border-gray-300 rounded-lg font-novaReg overflow-hidden">
+                <div className="border border-gray-300 rounded-lg overflow-hidden">
                   <JoditEditor
                     value={formData.description}
                     onBlur={handleDescChange}
@@ -761,12 +847,12 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-novaSemi text-gray-900">Tags & Configuration</h2>
+              <h2 className="text-xl font-semibold text-gray-900">Tags & Configuration</h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div>
-                <label htmlFor="tag1" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                <label htmlFor="tag1" className="block text-sm font-semibold text-gray-700 mb-2">
                   Tag 1
                 </label>
                 <input
@@ -775,12 +861,12 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   name="tag1"
                   value={formData.tag1}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="Enter tag"
                 />
               </div>
               <div>
-                <label htmlFor="tag2" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                <label htmlFor="tag2" className="block text-sm font-semibold text-gray-700 mb-2">
                   Tag 2
                 </label>
                 <input
@@ -789,12 +875,12 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   name="tag2"
                   value={formData.tag2}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="Enter tag"
                 />
               </div>
               <div>
-                <label htmlFor="tag3" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                <label htmlFor="tag3" className="block text-sm font-semibold text-gray-700 mb-2">
                   Tag 3
                 </label>
                 <input
@@ -803,26 +889,12 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   name="tag3"
                   value={formData.tag3}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="Enter tag"
                 />
               </div>
-              {/* <div>
-                <label htmlFor="schemaid" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Schema ID
-                </label>
-                <input
-                  type="number"
-                  id="schemaid"
-                  name="schemaid"
-                  value={formData.schemaid}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  placeholder="Enter schema ID"
-                />
-              </div> */}
               <div>
-                <label htmlFor="featured_status" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                <label htmlFor="featured_status" className="block text-sm font-semibold text-gray-700 mb-2">
                   Featured Status
                 </label>
                 <select
@@ -830,7 +902,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   name="featured_status"
                   value={formData.featured_status}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                 >
                   <option value="">Select Status</option>
                   <option value="Yes">Yes</option>
@@ -838,56 +910,9 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                 </select>
               </div>
             </div>
-
-            {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
-              <div>
-                <label htmlFor="nic_name" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Nickname
-                </label>
-                <input
-                  type="text"
-                  id="nic_name"
-                  name="nic_name"
-                  value={formData.nic_name}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  placeholder="Enter nickname"
-                />
-              </div>
-              <div>
-                <label htmlFor="col_width" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Column Width
-                </label>
-                <input
-                  type="number"
-                  id="col_width"
-                  name="col_width"
-                  value={formData.col_width}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  placeholder="Enter width"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="price" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Price
-                </label>
-                <input
-                  type="number"
-                  id="price"
-                  name="price"
-                  value={formData.price}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  placeholder="Enter price"
-                />
-              </div>
-            </div> */}
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
               <div>
-                <label htmlFor="video_url" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                <label htmlFor="video_url" className="block text-sm font-semibold text-gray-700 mb-2">
                   Video URL
                 </label>
                 <input
@@ -896,24 +921,10 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   name="video_url"
                   value={formData.video_url}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="https://example.com/video"
                 />
               </div>
-              {/* <div>
-                <label htmlFor="old_url" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Old URL
-                </label>
-                <input
-                  type="url"
-                  id="old_url"
-                  name="old_url"
-                  value={formData.old_url}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  placeholder="https://example.com/old-page"
-                />
-              </div> */}
             </div>
           </div>
 
@@ -930,38 +941,41 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-novaSemi text-gray-900">Media Upload</h2>
+              <h2 className="text-xl font-semibold text-gray-900">Media Upload</h2>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <FileUploadField
                 id="banner_img"
                 label="Banner Image"
-                file={formData.banner_img}
+                imageUrl={formData.banner_img}
                 onChange={(e) => handleFileChange(e, "banner_img")}
                 onDelete={() => handleDeleteFile("banner_img")}
                 dimensions="936 W × 337 H"
                 required
+                isUploading={uploadingStates.banner_img}
               />
 
               <FileUploadField
                 id="featured_img"
                 label="Featured Image"
-                file={formData.featured_img}
+                imageUrl={formData.featured_img}
                 onChange={(e) => handleFileChange(e, "featured_img")}
                 onDelete={() => handleDeleteFile("featured_img")}
                 dimensions="100 W × 75 H"
                 required
+                isUploading={uploadingStates.featured_img}
               />
 
               <FileUploadField
                 id="mainReportImage"
                 label="Extra Image"
-                file={formData.mainReportImage}
+                imageUrl={formData.mainReportImage}
                 onChange={(e) => handleFileChange(e, "mainReportImage")}
                 onDelete={() => handleDeleteFile("mainReportImage")}
                 dimensions="936 W × 337 H"
                 required
+                isUploading={uploadingStates.mainReportImage}
               />
             </div>
 
@@ -969,14 +983,15 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
               <FileUploadField
                 id="highlightBanner"
                 label="Highlight Banner"
-                file={formData.highlightBanner}
+                imageUrl={formData.highlightBanner}
                 onChange={(e) => handleFileChange(e, "highlightBanner")}
                 onDelete={() => handleDeleteFile("highlightBanner")}
                 dimensions="936 W × 337 H"
+                isUploading={uploadingStates.highlightBanner}
               />
 
               <div className="space-y-2">
-                <label htmlFor="galleryimg" className="block text-sm font-novaSemi text-gray-700">
+                <label htmlFor="galleryimg" className="block text-sm font-semibold text-gray-700">
                   Gallery Images
                 </label>
                 <div className="border-2 border-dashed border-gray-300 hover:border-blue-400 transition-colors rounded-lg p-6 text-center bg-gray-50 hover:bg-gray-100">
@@ -1006,26 +1021,40 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                     multiple
                     onChange={(e) => handleGalleryImg(e, "galleryimg")}
                     className="hidden"
+                    disabled={galleryUploadingIndexes.length > 0}
                   />
                   <label
                     htmlFor="galleryimg"
-                    className="mt-4 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 cursor-pointer transition-colors"
+                    className={`mt-4 inline-flex items-center px-4 py-2 text-white text-sm font-medium rounded-lg cursor-pointer transition-colors ${galleryUploadingIndexes.length > 0
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-blue-600 hover:bg-blue-700"
+                      }`}
                   >
-                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                      />
-                    </svg>
-                    Choose Files
+                    {galleryUploadingIndexes.length > 0 ? (
+                      <>
+                        <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent mr-2"></div>
+                        Uploading...
+                      </>
+                    ) : (
+                      <>
+                        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                          />
+                        </svg>
+                        Choose Files
+                      </>
+                    )}
                   </label>
                 </div>
                 <GalleryPreview
-                  files={formData.galleryimg}
+                  imageUrls={formData.galleryimg}
                   onDeleteFile={handleDeleteGalleryImage}
                   label="Gallery Images"
+                  uploadingIndexes={galleryUploadingIndexes}
                 />
               </div>
             </div>
@@ -1044,12 +1073,12 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-novaSemi text-gray-900">SEO Meta Information</h2>
+              <h2 className="text-xl font-semibold text-gray-900">SEO Meta Information</h2>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <div>
-                <label htmlFor="metatitle" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                <label htmlFor="metatitle" className="block text-sm font-semibold text-gray-700 mb-2">
                   Meta Title <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -1058,13 +1087,13 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   name="metatitle"
                   value={formData.metatitle}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="Enter meta title"
                 />
                 <p className="text-xs text-gray-500 mt-1">Recommended: 50-60 characters</p>
               </div>
               <div>
-                <label htmlFor="metadesc" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                <label htmlFor="metadesc" className="block text-sm font-semibold text-gray-700 mb-2">
                   Meta Description <span className="text-red-500">*</span>
                 </label>
                 <textarea
@@ -1073,13 +1102,13 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   rows={3}
                   value={formData.metadesc}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
                   placeholder="Enter meta description"
                 />
                 <p className="text-xs text-gray-500 mt-1">Recommended: 150-160 characters</p>
               </div>
               <div>
-                <label htmlFor="keywords_tag" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                <label htmlFor="keywords_tag" className="block text-sm font-semibold text-gray-700 mb-2">
                   Keywords <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -1088,7 +1117,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   name="keywords_tag"
                   value={formData.keywords_tag}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="keyword1, keyword2, keyword3"
                 />
                 <p className="text-xs text-gray-500 mt-1">Separate keywords with commas</p>
@@ -1096,135 +1125,33 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
             </div>
           </div>
 
-          {/* Parameters Section */}
-          {/* <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
-                <svg className="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"
-                  />
-                </svg>
-              </div>
-              <h2 className="text-xl font-novaSemi text-gray-900">Custom Parameters</h2>
-            </div>
-
-            <div className="space-y-8">
-              {Array.from({ length: 10 }, (_, index) => {
-                const paramIndex = index + 1
-                return (
-                  <div key={paramIndex} className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-                    <h3 className="text-lg font-medium text-gray-900 mb-4">Parameter {paramIndex}</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                      <div>
-                        <label htmlFor={`param${paramIndex}`} className="block text-sm font-medium text-gray-700 mb-2">
-                          Parameter Name
-                        </label>
-                        <input
-                          type="text"
-                          id={`param${paramIndex}`}
-                          name={`param${paramIndex}`}
-                          value={formData[`param${paramIndex}`]}
-                          onChange={handleChange}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                          placeholder={`Parameter ${paramIndex}`}
-                        />
-                      </div>
-                      <div>
-                        <label
-                          htmlFor={`paramvalue${paramIndex}`}
-                          className="block text-sm font-medium text-gray-700 mb-2"
-                        >
-                          Value
-                        </label>
-                        <input
-                          type="text"
-                          id={`paramvalue${paramIndex}`}
-                          name={`paramvalue${paramIndex}`}
-                          value={formData[`paramvalue${paramIndex}`]}
-                          onChange={handleChange}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                          placeholder="Enter value"
-                        />
-                      </div>
-                      <div>
-                        <label
-                          htmlFor={`param_img${paramIndex}`}
-                          className="block text-sm font-medium text-gray-700 mb-2"
-                        >
-                          Image
-                        </label>
-                        <div className="relative">
-                          <input
-                            type="file"
-                            accept="image/webp"
-                            onChange={(e) => handleFileChange(e, `param_img${paramIndex}`)}
-                            className="hidden"
-                            id={`param_img${paramIndex}`}
-                          />
-                          <label
-                            htmlFor={`param_img${paramIndex}`}
-                            className="w-full inline-flex items-center justify-center px-3 py-2 border border-gray-300 rounded-lg font-novaReg bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 cursor-pointer transition-colors"
-                          >
-                            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                              />
-                            </svg>
-                            Choose Image
-                          </label>
-                        </div>
-                        <ImagePreview
-                          file={formData[`param_img${paramIndex}`]}
-                          onDelete={() => handleDeleteFile(`param_img${paramIndex}`)}
-                          label={`Parameter ${paramIndex} Image`}
-                        />
-                      </div>
-                      <div>
-                        <label
-                          htmlFor={`param_url${paramIndex}`}
-                          className="block text-sm font-medium text-gray-700 mb-2"
-                        >
-                          URL
-                        </label>
-                        <input
-                          type="url"
-                          id={`param_url${paramIndex}`}
-                          name={`param_url${paramIndex}`}
-                          value={formData[`param_url${paramIndex}`]}
-                          onChange={handleChange}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                          placeholder="https://example.com"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </div> */}
-
           {/* Submit Section */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-lg font-novaSemi text-gray-900">Ready to Submit?</h3>
-                <p className="text-gray-600 mt-1 font-novaReg">Review all information before submitting the page</p>
+                <h3 className="text-lg font-semibold text-gray-900">Ready to Submit?</h3>
+                <p className="text-gray-600 mt-1">Review all information before submitting the page</p>
               </div>
               <button
                 type="submit"
-                className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-novaSemi rounded-lg hover:from-green-600 hover:to-green-700 focus:ring-4 focus:ring-green-200 transition-all duration-200 transform hover:scale-105 shadow-lg"
+                disabled={
+                  submitting || Object.values(uploadingStates).some(Boolean) || galleryUploadingIndexes.length > 0
+                }
+                className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-lg hover:from-green-600 hover:to-green-700 focus:ring-4 focus:ring-green-200 transition-all duration-200 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                Submit Page
+                {submitting ? (
+                  <>
+                    <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent mr-2"></div>
+                    Submitting...
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Submit Page
+                  </>
+                )}
               </button>
             </div>
           </div>

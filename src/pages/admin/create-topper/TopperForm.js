@@ -27,7 +27,6 @@ export default function TopperForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
   };
 
   const handleChange = (e) => {

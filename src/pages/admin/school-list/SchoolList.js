@@ -55,8 +55,6 @@ const SchoolList = () => {
       })
 
       const data = await response.json()
-      console.log(data);
-
 
       if (data.status) {
         toast.success("School deleted successfully!")

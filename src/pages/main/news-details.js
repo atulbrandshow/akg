@@ -2,9 +2,9 @@
 
 import Breadcrumb from "@/Components/Breadcrumb"
 import Holder from "@/Components/Holder"
+import { IMAGE_PATH } from "@/configs/config"
 
 function NewsDetailPage({ data }) {
-    console.log(data)
 
     if (!data) {
         return (
@@ -105,7 +105,7 @@ function NewsDetailPage({ data }) {
                     <div className="mb-8">
                         <div className="relative overflow-hidden rounded-2xl shadow-2xl">
                             <img
-                                src={data.banner_img || "/placeholder.svg"}
+                                src={IMAGE_PATH + data.banner_img || "/placeholder.svg"}
                                 alt={data.name}
                                 className="w-full h-64 md:h-96 object-cover"
                             />

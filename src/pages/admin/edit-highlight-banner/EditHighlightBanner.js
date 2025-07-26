@@ -34,7 +34,6 @@ const EditHighlightBanner = () => {
           }
         );
         const result = await response.json();
-        console.log("Parent Page Name:", result?.data?.name);
         return result?.data?.name || "";
       } catch (err) {
         console.error("Error fetching parent:", err);

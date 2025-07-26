@@ -1,7 +1,7 @@
 "use client"
 
 import Breadcrumb from "@/Components/Breadcrumb"
-import { API_NODE_URL } from "@/configs/config"
+import { API_NODE_URL, IMAGE_PATH } from "@/configs/config"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 
@@ -186,7 +186,7 @@ function NewsListPage({ data }) {
                   {/* Image Container */}
                   <div className="relative overflow-hidden">
                     <img
-                      src={article.banner_img || "/placeholder.svg?height=200&width=400&text=News+Image"}
+                      src={IMAGE_PATH + article.banner_img || "/placeholder.svg?height=200&width=400&text=News+Image"}
                       alt={article.name}
                       className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                       onError={(e) => {

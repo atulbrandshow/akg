@@ -39,9 +39,6 @@ const DegreeVerification = () => {
                                 className="hidden"
                                 onChange={(e) => {
                                     const file = e.target.files[0];
-                                    if (file) {
-                                        console.log(file);
-                                    }
                                 }}
                             />
                             <p className="text-gray-600 mb-2">

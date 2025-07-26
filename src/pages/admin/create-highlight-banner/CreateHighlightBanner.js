@@ -1,50 +1,124 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { API_NODE_URL } from "@/configs/config";
 import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const CreateHighlightBanner = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const editId = searchParams.get('_id');
+  const isEdit = Boolean(editId);
+
+  // Form state
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    link: "",
+    bannerAlt: "",
+    status: true,
+  });
+
+  // UI state
   const [allPages, setAllPages] = useState([]);
   const [displayedPages, setDisplayedPages] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
-  const [pageIndex, setPageIndex] = useState(10);
-  const [hasMore, setHasMore] = useState(true);
   const [selectedPage, setSelectedPage] = useState(null);
   const [bannerImage, setBannerImage] = useState(null);
-  const [description, setDescription] = useState("");
-  const [link, setLink] = useState("");
+  const [imagePreview, setImagePreview] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [pageIndex, setPageIndex] = useState(10);
+  const [hasMore, setHasMore] = useState(true);
+
+  // Validation state
+  const [errors, setErrors] = useState({});
+
+  // Load existing banner data for edit
+  useEffect(() => {
+    if (isEdit && editId) {
+      fetchBannerData(editId);
+    }
+  }, [isEdit, editId]);
+
+  const fetchBannerData = async (id) => {
+    try {
+      setLoading(true);
+      const response = await fetch(`${API_NODE_URL}highlight-banner?_id=${id}`);
+      const data = await response.json();
+      
+      if (data.status && data.data) {
+        const banner = data.data;
+        setFormData({
+          title: banner.title || "",
+          description: banner.description || "",
+          link: banner.link || "",
+          bannerAlt: banner.bannerAlt || "",
+          status: banner.status,
+        });
+        
+        // Set page data
+        if (banner.pageid) {
+          const pageResponse = await fetch(`${API_NODE_URL}slug/getParents`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ query: "", page: 1, limit: 100 }),
+          });
+          const pageData = await pageResponse.json();
+          const page = pageData.data.pages?.find(p => p.page_id === banner.pageid);
+          if (page) {
+            setSelectedPage(page);
+            setSearchValue(page.name);
+          }
+        }
+        
+        // Set image preview
+        if (banner.banner) {
+          setImagePreview(`${API_NODE_URL.replace('/api/', '')}${banner.banner}`);
+        }
+      }
+    } catch (error) {
+      console.error("Error fetching banner data:", error);
+      toast.error("Failed to load banner data");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const fetchPages = async (searchTerm = "") => {
     try {
       const response = await fetch(`${API_NODE_URL}slug/getParents`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ query: searchTerm, page: 1, limit: 10 }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query: searchTerm, page: 1, limit: 50 }),
       });
       const data = await response.json();
       const fetchedPages = data.data.pages || [];
 
-      if (fetchedPages.length === 1) {
-        setAllPages([]);
-        setDisplayedPages([]);
-        setHasMore(false);
-      } else {
-        setAllPages(fetchedPages);
-        setDisplayedPages(fetchedPages.slice(0, 10));
-        setHasMore(fetchedPages.length > 10);
-      }
+      setAllPages(fetchedPages);
+      setDisplayedPages(fetchedPages.slice(0, 10));
+      setHasMore(fetchedPages.length > 10);
     } catch (error) {
       console.error("Error fetching parent pages:", error);
+      toast.error("Failed to fetch pages");
     }
   };
 
   const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+    
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: "" }));
+    }
+  };
+
+  const handlePageInputChange = (e) => {
     const value = e.target.value;
     setSearchValue(value);
 
@@ -61,6 +135,9 @@ const CreateHighlightBanner = () => {
     setSearchValue(page.name);
     setSelectedPage(page);
     setShowDropdown(false);
+    if (errors.page) {
+      setErrors(prev => ({ ...prev, page: "" }));
+    }
   };
 
   const handleShowMore = () => {
@@ -72,167 +149,365 @@ const CreateHighlightBanner = () => {
     }
   };
 
-  const handleAddClick = async () => {
-    if (!selectedPage || !bannerImage || !description || !link) {
-      toast.warning(
-        "All fields are required: pageid, banner, description, and link."
-      );
-      return;
-    }
-    const payload = {
-      pageid: selectedPage.page_id,
-      description,
-      link,
-      banner: "/this is a dummy banner url",
-    };
-    try {
-      const response = await fetch(`${API_NODE_URL}highlight-banner`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-
-      const result = await response.json();
-      if (result.status) {
-        toast.success("Highlight banner added successfully.");
-        setTimeout(() => {
-          router.push("/admin/highlight-banner-list");
-        }, 2000);
-      } else {
-        toast.error(result.message || "Failed to add highlight banner.");
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Validate file size (5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        toast.error("Image size should be less than 5MB");
+        return;
       }
-    } catch (err) {
-      console.error("Error: ", err);
-      toast.error("An error occurred while processing your request.");
+
+      // Validate file type
+      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+      if (!allowedTypes.includes(file.type)) {
+        toast.error("Only JPEG, JPG, PNG, and WebP images are allowed");
+        return;
+      }
+
+      setBannerImage(file);
+      
+      // Create preview
+      const reader = new FileReader();
+      reader.onload = (e) => setImagePreview(e.target.result);
+      reader.readAsDataURL(file);
+
+      if (errors.banner) {
+        setErrors(prev => ({ ...prev, banner: "" }));
+      }
     }
   };
 
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!selectedPage) {
+      newErrors.page = "Please select a page";
+    }
+
+    if (!formData.title.trim()) {
+      newErrors.title = "Title is required";
+    } else if (formData.title.length > 200) {
+      newErrors.title = "Title must be less than 200 characters";
+    }
+
+    if (!formData.description.trim()) {
+      newErrors.description = "Description is required";
+    } else if (formData.description.length > 500) {
+      newErrors.description = "Description must be less than 500 characters";
+    }
+
+    if (!formData.link.trim()) {
+      newErrors.link = "Link is required";
+    } else if (!/^https?:\/\/.+/.test(formData.link)) {
+      newErrors.link = "Please enter a valid URL (starting with http:// or https://)";
+    }
+
+    if (!isEdit && !bannerImage) {
+      newErrors.banner = "Banner image is required";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!validateForm()) {
+      toast.error("Please fix the errors before submitting");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const formDataToSend = new FormData();
+      formDataToSend.append('pageid', selectedPage.page_id.toString());
+      formDataToSend.append('title', formData.title.trim());
+      formDataToSend.append('description', formData.description.trim());
+      formDataToSend.append('link', formData.link.trim());
+      formDataToSend.append('bannerAlt', formData.bannerAlt.trim());
+      formDataToSend.append('status', formData.status);
+
+      if (bannerImage) {
+        formDataToSend.append('banner', bannerImage);
+      }
+
+      if (isEdit) {
+        formDataToSend.append('_id', editId);
+      }
+
+      const url = isEdit 
+        ? `${API_NODE_URL}highlight-banner/update`
+        : `${API_NODE_URL}highlight-banner`;
+
+      const response = await fetch(url, {
+        method: "POST",
+        body: formDataToSend,
+      });
+
+      const result = await response.json();
+
+      if (result.status) {
+        toast.success(`Highlight banner ${isEdit ? 'updated' : 'added'} successfully!`);
+        setTimeout(() => {
+          router.push("/admin/highlight-banner-list");
+        }, 1500);
+      } else {
+        toast.error(result.message || `Failed to ${isEdit ? 'update' : 'add'} highlight banner`);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("An error occurred while processing your request");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleClear = () => {
+    setFormData({
+      title: "",
+      description: "",
+      link: "",
+      bannerAlt: "",
+      status: true,
+    });
+    setSearchValue("");
+    setSelectedPage(null);
+    setBannerImage(null);
+    setImagePreview(null);
+    setShowDropdown(false);
+    setErrors({});
+  };
+
+  if (loading && isEdit) {
+    return (
+      <div className="w-full">
+        <div className="bg-gradient-to-r from-purple-600 to-blue-800 rounded-lg p-4 mb-5 shadow-lg">
+          <h2 className="font-semibold text-xl text-white tracking-wide">
+            Loading Banner Data...
+          </h2>
+        </div>
+        <div className="flex justify-center items-center h-64">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600"></div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="w-full">
+    <div className="w-full max-w-4xl mx-auto">
       <div className="bg-gradient-to-r from-purple-600 to-blue-800 rounded-lg p-4 mb-5 shadow-lg">
-        <h2 className="font-novaSemi text-xl text-white tracking-wide">
-          Add Highlight Banner
+        <h2 className="font-semibold text-xl text-white tracking-wide">
+          {isEdit ? 'Edit' : 'Add'} Highlight Banner
         </h2>
       </div>
-      <div className="max-w-md bg-white shadow-md rounded-2xl p-6">
-        <form className="space-y-4">
+
+      <div className="bg-white shadow-lg rounded-2xl p-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Page Selection */}
           <div className="relative">
-            <label
-              htmlFor="parent-page"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
-              Choose Page
+            <label htmlFor="parent-page" className="block text-sm font-medium text-gray-700 mb-2">
+              Choose Page <span className="text-red-500">*</span>
             </label>
             <input
               id="parent-page"
               type="text"
               value={searchValue}
-              onChange={handleInputChange}
+              onChange={handlePageInputChange}
               placeholder="Search and Choose Page"
-              className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={`w-full border rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors ${
+                errors.page ? 'border-red-500' : 'border-gray-300'
+              }`}
             />
+            {errors.page && <p className="text-red-500 text-sm mt-1">{errors.page}</p>}
+            
             {showDropdown && (
-              <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-md mt-1 max-h-60 overflow-auto shadow-lg">
-                {displayedPages.length > 0 &&
-                  displayedPages.map(
-                    (page, index) =>
-                      page.page_id !== 0 && (
-                        <li
-                          key={index}
-                          onClick={() => handleSuggestionClick(page)}
-                          className="cursor-pointer px-4 py-2 hover:bg-gray-100"
-                        >
-                          {page.name}{" "}
-                          {page?.page_id && ` - Page Id: ${page.page_id}`}
-                        </li>
-                      )
-                  )}
-                {displayedPages.length === 0 && (
-                  <li className="px-4 py-2">No results found</li>
+              <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg mt-1 max-h-60 overflow-auto shadow-lg">
+                {displayedPages.length > 0 ? (
+                  displayedPages.map((page, index) =>
+                    page.page_id !== 0 && (
+                      <li
+                        key={index}
+                        onClick={() => handleSuggestionClick(page)}
+                        className="cursor-pointer px-4 py-3 hover:bg-purple-50 border-b border-gray-100 last:border-b-0"
+                      >
+                        <div className="font-medium">{page.name}</div>
+                        <div className="text-sm text-gray-500">Page ID: {page.page_id}</div>
+                      </li>
+                    )
+                  )
+                ) : (
+                  <li className="px-4 py-3 text-gray-500">No results found</li>
+                )}
+                {hasMore && displayedPages.length > 0 && (
+                  <li className="px-4 py-2 border-t">
+                    <button
+                      type="button"
+                      onClick={handleShowMore}
+                      className="text-purple-600 hover:text-purple-800 font-medium"
+                    >
+                      Show More
+                    </button>
+                  </li>
                 )}
               </ul>
             )}
-            {hasMore && displayedPages.length > 0 && (
-              <button
-                type="button"
-                onClick={handleShowMore}
-                className="mt-2 text-blue-500 hover:underline"
-              >
-                Show More
-              </button>
-            )}
           </div>
 
+          {/* Title */}
           <div>
-            <label
-              htmlFor="bannerImage"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
-              Banner Image
+            <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
+              Title <span className="text-red-500">*</span>
             </label>
             <input
-              type="file"
-              id="bannerImage"
-              onChange={(e) => setBannerImage(e.target.files[0])}
-              className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              type="text"
+              id="title"
+              name="title"
+              value={formData.title}
+              onChange={handleInputChange}
+              placeholder="Enter banner title"
+              maxLength={200}
+              className={`w-full border rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors ${
+                errors.title ? 'border-red-500' : 'border-gray-300'
+              }`}
+            />
+            <div className="flex justify-between mt-1">
+              {errors.title && <p className="text-red-500 text-sm">{errors.title}</p>}
+              <p className="text-gray-400 text-sm ml-auto">{formData.title.length}/200</p>
+            </div>
+          </div>
+
+          {/* Banner Image */}
+          <div>
+            <label htmlFor="bannerImage" className="block text-sm font-medium text-gray-700 mb-2">
+              Banner Image {!isEdit && <span className="text-red-500">*</span>}
+            </label>
+            <div className="space-y-4">
+              <input
+                type="file"
+                id="bannerImage"
+                onChange={handleImageChange}
+                accept="image/jpeg,image/jpg,image/png,image/webp"
+                className={`w-full border rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors ${
+                  errors.banner ? 'border-red-500' : 'border-gray-300'
+                }`}
+              />
+              {errors.banner && <p className="text-red-500 text-sm">{errors.banner}</p>}
+              <p className="text-gray-500 text-sm">
+                Supported formats: JPEG, JPG, PNG, WebP. Max size: 5MB
+              </p>
+              
+              {imagePreview && (
+                <div className="mt-4">
+                  <p className="text-sm font-medium text-gray-700 mb-2">Preview:</p>
+                  <img
+                    src={imagePreview || "/placeholder.svg"}
+                    alt="Banner preview"
+                    className="max-w-full h-48 object-cover rounded-lg border border-gray-300"
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Alt Text */}
+          <div>
+            <label htmlFor="bannerAlt" className="block text-sm font-medium text-gray-700 mb-2">
+              Alt Text (for accessibility)
+            </label>
+            <input
+              type="text"
+              id="bannerAlt"
+              name="bannerAlt"
+              value={formData.bannerAlt}
+              onChange={handleInputChange}
+              placeholder="Describe the image for screen readers"
+              className="w-full border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors"
             />
           </div>
 
+          {/* Description */}
           <div>
-            <label
-              htmlFor="description"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
-              Description
+            <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
+              Description <span className="text-red-500">*</span>
             </label>
             <textarea
               id="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+              name="description"
+              value={formData.description}
+              onChange={handleInputChange}
+              className={`w-full border rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors resize-none ${
+                errors.description ? 'border-red-500' : 'border-gray-300'
+              }`}
               rows="4"
-              placeholder="Description"
-            ></textarea>
+              placeholder="Enter banner description"
+              maxLength={500}
+            />
+            <div className="flex justify-between mt-1">
+              {errors.description && <p className="text-red-500 text-sm">{errors.description}</p>}
+              <p className="text-gray-400 text-sm ml-auto">{formData.description.length}/500</p>
+            </div>
           </div>
 
+          {/* Link */}
           <div>
-            <label
-              htmlFor="link"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
-              Link
+            <label htmlFor="link" className="block text-sm font-medium text-gray-700 mb-2">
+              Link <span className="text-red-500">*</span>
             </label>
             <input
               id="link"
+              name="link"
               type="url"
-              value={link}
-              onChange={(e) => setLink(e.target.value)}
+              value={formData.link}
+              onChange={handleInputChange}
               placeholder="https://example.com"
-              className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={`w-full border rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors ${
+                errors.link ? 'border-red-500' : 'border-gray-300'
+              }`}
             />
+            {errors.link && <p className="text-red-500 text-sm mt-1">{errors.link}</p>}
           </div>
 
-          <div className="flex space-x-4">
+          {/* Status */}
+          {isEdit && (
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                id="status"
+                name="status"
+                checked={formData.status}
+                onChange={handleInputChange}
+                className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+              />
+              <label htmlFor="status" className="ml-2 block text-sm text-gray-700">
+                Active Status
+              </label>
+            </div>
+          )}
+
+          {/* Action Buttons */}
+          <div className="flex space-x-4 pt-4">
             <button
-              onClick={handleAddClick}
-              type="button"
-              className="flex-1 bg-green-500 text-white py-2 px-4 rounded-md uppercase font-novaSemi text-sm mt-4 hover:bg-green-600 hover:scale-105 transition duration-200 ease-linear"
+              type="submit"
+              disabled={loading}
+              className="flex-1 bg-gradient-to-r from-green-500 to-green-600 text-white py-3 px-6 rounded-lg font-semibold text-sm uppercase tracking-wide hover:from-green-600 hover:to-green-700 hover:scale-105 transition-all duration-200 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
             >
-              Add
+              {loading ? (
+                <div className="flex items-center justify-center">
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                  {isEdit ? 'Updating...' : 'Adding...'}
+                </div>
+              ) : (
+                isEdit ? 'Update' : 'Add'
+              )}
             </button>
             <button
               type="button"
-              className="flex-1 bg-red-500 text-white py-2 px-4 rounded-md uppercase font-novaSemi text-sm mt-4 hover:bg-red-600 hover:scale-105 transition duration-200 ease-linear"
-              onClick={() => {
-                setSearchValue("");
-                setSelectedPage(null);
-                setBannerImage(null);
-                setDescription("");
-                setLink("");
-                setShowDropdown(false);
-              }}
+              onClick={handleClear}
+              disabled={loading}
+              className="flex-1 bg-gradient-to-r from-red-500 to-red-600 text-white py-3 px-6 rounded-lg font-semibold text-sm uppercase tracking-wide hover:from-red-600 hover:to-red-700 hover:scale-105 transition-all duration-200 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
             >
               Clear
             </button>

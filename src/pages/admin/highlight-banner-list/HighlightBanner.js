@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { API_NODE_URL } from "@/configs/config"
+import { API_NODE_URL, IMAGE_PATH } from "@/configs/config"
 import { useRouter } from "next/navigation"
 import { toast } from "react-toastify"
 

@@ -19,6 +19,8 @@ const SideBarLink = [
 ]
 
 function Default({ data }) {
+    console.log(data);
+    
     return (
         // <div className='max-w-7xl mx-auto h-max p-10 flex flex-col gap-5'>
         //     {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}
@@ -68,7 +70,7 @@ function Default({ data }) {
         //     )}
         // </div>
         <div className="bg-gray-100">
-            <Header title={data?.name} gradient={"bg-gradient-to-r from-blue-500 to-transparent"} bgUrl={data?.banner_img} custom={true} />
+            <Header title={data?.name} gradient={"bg-gradient-to-r from-gray-800 to-transparent"} bgUrl={data?.banner_img} custom={true} subHeading={data?.shortdesc} />
             <section className="w-full max-w-[1400px] mx-auto grid grid-cols-12 py-20 max-sm:py-5 gap-10 px-5 max-sm:px-2 max-sm:gap-0">
                 <div className="col-span-9 max-xl:col-span-8 max-lg:col-span-12 space-y-10">
                     {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}

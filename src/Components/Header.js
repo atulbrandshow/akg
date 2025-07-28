@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 const bgImages = {
@@ -57,10 +58,10 @@ export default function Header({
     position = "center",
     bgKey = "BG3",
     bgUrl,
-    custom=false
+    custom = false
 }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const bg = custom ? bgUrl :  bgImages[bgKey] || "/image/header-image.jpg";
+    const bg = custom ? bgUrl : bgImages[bgKey] || "/image/header-image.jpg";
     const formConfig = formConfigs[formKey];
 
     return (
@@ -71,28 +72,30 @@ export default function Header({
             </div>
 
             <div className="relative mx-auto max-w-[1400px] px-6 py-20">
-                <div className="mx-auto lg:mx-0 space-y-6">
+                <div className="mx-auto lg:mx-0">
                     <h2 className="text-3xl max-w-lg font-novaReg tracking-tight text-white sm:text-[40px]">{title}</h2>
-                    <p className="mt-4 text-white font-novaReg max-w-xl text-xl lg:text-2xl">{subHeading}</p>
-
+                    <p className="mt-2 text-white font-novaReg max-w-xl text-lg lg:text-xl"
+                        dangerouslySetInnerHTML={{ __html: subHeading }} />
                     {buttonType && (
-                        buttonType === "link" ? (
-                            <a
-                                href={buttonLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="rounded-md uppercase bg-btn-gradient animate-gradient px-5 py-3 max-sm:py-2 max-sm:text-sm mt-2 text-base font-novaBold tracking-wider text-white hover:pl-8 shadow-sm duration-500"
-                            >
-                                {buttonText} ➜
-                            </a>
-                        ) : (
-                            <button
-                                onClick={() => setIsModalOpen(true)}
-                                className="rounded-md uppercase bg-btn-gradient animate-gradient px-5 py-3 max-sm:py-2 max-sm:text-sm mt-2 text-base font-novaBold tracking-wider text-white hover:pl-8 shadow-sm duration-500"
-                            >
-                                {buttonText} ➜
-                            </button>
-                        )
+                        <div className="mt-8">{
+                            buttonType === "link" ? (
+                                <Link
+                                    href={buttonLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="rounded-md uppercase bg-btn-gradient animate-gradient px-5 py-3 max-sm:py-2 max-sm:text-sm text-base font-novaBold tracking-wider text-white hover:pl-8 shadow-sm duration-500"
+                                >
+                                    {buttonText} ➜
+                                </Link>
+                            ) : (
+                                <button
+                                    onClick={() => setIsModalOpen(true)}
+                                    className="rounded-md uppercase bg-btn-gradient animate-gradient px-5 py-3 max-sm:py-2 max-sm:text-sm text-base font-novaBold tracking-wider text-white hover:pl-8 shadow-sm duration-500"
+                                >
+                                    {buttonText} ➜
+                                </button>
+                            )}
+                        </div>
                     )}
                 </div>
             </div>

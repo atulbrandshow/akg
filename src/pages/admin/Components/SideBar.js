@@ -40,50 +40,32 @@ const navSections = [
       {
         icon: FilePlus2,
         label: "Page",
-        nestedLinks: [
-          { label: "Add New Page", href: "/admin/create-page" },
-          { label: "List of Pages", href: "/admin/page-list" },
-        ],
+        href: "/admin/page-list"
       },
       {
         icon: Newspaper,
         label: "News",
-        nestedLinks: [
-          { label: "Add News", href: "/admin/create-news" },
-          { label: "List of News", href: "/admin/news-list" },
-        ],
+        href: "/admin/news-list"
       },
       {
         icon: Waypoints,
         label: "Article",
-        nestedLinks: [
-          { label: "Add Article", href: "/admin/create-article" },
-          { label: "List of Article", href: "/admin/article-list" },
-        ],
+        href: "/admin/article-list"
       },
       {
         icon: CalendarRange,
         label: "Event",
-        nestedLinks: [
-          { label: "Add Event", href: "/admin/create-event" },
-          { label: "List of Event", href: "/admin/event-list" },
-        ],
+        href: "/admin/event-list"
       },
       {
         icon: RefreshCcwDot,
         label: "Circular",
-        nestedLinks: [
-          { label: "Add Circular", href: "/admin/create-circular" },
-          { label: "List of Circular", href: "/admin/circular-list" },
-        ],
+        href: "/admin/circular-list"
       },
       {
         icon: BellDot,
         label: "Announcement",
-        nestedLinks: [
-          { label: "Add Announcement", href: "/admin/create-announcement" },
-          { label: "List of Announcement", href: "/admin/announcement-list" },
-        ],
+        href: "/admin/announcement-list"
       },
     ],
   },

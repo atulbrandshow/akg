@@ -4,7 +4,7 @@ import { API_NODE_URL } from "@/configs/config"
 import { useRouter } from "next/navigation"
 import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
-import { Boxes, View } from "lucide-react"
+import { Boxes, Plus, View } from "lucide-react"
 import Link from "next/link"
 
 const TableList = ({ type, title, subTitle }) => {
@@ -236,7 +236,7 @@ const TableList = ({ type, title, subTitle }) => {
                 </div>
 
                 {/* Results Info */}
-                <div className="mb-4">
+                <div className="mb-4 flex justify-between items-center px-2">
                     <p className="text-sm text-gray-600 font-novaSemi">
                         Showing {filteredData.length} of {newsAndEvents.length} {type}s
                         {searchTerm && (
@@ -245,6 +245,9 @@ const TableList = ({ type, title, subTitle }) => {
                             </span>
                         )}
                     </p>
+                    <Link href={`create-${type?.toLowerCase()}`} className="flex gap-1 items-center bg-gradient-to-r from-purple-500 font-novaSemi to-pink-600 text-white px-6 py-2 rounded-lg cursor-pointer hover:from-purple-600 hover:to-pink-700 transition-all duration-200 transform hover:scale-105 shadow-lg">
+                        <Plus size={18} />
+                        Add {type}</Link>
                 </div>
 
                 {/* Table Container */}

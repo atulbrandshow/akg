@@ -232,16 +232,19 @@ const EnhancedFileUpload = ({
   existingImage,
   onChange,
   onDelete,
-  accept = "image/webp",
   dimensions,
   required = false,
   isUploading = false,
+  type = 'image', // type can be 'pdf' or 'image'
 }) => {
+  const accept = type === 'pdf' ? 'application/pdf' : 'image/webp,image/png,image/jpeg';
+
   return (
     <div className="space-y-2">
       <label htmlFor={id} className="block text-sm font-medium text-gray-700">
         {label} {required && <span className="text-red-500">*</span>}
       </label>
+
       <div className="border-2 border-dashed border-gray-300 hover:border-blue-400 transition-colors rounded-lg p-6 text-center bg-gray-50 hover:bg-gray-100">
         <div className="space-y-2">
           <svg className="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
@@ -253,12 +256,23 @@ const EnhancedFileUpload = ({
             />
           </svg>
           <div className="text-sm text-gray-600">
-            <p className="font-novaSemi">Click to upload or drag and drop</p>
-            <p className="text-xs text-gray-500 mt-1">WebP format recommended</p>
+            <p className="font-semibold">Click to upload or drag and drop</p>
+            <p className="text-xs text-gray-500 mt-1">
+              {type === 'pdf' ? 'PDF format only' : 'WebP format recommended'}
+            </p>
             {dimensions && <p className="text-xs text-gray-500">Dimensions: {dimensions}</p>}
           </div>
         </div>
-        <input type="file" id={id} accept={accept} onChange={onChange} className="hidden" disabled={isUploading} />
+
+        <input
+          type="file"
+          id={id}
+          accept={accept}
+          onChange={onChange}
+          className="hidden"
+          disabled={isUploading}
+        />
+
         <label
           htmlFor={id}
           className={`mt-4 inline-flex items-center px-4 py-2 text-white text-sm font-medium rounded-lg cursor-pointer transition-colors ${isUploading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
@@ -284,6 +298,7 @@ const EnhancedFileUpload = ({
           )}
         </label>
       </div>
+
       <ImagePreview
         file={file}
         imageUrl={imageUrl}
@@ -294,8 +309,8 @@ const EnhancedFileUpload = ({
         isUploading={isUploading}
       />
     </div>
-  )
-}
+  );
+};
 
 function EditDynamicPages({ type, componentType }) {
   const searchParams = useSearchParams()
@@ -413,6 +428,8 @@ function EditDynamicPages({ type, componentType }) {
     existing_param_img8: "",
     existing_param_img9: "",
     existing_param_img10: "",
+    existing_downloadCenterPdf: "",
+    downloadCenterPdf: "",
   })
 
   useEffect(() => {
@@ -679,6 +696,7 @@ function EditDynamicPages({ type, componentType }) {
             galleryimg: [],
             type: data.data.type || "",
             mainReportImage: "",
+            downloadCenterPdf: "",
             metatitle: data?.data?.metatitle || "",
             metadesc: data?.data?.metadesc || "",
             keywords_tag: data?.data?.keywords_tag || "",
@@ -698,6 +716,7 @@ function EditDynamicPages({ type, componentType }) {
             existing_param_img8: data?.data?.param_img8 || "",
             existing_param_img9: data?.data?.param_img9 || "",
             existing_param_img10: data?.data?.param_img10 || "",
+            existing_downloadCenterPdf: data?.data?.downloadCenterPdf || "",
           })
         } else {
           toast.error("Failed to fetch page details.")
@@ -1302,6 +1321,22 @@ function EditDynamicPages({ type, componentType }) {
               </div>
               <h2 className="text-xl font-novaSemi text-gray-900">Media Upload</h2>
             </div>
+            {
+              type === "Download Center" &&
+              <div className="mb-10">
+                <EnhancedFileUpload
+                  id="downloadCenterPdf"
+                  label="Upload PDF"
+                  imageUrl={formData.downloadCenterPdf}
+                  existingImage={formData.existing_downloadCenterPdf}
+                  onChange={(e) => handleFileChange(e, "downloadCenterPdf")}
+                  onDelete={() => handleDeleteFile("downloadCenterPdf")}
+                  required
+                  isUploading={uploadingStates.downloadCenterPdf}
+                  type="pdf"
+                />
+              </div>
+            }
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 font-novaSemi">
               <EnhancedFileUpload

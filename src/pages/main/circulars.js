@@ -27,7 +27,7 @@ export default function CircularList({ data }) {
                 setEventsData([])
             }
         } catch (error) {
-            console.error("Failed to fetch events:", error)
+            console.error("Failed to fetch circulars:", error)
             setEventsData([])
         } finally {
             setLoading(false)
@@ -71,13 +71,13 @@ export default function CircularList({ data }) {
                             Campus Circulars
                         </h1>
                         <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto">
-                            Discover amazing events, connect with peers, and make unforgettable memories
+                            Discover amazing circulars, connect with peers, and make unforgettable memories
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <div className="relative max-w-md">
                                 <input
                                     type="text"
-                                    placeholder="Search events..."
+                                    placeholder="Search circulars..."
                                     className="pl-12 pr-4 py-3 w-full border border-white/20 rounded-full text-gray-800 focus:ring-2 focus:ring-white focus:border-transparent outline-none transition-all duration-200 bg-white/90 focus:bg-white"
                                     value={searchTerm}
                                     onChange={(e) => {
@@ -85,7 +85,7 @@ export default function CircularList({ data }) {
                                         setPage(1)
                                     }}
                                 />
-                                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-circulars-none">
                                     <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path
                                             strokeLinecap="round"
@@ -129,7 +129,7 @@ export default function CircularList({ data }) {
                         </svg>
                     </div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">No circulars found</h3>
-                    <p className="text-gray-500">Try adjusting your search terms or check back later for new events</p>
+                    <p className="text-gray-500">Try adjusting your search terms or check back later for new circulars</p>
                 </div>
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-10">
@@ -231,7 +231,7 @@ export default function CircularList({ data }) {
             <div className="mt-20 bg-gradient-to-r from-purple-600 to-blue-600 rounded-3xl p-12 text-center text-white mb-10">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4">Don't Miss Out on Amazing Circulars!</h2>
                 <p className="text-xl mb-8 text-purple-100">
-                    Subscribe to our newsletter and get notified about upcoming events
+                    Subscribe to our newsletter and get notified about upcoming circulars
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
                     <input

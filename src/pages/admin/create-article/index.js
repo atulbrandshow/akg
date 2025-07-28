@@ -7,7 +7,7 @@ export default function Home() {
       <div className="flex bg-gray-100">
         <SideBar />
         <div className="pt-10 px-10 overflow-x-auto w-full h-screen">
-          <CreateDynamicPages type="Article" componentType="article-details" />
+          <CreateDynamicPages type="Article" componentType="article-details" parentId={696085} />
         </div>
       </div>
     </>

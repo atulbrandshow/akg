@@ -952,57 +952,7 @@ function EditDynamicPages({ type, componentType }) {
               <h2 className="text-xl font-novaSemi text-gray-900">Basic Details</h2>
             </div>
 
-            <div className={`grid grid-cols-1 ${type === "Page" ? "md:grid-cols-3" : "md:grid-cols-2"} gap-6`}>
-              <div className="relative">
-                <label htmlFor="parent-page" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Choose Parent Page
-                  <span className="text-red-500 ml-1">*</span>
-                </label>
-                <div className="relative">
-                  <input
-                    id="parent-page"
-                    type="text"
-                    value={searchValue}
-                    onChange={handleInputChange}
-                    placeholder="Search and select parent page..."
-                    className="w-full border-2 border-gray-200 rounded-xl font-novaReg py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
-                  />
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-
-                {showDropdown && (
-                  <div className="absolute z-20 w-full bg-white border-2 border-gray-200 rounded-xl mt-2 max-h-64 overflow-auto shadow-2xl">
-                    {displayedPages.map((page, index) => (
-                      <div
-                        key={index}
-                        onClick={() => handleSuggestionClick(page)}
-                        className="cursor-pointer px-4 py-3 hover:bg-blue-50 border-b border-gray-100 last:border-b-0 transition-colors duration-150"
-                      >
-                        <div className="font-novaSemi text-gray-800">{page.name}</div>
-                        {page?.page_id && <div className="text-sm text-gray-500">ID: {page.page_id}</div>}
-                      </div>
-                    ))}
-                    {hasMore && displayedPages.length > 0 && (
-                      <button
-                        type="button"
-                        onClick={handleShowMore}
-                        className="w-full px-4 py-3 text-blue-600 font-novaReg hover:bg-blue-50 transition-colors duration-150"
-                      >
-                        Load More Pages
-                      </button>
-                    )}
-                  </div>
-                )}
-              </div>
+            <div className={`grid grid-cols-1 md:grid-cols-2 gap-6`}>
               <div className="relative">
                 <label htmlFor="schoolSearch" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Search Stream
@@ -1045,71 +995,6 @@ function EditDynamicPages({ type, componentType }) {
                   </div>
                 )}
               </div>
-              {type === "Page" && (
-                <div className="relative">
-                  <label htmlFor="component-type" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                    Component Type <span className="text-red-500">*</span>
-                  </label>
-                  <div className="relative">
-                    <input
-                      id="component-type"
-                      type="text"
-                      value={componentSearchValue}
-                      onChange={handleComponentInputChange}
-                      placeholder="Search and select component type..."
-                      className="w-full border-2 border-gray-200 font-novaReg rounded-xl py-3 px-4 pr-12 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-200 bg-white"
-                    />
-                    <div className="absolute inset-y-0 right-0 flex items-center pr-4">
-                      <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-
-                  {showComponentDropdown && (
-                    <div className="absolute z-20 w-full bg-white border-2 border-gray-200 rounded-xl mt-2 max-h-64 overflow-auto shadow-2xl">
-                      {displayedComponents.map((component) => (
-                        <div
-                          key={component._id}
-                          onClick={() => handleComponentSuggestionClick(component)}
-                          className="cursor-pointer px-4 py-3 hover:bg-blue-50 border-b border-gray-100 last:border-b-0 transition-colors duration-150 flex items-center"
-                        >
-                          <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
-                            <svg
-                              className="w-4 h-4 text-blue-600"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"
-                              />
-                            </svg>
-                          </div>
-                          <div className="font-novaSemi text-gray-800">{component.componentName}</div>
-                        </div>
-                      ))}
-                      {hasMoreComponents && displayedComponents.length > 0 && (
-                        <button
-                          type="button"
-                          onClick={handleShowMoreComponents}
-                          className="w-full px-4 py-3 text-blue-600 hover:bg-blue-50 font-medium transition-colors duration-150"
-                        >
-                          Load More Components
-                        </button>
-                      )}
-                    </div>
-                  )}
-                </div>
-              )}
             </div>
           </div>
 
@@ -1126,14 +1011,14 @@ function EditDynamicPages({ type, componentType }) {
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-novaSemi text-gray-900">Page Details</h2>
+              <h2 className="text-xl font-novaSemi text-gray-900">{type} Details</h2>
             </div>
 
             <div className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                    Page Title <span className="text-red-500">*</span>
+                    {type} Title <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -1149,7 +1034,7 @@ function EditDynamicPages({ type, componentType }) {
                 </div>
                 <div>
                   <label htmlFor="date" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                    Page Date <span className="text-red-500">*</span>
+                    {type} Date <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="date"
@@ -1184,7 +1069,7 @@ function EditDynamicPages({ type, componentType }) {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Short Description <span className="text-red-500">*</span>
+                  {type} Short Description <span className="text-red-500">*</span>
                 </label>
                 <div className="border border-gray-300 rounded-lg overflow-hidden">
                   <JoditEditor
@@ -1197,7 +1082,7 @@ function EditDynamicPages({ type, componentType }) {
               </div>
               <div>
                 <label className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Page Description <span className="text-red-500">*</span>
+                  {type} Description <span className="text-red-500">*</span>
                 </label>
                 <div className="border border-gray-300 rounded-lg overflow-hidden">
                   <JoditEditor
@@ -1530,7 +1415,7 @@ function EditDynamicPages({ type, componentType }) {
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-lg font-novaSemi text-gray-900">Ready to Update?</h3>
-                <p className="text-gray-600 mt-1 font-novaReg">Review all changes before updating the page</p>
+                <p className="text-gray-600 mt-1 font-novaReg">Review all changes before updating the {type.toLowerCase()}</p>
               </div>
               <div className="flex items-center space-x-4">
                 <button

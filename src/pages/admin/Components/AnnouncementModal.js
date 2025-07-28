@@ -208,7 +208,7 @@ export default function AnnouncementModal({ isOpen, onClose, onSuccess, announce
             {/* Stream Search Field */}
             <div>
               <label htmlFor="streamSearch" className="block text-sm font-medium text-gray-700 mb-2">
-                Stream <span className="text-red-500">*</span>
+                Stream : <span className="italic text-xs font-medium">(Optional if you want to show on every pages !)</span>
               </label>
               <div className="relative">
                 <input

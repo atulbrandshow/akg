@@ -37,6 +37,7 @@ export default function Login({setTrigger}) {
         setUserData(data.data);
         setMessage({ type: "success", text: "Login successful!" });
         setTrigger(true);
+        router.push("/admin/dashboard");
       } else {
         setMessage({ type: "error", text: data.message });
       }

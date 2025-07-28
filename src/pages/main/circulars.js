@@ -20,6 +20,9 @@ export default function CircularList({ data }) {
                 }
             )
             const data = await response.json()
+            console.log('====================================');
+            console.log(data);
+            console.log('====================================');
             if (data.status && data.data) {
                 setEventsData(data.data)
                 setTotalPages(data.pagination.totalPages)
@@ -141,7 +144,7 @@ export default function CircularList({ data }) {
                             {/* Event Image */}
                             <div className="relative overflow-hidden">
                                 <img
-                                    src={event.banner_img || "/placeholder.svg?height=300&width=400"}
+                                    src={`https://csip-image.blr1.digitaloceanspaces.com/csip-image${event?.banner_img}`}
                                     alt={event.name}
                                     className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                                     onError={(e) => {

@@ -144,7 +144,7 @@ function CreateDynamicPages({ type, componentType, parentId }) {
                                             d="M12 6v6m0 0v6m0-6h6m-6 0H6"
                                         ></path>
                                     </svg>
-                                    <span>Add Page</span>
+                                    <span>Add {type}</span>
                                 </span>
                             </button>
                             <button

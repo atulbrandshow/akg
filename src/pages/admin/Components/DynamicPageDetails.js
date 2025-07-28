@@ -809,10 +809,6 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   <JoditEditor
                     value={formData.shortdesc}
                     onBlur={handleShortDescChange}
-                    config={{
-                      readonly: false, // Enable editing
-                      height: 400, // Customize editor height
-                    }}
                   />
                 </div>
               </div>
@@ -824,10 +820,6 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   <JoditEditor
                     value={formData.description}
                     onBlur={handleDescChange}
-                    config={{
-                      readonly: false, // Enable editing
-                      height: 400, // Customize editor height
-                    }}
                   />
                 </div>
               </div>

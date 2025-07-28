@@ -9,7 +9,7 @@ export default function Home() {
         <SideBar />
         <div className="pt-10 px-10 overflow-x-auto w-full h-screen">
           <Suspense fallback={<div>Loading...</div>}>
-            <EditDynamicPages type="News" />
+            <EditDynamicPages type="News" componentType="news-details" />
           </Suspense>
         </div>
       </div>

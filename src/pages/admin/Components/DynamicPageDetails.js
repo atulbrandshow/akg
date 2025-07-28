@@ -514,6 +514,11 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
         progressBar.style.width = "100%"
       })
 
+      if(!streamId) {
+        toast.warning("Please select stream")
+        return;
+      }
+
       const payload = {
         ...formData,
         stream: streamId,

@@ -312,13 +312,12 @@ const EnhancedFileUpload = ({
   );
 };
 
-function EditDynamicPages({ type }) {
+function EditDynamicPages({ type, componentType }) {
   const searchParams = useSearchParams()
   const page_id = searchParams.get("page_id")
   const router = useRouter()
   const editor = useRef()
   const [loading, setLoading] = useState(true)
-  const [componentType, setComponentType] = useState("")
   const [submitting, setSubmitting] = useState(false)
   const [searchValue, setSearchValue] = useState("")
   const [showDropdown, setShowDropdown] = useState(false)
@@ -331,6 +330,7 @@ function EditDynamicPages({ type }) {
   const [programInput, setProgramInput] = useState("")
   const [showSchoolDropdown, setShowSchoolDropdown] = useState(false)
   const [schools, setSchools] = useState([]) // State to hold school options
+  const [compType, setCompType] = useState("");
 
   const [componentSearchValue, setComponentSearchValue] = useState("")
   const [showComponentDropdown, setShowComponentDropdown] = useState(false)
@@ -629,7 +629,7 @@ function EditDynamicPages({ type }) {
           const parentPageName = parent_id !== 0 ? await fetchParent(parent_id) : "This is Main page"
           await fecthSchoolDetails(data?.data?.stream)
           setSearchValue(parentPageName)
-          setComponentType(data?.data?.ComponentType)
+          setCompType(data?.data?.ComponentType);
           setComponentSearchValue(data?.data?.ComponentType)
           setFormData({
             page_id: data?.data?.page_id || "",
@@ -843,11 +843,19 @@ function EditDynamicPages({ type }) {
       return
     }
 
+    if (!streamId) {
+      toast.warning("Please select stream");
+      return;
+    }
+
     const payload = {
       ...formData,
       stream: streamId,
-      ComponentType: selectedComponentType || componentType,
+      ComponentType: selectedComponentType || compType || componentType,
     }
+
+    console.log(payload);
+    
 
     setSubmitting(true)
     try {
@@ -891,8 +899,8 @@ function EditDynamicPages({ type }) {
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-3xl font-bold text-gray-900">Edit {type} Details</h1>
-                <p className="text-gray-600 mt-2">
+                <h1 className="text-3xl font-novaBold text-gray-900">Edit {type} Details</h1>
+                <p className="text-gray-600 mt-2 font-novaReg">
                   Update and modify your {type.toLowerCase()} content with all necessary details
                 </p>
               </div>
@@ -907,7 +915,7 @@ function EditDynamicPages({ type }) {
                         d="M13 10V3L4 14h7v7l9-11h-7z"
                       />
                     </svg>
-                    <span className="font-semibold">Generate Meta with AI</span>
+                    <span className="font-novaSemi">Generate Meta with AI</span>
                   </div>
                 </div>
                 <button
@@ -941,12 +949,12 @@ function EditDynamicPages({ type }) {
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-semibold text-gray-900">Basic Details</h2>
+              <h2 className="text-xl font-novaSemi text-gray-900">Basic Details</h2>
             </div>
 
             <div className={`grid grid-cols-1 ${type === "Page" ? "md:grid-cols-3" : "md:grid-cols-2"} gap-6`}>
               <div className="relative">
-                <label htmlFor="parent-page" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="parent-page" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Choose Parent Page
                   <span className="text-red-500 ml-1">*</span>
                 </label>
@@ -957,7 +965,7 @@ function EditDynamicPages({ type }) {
                     value={searchValue}
                     onChange={handleInputChange}
                     placeholder="Search and select parent page..."
-                    className="w-full border-2 border-gray-200 rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
+                    className="w-full border-2 border-gray-200 rounded-xl font-novaReg py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
                   />
                   <div className="absolute inset-y-0 right-0 flex items-center pr-3">
                     <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -979,7 +987,7 @@ function EditDynamicPages({ type }) {
                         onClick={() => handleSuggestionClick(page)}
                         className="cursor-pointer px-4 py-3 hover:bg-blue-50 border-b border-gray-100 last:border-b-0 transition-colors duration-150"
                       >
-                        <div className="font-semibold text-gray-800">{page.name}</div>
+                        <div className="font-novaSemi text-gray-800">{page.name}</div>
                         {page?.page_id && <div className="text-sm text-gray-500">ID: {page.page_id}</div>}
                       </div>
                     ))}
@@ -987,7 +995,7 @@ function EditDynamicPages({ type }) {
                       <button
                         type="button"
                         onClick={handleShowMore}
-                        className="w-full px-4 py-3 text-blue-600 hover:bg-blue-50 transition-colors duration-150"
+                        className="w-full px-4 py-3 text-blue-600 font-novaReg hover:bg-blue-50 transition-colors duration-150"
                       >
                         Load More Pages
                       </button>
@@ -996,7 +1004,7 @@ function EditDynamicPages({ type }) {
                 )}
               </div>
               <div className="relative">
-                <label htmlFor="schoolSearch" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="schoolSearch" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Search Stream
                   <span className="text-red-500 ml-1">*</span>
                 </label>
@@ -1008,7 +1016,7 @@ function EditDynamicPages({ type }) {
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onFocus={() => setShowSchoolDropdown(true)}
                     placeholder="Search and select school..."
-                    className="w-full border-2 border-gray-200 rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
+                    className="w-full border-2 border-gray-200 rounded-xl font-novaReg py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
                   />
                   <div className="absolute inset-y-0 right-0 flex items-center pr-3">
                     <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1031,7 +1039,7 @@ function EditDynamicPages({ type }) {
                           onClick={() => handleSchoolSelect(school)}
                           className="cursor-pointer px-4 py-3 hover:bg-blue-50 border-b border-gray-100 last:border-b-0 transition-colors duration-150"
                         >
-                          <div className="font-semibold text-gray-800">{school.name}</div>
+                          <div className="font-novaSemi text-gray-800">{school.name}</div>
                         </div>
                       ))}
                   </div>
@@ -1039,7 +1047,7 @@ function EditDynamicPages({ type }) {
               </div>
               {type === "Page" && (
                 <div className="relative">
-                  <label htmlFor="component-type" className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label htmlFor="component-type" className="block text-sm font-novaSemi text-gray-700 mb-2">
                     Component Type <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
@@ -1049,7 +1057,7 @@ function EditDynamicPages({ type }) {
                       value={componentSearchValue}
                       onChange={handleComponentInputChange}
                       placeholder="Search and select component type..."
-                      className="w-full border-2 border-gray-200 rounded-xl py-3 px-4 pr-12 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-200 bg-white"
+                      className="w-full border-2 border-gray-200 font-novaReg rounded-xl py-3 px-4 pr-12 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-200 bg-white"
                     />
                     <div className="absolute inset-y-0 right-0 flex items-center pr-4">
                       <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1086,7 +1094,7 @@ function EditDynamicPages({ type }) {
                               />
                             </svg>
                           </div>
-                          <div className="font-semibold text-gray-800">{component.componentName}</div>
+                          <div className="font-novaSemi text-gray-800">{component.componentName}</div>
                         </div>
                       ))}
                       {hasMoreComponents && displayedComponents.length > 0 && (
@@ -1118,13 +1126,13 @@ function EditDynamicPages({ type }) {
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-semibold text-gray-900">Page Details</h2>
+              <h2 className="text-xl font-novaSemi text-gray-900">Page Details</h2>
             </div>
 
             <div className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label htmlFor="name" className="block text-sm font-novaSemi text-gray-700 mb-2">
                     Page Title <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -1135,12 +1143,12 @@ function EditDynamicPages({ type }) {
                     onChange={handleChange}
                     required
                     disabled
-                    className="w-full px-4 cursor-not-allowed py-3 border text-gray-600 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-4 cursor-not-allowed py-3 border text-gray-600 font-novaReg border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     placeholder="Enter page title"
                   />
                 </div>
                 <div>
-                  <label htmlFor="date" className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label htmlFor="date" className="block text-sm font-novaSemi text-gray-700 mb-2">
                     Page Date <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -1150,7 +1158,7 @@ function EditDynamicPages({ type }) {
                     value={formData.date}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   />
                 </div>
               </div>
@@ -1170,12 +1178,12 @@ function EditDynamicPages({ type }) {
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-semibold text-gray-900">Content</h2>
+              <h2 className="text-xl font-novaSemi text-gray-900">Content</h2>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Short Description <span className="text-red-500">*</span>
                 </label>
                 <div className="border border-gray-300 rounded-lg overflow-hidden">
@@ -1183,12 +1191,12 @@ function EditDynamicPages({ type }) {
                     value={formData.shortdesc}
                     onChange={handleShortDescChange}
                     rows="3"
-                    className="w-full h-max px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full h-max px-3 py-2 border font-novaReg border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Page Description <span className="text-red-500">*</span>
                 </label>
                 <div className="border border-gray-300 rounded-lg overflow-hidden">
@@ -1196,7 +1204,7 @@ function EditDynamicPages({ type }) {
                     value={formData.description}
                     onChange={handleDescChange}
                     rows="3"
-                    className="w-full h-max px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full h-max px-3 py-2 border font-novaReg border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
               </div>
@@ -1216,12 +1224,12 @@ function EditDynamicPages({ type }) {
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-semibold text-gray-900">Tags & Configuration</h2>
+              <h2 className="text-xl font-novaSemi text-gray-900">Tags & Configuration</h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div>
-                <label htmlFor="tag1" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="tag1" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Tag 1
                 </label>
                 <input
@@ -1230,12 +1238,12 @@ function EditDynamicPages({ type }) {
                   name="tag1"
                   value={formData.tag1}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="Enter tag"
                 />
               </div>
               <div>
-                <label htmlFor="tag2" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="tag2" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Tag 2
                 </label>
                 <input
@@ -1244,12 +1252,12 @@ function EditDynamicPages({ type }) {
                   name="tag2"
                   value={formData.tag2}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="Enter tag"
                 />
               </div>
               <div>
-                <label htmlFor="tag3" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="tag3" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Tag 3
                 </label>
                 <input
@@ -1258,12 +1266,12 @@ function EditDynamicPages({ type }) {
                   name="tag3"
                   value={formData.tag3}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="Enter tag"
                 />
               </div>
               <div>
-                <label htmlFor="featured_status" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="featured_status" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Featured Status
                 </label>
                 <select
@@ -1271,7 +1279,7 @@ function EditDynamicPages({ type }) {
                   name="featured_status"
                   value={formData.featured_status}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                 >
                   <option value="">Select Status</option>
                   <option value="Yes">Yes</option>
@@ -1282,7 +1290,7 @@ function EditDynamicPages({ type }) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
               <div>
-                <label htmlFor="video_url" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="video_url" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Video URL
                 </label>
                 <input
@@ -1291,7 +1299,7 @@ function EditDynamicPages({ type }) {
                   name="video_url"
                   value={formData.video_url}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="https://example.com/video"
                 />
               </div>
@@ -1311,7 +1319,7 @@ function EditDynamicPages({ type }) {
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-semibold text-gray-900">Media Upload</h2>
+              <h2 className="text-xl font-novaSemi text-gray-900">Media Upload</h2>
             </div>
             {
               type === "Download Center" &&
@@ -1320,7 +1328,7 @@ function EditDynamicPages({ type }) {
                   id="downloadCenterPdf"
                   label="Upload PDF"
                   imageUrl={formData.downloadCenterPdf}
-                  existingImage={formData.downloadCenterPdf}
+                  existingImage={formData.existing_downloadCenterPdf}
                   onChange={(e) => handleFileChange(e, "downloadCenterPdf")}
                   onDelete={() => handleDeleteFile("downloadCenterPdf")}
                   required
@@ -1381,7 +1389,7 @@ function EditDynamicPages({ type }) {
               />
 
               <div className="space-y-2">
-                <label htmlFor="galleryimg" className="block text-sm font-semibold text-gray-700">
+                <label htmlFor="galleryimg" className="block text-sm font-novaSemi text-gray-700">
                   Gallery Images
                 </label>
                 <div className="border-2 border-dashed border-gray-300 hover:border-blue-400 transition-colors rounded-lg p-6 text-center bg-gray-50 hover:bg-gray-100">
@@ -1416,8 +1424,8 @@ function EditDynamicPages({ type }) {
                   <label
                     htmlFor="galleryimg"
                     className={`mt-4 inline-flex items-center px-4 py-2 text-white text-sm font-medium rounded-lg cursor-pointer transition-colors ${galleryUploadingIndexes.length > 0
-                      ? "bg-gray-400 cursor-not-allowed"
-                      : "bg-blue-600 hover:bg-blue-700"
+                        ? "bg-gray-400 cursor-not-allowed"
+                        : "bg-blue-600 hover:bg-blue-700"
                       }`}
                   >
                     {galleryUploadingIndexes.length > 0 ? (
@@ -1465,12 +1473,12 @@ function EditDynamicPages({ type }) {
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-semibold text-gray-900">SEO Meta Information</h2>
+              <h2 className="text-xl font-novaSemi text-gray-900">SEO Meta Information</h2>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <div>
-                <label htmlFor="metatitle" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="metatitle" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Meta Title <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -1479,13 +1487,13 @@ function EditDynamicPages({ type }) {
                   name="metatitle"
                   value={formData.metatitle}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="Enter meta title"
                 />
                 <p className="text-xs text-gray-500 mt-1">Recommended: 50-60 characters</p>
               </div>
               <div>
-                <label htmlFor="metadesc" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="metadesc" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Meta Description <span className="text-red-500">*</span>
                 </label>
                 <textarea
@@ -1494,13 +1502,13 @@ function EditDynamicPages({ type }) {
                   rows={3}
                   value={formData.metadesc}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
                   placeholder="Enter meta description"
                 />
                 <p className="text-xs text-gray-500 mt-1">Recommended: 150-160 characters</p>
               </div>
               <div>
-                <label htmlFor="keywords_tag" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="keywords_tag" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Keywords <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -1509,7 +1517,7 @@ function EditDynamicPages({ type }) {
                   name="keywords_tag"
                   value={formData.keywords_tag}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="keyword1, keyword2, keyword3"
                 />
                 <p className="text-xs text-gray-500 mt-1">Separate keywords with commas</p>
@@ -1521,14 +1529,14 @@ function EditDynamicPages({ type }) {
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-lg font-semibold text-gray-900">Ready to Update?</h3>
-                <p className="text-gray-600 mt-1">Review all changes before updating the page</p>
+                <h3 className="text-lg font-novaSemi text-gray-900">Ready to Update?</h3>
+                <p className="text-gray-600 mt-1 font-novaReg">Review all changes before updating the page</p>
               </div>
               <div className="flex items-center space-x-4">
                 <button
                   type="button"
                   onClick={() => router.back()}
-                  className="px-6 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors"
+                  className="px-6 py-3 border  border-gray-300 text-gray-700 font-novaSemi rounded-lg hover:bg-gray-50 transition-colors"
                 >
                   Cancel
                 </button>
@@ -1537,7 +1545,7 @@ function EditDynamicPages({ type }) {
                   disabled={
                     submitting || Object.values(uploadingStates).some(Boolean) || galleryUploadingIndexes.length > 0
                   }
-                  className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-blue-700 focus:ring-4 focus:ring-blue-200 transition-all duration-200 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-novaSemi rounded-lg hover:from-blue-600 hover:to-blue-700 focus:ring-4 focus:ring-blue-200 transition-all duration-200 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
                   {submitting ? (
                     <>

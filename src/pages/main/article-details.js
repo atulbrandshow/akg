@@ -4,7 +4,7 @@ import Breadcrumb from "@/Components/Breadcrumb";
 import Holder from "@/Components/Holder";
 import { IMAGE_PATH } from "@/configs/config";
 
-export default function EventDetailPage({ data }) {
+export default function ArticleDetailPage({ data }) {
     if (!data) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -39,7 +39,7 @@ export default function EventDetailPage({ data }) {
             <div className="relative w-full h-96">
                 {data.banner_img && (
                     <img
-                        src={IMAGE_PATH + data.banner_img}
+                        src={IMAGE_PATH + data?.banner_img}
                         alt={data.name}
                         className="w-full h-full object-cover"
                     />

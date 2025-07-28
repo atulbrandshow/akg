@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { API_NODE_URL } from "@/configs/config"
+import { API_NODE_URL, IMAGE_PATH } from "@/configs/config"
 
 export default function CircularList({ data }) {
     const [eventsData, setEventsData] = useState([])
@@ -16,13 +16,10 @@ export default function CircularList({ data }) {
             setLoading(true)
             const response = await fetch(
                 `${API_NODE_URL}list-detail-page/all?page=${page}&limit=9&search=${searchTerm}&type=Circular`, {
-                    credentials: "include",
-                }
+                credentials: "include",
+            }
             )
             const data = await response.json()
-            console.log('====================================');
-            console.log(data);
-            console.log('====================================');
             if (data.status && data.data) {
                 setEventsData(data.data)
                 setTotalPages(data.pagination.totalPages)
@@ -143,14 +140,13 @@ export default function CircularList({ data }) {
                         >
                             {/* Event Image */}
                             <div className="relative overflow-hidden">
-                                <img
-                                    src={`https://csip-image.blr1.digitaloceanspaces.com/csip-image${event?.banner_img}`}
-                                    alt={event.name}
-                                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                                    onError={(e) => {
-                                        e.target.src = "/placeholder.svg?height=300&width=400"
-                                    }}
-                                />
+                                {event?.banner_img && (
+                                    <img
+                                        src={IMAGE_PATH + event?.banner_img}
+                                        alt={event.name}
+                                        className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                                    />
+                                )}
                                 <div className="absolute top-4 left-4">
                                     <div className="bg-white rounded-lg px-3 py-2 shadow-md">
                                         <div className="text-sm font-bold text-gray-800">{formatDate(event.date)}</div>
@@ -200,8 +196,8 @@ export default function CircularList({ data }) {
                                     key={pageNum}
                                     onClick={() => setPage(pageNum)}
                                     className={`w-10 h-10 rounded-xl font-semibold transition-all duration-200 ${page === pageNum
-                                            ? "bg-purple-600 text-white shadow-lg"
-                                            : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-300"
+                                        ? "bg-purple-600 text-white shadow-lg"
+                                        : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-300"
                                         }`}
                                 >
                                     {pageNum}

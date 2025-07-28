@@ -570,8 +570,8 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-3xl font-bold text-gray-900">Add {type} Details</h1>
-                <p className="text-gray-600 mt-2">
+                <h1 className="text-3xl font-novaBold text-gray-900">Add {type} Details</h1>
+                <p className="text-gray-600 mt-2 font-novaReg">
                   Create and configure your {type?.toLowerCase()} content with all necessary details
                 </p>
               </div>
@@ -586,7 +586,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                         d="M13 10V3L4 14h7v7l9-11h-7z"
                       />
                     </svg>
-                    <span className="font-semibold">Generate Meta with AI</span>
+                    <span className="font-novaSemi">Generate Meta with AI</span>
                   </div>
                 </div>
                 <button
@@ -620,12 +620,12 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-semibold text-gray-900">Basic Details</h2>
+              <h2 className="text-xl font-novaSemi text-gray-900">Basic Details</h2>
             </div>
 
             <div className={`grid grid-cols-1 md:grid-cols-2  gap-6`}>
               <div className="relative">
-                <label htmlFor="parent-page" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="parent-page" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Choose Parent Page
                   <span className="text-red-500 ml-1">*</span>
                 </label>
@@ -636,7 +636,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                     value={searchValue}
                     onChange={handleInputChange}
                     placeholder="Search and select parent page..."
-                    className="w-full border-2 border-gray-200 rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
+                    className="w-full border-2 border-gray-200 font-novaReg rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
                   />
                   <div className="absolute inset-y-0 right-0 flex items-center pr-3">
                     <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -658,7 +658,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                         onClick={() => handleSuggestionClick(page)}
                         className="cursor-pointer px-4 py-3 hover:bg-blue-50 border-b border-gray-100 last:border-b-0 transition-colors duration-150"
                       >
-                        <div className="font-semibold text-gray-800">{page.name}</div>
+                        <div className="font-novaSemi text-gray-800">{page.name}</div>
                         {page?.page_id && <div className="text-sm text-gray-500">ID: {page.page_id}</div>}
                       </div>
                     ))}
@@ -675,7 +675,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                 )}
               </div>
               <div className="relative">
-                <label htmlFor="schoolSearch" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="schoolSearch" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Search School
                   <span className="text-red-500 ml-1">*</span>
                 </label>
@@ -687,7 +687,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onFocus={() => setShowSchoolDropdown(true)}
                     placeholder="Search and select school..."
-                    className="w-full border-2 border-gray-200 rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
+                    className="w-full border-2 border-gray-200 font-novaReg rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
                   />
                   <div className="absolute inset-y-0 right-0 flex items-center pr-3">
                     <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -710,7 +710,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                           onClick={() => handleSchoolSelect(school)}
                           className="cursor-pointer px-4 py-3 hover:bg-blue-50 border-b border-gray-100 last:border-b-0 transition-colors duration-150"
                         >
-                          <div className="font-semibold text-gray-800">{school.name}</div>
+                          <div className="font-novaSemi text-gray-800">{school.name}</div>
                         </div>
                       ))}
                   </div>
@@ -732,13 +732,13 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-semibold text-gray-900">Page Details</h2>
+              <h2 className="text-xl font-novaSemi text-gray-900">Page Details</h2>
             </div>
 
             <div className="space-y-6">
               <div className={`grid grid-cols-1 ${type === "Page" ? "md:grid-cols-3" : "md:grid-cols-2"}  gap-6`}>
                 <div>
-                  <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label htmlFor="name" className="block text-sm font-novaSemi text-gray-700 mb-2">
                     Page Title <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -749,12 +749,12 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                     onChange={handleChange}
                     required
                     disabled
-                    className="w-full px-4 cursor-not-allowed py-3 border text-gray-600 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-4 cursor-not-allowed py-3 border border-gray-300 font-novaReg text-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     placeholder="Enter page title"
                   />
                 </div>
                 <div>
-                  <label htmlFor="date" className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label htmlFor="date" className="block text-sm font-novaSemi text-gray-700 mb-2">
                     Page Date <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -764,12 +764,12 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                     value={formData.date}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   />
                 </div>
                 {type === "Page" && (
                   <div>
-                    <label htmlFor="type" className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label htmlFor="type" className="block text-sm font-novaSemi text-gray-700 mb-2">
                       Page Type <span className="text-red-500">*</span>
                     </label>
                     <select
@@ -777,7 +777,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                       name="type"
                       value={formData.type}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     >
                       <option value="">Select Page Type</option>
                       <option value="Page">Page</option>
@@ -802,15 +802,15 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-semibold text-gray-900">Content</h2>
+              <h2 className="text-xl font-novaSemi text-gray-900">Content</h2>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Short Description <span className="text-red-500">*</span>
                 </label>
-                <div className="border border-gray-300 rounded-lg overflow-hidden">
+                <div className="border border-gray-300 font-novaReg rounded-lg overflow-hidden">
                   <JoditEditor
                     value={formData.shortdesc}
                     onBlur={handleShortDescChange}
@@ -818,10 +818,10 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Page Description <span className="text-red-500">*</span>
                 </label>
-                <div className="border border-gray-300 rounded-lg overflow-hidden">
+                <div className="border border-gray-300 font-novaReg rounded-lg overflow-hidden">
                   <JoditEditor
                     value={formData.description}
                     onBlur={handleDescChange}
@@ -844,12 +844,12 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-semibold text-gray-900">Tags & Configuration</h2>
+              <h2 className="text-xl font-novaSemi text-gray-900">Tags & Configuration</h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div>
-                <label htmlFor="tag1" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="tag1" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Tag 1
                 </label>
                 <input
@@ -858,12 +858,12 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   name="tag1"
                   value={formData.tag1}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="Enter tag"
                 />
               </div>
               <div>
-                <label htmlFor="tag2" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="tag2" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Tag 2
                 </label>
                 <input
@@ -872,12 +872,12 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   name="tag2"
                   value={formData.tag2}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="Enter tag"
                 />
               </div>
               <div>
-                <label htmlFor="tag3" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="tag3" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Tag 3
                 </label>
                 <input
@@ -886,12 +886,12 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   name="tag3"
                   value={formData.tag3}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="Enter tag"
                 />
               </div>
               <div>
-                <label htmlFor="featured_status" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="featured_status" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Featured Status
                 </label>
                 <select
@@ -899,7 +899,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   name="featured_status"
                   value={formData.featured_status}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                 >
                   <option value="">Select Status</option>
                   <option value="Yes">Yes</option>
@@ -909,7 +909,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
               <div>
-                <label htmlFor="video_url" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="video_url" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Video URL
                 </label>
                 <input
@@ -918,7 +918,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   name="video_url"
                   value={formData.video_url}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="https://example.com/video"
                 />
               </div>
@@ -938,10 +938,10 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-semibold text-gray-900">Media Upload</h2>
+              <h2 className="text-xl font-novaSemi text-gray-900">Media Upload</h2>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 font-novaSemi">
               <FileUploadField
                 id="banner_img"
                 label="Banner Image"
@@ -976,7 +976,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
               />
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6 font-novaSemi">
               <FileUploadField
                 id="highlightBanner"
                 label="Highlight Banner"
@@ -988,7 +988,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
               />
 
               <div className="space-y-2">
-                <label htmlFor="galleryimg" className="block text-sm font-semibold text-gray-700">
+                <label htmlFor="galleryimg" className="block text-sm font-novaSemi text-gray-700">
                   Gallery Images
                 </label>
                 <div className="border-2 border-dashed border-gray-300 hover:border-blue-400 transition-colors rounded-lg p-6 text-center bg-gray-50 hover:bg-gray-100">
@@ -1070,12 +1070,12 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-semibold text-gray-900">SEO Meta Information</h2>
+              <h2 className="text-xl font-novaSemi text-gray-900">SEO Meta Information</h2>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <div>
-                <label htmlFor="metatitle" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="metatitle" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Meta Title <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -1084,13 +1084,13 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   name="metatitle"
                   value={formData.metatitle}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="Enter meta title"
                 />
                 <p className="text-xs text-gray-500 mt-1">Recommended: 50-60 characters</p>
               </div>
               <div>
-                <label htmlFor="metadesc" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="metadesc" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Meta Description <span className="text-red-500">*</span>
                 </label>
                 <textarea
@@ -1099,13 +1099,13 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   rows={3}
                   value={formData.metadesc}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
+                  className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
                   placeholder="Enter meta description"
                 />
                 <p className="text-xs text-gray-500 mt-1">Recommended: 150-160 characters</p>
               </div>
               <div>
-                <label htmlFor="keywords_tag" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="keywords_tag" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Keywords <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -1114,7 +1114,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   name="keywords_tag"
                   value={formData.keywords_tag}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="keyword1, keyword2, keyword3"
                 />
                 <p className="text-xs text-gray-500 mt-1">Separate keywords with commas</p>
@@ -1126,15 +1126,15 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-lg font-semibold text-gray-900">Ready to Submit?</h3>
-                <p className="text-gray-600 mt-1">Review all information before submitting the page</p>
+                <h3 className="text-lg font-novaSemi text-gray-900">Ready to Submit?</h3>
+                <p className="text-gray-600 mt-1 font-novaReg">Review all information before submitting the page</p>
               </div>
               <button
                 type="submit"
                 disabled={
                   submitting || Object.values(uploadingStates).some(Boolean) || galleryUploadingIndexes.length > 0
                 }
-                className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-lg hover:from-green-600 hover:to-green-700 focus:ring-4 focus:ring-green-200 transition-all duration-200 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-novaSemi rounded-lg hover:from-green-600 hover:to-green-700 focus:ring-4 focus:ring-green-200 transition-all duration-200 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
                 {submitting ? (
                   <>

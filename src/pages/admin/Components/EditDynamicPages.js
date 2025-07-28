@@ -1303,7 +1303,7 @@ function EditDynamicPages({ type, componentType }) {
               <h2 className="text-xl font-novaSemi text-gray-900">Media Upload</h2>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 font-novaSemi">
               <EnhancedFileUpload
                 id="banner_img"
                 label="Banner Image"
@@ -1341,7 +1341,7 @@ function EditDynamicPages({ type, componentType }) {
               />
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6 font-novaSemi">
               <EnhancedFileUpload
                 id="highlightBanner"
                 label="Highlight Banner"

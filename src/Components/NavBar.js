@@ -1,10 +1,8 @@
 "use client";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from 'next/navigation';
-import { faAmazon, faGoogle, faMicrosoft, faShopify, } from "@fortawesome/free-brands-svg-icons";
 import { useState, useEffect } from "react";
 import { Bars2Icon, PhoneIcon, } from "@heroicons/react/20/solid";
-import { About, Academics, Admissions, CampusLife, ResearchInnovation, Placements, Programs,News } from "../Json/MenuItem";
+import { About, Academics, Admissions, CampusLife, ResearchInnovation, Placements, Programs } from "../Json/MenuItem";
 import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import gsap from 'gsap';
@@ -196,10 +194,11 @@ export default function NavBar() {
                 </Swiper>
               </div>
               <div className="hidden lg:flex gap-10  justify-start max-xl:gap-8  text-[13px] font-novaLight whitespace-nowrap">
-                <a href="#" className="leading-6 text-sm font-bold uppercase text-white hover:underline hover:text-gray-400 transition duration-500">Campus</a>
-                <a href="#" className="leading-6 text-sm font-bold uppercase text-white hover:underline hover:text-gray-400 transition duration-500">Library</a>
-                <a href="#" className="leading-6 text-sm font-bold uppercase text-white hover:underline hover:text-gray-400 transition duration-500">Student Services</a>
-                <a href="#" className="leading-6 text-sm font-bold uppercase text-white hover:underline hover:text-gray-400 transition duration-500">Contact us</a>
+                <Link href="/news" className="leading-6 text-sm font-bold uppercase text-white hover:underline hover:text-gray-400 transition duration-500">News</Link>
+                <Link href="/campus-life" className="leading-6 text-sm font-bold uppercase text-white hover:underline hover:text-gray-400 transition duration-500">Campus</Link>
+                <Link href="#" className="leading-6 text-sm font-bold uppercase text-white hover:underline hover:text-gray-400 transition duration-500">Library</Link>
+                <Link href="#" className="leading-6 text-sm font-bold uppercase text-white hover:underline hover:text-gray-400 transition duration-500">Student Services</Link>
+                <Link href="#" className="leading-6 text-sm font-bold uppercase text-white hover:underline hover:text-gray-400 transition duration-500">Contact us</Link>
               </div>
               <div className="flex justify-end">
                 <a href="tel:1800-200-0777" className="bg-cyan-500 whitespace-nowrap flex justify-center items-center gap-2 py-3 px-4">
@@ -678,12 +677,6 @@ export default function NavBar() {
                     </div>
                   </div>
                 </div>
-              </li>
-              <li className="group relative">
-                <button onClick={() => router.push('/news')} className={`navlinks relative px-3 max-xl:px-1 ${isScrolled ? "py-3" : "py-3"}  focus:outline-none text-gray-700 font-novaBold text-sm max-[1600px]:text-sm flex items-center gap-1 whitespace-nowrap`}>
-                  News{" "}
-                 <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
-                </button>
               </li>
             </ul>
           </nav>

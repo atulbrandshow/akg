@@ -12,19 +12,29 @@ export default function EditPath({ pageId }) {
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-
   useEffect(() => {
-    if (pageId) {
-      fetch(`${API_NODE_URL}edit-path/${pageId}`)
-        .then((res) => res.json())
-        .then((data) => {
-          if (data?.name) setTitle(data.name);
-          if (data?.path) setPath(data.path);
-          if (data?.parent_id) setParentId(data.parent_id);
-        })
-        .catch((err) => console.error("Error fetching page data:", err));
-    }
+    const fetchPageData = async () => {
+      if (!pageId) return;
+
+      try {
+        const response = await fetch(`${API_NODE_URL}edit-path/${pageId}`, {
+          method: "GET",
+          credentials: "include", // This ensures cookies or auth headers are sent
+        });
+
+        const data = await response.json();
+
+        if (data?.name) setTitle(data.name);
+        if (data?.path) setPath(data.path);
+        if (data?.parent_id) setParentId(data.parent_id);
+      } catch (err) {
+        console.error("Error fetching page data:", err);
+      }
+    };
+
+    fetchPageData();
   }, [pageId]);
+
 
   const handleUpdate = async () => {
     setLoading(true);
@@ -64,11 +74,10 @@ export default function EditPath({ pageId }) {
       {/* Message Box */}
       {message && (
         <div
-          className={`px-4 py-2 rounded text-sm font-medium ${
-            message.startsWith("✅")
+          className={`px-4 py-2 rounded text-sm font-medium ${message.startsWith("✅")
               ? "bg-green-100 text-green-800"
               : "bg-red-100 text-red-800"
-          }`}
+            }`}
         >
           {message}
         </div>

@@ -38,29 +38,29 @@ function Widget({ type, stream, limit }) {
 
     if (loading) return <div className="text-center py-10">Loading...</div>;
     if (type === "News") {
-        return <NewsWidget type="News" initialShowCount={limit} newsData={widgetData || []} />
+        return <WidgetDetails type="News" initialShowCount={limit} newsData={widgetData || []} />
     }
     if (type === "Event") {
-        return <NewsWidget type="Event" initialShowCount={limit} newsData={widgetData || []} />
+        return <WidgetDetails type="Event" initialShowCount={limit} newsData={widgetData || []} />
     }
     if (type === "Download Center") {
-        return <NewsWidget type="Download Center" initialShowCount={limit} newsData={widgetData || []} />
+        return <WidgetDetails type="Download Center" initialShowCount={limit} newsData={widgetData || []} />
     }
     if (type === "Circular") {
-        return <NewsWidget type="Circular" initialShowCount={limit} newsData={widgetData || []} />
+        return <WidgetDetails type="Circular" initialShowCount={limit} newsData={widgetData || []} />
     }
     if (type === "Article") {
-        return <NewsWidget type="Article" initialShowCount={limit} newsData={widgetData || []} />
+        return <WidgetDetails type="Article" initialShowCount={limit} newsData={widgetData || []} />
     }
     if (type === "Announcement") {
-        return <NewsWidget type="Announcement" initialShowCount={limit} newsData={widgetData || []} />
+        return <WidgetDetails type="Announcement" initialShowCount={limit} newsData={widgetData || []} />
     }
     return (
-        <NewsWidget type="News" initialShowCount={limit} newsData={widgetData || []} />
+        <WidgetDetails type="News" initialShowCount={limit} newsData={widgetData || []} />
     );
 }
 
-function NewsWidget({ type = "News", initialShowCount = 3, newsData = [] }) {
+function WidgetDetails({ type = "News", initialShowCount = 3, newsData = [] }) {
     const [showAll, setShowAll] = useState(false);
 
     const filteredNews = newsData.filter((item) => item.type === type);

@@ -19,7 +19,6 @@ function Widget({ type, stream, limit }) {
 
                 const res = await fetch(`${API_NODE_URL}widget?${queryParams}`);
                 const result = await res.json();
-                console.log(result);
 
                 if (result.status) {
                     setWidgetData(result.data || []);

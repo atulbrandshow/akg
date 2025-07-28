@@ -96,7 +96,6 @@ export default function PageDetailsForm({ page_id }) {
           credentials: "include",
         });
         const result = await response.json();
-        console.log("Parent Page Name:", result?.data?.name);
         return result?.data?.name || "";
       } catch (err) {
         console.error("Error fetching parent:", err);
@@ -119,8 +118,6 @@ export default function PageDetailsForm({ page_id }) {
           }
         );
         const data = await response.json();
-        console.log(data);
-
         if (data.status) {
           const parent_id = data?.data?.parent_id;
           const parentPageName =
@@ -220,12 +217,6 @@ export default function PageDetailsForm({ page_id }) {
 
     fetchPageData();
   }, [page_id]);
-
-  useEffect(() => {
-    console.log(formData);
-  }, [formData])
-
-
   
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -264,8 +255,6 @@ export default function PageDetailsForm({ page_id }) {
       alert("Form data is not ready!");
       return;
     }
-
-    console.log(formData);
 
     try {
       const response = await fetch(`${API_NODE_URL}slug/update`, {

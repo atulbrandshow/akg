@@ -50,12 +50,10 @@ function EditFaculty() {
             profilePicture: null,
             socialLinks: faculty.socialLinks || "",
           })
-          console.log(faculty?.department?.map((dept) => dept._id));
           
           setSelectedSchool(faculty.school?.[0] || null)
           setSelectedDepartments(faculty.department || [])
           setSearchQuery1(faculty.school?.[0]?.name || "")
-          console.log(faculty);
           
           setDepartmentSuggestions(faculty.school?.[0]?.departments || [])
         } else {
@@ -316,8 +314,6 @@ function EditFaculty() {
                     <div className="border border-gray-300 rounded-xl bg-gray-50 p-4 max-h-48 overflow-y-auto">
                       <div className="space-y-2">
                         {departmentSuggestions.map((dept, index) => (
-                          console.log(dept),
-
                           <label
                             key={index}
                             className="flex items-center space-x-3 p-2 hover:bg-white rounded-lg cursor-pointer transition-colors duration-150"

@@ -86,7 +86,6 @@ const CreateHighlightBanner = () => {
 
   const uploadBannerImage = async (file) => {
     const urls = await uploadImages([file], 'HighlightBanner')
-    console.log(urls[0]);
     return urls[0] || false
   };
 
@@ -321,8 +320,6 @@ const CreateHighlightBanner = () => {
         formDataToSend._id = editId;
       }
 
-      console.log(formDataToSend);
-
       const url = isEdit
         ? `${API_NODE_URL}highlight-banner/update`
         : `${API_NODE_URL}highlight-banner`;
@@ -336,9 +333,7 @@ const CreateHighlightBanner = () => {
         credentials: "include",
       });
 
-
       const result = await response.json();
-      console.log(result);
 
       if (result.status) {
         toast.success(`Highlight banner ${isEdit ? 'updated' : 'added'} successfully!`);

@@ -1,23 +1,11 @@
 // utils/uploadImages.js
 import { API_NODE_URL } from "@/configs/config";
 
-// Folder name constants
-export const FOLDER_NAMES = {
-  BANNER: "bannerImage",
-  PROFILE: "profileImage",
-  GALLERY: "gallery",
-  LOGO: "logoImage",
-};
-
-export async function uploadImages(files, folderName = "") {
+export async function uploadImages(files) {
   const formData = new FormData();
 
   for (const file of files) {
     formData.append("files", file);
-  }
-
-  if (folderName) {
-    formData.append("folderName", folderName);
   }
 
   try {

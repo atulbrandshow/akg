@@ -15,8 +15,6 @@ const CSEForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        // Handle form submission
-        console.log(formData)
     }
     return (
         <div className="max-w-xl w-full bg-white rounded-lg shadow-lg p-6 space-y-6">

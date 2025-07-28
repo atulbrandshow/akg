@@ -19,8 +19,6 @@ const SideBarLink = [
 ]
 
 function Default({ data }) {
-    console.log(data);
-
     return (
         // <div className='max-w-7xl mx-auto h-max p-10 flex flex-col gap-5'>
         //     {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}

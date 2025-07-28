@@ -113,12 +113,10 @@ const ExtraParamsManager = () => {
 
   // Fetch used holders for a specific page
   const fetchUsedHolders = async (pageid) => {
-    console.log(pageid)
     if (!pageid) return
     try {
       const response = await fetch(`${API_NODE_URL}extra-component-data/used-holders/${pageid}`)
       const result = await response.json();
-      console.log(result);
 
       if (result.status) {
         setUsedHolders(result.data || [])

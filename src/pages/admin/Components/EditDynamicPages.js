@@ -261,9 +261,8 @@ const EnhancedFileUpload = ({
         <input type="file" id={id} accept={accept} onChange={onChange} className="hidden" disabled={isUploading} />
         <label
           htmlFor={id}
-          className={`mt-4 inline-flex items-center px-4 py-2 text-white text-sm font-medium rounded-lg cursor-pointer transition-colors ${
-            isUploading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
-          }`}
+          className={`mt-4 inline-flex items-center px-4 py-2 text-white text-sm font-medium rounded-lg cursor-pointer transition-colors ${isUploading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
+            }`}
         >
           {isUploading ? (
             <>
@@ -298,13 +297,12 @@ const EnhancedFileUpload = ({
   )
 }
 
-function EditDynamicPages({ type }) {
+function EditDynamicPages({ type, componentType }) {
   const searchParams = useSearchParams()
   const page_id = searchParams.get("page_id")
   const router = useRouter()
   const editor = useRef()
   const [loading, setLoading] = useState(true)
-  const [componentType, setComponentType] = useState("")
   const [submitting, setSubmitting] = useState(false)
   const [searchValue, setSearchValue] = useState("")
   const [showDropdown, setShowDropdown] = useState(false)
@@ -317,6 +315,7 @@ function EditDynamicPages({ type }) {
   const [programInput, setProgramInput] = useState("")
   const [showSchoolDropdown, setShowSchoolDropdown] = useState(false)
   const [schools, setSchools] = useState([]) // State to hold school options
+  const [compType, setCompType] = useState("");
 
   const [componentSearchValue, setComponentSearchValue] = useState("")
   const [showComponentDropdown, setShowComponentDropdown] = useState(false)
@@ -613,7 +612,7 @@ function EditDynamicPages({ type }) {
           const parentPageName = parent_id !== 0 ? await fetchParent(parent_id) : "This is Main page"
           await fecthSchoolDetails(data?.data?.stream)
           setSearchValue(parentPageName)
-          setComponentType(data?.data?.ComponentType)
+          setCompType(data?.data?.ComponentType);
           setComponentSearchValue(data?.data?.ComponentType)
           setFormData({
             page_id: data?.data?.page_id || "",
@@ -825,11 +824,19 @@ function EditDynamicPages({ type }) {
       return
     }
 
+    if (!streamId) {
+      toast.warning("Please select stream");
+      return;
+    }
+
     const payload = {
       ...formData,
       stream: streamId,
-      ComponentType: selectedComponentType || componentType,
+      ComponentType: compType || selectedComponentType || componentType,
     }
+
+    console.log(payload);
+    
 
     setSubmitting(true)
     try {
@@ -1381,11 +1388,10 @@ function EditDynamicPages({ type }) {
                   />
                   <label
                     htmlFor="galleryimg"
-                    className={`mt-4 inline-flex items-center px-4 py-2 text-white text-sm font-medium rounded-lg cursor-pointer transition-colors ${
-                      galleryUploadingIndexes.length > 0
+                    className={`mt-4 inline-flex items-center px-4 py-2 text-white text-sm font-medium rounded-lg cursor-pointer transition-colors ${galleryUploadingIndexes.length > 0
                         ? "bg-gray-400 cursor-not-allowed"
                         : "bg-blue-600 hover:bg-blue-700"
-                    }`}
+                      }`}
                   >
                     {galleryUploadingIndexes.length > 0 ? (
                       <>

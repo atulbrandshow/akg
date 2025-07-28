@@ -9,7 +9,7 @@ export default function Home() {
         <SideBar />
         <div className="pt-10 px-10 overflow-x-auto w-full h-screen">
           <Suspense fallback={<div>Loading...</div>}>
-            <EditDynamicPages type="Event" />
+            <EditDynamicPages type="Event" componentType="event-details" />
           </Suspense>
         </div>
       </div>

@@ -195,8 +195,8 @@ export default function NavBar() {
               </div>
               <div className="hidden lg:flex gap-10  justify-start max-xl:gap-8  text-[13px] font-novaLight whitespace-nowrap">
                 <Link href="/news" className="leading-6 text-sm font-bold uppercase text-white hover:underline hover:text-gray-400 transition duration-500">News</Link>
+                <Link href="/events" className="leading-6 text-sm font-bold uppercase text-white hover:underline hover:text-gray-400 transition duration-500">Event</Link>
                 <Link href="/campus-life" className="leading-6 text-sm font-bold uppercase text-white hover:underline hover:text-gray-400 transition duration-500">Campus</Link>
-                <Link href="#" className="leading-6 text-sm font-bold uppercase text-white hover:underline hover:text-gray-400 transition duration-500">Library</Link>
                 <Link href="#" className="leading-6 text-sm font-bold uppercase text-white hover:underline hover:text-gray-400 transition duration-500">Student Services</Link>
                 <Link href="#" className="leading-6 text-sm font-bold uppercase text-white hover:underline hover:text-gray-400 transition duration-500">Contact us</Link>
               </div>

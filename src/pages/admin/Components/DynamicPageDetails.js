@@ -861,7 +861,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
               <div>
                 <label htmlFor="video_url" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Video URL
+                  URL
                 </label>
                 <input
                   type="url"
@@ -870,7 +870,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   value={formData.video_url}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  placeholder="https://example.com/video"
+                  placeholder="https://example.com"
                 />
               </div>
             </div>

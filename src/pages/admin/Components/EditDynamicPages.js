@@ -622,7 +622,7 @@ function EditDynamicPages({ type, componentType }) {
         const response = await fetch(`${API_NODE_URL}slug/getbyid?page_id=${page_id}`, {
           credentials: "include",
         })
-        const data = await response.json()
+        const data = await response.json();
 
         if (data.status) {
           const parent_id = data?.data?.parent_id
@@ -643,60 +643,60 @@ function EditDynamicPages({ type, componentType }) {
             description: data?.data?.description || "",
             param1: data?.data?.param1 || "",
             paramvalue1: data?.data?.paramvalue1 || "",
-            param_img1: "",
+            param_img1: data?.data?.param_img1 || "",
             param_url1: data?.data?.param_url1 || "",
             param2: data?.data?.param2 || "",
             paramvalue2: data?.data?.paramvalue2 || "",
-            param_img2: "",
+            param_img2: data?.data?.param_img2 || "",
             param_url2: data?.data?.param_url2 || "",
             param3: data?.data?.param3 || "",
             paramvalue3: data?.data?.paramvalue3 || "",
-            param_img3: "",
+            param_img3: data?.data?.param_img3 || "",
             param_url3: data?.data?.param_url3 || "",
             param4: data?.data?.param4 || "",
             paramvalue4: data?.data?.paramvalue4 || "",
-            param_img4: "",
+            param_img4: data?.data?.param_img4 || "",
             param_url4: data?.data?.param_url4 || "",
             param5: data?.data?.param5 || "",
             paramvalue5: data?.data?.paramvalue5 || "",
-            param_img5: "",
+            param_img5: data?.data?.param_img5 || "",
             param_url5: data?.data?.param_url5 || "",
             param6: data?.data?.param6 || "",
             paramvalue6: data?.data?.paramvalue6 || "",
-            param_img6: "",
+            param_img6: data?.data?.param_img6 || "",
             param_url6: data?.data?.param_url6 || "",
             param7: data?.data?.param7 || "",
             paramvalue7: data?.data?.paramvalue7 || "",
-            param_img7: "",
+            param_img7: data?.data?.param_img7 || "",
             param_url7: data?.data?.param_url7 || "",
             param8: data?.data?.param8 || "",
             paramvalue8: data?.data?.paramvalue8 || "",
-            param_img8: "",
+            param_img8: data?.data?.param_img8 || "",
             param_url8: data?.data?.param_url8 || "",
             param9: data?.data?.param9 || "",
             paramvalue9: data?.data?.paramvalue9 || "",
-            param_img9: "",
+            param_img9: data?.data?.param_img9 || "",
             param_url9: data?.data?.param_url9 || "",
             param10: data?.data?.param10 || "",
             paramvalue10: data?.data?.paramvalue10 || "",
-            param_img10: "",
+            param_img10: data?.data?.param_img10 || "",
             param_url10: data?.data?.param_url10 || "",
-            banner_img: "",
+            banner_img: data?.data?.banner_img || "",
             tag1: data?.data?.tag1 || "",
             tag2: data?.data?.tag2 || "",
             tag3: data?.data?.tag3 || "",
             schemaid: data?.data?.schemaid || "",
             nic_name: data?.data?.nic_name || "",
-            featured_img: "",
+            featured_img: data?.data?.featured_img || "",
             col_width: data?.data?.col_width || "",
             video_url: data?.data?.video_url || "",
             old_url: data?.data?.old_url || "",
             featured_status: data?.data?.featured_status || "",
-            highlightBanner: "",
-            galleryimg: [],
+            highlightBanner: data?.data?.highlightBanner || "",
+            galleryimg: data.data.galleryimg || [],
             type: data.data.type || "",
-            mainReportImage: "",
-            downloadCenterPdf: "",
+            mainReportImage: data?.data?.mainReportImage || "",
+            downloadCenterPdf: data?.data?.downloadCenterPdf || "",
             metatitle: data?.data?.metatitle || "",
             metadesc: data?.data?.metadesc || "",
             keywords_tag: data?.data?.keywords_tag || "",
@@ -1176,7 +1176,7 @@ function EditDynamicPages({ type, componentType }) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
               <div>
                 <label htmlFor="video_url" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Video URL
+                  URL
                 </label>
                 <input
                   type="url"
@@ -1185,7 +1185,7 @@ function EditDynamicPages({ type, componentType }) {
                   value={formData.video_url}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  placeholder="https://example.com/video"
+                  placeholder="https://example.com"
                 />
               </div>
             </div>

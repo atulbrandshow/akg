@@ -142,12 +142,12 @@ const navSections = [
   },
 ]
 
-export default function SideBar({ user, onLogout }) {
+export default function SideBar({ onLogout }) {
   const router = useRouter()
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(true)
   const [expandedSections, setExpandedSections] = useState({})
-  const [expandedNavSections, setExpandedNavSections] = useState({ 0: true }) // Dashboard section expanded by default
+  const [expandedNavSections, setExpandedNavSections] = useState({ 0: true, 1: true, 2: true, 3: true }) // Dashboard section expanded by default
 
   useEffect(() => {
     const userDataDATA = localStorage.getItem("user")
@@ -215,7 +215,7 @@ export default function SideBar({ user, onLogout }) {
             <Image src="/image/AKGEC_LOGO.webp" className="rounded-full" height={50} width={50} alt="AKG Logo" />
           </div>
           <div>
-            <h1 className="text-xl font-novaBold">Admin Panel</h1>
+            <h1 className="text-xl font-novaBold whitespace-nowrap">Admin Panel</h1>
             <p className="text-xs text-gray-400 font-novaReg">Management System</p>
           </div>
         </div>
@@ -283,7 +283,7 @@ export default function SideBar({ user, onLogout }) {
 
               {/* Collapsible Section Items */}
               <div
-                className={`overflow-hidden transition-all duration-300 ${expandedNavSections[sectionIndex] ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                className={`overflow-y-auto scrollbar-hidden transition-all duration-300 ${expandedNavSections[sectionIndex] ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
                   }`}
               >
                 <ul className="space-y-2 mb-4">
@@ -303,8 +303,8 @@ export default function SideBar({ user, onLogout }) {
                           <div
                             onClick={() => toggleSection(sectionIndex, itemIndex)}
                             className={`p-3 flex justify-between items-center rounded-lg cursor-pointer transition-colors duration-200 ${expandedSections[`${sectionIndex}-${itemIndex}`]
-                                ? "bg-gray-700 text-white"
-                                : "hover:bg-gray-700 text-gray-300"
+                              ? "bg-gray-700 text-white"
+                              : "hover:bg-gray-700 text-gray-300"
                               }`}
                           >
                             <div className="flex items-center">
@@ -325,8 +325,8 @@ export default function SideBar({ user, onLogout }) {
                           {/* Nested Links */}
                           <ul
                             className={`mt-2 space-y-1 overflow-hidden transition-all duration-300 ${expandedSections[`${sectionIndex}-${itemIndex}`] && isOpen
-                                ? "max-h-96 opacity-100"
-                                : "max-h-0 opacity-0"
+                              ? "max-h-96 opacity-100"
+                              : "max-h-0 opacity-0"
                               }`}
                           >
                             {item.nestedLinks.map((nestedItem, nestedIndex) => (
@@ -334,8 +334,8 @@ export default function SideBar({ user, onLogout }) {
                                 <Link
                                   href={nestedItem.href}
                                   className={`pl-11 pr-3 py-2 block rounded-lg font-novaSemi text-sm transition-colors duration-200 ${isActive(nestedItem.href)
-                                      ? "bg-blue-500 text-white shadow-md"
-                                      : "text-gray-300 hover:bg-gray-600 hover:text-white"
+                                    ? "bg-blue-500 text-white shadow-md"
+                                    : "text-gray-300 hover:bg-gray-600 hover:text-white"
                                     }`}
                                 >
                                   {nestedItem.label}

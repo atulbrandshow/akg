@@ -71,7 +71,7 @@ const StickyFooter = ({ data, ShowState }) => {
                 announcements.map((announcement, index) => (
                   <span key={index} className="mr-10">
                     {announcement.link ? (
-                      <Link href={announcement.link} target="_blank" className="hover:underline text-white">
+                      <Link href={announcement.link} target="_blank" className="cursor-pointer text-white">
                         {announcement.title}
                       </Link>
                     ) : (

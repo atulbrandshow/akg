@@ -1,7 +1,7 @@
 "use client"
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { useRouter, usePathname } from "next/navigation"
 import {
   Home,
   School,
@@ -21,6 +21,7 @@ import {
   Waypoints,
 } from "lucide-react"
 import { API_NODE_URL } from "@/configs/config"
+import Image from "next/image"
 
 const navSections = [
   {
@@ -141,8 +142,9 @@ const navSections = [
   },
 ]
 
-export default function SideBar({ trigger, setTrigger }) {
+export default function SideBar({ user, onLogout }) {
   const router = useRouter()
+  const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(true)
   const [expandedSections, setExpandedSections] = useState({})
   const [expandedNavSections, setExpandedNavSections] = useState({ 0: true }) // Dashboard section expanded by default
@@ -152,7 +154,7 @@ export default function SideBar({ trigger, setTrigger }) {
     if (!userDataDATA) {
       router.push("/admin")
     }
-  }, [])
+  }, [router])
 
   const toggleSection = (sectionIndex, itemIndex) => {
     const key = `${sectionIndex}-${itemIndex}`
@@ -169,20 +171,34 @@ export default function SideBar({ trigger, setTrigger }) {
     }))
   }
 
-  const isActive = (href) => router.pathname === href
+  const isActive = (href) => pathname === href
 
-  const handleClick = async () => {
+  const handleLogoutClick = async () => {
+    if (!window.confirm("Are you sure you want to logout?")) {
+      return
+    }
+
     try {
       const res = await fetch(`${API_NODE_URL}auth/logout`, {
-        credentials: "include"
-      });
+        credentials: "include",
+      })
+
       if (res.status === 200) {
         localStorage.removeItem("user")
+        onLogout() // Call the parent logout handler
         router.push("/admin")
-        setTrigger(!trigger);
+      } else {
+        // Even if server logout fails, clear local storage and logout
+        localStorage.removeItem("user")
+        onLogout()
+        router.push("/admin")
       }
     } catch (error) {
       console.error("Logout error: ", error)
+      // Fallback: clear local storage and logout even if API call fails
+      localStorage.removeItem("user")
+      onLogout()
+      router.push("/admin")
     }
   }
 
@@ -193,10 +209,20 @@ export default function SideBar({ trigger, setTrigger }) {
     >
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-gray-700">
-        <h1 className={`text-2xl font-novaBold ${isOpen ? "block" : "hidden"}`}>Admin Panel</h1>
+        {/* AKG Logo */}
+        <div className={`flex items-center space-x-3 ${isOpen ? "block" : "hidden"}`}>
+          <div className="w-10 h-10 rounded-lg flex items-center justify-center">
+            <Image src="/image/AKGEC_LOGO.webp" className="rounded-full" height={50} width={50} alt="AKG Logo" />
+          </div>
+          <div>
+            <h1 className="text-xl font-novaBold">Admin Panel</h1>
+            <p className="text-xs text-gray-400 font-novaReg">Management System</p>
+          </div>
+        </div>
+
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="hidden max-lg:block p-2 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600"
+          className="p-2 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600 transition-colors"
           aria-label={isOpen ? "Collapse sidebar" : "Expand sidebar"}
         >
           <svg
@@ -216,6 +242,23 @@ export default function SideBar({ trigger, setTrigger }) {
         </button>
       </div>
 
+      {/* User Info */}
+      {/* {isOpen && (
+        <div className="p-4 border-b border-gray-700">
+          <div className="flex items-center space-x-3">
+            <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+              <span className="text-blue-600 font-novaSemi text-sm">
+                {user?.name?.charAt(0) || user?.email?.charAt(0) || "A"}
+              </span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-novaSemi text-white truncate">{user?.name || "Admin User"}</p>
+              <p className="text-xs text-gray-400 truncate">{user?.email || "admin@akg.edu"}</p>
+            </div>
+          </div>
+        </div>
+      )} */}
+
       {/* Navigation */}
       <nav className="flex-1 overflow-y-auto scrollbar-hidden">
         <div className="p-4 space-y-1">
@@ -227,7 +270,7 @@ export default function SideBar({ trigger, setTrigger }) {
                 onClick={() => toggleNavSection(sectionIndex)}
               >
                 <div className="flex items-center justify-between px-2 py-3 rounded hover:bg-gray-700 transition-colors duration-200">
-                  <h3 className="text-sm font-novaSemi text-gray-400 uppercase">{section.title}</h3>
+                  <h3 className="text-sm font-novaSemi text-gray-400 uppercase tracking-wider">{section.title}</h3>
                   <div className="transition-transform duration-200">
                     {expandedNavSections[sectionIndex] ? (
                       <ChevronUp className="w-4 h-4 text-gray-400" />
@@ -240,7 +283,7 @@ export default function SideBar({ trigger, setTrigger }) {
 
               {/* Collapsible Section Items */}
               <div
-                className={`overflow-y-auto scrollbar-hidden transition-all duration-300 ${expandedNavSections[sectionIndex] ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                className={`overflow-hidden transition-all duration-300 ${expandedNavSections[sectionIndex] ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
                   }`}
               >
                 <ul className="space-y-2 mb-4">
@@ -249,7 +292,7 @@ export default function SideBar({ trigger, setTrigger }) {
                       {!item.nestedLinks ? (
                         <Link
                           href={item.href}
-                          className={`p-3 flex items-center rounded-lg transition-colors duration-200 ${isActive(item.href) ? "bg-blue-600 text-white" : "hover:bg-gray-700"
+                          className={`p-3 flex items-center rounded-lg transition-colors duration-200 ${isActive(item.href) ? "bg-blue-600 text-white shadow-lg" : "hover:bg-gray-700 text-gray-300"
                             }`}
                         >
                           <item.icon className={`w-5 h-5 ${isOpen ? "mr-3" : ""}`} />
@@ -259,7 +302,9 @@ export default function SideBar({ trigger, setTrigger }) {
                         <div>
                           <div
                             onClick={() => toggleSection(sectionIndex, itemIndex)}
-                            className={`p-3 flex justify-between items-center rounded-lg cursor-pointer transition-colors duration-200 ${expandedSections[`${sectionIndex}-${itemIndex}`] ? "bg-gray-700" : "hover:bg-gray-700"
+                            className={`p-3 flex justify-between items-center rounded-lg cursor-pointer transition-colors duration-200 ${expandedSections[`${sectionIndex}-${itemIndex}`]
+                                ? "bg-gray-700 text-white"
+                                : "hover:bg-gray-700 text-gray-300"
                               }`}
                           >
                             <div className="flex items-center">
@@ -280,17 +325,17 @@ export default function SideBar({ trigger, setTrigger }) {
                           {/* Nested Links */}
                           <ul
                             className={`mt-2 space-y-1 overflow-hidden transition-all duration-300 ${expandedSections[`${sectionIndex}-${itemIndex}`] && isOpen
-                              ? "max-h-96 opacity-100"
-                              : "max-h-0 opacity-0"
+                                ? "max-h-96 opacity-100"
+                                : "max-h-0 opacity-0"
                               }`}
                           >
                             {item.nestedLinks.map((nestedItem, nestedIndex) => (
                               <li key={nestedIndex}>
                                 <Link
                                   href={nestedItem.href}
-                                  className={`pl-11 pr-3 py-2 block rounded-lg font-medium text-sm transition-colors duration-200 ${isActive(nestedItem.href)
-                                    ? "bg-blue-500 text-white"
-                                    : "text-gray-300 hover:bg-gray-600 hover:text-white"
+                                  className={`pl-11 pr-3 py-2 block rounded-lg font-novaSemi text-sm transition-colors duration-200 ${isActive(nestedItem.href)
+                                      ? "bg-blue-500 text-white shadow-md"
+                                      : "text-gray-300 hover:bg-gray-600 hover:text-white"
                                     }`}
                                 >
                                   {nestedItem.label}
@@ -320,7 +365,7 @@ export default function SideBar({ trigger, setTrigger }) {
           <li>
             <Link
               href="/"
-              className="flex items-center p-3 font-medium rounded-lg hover:bg-gray-700 transition-colors duration-200"
+              className="flex items-center p-3 font-novaSemi rounded-lg hover:bg-gray-700 transition-colors duration-200 text-gray-300 hover:text-white"
             >
               <Home className={`w-5 h-5 ${isOpen ? "mr-3" : ""}`} />
               <span className={isOpen ? "block" : "hidden"}>Home</span>
@@ -328,8 +373,8 @@ export default function SideBar({ trigger, setTrigger }) {
           </li>
           <li>
             <button
-              onClick={() => handleClick()}
-              className="flex items-center w-full p-3 font-medium rounded-lg hover:bg-gray-700 transition-colors duration-200"
+              onClick={handleLogoutClick}
+              className="flex items-center w-full p-3 font-novaSemi rounded-lg hover:bg-red-600 transition-colors duration-200 text-gray-300 hover:text-white"
             >
               <LogOut className={`w-5 h-5 ${isOpen ? "mr-3" : ""}`} />
               <span className={isOpen ? "block" : "hidden"}>Logout</span>

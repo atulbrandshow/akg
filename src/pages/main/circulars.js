@@ -68,7 +68,7 @@ export default function CircularList({ data }) {
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
                     <div className="text-center">
                         <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
-                            Campus Events
+                            Campus Circulars
                         </h1>
                         <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto">
                             Discover amazing events, connect with peers, and make unforgettable memories
@@ -96,16 +96,13 @@ export default function CircularList({ data }) {
                                     </svg>
                                 </div>
                             </div>
-                            <button className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-purple-600 transform hover:scale-105 transition-all duration-300">
-                                Create Event
-                            </button>
                         </div>
                     </div>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-slate-50 to-transparent"></div>
             </div>
 
-            {/* Events Grid */}
+            {/* Circulars Grid */}
             {loading ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-10">
                     {[...Array(9)].map((_, i) => (
@@ -131,7 +128,7 @@ export default function CircularList({ data }) {
                             />
                         </svg>
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">No events found</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">No circulars found</h3>
                     <p className="text-gray-500">Try adjusting your search terms or check back later for new events</p>
                 </div>
             ) : (
@@ -232,7 +229,7 @@ export default function CircularList({ data }) {
 
             {/* Call to Action Section */}
             <div className="mt-20 bg-gradient-to-r from-purple-600 to-blue-600 rounded-3xl p-12 text-center text-white mb-10">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">Don't Miss Out on Amazing Events!</h2>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">Don't Miss Out on Amazing Circulars!</h2>
                 <p className="text-xl mb-8 text-purple-100">
                     Subscribe to our newsletter and get notified about upcoming events
                 </p>
@@ -253,7 +250,7 @@ export default function CircularList({ data }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-xl font-bold mb-4">Campus Events</h3>
+              <h3 className="text-xl font-bold mb-4">Campus Circulars</h3>
               <p className="text-gray-400">Your gateway to amazing college experiences and networking opportunities.</p>
             </div>
             <div>
@@ -261,7 +258,7 @@ export default function CircularList({ data }) {
               <ul className="space-y-2 text-gray-400">
                 <li>
                   <a href="#" className="hover:text-white transition-colors">
-                    All Events
+                    All Circulars
                   </a>
                 </li>
                 <li>
@@ -323,7 +320,7 @@ export default function CircularList({ data }) {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 College Events. All rights reserved.</p>
+            <p>&copy; 2024 College Circulars. All rights reserved.</p>
           </div>
         </div>
       </footer> */}

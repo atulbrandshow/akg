@@ -84,7 +84,7 @@ const Description = ({
   return (
     <div className={combinedClasses} {...props}>
       {typeof text === 'string' ? (
-        <p dangerouslySetInnerHTML={{ __html: text }} />
+        <p dangerouslySetInnerHTML={{ __html: text }} className="font-novaReg text-justify" />
       ) : (
         text
       )}

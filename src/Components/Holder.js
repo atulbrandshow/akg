@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Widget from "./Widget";
 
@@ -7,10 +7,6 @@ export default function Holder({ data, initialData }) {
         return <Widget key={data?._id} type={data?.widgetType} stream={initialData?.stream} limit={10} />
     }
     const descriptionRef = useRef(null);
-    const buttonRef = useRef(null);
-    const BannerRef = useRef(null);
-    const [isOpen, setIsOpen] = useState(false);
-    const [readMore, setReadMore] = useState(true);
     const cleanDescription = (html) => {
         if (!html) return "";
         return html.replace(/&nbsp;/g, " ").replace(/<p>\s*<\/p>/g, '<br />');

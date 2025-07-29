@@ -296,7 +296,7 @@ const HighlightBannerList = () => {
                             <div className="flex items-center space-x-2 text-xs text-gray-400">
                               <span className="bg-gray-100 px-2 py-1 rounded-md">{banner?.size}</span>
                               {banner?.tags?.length > 0 && (
-                                <span className="bg-blue-100 text-blue-600 px-2 py-1 rounded-md">
+                                <span title={banner?.tags.join(' , ')} className="bg-blue-100 text-blue-600 px-2 py-1 rounded-md">
                                   {banner.tags.length} tags
                                 </span>
                               )}

@@ -277,9 +277,6 @@ const HighlightBannerList = () => {
                                 src={`${IMAGE_PATH}${banner?.banner}`}
                                 alt={banner?.title}
                                 className="w-20 h-12 object-cover rounded-lg border-2 border-gray-200 shadow-sm"
-                                onError={(e) => {
-                                  e.target.src = "/placeholder.svg?height=48&width=80&text=Banner"
-                                }}
                               />
                               <div className="absolute -top-1 -right-1 w-4 h-4 bg-indigo-500 rounded-full flex items-center justify-center">
                                 <span className="text-xs text-white font-bold">{banner?.order}</span>

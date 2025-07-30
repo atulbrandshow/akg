@@ -3,6 +3,7 @@
 import Breadcrumb from "@/Components/Breadcrumb"
 import Holder from "@/Components/Holder"
 import { IMAGE_PATH } from "@/configs/config"
+import Image from "next/image"
 
 function NewsDetailPage({ data }) {
 
@@ -20,7 +21,7 @@ function NewsDetailPage({ data }) {
                             />
                         </svg>
                     </div>
-                    <h2 className="text-xl font-semibold text-gray-900 mb-2">Article Not Found</h2>
+                    <h2 className="text-xl font-novaSemi text-gray-900 mb-2">Article Not Found</h2>
                     <p className="text-gray-600">The news article you're looking for is not available.</p>
                 </div>
             </div>
@@ -43,14 +44,14 @@ function NewsDetailPage({ data }) {
                     {/* Category Badge */}
                     {data.category && (
                         <div className="mb-4">
-                            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-800 uppercase tracking-wide">
+                            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-novaSemi bg-red-100 text-red-800 uppercase tracking-wide">
                                 {data.category}
                             </span>
                         </div>
                     )}
 
                     {/* Title */}
-                    <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">{data.name}</h1>
+                    <h1 className="text-3xl md:text-4xl font-novaBold text-gray-900 leading-tight mb-6">{data.name}</h1>
 
                     {/* Article Meta */}
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between py-4 border-t border-b border-gray-200">
@@ -67,20 +68,20 @@ function NewsDetailPage({ data }) {
                                     </svg>
                                 </div>
                                 <div>
-                                    <p className="text-sm font-semibold text-gray-900">NewsHub Reporter</p>
-                                    <p className="text-xs text-gray-500">Verified Journalist</p>
+                                    <p className="text-sm font-novaSemi text-gray-900">NewsHub Reporter</p>
+                                    <p className="text-xs text-gray-500 font-novaReg">Verified Journalist</p>
                                 </div>
                             </div>
 
                             {/* Date */}
-                            <div className="text-sm text-gray-500">
+                            <div className="text-sm text-gray-500 font-novaSemi">
                                 <time dateTime={data.addedon}>{formatDate(data.addedon)}</time>
                             </div>
                         </div>
 
                         {/* Social Share */}
                         <div className="flex items-center space-x-3">
-                            <span className="text-sm text-gray-500 mr-2">Share:</span>
+                            <span className="text-sm text-gray-500 mr-2 font-novaReg">Share:</span>
                             <button className="p-2 text-gray-400 hover:text-blue-600 transition-colors duration-200">
                                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
@@ -100,24 +101,36 @@ function NewsDetailPage({ data }) {
                     </div>
                 </header>
 
-                {/* Featured Image */}
-                {data.banner_img && (
-                    <div className="mb-8">
-                        <div className="relative overflow-hidden rounded-2xl shadow-2xl">
-                            <img
-                                src={IMAGE_PATH + data.banner_img || "/placeholder.svg"}
-                                alt={data.name}
-                                className="w-full h-64 md:h-96 object-cover"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                <div className="flex justify-between">
+                    {data.banner_img && (
+                        <div className="mb-8">
+                            <div className="w-96 rounded-l-2xl overflow-hidden drop-shadow-lg h-full relative">
+                                <Image
+                                    src={IMAGE_PATH + data.banner_img || "/placeholder.svg"}
+                                    height={1000}
+                                    width={1000}
+                                    alt={data.name}
+                                    className="h-full w-96 object-cover"
+                                />
+                            </div>
                         </div>
+                    )}
+                    <div className="bg-white rounded-r-2xl drop-shadow-lg p-8 mb-8">
+                        <div
+                            className="prose prose-lg max-w-none text-gray-800 font-novaReg text-justify leading-relaxed"
+                            style={{
+                                fontSize: "18px",
+                                lineHeight: "1.8",
+                            }}
+                            dangerouslySetInnerHTML={{ __html: data.shortdesc }}
+                        />
                     </div>
-                )}
+                </div>
 
                 {/* Article Content */}
-                <div className="bg-white rounded-2xl shadow-sm p-8 mb-8">
+                <div className="bg-white rounded-2xl drop-shadow-lg p-8 mb-8">
                     <div
-                        className="prose prose-lg max-w-none text-gray-800 leading-relaxed"
+                        className="prose prose-lg max-w-none text-gray-800 font-novaReg text-justify leading-relaxed"
                         style={{
                             fontSize: "18px",
                             lineHeight: "1.8",

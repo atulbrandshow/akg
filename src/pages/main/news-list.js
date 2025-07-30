@@ -1,6 +1,7 @@
 "use client"
 
 import Breadcrumb from "@/Components/Breadcrumb"
+import Header from "@/Components/Header"
 import { API_NODE_URL, IMAGE_PATH } from "@/configs/config"
 import Link from "next/link"
 import { useEffect, useState } from "react"
@@ -73,15 +74,16 @@ function NewsListPage({ data }) {
   const filteredNews = newsData.filter((article) => selectedCategory === "all" || article.category === selectedCategory)
 
   return (
-    <div className="min-h-screen bg-gray-50 mt-20">
-      {/* Header */}
+    <div className="bg-gray-50">
+      <Header title="News & Updates" gradient={"bg-gradient-to-r from-gray-800 to-transparent"} bgUrl={data?.banner_img} custom={true} subHeading="Stay updated with the latest campus news, achievements, events, and more from across our vibrant university community."
+ />
       <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <Breadcrumb data={data?.breadCrumb} />
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+          <div className="mt-10 flex flex-col md:flex-row md:items-center md:justify-between">
             <div className="mb-4 md:mb-0">
-              <h1 className="text-4xl font-bold text-gray-900 mb-1">NewsHub</h1>
-              <p className="text-gray-600">Breaking news, latest updates & trending stories</p>
+              <h1 className="text-4xl font-novaBold text-gray-900 mb-1">NewsHub</h1>
+              <p className="text-gray-600 font-novaReg">Breaking news, latest updates & trending stories</p>
             </div>
 
             {/* Search Bar */}
@@ -89,7 +91,7 @@ function NewsListPage({ data }) {
               <input
                 type="text"
                 placeholder="Search breaking news..."
-                className="pl-12 pr-4 py-3 w-full md:w-96 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-all duration-200 bg-gray-50 focus:bg-white"
+                className="pl-12 pr-4 py-3 w-full md:w-96 border font-novaReg border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-all duration-200 bg-gray-50 focus:bg-white"
                 value={searchTerm}
                 onChange={(e) => {
                   setSearchTerm(e.target.value)
@@ -113,13 +115,13 @@ function NewsListPage({ data }) {
 
       {/* Category Filter */}
       <div className="bg-white border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex flex-wrap gap-3">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${selectedCategory === category
+                className={`px-6 py-2 rounded-full text-sm font-novaSemi transition-all duration-200 ${selectedCategory === category
                   ? "bg-red-600 text-white shadow-lg transform scale-105"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-md"
                   }`}
@@ -133,18 +135,18 @@ function NewsListPage({ data }) {
 
       {/* Breaking News Banner */}
       <div className="bg-red-600 text-white py-2">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center">
-            <span className="bg-white text-red-600 px-3 py-1 rounded-full text-xs font-bold mr-4 animate-pulse">
+            <span className="bg-white text-red-600 px-3 py-1 rounded-full text-xs font-novaBold mr-4 animate-pulse">
               BREAKING
             </span>
-            <p className="text-sm font-medium">Stay updated with the latest breaking news and developments</p>
+            <p className="text-sm font-novaSemi">Stay updated with the latest breaking news and developments</p>
           </div>
         </div>
       </div>
 
       {/* News Grid */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[...Array(9)].map((_, i) => (
@@ -170,8 +172,8 @@ function NewsListPage({ data }) {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">No news articles found</h3>
-            <p className="text-gray-500">Try adjusting your search terms or browse different categories</p>
+            <h3 className="text-xl font-novaSemi text-gray-900 mb-2">No news articles found</h3>
+            <p className="text-gray-500 font-novaReg">Try adjusting your search terms or browse different categories</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -197,7 +199,7 @@ function NewsListPage({ data }) {
                     {/* Recent Badge */}
                     {isRecent && (
                       <div className="absolute top-4 left-4">
-                        <span className="bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold animate-pulse">
+                        <span className="bg-red-600 text-white px-3 py-1 rounded-full text-xs font-novaBold animate-pulse">
                           🔥 RECENT
                         </span>
                       </div>
@@ -211,19 +213,19 @@ function NewsListPage({ data }) {
                   <div className="p-6">
                     {/* Category & Time */}
                     <div className="flex items-center justify-between mb-3">
-                      <span className="text-xs font-semibold text-red-600 uppercase tracking-wide">
+                      <span className="text-xs font-novaSemi text-red-600 uppercase tracking-wide">
                         {article.category || "General"}
                       </span>
-                      <span className="text-xs text-gray-500 font-medium">{getTimeAgo(article.date)}</span>
+                      <span className="text-xs text-gray-500 font-novaBold">{getTimeAgo(article.date)}</span>
                     </div>
 
                     {/* Title */}
-                    <h2 className="text-lg font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-red-600 transition-colors duration-200 leading-tight">
+                    <h2 className="text-lg font-novaBold text-gray-900 mb-1 line-clamp-2 group-hover:text-red-600 transition-colors duration-200 leading-tight">
                       {article.name}
                     </h2>
 
                     {/* Description */}
-                    <p className="text-gray-600 text-sm mb-4 line-clamp-3 leading-relaxed">
+                    <p className="text-gray-600 text-sm font-novaReg mb-4 line-clamp-3 leading-relaxed">
                       {stripHtml(article.description)}
                     </p>
 
@@ -239,10 +241,10 @@ function NewsListPage({ data }) {
                             />
                           </svg>
                         </div>
-                        <span className="text-xs text-gray-500 font-medium">NewsHub Reporter</span>
+                        <span className="text-xs text-gray-500 font-novaSemi">NewsHub Reporter</span>
                       </div>
 
-                      <Link href={article?.path} className="inline-flex items-center text-red-600 hover:text-red-700 font-semibold text-sm group-hover:translate-x-1 transition-transform duration-200">
+                      <Link href={article?.path} className="inline-flex items-center text-red-600 hover:text-red-700 font-novaSemi text-sm group-hover:translate-x-1 transition-transform duration-200">
                         Read More
                         <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -262,7 +264,7 @@ function NewsListPage({ data }) {
             <button
               onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
               disabled={page === 1}
-              className="flex items-center px-6 py-3 bg-white border border-gray-300 rounded-xl font-semibold text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-sm hover:shadow-md"
+              className="flex items-center px-6 py-3 bg-white border border-gray-300 rounded-xl font-novaSemi text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-sm hover:shadow-md"
             >
               <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -277,7 +279,7 @@ function NewsListPage({ data }) {
                   <button
                     key={pageNum}
                     onClick={() => setPage(pageNum)}
-                    className={`w-10 h-10 rounded-xl font-semibold transition-all duration-200 ${page === pageNum
+                    className={`w-10 h-10 rounded-xl font-novaSemi transition-all duration-200 ${page === pageNum
                       ? "bg-red-600 text-white shadow-lg"
                       : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-300"
                       }`}
@@ -299,7 +301,7 @@ function NewsListPage({ data }) {
             <button
               onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
               disabled={page === totalPages}
-              className="flex items-center px-6 py-3 bg-white border border-gray-300 rounded-xl font-semibold text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-sm hover:shadow-md"
+              className="flex items-center px-6 py-3 bg-white border border-gray-300 rounded-xl font-novaSemi text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-sm hover:shadow-md"
             >
               Next
               <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -309,26 +311,6 @@ function NewsListPage({ data }) {
           </div>
         )}
       </main>
-
-      {/* Newsletter Subscription */}
-      <section className="bg-gray-900 text-white py-16 mt-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Stay Informed</h2>
-          <p className="text-gray-300 mb-8 text-lg">
-            Get the latest news delivered straight to your inbox. Never miss a breaking story.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-4 py-3 rounded-xl border-0 text-gray-900 focus:ring-2 focus:ring-red-500 outline-none"
-            />
-            <button className="px-8 py-3 bg-red-600 hover:bg-red-700 rounded-xl font-semibold transition-colors duration-200">
-              Subscribe
-            </button>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }

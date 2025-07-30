@@ -16,7 +16,6 @@ export async function uploadImages(files) {
     });
 
     const data = await response.json();
-    console.log(data);
     
     if (!response.ok) {
       throw new Error(data.message || "Image upload failed");

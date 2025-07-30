@@ -107,7 +107,7 @@ export default function NavBar() {
 
   return (
     <header
-      className={`navbar z-[100] w-full sticky top-0 left-0 bg-[#F7F7F7] transition-all duration-200 shadow-lg`}>
+      className={`navbar z-[100] w-full sticky top-0 left-0 bg-[#F7F7F7] transition-all duration-200 shadow-lg overflow-hidden`}>
       <div className="grid grid-cols-8 max-xl:grid-cols-12 max-lg:grid-cols-12 max-md:grid-cols-12 gap-x-5 max-[1320px]:gap-x-0 max-md:gap-x-2">
         <div className="col-span-2 flex max-xl:col-span-3 max-lg:col-span-6 max-md:col-span-7 max-sm:col-span-7">
           <div

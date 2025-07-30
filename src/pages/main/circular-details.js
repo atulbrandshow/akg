@@ -41,7 +41,7 @@ export default function CircularDetailPage({ data }) {
     }
 
     return (
-        <div className="bg-gradient-to-br from-amber-50 to-yellow-100 min-h-screen">
+        <div className="bg-gradient-to-br from-amber-50 to-yellow-100">
             {/* Hero Section with Breadcrumb */}
             <div className="bg-gradient-to-r from-blue-600 to-blue-600 text-white">
                 <div className="max-w-7xl mx-auto px-4 py-6">
@@ -68,12 +68,12 @@ export default function CircularDetailPage({ data }) {
 
                         {/* Title and Meta */}
                         <div className="flex-1">
-                            <div className="flex items-center mb-4">
+                            <div className="flex items-center mb-3">
                                 <span className="bg-red-600 text-white px-4 py-1 rounded-full text-xs font-novaBold mr-4">
                                     IMPORTANT NOTICE
                                 </span>
                             </div>
-                            <h1 className="text-2xl md:text-4xl font-novaBold leading-tight mb-4">{data.name}</h1>
+                            <h1 className="text-2xl md:text-4xl font-novaBold leading-tight mb-3">{data.name}</h1>
                             <div className="flex items-center text-white/90 font-novaReg">
                                 <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                     <path
@@ -90,7 +90,7 @@ export default function CircularDetailPage({ data }) {
             </div>
 
             {/* Main Content */}
-            <div className="max-w-7xl mx-auto px-4 -mt-8 pb-16">
+            <div className="max-w-7xl mx-auto px-4 mt-8 pb-16">
                 <div className="grid lg:grid-cols-4 gap-8">
                     {/* Sidebar - Details Card */}
                     <div className="lg:col-span-1">

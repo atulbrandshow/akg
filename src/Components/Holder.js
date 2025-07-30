@@ -1,10 +1,25 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Widget from "./Widget";
+import HighlightBanner from "./HighLightBanner";
 
 export default function Holder({ data, initialData }) {
     if (data.type === 'Widget') {
         return <Widget key={data?._id} type={data?.widgetType} stream={initialData?.stream} limit={10} />
+    }
+
+    if (data.type === 'Banner') {
+        const tags = []
+        if (initialData?.tag1 && initialData?.tag1 !== "") {
+            tags.push(initialData?.tag1);
+        }
+        if (initialData?.tag2 && initialData?.tag2 !== "") {
+            tags.push(initialData?.tag2);
+        }
+        if (initialData?.tag3 && initialData?.tag3 !== "") {
+            tags.push(initialData?.tag3);
+        }
+        return <HighlightBanner stream={initialData?.stream} tags={tags || []} />
     }
     const descriptionRef = useRef(null);
     const cleanDescription = (html) => {

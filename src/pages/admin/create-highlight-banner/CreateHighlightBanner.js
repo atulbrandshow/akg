@@ -226,7 +226,9 @@ const CreateHighlightBanner = () => {
     try {
       let bannerUrl
       if (bannerImage) {
-        const urls = await uploadImages([bannerImage], "HighlightBanner")
+        const urls = await uploadImages([bannerImage], "HighlightBanner");
+        console.log(urls);
+        
         bannerUrl = urls[0]
         if (!bannerUrl) {
           toast.error("Failed to upload image")

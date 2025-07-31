@@ -1,183 +1,24 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { API_NODE_URL } from "@/configs/config";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DynamicPageDetails from "./DynamicPageDetails";
 
-function CreateDynamicPages({ type, componentType }) {
+function CreateDynamicPages({ type, componentType, parentId }) {
     const [showPageDetails, setShowPageDetails] = useState(false);
-    const [allPages, setAllPages] = useState([]);
-    const [displayedPages, setDisplayedPages] = useState([]);
-    const [searchValue, setSearchValue] = useState("");
-    const [showDropdown, setShowDropdown] = useState(false);
-    const [pageIndex, setPageIndex] = useState(10);
-    const [hasMore, setHasMore] = useState(true);
     const [selectedPage, setSelectedPage] = useState(null);
     const [title, setTitle] = useState("");
     const [allData, setAllData] = useState({});
-    const [pageType, setPageType] = useState("")
-
-    // Component Type states
-    const [allComponents, setAllComponents] = useState([])
-    const [displayedComponents, setDisplayedComponents] = useState([])
-    const [componentSearchValue, setComponentSearchValue] = useState("")
-    const [showComponentDropdown, setShowComponentDropdown] = useState(false)
-    const [componentIndex, setComponentIndex] = useState(10)
-    const [hasMoreComponents, setHasMoreComponents] = useState(true)
-    const [selectedComponentType, setSelectedComponentType] = useState("")
     const [errors, setErrors] = useState({});
-
-    const fetchPages = async (searchTerm = "") => {
-        try {
-            const response = await fetch(`${API_NODE_URL}slug/getParents`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                credentials: "include",
-                body: JSON.stringify({ query: searchTerm, page: 1, limit: 10, type }),
-            });
-            const data = await response.json();
-
-            const fetchedPages = data.data.pages || [];
-
-            if (fetchedPages.length === 0) {
-                setAllPages([]);
-                setDisplayedPages([{ name: "This is parent page", reportId: null }]);
-                setHasMore(false);
-            } else {
-                setAllPages(fetchedPages);
-                setDisplayedPages(fetchedPages.slice(0, 10));
-                setHasMore(fetchedPages.length > 10);
-            }
-        } catch (error) {
-            console.error("Error fetching parent pages:", error);
-        }
-    };
-
-    const fetchComponents = async (searchTerm = "", page = 1) => {
-        try {
-            // URL with search parameter
-            const url = new URL(`${API_NODE_URL}components/category/Page`);
-            url.searchParams.append('page', page);
-            url.searchParams.append('limit', 10);
-            if (searchTerm) {
-                url.searchParams.append('search', searchTerm);
-            }
-
-            const response = await fetch(url, {
-                credentials: "include",
-            });
-            const result = await response.json();
-
-            if (result.status) {
-                if (page === 1) {
-                    setAllComponents(result.data);
-                } else {
-                    setAllComponents(prev => [...prev, ...result.data]);
-                }
-
-                // Update displayed components
-                setDisplayedComponents(result.data);
-
-                // Check if more pages exist
-                setHasMoreComponents(result.currentPage < result.totalPages);
-            }
-        } catch (error) {
-            console.error("Error fetching components:", error);
-        }
-    };
-
-    const handleInputChange = (e) => {
-        const value = e.target.value;
-        setSearchValue(value);
-
-        if (value.length > 0) {
-            fetchPages(value);
-            setShowDropdown(true);
-        } else {
-            setDisplayedPages(allPages.slice(0, 10));
-            setShowDropdown(false);
-        }
-    };
-
-    const handleComponentInputChange = (e) => {
-        const value = e.target.value
-        setComponentSearchValue(value)
-        if (value.length > 0) {
-            fetchComponents(value)
-            setShowComponentDropdown(true)
-        } else {
-            fetchComponents()
-            setShowComponentDropdown(false)
-        }
-    }
-
-    const handleComponentSuggestionClick = (component) => {
-        setComponentSearchValue(component.componentName)
-        setSelectedComponentType(component.componentName)
-        setShowComponentDropdown(false)
-    }
-
-    const handleSuggestionClick = (page) => {
-        setSearchValue(page.name); // Show the name in the input
-        setSelectedPage(page); // Set the selected page
-        setShowDropdown(false); // Hide the dropdown after selection
-    };
-
-    // Handle 'Show More' button click
-    const handleShowMore = () => {
-        const newIndex = pageIndex + 10;
-        setDisplayedPages(allPages.slice(0, newIndex)); // Show next 10 pages
-        setPageIndex(newIndex); // Update index
-        if (newIndex >= allPages.length) {
-            setHasMore(false); // Hide 'Show More' if no more pages
-        }
-    };
-
-    const handleShowMoreComponents = () => {
-        const newIndex = componentIndex + 10
-        setDisplayedComponents(allComponents.slice(0, newIndex))
-        setComponentIndex(newIndex)
-        if (newIndex >= allComponents.length) {
-            setHasMoreComponents(false)
-        }
-    }
-
-    const handlePageTypeChange = (e) => {
-        const value = e.target.value
-        setPageType(value)
-
-        // Reset component selection when page type changes
-        if (value !== "Page") {
-            setSelectedComponentType("")
-            setComponentSearchValue("")
-        } else {
-            // Fetch components when Page is selected
-            fetchComponents()
-        }
-    }
 
 
     const handleAddClick = async () => {
         const newErrors = {};
 
-        if (!selectedPage) {
-            newErrors.selectedPage = "Please select a parent page.";
-        }
-
         if (!title) {
             newErrors.title = "Please enter a title.";
-        }
-
-        if (type === "Page" && !pageType) {
-            newErrors.pageType = "Please select page type.";
-        }
-
-        if (pageType === "Page" && !selectedComponentType) {
-            newErrors.selectedComponentType = "Please select a component type.";
         }
 
         // If there are any errors, update state and stop execution
@@ -189,11 +30,13 @@ function CreateDynamicPages({ type, componentType }) {
         setErrors({}); // Clear previous errors
 
         const payload = {
-            parent_id: selectedPage?.page_id,
+            parent_id: parentId,
             name: title,
             type,
-            ComponentType: selectedComponentType,
+            ComponentType: componentType,
         };
+
+        console.log(payload);
 
         const progressBar = document.getElementById("progress-bar");
 
@@ -234,14 +77,8 @@ function CreateDynamicPages({ type, componentType }) {
 
     const handleClear = () => {
         setShowPageDetails(false)
-        setSearchValue("")
         setTitle("")
         setSelectedPage(null)
-        setPageType("")
-        setShowDropdown(false)
-        setSelectedComponentType("")
-        setComponentSearchValue("")
-        setShowComponentDropdown(false)
     }
 
     return (
@@ -276,58 +113,6 @@ function CreateDynamicPages({ type, componentType }) {
             {!showPageDetails && (
                 <div className="bg-white max-w-xl rounded-2xl shadow-xl p-8 border border-gray-100">
                     <form className="space-y-6">
-                        <div className="relative">
-                            <label htmlFor="parent-page" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                                Choose Parent Page
-                                <span className="text-red-500 ml-1">*</span>
-                            </label>
-                            <div className="relative">
-                                <input
-                                    id="parent-page"
-                                    type="text"
-                                    value={searchValue}
-                                    onChange={handleInputChange}
-                                    placeholder="Search and select parent page..."
-                                    className="w-full border-2 font-novaReg border-gray-200 rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
-                                />
-                                <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-                                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth="2"
-                                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                                        ></path>
-                                    </svg>
-                                </div>
-                            </div>
-                            {errors.selectedPage && <p className="text-sm text-red-600 ml-1 mt-1">{errors.selectedPage}</p>}
-
-                            {showDropdown && (
-                                <div className="absolute z-20 w-full bg-white border-2 border-gray-200 rounded-xl mt-2 max-h-64 overflow-auto shadow-2xl">
-                                    {displayedPages.map((page, index) => (
-                                        <div
-                                            key={index}
-                                            onClick={() => handleSuggestionClick(page)}
-                                            className="cursor-pointer px-4 py-3 hover:bg-blue-50 border-b border-gray-100 last:border-b-0 transition-colors duration-150"
-                                        >
-                                            <div className="font-novaSemi text-gray-800">{page.name}</div>
-                                            {page?.page_id && <div className="text-sm text-gray-500">ID: {page.page_id}</div>}
-                                        </div>
-                                    ))}
-                                    {hasMore && displayedPages.length > 0 && (
-                                        <button
-                                            type="button"
-                                            onClick={handleShowMore}
-                                            className="w-full px-4 py-3 text-blue-600 hover:bg-blue-50 font-novaReg transition-colors duration-150"
-                                        >
-                                            Load More Pages
-                                        </button>
-                                    )}
-                                </div>
-                            )}
-                        </div>
-
                         <div>
                             <label htmlFor="title" className="block text-sm font-novaSemi text-gray-700 mb-2">
                                 {type} Title
@@ -344,93 +129,6 @@ function CreateDynamicPages({ type, componentType }) {
                             {errors.title && <p className="text-sm text-red-600 ml-1 mt-1">{errors.title}</p>}
                         </div>
 
-                        {type === "Page" && (
-                            <div>
-                                <label htmlFor="page-type" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                                    Page Type
-                                    <span className="text-red-500 ml-1">*</span>
-                                </label>
-                                <select
-                                    id="page-type"
-                                    value={pageType}
-                                    onChange={handlePageTypeChange}
-                                    className="w-full border-2 border-gray-200 font-novaReg rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
-                                >
-                                    <option value="">Select page type...</option>
-                                    <option value="Page">Page</option>
-                                    <option value="Admission">Admission</option>
-                                </select>
-                                {errors.pageType && <p className="text-sm text-red-600 ml-1 mt-1">{errors.pageType}</p>}
-                            </div>
-                        )}
-
-                        {pageType === "Page" && (
-                            <div className="relative">
-                                <label htmlFor="component-type" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                                    Component Type
-                                    <span className="text-red-500 ml-1">*</span>
-                                </label>
-                                <div className="relative">
-                                    <input
-                                        id="component-type"
-                                        type="text"
-                                        value={componentSearchValue}
-                                        onChange={handleComponentInputChange}
-                                        placeholder="Search and select component type..."
-                                        className="w-full border-2 border-gray-200 font-novaReg rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
-                                    />
-                                    {errors.selectedComponentType && <p className="text-sm text-red-600 ml-1 mt-1">{errors.selectedComponentType}</p>}
-                                    <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-                                        <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth="2"
-                                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                                            ></path>
-                                        </svg>
-                                    </div>
-                                </div>
-
-                                {showComponentDropdown && (
-                                    <div className="absolute z-20 w-full bg-white border-2 border-gray-200 rounded-xl mt-2 max-h-64 overflow-auto shadow-2xl">
-                                        {displayedComponents.map((component, index) => (
-                                            <div
-                                                key={component._id}
-                                                onClick={() => handleComponentSuggestionClick(component)}
-                                                className="cursor-pointer px-4 py-3 hover:bg-blue-50 border-b border-gray-100 last:border-b-0 transition-colors duration-150"
-                                            >
-                                                <div className="font-novaSemi text-gray-800">{component.componentName}</div>
-                                            </div>
-                                        ))}
-                                        {hasMoreComponents && displayedComponents.length > 0 && (
-                                            <button
-                                                type="button"
-                                                onClick={handleShowMoreComponents}
-                                                className="w-full px-4 py-3 text-blue-600 hover:bg-blue-50 font-medium transition-colors duration-150"
-                                            >
-                                                Load More Components
-                                            </button>
-                                        )}
-                                    </div>
-                                )}
-                            </div>
-                        )}
-
-                        {/* <div>
-                            <label htmlFor="page-type" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                                Page Type
-                                <span className="text-red-500 ml-1">*</span>
-                            </label>
-                            <input
-                                id="page-type"
-                                value={type}
-                                disabled
-                                className="w-full border-2 border-gray-200 text-gray-500 font-novaSemi rounded-xl py-3 px-4  cursor-not-allowed"
-                            >
-                            </input>
-                        </div> */}
-
                         <div className="flex space-x-4 pt-6">
                             <button
                                 onClick={handleAddClick}
@@ -446,7 +144,7 @@ function CreateDynamicPages({ type, componentType }) {
                                             d="M12 6v6m0 0v6m0-6h6m-6 0H6"
                                         ></path>
                                     </svg>
-                                    <span>Add Page</span>
+                                    <span>Add {type}</span>
                                 </span>
                             </button>
                             <button

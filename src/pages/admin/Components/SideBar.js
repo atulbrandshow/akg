@@ -33,6 +33,11 @@ const navSections = [
         label: "Dashboard",
         href: "/admin",
       },
+      {
+        icon: Users,
+        label: "Online Application",
+        href: "/admin/online-applications"
+      },
     ],
   },
   {
@@ -131,13 +136,6 @@ const navSections = [
         label: "Topper Management",
         nestedLinks: [
           { label: "Toppers", href: "/admin/topper-managment" },
-        ],
-      },
-      {
-        icon: Users,
-        label: "Online Application",
-        nestedLinks: [
-          { label: "Applications", href: "/admin/online-applications" },
         ],
       },
     ],

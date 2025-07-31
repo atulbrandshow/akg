@@ -225,36 +225,36 @@ export const Programs = {
                 },
                 {
                     name: 'M.Tech in Computer Science Engineering',
-                    url: 'department-of-masters-in-computer-science-and-engineering'
+                    url: '/department-of-masters-in-computer-science-and-engineering'
                 },
                 {
                     name: 'Master of Computer Applications (MCA)',
                     url: '/department-of-masters-of-computer-application'
                 },
-                {
-                    name: 'Ph.D',
-                    url: '/'
-                },
+                // {
+                //     name: 'Ph.D',
+                //     url: '/'
+                // },
             ],
             "Program": {
                 "Graduate": [
                     {
                         name: 'B.Tech',
-                        url: '/programs/btech-cse'
+                        url: '/department-of-artificial-intelligence-&-machine-learning'
                     },
-                    {
-                        name: 'BCA',
-                        url: '/'
-                    }
+                    // {
+                    //     name: 'BCA',
+                    //     url: '/'
+                    // }
                 ],
                 "Post Graduate": [
                     {
                         name: 'M.Tech',
-                        url: '/'
+                        url: '/department-of-masters-in-computer-science-and-engineering'
                     },
                     {
                         name: 'MCA',
-                        url: '/'
+                        url: '/department-of-masters-of-computer-application'
                     }
                 ]
             }
@@ -285,22 +285,22 @@ export const Programs = {
                     name: 'M.Tech in Electrical & Electronics Engineering',
                     url: '/department-of-masters-in-electrical-and-electronics-engineering'
                 },
-                {
-                    name: 'Ph.D',
-                    url: '/'
-                },
+                // {
+                //     name: 'Ph.D',
+                //     url: '/'
+                // },
             ],
             "Program": {
                 "Graduate": [
                     {
                         name: 'B.Tech',
-                        url: '/'
+                        url: '/department-of-electronics-and-communication-engineering'
                     }
                 ],
                 "Post Graduate": [
                     {
                         name: 'M.Tech',
-                        url: '/'
+                        url: '/department-of-masters-in-electronics-and-communication-engineering'
                     }
                 ]
             }
@@ -311,22 +311,22 @@ export const Programs = {
                     name: 'MBA- Master of Business Administration',
                     url: '/department-of-masters-in-business-adminintration'
                 },
-                {
-                    name: 'Ph.D',
-                    url: '/'
-                },
+                // {
+                //     name: 'Ph.D',
+                //     url: '/'
+                // },
             ],
             "Program": {
-                "Graduate": [
-                    {
-                        name: 'BBA',
-                        url: '/'
-                    }
-                ],
+                // "Graduate": [
+                //     {
+                //         name: 'BBA',
+                //         url: '/'
+                //     }
+                // ],
                 "Post Graduate": [
                     {
                         name: 'MBA',
-                        url: '/'
+                        url: '/department-of-masters-in-business-adminintration'
                     }
                 ]
             }

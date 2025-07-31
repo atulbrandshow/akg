@@ -70,39 +70,39 @@ const MtechCSDepartment = () => {
 
   const placements = [
     {
-      logo: "/image/company-logos/google-research.png",
-      number: "48.50",
-      company: "Google Research",
+      logo: "/image/company-logos/UBER.png",
+      number: "38.44",
+      company: "UBER",
       isRed: false
     },
     {
-      logo: "/image/company-logos/microsoft-research.png",
-      number: "45.75",
-      company: "Microsoft Research",
+      logo: "/image/company-logos/nxtpeLogo.png",
+      number: "42.75",
+      company: "NXTPE",
       isRed: true
     },
     {
-      logo: "/image/company-logos/ibm-research.png",
-      number: "42.00",
-      company: "IBM Research",
+      logo: "/image/company-logos/CommvaultLogo.png",
+      number: "34",
+      company: "Commvault Systems",
       isRed: false
     },
     {
-      logo: "/image/company-logos/nvidia.png",
-      number: "52.25",
-      company: "NVIDIA",
+      logo: "/image/company-logos/walmart.jpg",
+      number: "19.48",
+      company: "Walmart",
       isRed: true
     },
     {
-      logo: "/image/company-logos/intel-labs.png",
-      number: "38.60",
-      company: "Intel Labs",
+      logo: "/image/company-logos/CISCO.png",
+      number: "24.73",
+      company: "CISCO",
       isRed: false
     },
     {
-      logo: "/image/company-logos/qualcomm.png",
-      number: "44.80",
-      company: "Qualcomm",
+      logo: "/image/company-logos/tanx-long-light.png",
+      number: "55.50",
+      company: "TANX.FI",
       isRed: true
     }
   ]
@@ -453,7 +453,7 @@ const MtechCSDepartment = () => {
           <div className="relative h-[300px] md:h-full lg:col-span-4">
             <div className="absolute inset-0 bg-red-600">
               <Image
-                src="/image/research-lab.jpg"
+                src="/image/building/building5.webp"
                 alt="Advanced Research Programs"
                 className="h-full w-full object-cover object-left grayscale"
                 width={500}

@@ -70,11 +70,25 @@ export default function DynamicPage({ data }) {
 export async function getServerSideProps(context) {
     const { slug = [] } = context.params || {};
     let path = "/" + slug.join("/");
+    console.log("Path :", path);
 
     if (path.includes("?")) path = path.split("?")[0];
 
-    const ignoredPaths = ["/favicon.ico", "/.well-known/appspecific/com.chrome.devtools.json"];
-    if (ignoredPaths.includes(path)) {
+    const ignoredPaths = [
+        "/favicon.ico",
+        "/sw.js",
+        "/manifest.json",
+        "/robots.txt",
+        "/sitemap.xml",
+    ];
+
+    if (
+        ignoredPaths.includes(path) ||
+        path.startsWith("/_next") ||
+        path.startsWith("/static") ||
+        path.startsWith("/api") ||
+        path.match(/\.(js|css|map|json|svg|png|jpg|jpeg|ico)$/)
+    ) {
         return { notFound: true };
     }
 

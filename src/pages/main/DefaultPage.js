@@ -15,24 +15,26 @@ const SideBarLink = [
 
 function Default({ data }) {
     return (
-        <div className="bg-gray-100 pt-10">
-            {data?.extraComponentData && (
-                <div className="space-y-8 mb-10">
-                    {Array.from({ length: 5 }, (_, i) => i + 1).map(
-                        (item) =>
-                            data?.extraComponentData?.[`holder${item}`] && (
-                                <div key={`holder-${item}`} className="bg-white rounded-2xl shadow-sm overflow-hidden">
-                                    <Holder data={data?.extraComponentData[`holder${item}`]} initialData={data} />
-                                </div>
-                            )
-                    )}
-                </div>
-            )}
+        <div className="bg-gray-100">
             <Header title={data?.name} gradient={"bg-gradient-to-r from-gray-800 to-transparent"} bgUrl={data?.banner_img} custom={true} subHeading={data?.shortdesc} />
             <section className="w-full max-w-[1400px] mx-auto grid grid-cols-12 py-20 max-sm:py-5 gap-10 px-5 max-sm:px-2 max-sm:gap-0">
                 <div className="col-span-9 max-xl:col-span-8 max-lg:col-span-12 space-y-10">
                     {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}
                     {data?.description && <Description text={data?.description} />}
+
+                    {data?.extraComponentData && (
+                        <div className="space-y-8">
+                            {Array.from({ length: 5 }, (_, i) => i + 1).map(
+                                (item) =>
+                                    data?.extraComponentData?.[`holder${item}`] && (
+                                        <div key={`holder-${item}`} className="bg-white rounded-2xl shadow-sm overflow-hidden">
+                                            <Holder data={data?.extraComponentData[`holder${item}`]} initialData={data} />
+                                        </div>
+                                    )
+                            )}
+                        </div>
+                    )}
+
                     {data?.extraComponentData && (
                         <div className="space-y-8">
                             {Array.from({ length: 20 }, (_, i) => i + 11).map(

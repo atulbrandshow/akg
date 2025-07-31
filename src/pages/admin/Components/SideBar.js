@@ -19,6 +19,7 @@ import {
   Notebook,
   Newspaper,
   Waypoints,
+  NotepadText,
 } from "lucide-react"
 import { API_NODE_URL } from "@/configs/config"
 import Image from "next/image"
@@ -71,6 +72,11 @@ const navSections = [
         icon: BellDot,
         label: "Announcement",
         href: "/admin/announcement-list"
+      },
+      {
+        icon: NotepadText ,
+        label: "Notice",
+        href: "/admin/notice-list"
       },
     ],
   },

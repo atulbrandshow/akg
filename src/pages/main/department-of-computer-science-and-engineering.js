@@ -542,20 +542,7 @@ const CSDepartment = () => {
         </div>
       </section>
       <HighlightSlider />
-      <div className='max-w-[1400px] mx-auto grid grid-cols-2 gap-5 px-10 max-sm:px-2'>
-        <div className='max-lg:col-span-2'>
-          <HowToApply />
-        </div>
-        <div className='ml-auto max-w-xl py-12 max-lg:col-span-2 max-lg:ml-0 max-lg:pb-10 max-lg:max-w-full'>
-          <h2 className='text-3xl max-w-xs max-lg:max-w-full'>Ready to Master Your Professional Field?</h2>
-          <p className='mt-5 font-novaReg max-w-2xl max-lg:max-w-full'>
-            Stay Confident and Prepare to Dominate Your Studies. According to the U.S. Bureau of Labor Statistics, total employment is expected to increase by 165.4 million by 2030, resulting in an addition of 11.9 million new jobs.
-          </p>
-          <button className="py-2 max-sm:px-6 max-sm:text-xs px-4 mt-5 text-sm rounded-lg font-novaBold uppercase bg-btn-gradient animate-gradient text-white w-max hover:bg-[#3c5686] hover:border-b-4 hover:border-[#beb6ff] hover:transform scale-y-105 tracking-widest flex items-center gap-1">
-            Apply Today <MoveRight className='w-5 h-5' />
-          </button>
-        </div>
-      </div>
+      <HowToApply />
     </section>
   )
 }

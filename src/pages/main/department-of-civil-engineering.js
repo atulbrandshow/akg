@@ -28,17 +28,17 @@ const CEDepartment = () => {
   ];
 
   const recruiters = [
-  { name: "Larsen & Toubro (L&T)", column: 1 },
-  { name: "Tata Projects", column: 1 },
-  { name: "Shapoorji Pallonji", column: 1 },
-  { name: "Gammon India", column: 1 },
-  { name: "Afcons Infrastructure", column: 1 },
-  { name: "HCC (Hindustan Construction Co.)", column: 2 },
-  { name: "NBCC (India) Ltd.", column: 2 },
-  { name: "DLF", column: 2 },
-  { name: "Simplex Infrastructures", column: 2 },
-  { name: "Punj Lloyd", column: 2 },
-];
+    { name: "Larsen & Toubro (L&T)", column: 1 },
+    { name: "Tata Projects", column: 1 },
+    { name: "Shapoorji Pallonji", column: 1 },
+    { name: "Gammon India", column: 1 },
+    { name: "Afcons Infrastructure", column: 1 },
+    { name: "HCC (Hindustan Construction Co.)", column: 2 },
+    { name: "NBCC (India) Ltd.", column: 2 },
+    { name: "DLF", column: 2 },
+    { name: "Simplex Infrastructures", column: 2 },
+    { name: "Punj Lloyd", column: 2 },
+  ];
 
 
   const services = [
@@ -143,17 +143,17 @@ const CEDepartment = () => {
             <div>
               <h2 className="text-3xl font-novaReg">Civil Engineering</h2>
               <p className="my-5 tracking-tight font-novaReg text-start leading-5">
-  The Department of Civil Engineering at AKGU has been committed to developing skilled professionals capable of addressing infrastructure and environmental challenges. With a strong academic curriculum and emphasis on practical training, the department prepares students for real-world engineering applications.
-</p>
-<p className="leading-5 text-start font-novaReg">
-  The department provides access to advanced laboratories, experienced faculty, and opportunities for hands-on projects in areas like structural design, transportation, geotechnical, and environmental engineering. Students are encouraged to participate in fieldwork, technical events, and research initiatives that promote innovation and problem-solving skills.
-</p>
+                The Department of Civil Engineering at AKGU has been committed to developing skilled professionals capable of addressing infrastructure and environmental challenges. With a strong academic curriculum and emphasis on practical training, the department prepares students for real-world engineering applications.
+              </p>
+              <p className="leading-5 text-start font-novaReg">
+                The department provides access to advanced laboratories, experienced faculty, and opportunities for hands-on projects in areas like structural design, transportation, geotechnical, and environmental engineering. Students are encouraged to participate in fieldwork, technical events, and research initiatives that promote innovation and problem-solving skills.
+              </p>
 
             </div>
             <div>
               <h2 className='font-novaReg text-2xl'>Scope</h2>
               <p className='mt-2 font-novaReg'>  Civil Engineering offers vast scope in areas like construction, infrastructure development, environmental planning, and urban design. With increasing demand for smart cities, sustainable structures, and resilient infrastructure, civil engineers play a vital role in nation-building and global development projects.
-</p>
+              </p>
             </div>
           </div>
           <div className="h-max border border-gray-400 rounded-lg p-6 shadow-lg mt-14">
@@ -257,30 +257,30 @@ const CEDepartment = () => {
               <h2 className="text-2xl font-novaSemi text-black">Exclusive Labs</h2>
             </div>
             <ul className="space-y-2 font-novaReg">
-            <li className="flex items-start gap-2">
-  <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
-  <span className="text-gray-600">Structural Engineering and Material Testing Lab</span>
-</li>
-<li className="flex items-start gap-2">
-  <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
-  <span className="text-gray-600">Geotechnical and Soil Mechanics Lab</span>
-</li>
-<li className="flex items-start gap-2">
-  <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
-  <span className="text-gray-600">Transportation Engineering and Pavement Design Lab</span>
-</li>
-<li className="flex items-start gap-2">
-  <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
-  <span className="text-gray-600">Environmental Engineering and Water Quality Lab</span>
-</li>
-<li className="flex items-start gap-2">
-  <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
-  <span className="text-gray-600">Surveying and Remote Sensing Lab</span>
-</li>
-<li className="flex items-start gap-2">
-  <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
-  <span className="text-gray-600">Hydraulics and Fluid Mechanics Lab</span>
-</li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
+                <span className="text-gray-600">Structural Engineering and Material Testing Lab</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
+                <span className="text-gray-600">Geotechnical and Soil Mechanics Lab</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
+                <span className="text-gray-600">Transportation Engineering and Pavement Design Lab</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
+                <span className="text-gray-600">Environmental Engineering and Water Quality Lab</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
+                <span className="text-gray-600">Surveying and Remote Sensing Lab</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
+                <span className="text-gray-600">Hydraulics and Fluid Mechanics Lab</span>
+              </li>
 
 
             </ul>
@@ -410,15 +410,15 @@ const CEDepartment = () => {
           <h1 className="text-3xl font-novaReg text-white leading-7 mb-8">
             Career Opportunities After
             <br />
-           Civil Engineering
+            Civil Engineering
           </h1>
           <div className="grid md:grid-cols-2 gap-8">
             {/* Careers Section */}
             <div>
               <h2 className="text-2xl font-novaReg text-white mb-4">Career Prospects</h2>
               <p className="text-white font-novaReg leading-relaxed">
-  Civil Engineering graduates have strong career prospects in public and private sector organizations involved in construction, infrastructure development, transportation, and environmental management. They can work as site engineers, structural designers, project managers, or quality control engineers. Opportunities also exist in government departments like PWD, NHAI, and CPWD, as well as in higher studies, research, and competitive exams such as GATE, IES, and UPSC.
-          </p>
+                Civil Engineering graduates have strong career prospects in public and private sector organizations involved in construction, infrastructure development, transportation, and environmental management. They can work as site engineers, structural designers, project managers, or quality control engineers. Opportunities also exist in government departments like PWD, NHAI, and CPWD, as well as in higher studies, research, and competitive exams such as GATE, IES, and UPSC.
+              </p>
             </div>
             {/* Top Recruiters Section */}
             <div>
@@ -547,22 +547,9 @@ const CEDepartment = () => {
         </div>
       </section>
       <HighlightSlider />
-      <div className='max-w-[1400px] mx-auto grid grid-cols-2 gap-5 px-10 max-sm:px-2'>
-        <div className='max-lg:col-span-2'>
-          <HowToApply />
-        </div>
-        <div className='ml-auto max-w-xl py-12 max-lg:col-span-2 max-lg:ml-0 max-lg:pb-10 max-lg:max-w-full'>
-          <h2 className='text-3xl max-w-xs max-lg:max-w-full'>Ready to Master Your Professional Field?</h2>
-          <p className='mt-5 font-novaReg max-w-2xl max-lg:max-w-full'>
-            Stay Confident and Prepare to Dominate Your Studies. According to the U.S. Bureau of Labor Statistics, total employment is expected to increase by 165.4 million by 2030, resulting in an addition of 11.9 million new jobs.
-          </p>
-          <button className="py-2 max-sm:px-6 max-sm:text-xs px-4 mt-5 text-sm rounded-lg font-novaBold uppercase bg-btn-gradient animate-gradient text-white w-max hover:bg-[#3c5686] hover:border-b-4 hover:border-[#beb6ff] hover:transform scale-y-105 tracking-widest flex items-center gap-1">
-            Apply Today <MoveRight className='w-5 h-5' />
-          </button>
-        </div>
-      </div>
+      <HowToApply />
     </section>
   )
 }
 
-export default CEDepartment ;
+export default CEDepartment;

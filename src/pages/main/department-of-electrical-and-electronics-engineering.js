@@ -142,11 +142,11 @@ const EEDepartment = () => {
             <div>
               <h2 className="text-3xl font-novaReg">Electrical & Electronics Engineering</h2>
               <p className="my-5 tracking-tight font-novaReg text-start leading-5">
-  The Department of Electrical and Electronics Engineering at AKGU was established in 1998 with the inception of the college. The department has continually evolved as a center of academic excellence, offering a strong foundation in both theoretical concepts and practical applications.
-</p>
-<p className="leading-5 text-start font-novaReg">
-  Since its establishment, the department has remained at the forefront of higher education and research in electrical and electronics domains. It provides comprehensive support to M.Tech. scholars through dedicated dissertation guidance, state-of-the-art laboratories, and access to reputed national and international journals. Experienced faculty members are actively involved in guiding postgraduate students in advanced research areas. Over the years, the department has contributed to quality publications in peer-reviewed journals and international conferences, reflecting a strong research culture and academic commitment.
-</p>
+                The Department of Electrical and Electronics Engineering at AKGU was established in 1998 with the inception of the college. The department has continually evolved as a center of academic excellence, offering a strong foundation in both theoretical concepts and practical applications.
+              </p>
+              <p className="leading-5 text-start font-novaReg">
+                Since its establishment, the department has remained at the forefront of higher education and research in electrical and electronics domains. It provides comprehensive support to M.Tech. scholars through dedicated dissertation guidance, state-of-the-art laboratories, and access to reputed national and international journals. Experienced faculty members are actively involved in guiding postgraduate students in advanced research areas. Over the years, the department has contributed to quality publications in peer-reviewed journals and international conferences, reflecting a strong research culture and academic commitment.
+              </p>
 
             </div>
             <div>
@@ -256,29 +256,29 @@ const EEDepartment = () => {
             </div>
             <ul className="space-y-2 font-novaReg">
               <li className="flex items-start gap-2">
-  <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
-  <span className="text-gray-600">Texas Instruments Embedded Systems Lab</span>
-</li>
-<li className="flex items-start gap-2">
-  <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
-  <span className="text-gray-600">Siemens Center of Excellence in Automation</span>
-</li>
-<li className="flex items-start gap-2">
-  <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
-  <span className="text-gray-600">ABB Electrical Systems Lab</span>
-</li>
-<li className="flex items-start gap-2">
-  <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
-  <span className="text-gray-600">Schneider Electric Smart Grid Lab</span>
-</li>
-<li className="flex items-start gap-2">
-  <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
-  <span className="text-gray-600">Bosch Center for Power Electronics</span>
-</li>
-<li className="flex items-start gap-2">
-  <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
-  <span className="text-gray-600">National Instruments LabVIEW Innovation Hub</span>
-</li>
+                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
+                <span className="text-gray-600">Texas Instruments Embedded Systems Lab</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
+                <span className="text-gray-600">Siemens Center of Excellence in Automation</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
+                <span className="text-gray-600">ABB Electrical Systems Lab</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
+                <span className="text-gray-600">Schneider Electric Smart Grid Lab</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
+                <span className="text-gray-600">Bosch Center for Power Electronics</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
+                <span className="text-gray-600">National Instruments LabVIEW Innovation Hub</span>
+              </li>
 
             </ul>
             <button className="py-2 max-sm:py-1.5 max-sm:px-4 max-sm:text-xs px-5 mt-5 text-[15px] rounded-lg font-novaBold uppercase bg-btn-gradient animate-gradient text-white w-max  hover:bg-[#3c5686] hover:border-b-4 hover:border-[#beb6ff] hover:transform scale-y-105 tracking-widest flex items-center gap-1">
@@ -407,14 +407,14 @@ const EEDepartment = () => {
           <h1 className="text-3xl font-novaReg text-white leading-7 mb-8">
             Career Opportunities After
             <br />
-           Electrical & Electronics Engineering
+            Electrical & Electronics Engineering
           </h1>
           <div className="grid md:grid-cols-2 gap-8">
             {/* Careers Section */}
             <div>
               <h2 className="text-2xl font-novaReg text-white mb-4">Career Prospects</h2>
               <p className="text-white font-novaReg leading-relaxed">
-Graduates of the Electrical and Electronics Engineering department have a wide range of career opportunities across core and interdisciplinary domains. They are well-prepared to pursue roles in power generation and distribution companies, renewable energy firms, manufacturing industries, automation and control systems, as well as electronics and semiconductor industries. With the growing integration of smart technologies, EEE graduates are also in demand in sectors such as electric vehicles, robotics, embedded systems, and IoT. Additionally, they are well-suited for research roles, government services through competitive examinations like GATE and UPSC, and higher studies in India and abroad. The department’s strong academic foundation and emphasis on practical skills ensure that students are equipped for both industry roles and entrepreneurial ventures.              </p>
+                Graduates of the Electrical and Electronics Engineering department have a wide range of career opportunities across core and interdisciplinary domains. They are well-prepared to pursue roles in power generation and distribution companies, renewable energy firms, manufacturing industries, automation and control systems, as well as electronics and semiconductor industries. With the growing integration of smart technologies, EEE graduates are also in demand in sectors such as electric vehicles, robotics, embedded systems, and IoT. Additionally, they are well-suited for research roles, government services through competitive examinations like GATE and UPSC, and higher studies in India and abroad. The department’s strong academic foundation and emphasis on practical skills ensure that students are equipped for both industry roles and entrepreneurial ventures.              </p>
             </div>
             {/* Top Recruiters Section */}
             <div>
@@ -543,20 +543,7 @@ Graduates of the Electrical and Electronics Engineering department have a wide r
         </div>
       </section>
       <HighlightSlider />
-      <div className='max-w-[1400px] mx-auto grid grid-cols-2 gap-5 px-10 max-sm:px-2'>
-        <div className='max-lg:col-span-2'>
-          <HowToApply />
-        </div>
-        <div className='ml-auto max-w-xl py-12 max-lg:col-span-2 max-lg:ml-0 max-lg:pb-10 max-lg:max-w-full'>
-          <h2 className='text-3xl max-w-xs max-lg:max-w-full'>Ready to Master Your Professional Field?</h2>
-          <p className='mt-5 font-novaReg max-w-2xl max-lg:max-w-full'>
-            Stay Confident and Prepare to Dominate Your Studies. According to the U.S. Bureau of Labor Statistics, total employment is expected to increase by 165.4 million by 2030, resulting in an addition of 11.9 million new jobs.
-          </p>
-          <button className="py-2 max-sm:px-6 max-sm:text-xs px-4 mt-5 text-sm rounded-lg font-novaBold uppercase bg-btn-gradient animate-gradient text-white w-max hover:bg-[#3c5686] hover:border-b-4 hover:border-[#beb6ff] hover:transform scale-y-105 tracking-widest flex items-center gap-1">
-            Apply Today <MoveRight className='w-5 h-5' />
-          </button>
-        </div>
-      </div>
+      <HowToApply />
     </section>
   )
 }

@@ -2,10 +2,11 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { toast } from "react-toastify"
+import { API_NODE_URL } from "@/configs/config"
 
 // Mock API configuration - replace with your actual config
-const API_NODE_URL = process.env.NEXT_PUBLIC_API_NODE_URL || "http://localhost:3001/api/"
-const IMAGE_PATH = process.env.NEXT_PUBLIC_IMAGE_PATH || "http://localhost:3001/"
+const API_NODE_URL = API_NODE_URL;
+const IMAGE_PATH =  "http://localhost:3001/"
 
 const HighlightBannerList = () => {
   const router = useRouter()

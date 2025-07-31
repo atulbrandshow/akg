@@ -14,9 +14,8 @@ import {
     BarChart3,
     RefreshCw,
 } from "lucide-react"
-import DashboardSection2 from "./Components/DashboardSection2"
-import { toast } from "react-toastify"
 import { useRouter } from "next/navigation"
+import ApplicationTable from "./Components/ApplicationTable"
 
 export default function AdminDashboard({ onAuthError }) {
     const [dashboardData, setDashboardData] = useState(null)
@@ -157,7 +156,7 @@ export default function AdminDashboard({ onAuthError }) {
                         })}
                 </div>
             </div>
-            <DashboardSection2 />
+            <ApplicationTable showHeader={false} />
         </div>
     )
 }

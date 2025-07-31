@@ -32,6 +32,11 @@ const navSections = [
         label: "Dashboard",
         href: "/admin",
       },
+      {
+        icon: Users,
+        label: "Online Application",
+        href: "/admin/online-applications"
+      },
     ],
   },
   {
@@ -118,13 +123,6 @@ const navSections = [
         nestedLinks: [
           { label: "Add Faculty", href: "/admin/create-faculty" },
           { label: "List of Faculty", href: "/admin/faculty-list" },
-        ],
-      },
-      {
-        icon: Users,
-        label: "Online Application",
-        nestedLinks: [
-          { label: "Applications", href: "/admin/online-applications" },
         ],
       },
     ],

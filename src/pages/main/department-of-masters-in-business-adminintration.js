@@ -142,17 +142,17 @@ const MBADepartment = () => {
             <div>
               <h2 className="text-3xl font-novaReg">Masters Of Business Administration</h2>
               <p className="my-5 tracking-tight font-novaReg text-start leading-5">
-  The MBA program at AKGU is designed to develop future-ready business leaders equipped with strategic thinking, leadership skills, and a strong foundation in core management disciplines. The curriculum blends theoretical knowledge with practical exposure through case studies, internships, industry interactions, and live projects.
-</p>
-<p className="leading-5 text-start font-novaReg">
-  With specializations in areas such as Marketing, Finance, Human Resources, and Business Analytics, the program enables students to tailor their learning based on career goals. The department’s experienced faculty, industry collaborations, and placement support ensure that students graduate with the competencies needed to succeed in a dynamic and competitive global business environment.
-</p>
+                The MBA program at AKGU is designed to develop future-ready business leaders equipped with strategic thinking, leadership skills, and a strong foundation in core management disciplines. The curriculum blends theoretical knowledge with practical exposure through case studies, internships, industry interactions, and live projects.
+              </p>
+              <p className="leading-5 text-start font-novaReg">
+                With specializations in areas such as Marketing, Finance, Human Resources, and Business Analytics, the program enables students to tailor their learning based on career goals. The department’s experienced faculty, industry collaborations, and placement support ensure that students graduate with the competencies needed to succeed in a dynamic and competitive global business environment.
+              </p>
 
             </div>
             <div>
               <h2 className='font-novaReg text-2xl'>Scope</h2>
               <p className='mt-2 font-novaReg'>  An MBA offers wide-ranging scope across diverse industries such as finance, marketing, consulting, human resources, operations, and entrepreneurship. With businesses increasingly seeking professionals who can manage strategy, innovation, and growth, MBA graduates are well-positioned for leadership roles in both national and multinational companies. The program also opens doors to startup ventures, public sector management, and global career opportunities.
-</p>
+              </p>
             </div>
           </div>
           <div className="h-max border border-gray-400 rounded-lg p-6 shadow-lg mt-14">
@@ -256,30 +256,30 @@ const MBADepartment = () => {
               <h2 className="text-2xl font-novaSemi text-black">Exclusive Labs</h2>
             </div>
             <ul className="space-y-2 font-novaReg">
-            <li className="flex items-start gap-2">
-  <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
-  <span className="text-gray-600">IBM Center for Business Analytics and Data Science</span>
-</li>
-<li className="flex items-start gap-2">
-  <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
-  <span className="text-gray-600">Harvard Business Case Study Lab</span>
-</li>
-<li className="flex items-start gap-2">
-  <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
-  <span className="text-gray-600">Bloomberg Financial Research Lab</span>
-</li>
-<li className="flex items-start gap-2">
-  <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
-  <span className="text-gray-600">Entrepreneurship and Innovation Incubation Center</span>
-</li>
-<li className="flex items-start gap-2">
-  <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
-  <span className="text-gray-600">KPMG Virtual Audit & Risk Management Lab</span>
-</li>
-<li className="flex items-start gap-2">
-  <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
-  <span className="text-gray-600">SAP ERP Simulation Lab</span>
-</li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
+                <span className="text-gray-600">IBM Center for Business Analytics and Data Science</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
+                <span className="text-gray-600">Harvard Business Case Study Lab</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
+                <span className="text-gray-600">Bloomberg Financial Research Lab</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
+                <span className="text-gray-600">Entrepreneurship and Innovation Incubation Center</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
+                <span className="text-gray-600">KPMG Virtual Audit & Risk Management Lab</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
+                <span className="text-gray-600">SAP ERP Simulation Lab</span>
+              </li>
 
 
             </ul>
@@ -319,7 +319,7 @@ const MBADepartment = () => {
               AKG University MBA Admission Eligibility & Fees
             </h1>
             <p className="text-gray-800 font-novaReg">
-  Candidates applying for the MBA program at AKGU must hold a bachelor’s degree in any discipline from a UGC‑recognized university with a minimum of 50% marks (45% for SC/ST/OBC candidates). Admission is merit-based and also through valid management entrance exams such as CAT, MAT, XAT, CMAT, or ATMA. Fresh graduates and experienced professionals are both eligible, though many programs prefer candidates with 1–3 years of work experience to enhance peer learning and classroom dynamics. Shortlisted candidates typically go through GD–PI rounds as part of the final selection process.
+              Candidates applying for the MBA program at AKGU must hold a bachelor’s degree in any discipline from a UGC‑recognized university with a minimum of 50% marks (45% for SC/ST/OBC candidates). Admission is merit-based and also through valid management entrance exams such as CAT, MAT, XAT, CMAT, or ATMA. Fresh graduates and experienced professionals are both eligible, though many programs prefer candidates with 1–3 years of work experience to enhance peer learning and classroom dynamics. Shortlisted candidates typically go through GD–PI rounds as part of the final selection process.
             </p>
           </div>
           <div className="space-y-6">
@@ -409,15 +409,15 @@ const MBADepartment = () => {
           <h1 className="text-3xl font-novaReg text-white leading-7 mb-8">
             Career Opportunities After
             <br />
-           Masters Of Business Administration
+            Masters Of Business Administration
           </h1>
           <div className="grid md:grid-cols-2 gap-8">
             {/* Careers Section */}
             <div>
               <h2 className="text-2xl font-novaReg text-white mb-4">Career Prospects</h2>
               <p className="text-white font-novaReg leading-relaxed">
-  MBA graduates from AKGU have excellent career prospects across sectors such as finance, marketing, human resources, operations, and business analytics. They are well-prepared for managerial and leadership roles in multinational corporations, startups, consulting firms, and government organizations. Many also pursue careers in entrepreneurship, family business management, or further specialize through certifications and global exposure. The university’s placement support and industry connections help students secure roles aligned with their strengths and career goals.
-     </p>
+                MBA graduates from AKGU have excellent career prospects across sectors such as finance, marketing, human resources, operations, and business analytics. They are well-prepared for managerial and leadership roles in multinational corporations, startups, consulting firms, and government organizations. Many also pursue careers in entrepreneurship, family business management, or further specialize through certifications and global exposure. The university’s placement support and industry connections help students secure roles aligned with their strengths and career goals.
+              </p>
             </div>
             {/* Top Recruiters Section */}
             <div>
@@ -546,22 +546,9 @@ const MBADepartment = () => {
         </div>
       </section>
       <HighlightSlider />
-      <div className='max-w-[1400px] mx-auto grid grid-cols-2 gap-5 px-10 max-sm:px-2'>
-        <div className='max-lg:col-span-2'>
-          <HowToApply />
-        </div>
-        <div className='ml-auto max-w-xl py-12 max-lg:col-span-2 max-lg:ml-0 max-lg:pb-10 max-lg:max-w-full'>
-          <h2 className='text-3xl max-w-xs max-lg:max-w-full'>Ready to Master Your Professional Field?</h2>
-          <p className='mt-5 font-novaReg max-w-2xl max-lg:max-w-full'>
-            Stay Confident and Prepare to Dominate Your Studies. According to the U.S. Bureau of Labor Statistics, total employment is expected to increase by 165.4 million by 2030, resulting in an addition of 11.9 million new jobs.
-          </p>
-          <button className="py-2 max-sm:px-6 max-sm:text-xs px-4 mt-5 text-sm rounded-lg font-novaBold uppercase bg-btn-gradient animate-gradient text-white w-max hover:bg-[#3c5686] hover:border-b-4 hover:border-[#beb6ff] hover:transform scale-y-105 tracking-widest flex items-center gap-1">
-            Apply Today <MoveRight className='w-5 h-5' />
-          </button>
-        </div>
-      </div>
+      <HowToApply />
     </section>
   )
 }
 
-export default MBADepartment ;
+export default MBADepartment;

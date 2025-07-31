@@ -498,21 +498,7 @@ const MtechCSDepartment = () => {
                 </div>
             </section>
             <HighlightSlider />
-            <div className="max-w-[1400px] mx-auto grid grid-cols-2 gap-5 px-10 max-sm:px-2">
-                <div className="max-lg:col-span-2">
-                    <HowToApply />
-                </div>
-                <div className="ml-auto max-w-xl py-12 max-lg:col-span-2 max-lg:ml-0 max-lg:pb-10 max-lg:max-w-full">
-                    <h2 className="text-3xl max-w-xs max-lg:max-w-full">Ready to Master Your Research Field?</h2>
-                    <p className="mt-5 font-novaReg max-w-2xl max-lg:max-w-full">
-                        Stay Confident and Prepare to Contribute to Cutting-Edge Research. According to NASSCOM, India's research workforce in emerging technologies is expected to grow at 25% CAGR, creating over 200,000 research-oriented
-                        positions by 2025.
-                    </p>
-                    <button className="py-2 max-sm:px-6 max-sm:text-xs px-4 mt-5 text-sm rounded-lg font-novaBold uppercase bg-btn-gradient animate-gradient text-white w-max hover:bg-[#3c5686] hover:border-b-4 hover:border-[#beb6ff] hover:transform scale-y-105 tracking-widest flex items-center gap-1">
-                        Apply Today <MoveRight className="w-5 h-5" />
-                    </button>
-                </div>
-            </div>
+            <HowToApply />
         </section>
     );
 };

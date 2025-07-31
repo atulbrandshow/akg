@@ -144,11 +144,11 @@ const MTECHECDepartment = () => {
                         <div>
                             <h2 className="text-3xl font-novaReg">M.Tech in Electronics and Communication Engineering</h2>
                             <p className="my-5 tracking-tight font-novaReg text-start leading-5">
-                                  The M.Tech program in Electronics and Communication Engineering at AKGU is designed to equip students with advanced knowledge and practical skills in areas such as VLSI design, embedded systems, signal processing, and wireless communication. The program focuses on research-driven learning, supported by modern labs and experienced faculty members.
+                                The M.Tech program in Electronics and Communication Engineering at AKGU is designed to equip students with advanced knowledge and practical skills in areas such as VLSI design, embedded systems, signal processing, and wireless communication. The program focuses on research-driven learning, supported by modern labs and experienced faculty members.
 
                             </p>
                             <p className="leading-5 text-start font-novaReg">
-                                 Through a combination of core subjects, electives, and project work, students gain a deep understanding of modern communication technologies and electronic systems. The department emphasizes innovation, industry exposure, and academic excellence, preparing graduates for roles in R&D, teaching, core industries, or doctoral studies in reputed institutions.
+                                Through a combination of core subjects, electives, and project work, students gain a deep understanding of modern communication technologies and electronic systems. The department emphasizes innovation, industry exposure, and academic excellence, preparing graduates for roles in R&D, teaching, core industries, or doctoral studies in reputed institutions.
 
                             </p>
                         </div>
@@ -156,7 +156,7 @@ const MTECHECDepartment = () => {
                         <div>
                             <h2 className="font-novaReg text-2xl">Scope</h2>
                             <p className="mt-2 font-novaReg">
-                                 M.Tech in Electronics and Communication Engineering offers vast scope in both industry and academia. Graduates can explore opportunities in semiconductor industries, embedded systems, telecommunications, robotics, IoT, and defense technology. With the growing demand for advanced electronic and communication solutions in sectors like healthcare, automotive, and automation, ECE professionals are well-positioned for roles in research, design, development, and innovation. The program also provides a strong foundation for pursuing Ph.D. or careers in teaching and public sector undertakings.
+                                M.Tech in Electronics and Communication Engineering offers vast scope in both industry and academia. Graduates can explore opportunities in semiconductor industries, embedded systems, telecommunications, robotics, IoT, and defense technology. With the growing demand for advanced electronic and communication solutions in sectors like healthcare, automotive, and automation, ECE professionals are well-positioned for roles in research, design, development, and innovation. The program also provides a strong foundation for pursuing Ph.D. or careers in teaching and public sector undertakings.
 
                             </p>
                         </div>
@@ -391,7 +391,7 @@ const MTECHECDepartment = () => {
                     <h1 className="text-3xl font-novaReg text-white leading-7 mb-8">
                         Career Opportunities After
                         <br />
-                       M.TECH in Electronics & Communication Engineering
+                        M.TECH in Electronics & Communication Engineering
                     </h1>
                     <div className="grid md:grid-cols-2 gap-8">
                         {/* Careers Section */}
@@ -508,23 +508,9 @@ const MTECHECDepartment = () => {
                 </div>
             </section>
             <HighlightSlider />
-            <div className="max-w-[1400px] mx-auto grid grid-cols-2 gap-5 px-10 max-sm:px-2">
-                <div className="max-lg:col-span-2">
-                    <HowToApply />
-                </div>
-                <div className="ml-auto max-w-xl py-12 max-lg:col-span-2 max-lg:ml-0 max-lg:pb-10 max-lg:max-w-full">
-                    <h2 className="text-3xl max-w-xs max-lg:max-w-full">Ready to Master Your Professional Field?</h2>
-                    <p className="mt-5 font-novaReg max-w-2xl max-lg:max-w-full">
-                        Stay Confident and Prepare to Dominate Your Studies. According to the U.S. Bureau of Labor Statistics, total employment is expected to increase by 165.4 million by 2030, resulting in an addition of 11.9 million new
-                        jobs.
-                    </p>
-                    <button className="py-2 max-sm:px-6 max-sm:text-xs px-4 mt-5 text-sm rounded-lg font-novaBold uppercase bg-btn-gradient animate-gradient text-white w-max hover:bg-[#3c5686] hover:border-b-4 hover:border-[#beb6ff] hover:transform scale-y-105 tracking-widest flex items-center gap-1">
-                        Apply Today <MoveRight className="w-5 h-5" />
-                    </button>
-                </div>
-            </div>
+            <HowToApply />
         </section>
     );
 };
 
-export default MTECHECDepartment ;
+export default MTECHECDepartment;

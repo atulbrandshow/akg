@@ -140,17 +140,17 @@ const DSDepartment = () => {
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="space-y-6">
             <div>
-                <h2 className="text-3xl font-novaReg">Data Science</h2>
-                <p className="my-5 tracking-tight font-novaReg text-start leading-5">
-                    The Department of Data Science at AKGU was established to meet the growing demand for data professionals. Our department offers cutting-edge programs that combine statistical analysis, machine learning, and big data technologies to prepare students for the data-driven future.
-                </p>
-                <p className="leading-5 text-start font-novaReg">
-                    Since its inception, the department has been at the forefront of academic excellence in data analytics, artificial intelligence, and predictive modeling. We provide comprehensive support to M.Tech. scholars through expert dissertation guidance, state-of-the-art computing facilities, and access to leading research journals. Our experienced faculty members mentor students in both coursework and research projects. Faculty and students regularly publish high-quality research papers in reputed indexed journals and present at international conferences.
-                </p>
+              <h2 className="text-3xl font-novaReg">Data Science</h2>
+              <p className="my-5 tracking-tight font-novaReg text-start leading-5">
+                The Department of Data Science at AKGU was established to meet the growing demand for data professionals. Our department offers cutting-edge programs that combine statistical analysis, machine learning, and big data technologies to prepare students for the data-driven future.
+              </p>
+              <p className="leading-5 text-start font-novaReg">
+                Since its inception, the department has been at the forefront of academic excellence in data analytics, artificial intelligence, and predictive modeling. We provide comprehensive support to M.Tech. scholars through expert dissertation guidance, state-of-the-art computing facilities, and access to leading research journals. Our experienced faculty members mentor students in both coursework and research projects. Faculty and students regularly publish high-quality research papers in reputed indexed journals and present at international conferences.
+              </p>
             </div>
             <div>
-                <h2 className='font-novaReg text-2xl'>Scope</h2>
-                <p className='mt-2 font-novaReg'>According to industry reports, the global data science market is projected to grow at 27.7% CAGR from 2023 to 2030, with increasing demand for data scientists across all sectors including healthcare, finance, and technology.</p>
+              <h2 className='font-novaReg text-2xl'>Scope</h2>
+              <p className='mt-2 font-novaReg'>According to industry reports, the global data science market is projected to grow at 27.7% CAGR from 2023 to 2030, with increasing demand for data scientists across all sectors including healthcare, finance, and technology.</p>
             </div>
           </div>
           <div className="h-max border border-gray-400 rounded-lg p-6 shadow-lg mt-14">
@@ -204,105 +204,105 @@ const DSDepartment = () => {
           {/* Department at a Glance Card */}
           <div className="bg-white rounded-lg p-6 shadow-lg">
             <div className="flex items-center gap-3 mb-6">
-                <svg
+              <svg
                 className="w-10 h-10 text-gray-700"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="1.2"
-                >
+              >
                 <rect x="3" y="3" width="18" height="18" rx="2" />
                 <path d="M3 9h18M9 21V9" />
-                </svg>
-                <h2 className="text-2xl font-novaSemi text-black">
+              </svg>
+              <h2 className="text-2xl font-novaSemi text-black">
                 Department at a Glance
-                </h2>
+              </h2>
             </div>
             <ul className="space-y-2 font-novaReg">
-                <li className="flex items-start gap-2">
+              <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
                 <span className="text-gray-600">AI and Machine Learning integrated curriculum</span>
-                </li>
-                <li className="flex items-start gap-2">
+              </li>
+              <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
                 <span className="text-gray-600">Hands-on experience with Big Data technologies</span>
-                </li>
-                <li className="flex items-start gap-2">
+              </li>
+              <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
                 <span className="text-gray-600">Industry collaborations with leading data companies</span>
-                </li>
-                <li className="flex items-start gap-2">
+              </li>
+              <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
                 <span className="text-gray-600">High-demand career opportunities in analytics and AI</span>
-                </li>
-                <li className="flex items-start gap-2">
+              </li>
+              <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
                 <span className="text-gray-600">Real-world data projects and case studies</span>
-                </li>
+              </li>
             </ul>
             <button className="py-2 max-sm:py-1.5 max-sm:px-4 max-sm:text-xs px-5 mt-5 text-[15px] rounded-lg font-novaBold uppercase bg-btn-gradient animate-gradient text-white w-max  hover:bg-[#3c5686] hover:border-b-4 hover:border-[#beb6ff] hover:transform scale-y-105 tracking-widest flex items-center gap-1">
-                VIEW MORE <MoveRight className='w-5 h-5' />
+              VIEW MORE <MoveRight className='w-5 h-5' />
             </button>
-            </div>
+          </div>
 
-            {/* Exclusive Labs Card */}
-            <div className="bg-white rounded-lg p-6 shadow-lg">
+          {/* Exclusive Labs Card */}
+          <div className="bg-white rounded-lg p-6 shadow-lg">
             <div className="flex items-center gap-3 mb-6">
-                <svg className="w-10 h-10 text-gray-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
+              <svg className="w-10 h-10 text-gray-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
                 <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1" />
-                </svg>
-                <h2 className="text-2xl font-novaSemi text-black">Exclusive Labs</h2>
+              </svg>
+              <h2 className="text-2xl font-novaSemi text-black">Exclusive Labs</h2>
             </div>
             <ul className="space-y-2 font-novaReg">
-                <li className="flex items-start gap-2">
+              <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
                 <span className="text-gray-600">Data Science & AI Research Lab</span>
-                </li>
-                <li className="flex items-start gap-2">
+              </li>
+              <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
                 <span className="text-gray-600">Big Data Analytics Center</span>
-                </li>
-                <li className="flex items-start gap-2">
+              </li>
+              <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
                 <span className="text-gray-600">Machine Learning Innovation Hub</span>
-                </li>
-                <li className="flex items-start gap-2">
+              </li>
+              <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
                 <span className="text-gray-600">Cloud Computing & Data Engineering Lab</span>
-                </li>
-                <li className="flex items-start gap-2">
+              </li>
+              <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
                 <span className="text-gray-600">Business Intelligence Center</span>
-                </li>
-                <li className="flex items-start gap-2">
+              </li>
+              <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
                 <span className="text-gray-600">Predictive Analytics Lab</span>
-                </li>
+              </li>
             </ul>
             <button className="py-2 max-sm:py-1.5 max-sm:px-4 max-sm:text-xs px-5 mt-5 text-[15px] rounded-lg font-novaBold uppercase bg-btn-gradient animate-gradient text-white w-max  hover:bg-[#3c5686] hover:border-b-4 hover:border-[#beb6ff] hover:transform scale-y-105 tracking-widest flex items-center gap-1">
-                VIEW MORE <MoveRight className='w-5 h-5' />
+              VIEW MORE <MoveRight className='w-5 h-5' />
             </button>
-            </div>
+          </div>
 
-            {/* Department in a Nutshell Card */}
-            <div className="bg-white rounded-lg p-6 shadow-lg">
+          {/* Department in a Nutshell Card */}
+          <div className="bg-white rounded-lg p-6 shadow-lg">
             <div className="flex items-center gap-3 mb-6">
-                <h2 className="text-2xl font-novaSemi text-black">Your Department in a <br /> Nutshell</h2>
+              <h2 className="text-2xl font-novaSemi text-black">Your Department in a <br /> Nutshell</h2>
             </div>
 
             <ul className="space-y-1 font-novaReg">
-                {[
+              {[
                 'Data Innovations', 'Research Publications', 'Data Workshops', 'Industry Expert Lectures',
                 'Hackathons', 'AI Research Centers', 'Certification Programs', 'Curriculum',
                 'Learning Outcomes', 'Faculty Directory', 'Data Science Best Practices'
-                ].map((item) => (
+              ].map((item) => (
                 <li key={item} className="flex items-center gap-2 text-[15px] text-gray-900 cursor-pointer hover:pl-1.5 duration-200 ease-in-out">
-                    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M5 12h14m-7-7l7 7-7 7" />
-                    </svg>
-                    <span>{item}</span>
+                  </svg>
+                  <span>{item}</span>
                 </li>
-                ))}
+              ))}
             </ul>
           </div>
 
@@ -310,66 +310,66 @@ const DSDepartment = () => {
       </section>
       <div className="max-w-[1400px] mx-auto p-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div className="space-y-8">
+          <div>
+            <h1 className="text-2xl font-novaReg text-gray-800 mb-2">
+              AKG University B.Tech Data Science Admission Eligibility & Fees
+            </h1>
+            <p className="text-gray-800 font-novaReg">
+              Applicants must have completed 10+2 with Mathematics as a compulsory subject along with Physics/Chemistry/Computer Science/Statistics, securing at least 60% aggregate marks. Strong aptitude in quantitative subjects is preferred.
+            </p>
+          </div>
+          <div className="space-y-6">
             <div>
-                <h1 className="text-2xl font-novaReg text-gray-800 mb-2">
-                AKG University B.Tech Data Science Admission Eligibility & Fees
-                </h1>
-                <p className="text-gray-800 font-novaReg">
-                Applicants must have completed 10+2 with Mathematics as a compulsory subject along with Physics/Chemistry/Computer Science/Statistics, securing at least 60% aggregate marks. Strong aptitude in quantitative subjects is preferred.
-                </p>
+              <table className="w-full border border-gray-300 border-collapse">
+                <thead>
+                  <tr>
+                    <th className="text-left py-3 px-4 bg-gray-600 text-white font-novaReg">
+                      Program Fee
+                    </th>
+                    <th className="text-left py-3 px-4 bg-gray-600 text-white font-novaReg">
+                      Amount
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b font-novaReg">
+                    <td className="py-3 px-4 text-gray-700">Semester Fee</td>
+                    <td className="py-3 px-4 text-gray-700">135000/- INR</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <div className="space-y-6">
-                <div>
-                <table className="w-full border border-gray-300 border-collapse">
-                    <thead>
-                    <tr>
-                        <th className="text-left py-3 px-4 bg-gray-600 text-white font-novaReg">
-                        Program Fee
-                        </th>
-                        <th className="text-left py-3 px-4 bg-gray-600 text-white font-novaReg">
-                        Amount
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr className="border-b font-novaReg">
-                        <td className="py-3 px-4 text-gray-700">Semester Fee</td>
-                        <td className="py-3 px-4 text-gray-700">135000/- INR</td>
-                    </tr>
-                    </tbody>
-                </table>
-                </div>
 
-                <div>
-                <table className="w-full border border-gray-300 border-collapse">
-                    <thead>
-                    <tr>
-                        <th className="text-left py-3 px-3 bg-gray-600 text-white font-novaReg">
-                        Other Fee Details
-                        </th>
-                        <th className="text-left py-3 px-4 bg-gray-600 text-white font-novaReg">
-                        Amount
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr className="border-b font-novaReg">
-                        <td className="py-3 px-4 text-gray-700">Examination Fee</td>
-                        <td className="py-3 px-4 text-gray-700">4000/- INR</td>
-                    </tr>
-                    <tr className="border-b font-novaReg">
-                        <td className="py-3 px-4 text-gray-700">Data Lab Security Deposit</td>
-                        <td className="py-3 px-4 text-gray-700">5000/- INR</td>
-                    </tr>
-                    <tr className="border-b font-novaReg">
-                        <td className="py-3 px-4 text-gray-700">Cloud Computing Lab Fee</td>
-                        <td className="py-3 px-4 text-gray-700">6000/- INR</td>
-                    </tr>
-                    </tbody>
-                </table>
-                </div>
+            <div>
+              <table className="w-full border border-gray-300 border-collapse">
+                <thead>
+                  <tr>
+                    <th className="text-left py-3 px-3 bg-gray-600 text-white font-novaReg">
+                      Other Fee Details
+                    </th>
+                    <th className="text-left py-3 px-4 bg-gray-600 text-white font-novaReg">
+                      Amount
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b font-novaReg">
+                    <td className="py-3 px-4 text-gray-700">Examination Fee</td>
+                    <td className="py-3 px-4 text-gray-700">4000/- INR</td>
+                  </tr>
+                  <tr className="border-b font-novaReg">
+                    <td className="py-3 px-4 text-gray-700">Data Lab Security Deposit</td>
+                    <td className="py-3 px-4 text-gray-700">5000/- INR</td>
+                  </tr>
+                  <tr className="border-b font-novaReg">
+                    <td className="py-3 px-4 text-gray-700">Cloud Computing Lab Fee</td>
+                    <td className="py-3 px-4 text-gray-700">6000/- INR</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            </div>
+          </div>
+        </div>
 
         <div className="relative h-[500px] rounded-lg">
           <img
@@ -546,20 +546,7 @@ const DSDepartment = () => {
         </div>
       </section>
       <HighlightSlider />
-      <div className='max-w-[1400px] mx-auto grid grid-cols-2 gap-5 px-10 max-sm:px-2'>
-        <div className='max-lg:col-span-2'>
-          <HowToApply />
-        </div>
-        <div className='ml-auto max-w-xl py-12 max-lg:col-span-2 max-lg:ml-0 max-lg:pb-10 max-lg:max-w-full'>
-          <h2 className='text-3xl max-w-xs max-lg:max-w-full'>Ready to Master Your Professional Field?</h2>
-          <p className='mt-5 font-novaReg max-w-2xl max-lg:max-w-full'>
-            Stay Confident and Prepare to Dominate Your Studies. According to the U.S. Bureau of Labor Statistics, total employment is expected to increase by 165.4 million by 2030, resulting in an addition of 11.9 million new jobs.
-          </p>
-          <button className="py-2 max-sm:px-6 max-sm:text-xs px-4 mt-5 text-sm rounded-lg font-novaBold uppercase bg-btn-gradient animate-gradient text-white w-max hover:bg-[#3c5686] hover:border-b-4 hover:border-[#beb6ff] hover:transform scale-y-105 tracking-widest flex items-center gap-1">
-            Apply Today <MoveRight className='w-5 h-5' />
-          </button>
-        </div>
-      </div>
+      <HowToApply />
     </section>
   )
 }

@@ -26,8 +26,17 @@ const TableList = ({ type, title, subTitle }) => {
             })
             const data = await response.json()
             const fetchedData = data.data || []
-            setNewsAndEvents(fetchedData)
-            setFilteredData(fetchedData)
+            const parentItems = fetchedData.filter(item => item.parent_id === 0);
+            const childItems = fetchedData
+                .filter(item => item.parent_id !== 0)
+                .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // or 'updatedAt'
+
+            // Merge the two
+            const sortedData = [...parentItems, ...childItems];
+
+
+            setNewsAndEvents(sortedData);
+            setFilteredData(sortedData);
         } catch (error) {
             console.error("Error fetching news and events:", error)
             toast.error("Failed to fetch data")
@@ -192,7 +201,7 @@ const TableList = ({ type, title, subTitle }) => {
                             </div>
                             <input
                                 type="text"
-                                placeholder={`Search ${type?.toLowerCase()}...`}
+                                placeholder={`Search ${type?.toLowerCase()}.....`}
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                                 className="block w-full pl-10 pr-3 py-2 border font-novaReg border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
@@ -290,13 +299,12 @@ const TableList = ({ type, title, subTitle }) => {
                                         filteredData.map((event, index) => (
                                             <tr
                                                 key={event._id}
-                                                className={`hover:bg-gray-50 transition-colors duration-150 ${index % 2 === 0 ? "bg-white" : "bg-gray-50/30"
-                                                    }`}
+                                                className={`transition-colors duration-150 ${type !== "Page" && index === 0 && "bg-purple-100"}`}
                                             >
-                                                <td className="px-6 py-4">
+                                                <td className="px-2 py-4">
                                                     <div className="flex items-center">
                                                         <div className="ml-4">
-                                                            <div className="text-sm font-novaSemi text-gray-900 line-clamp-2">{event.name}</div>
+                                                            <div className="text-sm font-novaSemi text-gray-900 line-clamp-2">{type !== "Page" && index === 0 && "Main Page -"} {event.name}</div>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -312,9 +320,6 @@ const TableList = ({ type, title, subTitle }) => {
                                                 </td>
                                                 <td className="px-6 py-4">
                                                     <div className="flex flex-col space-y-1">
-                                                        {/* <code className="text-xs bg-gray-100 px-2 py-1 rounded text-gray-800 font-mono">
-                              {event.path || event.slug}
-                            </code> */}
                                                         <Link target="_blank" href={event.path} className="text-xs text-nowrap flex gap-1 items-center w-fit bg-blue-100 px-2 py-1 rounded text-gray-800 font-novaSemi hover:bg-gray-200 ">
                                                             <View size={14} />
                                                             View Page

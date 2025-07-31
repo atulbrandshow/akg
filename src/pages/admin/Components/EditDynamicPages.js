@@ -136,36 +136,13 @@ const GalleryPreview = ({
         {label} ({totalItems} files)
       </p>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-        {/* Existing Images */}
-        {existingImages?.map((image, index) => (
-          <div key={`existing-${index}`} className="relative group">
-            <img
-              src={image || "/placeholder.svg"}
-              alt={`Existing ${index + 1}`}
-              className="w-full h-20 object-cover rounded-lg border"
-            />
-            <button
-              type="button"
-              onClick={() => onDeleteExisting(index)}
-              className="absolute -top-2 -right-2 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600"
-              title="Delete image"
-            >
-              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-            <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-xs p-1 rounded-b-lg">
-              Existing
-            </div>
-          </div>
-        ))}
 
         {/* New Uploaded Images (URLs) */}
         {imageUrls?.map((imageUrl, index) => (
           <div key={`uploaded-${index}`} className="relative group">
             <div className="relative">
               <img
-                src={imageUrl || "/placeholder.svg"}
+                src={IMAGE_PATH + imageUrl || "/placeholder.svg"}
                 alt={`Uploaded ${index + 1}`}
                 className="w-full h-20 object-cover rounded-lg border"
               />
@@ -623,6 +600,9 @@ function EditDynamicPages({ type, componentType }) {
           credentials: "include",
         })
         const data = await response.json();
+
+        console.log(data);
+        
 
         if (data.status) {
           const parent_id = data?.data?.parent_id

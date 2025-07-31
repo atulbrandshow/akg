@@ -112,7 +112,7 @@ const GalleryPreview = ({ files, imageUrls, onDeleteFile, label, uploadingIndexe
             <div key={index} className="relative group">
               <div className="relative">
                 <img
-                  src={IMAGE_PATH + previewUrl || "/placeholder.svg"}
+                  src={previewUrl || "/placeholder.svg"}
                   alt={`Gallery ${index + 1}`}
                   className="w-full h-20 object-cover rounded-lg border"
                 />
@@ -644,6 +644,56 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
 
             <div className={`grid grid-cols-1 md:grid-cols-2  gap-6`}>
               <div className="relative">
+                <label htmlFor="parent-page" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                  Choose Parent Page
+                  <span className="text-red-500 ml-1">*</span>
+                </label>
+                <div className="relative">
+                  <input
+                    id="parent-page"
+                    type="text"
+                    value={searchValue}
+                    onChange={handleInputChange}
+                    placeholder="Search and select parent page..."
+                    className="w-full border-2 border-gray-200 font-novaReg rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
+                  />
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+
+                {showDropdown && (
+                  <div className="absolute z-20 w-full bg-white border-2 border-gray-200 rounded-xl mt-2 max-h-64 overflow-auto shadow-2xl">
+                    {displayedPages.map((page, index) => (
+                      <div
+                        key={index}
+                        onClick={() => handleSuggestionClick(page)}
+                        className="cursor-pointer px-4 py-3 hover:bg-blue-50 border-b border-gray-100 last:border-b-0 transition-colors duration-150"
+                      >
+                        <div className="font-novaSemi text-gray-800">{page.name}</div>
+                        {page?.page_id && <div className="text-sm text-gray-500">ID: {page.page_id}</div>}
+                      </div>
+                    ))}
+                    {hasMore && displayedPages.length > 0 && (
+                      <button
+                        type="button"
+                        onClick={handleShowMore}
+                        className="w-full px-4 py-3 text-blue-600 hover:bg-blue-50 transition-colors duration-150"
+                      >
+                        Load More Pages
+                      </button>
+                    )}
+                  </div>
+                )}
+              </div>
+              <div className="relative">
                 <label htmlFor="schoolSearch" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Search School
                   <span className="text-red-500 ml-1">*</span>
@@ -701,14 +751,14 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-novaSemi text-gray-900">{type} Details</h2>
+              <h2 className="text-xl font-novaSemi text-gray-900">Page Details</h2>
             </div>
 
             <div className="space-y-6">
-              <div className={`grid grid-cols-1 md:grid-cols-2 gap-6`}>
+              <div className={`grid grid-cols-1 ${type === "Page" ? "md:grid-cols-3" : "md:grid-cols-2"}  gap-6`}>
                 <div>
                   <label htmlFor="name" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                    {type} Title <span className="text-red-500">*</span>
+                    Page Title <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -724,7 +774,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                 </div>
                 <div>
                   <label htmlFor="date" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                    {type} Date <span className="text-red-500">*</span>
+                    Page Date <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="date"
@@ -736,6 +786,24 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                     className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   />
                 </div>
+                {type === "Page" && (
+                  <div>
+                    <label htmlFor="type" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                      Page Type <span className="text-red-500">*</span>
+                    </label>
+                    <select
+                      id="type"
+                      name="type"
+                      value={formData.type}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    >
+                      <option value="">Select Page Type</option>
+                      <option value="Page">Page</option>
+                      <option value="Admission">Admission</option>
+                    </select>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -759,7 +827,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  {type} Short Description <span className="text-red-500">*</span>
+                  Short Description <span className="text-red-500">*</span>
                 </label>
                 <div className="border border-gray-300 font-novaReg rounded-lg overflow-hidden">
                   <JoditEditor
@@ -770,7 +838,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
               </div>
               <div>
                 <label className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  {type} Description <span className="text-red-500">*</span>
+                  Page Description <span className="text-red-500">*</span>
                 </label>
                 <div className="border border-gray-300 font-novaReg rounded-lg overflow-hidden">
                   <JoditEditor
@@ -861,7 +929,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
               <div>
                 <label htmlFor="video_url" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  URL
+                  Video URL
                 </label>
                 <input
                   type="url"
@@ -870,7 +938,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   value={formData.video_url}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  placeholder="https://example.com"
+                  placeholder="https://example.com/video"
                 />
               </div>
             </div>
@@ -1092,7 +1160,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-lg font-novaSemi text-gray-900">Ready to Submit?</h3>
-                <p className="text-gray-600 mt-1 font-novaReg">Review all information before submitting the {type?.toLowerCase()}</p>
+                <p className="text-gray-600 mt-1 font-novaReg">Review all information before submitting the page</p>
               </div>
               <button
                 type="submit"
@@ -1111,7 +1179,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                     <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    Submit {type}
+                    Submit Page
                   </>
                 )}
               </button>

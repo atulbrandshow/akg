@@ -1,7 +1,7 @@
 import { useEffect, useState, Suspense, lazy } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import DynamicPageWrapper from "./main/DynamicPage";
+import Page from "./index";
 import ShimmerContent from "@Components/ShimmerContent";
 import { API_NODE_URL } from "@/configs/config";
 
@@ -49,7 +49,7 @@ export default function DynamicPage({ data }) {
     const pageUrl = `https://www.akgec.ac.in${router.asPath}`;
 
     return (
-        <DynamicPageWrapper>
+        <Page>
             <Head>
                 <title>{metaTitle}</title>
                 <meta name="description" content={metaDescription} />
@@ -64,13 +64,15 @@ export default function DynamicPage({ data }) {
             <Suspense fallback={<ShimmerContent />}>
                 {Component ? <Component data={data.data} /> : <ShimmerContent />}
             </Suspense>
-        </DynamicPageWrapper>
+        </Page>
     );
 }
+
 export async function getServerSideProps(context) {
     const { slug = [] } = context.params || {};
-    let path = "/" + slug.join("/");
+    let path = slug.join("/") || "";
 
+    if (!path.startsWith("/")) path = "/" + path;
     if (path.includes("?")) path = path.split("?")[0];
 
     const ignoredPaths = ["/favicon.ico", "/.well-known/appspecific/com.chrome.devtools.json"];
@@ -78,30 +80,20 @@ export async function getServerSideProps(context) {
         return { notFound: true };
     }
 
-    // If it's home page, change path to /home
-    if (path === "/") {
-        path = "/home";
-    }
+    const response = await fetch(`${API_NODE_URL}slug?path=${encodeURIComponent(path)}`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+    });
 
-    try {
-        const response = await fetch(`${API_NODE_URL}slug?path=${encodeURIComponent(path)}`, {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-        });
+    const result = await response.json();
 
-        const result = await response.json();
-
-        if (!result.status || !result.data) {
-            return { notFound: true };
-        }
-
-        return {
-            props: {
-                data: result,
-            },
-        };
-    } catch (error) {
-        console.error("API error:", error);
+    if (!result.status || !result.data) {
         return { notFound: true };
     }
+
+    return {
+        props: {
+            data: result,
+        },
+    };
 }

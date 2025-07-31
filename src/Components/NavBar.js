@@ -198,7 +198,7 @@ export default function NavBar() {
                 <Link href="/events" className="leading-6 text-sm font-bold uppercase text-white hover:underline hover:text-gray-400 transition duration-500">Event</Link>
                 <Link href="/articles" className="leading-6 text-sm font-bold uppercase text-white hover:underline hover:text-gray-400 transition duration-500">Article</Link>
                 <Link href="/circulars" className="leading-6 text-sm font-bold uppercase text-white hover:underline hover:text-gray-400 transition duration-500">Circular & Notices</Link>
-                <Link href="#" className="leading-6 text-sm font-bold uppercase text-white hover:underline hover:text-gray-400 transition duration-500">Contact us</Link>
+                {/* <Link href="#" className="leading-6 text-sm font-bold uppercase text-white hover:underline hover:text-gray-400 transition duration-500">Contact us</Link> */}
               </div>
               <div className="flex justify-end">
                 <a href="tel:1800-200-0777" className="bg-cyan-500 whitespace-nowrap flex justify-center items-center gap-2 py-3 px-4">

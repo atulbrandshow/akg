@@ -120,6 +120,13 @@ const navSections = [
           { label: "List of Faculty", href: "/admin/faculty-list" },
         ],
       },
+      {
+        icon: Users,
+        label: "Online Application",
+        nestedLinks: [
+          { label: "Applications", href: "/admin/online-applications" },
+        ],
+      },
     ],
   },
 ]

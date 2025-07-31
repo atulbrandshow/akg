@@ -10,7 +10,7 @@ const Home = () => {
     return (
         <>
             <div className="bg-gray-100">
-                <Header title={"Gallery"} Button={Button} gradient={"bg-gradient-to-r from-blue-900 to-blue-900/40"} />
+                <Header title={"Gallery"} Button={Button} gradient={"bg-gradient-to-r from-blue-900 to-blue-900/40"} bgKey="BG-Building-14" />
                 <Gallery />
             </div>
         </>

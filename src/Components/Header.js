@@ -17,6 +17,20 @@ const bgImages = {
     'BG11': "/image/building/central_Library.webp",
     'BG12': "/image/building/girls hostel.webp",
     'BG13': "/image/building/lecture theatre.webp",
+    'BG-Building-1': "/image/building/building-11.webp",
+    'BG-Building-2': "/image/building/building-12.webp",
+    'BG-Building-3': "/image/building/building-13.webp",
+    'BG-Building-4': "/image/building/building-14.webp",
+    'BG-Building-5': "/image/building/building-15.webp",
+    'BG-Building-6': "/image/building/building-16.webp",
+    'BG-Building-7': "/image/building/building-17.webp",
+    'BG-Building-8': "/image/building/building-18.webp",
+    'BG-Building-9': "/image/building/building-19.webp",
+    'BG-Building-10': "/image/building/building-20.webp",
+    'BG-Building-11': "/image/building/building-21.webp",
+    'BG-Building-12': "/image/building/building-22.webp",
+    'BG-Building-13': "/image/building/building-23.webp",
+    'BG-Building-14': "/image/building/building-24.webp",
 };
 
 const formConfigs = {
@@ -74,8 +88,7 @@ export default function Header({
             <div className="relative mx-auto max-w-[1400px] px-6 py-20">
                 <div className="mx-auto lg:mx-0">
                     <h2 className="text-3xl max-w-lg font-novaReg tracking-tight text-white sm:text-[40px]">{title}</h2>
-                    <p className="mt-2 text-white font-novaReg max-w-xl text-lg lg:text-xl"
-                        dangerouslySetInnerHTML={{ __html: subHeading }} />
+                    <p className="mt-2 text-white font-novaReg max-w-xl text-lg lg:text-xl">{subHeading}</p>
                     {buttonType && (
                         <div className="mt-8">{
                             buttonType === "link" ? (

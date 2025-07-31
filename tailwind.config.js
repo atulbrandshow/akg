@@ -84,6 +84,22 @@ module.exports = {
         'BG48': "url('/image/building/building8.webp')",
         'BG49': "url('/image/building/building9.webp')",
         'BG50': "url('/image/building/building10.webp')",
+
+        'BG-Building-1': "url('/image/building/building-11.webp')",
+        'BG-Building-2': "url('/image/building/building-12.webp')",
+        'BG-Building-3': "url('/image/building/building-13.webp')",
+        'BG-Building-4': "url('/image/building/building-14.webp')",
+        'BG-Building-5': "url('/image/building/building-15.webp')",
+        'BG-Building-6': "url('/image/building/building-16.webp')",
+        'BG-Building-7': "url('/image/building/building-17.webp')",
+        'BG-Building-8': "url('/image/building/building-18.webp')",
+        'BG-Building-9': "url('/image/building/building-19.webp')",
+        'BG-Building-10': "url('/image/building/building-20.webp')",
+        'BG-Building-11': "url('/image/building/building-21.webp')",
+        'BG-Building-12': "url('/image/building/building-22.webp')",
+        'BG-Building-13': "url('/image/building/building-23.webp')",
+        'BG-Building-14': "url('/image/building/building-24.webp')",
+        
       },
       boxShadow: {
         'cardShadow': '0 0.5rem 1rem rgba(0, 0, 0, 0.15)',

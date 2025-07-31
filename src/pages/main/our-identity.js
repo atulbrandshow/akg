@@ -20,7 +20,7 @@ const SideBarLink = [
 export const Home = () => {
     return (
         <div className="bg-gray-100">
-            <Header title={"Our Identity"} Button={Button} bg="/image/building/building4.webp" gradient={"bg-gradient-to-r from-blue-900 to-blue-900/40"} />
+            <Header title={"Our Identity"} Button={Button} bgKey="BG-Building-2" gradient={"bg-gradient-to-r from-blue-900 to-blue-900/40"} />
             <section className="w-full max-w-[1400px] mx-auto grid grid-cols-12 py-20 max-sm:py-5 gap-10 px-5 max-sm:px-2 max-sm:gap-0">
                 <div className="col-span-9 max-xl:col-span-8 max-lg:col-span-12">
                     <OurIdentity />

@@ -196,7 +196,7 @@ const MTECHECDepartment = () => {
             <section className="bg-blue-600 px-8 py-16 h-full xl:h-[50vh]">
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-[1400px] mx-auto xl:-translate-y-40">
                     {/* Department at a Glance Card */}
-                    <div className="bg-white rounded-lg p-6 shadow-lg h-fit">
+                    <div className="bg-white rounded-lg p-6 shadow-lg">
                         <div className="flex items-center gap-3 mb-6">
                             <svg className="w-10 h-10 text-gray-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
                                 <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -232,7 +232,7 @@ const MTECHECDepartment = () => {
                     </div>
 
                     {/* Exclusive Labs Card */}
-                    <div className="bg-white rounded-lg p-6 shadow-lg h-fit">
+                    <div className="bg-white rounded-lg p-6 shadow-lg">
                         <div className="flex items-center gap-3 mb-6">
                             <svg className="w-10 h-10 text-gray-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
                                 <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1" />

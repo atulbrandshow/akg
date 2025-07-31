@@ -125,6 +125,13 @@ const navSections = [
           { label: "List of Faculty", href: "/admin/faculty-list" },
         ],
       },
+      {
+        icon: Users,
+        label: "Topper Management",
+        nestedLinks: [
+          { label: "Toppers", href: "/admin/topper-managment" },
+        ],
+      },
     ],
   },
 ]

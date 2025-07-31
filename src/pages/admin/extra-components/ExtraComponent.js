@@ -3,6 +3,7 @@ import { API_NODE_URL } from "@/configs/config"
 import dynamic from "next/dynamic"
 import { useState, useEffect } from "react"
 import { useSearchParams } from "next/navigation"
+import { uploadImages } from "@/utills/ImageUpload"
 
 const JoditEditor = dynamic(() => import("jodit-react"), {
   ssr: false,
@@ -40,7 +41,7 @@ const ExtraParamsManager = () => {
     pageid: "",
     param: "",
     paramDesc: "",
-    paramImg: "",
+    paramImg: [],
     paramUrl: "",
     orderSequence: 0,
     type: "",
@@ -49,6 +50,7 @@ const ExtraParamsManager = () => {
     status: true,
     addedby: "",
     calid: "",
+    extraData: []
   })
 
   // Predefined holders organized by sections
@@ -130,19 +132,40 @@ const ExtraParamsManager = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
+
     try {
+      let imgUrls = []
+
+      // Upload new files
+      const newFiles = formData.paramImg.filter((item) => item instanceof File)
+      if (newFiles.length > 0) {
+        const uploadedUrls = await uploadImages(newFiles, "ExtraParamImages")
+        imgUrls = [
+          ...formData.paramImg
+            .filter((item) => typeof item === "string"), // keep existing
+          ...uploadedUrls,
+        ]
+      } else {
+        imgUrls = formData.paramImg // all strings (from edit mode)
+      }
+
+      const payload = {
+        ...formData,
+        paramImg: imgUrls,
+      }
+
       const url = editingParam
         ? `${API_NODE_URL}extra-component-data/${editingParam._id}`
         : `${API_NODE_URL}extra-component-data/create`
       const method = editingParam ? "PUT" : "POST"
+
       const response = await fetch(url, {
         method,
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       })
+
       const result = await response.json()
       if (result.status) {
         alert(result.message)
@@ -150,9 +173,7 @@ const ExtraParamsManager = () => {
         setEditingParam(null)
         resetForm()
         fetchParams()
-        if (selectedPageId) {
-          fetchUsedHolders(selectedPageId)
-        }
+        if (selectedPageId) fetchUsedHolders(selectedPageId)
       } else {
         alert(result.message)
       }
@@ -160,8 +181,11 @@ const ExtraParamsManager = () => {
       alert("Error saving data")
       console.error("Error:", error)
     }
+
     setLoading(false)
   }
+
+
 
   // Handle delete
   const handleDelete = async (id) => {
@@ -350,9 +374,8 @@ const ExtraParamsManager = () => {
                               </td>
                               <td className="px-6 py-4 whitespace-nowrap">
                                 <span
-                                  className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                                    param.status ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
-                                  }`}
+                                  className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${param.status ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
+                                    }`}
                                 >
                                   {param.status ? "Active" : "Inactive"}
                                 </span>
@@ -513,41 +536,44 @@ const ExtraParamsManager = () => {
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">Upload Image *</label>
-                        {/* Preview if image exists */}
-                        {formData.paramImg && (
-                          <div className="relative inline-block mb-2">
-                            <img
-                              src={URL.createObjectURL(formData.paramImg) || "/placeholder.svg"}
-                              alt="Preview"
-                              className="h-32 w-32 object-cover rounded shadow border"
-                            />
-                            <button
-                              type="button"
-                              onClick={() => setFormData({ ...formData, paramImg: null })}
-                              className="absolute top-1 right-1 bg-red-600 text-white text-xs rounded-full p-1 hover:bg-red-700"
-                              title="Remove Image"
-                            >
-                              ✕
-                            </button>
+                        {/* Previews if images exist */}
+                        {formData.paramImg && formData.paramImg.length > 0 && (
+                          <div className="flex flex-wrap gap-2 mb-2">
+                            {formData.paramImg.map((img, idx) => (
+                              <div key={idx} className="relative inline-block">
+                                <img
+                                  src={typeof img === "string" ? img : URL.createObjectURL(img)}
+                                  alt={`Preview ${idx}`}
+                                  className="h-24 w-24 object-cover rounded shadow border"
+                                />
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    const updatedImages = formData.paramImg.filter((_, i) => i !== idx)
+                                    setFormData({ ...formData, paramImg: updatedImages })
+                                  }}
+                                  className="absolute top-1 right-1 bg-red-600 text-white text-xs rounded-full p-1 hover:bg-red-700"
+                                  title="Remove Image"
+                                >
+                                  ✕
+                                </button>
+                              </div>
+                            ))}
                           </div>
                         )}
+
                         {/* File input */}
                         <input
                           type="file"
                           accept="image/*"
+                          multiple
                           onChange={(e) => {
-                            const file = e.target.files[0]
-                            if (file) {
-                              // setFormData({ ...formData, paramImg: file });
-                            }
+                            const files = Array.from(e.target.files)
+                            setFormData({ ...formData, paramImg: [...formData.paramImg, ...files] })
                           }}
-                          className="block w-full text-sm text-gray-500
-    file:mr-4 file:py-2 file:px-4
-    file:rounded-full file:border-0
-    file:text-sm file:font-semibold
-    file:bg-blue-50 file:text-blue-700
-    hover:file:bg-blue-100"
+                          className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                         />
+
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">URL</label>
@@ -613,9 +639,8 @@ const ExtraParamsManager = () => {
                           return (
                             <div
                               key={holder}
-                              className={`p-2 rounded-md text-sm font-medium flex items-center justify-between ${
-                                isUsed ? "bg-green-200 text-green-800" : "bg-red-200 text-red-800"
-                              }`}
+                              className={`p-2 rounded-md text-sm font-medium flex items-center justify-between ${isUsed ? "bg-green-200 text-green-800" : "bg-red-200 text-red-800"
+                                }`}
                             >
                               <span>{holder}</span>
                               <span className="text-xs">{isUsed ? "✓" : "✗"}</span>

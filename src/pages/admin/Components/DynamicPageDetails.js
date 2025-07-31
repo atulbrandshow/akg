@@ -112,7 +112,7 @@ const GalleryPreview = ({ files, imageUrls, onDeleteFile, label, uploadingIndexe
             <div key={index} className="relative group">
               <div className="relative">
                 <img
-                  src={previewUrl || "/placeholder.svg"}
+                  src={IMAGE_PATH + previewUrl || "/placeholder.svg"}
                   alt={`Gallery ${index + 1}`}
                   className="w-full h-20 object-cover rounded-lg border"
                 />

@@ -122,6 +122,13 @@ const navSections = [
       },
       {
         icon: Users,
+        label: "Topper Management",
+        nestedLinks: [
+          { label: "Toppers", href: "/admin/topper-managment" },
+        ],
+      },
+      {
+        icon: Users,
         label: "Online Application",
         nestedLinks: [
           { label: "Applications", href: "/admin/online-applications" },

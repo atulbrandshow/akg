@@ -5,7 +5,6 @@ import { toast } from "react-toastify"
 import { API_NODE_URL } from "@/configs/config"
 
 // Mock API configuration - replace with your actual config
-const API_NODE_URL = API_NODE_URL;
 const IMAGE_PATH =  "http://localhost:3001/"
 
 const HighlightBannerList = () => {

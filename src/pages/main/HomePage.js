@@ -4,8 +4,8 @@ import { CampusSlider, FooterCard, LogoSlider, MilestonesSection, NewsEvents, Pl
 import MainSection from "@/Components/MainSection";
 import NotificationSlider from "@/Components/NotificationSlider";
 
-export default function HomePage() {
-
+export default function HomePage({ data }) {
+  console.log("Log From Home Page : ", data);
   return (
     <>
       <MainSection />

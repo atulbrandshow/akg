@@ -960,7 +960,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
               <h2 className="text-xl font-novaSemi text-gray-900">Media Upload</h2>
             </div>
             {
-              type === "Download Center" &&
+              type === "Download Center" || type === "Circular" &&
               <div className="mb-10">
                 <FileUploadField
                   id="downloadCenterPdf"

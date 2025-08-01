@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import DynamicPageWrapper from "./main/DynamicPage";
 import ShimmerContent from "@Components/ShimmerContent";
 import { API_NODE_URL } from "@/configs/config";
+import HomePage from "./main/HomePage";
 
 const loadComponent = async (componentName) => {
     try {
@@ -71,6 +72,10 @@ export async function getServerSideProps(context) {
     const { slug = [] } = context.params || {};
     let path = "/" + slug.join("/");
     console.log("Path :", path);
+
+    if (!slug || slug.length === 0) {
+        return <HomePage />
+    }
 
     if (path.includes("?")) path = path.split("?")[0];
 

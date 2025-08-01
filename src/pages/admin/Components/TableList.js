@@ -89,7 +89,7 @@ const TableList = ({ type, title, subTitle }) => {
         })
 
         setFilteredData(filtered)
-    }, [newsAndEvents, searchTerm, filterType, sortBy, sortOrder])
+    }, [searchTerm, filterType, sortBy, sortOrder])
 
     const handleDelete = async (event) => {
         if (!window.confirm("Are you sure you want to delete this page?")) {

@@ -75,7 +75,7 @@ export default function HowToApply() {
   }, [])
 
   return (
-    <div className="max-w-[1400px] mx-auto px-6 py-16 lg:px-8">
+    <div className="max-w-[1400px] mx-auto px-2 sm:px-6 py-16 lg:px-8">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         {/* Left Section - Steps */}
         <div className="lg:col-span-7">
@@ -103,7 +103,7 @@ export default function HowToApply() {
               <div className="absolute top-8 left-8 right-8 h-0.5 bg-gray-200 hidden md:block" />
               <div
                 className="absolute top-8 left-8 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-1000 ease-in-out hidden md:block"
-                style={{ width: `${((currentStep - 1) / 2) * 100}%`, maxWidth: "calc(100% - 4rem)" }}
+                style={{ width: `${((currentStep - 1) / 2) * 100}%`, maxWidth: "calc(100% - 6rem)" }}
               />
 
               {/* Step Indicators */}
@@ -111,35 +111,31 @@ export default function HowToApply() {
                 {steps.map((step, index) => (
                   <div
                     key={step.number}
-                    className={`flex items-center md:flex-col cursor-pointer transition-all duration-300 ${
-                      step.number === currentStep ? "transform scale-105" : ""
-                    }`}
+                    className={`flex items-center md:flex-col cursor-pointer transition-all duration-300`}
                     onClick={() => setCurrentStep(step.number)}
                   >
                     <div className="flex items-center md:flex-col">
                       <div
-                        className={`w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-300 shadow-lg ${
-                          step.number === currentStep
-                            ? `bg-gradient-to-br ${step.color} text-white shadow-xl`
-                            : step.number < currentStep
-                              ? "bg-gradient-to-br from-green-500 to-emerald-600 text-white"
-                              : "bg-white border-2 border-gray-200 text-gray-400"
-                        }`}
+                        className={`h-12 w-12 md:w-16 md:h-16 rounded-2xl flex items-center justify-center transition-all duration-300 shadow-lg ${step.number === currentStep
+                          ? `bg-gradient-to-br ${step.color} text-white shadow-xl`
+                          : step.number < currentStep
+                            ? "bg-gradient-to-br from-green-500 to-emerald-600 text-white"
+                            : "bg-white border-2 border-gray-200 text-gray-400"
+                          }`}
                       >
                         {step.number < currentStep ? (
-                          <Check className="w-7 h-7" />
+                          <Check className="w-5 h-5 sm:w-7 sm:h-7" />
                         ) : step.number === currentStep ? (
                           step.icon
                         ) : (
                           <span className="text-xl font-novaBold">{step.number}</span>
                         )}
                       </div>
-                      <div className="ml-4 md:ml-0 md:mt-4 text-center">
+                      <div className="ml-4 md:ml-0 md:mt-4 text-left md:text-center">
                         <p className="text-sm font-novaReg text-gray-500 mb-1">Step {step.number}</p>
                         <h3
-                          className={`font-novaBold text-lg ${
-                            step.number === currentStep ? "text-gray-900" : "text-gray-600"
-                          }`}
+                          className={`font-novaBold text-lg ${step.number === currentStep ? "text-gray-900" : "text-gray-600"
+                            }`}
                         >
                           {step.title}
                         </h3>
@@ -156,23 +152,24 @@ export default function HowToApply() {
               {steps.map((step) => (
                 <div
                   key={step.number}
-                  className={`transition-all duration-500 ${
-                    step.number === currentStep
-                      ? "opacity-100 transform translate-y-0"
-                      : "opacity-0 transform translate-y-4 absolute"
-                  }`}
+                  className={`transition-all duration-500 ${step.number === currentStep
+                    ? "opacity-100 transform translate-y-0"
+                    : "opacity-0 transform translate-y-4 absolute"
+                    }`}
                 >
-                  <div className={`rounded-3xl p-8 ${step.bgColor} border ${step.borderColor} shadow-sm`}>
-                    <div className="flex items-start space-x-4">
-                      <div
-                        className={`w-12 h-12 rounded-xl bg-gradient-to-br ${step.color} flex items-center justify-center text-white shadow-lg`}
-                      >
-                        {step.icon}
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-2xl font-novaBold text-gray-900 mb-3">
+                  <div className={`rounded-3xl p-4 sm:p-8 ${step.bgColor} border ${step.borderColor} shadow-sm`}>
+                    <div className="flex flex-col items-start">
+                      <div className="flex items-center gap-2">
+                        <div
+                          className={`w-12 h-12 rounded-xl bg-gradient-to-br ${step.color} flex items-center justify-center text-white shadow-lg`}
+                        >
+                          {step.icon}
+                        </div>
+                        <h3 className="text-xl md:text-2xl font-novaBold text-gray-900">
                           Step {step.number} - {step.title}
                         </h3>
+                      </div>
+                      <div className="mt-5">
                         <p className="text-gray-700 text-lg leading-relaxed mb-4 font-novaReg">{step.description}</p>
                         {step.subText && (
                           <div className="bg-white/70 rounded-xl p-4 border border-white/50">

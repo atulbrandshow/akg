@@ -3,9 +3,9 @@ import { useState, useEffect } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { toast } from "react-toastify"
 import { uploadImages } from "@/utills/ImageUpload"
+import { API_NODE_URL } from "@/configs/config"
 
-// Mock API configuration - replace with your actual config
-const API_NODE_URL = process.env.NEXT_PUBLIC_API_NODE_URL || "http://localhost:3001/api/"
+
 
 const CreateHighlightBanner = () => {
   const router = useRouter()

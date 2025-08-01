@@ -11,6 +11,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import Image from 'next/image';
 
 const socialLinks = [
   {
@@ -115,12 +116,15 @@ export default function NavBar() {
           >
             <div className={`flex justify-start items-center gap-2 pl-5 ${BigMenuToggle && "relative z-[20] shadow-lg w-screen bg-[#F7F7F7]"}`}>
               <div className="flex justify-center">
-                <img
-                  onClick={() => router.push("/")}
-                  src="/image/AKGEC_LOGO.webp"
-                  alt="AKG University Logo"
-                  className={`logo h-16 max-sm:w-12 max-lg:h-14 object-contain bg-blend-color-dodge cursor-pointer`}
-                />
+                <Link href="/">
+                  <Image
+                    src="/image/AKGEC_LOGO.webp"
+                    alt="AKG University Logo"
+                    height={60}
+                    width={60}
+                    className={`logo h-16 max-sm:w-12 max-lg:h-14 object-contain bg-blend-color-dodge cursor-pointer`}
+                  />
+                </Link>
               </div>
               <div className={`grid gap-0 grid-cols-4 max-[1430px]:grid-cols-2 max-lg:grid-cols-4 max-sm:grid-cols-2 max-[1430px]:gap-1`}>
                 <img src="/image/NaaC.webp" alt="NAAC Logo" className={`sideimgs h-11 max-[1430px]:h-9 max-sm:h-6 object-contain bg-blend-color-dodge relative z-[4] shadow-effect-right`} />

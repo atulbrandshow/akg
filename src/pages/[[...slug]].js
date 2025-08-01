@@ -73,10 +73,6 @@ export async function getServerSideProps(context) {
     let path = "/" + slug.join("/");
     console.log("Path :", path);
 
-    if (!slug || slug.length === 0) {
-        return <HomePage />
-    }
-
     if (path.includes("?")) path = path.split("?")[0];
 
     const ignoredPaths = [

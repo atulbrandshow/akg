@@ -173,7 +173,7 @@ export default function SlickSlider({ data }) {
                     </span>
                   </h2>
                   <span className="bg-gradient-to-r from-blue-600 to-violet-600 text-white py-1.5 max-[400px]:py-1 max-[400px]:text-xs mb-2 px-2 text-sm uppercase font-novaBold rounded-md font-bold">
-                    {stats[2]?.param.split("|")[0] || "Engineering"}
+                    {stats[3]?.param.split("|")[1] || "Engineering"}
                   </span>
                   <p className="mt-3 text-gray-600 text-[13px] font-novaReg max-md:text-xs leading-4" dangerouslySetInnerHTML={{ __html: stats[3]?.paramDesc }} />
                 </article>

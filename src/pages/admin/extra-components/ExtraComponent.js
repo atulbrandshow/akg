@@ -1392,7 +1392,7 @@ const ExtraParamsManager = () => {
                     </h3>
                     {selectedPageId && <p className="text-sm opacity-90 mt-1">Page: {selectedPageId}</p>}
                   </div>
-                  <div className="p-4 space-y-4 max-h-96 overflow-y-auto">
+                  <div className="p-4 space-y-4 max-h-screen overflow-y-auto">
                     {Object.entries(holderSections).map(([section, holders]) => (
                       <div key={section}>
                         <div className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black px-3 py-2 rounded-lg font-bold text-center mb-3 shadow-sm">

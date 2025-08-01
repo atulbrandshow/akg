@@ -5,13 +5,12 @@ import MainSection from "@/Components/MainSection";
 import NotificationSlider from "@/Components/NotificationSlider";
 
 export default function HomePage({ data }) {
-  console.log("Log From Home Page : ", data);
   return (
     <>
-      <MainSection />
-      <TopCard />
-      <ExploreCourses />
-      <SlickSlider />
+      <MainSection data={data} />
+      <TopCard data={data} />
+      <ExploreCourses data={data}/>
+      <SlickSlider data={data} />
       <NotificationSlider />
       <MilestonesSection />
       <PlacementHighlights />

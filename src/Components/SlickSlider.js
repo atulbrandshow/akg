@@ -1,4 +1,5 @@
 "use client";
+import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 
 const cardDetails = [
@@ -64,7 +65,17 @@ const cardDetails = [
   },
 ];
 
-export default function SlickSlider() {
+export default function SlickSlider({ data }) {
+  const router = useRouter()
+  const [extraComponentData, setExtraComponentData] = useState(data?.extraComponentData?.holder4);
+  const [stats, setStats] = useState([])
+  useEffect(() => {
+    if (data) {
+      setExtraComponentData(data?.extraComponentData?.holder4);
+      setStats(data?.extraComponentData?.holder4?.extraData[0]?.extraData || [])
+    }
+  }, [data])
+
   const [imageIndex, setImageIndex] = useState(
     cardDetails.reduce((acc, item) => {
       acc[item.id] = 0; // Initialize each item's index to 0
@@ -95,9 +106,9 @@ export default function SlickSlider() {
         <div className="break1:max-w-[1500px] break2:max-w-[1320px] break3:max-w-[1200px] break4:max-w-[1040px] mx-auto">
           <header className="text-center mb-8 max-xl:mb-5">
             <h1 className="text-[42px] font-novaReg max-lg:text-4xl max-md:text-3xl max-sm:px-4 text-gray-700">
-              A Glimpse into Our{" "}
+              {extraComponentData?.param?.split("|")[0]}{" "}
               <span className="font-novaSemi bg-text-gradient bg-clip-text text-transparent animate-gradient">
-                Vibrant Journey
+                {extraComponentData?.param?.split("|")[1]}
               </span>
             </h1>
           </header>
@@ -119,60 +130,52 @@ export default function SlickSlider() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 max-lg:grid-cols-2 max-lg:px-10 max-sm:px-5 max-[400px]:px-2 z-10 relative max-lg:w-full">
                 <article className="border-r border-b border-gray-300 p-6 max-xl:p-4 leading-5 max-lg:text-center">
                   <h2 className="text-5xl xl:text-5xl font-novaThin mb-2 max-lg:text-3xl max-lg:mb-3 text-gray-700">
-                    282
+                    {stats[0]?.param.split("|")[0] || 282}
                   </h2>
                   <span className="bg-gradient-to-tr from-amber-500 to-red-600 text-white py-1.5 max-[400px]:py-1 max-[400px]:text-xs mb-2 px-2 text-sm uppercase font-novaBold rounded-md font-bold">
-                    Companies
+                    {stats[0]?.param.split("|")[1] || "Companies"}
                   </span>
-                  <p className="mt-3 text-gray-600 text-[13px] font-novaReg max-md:text-xs leading-4">
-                    For 2023-24 campus <br /> placements{" "}
-                  </p>
+                  <p className="mt-3 text-gray-600 text-[13px] font-novaReg max-md:text-xs leading-4" dangerouslySetInnerHTML={{ __html: stats[0]?.paramDesc }} />
                 </article>
 
                 <article className="border-b border-gray-300 p-6 max-xl:p-4 leading-5 max-lg:text-center">
                   <h2 className="text-5xl xl:text-5xl font-novaThin mb-2 max-lg:text-3xl max-lg:mb-3 text-gray-700">
-                    1406
+                    {stats[1]?.param.split("|")[0] || 1406}
                   </h2>
                   <span className="bg-gradient-to-tr from-amber-500 to-red-600 text-white py-1.5 max-[400px]:py-1 max-[400px]:text-xs mb-2 px-2 text-sm uppercase font-novaBold rounded-md font-bold">
-                    placements
+                    {stats[1]?.param.split("|")[1] || "placements"}
                   </span>
-                  <p className="mt-3 text-gray-600 text-[13px] font-novaReg max-md:text-xs leading-4">
-                    Offered in <br /> 2023-24 Batch
-                  </p>
+                  <p className="mt-3 text-gray-600 text-[13px] font-novaReg max-md:text-xs leading-4" dangerouslySetInnerHTML={{ __html: stats[1]?.paramDesc }} />
                 </article>
 
                 <article className="border-r border-gray-300 p-6 max-xl:p-4 leading-5 max-lg:text-center">
                   <h2 className="text-5xl xl:text-5xl font-novaThin mb-2 max-lg:text-3xl max-lg:mb-3 text-gray-700">
                     <span className="whitespace-nowrap">
-                      33.80{" "}
+                      {stats[2]?.param.split("|")[0] || 33.80}
                       <span className="text-gray-600 font-novaLight text-xl max-xl:-ml-3 max-lg:-ml-2 pr-5 max-2xl:text-xl max-md:text-lg max-sm:text-base">
-                        LPA
+                        {"LPA"}
                       </span>
                     </span>
                   </h2>
                   <span className="bg-gradient-to-r from-blue-600 to-violet-600 text-white py-1.5 max-[400px]:py-1 max-[400px]:text-xs mb-2 px-2 text-sm uppercase font-novaBold rounded-md font-bold">
-                    Engineering
+                    {stats[2]?.param.split("|")[1] || "Engineering"}
                   </span>
-                  <p className="mt-3 text-gray-600 text-[13px] font-novaReg max-md:text-xs leading-4">
-                    Highest Package <br /> Offered{" "}
-                  </p>
+                  <p className="mt-3 text-gray-600 text-[13px] font-novaReg max-md:text-xs leading-4" dangerouslySetInnerHTML={{ __html: stats[2]?.paramDesc }} />
                 </article>
 
                 <article className="p-6 max-xl:p-4 leading-5 max-lg:text-center">
                   <h2 className="text-5xl xl:text-5xl font-novaThin mb-2 max-lg:text-3xl max-lg:mb-3 text-gray-700">
                     <span className="whitespace-nowrap">
-                      1.13{" "}
+                      {stats[3]?.param.split("|")[0] || 1.13}
                       <span className="text-gray-600 font-novaLight text-xl max-xl:-ml-3 max-lg:-ml-2 max-2xl:text-xl max-md:text-lg max-sm:text-base">
                         CR
                       </span>
                     </span>
                   </h2>
                   <span className="bg-gradient-to-r from-blue-600 to-violet-600 text-white py-1.5 max-[400px]:py-1 max-[400px]:text-xs mb-2 px-2 text-sm uppercase font-novaBold rounded-md font-bold">
-                    Engineering
+                    {stats[2]?.param.split("|")[0] || "Engineering"}
                   </span>
-                  <p className="mt-3 text-gray-600 text-[13px] font-novaReg max-md:text-xs leading-4">
-                    Average Package <br /> Offered{" "}
-                  </p>
+                  <p className="mt-3 text-gray-600 text-[13px] font-novaReg max-md:text-xs leading-4" dangerouslySetInnerHTML={{ __html: stats[3]?.paramDesc }} />
                 </article>
               </div>
             </div>

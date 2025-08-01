@@ -36,7 +36,7 @@ const ExtraParamsManager = () => {
     }
   }, [selectedPageId])
 
-  // Form state
+  // In form state
   const [formData, setFormData] = useState({
     pageid: "",
     param: "",
@@ -46,12 +46,13 @@ const ExtraParamsManager = () => {
     orderSequence: 0,
     type: "",
     holder: "",
-    widgetType: "", // New field
+    widgetType: "",
     status: true,
     addedby: "",
-    calid: "",
+    pdfs: [], // ✅ New field
     extraData: []
   })
+
 
   // Predefined holders organized by sections
   const holderSections = {
@@ -149,9 +150,23 @@ const ExtraParamsManager = () => {
         imgUrls = formData.paramImg // all strings (from edit mode)
       }
 
+      // Upload new PDF files
+      let pdfUrls = []
+      const newPDFs = formData.pdfs.filter((item) => item instanceof File)
+      if (newPDFs.length > 0) {
+        const uploadedPDFs = await uploadImages(newPDFs, "ExtraParamPDFs")
+        pdfUrls = [
+          ...formData.pdfs.filter((item) => typeof item === "string"), // keep existing URLs
+          ...uploadedPDFs,
+        ]
+      } else {
+        pdfUrls = formData.pdfs // already all URLs
+      }
+
       const payload = {
         ...formData,
         paramImg: imgUrls,
+        pdfs: pdfUrls,
       }
 
       const url = editingParam
@@ -219,19 +234,20 @@ const ExtraParamsManager = () => {
       pageid: selectedPageId || "",
       param: "",
       paramDesc: "",
-      paramImg: "",
+      paramImg: [],
       paramUrl: "",
       orderSequence: 0,
       type: "",
       holder: "",
-      widgetType: "", // Reset widget type
+      widgetType: "",
       status: true,
       addedby: "",
-      calid: "",
+      pdfs: [], // ✅ reset PDFs
     })
     setWidgetTypeSearch("")
     setShowWidgetTypeDropdown(false)
   }
+
 
   // Handle edit
   const handleEdit = (param) => {
@@ -240,16 +256,17 @@ const ExtraParamsManager = () => {
       pageid: param.pageid,
       param: param.param,
       paramDesc: param.paramDesc || "",
-      paramImg: param.paramImg || "",
+      paramImg: param.paramImg || [],
       paramUrl: param.paramUrl || "",
       orderSequence: param.orderSequence || 0,
       type: param.type,
       holder: param.holder,
-      widgetType: param.widgetType || "", // Set widget type
+      widgetType: param.widgetType || "",
       status: param.status,
       addedby: param.addedby || "",
-      calid: param.calid || "",
+      pdfs: param.pdfs || [], // ✅ support editing PDFs
     })
+
     setWidgetTypeSearch(param.widgetType || "")
     setShowForm(true)
   }
@@ -575,6 +592,43 @@ const ExtraParamsManager = () => {
                         />
 
                       </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Upload PDFs *</label>
+                        {/* Preview already selected/uploaded PDFs */}
+                        {formData.pdfs && formData.pdfs.length > 0 && (
+                          <div className="flex flex-col gap-2 mb-2">
+                            {formData.pdfs.map((pdf, idx) => (
+                              <div key={idx} className="flex items-center justify-between border rounded p-2">
+                                <span className="text-sm break-all">
+                                  {typeof pdf === "string" ? pdf.split("/").pop() : pdf.name}
+                                </span>
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    const updatedPDFs = formData.pdfs.filter((_, i) => i !== idx)
+                                    setFormData({ ...formData, pdfs: updatedPDFs })
+                                  }}
+                                  className="text-red-600 hover:text-red-800 text-xs"
+                                >
+                                  ✕
+                                </button>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+
+                        <input
+                          type="file"
+                          accept="application/pdf"
+                          multiple
+                          onChange={(e) => {
+                            const files = Array.from(e.target.files)
+                            setFormData({ ...formData, pdfs: [...formData.pdfs, ...files] })
+                          }}
+                          className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-50 file:text-purple-700 hover:file:bg-purple-100"
+                        />
+                      </div>
+
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">URL</label>
                         <input

@@ -94,12 +94,7 @@ export async function getServerSideProps(context) {
 
     // If it's home page, change path to /home
     if (path === "/") {
-        return {
-            redirect: {
-                destination: "/home",
-                permanent: false, // or true if it's always /home
-            },
-        };
+        path = "/home";
     }
 
     try {

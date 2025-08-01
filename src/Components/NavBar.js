@@ -116,7 +116,7 @@ export default function NavBar() {
           >
             <div className={`flex justify-start items-center gap-2 pl-5 ${BigMenuToggle && "relative z-[20] shadow-lg w-screen bg-[#F7F7F7]"}`}>
               <div className="flex justify-center">
-                <Link href="/">
+                <Link href="/" as="/">
                   <Image
                     src="/image/AKGEC_LOGO.webp"
                     alt="AKG University Logo"

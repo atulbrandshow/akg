@@ -69,7 +69,7 @@ export default function DynamicPage({ data }) {
 }
 export async function getServerSideProps(context) {
     const { slug = [] } = context.params || {};
-    let path = "/" + slug.join("/");
+    let path = slug.length ? "/" + slug.join("/") : "/";
     console.log("Path :", path);
 
     if (path.includes("?")) path = path.split("?")[0];
@@ -83,18 +83,13 @@ export async function getServerSideProps(context) {
     ];
 
     if (
-        ignoredPaths.includes(path) ||
+        ignoredPaths.some(p => path.startsWith(p)) ||
         path.startsWith("/_next") ||
         path.startsWith("/static") ||
         path.startsWith("/api") ||
         path.match(/\.(js|css|map|json|svg|png|jpg|jpeg|ico)$/)
     ) {
         return { notFound: true };
-    }
-
-    // If it's home page, change path to /home
-    if (path === "/") {
-        path = "/";
     }
 
     try {

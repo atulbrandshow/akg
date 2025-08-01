@@ -47,7 +47,7 @@ const StickyFooter = ({ data, ShowState }) => {
                 {socialMediaLinks?.map((link, index) => (
                   <div key={index} className="relative group">
                     <Link href={link.url} target="_blank" className="bg-blue-700 flex items-center">
-                      <span className="w-0 transition-all group-hover:w-20 overflow-hidden group-hover:px-4 group-hover:py-1.5 rounded-lg text-xs duration-300">
+                      <span className="w-0 transition-all whitespace-nowrap group-hover:w-20 overflow-hidden group-hover:px-4 group-hover:py-1.5 rounded-lg text-xs duration-300">
                         {link.name}
                       </span>
                       <span className="flex w-10 border-b border-b-gray-50/20 h-10 items-center justify-center p-1 gap-2">

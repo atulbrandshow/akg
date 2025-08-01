@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import DynamicPageWrapper from "./main/DynamicPage";
 import ShimmerContent from "@Components/ShimmerContent";
 import { API_NODE_URL } from "@/configs/config";
-import HomePage from "./main/HomePage";
 
 const loadComponent = async (componentName) => {
     try {
@@ -95,7 +94,12 @@ export async function getServerSideProps(context) {
 
     // If it's home page, change path to /home
     if (path === "/") {
-        return <HomePage />
+        return {
+            redirect: {
+                destination: "/home",
+                permanent: false, // or true if it's always /home
+            },
+        };
     }
 
     try {

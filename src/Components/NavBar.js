@@ -11,6 +11,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import Image from 'next/image';
 
 const socialLinks = [
   {
@@ -102,47 +103,45 @@ export default function NavBar() {
     gsap.from(".logo", { scale: 0, duration: 0.5, ease: easeIn })
     gsap.from(".notification", { y: -30, duration: 0.5, ease: easeIn })
     gsap.from(".sideimgs", { scale: 0, duration: 0.5, ease: easeIn, stagger: 0.1 })
-    gsap.from(".navlinks", { x: 400, duration: 0.3, ease: easeIn, stagger: 0.1 })
   })
 
   return (
     <header
       className={`navbar z-[100] w-full sticky top-0 left-0 bg-[#F7F7F7] transition-all duration-200 shadow-lg`}>
       <div className="grid grid-cols-8 max-xl:grid-cols-12 max-lg:grid-cols-12 max-md:grid-cols-12 gap-x-5 max-[1320px]:gap-x-0 max-md:gap-x-2">
-        <div className="col-span-2 flex max-xl:col-span-3 max-lg:col-span-6 max-md:col-span-7 max-sm:col-span-7">
+        <div className="col-span-2 flex max-xl:col-span-3 max-lg:col-span-9 max-md:col-span-10 max-sm:col-span-10">
           <div
             className={`text-white flex `}
           >
-            <div className={`flex justify-start items-center gap-2 pl-5 ${BigMenuToggle && "relative z-[20] shadow-lg w-screen bg-[#F7F7F7]"}`}>
+            <div className={`flex justify-start items-center gap-2 pl-3 ${BigMenuToggle && "relative z-[20] shadow-lg w-screen bg-[#F7F7F7]"}`}>
               <div className="flex justify-center">
-                <img
-                  onClick={() => router.push("/")}
-                  src="/image/AKGEC_LOGO.webp"
-                  alt="AKG University Logo"
-                  className={`logo h-16 max-sm:w-12 max-lg:h-14 object-contain bg-blend-color-dodge cursor-pointer`}
-                />
+                <Link href="/home" as="/">
+                  <Image
+                    src="/image/AKGEC_LOGO.webp"
+                    alt="AKG University Logo"
+                    height={60}
+                    width={60}
+                    className={`logo h-12 w-12 object-contain bg-blend-color-dodge cursor-pointer`}
+                  />
+                </Link>
               </div>
-              <div className={`grid gap-0 grid-cols-4 max-[1430px]:grid-cols-2 max-lg:grid-cols-4 max-sm:grid-cols-2 max-[1430px]:gap-1`}>
-                <img src="/image/NaaC.webp" alt="NAAC Logo" className={`sideimgs h-11 max-[1430px]:h-9 max-sm:h-6 object-contain bg-blend-color-dodge relative z-[4] shadow-effect-right`} />
-                <img src="/image/nba.jpg" alt="NBA Logo" className={`sideimgs h-11 max-[1430px]:h-9 max-sm:h-6 object-contain bg-blend-color-dodge relative z-[3] shadow-effect-right`} />
-                <img src="/image/qs-i-gauge.jpg" alt="QS-I-GAUGE Logo" className={`sideimgs h-11 max-[1430px]:h-9 max-sm:h-6 object-contain bg-blend-color-dodge relative z-[2] shadow-effect-right`} />
-                <img src="/image/iic.jpg" alt="IIC Logo" className={`sideimgs h-11 max-[1430px]:h-9 max-sm:h-6 object-contain bg-blend-color-dodge relative z-[1] shadow-effect-right`} />
+              <div className='text-indigo-950 flex flex-col items-center font-novaBold leading-none'>
+                <h1 className='text-4xl tracking-tighter'>AKG</h1>
+                <h2 className='-mt-2 sm:-mt-1.5 text-xs font-semibold tracking-tight'>UNIVERSITY</h2>
+              </div>
+              <div className={`grid gap-0 grid-cols-4 max-lg:grid-cols-4 max-[1700px]:grid-cols-2 max-[500px]:grid-cols-2 pr-2`}>
+                <img src="/image/NaaC.webp" alt="NAAC Logo" className={`sideimgs h-10 max-[500px]:h-7 max-sm:h-8 object-contain bg-blend-color-dodge relative z-[4] shadow-effect-right`} />
+                <img src="/image/nba.jpg" alt="NBA Logo" className={`sideimgs h-10 max-[500px]:h-7 max-sm:h-8 object-contain bg-blend-color-dodge relative z-[3] shadow-effect-right`} />
+                <img src="/image/qs-i-gauge.jpg" alt="QS-I-GAUGE Logo" className={`sideimgs h-10 max-[500px]:h-7 max-sm:h-8 object-contain bg-blend-color-dodge relative z-[2] shadow-effect-right`} />
+                <img src="/image/iic.jpg" alt="IIC Logo" className={`sideimgs h-10 max-[500px]:h-7 max-sm:h-8 object-contain bg-blend-color-dodge relative z-[1] shadow-effect-right`} />
               </div>
               {BigMenuToggle &&
-                <>
-                  <div className="pl-10 max-sm:pl-2 flex justify-end">
-                    <a href="tel:1800-200-0777" className="bg-cyan-500 whitespace-nowrap flex justify-center items-center gap-2 py-3 px-4 max-[370px]:px-2 max-[370px]:py-2">
-                      <PhoneIcon className={`h-5 w-5 text-white max-[340px]:hidden`} aria-hidden="true" />
-                      <span className="text-white text-sm uppercase font-bold">Call now</span>
-                    </a>
-                  </div>
-                  <button
-                    onClick={() => setBigMenuToggle(!BigMenuToggle)}
-                    className="absolute right-2 top-3 text-black"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
-                  </button>
-                </>
+                <button
+                  onClick={() => setBigMenuToggle(!BigMenuToggle)}
+                  className="absolute right-2 top-3 text-black"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+                </button>
               }
             </div>
             {/* <div hidden={isScrolled} className="max-xl:hidden">
@@ -160,7 +159,7 @@ export default function NavBar() {
             </div> */}
           </div>
         </div>
-        <div className="flex lg:hidden max-md:order-2 max-lg:col-span-3 max-md:col-span-2 max-sm:col-span-2 max-[500px]:col-span-5 max-md:pt-0 max-md:justify-end justify-center">
+        <div className="flex lg:hidden max-md:order-2 max-lg:col-span-1 max-md:col-span-2 max-sm:col-span-2 max-md:pt-0 max-md:justify-end justify-center">
           <button
             type="button"
             onClick={() => setBigMenuToggle(!BigMenuToggle)}
@@ -170,7 +169,7 @@ export default function NavBar() {
             <p className="text-xs uppercase -mt-1">Menu</p>
           </button>
         </div>
-        <div className="col-span-6 max-lg:flex max-lg:items-center max-lg:justify-center max-md:order-3 max-xl:col-span-9 max-lg:col-span-3 max-md:col-span-1 max-md:justify-start">
+        <div className="col-span-6 max-lg:flex max-lg:items-center max-lg:justify-center max-md:order-3 max-xl:col-span-9 max-lg:col-span-2 max-md:col-span-1 max-md:justify-start">
           <nav className="" >
             <div
               className={` lg:bg-gray-700 max-md:hidden lg:flex max-md:pt-0 lg:gap-x-6 justify-end pl-7 max-xl:pl-0 items-center max-md:px-1  overflow-hidden`}
@@ -204,7 +203,7 @@ export default function NavBar() {
               <div className="flex justify-end">
                 <a href="tel:1800-200-0777" className="bg-cyan-500 whitespace-nowrap flex justify-center items-center gap-2 py-3 px-4">
                   <PhoneIcon className={`h-5 w-5 text-white`} aria-hidden="true" />
-                  <span className="text-white text-sm uppercase font-bold">Call now</span>
+                  <span className="text-white text-sm uppercase font-bold">Call Now</span>
                 </a>
               </div>
             </div>
@@ -235,7 +234,7 @@ export default function NavBar() {
                 </div>
               </>}
               <li className="relative group">
-                <button onClick={() => toggleMenu('about')} className={`navlinks relative px-3 max-xl:px-1 py-3 focus:outline-none text-gray-700 font-novaBold text-sm max-[1600px]:text-sm flex items-center gap-1`}>
+                <button onClick={() => toggleMenu('about')} className={` relative px-3 max-xl:px-1 py-3 focus:outline-none text-gray-700 font-novaBold text-sm max-[1600px]:text-sm flex items-center gap-1`}>
                   ABOUT{" "}
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6" /></svg>
                   <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
@@ -296,7 +295,7 @@ export default function NavBar() {
                 </div>
               </li>
               <li className="group">
-                <button onClick={() => toggleMenu('programs')} className={`navlinks relative px-3 max-xl:px-1 ${isScrolled ? "py-3" : "py-3"}  focus:outline-none text-gray-700 font-novaBold text-sm3 max-[1600px]:text-sm flex items-center gap-1`}>
+                <button onClick={() => toggleMenu('programs')} className={` relative px-3 max-xl:px-1 ${isScrolled ? "py-3" : "py-3"}  focus:outline-none text-gray-700 font-novaBold text-sm3 max-[1600px]:text-sm flex items-center gap-1`}>
                   PROGRAMS{" "}
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6" /></svg>
                   <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
@@ -370,7 +369,7 @@ export default function NavBar() {
                 </div>
               </li>
               <li className="relative group">
-                <button onClick={() => toggleMenu('academics')} className={`navlinks relative px-3 max-xl:px-1 ${isScrolled ? "py-3" : "py-3"}  focus:outline-none text-gray-700 font-novaBold text-sm max-[1600px]:text-sm flex items-center gap-1`}>
+                <button onClick={() => toggleMenu('academics')} className={` relative px-3 max-xl:px-1 ${isScrolled ? "py-3" : "py-3"}  focus:outline-none text-gray-700 font-novaBold text-sm max-[1600px]:text-sm flex items-center gap-1`}>
                   ACADEMICS{" "}
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6" /></svg>
                   <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
@@ -429,7 +428,7 @@ export default function NavBar() {
                 </div>
               </li>
               <li className="relative group">
-                <button onClick={() => toggleMenu('admissions')} className={`navlinks relative px-3 max-xl:px-1 ${isScrolled ? "py-3" : "py-3"}  focus:outline-none text-gray-700 font-novaBold text-sm max-[1600px]:text-sm flex items-center gap-1`}>
+                <button onClick={() => toggleMenu('admissions')} className={` relative px-3 max-xl:px-1 ${isScrolled ? "py-3" : "py-3"}  focus:outline-none text-gray-700 font-novaBold text-sm max-[1600px]:text-sm flex items-center gap-1`}>
                   ADMISSIONS{" "}
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6" /></svg>
                   <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
@@ -489,7 +488,7 @@ export default function NavBar() {
                 </div>
               </li>
               <li className="relative group">
-                <button onClick={() => toggleMenu('campus-life')} className={`navlinks relative px-3 max-xl:px-1 ${isScrolled ? "py-3" : "py-3"}  focus:outline-none text-gray-700 font-novaBold text-sm max-[1600px]:text-sm flex items-center gap-1 whitespace-nowrap`}>
+                <button onClick={() => toggleMenu('campus-life')} className={` relative px-3 max-xl:px-1 ${isScrolled ? "py-3" : "py-3"}  focus:outline-none text-gray-700 font-novaBold text-sm max-[1600px]:text-sm flex items-center gap-1 whitespace-nowrap`}>
                   CAMPUS LIFE{" "}
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6" /></svg>
                   <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
@@ -552,7 +551,7 @@ export default function NavBar() {
                 </div>
               </li>
               <li className="group">
-                <button onClick={() => toggleMenu('placements')} className={`navlinks relative px-3 max-xl:px-1 ${isScrolled ? "py-3" : "py-3"}  focus:outline-none text-gray-700 font-novaBold text-sm max-[1600px]:text-sm flex items-center gap-1`}>
+                <button onClick={() => toggleMenu('placements')} className={` relative px-3 max-xl:px-1 ${isScrolled ? "py-3" : "py-3"}  focus:outline-none text-gray-700 font-novaBold text-sm max-[1600px]:text-sm flex items-center gap-1`}>
                   PLACEMENTS{" "}
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6" /></svg>
                   <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
@@ -615,7 +614,7 @@ export default function NavBar() {
                 </div>
               </li>
               <li className="group relative">
-                <button onClick={() => toggleMenu('research')} className={`navlinks relative px-3 max-xl:px-1 ${isScrolled ? "py-3" : "py-3"}  focus:outline-none text-gray-700 font-novaBold text-sm max-[1600px]:text-sm flex items-center gap-1 whitespace-nowrap`}>
+                <button onClick={() => toggleMenu('research')} className={` relative px-3 max-xl:px-1 ${isScrolled ? "py-3" : "py-3"}  focus:outline-none text-gray-700 font-novaBold text-sm max-[1600px]:text-sm flex items-center gap-1 whitespace-nowrap`}>
                   RESEARCH & INNOVATION{" "}
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6" /></svg>
                   <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
@@ -682,7 +681,7 @@ export default function NavBar() {
             </ul>
           </nav>
         </div>
-        <div className={`max-[500px]:hidden md:hidden max-md:order-1 max-md:col-span-3`}>
+        <div className={`hidden max-md:order-1 max-md:col-span-3`}>
           <div className="grid grid-cols-2 pt-2 gap-2 pr-5">
             {socialLinks?.map((item, index) => (
               <Link href={item.url} target="_blank" key={index} className="text-xs text-center flex flex-col justify-start items-center text-black">

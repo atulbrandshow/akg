@@ -469,7 +469,7 @@ export default function CreateFacultyForm({ type, componentType }) {
                 ...prev,
                 [field]: true,
             }))
-            const imageUrl = await uploadImages(file)
+            const imageUrl = await uploadImages([file])
             setFormData((prev) => ({
                 ...prev,
                 [field]: imageUrl,

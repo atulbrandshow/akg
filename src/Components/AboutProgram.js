@@ -1,49 +1,42 @@
-import { BookMarked, Calendar, HandCoins, History } from 'lucide-react'
+import { splitTitle } from '@/utills/splitTitle';
+import { BookMarked, Calendar, HandCoins, History, Brain, Users, Microscope, BookOpen, Laptop2, GraduationCap } from 'lucide-react'
 import React from 'react'
 
-const aboutData = [
-    {
-        icon: <History className='w-8 h-8' strokeWidth={1.5} />,
-        label: "Duration",
-        value: "4 years"
-    },
-    {
-        icon: <BookMarked className='w-8 h-8' strokeWidth={1.5} />,
-        label: "Specialisation",
-        value: "18"
-    },
-    {
-        icon: <HandCoins className='w-8 h-8' strokeWidth={1.5} />,
-        label: "Credits",
-        value: "180"
-    },
-    {
-        icon: <Calendar className='w-8 h-8' strokeWidth={1.5} />,
-        label: "Start Date",
-        value: "Jul/Aug 2025",
-    }
-]
+const AboutProgram = ({ data }) => {
+    const d = data?.pageData;
+    const { first, middle, last } = splitTitle(d?.About_Title);
 
-const AboutProgram = () => {
+    const icons = [History, BookMarked, HandCoins, Users, Calendar, Brain, Microscope, BookOpen, Laptop2, GraduationCap]
+
+    const aboutData = [];
+    for (let i = 1; i <= 10; i++) {
+        const lable = d?.[`ACT-${i}`];
+        const value = d?.[`ACD-${i}`];
+
+        if (lable && value) {
+            const IconComponent = icons[i % icons.length];
+            aboutData.push({
+                icon: <IconComponent className="w-8 h-8" strokeWidth={1.5} />,
+                lable,
+                value
+            });
+        }
+    }
     return (
         <section className='bg-gray-300 h-full flex items-center justify-center'>
             <div className="max-w-7xl mx-auto px-4 py-12 md:py-16">
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                     <div className="order-2 md:order-1">
                         <h1 className="text-[42px]  font-novaBold max-lg:text-4xl max-md:text-3xl text-gray-800">
-                            About{" "}
+                            {first}{" "}
                             <span className="font-novaSemi bg-text-gradient bg-clip-text text-transparent animate-gradient">
-                                B.Tech CSE
+                                {middle}{" "}
                             </span>
+                            {last}
                         </h1>
 
-                        <div className="max-sm:mt-3 space-y-6 text-gray-600">
-                            <p className="leading-relaxed max-sm:text-sm">
-                            Department of Computer Science and Engineering at AKG University was formed in 1998 with inception of the college. The Department provides an outstanding research environment complemented by excellence in teaching. Ever since its inception, the department has been a pioneering academic centre for higher education, research, and innovation in key areas of Computer Science. The department provides full support to MTech. scholars in terms dissertation guidance, lab facilities and access to international and national journals.
-                            </p>
-                            <p className="leading-relaxed max-sm:text-sm">
-                            Experienced and senior faculty members are assigned for MTech courses and dissertation work of the scholars. The faculty members and M Tech scholars have published good quality research papers in peer-reviewed and indexed journals and International Conferences in the previous years.
-                            </p>
+                        <div className="max-sm:mt-3 space-y-6 text-gray-700">
+                            <p className="leading-relaxed max-sm:text-sm font-novaReg text-justify" dangerouslySetInnerHTML={{ __html: d?.About_Description }} />
                         </div>
                     </div>
 
@@ -65,7 +58,7 @@ const AboutProgram = () => {
                             className=" flex items-center justify-center flex-col rounded-tr-3xl py-4 bg-indigo-300 shadow-md"
                         >
                             <div className="mb-2">{item.icon}</div>
-                            <h3 className="text-gray-800 font-novaSemi text-sm mb-1">{item.label}</h3>
+                            <h3 className="text-gray-800 font-novaSemi text-sm mb-1">{item.lable}</h3>
                             <p className="text-gray-800 font-semibold">{item.value}</p>
                         </div>
                     ))}

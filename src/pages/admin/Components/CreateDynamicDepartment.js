@@ -4,9 +4,9 @@ import React, { useState, useEffect } from "react";
 import { API_NODE_URL } from "@/configs/config";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ProgramDynamicPage from "./ProgramDynamicPage";
+import DepartmentDynamicPage from "./DepartmentDynamicPage";
 
-function CreateDynamicProgram({ type, componentType }) {
+function CreateDynamicDepartment({ type, componentType }) {
     const [showPageDetails, setShowPageDetails] = useState(false);
     const [allPages, setAllPages] = useState([]);
     const [displayedPages, setDisplayedPages] = useState([]);
@@ -490,10 +490,10 @@ function CreateDynamicProgram({ type, componentType }) {
                 </div>
             )}
             {showPageDetails && (
-                <ProgramDynamicPage allData={allData} parentPage={selectedPage} type={type} componentType={componentType} />
+                <DepartmentDynamicPage allData={allData} parentPage={selectedPage} type={type} componentType={componentType} />
             )}
         </div>
     );
 }
 
-export default CreateDynamicProgram;
+export default CreateDynamicDepartment;

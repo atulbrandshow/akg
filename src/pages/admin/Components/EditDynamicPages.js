@@ -453,55 +453,6 @@ function EditDynamicPages({ type, componentType }) {
     return ""
   }
 
-  const fetchComponents = async (searchTerm = "", page = 1) => {
-    try {
-      const url = new URL(`${API_NODE_URL}components/category/Page`)
-      url.searchParams.append("page", page)
-      url.searchParams.append("limit", 10)
-      if (searchTerm) {
-        url.searchParams.append("search", searchTerm)
-      }
-      const response = await fetch(url, {
-        credentials: "include",
-      })
-      const result = await response.json()
-      if (result.status) {
-        if (page === 1) {
-          setAllComponents(result.data)
-        } else {
-          setAllComponents((prev) => [...prev, ...result.data])
-        }
-        setDisplayedComponents(result.data)
-        setHasMoreComponents(result.currentPage < result.totalPages)
-      }
-    } catch (error) {
-      console.error("Error fetching components:", error)
-    }
-  }
-
-  const handleComponentInputChange = (e) => {
-    const value = e.target.value
-    setComponentSearchValue(value)
-    if (value.length > 0) {
-      fetchComponents(value)
-      setShowComponentDropdown(true)
-    } else {
-      fetchComponents()
-      setShowComponentDropdown(false)
-    }
-  }
-
-  const handleComponentSuggestionClick = (component) => {
-    setComponentSearchValue(component.componentName)
-    setSelectedComponentType(component.componentName)
-    setShowComponentDropdown(false)
-  }
-
-  const handleShowMoreComponents = () => {
-    // This would need proper pagination implementation
-    fetchComponents(componentSearchValue, 2)
-  }
-
   useEffect(() => {
     if (formData.parentPage) {
       setSearchValue(formData.parentPage)

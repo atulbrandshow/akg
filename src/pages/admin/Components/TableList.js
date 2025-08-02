@@ -366,6 +366,28 @@ const TableList = ({ type, title, subTitle }) => {
                                                 <td className="px-6 py-4 whitespace-nowrap text-center">
                                                     <div className="flex items-center justify-center space-x-2">
                                                         {/* Edit Button */}
+                                                        {
+                                                            type === "Program" &&
+                                                            <button
+                                                                onClick={() => router.push(
+                                                                    `/admin/page-content-manager` +
+                                                                    `?page_id=${event?.page_id}`
+                                                                )}
+                                                                className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-novaSemi rounded-md text-white bg-orange-500 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-all duration-200 transform hover:scale-105"
+                                                                title={`Add ${type} Data`}
+                                                            >
+                                                                <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path
+                                                                        strokeLinecap="round"
+                                                                        strokeLinejoin="round"
+                                                                        strokeWidth={2}
+                                                                        d="M12 4v16m8-8H4"
+                                                                    />
+                                                                </svg>
+
+                                                                Add {type} Data
+                                                            </button>
+                                                        }
                                                         <button
                                                             onClick={() => router.push(
                                                                 `/admin/edit-${type?.toLowerCase().replace(/\s+/g, '-')}` +

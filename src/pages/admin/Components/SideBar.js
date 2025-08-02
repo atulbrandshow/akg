@@ -21,6 +21,7 @@ import {
   Waypoints,
   NotepadText,
   Book,
+  LibraryBig,
 } from "lucide-react"
 import { API_NODE_URL } from "@/configs/config"
 import Image from "next/image"
@@ -81,12 +82,17 @@ const navSections = [
       },
       {
         icon: School,
-        label: "School",
+        label: "Schools",
         href: "/admin/school-list"
       },
       {
+        icon: LibraryBig,
+        label: "Departments",
+        href: "/admin/department-list"
+      },
+      {
         icon: Book,
-        label: "Program",
+        label: "Programs",
         href: "/admin/program-list"
       },
     ],

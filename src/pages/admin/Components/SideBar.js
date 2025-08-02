@@ -95,6 +95,11 @@ const navSections = [
         label: "Programs",
         href: "/admin/program-list"
       },
+      {
+        icon: Users,
+        label: "Faculty",
+        href: "/admin/faculty-list"
+      },
     ],
   },
   {
@@ -132,7 +137,6 @@ const navSections = [
           { label: "List of Faculty", href: "/admin/faculty-list" },
         ],
       },
-      
       {
         icon: Users,
         label: "Topper Management",

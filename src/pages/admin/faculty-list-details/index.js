@@ -1,12 +1,12 @@
 import SideBar from "../Components/SideBar";
-import TableList from "../Components/TableList";
+import CircularList from "./FacultyList";
 
 export default function Home() {
   return (
     <div className="flex bg-gray-100">
       <SideBar />
       <div className="pt-10 px-10 overflow-x-auto w-full h-screen">
-        <TableList type="Faculty" title="Faculty Management" subTitle="Manage your faculty here" />
+        <CircularList />
       </div>
     </div>
   );

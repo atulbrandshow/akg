@@ -131,14 +131,6 @@ const navSections = [
     items: [
       {
         icon: Users,
-        label: "Faculty",
-        nestedLinks: [
-          { label: "Add Faculty", href: "/admin/create-faculty" },
-          { label: "List of Faculty", href: "/admin/faculty-list" },
-        ],
-      },
-      {
-        icon: Users,
         label: "Topper Management",
         nestedLinks: [
           { label: "Toppers", href: "/admin/topper-managment" },

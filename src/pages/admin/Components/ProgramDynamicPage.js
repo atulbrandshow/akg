@@ -671,6 +671,7 @@ export default function ProgramDynamicPage({ allData, parentPage, type, componen
                 {showDropdown && (
                   <div className="absolute z-20 w-full bg-white border-2 border-gray-200 rounded-xl mt-2 max-h-64 overflow-auto shadow-2xl">
                     {displayedPages.map((page, index) => (
+                      page.page_id != 0 &&
                       <div
                         key={index}
                         onClick={() => handleSuggestionClick(page)}
@@ -712,7 +713,7 @@ export default function ProgramDynamicPage({ allData, parentPage, type, componen
               </div>
               <div className="relative">
                 <label htmlFor="schoolSearch" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Search School
+                  Search Stream
                   <span className="text-red-500 ml-1">*</span>
                 </label>
                 <div className="relative">

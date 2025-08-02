@@ -312,7 +312,7 @@ const EnhancedFileUpload = ({
   );
 };
 
-function EditProgramPage({ type, componentType }) {
+function EditDepartmentPage({ type, componentType }) {
   const searchParams = useSearchParams()
   const page_id = searchParams.get("page_id")
   const router = useRouter()
@@ -539,7 +539,7 @@ function EditProgramPage({ type, componentType }) {
           "Content-Type": "application/json",
         },
         credentials: "include",
-        body: JSON.stringify({ query: searchTerm, page: 1, limit: 10, type: ['Department', 'School'] }),
+        body: JSON.stringify({ query: searchTerm, page: 1, limit: 10, type: "School" }),
       })
       const data = await response.json()
 
@@ -955,7 +955,7 @@ function EditProgramPage({ type, componentType }) {
             <div className={`grid grid-cols-1 ${type === "Page" ? "md:grid-cols-3" : "md:grid-cols-2"} gap-6`}>
               <div className="relative">
                 <label htmlFor="parent-page" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Choose School or Department Page
+                  Choose School Page
                   <span className="text-red-500 ml-1">*</span>
                 </label>
                 <div className="relative">
@@ -1613,4 +1613,4 @@ function EditProgramPage({ type, componentType }) {
   )
 }
 
-export default EditProgramPage
+export default EditDepartmentPage

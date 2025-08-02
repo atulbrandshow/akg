@@ -307,6 +307,7 @@ function CreateDynamicProgram({ type, componentType }) {
                             {showDropdown && (
                                 <div className="absolute z-20 w-full bg-white border-2 border-gray-200 rounded-xl mt-2 max-h-64 overflow-auto shadow-2xl">
                                     {displayedPages.map((page, index) => (
+                                        page.page_id != 0 &&
                                         <div
                                             key={index}
                                             onClick={() => handleSuggestionClick(page)}

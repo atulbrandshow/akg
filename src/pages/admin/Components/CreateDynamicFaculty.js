@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react"
 import dynamic from "next/dynamic"
 import { API_NODE_URL, IMAGE_PATH } from "@/configs/config"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { uploadImages } from "@/utills/ImageUpload"
@@ -82,11 +82,15 @@ const ImagePreview = ({ file, imageUrl, onDelete, label, isUploading }) => {
 }
 
 export default function CreateFacultyForm({ type, componentType }) {
+    const searchParams = useSearchParams()
+    const page_id = searchParams.get("page_id")
     const router = useRouter()
     const [submitting, setSubmitting] = useState(false)
     const [errors, setErrors] = useState({})
 
     // Form states
+    const [isEditMode, setIsEditMode] = useState(!!page_id)
+    const [loading, setLoading] = useState(!!page_id)
     const [searchValue, setSearchValue] = useState("")
     const [showDropdown, setShowDropdown] = useState(false)
     const [displayedPages, setDisplayedPages] = useState([])
@@ -222,7 +226,87 @@ export default function CreateFacultyForm({ type, componentType }) {
         fetchSchools()
         fetchDepartments()
         fetchPrograms()
-    }, [])
+
+        if (isEditMode && page_id) {
+            fetchExistingData()
+        }
+    }, [page_id, isEditMode])
+
+    const fetchExistingData = async () => {
+        if (!page_id) return
+
+        setLoading(true)
+        try {
+            const response = await fetch(`${API_NODE_URL}slug/getbyid?page_id=${page_id}`, {
+                credentials: "include",
+            })
+            const result = await response.json()
+
+            if (result.status && result.data) {
+                const data = result.data
+
+                // Parse param5 for basic info (firstName|lastName|emailAddress|designation)
+                const basicInfo = data.param5 ? data.param5.split("|") : ["", "", "", ""]
+
+                setFormData((prev) => ({
+                    ...prev,
+                    page_id: data.page_id,
+                    parent_id: data.parent_id,
+                    firstName: basicInfo[0] || "",
+                    lastName: basicInfo[1] || "",
+                    emailAddress: basicInfo[2] || "",
+                    designation: basicInfo[3] || "",
+                    subjectsTaught: data.param4 || "",
+                    profilePicture: data.banner_img || "",
+                    bio: data.shortdesc || "",
+                    tag1: data.tag1 || "",
+                    tag2: data.tag2 || "",
+                    tag3: data.tag3 || "",
+                    name: data.name || "",
+                    parentPage: data.parentPage || "",
+                    pageTitle: data.pageTitle || "",
+                    date: data.date || "",
+                    shortdesc: data.shortdesc || "",
+                    description: data.description || "",
+                    banner_img: data.banner_img || "",
+                    featured_img: data.featured_img || "",
+                    mainReportImage: data.mainReportImage || "",
+                    video_url: data.video_url || "",
+                    featured_status: data.featured_status || "",
+                    type: data.type || "",
+                    metatitle: data.metatitle || "",
+                    metadesc: data.metadesc || "",
+                    keywords_tag: data.keywords_tag || "",
+                    param1: data.param1 || "",
+                    param2: data.param2 || "",
+                    param3: data.param3 || "",
+                    param4: data.param4 || "",
+                    param5: data.param5 || "",
+                }))
+
+                // Set social links from params
+                const socialLinksArray = [data.param1, data.param2, data.param3].filter((link) => link && link.trim())
+                setSocialLinks(socialLinksArray)
+
+                // Set search values for dropdowns
+                if (data.tag1) {
+                    setSchoolSearchValue(data.tag1)
+                    // You might want to fetch and set the selected school object here
+                }
+                if (data.tag2) {
+                    setDepartmentSearchValue(data.tag2)
+                }
+                if (data.tag3) {
+                    setProgramSearchValue(data.tag3)
+                }
+            }
+        } catch (error) {
+            console.error("Error fetching existing data:", error)
+            toast.error("Failed to load existing data")
+        } finally {
+            setLoading(false)
+        }
+    }
 
     // Add new handler functions:
     const handleSchoolInputChange = (e) => {
@@ -319,9 +403,6 @@ export default function CreateFacultyForm({ type, componentType }) {
     }
 
     const handleSocialLinkKeyPress = (e) => {
-        if (socialLinks.length >= 3) {
-            return
-        }
         if (e.key === "Enter") {
             e.preventDefault()
             handleSocialLinkAdd()
@@ -338,7 +419,7 @@ export default function CreateFacultyForm({ type, componentType }) {
         if (!formData.lastName) newErrors.lastName = "Last name is required"
         if (!formData.emailAddress) newErrors.emailAddress = "Email address is required"
         if (!formData.designation) newErrors.designation = "Designation is required"
-        if (!formData.selectedSchool) newErrors.selectedSchool = "Please select a school"
+        if (!isEditMode && !formData.selectedSchool) newErrors.selectedSchool = "Please select a school"
         if (!formData.subjectsTaught) newErrors.subjectsTaught = "Subjects taught is required"
 
         if (Object.keys(newErrors).length > 0) {
@@ -359,90 +440,141 @@ export default function CreateFacultyForm({ type, componentType }) {
                 progressBar.style.width = "50%"
             })
 
-            // First API call - Create the page
-            const createPayload = {
-                parent_id: formData.selectedSchool?.page_id,
-                name: `${formData.firstName} ${formData.lastName}`,
-                type: type,
-                ComponentType: componentType,
-            }
-
-            const createResponse = await fetch(`${API_NODE_URL}slug/add`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                credentials: "include",
-                body: JSON.stringify(createPayload),
-            })
-
-            const createResult = await createResponse.json()
-            if (!createResult.status) {
-                if (createResult.message === "Page already exists with this title") {
-                    toast.warn("Name Already Exists")
+            if (isEditMode) {
+                // Edit mode - only update
+                const updatePayload = {
+                    page_id: formData.page_id,
+                    parent_id: formData.parent_id,
+                    languageId: 1,
+                    name: `${formData.firstName} ${formData.lastName}`,
+                    parentPage: formData.parentPage,
+                    pageTitle: `${formData.firstName} ${formData.lastName}`,
+                    date: formData.date || new Date().toISOString().split("T")[0],
+                    shortdesc: formData.bio,
+                    description: formData.bio,
+                    banner_img: formData.profilePicture,
+                    featured_img: formData.profilePicture,
+                    mainReportImage: formData.profilePicture,
+                    tag1: formData.tag1,
+                    tag2: formData.tag2,
+                    tag3: formData.tag3,
+                    video_url: formData.video_url || "",
+                    featured_status: formData.featured_status || "No",
+                    type: formData.type,
+                    metatitle: `${formData.firstName} ${formData.lastName} - ${formData.designation}`,
+                    metadesc: `${formData.firstName} ${formData.lastName}, ${formData.designation}. Subjects: ${formData.subjectsTaught}`,
+                    keywords_tag: `${formData.firstName}, ${formData.lastName}, ${formData.designation}, ${formData.tag1}, ${formData.subjectsTaught}`,
+                    ComponentType: componentType,
+                    param1: formData.socialLinks[0] || "",
+                    param2: formData.socialLinks[1] || "",
+                    param3: formData.socialLinks[2] || "",
+                    param4: formData.subjectsTaught,
+                    param5: `${formData.firstName}|${formData.lastName}|${formData.emailAddress}|${formData.designation}`,
                 }
-                return
-            }
 
-            setAllData(createResult?.data)
+                const updateResponse = await fetch(`${API_NODE_URL}slug/update`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    credentials: "include",
+                    body: JSON.stringify(updatePayload),
+                })
 
-            // Update progress
-            progressBar.style.width = "75%"
+                const updateResult = await updateResponse.json()
 
-            // Second API call - Update with detailed information
-            const updatePayload = {
-                page_id: createResult?.data?.page_id,
-                parent_id: createResult?.data?.parent_id,
-                languageId: 1,
-                name: `${formData.firstName} ${formData.lastName}`,
-                parentPage: 0,
-                pageTitle: `${formData.firstName} ${formData.lastName}`,
-                date: new Date().toISOString().split("T")[0],
-                shortdesc: formData.bio,
-                description: formData.bio,
-                banner_img: formData.profilePicture,
-                featured_img: formData.profilePicture,
-                mainReportImage: formData.profilePicture,
-                tag1: formData.tag1, // School name
-                tag2: formData.tag2, // Department name
-                tag3: formData.tag3, // Program name
-                video_url: "",
-                featured_status: "No",
-                type: createResult?.data?.type,
-                metatitle: `${formData.firstName} ${formData.lastName} - ${formData.designation}`,
-                metadesc: `${formData.firstName} ${formData.lastName}, ${formData.designation}. Subjects: ${formData.subjectsTaught}`,
-                keywords_tag: `${formData.firstName}, ${formData.lastName}, ${formData.designation}, ${formData.tag1}, ${formData.subjectsTaught}`,
-                ComponentType: componentType,
-                // Social media URLs in params
-                param1: formData.socialLinks[0] || "",
-                param2: formData.socialLinks[1] || "",
-                param3: formData.socialLinks[2] || "",
-                param4: formData.subjectsTaught,
-                param5: `${formData.firstName}|${formData.lastName}|${formData.emailAddress}|${formData.designation}`, // Combined basic info
-            }
-
-            const updateResponse = await fetch(`${API_NODE_URL}slug/update`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                credentials: "include",
-                body: JSON.stringify(updatePayload),
-            })
-
-            const updateResult = await updateResponse.json()
-
-            if (updateResult.status) {
-                progressBar.style.width = "100%"
-                toast.success(`${type} created successfully!`)
-                setTimeout(() => {
-                    router.push(`/admin/${type?.toLowerCase().replace(/\s+/g, "-")}-list`)
-                }, 1000)
+                if (updateResult.status) {
+                    progressBar.style.width = "100%"
+                    toast.success(`${type} updated successfully!`)
+                    setTimeout(() => {
+                        router.push(`/admin/${type?.toLowerCase().replace(/\s+/g, "-")}-list`)
+                    }, 1000)
+                } else {
+                    throw new Error(updateResult.message)
+                }
             } else {
-                throw new Error(updateResult.message)
+                // Create mode - existing logic
+                const createPayload = {
+                    parent_id: formData.selectedSchool?.page_id,
+                    name: `${formData.firstName} ${formData.lastName}`,
+                    type: type,
+                    ComponentType: componentType,
+                }
+
+                const createResponse = await fetch(`${API_NODE_URL}slug/add`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    credentials: "include",
+                    body: JSON.stringify(createPayload),
+                })
+
+                const createResult = await createResponse.json()
+
+                if (!createResult.status) {
+                    if (createResult.message === "Page already exists with this title") {
+                        toast.warn("Name Already Exists")
+                    }
+                    return
+                }
+
+                setAllData(createResult?.data)
+                progressBar.style.width = "75%"
+
+                const updatePayload = {
+                    page_id: createResult?.data?.page_id,
+                    parent_id: createResult?.data?.parent_id,
+                    languageId: 1,
+                    name: `${formData.firstName} ${formData.lastName}`,
+                    parentPage: 0,
+                    pageTitle: `${formData.firstName} ${formData.lastName}`,
+                    date: new Date().toISOString().split("T")[0],
+                    shortdesc: formData.bio,
+                    description: formData.bio,
+                    banner_img: formData.profilePicture,
+                    featured_img: formData.profilePicture,
+                    mainReportImage: formData.profilePicture,
+                    tag1: formData.tag1,
+                    tag2: formData.tag2,
+                    tag3: formData.tag3,
+                    video_url: "",
+                    featured_status: "No",
+                    type: createResult?.data?.type,
+                    metatitle: `${formData.firstName} ${formData.lastName} - ${formData.designation}`,
+                    metadesc: `${formData.firstName} ${formData.lastName}, ${formData.designation}. Subjects: ${formData.subjectsTaught}`,
+                    keywords_tag: `${formData.firstName}, ${formData.lastName}, ${formData.designation}, ${formData.tag1}, ${formData.subjectsTaught}`,
+                    ComponentType: componentType,
+                    param1: formData.socialLinks[0] || "",
+                    param2: formData.socialLinks[1] || "",
+                    param3: formData.socialLinks[2] || "",
+                    param4: formData.subjectsTaught,
+                    param5: `${formData.firstName}|${formData.lastName}|${formData.emailAddress}|${formData.designation}`,
+                }
+
+                const updateResponse = await fetch(`${API_NODE_URL}slug/update`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    credentials: "include",
+                    body: JSON.stringify(updatePayload),
+                })
+
+                const updateResult = await updateResponse.json()
+
+                if (updateResult.status) {
+                    progressBar.style.width = "100%"
+                    toast.success(`${type} created successfully!`)
+                    setTimeout(() => {
+                        router.push(`/admin/${type?.toLowerCase().replace(/\s+/g, "-")}-list`)
+                    }, 1000)
+                } else {
+                    throw new Error(updateResult.message)
+                }
             }
         } catch (error) {
-            console.error("Error creating faculty:", error)
+            console.error(`Error ${isEditMode ? "updating" : "creating"} faculty:`, error)
             toast.error(`Error: ${error.message}`)
         } finally {
             setTimeout(() => {
@@ -471,7 +603,7 @@ export default function CreateFacultyForm({ type, componentType }) {
                 ...prev,
                 [field]: true,
             }))
-            const imageUrl = await uploadImages([file])
+            const imageUrl = await uploadImages(file)
             setFormData((prev) => ({
                 ...prev,
                 [field]: imageUrl,
@@ -497,11 +629,22 @@ export default function CreateFacultyForm({ type, componentType }) {
         }))
     }
 
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="text-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+                    <p className="mt-4 text-gray-600">Loading faculty data...</p>
+                </div>
+            </div>
+        )
+    }
+
     return (
-        <div className="min-h-screen ">
+        <div className="min-h-screen  ">
             <div id="progress-bar" className="fixed top-0 left-0 h-1 bg-blue-500 z-50 transition-all duration-500"></div>
 
-            <div className="max-w-5xl mb-20">
+            <div className="max-w-5xl">
                 <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
                     <form onSubmit={handleSubmit} className="p-8 space-y-8">
                         {/* Personal Information Section */}
@@ -509,6 +652,7 @@ export default function CreateFacultyForm({ type, componentType }) {
                             <div className="flex items-center space-x-3">
                                 <div className="w-1 h-6 bg-blue-500 rounded-full"></div>
                                 <h2 className="text-lg font-semibold text-gray-900">Personal Information</h2>
+                                {isEditMode && <span className="text-sm text-blue-600 bg-blue-100 px-2 py-1 rounded">Edit Mode</span>}
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -611,7 +755,6 @@ export default function CreateFacultyForm({ type, componentType }) {
                                     {showSchoolDropdown && (
                                         <div className="absolute z-20 w-full bg-white border border-gray-300 rounded-lg mt-1 max-h-64 overflow-auto shadow-lg">
                                             {schoolPages.map((page, index) => (
-                                                page?.page_id !== 0 &&
                                                 <div
                                                     key={index}
                                                     onClick={() => handleSchoolSuggestionClick(page)}
@@ -649,7 +792,6 @@ export default function CreateFacultyForm({ type, componentType }) {
                                     {showDepartmentDropdown && (
                                         <div className="absolute z-20 w-full bg-white border border-gray-300 rounded-lg mt-1 max-h-64 overflow-auto shadow-lg">
                                             {departmentPages.map((page, index) => (
-                                                page?.page_id !== 0 &&
                                                 <div
                                                     key={index}
                                                     onClick={() => handleDepartmentSuggestionClick(page)}
@@ -687,7 +829,6 @@ export default function CreateFacultyForm({ type, componentType }) {
                                     {showProgramDropdown && (
                                         <div className="absolute z-20 w-full bg-white border border-gray-300 rounded-lg mt-1 max-h-64 overflow-auto shadow-lg">
                                             {programPages.map((page, index) => (
-                                                page?.page_id !== 0 &&
                                                 <div
                                                     key={index}
                                                     onClick={() => handleProgramSuggestionClick(page)}
@@ -779,8 +920,7 @@ export default function CreateFacultyForm({ type, componentType }) {
                                             <button
                                                 type="button"
                                                 onClick={handleSocialLinkAdd}
-                                                disabled={socialLinks.length >= 3}
-                                                className={`px-4 py-3 ${socialLinks.length >= 3 ? "bg-gray-600 text-white hover:bg-gray-700 cursor-not-allowed" : 'bg-blue-600 text-white hover:bg-blue-700'}  rounded-lg  transition-colors`}
+                                                className="px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                                             >
                                                 Add
                                             </button>
@@ -842,7 +982,7 @@ export default function CreateFacultyForm({ type, componentType }) {
                                 {submitting ? (
                                     <>
                                         <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent mr-2"></div>
-                                        Creating...
+                                        {isEditMode ? "Updating..." : "Creating..."}
                                     </>
                                 ) : (
                                     <>
@@ -851,10 +991,14 @@ export default function CreateFacultyForm({ type, componentType }) {
                                                 strokeLinecap="round"
                                                 strokeLinejoin="round"
                                                 strokeWidth={2}
-                                                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                                                d={
+                                                    isEditMode
+                                                        ? "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                                                        : "M12 6v6m0 0v6m0-6h6m-6 0H6"
+                                                }
                                             />
                                         </svg>
-                                        Add Faculty Member
+                                        {isEditMode ? "Update Faculty Member" : "+ Add Faculty Member"}
                                     </>
                                 )}
                             </button>

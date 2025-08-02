@@ -80,6 +80,11 @@ const navSections = [
         href: "/admin/notice-list"
       },
       {
+        icon: School,
+        label: "School",
+        href: "/admin/school-list"
+      },
+      {
         icon: Book,
         label: "Program",
         href: "/admin/program-list"
@@ -117,16 +122,16 @@ const navSections = [
         icon: School,
         label: "School",
         nestedLinks: [
-          { label: "Add School", href: "/admin/create-school" },
-          { label: "List of School", href: "/admin/school-list" },
+          { label: "Add School", href: "/admin/create-school-details" },
+          { label: "List of School", href: "/admin/school-list-details" },
         ],
       },
       {
         icon: BriefcaseBusiness,
         label: "Department",
         nestedLinks: [
-          { label: "Add Department", href: "/admin/create-department" },
-          { label: "List of Department", href: "/admin/department-list" },
+          { label: "Add Department", href: "/admin/create-department-details" },
+          { label: "List of Department", href: "/admin/department-list-details" },
         ],
       },
       {

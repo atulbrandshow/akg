@@ -365,9 +365,9 @@ const TableList = ({ type, title, subTitle }) => {
                                                 </td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-center">
                                                     <div className="flex items-center justify-center space-x-2">
-                                                        {/* Edit Button */}
+                                                        {/* Add Page Details Button */}
                                                         {
-                                                            type === "Program" &&
+                                                            (type === "Program" || type === "School" || type === "Department") &&
                                                             <button
                                                                 onClick={() => router.push(
                                                                     `/admin/page-content-manager` +

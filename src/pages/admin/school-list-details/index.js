@@ -1,12 +1,12 @@
 import SideBar from "../Components/SideBar";
-import TableList from "../Components/TableList";
+import CircularList from "./SchoolList";
 
 export default function Home() {
   return (
     <div className="flex bg-gray-100">
       <SideBar />
       <div className="pt-10 px-10 overflow-x-auto w-full h-screen">
-        <TableList type="School" title="School Page Management" subTitle="Manage your school page here" />
+        <CircularList />
       </div>
     </div>
   );

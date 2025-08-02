@@ -1,5 +1,5 @@
-import CreateDynamicPages from "../Components/CreateDynamicPages";
 import SideBar from "../Components/SideBar";
+import CreatePage from "./CreateSchool";
 
 export default function Home() {
   return (
@@ -7,7 +7,7 @@ export default function Home() {
       <div className="flex bg-gray-100">
         <SideBar />
         <div className="pt-10 overflow-x-auto w-full h-screen px-10">
-          <CreateDynamicPages type="School" componentType="school-details" parentId={753006} />
+          <CreatePage />
         </div>
       </div>
     </>

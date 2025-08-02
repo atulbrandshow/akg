@@ -34,7 +34,7 @@ function EditSchool() {
   useEffect(() => {
     if (!_id) {
       toast.error("School ID is required")
-      router.push("/admin/school-list")
+      router.push("/admin/school-list-details")
       return
     }
 
@@ -58,12 +58,12 @@ function EditSchool() {
           setOriginalData(schoolData)
         } else {
           toast.error(result.message || "Failed to fetch school.")
-          router.push("/admin/school-list")
+          router.push("/admin/school-list-details")
         }
       } catch (err) {
         console.error("Error: ", err)
         toast.error("An error occurred while fetching school data.")
-        router.push("/admin/school-list")
+        router.push("/admin/school-list-details")
       } finally {
         setIsLoading(false)
       }
@@ -146,7 +146,7 @@ function EditSchool() {
       if (result.status) {
         toast.success("School updated successfully!")
         setTimeout(() => {
-          router.push("/admin/school-list")
+          router.push("/admin/school-list-details")
         }, 2000)
       } else {
         toast.error(result.message || "Failed to update school.")
@@ -264,7 +264,7 @@ function EditSchool() {
             </div>
           </div>
           <button
-            onClick={() => router.push("/admin/school-list")}
+            onClick={() => router.push("/admin/school-list-details")}
             className="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-lg hover:bg-white/30 transition-all duration-200 flex items-center space-x-2"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -384,7 +384,7 @@ function EditSchool() {
             <div className="flex justify-end space-x-4 mt-8 pt-6 border-t border-gray-200">
               <button
                 type="button"
-                onClick={() => router.push("/admin/school-list")}
+                onClick={() => router.push("/admin/school-list-details")}
                 className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-all duration-200 font-medium"
               >
                 Cancel

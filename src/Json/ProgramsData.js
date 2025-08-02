@@ -15,7 +15,7 @@ export const coursesData = [
     id: 3,
     courseName: "BCA – Bachelor of Computer Applications",
     head: "3 Years",
-    description: "Rs. 99,000 - Tuition Fee\nRs. 25,000 - Exam Fee + Additional Fee",
+    description: "Rs. 90,000 - Tuition Fee\nRs. 25,000 - Exam Fee + Additional Fee",
   },
   {
     id: 4,

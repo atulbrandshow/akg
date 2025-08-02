@@ -136,36 +136,13 @@ const GalleryPreview = ({
         {label} ({totalItems} files)
       </p>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-        {/* Existing Images */}
-        {existingImages?.map((image, index) => (
-          <div key={`existing-${index}`} className="relative group">
-            <img
-              src={image || "/placeholder.svg"}
-              alt={`Existing ${index + 1}`}
-              className="w-full h-20 object-cover rounded-lg border"
-            />
-            <button
-              type="button"
-              onClick={() => onDeleteExisting(index)}
-              className="absolute -top-2 -right-2 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600"
-              title="Delete image"
-            >
-              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-            <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-xs p-1 rounded-b-lg">
-              Existing
-            </div>
-          </div>
-        ))}
 
         {/* New Uploaded Images (URLs) */}
         {imageUrls?.map((imageUrl, index) => (
           <div key={`uploaded-${index}`} className="relative group">
             <div className="relative">
               <img
-                src={imageUrl || "/placeholder.svg"}
+                src={IMAGE_PATH + imageUrl || "/placeholder.svg"}
                 alt={`Uploaded ${index + 1}`}
                 className="w-full h-20 object-cover rounded-lg border"
               />
@@ -312,7 +289,7 @@ const EnhancedFileUpload = ({
   );
 };
 
-function EditProgramPage({ type, componentType }) {
+function EditSchoolPage({ type, componentType }) {
   const searchParams = useSearchParams()
   const page_id = searchParams.get("page_id")
   const router = useRouter()
@@ -335,10 +312,6 @@ function EditProgramPage({ type, componentType }) {
   const [componentSearchValue, setComponentSearchValue] = useState("")
   const [showComponentDropdown, setShowComponentDropdown] = useState(false)
   const [selectedComponentType, setSelectedComponentType] = useState()
-  const [displayedComponents, setDisplayedComponents] = useState([])
-  const [hasMoreComponents, setHasMoreComponents] = useState(true)
-  const [allComponents, setAllComponents] = useState([])
-  const [streamId, setStreamId] = useState("")
 
   // Upload states
   const [uploadingStates, setUploadingStates] = useState({})
@@ -454,11 +427,6 @@ function EditProgramPage({ type, componentType }) {
     fetchSchools()
   }, [searchQuery])
 
-  const handleSchoolSelect = (school) => {
-    setStreamId(school?._id)
-    setSearchQuery(school.name) // Display school name in input
-    setShowSchoolDropdown(false) // Hide dropdown
-  }
 
   const fetchParent = async (parent_id) => {
     if (parent_id) {
@@ -476,55 +444,6 @@ function EditProgramPage({ type, componentType }) {
     return ""
   }
 
-  const fetchComponents = async (searchTerm = "", page = 1) => {
-    try {
-      const url = new URL(`${API_NODE_URL}components/category/Page`)
-      url.searchParams.append("page", page)
-      url.searchParams.append("limit", 10)
-      if (searchTerm) {
-        url.searchParams.append("search", searchTerm)
-      }
-      const response = await fetch(url, {
-        credentials: "include",
-      })
-      const result = await response.json()
-      if (result.status) {
-        if (page === 1) {
-          setAllComponents(result.data)
-        } else {
-          setAllComponents((prev) => [...prev, ...result.data])
-        }
-        setDisplayedComponents(result.data)
-        setHasMoreComponents(result.currentPage < result.totalPages)
-      }
-    } catch (error) {
-      console.error("Error fetching components:", error)
-    }
-  }
-
-  const handleComponentInputChange = (e) => {
-    const value = e.target.value
-    setComponentSearchValue(value)
-    if (value.length > 0) {
-      fetchComponents(value)
-      setShowComponentDropdown(true)
-    } else {
-      fetchComponents()
-      setShowComponentDropdown(false)
-    }
-  }
-
-  const handleComponentSuggestionClick = (component) => {
-    setComponentSearchValue(component.componentName)
-    setSelectedComponentType(component.componentName)
-    setShowComponentDropdown(false)
-  }
-
-  const handleShowMoreComponents = () => {
-    // This would need proper pagination implementation
-    fetchComponents(componentSearchValue, 2)
-  }
-
   useEffect(() => {
     if (formData.parentPage) {
       setSearchValue(formData.parentPage)
@@ -539,7 +458,7 @@ function EditProgramPage({ type, componentType }) {
           "Content-Type": "application/json",
         },
         credentials: "include",
-        body: JSON.stringify({ query: searchTerm, page: 1, limit: 10, type: ['Department', 'School'] }),
+        body: JSON.stringify({ query: searchTerm, page: 1, limit: 10, type }),
       })
       const data = await response.json()
 
@@ -563,56 +482,7 @@ function EditProgramPage({ type, componentType }) {
     fetchPages()
   }, [])
 
-  const handleInputChange = (e) => {
-    const value = e.target.value
-    setSearchValue(value)
 
-    if (value.length > 0) {
-      fetchPages(value)
-      setShowDropdown(true)
-    } else {
-      setDisplayedPages(allPages.slice(0, 10))
-      setShowDropdown(false)
-    }
-  }
-
-  const handleSuggestionClick = (page) => {
-    setSearchValue(page.name) // Show the name in the input
-    setSelectedPage(page) // Set the selected page
-    setShowDropdown(false) // Hide the dropdown after selection
-    setFormData((prev) => ({
-      ...prev,
-      parent_id: page.page_id,
-      parentPage: page.name,
-    }))
-  }
-
-  // Handle 'Show More' button click
-  const handleShowMore = () => {
-    const newIndex = pageIndex + 10
-    setDisplayedPages(allPages.slice(0, newIndex)) // Show next 10 pages
-    setPageIndex(newIndex) // Update index
-    if (newIndex >= allPages.length) {
-      setHasMore(false) // Hide 'Show More' if no more pages
-    }
-  }
-
-  const fecthSchoolDetails = async (schoolId) => {
-    try {
-      const res = await fetch(`${API_NODE_URL}school/get-by-id?id=${schoolId}`, {
-        credentials: "include",
-      })
-      const data = await res.json()
-      if (data.status) {
-        setSearchQuery(data?.data?.name)
-        setStreamId(data?.data?._id)
-      } else {
-        setSearchQuery("")
-      }
-    } catch (error) {
-      console.error("ERROR: ", error)
-    }
-  }
 
   useEffect(() => {
     if (!page_id) return
@@ -622,12 +492,14 @@ function EditProgramPage({ type, componentType }) {
         const response = await fetch(`${API_NODE_URL}slug/getbyid?page_id=${page_id}`, {
           credentials: "include",
         })
-        const data = await response.json()
+        const data = await response.json();
+
+        console.log(data);
+        
 
         if (data.status) {
           const parent_id = data?.data?.parent_id
           const parentPageName = parent_id !== 0 ? await fetchParent(parent_id) : "This is Main page"
-          await fecthSchoolDetails(data?.data?.stream)
           setSearchValue(parentPageName)
           setCompType(data?.data?.ComponentType);
           setComponentSearchValue(data?.data?.ComponentType)
@@ -843,19 +715,14 @@ function EditProgramPage({ type, componentType }) {
       return
     }
 
-    if (!streamId) {
-      toast.warning("Please select stream");
-      return;
-    }
-
+   
     const payload = {
       ...formData,
-      stream: streamId,
       ComponentType: selectedComponentType || compType || componentType,
     }
 
     console.log(payload);
-
+    
 
     setSubmitting(true)
     try {
@@ -936,201 +803,6 @@ function EditProgramPage({ type, componentType }) {
             </div>
           </div>
 
-          {/* Basic Details Section */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </div>
-              <h2 className="text-xl font-novaSemi text-gray-900">Basic Details</h2>
-            </div>
-
-            <div className={`grid grid-cols-1 ${type === "Page" ? "md:grid-cols-3" : "md:grid-cols-2"} gap-6`}>
-              <div className="relative">
-                <label htmlFor="parent-page" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Choose School or Department Page
-                  <span className="text-red-500 ml-1">*</span>
-                </label>
-                <div className="relative">
-                  <input
-                    id="parent-page"
-                    type="text"
-                    value={searchValue}
-                    onChange={handleInputChange}
-                    placeholder="Search and select parent page..."
-                    className="w-full border-2 border-gray-200 rounded-xl font-novaReg py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
-                  />
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-
-                {showDropdown && (
-                  <div className="absolute z-20 w-full bg-white border-2 border-gray-200 rounded-xl mt-2 max-h-64 overflow-auto shadow-2xl">
-                    {displayedPages.map((page, index) => (
-                      page.page_id != 0 &&
-                      <div
-                        key={index}
-                        onClick={() => handleSuggestionClick(page)}
-                        className="cursor-pointer px-5 py-2 hover:bg-blue-100/60 border-b border-gray-200 last:border-b-0 transition-all duration-150 rounded-md hover:shadow-sm group"
-                      >
-                        <div className="font-semibold text-gray-800 text-base group-hover:text-blue-700">
-                          {page.name}
-                        </div>
-
-                        <div className="flex items-center gap-3 mt-1 text-sm text-gray-500">
-                          {page?.type && (
-                            <span
-                              className={`px-2 py-0.5 rounded-full text-xs
-                                                        ${page.type === "School" ? "bg-blue-100 text-blue-700" :
-                                  page.type === "Department" ? "bg-green-100 text-green-700" :
-                                    "bg-gray-100 text-gray-700"}`}
-                            >create-school
-                              {page.type}
-                            </span>
-
-                          )}
-                          {page?.page_id && (
-                            <span className="text-xs">ID: <span className="font-medium text-gray-600">{page.page_id}</span></span>
-                          )}
-                        </div>
-                      </div>
-                    ))}
-                    {hasMore && displayedPages.length > 0 && (
-                      <button
-                        type="button"
-                        onClick={handleShowMore}
-                        className="w-full px-4 py-3 text-blue-600 font-novaReg hover:bg-blue-50 transition-colors duration-150"
-                      >
-                        Load More Pages
-                      </button>
-                    )}
-                  </div>
-                )}
-              </div>
-              <div className="relative">
-                <label htmlFor="schoolSearch" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Search Stream
-                  <span className="text-red-500 ml-1">*</span>
-                </label>
-                <div className="relative">
-                  <input
-                    id="schoolSearch"
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    onFocus={() => setShowSchoolDropdown(true)}
-                    placeholder="Search and select school..."
-                    className="w-full border-2 border-gray-200 rounded-xl font-novaReg py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
-                  />
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-                {showSchoolDropdown && (
-                  <div className="absolute z-20 w-full bg-white border-2 border-gray-200 rounded-xl mt-2 max-h-64 overflow-auto shadow-2xl">
-                    {(Array.isArray(schools) ? schools : [])
-                      .filter((school) => school.name.toLowerCase().includes(searchQuery.toLowerCase()))
-                      .map((school) => (
-                        <div
-                          key={school.id}
-                          onClick={() => handleSchoolSelect(school)}
-                          className="cursor-pointer px-4 py-3 hover:bg-blue-50 border-b border-gray-100 last:border-b-0 transition-colors duration-150"
-                        >
-                          <div className="font-novaSemi text-gray-800">{school.name}</div>
-                        </div>
-                      ))}
-                  </div>
-                )}
-              </div>
-              {type === "Page" && (
-                <div className="relative">
-                  <label htmlFor="component-type" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                    Component Type <span className="text-red-500">*</span>
-                  </label>
-                  <div className="relative">
-                    <input
-                      id="component-type"
-                      type="text"
-                      value={componentSearchValue}
-                      onChange={handleComponentInputChange}
-                      placeholder="Search and select component type..."
-                      className="w-full border-2 border-gray-200 font-novaReg rounded-xl py-3 px-4 pr-12 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-200 bg-white"
-                    />
-                    <div className="absolute inset-y-0 right-0 flex items-center pr-4">
-                      <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-
-                  {showComponentDropdown && (
-                    <div className="absolute z-20 w-full bg-white border-2 border-gray-200 rounded-xl mt-2 max-h-64 overflow-auto shadow-2xl">
-                      {displayedComponents.map((component) => (
-                        <div
-                          key={component._id}
-                          onClick={() => handleComponentSuggestionClick(component)}
-                          className="cursor-pointer px-4 py-3 hover:bg-blue-50 border-b border-gray-100 last:border-b-0 transition-colors duration-150 flex items-center"
-                        >
-                          <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
-                            <svg
-                              className="w-4 h-4 text-blue-600"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"
-                              />
-                            </svg>
-                          </div>
-                          <div className="font-novaSemi text-gray-800">{component.componentName}</div>
-                        </div>
-                      ))}
-                      {hasMoreComponents && displayedComponents.length > 0 && (
-                        <button
-                          type="button"
-                          onClick={handleShowMoreComponents}
-                          className="w-full px-4 py-3 text-blue-600 hover:bg-blue-50 font-medium transition-colors duration-150"
-                        >
-                          Load More Components
-                        </button>
-                      )}
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          </div>
 
           {/* Page Details Section */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
@@ -1145,14 +817,14 @@ function EditProgramPage({ type, componentType }) {
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-novaSemi text-gray-900">Page Details</h2>
+              <h2 className="text-xl font-novaSemi text-gray-900">{type} Details</h2>
             </div>
 
             <div className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                    Page Title <span className="text-red-500">*</span>
+                    {type} Title <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -1168,7 +840,7 @@ function EditProgramPage({ type, componentType }) {
                 </div>
                 <div>
                   <label htmlFor="date" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                    Page Date <span className="text-red-500">*</span>
+                    {type} Date <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="date"
@@ -1203,7 +875,7 @@ function EditProgramPage({ type, componentType }) {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Short Description <span className="text-red-500">*</span>
+                  {type} Short Description <span className="text-red-500">*</span>
                 </label>
                 <div className="border border-gray-300 rounded-lg overflow-hidden">
                   <JoditEditor
@@ -1216,7 +888,7 @@ function EditProgramPage({ type, componentType }) {
               </div>
               <div>
                 <label className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Page Description <span className="text-red-500">*</span>
+                  {type} Description <span className="text-red-500">*</span>
                 </label>
                 <div className="border border-gray-300 rounded-lg overflow-hidden">
                   <JoditEditor
@@ -1310,7 +982,7 @@ function EditProgramPage({ type, componentType }) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
               <div>
                 <label htmlFor="video_url" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Video URL
+                  URL
                 </label>
                 <input
                   type="url"
@@ -1319,7 +991,7 @@ function EditProgramPage({ type, componentType }) {
                   value={formData.video_url}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  placeholder="https://example.com/video"
+                  placeholder="https://example.com"
                 />
               </div>
             </div>
@@ -1341,7 +1013,7 @@ function EditProgramPage({ type, componentType }) {
               <h2 className="text-xl font-novaSemi text-gray-900">Media Upload</h2>
             </div>
             {
-              type === "Download Center" &&
+               type === "Download Center" || type === "Circular"||type === "Notice" &&
               <div className="mb-10">
                 <EnhancedFileUpload
                   id="downloadCenterPdf"
@@ -1443,8 +1115,8 @@ function EditProgramPage({ type, componentType }) {
                   <label
                     htmlFor="galleryimg"
                     className={`mt-4 inline-flex items-center px-4 py-2 text-white text-sm font-medium rounded-lg cursor-pointer transition-colors ${galleryUploadingIndexes.length > 0
-                      ? "bg-gray-400 cursor-not-allowed"
-                      : "bg-blue-600 hover:bg-blue-700"
+                        ? "bg-gray-400 cursor-not-allowed"
+                        : "bg-blue-600 hover:bg-blue-700"
                       }`}
                   >
                     {galleryUploadingIndexes.length > 0 ? (
@@ -1549,7 +1221,7 @@ function EditProgramPage({ type, componentType }) {
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-lg font-novaSemi text-gray-900">Ready to Update?</h3>
-                <p className="text-gray-600 mt-1 font-novaReg">Review all changes before updating the page</p>
+                <p className="text-gray-600 mt-1 font-novaReg">Review all changes before updating the {type.toLowerCase()}</p>
               </div>
               <div className="flex items-center space-x-4">
                 <button
@@ -1613,4 +1285,4 @@ function EditProgramPage({ type, componentType }) {
   )
 }
 
-export default EditProgramPage
+export default EditSchoolPage

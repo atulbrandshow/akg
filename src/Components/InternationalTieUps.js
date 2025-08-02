@@ -4,6 +4,7 @@ import React from 'react'
 import 'swiper/swiper-bundle.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Scrollbar, A11y, Autoplay } from 'swiper/modules';
+import { splitTitle } from '@/utills/splitTitle';
 
 const slidesData = [
     {
@@ -33,17 +34,19 @@ const slidesData = [
     },
 ];
 
-const InternationalTieUps = () => {
+const InternationalTieUps = ({ data }) => {
+    const d = data?.pageData;
+    const { first, middle, last } = splitTitle(d?.International_TieUps_Title);
     return (
         <section className='py-10'>
             <div className='max-w-4xl mx-auto text-center px-3'>
                 <h1 className="text-[42px] text-center font-novaReg max-lg:text-4xl max-md:text-3xl max-sm:px-4 text-gray-700">
                     <span className="font-novaSemi bg-text-gradient bg-clip-text text-transparent animate-gradient">
-                        International
+                        {first} {" "}
                     </span>
-                    {" "} Tie-Ups
+                    {middle} {" "} {last}
                 </h1>
-                <p className='font-novaReg mt-3'>At AKG University, students gain a global perspective through our strategic international collaborations, offering invaluable exposure to world-class education practices and preparing them for success on a global stage.</p>
+                <p className='font-novaReg mt-3'>{d?.International_TieUps_Desc}</p>
             </div>
             <div className="w-full mx-auto text-foreground pt-6">
                 <Swiper

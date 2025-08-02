@@ -285,7 +285,7 @@ const PageDataManager = () => {
     <div className="flex items-center justify-between w-full">
       <span>{option.label}</span>
       {option.isExisting && (
-        <span className={`px-2 py-1 rounded-full text-xs font-medium ${getDataTypeColor(option.dataType)}`}>
+        <span className={`px-2 py-1 rounded-full text-xs font-novaReg ${getDataTypeColor(option.dataType)}`}>
           {option.dataType}
         </span>
       )}
@@ -302,7 +302,7 @@ const PageDataManager = () => {
             name="value"
             value={formData.value}
             onChange={(e) => handleInputChange(e, "text")}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-vertical"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-vertical"
             placeholder="Enter the text content for this section..."
             rows="4"
             required
@@ -315,7 +315,7 @@ const PageDataManager = () => {
               type="file"
               accept="image/*"
               onChange={(e) => handleInputChange(e, "image")}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
               required={!formData.value}
             />
             <p className="text-sm text-gray-500">Upload a single image (JPG, PNG, GIF, WebP)</p>
@@ -351,7 +351,7 @@ const PageDataManager = () => {
               accept="image/*"
               multiple
               onChange={(e) => handleInputChange(e, "multiple image")}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
               required={!formData.value}
             />
             <p className="text-sm text-gray-500">Upload multiple images (JPG, PNG, GIF, WebP)</p>
@@ -390,7 +390,7 @@ const PageDataManager = () => {
               type="file"
               accept=".pdf"
               onChange={(e) => handleInputChange(e, "pdf")}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100"
               required={!formData.value}
             />
             <p className="text-sm text-gray-500">Upload a PDF document</p>
@@ -446,7 +446,7 @@ const PageDataManager = () => {
               accept=".pdf"
               multiple
               onChange={(e) => handleInputChange(e, "multiple pdfs")}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100"
               required={!formData.value}
             />
             <p className="text-sm text-gray-500">Upload multiple PDF documents</p>
@@ -569,7 +569,7 @@ const PageDataManager = () => {
             name="value"
             value={formData.value}
             onChange={(e) => handleInputChange(e, "text")}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-vertical"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-vertical"
             placeholder="Enter the content for this section..."
             rows="4"
             required
@@ -654,14 +654,14 @@ const PageDataManager = () => {
       case "description":
         return (
           <div
-            className="mt-2 p-3 bg-gray-50 rounded-lg prose prose-sm max-w-none border"
+            className="mt-2 p-3 bg-gray-50 rounded-lg prose prose-sm max-w-none border font-novaReg"
             dangerouslySetInnerHTML={{ __html: value }}
           />
         )
       default:
         return (
           <div className="mt-2 p-3 bg-gray-50 rounded-lg border">
-            <code className="text-sm text-gray-800 break-all whitespace-pre-wrap">{formatValue(value, dataType)}</code>
+            <code className="text-sm text-gray-800 break-all font-novaReg whitespace-pre-wrap">{formatValue(value, dataType)}</code>
           </div>
         )
     }
@@ -823,7 +823,7 @@ const PageDataManager = () => {
             }`}
           >
             <div className="flex items-center justify-between">
-              <span className="font-medium">{notification.message}</span>
+              <span className="font-novaReg">{notification.message}</span>
               <button
                 onClick={() => setNotification({ show: false, message: "", type: "" })}
                 className="ml-4 text-white hover:text-gray-200 transition-colors"
@@ -840,20 +840,20 @@ const PageDataManager = () => {
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6" ref={formRef}>
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">Page Content Manager</h1>
+              <h1 className="text-3xl font-novaBold text-gray-900 mb-2">Page Content Manager</h1>
               <div className="flex flex-wrap items-center gap-2">
-                <p className="text-gray-600">
+                <p className="text-gray-600 font-novaReg">
                   Managing content for{" "}
                   <span className="font-semibold text-blue-600">{pageDetails?.name || pageid}</span>
                 </p>
                 {type && (
-                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">{type}</span>
+                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-novaSemi">{type}</span>
                 )}
               </div>
             </div>
             <button
               onClick={() => setShowAddForm(!showAddForm)}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 flex items-center space-x-2 shadow-sm hover:shadow-md"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-novaSemi transition-all duration-200 flex items-center space-x-2 shadow-sm hover:shadow-md"
             >
               {!showAddForm ? (
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -877,7 +877,7 @@ const PageDataManager = () => {
                 {editingId ? "Edit Content Section" : "Add New Content Section"}
               </h2>
               {editingId && (
-                <span className="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">
+                <span className="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-novaReg">
                   Editing Mode
                 </span>
               )}
@@ -886,10 +886,10 @@ const PageDataManager = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div className="lg:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-novaSemi text-gray-700 mb-2">
                     Content Section Name <span className="text-red-500">*</span>
                     {isNewKey && (
-                      <span className="ml-2 text-green-600 text-xs font-medium">(Creating New Section)</span>
+                      <span className="ml-2 text-green-600 text-xs font-novaReg">(Creating New Section)</span>
                     )}
                   </label>
                   <CreatableSelect
@@ -902,11 +902,11 @@ const PageDataManager = () => {
                     noOptionsMessage={() => "Type to create a new content section"}
                     formatOptionLabel={formatOptionLabel}
                     styles={selectStyles}
-                    className="react-select-container"
+                    className="react-select-container font-novaReg"
                     classNamePrefix="react-select"
                     formatCreateLabel={(inputValue) => `Create "${inputValue}"`}
                   />
-                  <p className="text-xs text-gray-500 mt-1">
+                  <p className="text-xs text-gray-500 font-novaReg mt-1">
                     Choose from existing sections or type a new name to create one
                   </p>
                 </div>
@@ -914,13 +914,13 @@ const PageDataManager = () => {
                 {/* Data Type Selection */}
                 {isNewKey && selectedKey && (
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-novaReg text-gray-700 mb-2">
                       Content Type <span className="text-red-500">*</span>
                     </label>
                     <select
                       value={formData.dataType}
                       onChange={(e) => setFormData({ ...formData, dataType: e.target.value, value: "" })}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                       required
                     >
                       {dataTypes.map((type) => (
@@ -948,10 +948,10 @@ const PageDataManager = () => {
                 {/* Existing Data Type Display */}
                 {!isNewKey && selectedKey && (
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Content Type</label>
+                    <label className="block text-sm font-novaReg text-gray-700 mb-2">Content Type</label>
                     <div className="w-full px-4 py-3 border border-gray-200 rounded-lg bg-gray-50">
                       <span
-                        className={`px-3 py-1 rounded-full text-xs font-medium ${getDataTypeColor(formData.dataType)}`}
+                        className={`px-3 py-1 rounded-full text-xs font-novaReg ${getDataTypeColor(formData.dataType)}`}
                       >
                         {formData.dataType === "text"
                           ? "Text Content"
@@ -975,7 +975,7 @@ const PageDataManager = () => {
                 {/* Page Type */}
                 {!type && (
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-novaReg text-gray-700 mb-2">
                       Page Category <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -983,7 +983,7 @@ const PageDataManager = () => {
                       name="pageType"
                       value={formData.pageType}
                       onChange={(e) => setFormData({ ...formData, pageType: e.target.value })}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                       placeholder="e.g., homepage, about, services, blog"
                       required
                     />
@@ -997,7 +997,7 @@ const PageDataManager = () => {
               {/* Content Input */}
               {selectedKey && (
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-novaReg text-gray-700 mb-2">
                     Content <span className="text-red-500">*</span>
                   </label>
                   {renderValueInput()}
@@ -1009,7 +1009,7 @@ const PageDataManager = () => {
                 <button
                   type="submit"
                   disabled={loading || uploadingFiles || !selectedKey}
-                  className="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white px-8 py-3 rounded-lg font-medium transition-all duration-200 flex items-center justify-center space-x-2 shadow-sm hover:shadow-md"
+                  className="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white px-8 py-3 rounded-lg font-novaReg transition-all duration-200 flex items-center justify-center space-x-2 shadow-sm hover:shadow-md"
                 >
                   {loading ? (
                     <>
@@ -1028,7 +1028,7 @@ const PageDataManager = () => {
                 <button
                   type="button"
                   onClick={resetForm}
-                  className="bg-gray-500 hover:bg-gray-600 text-white px-8 py-3 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md"
+                  className="bg-gray-500 hover:bg-gray-600 text-white px-8 py-3 rounded-lg font-novaReg transition-all duration-200 shadow-sm hover:shadow-md"
                 >
                   Cancel
                 </button>
@@ -1061,7 +1061,7 @@ const PageDataManager = () => {
                   placeholder="Search content sections..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                 />
               </div>
             </div>
@@ -1071,7 +1071,7 @@ const PageDataManager = () => {
               <select
                 value={selectedTypeFilter}
                 onChange={(e) => setSelectedTypeFilter(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
               >
                 <option value="all">All Types</option>
                 {uniqueDataTypes.map((type) => (
@@ -1098,7 +1098,7 @@ const PageDataManager = () => {
             <div className="flex items-center">
               <button
                 onClick={() => setGroupByType(!groupByType)}
-                className={`px-4 py-3 rounded-lg font-medium transition-all duration-200 flex items-center space-x-2 ${
+                className={`px-4 py-3 rounded-lg font-novaSemi transition-all duration-200 flex items-center space-x-2 ${
                   groupByType
                     ? "bg-blue-100 text-blue-700 hover:bg-blue-200"
                     : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -1153,7 +1153,7 @@ const PageDataManager = () => {
                     d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                   />
                 </svg>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                <h3 className="text-lg font-novaReg text-gray-900 mb-2">
                   {searchQuery ? "No matching content sections found" : "No content sections found"}
                 </h3>
                 <p className="text-gray-500 mb-4">
@@ -1179,7 +1179,7 @@ const PageDataManager = () => {
                   <div className="px-6 py-4 border-b border-gray-200 bg-gray-50 rounded-t-xl">
                     <div className="flex items-center justify-between">
                       <h3 className="text-lg font-semibold text-gray-900 flex items-center space-x-2">
-                        <span className={`px-3 py-1 rounded-full text-sm font-medium ${getDataTypeColor(groupType)}`}>
+                        <span className={`px-3 py-1 rounded-full text-sm font-novaReg ${getDataTypeColor(groupType)}`}>
                           {groupType === "text"
                             ? "Text Content"
                             : groupType === "image"
@@ -1210,10 +1210,10 @@ const PageDataManager = () => {
                         <div className="flex-1 min-w-0">
                           {/* Header */}
                           <div className="flex items-center space-x-3 mb-3">
-                            <h4 className="text-lg font-medium text-gray-900 truncate">{param.key}</h4>
+                            <h4 className="text-lg font-novaReg text-gray-900 truncate">{param.key}</h4>
                             {!groupByType && (
                               <span
-                                className={`px-2 py-1 rounded-full text-xs font-medium ${getDataTypeColor(param.dataType)}`}
+                                className={`px-2 py-1 rounded-full text-xs font-novaReg ${getDataTypeColor(param.dataType)}`}
                               >
                                 {param.dataType === "text"
                                   ? "Text"
@@ -1231,7 +1231,7 @@ const PageDataManager = () => {
                               </span>
                             )}
                             <span
-                              className={`px-2 py-1 rounded-full text-xs font-medium ${
+                              className={`px-2 py-1 rounded-full text-xs font-novaReg ${
                                 param.status ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
                               }`}
                             >
@@ -1241,7 +1241,7 @@ const PageDataManager = () => {
 
                           {/* Content Preview */}
                           <div className="mb-4">
-                            <span className="text-sm font-medium text-gray-700 mb-2 block">Content Preview:</span>
+                            <span className="text-sm font-novaReg text-gray-700 mb-2 block">Content Preview:</span>
                             {renderValueDisplay(param.value, param.dataType)}
                           </div>
 
@@ -1257,7 +1257,7 @@ const PageDataManager = () => {
                                 />
                               </svg>
                               <span>
-                                Category: <span className="font-medium text-gray-700">{param.pageType}</span>
+                                Category: <span className="font-novaSemi text-gray-700">{param.pageType}</span>
                               </span>
                             </span>
                             <span className="flex items-center space-x-1">
@@ -1269,7 +1269,7 @@ const PageDataManager = () => {
                                   d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                                 />
                               </svg>
-                              <span>Created: {new Date(param.createdAt).toLocaleDateString()}</span>
+                              <span className="font-novaSemi">Created: {new Date(param.createdAt).toLocaleDateString()}</span>
                             </span>
                             {param.updatedAt !== param.createdAt && (
                               <span className="flex items-center space-x-1">
@@ -1281,7 +1281,7 @@ const PageDataManager = () => {
                                     d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
                                   />
                                 </svg>
-                                <span>Updated: {new Date(param.updatedAt).toLocaleDateString()}</span>
+                                <span className="font-novaSemi">Updated: {new Date(param.updatedAt).toLocaleDateString()}</span>
                               </span>
                             )}
                           </div>

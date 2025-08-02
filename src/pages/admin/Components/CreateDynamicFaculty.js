@@ -377,9 +377,11 @@ export default function CreateFacultyForm({ type, componentType }) {
             })
 
             const createResult = await createResponse.json()
-
             if (!createResult.status) {
-                throw new Error(createResult.message)
+                if (createResult.message === "Page already exists with this title") {
+                    toast.warn("Name Already Exists")
+                }
+                return
             }
 
             setAllData(createResult?.data)

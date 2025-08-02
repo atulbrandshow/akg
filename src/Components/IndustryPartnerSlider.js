@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { splitTitle } from '@/utills/splitTitle'
+import { IMAGE_PATH } from '@/configs/config'
 
 export default function IndustryPartnerSlider({ data }) {
   const [scrollPosition, setScrollPosition] = useState(0)
@@ -35,28 +36,7 @@ export default function IndustryPartnerSlider({ data }) {
     }
   }, [scrollPosition])
 
-  const logos = [
-    { alt: "Amazon", src: "/image/company-logos/AmozonIcon.webp" },
-    { alt: "Google", src: "/image/company-logos/Google.png" },
-    { alt: "Microsoft", src: "/image/company-logos/Microsoft.png" },
-    { alt: "IBM", src: "/image/company-logos/ibm.webp" },
-    { alt: "Accenture", src: "/image/company-logos/AccentureIcon.webp" },
-    { alt: "Infosys", src: "/image/company-logos/infosys.webp" },
-    { alt: "Adobe", src: "/image/company-logos/Adobe.png" },
-    { alt: "TCS", src: "/image/company-logos/tcs.webp" },
-    { alt: "Amdocs", src: "/image/company-logos/amdocsIcon.webp" },
-    { alt: "Wipro", src: "/image/company-logos/WIPRO.webp" },
-    { alt: "Amazon", src: "/image/company-logos/AmozonIcon.webp" },
-    { alt: "Google", src: "/image/company-logos/Google.png" },
-    { alt: "Microsoft", src: "/image/company-logos/Microsoft.png" },
-    { alt: "IBM", src: "/image/company-logos/ibm.webp" },
-    { alt: "Accenture", src: "/image/company-logos/AccentureIcon.webp" },
-    { alt: "Infosys", src: "/image/company-logos/infosys.webp" },
-    { alt: "Adobe", src: "/image/company-logos/Adobe.png" },
-    { alt: "TCS", src: "/image/company-logos/tcs.webp" },
-    { alt: "Amdocs", src: "/image/company-logos/amdocsIcon.webp" },
-    { alt: "Wipro", src: "/image/company-logos/WIPRO.webp" }
-  ];
+  const logos = d?.Industry_Logos || [];
 
   const allLogos = [...logos, ...logos]
 
@@ -86,8 +66,8 @@ export default function IndustryPartnerSlider({ data }) {
                   className="flex-shrink-0 flex items-center justify-center"
                 >
                   <Image
-                    src={logo.src || "/image/company-logos/defaultLogo.png"}
-                    alt={logo.alt}
+                    src={IMAGE_PATH + logo}
+                    alt="Company Logo"
                     width={130}
                     height={130}
                     className="object-contain max-sm:h-20 max-sm:w-20"

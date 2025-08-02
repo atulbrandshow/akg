@@ -620,13 +620,13 @@ const PageDataManager = () => {
         }
 
         return (
-          <div className="mt-2 grid grid-cols-4 gap-2">
+          <div className="mt-2 grid grid-cols-4 gap-2"> 
             {imageUrls.map((path, index) => (
               <img
                 key={index}
-                src={`${API_NODE_URL.replace("/api/", "")}${path}`}
+                src={`${IMAGE_PATH}${path}`}
                 alt={`Image ${index + 1}`}
-                className="w-20 h-20 object-cover rounded-lg border shadow-sm"
+                className="w-auto h-16 object-cover rounded-lg border shadow-sm"
               />
             ))}
           </div>

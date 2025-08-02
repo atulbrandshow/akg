@@ -1,3 +1,4 @@
+import { IMAGE_PATH } from '@/configs/config';
 import React from 'react'
 
 const PlacementBanner = ({ data }) => {
@@ -5,7 +6,7 @@ const PlacementBanner = ({ data }) => {
 
     const statsData = [];
     for (let i = 1; i <= 10; i++) {
-        const rawValue = d?.[`PDT-${i}`];      
+        const rawValue = d?.[`PDT-${i}`];
         const description = d?.[`PDD-${i}`];
 
         if (rawValue && description) {
@@ -22,7 +23,11 @@ const PlacementBanner = ({ data }) => {
     }
     return (
         <section>
-            <div className='relative bg-BG6 bg-cover bg-top h-full lg:h-[70vh]'>
+            <div className='relative bg-cover bg-top h-full lg:h-[70vh]'
+                style={{
+                    backgroundImage: `url(${IMAGE_PATH + d?.Placement_Banner})`,
+                }}
+            >
                 <div className='hidden lg:block absolute bottom-5 right-24 xl:right-64 2xl:right-[23rem] leading-none rounded-lg bg-white animate-bounce drop-shadow-md px-6 py-4'>
                     <img className='w-40 object-cover' src="/image/company-logos/Google.png" alt="" />
                     <h5 className='text-lg font-novaReg'>{d?.Placement_Student_Name}</h5>
@@ -83,7 +88,7 @@ const PlacementBanner = ({ data }) => {
                 <div className='absolute left-0 w-[45%] h-full bg-offwhite-gradient z-10'></div>
                 <img className='w-full h-full object-cover object-top max-sm:object-right' src="/image/AKG_Student.jpg" alt="" />
                 <div className='absolute z-30 bottom-5 left-3 leading-none rounded-lg bg-white drop-shadow-md px-6 py-4 max-sm:p-2'>
-                    <img className='w-28 object-cover' src="/image/company-logos/Google.png" alt="" />
+                    <img className='w-28 object-cover' src={IMAGE_PATH + d?.Placement_Company_Logo} alt="Logo" />
                     <h5 className='text-lg font-novaReg'>Sakshi Panchal</h5>
                     <small className='font-novaReg'>Placed in Google</small>
                 </div>

@@ -88,7 +88,7 @@ const Admissions = () => {
                   <div className="absolute bottom-12 text-black left-0 w-full bg-white border border-gray-300 rounded-lg shadow-lg p-4 z-10">
                     <h3 className="text-base font-novaBold">Undergraduate Courses</h3>
                     <ul className="font-novaReg mt-3">
-                      <li>Bachelor of Science in Computer Science</li>
+                      <li>Bachelor of Technology</li>
                       <li>Bachelor of Business Administration</li>
                       <li>Bachelor of Computer Application</li>
                     </ul>

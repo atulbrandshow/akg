@@ -326,10 +326,6 @@ function EditProgramPage({ type, componentType }) {
   const [hasMore, setHasMore] = useState(true)
   const [allPages, setAllPages] = useState([])
   const [pageIndex, setPageIndex] = useState(0)
-  const [searchQuery, setSearchQuery] = useState("") // State for search input
-  const [programInput, setProgramInput] = useState("")
-  const [showSchoolDropdown, setShowSchoolDropdown] = useState(false)
-  const [schools, setSchools] = useState([]) // State to hold school options
   const [compType, setCompType] = useState("");
 
   const [componentSearchValue, setComponentSearchValue] = useState("")
@@ -338,7 +334,6 @@ function EditProgramPage({ type, componentType }) {
   const [displayedComponents, setDisplayedComponents] = useState([])
   const [hasMoreComponents, setHasMoreComponents] = useState(true)
   const [allComponents, setAllComponents] = useState([])
-  const [streamId, setStreamId] = useState("")
 
   // Upload states
   const [uploadingStates, setUploadingStates] = useState({})
@@ -431,34 +426,6 @@ function EditProgramPage({ type, componentType }) {
     existing_downloadCenterPdf: "",
     downloadCenterPdf: "",
   })
-
-  useEffect(() => {
-    const fetchSchools = async () => {
-      try {
-        const response = await fetch(`${API_NODE_URL}school/search?search=${searchQuery}`, {
-          credentials: "include",
-        })
-        const result = await response.json()
-        if (result.status) {
-          setSchools(Array.isArray(result?.data?.schools) ? result?.data?.schools : [])
-        } else {
-          toast.error(result.message || "Failed to fetch schools.")
-          setSchools([])
-        }
-      } catch (err) {
-        console.error("Error fetching schools:", err)
-        toast.error("An error occurred while fetching schools.")
-        setSchools([])
-      }
-    }
-    fetchSchools()
-  }, [searchQuery])
-
-  const handleSchoolSelect = (school) => {
-    setStreamId(school?._id)
-    setSearchQuery(school.name) // Display school name in input
-    setShowSchoolDropdown(false) // Hide dropdown
-  }
 
   const fetchParent = async (parent_id) => {
     if (parent_id) {
@@ -597,23 +564,6 @@ function EditProgramPage({ type, componentType }) {
     }
   }
 
-  const fecthSchoolDetails = async (schoolId) => {
-    try {
-      const res = await fetch(`${API_NODE_URL}school/get-by-id?id=${schoolId}`, {
-        credentials: "include",
-      })
-      const data = await res.json()
-      if (data.status) {
-        setSearchQuery(data?.data?.name)
-        setStreamId(data?.data?._id)
-      } else {
-        setSearchQuery("")
-      }
-    } catch (error) {
-      console.error("ERROR: ", error)
-    }
-  }
-
   useEffect(() => {
     if (!page_id) return
     const fetchPageData = async () => {
@@ -627,7 +577,6 @@ function EditProgramPage({ type, componentType }) {
         if (data.status) {
           const parent_id = data?.data?.parent_id
           const parentPageName = parent_id !== 0 ? await fetchParent(parent_id) : "This is Main page"
-          await fecthSchoolDetails(data?.data?.stream)
           setSearchValue(parentPageName)
           setCompType(data?.data?.ComponentType);
           setComponentSearchValue(data?.data?.ComponentType)
@@ -843,14 +792,8 @@ function EditProgramPage({ type, componentType }) {
       return
     }
 
-    if (!streamId) {
-      toast.warning("Please select stream");
-      return;
-    }
-
     const payload = {
       ...formData,
-      stream: streamId,
       ComponentType: selectedComponentType || compType || componentType,
     }
 
@@ -1019,48 +962,6 @@ function EditProgramPage({ type, componentType }) {
                         Load More Pages
                       </button>
                     )}
-                  </div>
-                )}
-              </div>
-              <div className="relative">
-                <label htmlFor="schoolSearch" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Search Stream
-                  <span className="text-red-500 ml-1">*</span>
-                </label>
-                <div className="relative">
-                  <input
-                    id="schoolSearch"
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    onFocus={() => setShowSchoolDropdown(true)}
-                    placeholder="Search and select school..."
-                    className="w-full border-2 border-gray-200 rounded-xl font-novaReg py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
-                  />
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-                {showSchoolDropdown && (
-                  <div className="absolute z-20 w-full bg-white border-2 border-gray-200 rounded-xl mt-2 max-h-64 overflow-auto shadow-2xl">
-                    {(Array.isArray(schools) ? schools : [])
-                      .filter((school) => school.name.toLowerCase().includes(searchQuery.toLowerCase()))
-                      .map((school) => (
-                        <div
-                          key={school.id}
-                          onClick={() => handleSchoolSelect(school)}
-                          className="cursor-pointer px-4 py-3 hover:bg-blue-50 border-b border-gray-100 last:border-b-0 transition-colors duration-150"
-                        >
-                          <div className="font-novaSemi text-gray-800">{school.name}</div>
-                        </div>
-                      ))}
                   </div>
                 )}
               </div>

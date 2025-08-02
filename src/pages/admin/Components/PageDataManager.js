@@ -374,9 +374,9 @@ const PageDataManager = () => {
                 {formData.value.map((path, index) => (
                   <div key={index} className="relative group">
                     <img
-                      src={`${API_NODE_URL.replace("/api/", "")}${path}`}
+                      src={`${IMAGE_PATH}${path}`}
                       alt={`Preview ${index + 1}`}
-                      className="w-full h-24 object-cover rounded-lg border shadow-sm"
+                      className="w-auto h-16 object-cover rounded-lg border shadow-sm"
                     />
                     <button
                       type="button"

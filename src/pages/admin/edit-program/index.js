@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import SideBar from "../Components/SideBar";
-import EditDynamicPages from "../Components/EditDynamicPages";
+import EditProgramPage from "../Components/EditProgramPage";
 
 export default function Home() {
   return (
@@ -9,7 +9,7 @@ export default function Home() {
         <SideBar />
         <div className="pt-10 px-10 overflow-x-auto w-full h-screen">
           <Suspense fallback={<div>Loading...</div>}>
-            <EditDynamicPages type="Program" componentType="program-details" />
+            <EditProgramPage type="Program" componentType="program-details" />
           </Suspense>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import CreateDynamicPages from "../Components/CreateDynamicPages";
+import CreateDynamicProgram from "../Components/CreateDynamicProgram";
 import SideBar from "../Components/SideBar";
 
 export default function Home() {
@@ -7,7 +7,7 @@ export default function Home() {
       <div className="flex bg-gray-100">
         <SideBar />
         <div className="pt-10 overflow-x-auto w-full h-screen px-10">
-          <CreateDynamicPages type="Program" componentType="program-details" parentId={989951} />
+          <CreateDynamicProgram type="Program" componentType="program-details" />
         </div>
       </div>
     </>

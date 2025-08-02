@@ -2,14 +2,13 @@
 
 import ScholarshipHighlight from "@/Components/ScholarshipHighlight";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
-const Admissions = () => {
-  const router = useRouter();
-  const [showUndergraduateCourses, setShowUndergraduateCourses] =
-    useState(false);
+const Admissions = ({ onApplyNow }) => {
+const [showUndergraduateCourses, setShowUndergraduateCourses] = useState(false);
   const [showPostgraduateCourses, setShowPostgraduateCourses] = useState(false);
   const [showDoctoralCourses, setShowDoctoralCourses] = useState(false);
+
+  
 
   return (
     <>
@@ -70,12 +69,13 @@ const Admissions = () => {
               </p>
             </div>
             <div className="flex flex-col sm:flex-row justify-evenly mt-4 w-full relative">
-              <a
-                href="#"
-                className="flex-1 bg-btn-gradient animate-gradient uppercase text-sm font-novaSemi w-full sm:w-48 text-center px-4 py-2.5 mb-2 sm:mb-0 sm:mr-2 rounded-md text-white"
+                <button
+                onClick={() => onApplyNow('undergraduate')}
+                className="flex-1 bg-btn-gradient animate-gradient uppercase text-sm font-novaSemi w-full sm:w-48 text-center px-4 py-2.5 mb-2 sm:mb-0 sm:mr-2 rounded-md text-white cursor-pointer"
               >
                 Apply Now
-              </a>
+              </button>
+
               <div className="relative flex-1">
                 <a
                   href="#"
@@ -123,12 +123,12 @@ const Admissions = () => {
               </p>
             </div>
             <div className="flex flex-col sm:flex-row justify-evenly mt-4 w-full relative">
-              <a
-                href="#"
-                className="flex-1 bg-btn-gradient animate-gradient w-full uppercase text-sm font-novaSemi sm:w-48 text-center py-2.5 mb-2 sm:mb-0 sm:mr-2 rounded-md text-white"
+             <button
+                onClick={() => onApplyNow('postgraduate')}
+                className="flex-1 bg-btn-gradient animate-gradient uppercase text-sm font-novaSemi w-full sm:w-48 text-center px-4 py-2.5 mb-2 sm:mb-0 sm:mr-2 rounded-md text-white cursor-pointer"
               >
                 Apply Now
-              </a>
+              </button>
               <div className="relative flex-1">
                 <a
                   href="#"
@@ -176,12 +176,12 @@ const Admissions = () => {
               </p>
             </div>
             <div className="flex flex-col sm:flex-row justify-evenly mt-4 w-full relative">
-              <a
-                href="#"
-                className="flex-1 bg-btn-gradient animate-gradient w-full uppercase text-sm font-novaSemi sm:w-48 text-center py-2.5 mb-2 sm:mb-0 sm:mr-2 rounded-md text-white"
+              <button
+                onClick={() => onApplyNow('doctoral')}
+                className="flex-1 bg-btn-gradient animate-gradient uppercase text-sm font-novaSemi w-full sm:w-48 text-center px-4 py-2.5 mb-2 sm:mb-0 sm:mr-2 rounded-md text-white cursor-pointer"
               >
                 Apply Now
-              </a>
+              </button>
               <div className="relative flex-1">
                 <a
                   href="#"

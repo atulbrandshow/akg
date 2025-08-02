@@ -445,7 +445,7 @@ function EditProgramPage({ type, componentType }) {
 
   const fetchComponents = async (searchTerm = "", page = 1) => {
     try {
-      const url = new URL(`${API_NODE_URL}components/category/Page`)
+      const url = new URL(`${API_NODE_URL}components/category/Department`)
       url.searchParams.append("page", page)
       url.searchParams.append("limit", 10)
       if (searchTerm) {
@@ -895,10 +895,10 @@ function EditProgramPage({ type, componentType }) {
               <h2 className="text-xl font-novaSemi text-gray-900">Basic Details</h2>
             </div>
 
-            <div className={`grid grid-cols-1 ${type === "Page" ? "md:grid-cols-3" : "md:grid-cols-2"} gap-6`}>
+            <div className={`grid grid-cols-1 ${type === "Department" ? "md:grid-cols-3" : "md:grid-cols-2"} gap-6`}>
               <div className="relative">
                 <label htmlFor="parent-page" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Choose School or Department Page
+                  Choose School or Department Department
                   <span className="text-red-500 ml-1">*</span>
                 </label>
                 <div className="relative">
@@ -965,7 +965,7 @@ function EditProgramPage({ type, componentType }) {
                   </div>
                 )}
               </div>
-              {type === "Page" && (
+              {type === "Department" && (
                 <div className="relative">
                   <label htmlFor="component-type" className="block text-sm font-novaSemi text-gray-700 mb-2">
                     Component Type <span className="text-red-500">*</span>
@@ -1033,7 +1033,7 @@ function EditProgramPage({ type, componentType }) {
             </div>
           </div>
 
-          {/* Page Details Section */}
+          {/* Department Details Section */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <div className="flex items-center space-x-3 mb-6">
               <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
@@ -1046,14 +1046,14 @@ function EditProgramPage({ type, componentType }) {
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-novaSemi text-gray-900">Page Details</h2>
+              <h2 className="text-xl font-novaSemi text-gray-900">Department Details</h2>
             </div>
 
             <div className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                    Page Title <span className="text-red-500">*</span>
+                    Department Title <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -1069,7 +1069,7 @@ function EditProgramPage({ type, componentType }) {
                 </div>
                 <div>
                   <label htmlFor="date" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                    Page Date <span className="text-red-500">*</span>
+                    Department Date <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="date"
@@ -1117,7 +1117,7 @@ function EditProgramPage({ type, componentType }) {
               </div>
               <div>
                 <label className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Page Description <span className="text-red-500">*</span>
+                  Full Description <span className="text-red-500">*</span>
                 </label>
                 <div className="border border-gray-300 rounded-lg overflow-hidden">
                   <JoditEditor

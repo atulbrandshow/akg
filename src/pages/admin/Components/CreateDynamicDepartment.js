@@ -15,7 +15,7 @@ function CreateDynamicDepartment({ type, componentType }) {
     const [pageIndex, setPageIndex] = useState(10);
     const [hasMore, setHasMore] = useState(true);
     const [selectedPage, setSelectedPage] = useState(null);
-    const [title, setTitle] = useState("");
+    const [Name, setTitle] = useState("");
     const [allData, setAllData] = useState({});
     const [pageType, setPageType] = useState("")
 
@@ -168,8 +168,8 @@ function CreateDynamicDepartment({ type, componentType }) {
             newErrors.selectedPage = "Please select a parent page.";
         }
 
-        if (!title) {
-            newErrors.title = "Please enter a title.";
+        if (!Name) {
+            newErrors.Name = "Please enter a Name.";
         }
 
         if (type === "Page" && !pageType) {
@@ -190,7 +190,7 @@ function CreateDynamicDepartment({ type, componentType }) {
 
         const payload = {
             parent_id: selectedPage?.page_id,
-            name: title,
+            name: Name,
             type,
             ComponentType: selectedComponentType,
         };
@@ -278,7 +278,7 @@ function CreateDynamicDepartment({ type, componentType }) {
                     <form className="space-y-6">
                         <div className="relative">
                             <label htmlFor="parent-page" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                                Choose School Page
+                                Search And Select School
                                 <span className="text-red-500 ml-1">*</span>
                             </label>
                             <div className="relative">
@@ -348,19 +348,19 @@ function CreateDynamicDepartment({ type, componentType }) {
                         </div>
 
                         <div>
-                            <label htmlFor="title" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                                {type} Title
+                            <label htmlFor="Name" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                                {type} Name
                                 <span className="text-red-500 ml-1">*</span>
                             </label>
                             <input
-                                id="title"
+                                id="Name"
                                 type="text"
-                                value={title}
-                                placeholder={`Enter ${type} title...`}
+                                value={Name}
+                                placeholder={`Enter ${type} Name...`}
                                 onChange={(e) => setTitle(e.target.value)}
                                 className="w-full border-2 border-gray-200 font-novaReg rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
                             />
-                            {errors.title && <p className="text-sm text-red-600 ml-1 mt-1">{errors.title}</p>}
+                            {errors.Name && <p className="text-sm text-red-600 ml-1 mt-1">{errors.Name}</p>}
                         </div>
 
                         {type === "Page" && (

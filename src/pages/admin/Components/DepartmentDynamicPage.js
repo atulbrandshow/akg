@@ -605,7 +605,7 @@ export default function DepartmentDynamicPage({ allData, parentPage, type, compo
             <div className={`grid grid-cols-1 md:grid-cols-2  gap-6`}>
               <div className="relative">
                 <label htmlFor="parent-page" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Choose School or Department Page
+                  Choose School or Department Department
                   <span className="text-red-500 ml-1">*</span>
                 </label>
                 <div className="relative">
@@ -675,7 +675,7 @@ export default function DepartmentDynamicPage({ allData, parentPage, type, compo
             </div>
           </div>
 
-          {/* Page Details Section */}
+          {/* Department Details Section */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <div className="flex items-center space-x-3 mb-6">
               <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
@@ -688,14 +688,14 @@ export default function DepartmentDynamicPage({ allData, parentPage, type, compo
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-novaSemi text-gray-900">Page Details</h2>
+              <h2 className="text-xl font-novaSemi text-gray-900">Department Details</h2>
             </div>
 
             <div className="space-y-6">
-              <div className={`grid grid-cols-1 ${type === "Page" ? "md:grid-cols-3" : "md:grid-cols-2"}  gap-6`}>
+              <div className={`grid grid-cols-1 ${type === "Department" ? "md:grid-cols-3" : "md:grid-cols-2"}  gap-6`}>
                 <div>
                   <label htmlFor="name" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                    Page Title <span className="text-red-500">*</span>
+                    Department Title <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -711,7 +711,7 @@ export default function DepartmentDynamicPage({ allData, parentPage, type, compo
                 </div>
                 <div>
                   <label htmlFor="date" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                    Page Date <span className="text-red-500">*</span>
+                    Department Date <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="date"
@@ -723,24 +723,6 @@ export default function DepartmentDynamicPage({ allData, parentPage, type, compo
                     className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   />
                 </div>
-                {type === "Page" && (
-                  <div>
-                    <label htmlFor="type" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                      Page Type <span className="text-red-500">*</span>
-                    </label>
-                    <select
-                      id="type"
-                      name="type"
-                      value={formData.type}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                    >
-                      <option value="">Select Page Type</option>
-                      <option value="Page">Page</option>
-                      <option value="Admission">Admission</option>
-                    </select>
-                  </div>
-                )}
               </div>
             </div>
           </div>
@@ -764,7 +746,7 @@ export default function DepartmentDynamicPage({ allData, parentPage, type, compo
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Short Description <span className="text-red-500">*</span>
+                  Short Summary <span className="text-red-500">*</span>
                 </label>
                 <div className="border border-gray-300 font-novaReg rounded-lg overflow-hidden">
                   <JoditEditor
@@ -775,7 +757,7 @@ export default function DepartmentDynamicPage({ allData, parentPage, type, compo
               </div>
               <div>
                 <label className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Page Description <span className="text-red-500">*</span>
+                  Full Description <span className="text-red-500">*</span>
                 </label>
                 <div className="border border-gray-300 font-novaReg rounded-lg overflow-hidden">
                   <JoditEditor
@@ -788,7 +770,7 @@ export default function DepartmentDynamicPage({ allData, parentPage, type, compo
           </div>
 
           {/* Tags and Configuration */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          {/* <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <div className="flex items-center space-x-3 mb-6">
               <div className="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center">
                 <svg className="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -879,7 +861,7 @@ export default function DepartmentDynamicPage({ allData, parentPage, type, compo
                 />
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Media Upload Section */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
@@ -914,7 +896,7 @@ export default function DepartmentDynamicPage({ allData, parentPage, type, compo
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <FileUploadField
                 id="banner_img"
-                label="Banner Image"
+                label="Banner Image For Department"
                 imageUrl={formData.banner_img}
                 onChange={(e) => handleFileChange(e, "banner_img")}
                 onDelete={() => handleDeleteFile("banner_img")}
@@ -923,20 +905,20 @@ export default function DepartmentDynamicPage({ allData, parentPage, type, compo
                 isUploading={uploadingStates.banner_img}
               />
 
-              <FileUploadField
+              {/* <FileUploadField
                 id="featured_img"
-                label="Featured Image"
+                label="Featured Image For Department"
                 imageUrl={formData.featured_img}
                 onChange={(e) => handleFileChange(e, "featured_img")}
                 onDelete={() => handleDeleteFile("featured_img")}
                 dimensions="100 W × 75 H"
                 required
                 isUploading={uploadingStates.featured_img}
-              />
+              /> */}
 
               <FileUploadField
                 id="mainReportImage"
-                label="Extra Image"
+                label="Extra Image For Department"
                 imageUrl={formData.mainReportImage}
                 onChange={(e) => handleFileChange(e, "mainReportImage")}
                 onDelete={() => handleDeleteFile("mainReportImage")}
@@ -949,7 +931,7 @@ export default function DepartmentDynamicPage({ allData, parentPage, type, compo
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6 font-novaSemi">
               <FileUploadField
                 id="highlightBanner"
-                label="Highlight Banner"
+                label="Highlight Banner For Department"
                 imageUrl={formData.highlightBanner}
                 onChange={(e) => handleFileChange(e, "highlightBanner")}
                 onDelete={() => handleDeleteFile("highlightBanner")}
@@ -959,7 +941,7 @@ export default function DepartmentDynamicPage({ allData, parentPage, type, compo
 
               <div className="space-y-2">
                 <label htmlFor="galleryimg" className="block text-sm font-novaSemi text-gray-700">
-                  Gallery Images
+                  Gallery Images For Department
                 </label>
                 <div className="border-2 border-dashed border-gray-300 hover:border-blue-400 transition-colors rounded-lg p-6 text-center bg-gray-50 hover:bg-gray-100">
                   <div className="space-y-2">
@@ -1116,7 +1098,7 @@ export default function DepartmentDynamicPage({ allData, parentPage, type, compo
                     <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    Submit Page
+                    Submit Department
                   </>
                 )}
               </button>

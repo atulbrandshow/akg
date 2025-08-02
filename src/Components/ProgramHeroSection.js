@@ -1,13 +1,19 @@
 import React from 'react'
-import { IndianRupee } from 'lucide-react'
 
-const ProgramHeroSection = () => {
+const ProgramHeroSection = ({ data }) => {
+
+    console.log(data);
+
+
     return (
-        <div className='relative bg-BG43 bg-cover h-[90vh]'>
+        <div className='relative bg-cover h-[90vh]'
+            style={{
+                backgroundImage: `url(${data?.banner_img})`,
+            }}
+        >
             <div className='absolute inset-0 bg-gradient-to-t from-black to-transparent' />
             <div className='absolute inset-0 flex justify-center items-start flex-col max-w-7xl mx-auto'>
-                <div className='px-10 max-[400px]:px-2
-                '>
+                <div className='px-10 max-[400px]:px-2'>
                     <span className='font-novaReg text-gray-300 pl-1 max-sm:pl-0 max-sm:text-xs tracking-wider mb-2 uppercase max-lg:text-sm'>Empowering Digital Innovators</span>
                     <h2 className="text-pretty text-4xl max-[500px]:text-3xl font-novaReg tracking-tighter text-white sm:text-5xl md:text-6xl">
                         B.Tech Computer<br />

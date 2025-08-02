@@ -14,10 +14,10 @@ import { dropdownJsonData } from '@/Json/DropdownJsonData'
 import React from 'react'
 import ProgramFacultySlider from '@/Components/ProgramFacultySlider';
 
-const BtechCSE = () => {
+const ProgramDetails = ({ data }) => {
     return (
         <section>
-            <ProgramHeroSection />
+            <ProgramHeroSection data={data} />
             <ProgramCarousel />
             <AboutProgram />
             <IndustryPartnerSlider />
@@ -33,4 +33,4 @@ const BtechCSE = () => {
     )
 }
 
-export default BtechCSE
+export default ProgramDetails

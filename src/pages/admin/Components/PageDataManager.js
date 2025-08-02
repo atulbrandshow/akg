@@ -107,6 +107,8 @@ const PageDataManager = () => {
     try {
       const response = await fetch(`${API_NODE_URL}page-params/get-by-pageid?pageId=${pageid}`)
       const result = await response.json()
+      console.log(result)
+
       if (result.status) {
         setParams(result.data)
       } else {
@@ -163,7 +165,7 @@ const PageDataManager = () => {
           ...formData,
           key: selectedOption.value,
           dataType: selectedOption.dataType,
-          value: "",
+          value: selectedOption.dataType === "multiple image" || selectedOption.dataType === "multiple pdfs" ? [] : "",
         })
         setIsNewKey(false)
       } else {
@@ -207,6 +209,7 @@ const PageDataManager = () => {
   // Handle different input types
   const handleInputChange = async (e, inputType) => {
     const { name, value, files } = e.target
+
     switch (inputType) {
       case "text":
         setFormData({ ...formData, [name]: value })
@@ -220,7 +223,8 @@ const PageDataManager = () => {
       case "multiple image":
         if (files && files.length > 0) {
           const uploadedPaths = await handleFileUpload(Array.from(files), true)
-          setFormData({ ...formData, value: JSON.stringify(uploadedPaths) })
+          // Store as array, not string
+          setFormData({ ...formData, value: uploadedPaths })
         }
         break
       case "pdf":
@@ -232,7 +236,8 @@ const PageDataManager = () => {
       case "multiple pdfs":
         if (files && files.length > 0) {
           const uploadedPaths = await handleFileUpload(Array.from(files), true)
-          setFormData({ ...formData, value: JSON.stringify(uploadedPaths) })
+          // Store as array, not string
+          setFormData({ ...formData, value: uploadedPaths })
         }
         break
       default:
@@ -248,9 +253,17 @@ const PageDataManager = () => {
   // Delete individual image from multiple images
   const handleDeleteImage = (indexToDelete) => {
     try {
-      const currentImages = JSON.parse(formData.value || "[]")
+      // Handle both array and string formats for backward compatibility
+      let currentImages = formData.value
+      if (typeof currentImages === "string") {
+        currentImages = JSON.parse(currentImages || "[]")
+      }
+      if (!Array.isArray(currentImages)) {
+        currentImages = []
+      }
+
       const updatedImages = currentImages.filter((_, index) => index !== indexToDelete)
-      setFormData({ ...formData, value: JSON.stringify(updatedImages) })
+      setFormData({ ...formData, value: updatedImages })
     } catch (error) {
       console.error("Error deleting image:", error)
     }
@@ -295,6 +308,7 @@ const PageDataManager = () => {
   // Render input based on data type
   const renderValueInput = () => {
     const { dataType } = formData
+
     switch (dataType) {
       case "text":
         return (
@@ -352,12 +366,12 @@ const PageDataManager = () => {
               multiple
               onChange={(e) => handleInputChange(e, "multiple image")}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-              required={!formData.value}
+              required={!formData.value || (Array.isArray(formData.value) && formData.value.length === 0)}
             />
             <p className="text-sm text-gray-500">Upload multiple images (JPG, PNG, GIF, WebP)</p>
-            {formData.value && (
+            {formData.value && Array.isArray(formData.value) && formData.value.length > 0 && (
               <div className="mt-3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-                {JSON.parse(formData.value || "[]").map((path, index) => (
+                {formData.value.map((path, index) => (
                   <div key={index} className="relative group">
                     <img
                       src={`${API_NODE_URL.replace("/api/", "")}${path}`}
@@ -447,12 +461,12 @@ const PageDataManager = () => {
               multiple
               onChange={(e) => handleInputChange(e, "multiple pdfs")}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100"
-              required={!formData.value}
+              required={!formData.value || (Array.isArray(formData.value) && formData.value.length === 0)}
             />
             <p className="text-sm text-gray-500">Upload multiple PDF documents</p>
-            {formData.value && (
+            {formData.value && Array.isArray(formData.value) && formData.value.length > 0 && (
               <div className="mt-3 space-y-2">
-                {JSON.parse(formData.value || "[]").map((path, index) => (
+                {formData.value.map((path, index) => (
                   <div key={index} className="p-3 bg-gray-50 rounded-lg border">
                     <div className="flex items-center justify-between">
                       <a
@@ -592,7 +606,19 @@ const PageDataManager = () => {
           </div>
         )
       case "multiple image":
-        const imageUrls = JSON.parse(value || "[]")
+        // Handle both array and string formats for backward compatibility
+        let imageUrls = value
+        if (typeof value === "string") {
+          try {
+            imageUrls = JSON.parse(value || "[]")
+          } catch {
+            imageUrls = []
+          }
+        }
+        if (!Array.isArray(imageUrls)) {
+          imageUrls = []
+        }
+
         return (
           <div className="mt-2 grid grid-cols-4 gap-2">
             {imageUrls.map((path, index) => (
@@ -627,7 +653,19 @@ const PageDataManager = () => {
           </div>
         )
       case "multiple pdfs":
-        const pdfUrls = JSON.parse(value || "[]")
+        // Handle both array and string formats for backward compatibility
+        let pdfUrls = value
+        if (typeof value === "string") {
+          try {
+            pdfUrls = JSON.parse(value || "[]")
+          } catch {
+            pdfUrls = []
+          }
+        }
+        if (!Array.isArray(pdfUrls)) {
+          pdfUrls = []
+        }
+
         return (
           <div className="mt-2 space-y-2">
             {pdfUrls.map((path, index) => (
@@ -661,7 +699,9 @@ const PageDataManager = () => {
       default:
         return (
           <div className="mt-2 p-3 bg-gray-50 rounded-lg border">
-            <code className="text-sm text-gray-800 break-all font-novaReg whitespace-pre-wrap">{formatValue(value, dataType)}</code>
+            <code className="text-sm text-gray-800 break-all font-novaReg whitespace-pre-wrap">
+              {formatValue(value, dataType)}
+            </code>
           </div>
         )
     }
@@ -670,14 +710,17 @@ const PageDataManager = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
+
     try {
       const payload = {
         ...formData,
         pageid: pageid,
         pageType: type || formData.pageType,
       }
+
       const url = editingId ? `${API_NODE_URL}page-params/update/${editingId}` : `${API_NODE_URL}page-params/add`
       const method = editingId ? "PUT" : "POST"
+
       const response = await fetch(url, {
         method,
         headers: {
@@ -685,7 +728,9 @@ const PageDataManager = () => {
         },
         body: JSON.stringify(payload),
       })
+
       const result = await response.json()
+
       if (result.status) {
         showNotification(result.message)
         resetForm()
@@ -705,9 +750,27 @@ const PageDataManager = () => {
 
   const handleEdit = (param) => {
     setEditingId(param._id)
+
+    // Handle different data types properly
+    let value = param.value
+    if (param.dataType === "multiple image" || param.dataType === "multiple pdfs") {
+      // If it's stored as string, parse it; if it's already array, keep it
+      if (typeof param.value === "string") {
+        try {
+          value = JSON.parse(param.value)
+        } catch {
+          value = []
+        }
+      } else if (Array.isArray(param.value)) {
+        value = param.value
+      } else {
+        value = []
+      }
+    }
+
     setFormData({
       key: param.key,
-      value: typeof param.value === "object" ? JSON.stringify(param.value) : param.value,
+      value: value,
       pageType: param.pageType,
       dataType: param.dataType,
       status: param.status,
@@ -733,7 +796,6 @@ const PageDataManager = () => {
     }
 
     setShowAddForm(true)
-
     // Scroll to top
     setTimeout(() => {
       formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
@@ -742,12 +804,15 @@ const PageDataManager = () => {
 
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this content section?")) return
+
     setLoading(true)
     try {
       const response = await fetch(`${API_NODE_URL}page-params/delete/${id}`, {
         method: "DELETE",
       })
+
       const result = await response.json()
+
       if (result.status) {
         showNotification(result.message)
         fetchParams()
@@ -919,7 +984,11 @@ const PageDataManager = () => {
                     </label>
                     <select
                       value={formData.dataType}
-                      onChange={(e) => setFormData({ ...formData, dataType: e.target.value, value: "" })}
+                      onChange={(e) => {
+                        const newDataType = e.target.value
+                        const newValue = newDataType === "multiple image" || newDataType === "multiple pdfs" ? [] : ""
+                        setFormData({ ...formData, dataType: newDataType, value: newValue })
+                      }}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                       required
                     >
@@ -1269,7 +1338,9 @@ const PageDataManager = () => {
                                   d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                                 />
                               </svg>
-                              <span className="font-novaSemi">Created: {new Date(param.createdAt).toLocaleDateString()}</span>
+                              <span className="font-novaSemi">
+                                Created: {new Date(param.createdAt).toLocaleDateString()}
+                              </span>
                             </span>
                             {param.updatedAt !== param.createdAt && (
                               <span className="flex items-center space-x-1">
@@ -1281,7 +1352,9 @@ const PageDataManager = () => {
                                     d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
                                   />
                                 </svg>
-                                <span className="font-novaSemi">Updated: {new Date(param.updatedAt).toLocaleDateString()}</span>
+                                <span className="font-novaSemi">
+                                  Updated: {new Date(param.updatedAt).toLocaleDateString()}
+                                </span>
                               </span>
                             )}
                           </div>

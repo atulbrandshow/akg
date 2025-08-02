@@ -46,7 +46,7 @@ const Admissions = () => {
 
 
       <section className="w-full pb-16 flex justify-center mt-10">
-        <div className="container max-w-full lg:max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-6 mx-10 max-sm:mx-5">
+        <div className="max-w-full lg:max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-6 mx-10 max-sm:mx-5 relative">
           {/* Undergraduate Programs */}
           <div className="relative w-full h-[342px] flex flex-col items-center justify-between">
             <div className="group bg-white border border-gray-300 rounded-lg shadow-lg w-full h-full flex flex-col items-center justify-center transition-transform duration-100 ease-in-out hover:bg-blue-950 relative">
@@ -69,35 +69,35 @@ const Admissions = () => {
                 Undergraduate programs
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row justify-evenly mt-4 w-full">
+            <div className="flex flex-col sm:flex-row justify-evenly mt-4 w-full relative">
               <a
                 href="#"
                 className="flex-1 bg-btn-gradient animate-gradient uppercase text-sm font-novaSemi w-full sm:w-48 text-center px-4 py-2.5 mb-2 sm:mb-0 sm:mr-2 rounded-md text-white"
               >
                 Apply Now
               </a>
-              <a
-                href="#"
-                id="undergraduate-program"
-                onMouseEnter={() => setShowUndergraduateCourses(true)}
-                onMouseLeave={() => setShowUndergraduateCourses(false)}
-                className="flex-1 bg-white uppercase text-sm font-novaReg border border-black w-full sm:w-48 text-center text-black px-4 py-2 rounded-md hover:bg-blue-950 hover:text-white relative"
-              >
-                Our Program
+              <div className="relative flex-1">
+                <a
+                  href="#"
+                  id="undergraduate-program"
+                  onMouseEnter={() => setShowUndergraduateCourses(true)}
+                  onMouseLeave={() => setShowUndergraduateCourses(false)}
+                  className="block bg-white uppercase text-sm font-novaReg border border-black w-full sm:w-48 text-center text-black px-4 py-2 rounded-md hover:bg-blue-950 hover:text-white"
+                >
+                  Our Program
+                </a>
                 {showUndergraduateCourses && (
-                  <div className="absolute bottom-12 text-black left-0 w-full bg-white border border-gray-300 rounded-lg shadow-lg p-4 z-10">
-                    <h3 className="text-base font-novaBold">Undergraduate Courses</h3>
-                    <ul className="font-novaReg mt-3">
-                      <li>Bachelor of Technology</li>
-                      <li>Bachelor of Business Administration</li>
-                      <li>Bachelor of Computer Application</li>
+                  <div className="absolute bottom-full left-0 w-full min-w-[300px] bg-white border border-gray-300 rounded-lg shadow-xl p-4 z-50 mb-2">
+                    <h3 className="text-lg font-novaBold text-blue-950 mb-3">Undergraduate Courses</h3>
+                    <ul className="font-novaReg space-y-2">
+                      <li className="hover:text-blue-700 transition-colors">• Bachelor of Technology</li>
+                      <li className="hover:text-blue-700 transition-colors">• Bachelor of Business Administration</li>
+                      <li className="hover:text-blue-700 transition-colors">• Bachelor of Computer Application</li>
                     </ul>
                   </div>
                 )}
-              </a>
+              </div>
             </div>
-
-
           </div>
 
           {/* Postgraduate Programs */}
@@ -122,35 +122,38 @@ const Admissions = () => {
                 Postgraduate programs
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row justify-evenly mt-4 w-full">
+            <div className="flex flex-col sm:flex-row justify-evenly mt-4 w-full relative">
               <a
                 href="#"
                 className="flex-1 bg-btn-gradient animate-gradient w-full uppercase text-sm font-novaSemi sm:w-48 text-center py-2.5 mb-2 sm:mb-0 sm:mr-2 rounded-md text-white"
               >
                 Apply Now
               </a>
-              <a
-                href="#"
-                id="postgraduate-program"
-                onMouseEnter={() => setShowPostgraduateCourses(true)}
-                onMouseLeave={() => setShowPostgraduateCourses(false)}
-                className="flex-1 bg-white border uppercase font-novaReg text-sm border-black w-full sm:w-48 text-center text-black py-2.5 rounded-md hover:bg-blue-950 hover:text-white relative"
-              >
-                Our Program
+              <div className="relative flex-1">
+                <a
+                  href="#"
+                  id="postgraduate-program"
+                  onMouseEnter={() => setShowPostgraduateCourses(true)}
+                  onMouseLeave={() => setShowPostgraduateCourses(false)}
+                  className="block bg-white border uppercase font-novaReg text-sm border-black w-full sm:w-48 text-center text-black py-2.5 rounded-md hover:bg-blue-950 hover:text-white"
+                >
+                  Our Program
+                </a>
                 {showPostgraduateCourses && (
-                  <div className="absolute bottom-12 text-black bg-white border border-gray-300 rounded-lg shadow-lg p-4 z-10">
-                    <h3 className="text-base font-novaBold">Postgraduate Courses</h3>
-                    <ul className="font-novaReg mt-3">
-                      <li>Master of Business Administration</li>
-                      <li>Master of Technology</li>
-                      <li>Master of Computer Applications</li>
+                  <div className="absolute bottom-full left-0 w-full min-w-[300px] bg-white border border-gray-300 rounded-lg shadow-xl p-4 z-50 mb-2">
+                    <h3 className="text-lg font-novaBold text-blue-950 mb-3">Postgraduate Courses</h3>
+                    <ul className="font-novaReg space-y-2">
+                      <li className="hover:text-blue-700 transition-colors">• Master of Business Administration</li>
+                      <li className="hover:text-blue-700 transition-colors">• Master of Technology</li>
+                      <li className="hover:text-blue-700 transition-colors">• Master of Computer Applications</li>
                     </ul>
                   </div>
                 )}
-              </a>
+              </div>
             </div>
           </div>
 
+          {/* Doctoral Programs */}
           <div className="relative w-full h-[342px] flex flex-col items-center justify-between">
             <div className="group bg-white border border-gray-300 rounded-lg shadow-lg w-full h-full flex flex-col items-center justify-center transition-transform duration-100 ease-in-out hover:bg-blue-950 relative">
               <img
@@ -172,36 +175,37 @@ const Admissions = () => {
                 Doctoral programs
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row justify-evenly mt-4 w-full">
+            <div className="flex flex-col sm:flex-row justify-evenly mt-4 w-full relative">
               <a
                 href="#"
                 className="flex-1 bg-btn-gradient animate-gradient w-full uppercase text-sm font-novaSemi sm:w-48 text-center py-2.5 mb-2 sm:mb-0 sm:mr-2 rounded-md text-white"
               >
                 Apply Now
               </a>
-              <a
-                href="#"
-                id="doctoral-program"
-                onMouseEnter={() => setShowDoctoralCourses(true)}
-                onMouseLeave={() => setShowDoctoralCourses(false)}
-                className="flex-1 bg-white border uppercase font-novaReg text-sm border-black w-full sm:w-48 text-center text-black py-2.5 rounded-md hover:bg-blue-950 hover:text-white relative"
-              >
-                Our Program
+              <div className="relative flex-1">
+                <a
+                  href="#"
+                  id="doctoral-program"
+                  onMouseEnter={() => setShowDoctoralCourses(true)}
+                  onMouseLeave={() => setShowDoctoralCourses(false)}
+                  className="block bg-white border uppercase font-novaReg text-sm border-black w-full sm:w-48 text-center text-black py-2.5 rounded-md hover:bg-blue-950 hover:text-white"
+                >
+                  Our Program
+                </a>
                 {showDoctoralCourses && (
-                  <div className="absolute bottom-12 text-black bg-white border border-gray-300 rounded-lg shadow-lg p-4 z-10">
-                    <h3 className="text-base font-novaBold">Doctoral Programs</h3>
-                    <ul className="font-novaReg mt-3">
-                      <li>Ph.D. in Engineering</li>
-                      <li>Ph.D. in Management</li>
-                      <li>Ph.D. in Computer Applications</li>
-                      <li>Interdisciplinary Research</li>
+                  <div className="absolute bottom-full left-0 w-full min-w-[300px] bg-white border border-gray-300 rounded-lg shadow-xl p-4 z-50 mb-2">
+                    <h3 className="text-lg font-novaBold text-blue-950 mb-3">Doctoral Programs</h3>
+                    <ul className="font-novaReg space-y-2">
+                      <li className="hover:text-blue-700 transition-colors">• Ph.D. in Engineering</li>
+                      <li className="hover:text-blue-700 transition-colors">• Ph.D. in Management</li>
+                      <li className="hover:text-blue-700 transition-colors">• Ph.D. in Computer Applications</li>
+                      <li className="hover:text-blue-700 transition-colors">• Interdisciplinary Research</li>
                     </ul>
                   </div>
                 )}
-              </a>
+              </div>
             </div>
           </div>
-
         </div>
       </section>
       <ScholarshipHighlight heading={"Early Access Grant"} desc={"Higher Education Pathway 2025-2026"} />

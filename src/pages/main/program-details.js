@@ -1,6 +1,5 @@
 "use client";
 
-import { LogoSlider } from '@/Components'
 import AboutProgram from '@/Components/AboutProgram'
 import DropdownsUI from '@/Components/DropdownsUI'
 import EligibilityCriteriaUnique from '@/Components/EligibilityCriteriaUnique'
@@ -13,21 +12,20 @@ import ProgramCarousel from '@/Components/ProgramsCarousel'
 import { dropdownJsonData } from '@/Json/DropdownJsonData'
 import React from 'react'
 import ProgramFacultySlider from '@/Components/ProgramFacultySlider';
+import PlacementBanner from '@/Components/PlacementBanner';
 
 const ProgramDetails = ({ data }) => {
     return (
         <section>
             <ProgramHeroSection data={data} />
-            <ProgramCarousel />
-            <AboutProgram />
-            <IndustryPartnerSlider />
-            <Placement />
-            <FeeStructure />
-            {/* <PlacementUi /> */}
-            <InternationalTieUps />
-            <EligibilityCriteriaUnique />
+            <ProgramCarousel data={data} />
+            <AboutProgram data={data} />
+            <IndustryPartnerSlider data={data} />
+            <PlacementBanner data={data} />
+            <FeeStructure data={data} />
+            <InternationalTieUps data={data} />
+            <EligibilityCriteriaUnique data={data} />
             <ProgramFacultySlider />
-            <LogoSlider />
             <DropdownsUI dropdownData={dropdownJsonData} />
         </section>
     )

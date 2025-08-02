@@ -1,46 +1,32 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-import { ChevronLeft, ChevronRight, Brain, Users, Microscope } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Brain, Users, Microscope, BookOpen, Laptop2, GraduationCap } from 'lucide-react'
+import { splitTitle } from '@/utills/splitTitle';
 
-const items = [
-    {
-        icon: <Brain className="w-12 h-12 text-blue-600 group-hover:text-white transition-colors duration-300 ease-in-out" />,
-        title: "Innovative Learning Programs",
-        description: "Explore cutting-edge courses designed for future leaders."
-    },
-    {
-        icon: <Users className="w-12 h-12 text-blue-600 group-hover:text-white transition-colors duration-300 ease-in-out" />,
-        title: "Exceptional Career Support",
-        description: "Comprehensive guidance for your career aspirations."
-    },
-    {
-        icon: <Microscope className="w-12 h-12 text-blue-600 group-hover:text-white transition-colors duration-300 ease-in-out" />,
-        title: "Advanced Research Facilities",
-        description: "State-of-the-art labs for hands-on learning and innovation."
-    },
-    {
-        icon: <Brain className="w-12 h-12 text-blue-600 group-hover:text-white transition-colors duration-300 ease-in-out" />,
-        title: "Innovative Learning Programs",
-        description: "Explore cutting-edge courses designed for future leaders."
-    },
-    {
-        icon: <Users className="w-12 h-12 text-blue-600 group-hover:text-white transition-colors duration-300 ease-in-out" />,
-        title: "Exceptional Career Support",
-        description: "Comprehensive guidance for your career aspirations."
-    },
-    {
-        icon: <Microscope className="w-12 h-12 text-blue-600 group-hover:text-white transition-colors duration-300 ease-in-out" />,
-        title: "Advanced Research Facilities",
-        description: "State-of-the-art labs for hands-on learning and innovation."
-    },
-];
-
-
-export default function ProgramCarousel() {
+export default function ProgramCarousel({ data }) {
     const [currentSlide, setCurrentSlide] = useState(0)
     const [isAutoPlaying, setIsAutoPlaying] = useState(true)
     const [slidesPerView, setSlidesPerView] = useState(3)
+
+    const d = data?.pageData;
+    const { first, middle, last } = splitTitle(d?.Overview_Title);
+    const icons = [Brain, Users, Microscope, BookOpen, Laptop2, GraduationCap]
+
+    const items = [];
+    for (let i = 1; i <= 10; i++) {
+        const title = d?.[`OCT-${i}`];
+        const description = d?.[`OCD-${i}`];
+
+        if (title && description) {
+            const IconComponent = icons[i % icons.length];
+            items.push({
+                icon: <IconComponent className="w-12 h-12 text-blue-600 group-hover:text-white transition-colors duration-300 ease-in-out" />,
+                title,
+                description
+            });
+        }
+    }
 
     useEffect(() => {
         const handleResize = () => {
@@ -86,15 +72,13 @@ export default function ProgramCarousel() {
         <section className='bg-gray-100'>
             <div className="w-full max-w-7xl mx-auto px-4 py-8">
                 <h1 className="text-[42px] text-center font-novaReg max-lg:text-4xl max-md:text-3xl max-sm:px-4 text-gray-700">
-                    Why{" "}
+                    {first} {" "}
                     <span className="font-novaSemi bg-text-gradient bg-clip-text text-transparent animate-gradient">
-                        B.Tech
+                        {middle} {" "}
                     </span>
-                    {" "} CSE
+                    {last}
                 </h1>
-                <p className="pt-4 max-sm:text-base text-center mb-12 font-novaReg text-lg text-gray-600 max-w-5xl mx-auto">
-                    The field of Computer Science Engineering & Technology is advancing rapidly, shaping the future of innovation and technology. At AKG University, we prioritize an industry-driven and research-oriented approach to education, ensuring our students are prepared for the challenges of tomorrow. With state-of-the-art facilities, experienced faculty, and a commitment to excellence, AKG University's B.Tech CSE program empowers students to lead technological transformations. Admissions 2024 invite aspirants ready to pioneer advancements and create impactful solutions.
-                </p>
+                <p className="pt-4 max-sm:text-base text-center mb-12 font-novaReg text-lg text-gray-600 max-w-5xl mx-auto" dangerouslySetInnerHTML={{ __html: d?.Overview_Description }} />
                 <div className="relative">
                     <div
                         className="overflow-hidden relative"
@@ -117,15 +101,10 @@ export default function ProgramCarousel() {
                                         <div className="mb-4 text-blue-800 group-hover:text-white transition-colors duration-300 ease-in-out">
                                             {item.icon}
                                         </div>
-                                        <h3 className="text-xl font-semibold mb-2 text-blue-800 group-hover:text-white transition-colors duration-300 ease-in-out">
+                                        <h3 className="text-xl font-novaSemi mb-2 text-blue-800 group-hover:text-white transition-colors duration-300 ease-in-out">
                                             {item.title}
                                         </h3>
-                                        {item.subtitle && (
-                                            <p className="text-gray-600 mb-2 text-sm group-hover:text-white transition-colors duration-300 ease-in-out">
-                                                {item.subtitle}
-                                            </p>
-                                        )}
-                                        <p className="text-gray-600 text-sm flex-grow group-hover:text-white transition-colors duration-300 ease-in-out">
+                                        <p className="text-gray-600 text-sm font-novaReg flex-grow group-hover:text-white transition-colors duration-300 ease-in-out">
                                             {item.description}
                                         </p>
                                     </div>

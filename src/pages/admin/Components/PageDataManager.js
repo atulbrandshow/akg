@@ -9,9 +9,10 @@ import { useSearchParams } from "next/navigation"
 // Dynamically import JoditEditor to avoid SSR issues
 const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false })
 
-const PageDataManager = ({ pageid }) => {
+const PageDataManager = () => {
   const searchParams = useSearchParams()
   const pageid = searchParams.get("page_id")
+  const [pageDetails, setPageDetails] = useState({})
   const [params, setParams] = useState([])
   const [type, setType] = useState("")
   const [availableKeys, setAvailableKeys] = useState([])
@@ -43,9 +44,11 @@ const PageDataManager = ({ pageid }) => {
           });
           const data = await response.json();
           if (data.status) {
-            setType(data.data.type || "Page")
+            setType(data?.data?.type || "Page")
+            setPageDetails(data?.data || {})
           } else {
-            setType(data.data.type || "Page")
+            setType("Page")
+            setPageDetails({})
           }
         } catch (error) {
           console.error("Error fetching slug data:", error);
@@ -768,17 +771,22 @@ const PageDataManager = ({ pageid }) => {
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Page Content Manager</h1>
             <p className="text-gray-600 mt-1">
-              Manage content sections for <span className="font-semibold text-blue-600">{pageid}</span>
+              Manage content sections for <span className="font-semibold text-blue-600">{pageDetails?.name || pageid}</span>
               {type && <span className="ml-2 px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">{type}</span>}
             </p>
           </div>
           <button
             onClick={() => setShowAddForm(!showAddForm)}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200 flex items-center space-x-2"
+            className={`bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200 flex items-center space-x-2`}
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-            </svg>
+            {!showAddForm ?
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+              </svg> :
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            }
             <span>{showAddForm ? "Cancel" : "Add Content Section"}</span>
           </button>
         </div>

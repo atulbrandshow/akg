@@ -37,12 +37,11 @@ function CreateDynamicProgram({ type, componentType }) {
                     "Content-Type": "application/json",
                 },
                 credentials: "include",
-                body: JSON.stringify({ query: searchTerm, page: 1, limit: 10, type: ['Department', 'School'] }),
+                body: JSON.stringify({ query: searchTerm, page: 1, limit: 10, type }),
             });
             const data = await response.json();
 
             const fetchedPages = data.data.pages || [];
-            console.log(fetchedPages);
 
             if (fetchedPages.length === 0) {
                 setAllPages([]);
@@ -279,7 +278,7 @@ function CreateDynamicProgram({ type, componentType }) {
                     <form className="space-y-6">
                         <div className="relative">
                             <label htmlFor="parent-page" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                                Choose School or Department Page
+                                Choose Parent Page
                                 <span className="text-red-500 ml-1">*</span>
                             </label>
                             <div className="relative">
@@ -310,30 +309,11 @@ function CreateDynamicProgram({ type, componentType }) {
                                         <div
                                             key={index}
                                             onClick={() => handleSuggestionClick(page)}
-                                            className="cursor-pointer px-5 py-2 hover:bg-blue-100/60 border-b border-gray-200 last:border-b-0 transition-all duration-150 rounded-md hover:shadow-sm group"
+                                            className="cursor-pointer px-4 py-3 hover:bg-blue-50 border-b border-gray-100 last:border-b-0 transition-colors duration-150"
                                         >
-                                            <div className="font-semibold text-gray-800 text-base group-hover:text-blue-700">
-                                                {page.name}
-                                            </div>
-
-                                            <div className="flex items-center gap-3 mt-1 text-sm text-gray-500">
-                                                {page?.type && (
-                                                    <span
-                                                        className={`px-2 py-0.5 rounded-full text-xs
-                                                        ${page.type === "School" ? "bg-blue-100 text-blue-700" :
-                                                                page.type === "Department" ? "bg-green-100 text-green-700" :
-                                                                    "bg-gray-100 text-gray-700"}`}
-                                                    >
-                                                        {page.type}
-                                                    </span>
-
-                                                )}
-                                                {page?.page_id && (
-                                                    <span className="text-xs">ID: <span className="font-medium text-gray-600">{page.page_id}</span></span>
-                                                )}
-                                            </div>
+                                            <div className="font-novaSemi text-gray-800">{page.name}</div>
+                                            {page?.page_id && <div className="text-sm text-gray-500">ID: {page.page_id}</div>}
                                         </div>
-
                                     ))}
                                     {hasMore && displayedPages.length > 0 && (
                                         <button

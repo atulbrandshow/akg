@@ -196,9 +196,8 @@ const FileUploadField = ({
 
         <label
           htmlFor={id}
-          className={`mt-4 inline-flex items-center px-4 py-2 text-white text-sm font-medium rounded-lg cursor-pointer transition-colors ${
-            isUploading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
-          }`}
+          className={`mt-4 inline-flex items-center px-4 py-2 text-white text-sm font-medium rounded-lg cursor-pointer transition-colors ${isUploading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
+            }`}
         >
           {isUploading ? (
             <>
@@ -368,7 +367,7 @@ export default function ProgramDynamicPage({ allData, parentPage, type, componen
           "Content-Type": "application/json",
         },
         credentials: "include",
-        body: JSON.stringify({ query: searchTerm, page: 1, limit: 10, type }),
+        body: JSON.stringify({ query: searchTerm, page: 1, limit: 10, type: ['Department', 'School'] }),
       })
       const data = await response.json()
 
@@ -675,10 +674,28 @@ export default function ProgramDynamicPage({ allData, parentPage, type, componen
                       <div
                         key={index}
                         onClick={() => handleSuggestionClick(page)}
-                        className="cursor-pointer px-4 py-3 hover:bg-blue-50 border-b border-gray-100 last:border-b-0 transition-colors duration-150"
+                        className="cursor-pointer px-5 py-2 hover:bg-blue-100/60 border-b border-gray-200 last:border-b-0 transition-all duration-150 rounded-md hover:shadow-sm group"
                       >
-                        <div className="font-novaSemi text-gray-800">{page.name}</div>
-                        {page?.page_id && <div className="text-sm text-gray-500">ID: {page.page_id}</div>}
+                        <div className="font-semibold text-gray-800 text-base group-hover:text-blue-700">
+                          {page.name}
+                        </div>
+
+                        <div className="flex items-center gap-3 mt-1 text-sm text-gray-500">
+                          {page?.type && (
+                            <span
+                              className={`px-2 py-0.5 rounded-full text-xs
+                                                        ${page.type === "School" ? "bg-blue-100 text-blue-700" :
+                                  page.type === "Department" ? "bg-green-100 text-green-700" :
+                                    "bg-gray-100 text-gray-700"}`}
+                            >
+                              {page.type}
+                            </span>
+
+                          )}
+                          {page?.page_id && (
+                            <span className="text-xs">ID: <span className="font-medium text-gray-600">{page.page_id}</span></span>
+                          )}
+                        </div>
                       </div>
                     ))}
                     {hasMore && displayedPages.length > 0 && (
@@ -960,7 +977,7 @@ export default function ProgramDynamicPage({ allData, parentPage, type, componen
               <h2 className="text-xl font-novaSemi text-gray-900">Media Upload</h2>
             </div>
             {
-              type === "Download Center" || type === "Circular"||type === "Notice" &&
+              type === "Download Center" || type === "Circular" || type === "Notice" &&
               <div className="mb-10">
                 <FileUploadField
                   id="downloadCenterPdf"

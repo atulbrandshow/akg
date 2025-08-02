@@ -36,7 +36,6 @@ function CreateDynamicPages({ type, componentType, parentId }) {
             ComponentType: componentType,
         };
 
-        console.log(payload);
 
         const progressBar = document.getElementById("progress-bar");
 

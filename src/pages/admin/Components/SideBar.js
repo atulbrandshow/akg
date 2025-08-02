@@ -125,22 +125,6 @@ const navSections = [
     title: "Academic Management",
     items: [
       {
-        icon: School,
-        label: "School",
-        nestedLinks: [
-          { label: "Add School", href: "/admin/create-school-details" },
-          { label: "List of School", href: "/admin/school-list-details" },
-        ],
-      },
-      {
-        icon: BriefcaseBusiness,
-        label: "Department",
-        nestedLinks: [
-          { label: "Add Department", href: "/admin/create-department-details" },
-          { label: "List of Department", href: "/admin/department-list-details" },
-        ],
-      },
-      {
         icon: Users,
         label: "Faculty",
         nestedLinks: [

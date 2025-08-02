@@ -286,9 +286,12 @@ const TableList = ({ type, title, subTitle }) => {
                                         <th className="px-6 py-4 text-left text-xs font-novaSemi text-gray-700 uppercase tracking-wider">
                                             Status
                                         </th>
-                                        <th className="px-6 py-4 text-center text-xs font-novaSemi text-gray-700 uppercase tracking-wider">
-                                            Extra Component Data
-                                        </th>
+                                        {
+                                            type !== "Faculty" &&
+                                            <th className="px-6 py-4 text-center text-xs font-novaSemi text-gray-700 uppercase tracking-wider">
+                                                Extra Component Data
+                                            </th>
+                                        }
                                         <th className="px-6 py-4 text-center text-xs font-novaSemi text-gray-700 uppercase tracking-wider">
                                             Actions
                                         </th>
@@ -347,22 +350,25 @@ const TableList = ({ type, title, subTitle }) => {
                                                         {event.status ? "Active" : "Inactive"}
                                                     </span>
                                                 </td>
-                                                <td className="px-6 py-4 whitespace-nowrap h-full">
-                                                    <div className="flex justify-center items-center">
-                                                        <button
-                                                            onClick={() =>
-                                                                router.push({
-                                                                    pathname: '/admin/extra-components',
-                                                                    query: { page_id: event.page_id }, // or whatever your page_id variable is
-                                                                })
-                                                            }
-                                                            className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-novaSemi rounded-md text-white bg-violet-500 hover:bg-violet-600 focus:outline-none transition-all duration-200 transform hover:scale-105"
-                                                            title="Manage Page"
-                                                        >
-                                                            Manage
-                                                        </button>
-                                                    </div>
-                                                </td>
+                                                {
+                                                    type !== "Faculty" &&
+                                                    <td className="px-6 py-4 whitespace-nowrap h-full">
+                                                        <div className="flex justify-center items-center">
+                                                            <button
+                                                                onClick={() =>
+                                                                    router.push({
+                                                                        pathname: '/admin/extra-components',
+                                                                        query: { page_id: event.page_id }, // or whatever your page_id variable is
+                                                                    })
+                                                                }
+                                                                className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-novaSemi rounded-md text-white bg-violet-500 hover:bg-violet-600 focus:outline-none transition-all duration-200 transform hover:scale-105"
+                                                                title="Manage Page"
+                                                            >
+                                                                Manage
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                }
                                                 <td className="px-6 py-4 whitespace-nowrap text-center">
                                                     <div className="flex items-center justify-center space-x-2">
                                                         {/* Add Page Details Button */}

@@ -1,87 +1,44 @@
 export const coursesData = [
-    {
-        "courseName": "Computer Science and Engineering",
-        "head": "4 Years",
-        "description": "71078/- INR"
-    },
-    {
-        "courseName": "Computer Science and Engineering (Artificial Intelligence & Machine Learning)",
-        "head": "4 Years",
-        "description": "71078/- INR"
-    },
-    {
-        "courseName": "Computer Science and Engineering (Data Science)",
-        "head": "4 Years",
-        "description": "71078/- INR"
-    },
-    {
-        "courseName": "Computer Science",
-        "head": "4 Years",
-        "description": "71078/- INR"
-    },
-    {
-        "courseName": "Computer Science and Engineering (Hindi)",
-        "head": "4 Years",
-        "description": "71078/- INR"
-    },
-    {
-        "courseName": "Artificial Intelligence & Machine Learning",
-        "head": "4 Years",
-        "description": "71078/- INR"
-    },
-    {
-        "courseName": "Information Technology",
-        "head": "4 Years",
-        "description": "71078/- INR"
-    },
-    {
-        "courseName": "Computer Science and Information Technology",
-        "head": "4 Years",
-        "description": "71078/- INR"
-    },
-    {
-        "courseName": "Electronics and Communication Engineering",
-        "head": "4 Years",
-        "description": "71078/- INR"
-    },
-    {
-        "courseName": "Mechanical Engineering",
-        "head": "4 Years",
-        "description": "71078/- INR"
-    },
-    {
-        "courseName": "Electrical and Electronics Engineering",
-        "head": "4 Years",
-        "description": "71078/- INR"
-    },
-    {
-        "courseName": "Civil Engineering",
-        "head": "4 Years",
-        "description": "71078/- INR"
-    },
-    {
-        "courseName": "Computer Science and Engineering (M.Tech)",
-        "head": "2 Years",
-        "description": "59628/- INR"
-    },
-    {
-        "courseName": "Electrical and Electronics Engineering (M.Tech)",
-        "head": "2 Years",
-        "description": "59628/- INR"
-    },
-    {
-        "courseName": "Electronics and Communication Engineering (M.Tech)",
-        "head": "2 Years",
-        "description": "59628/- INR"
-    },
-    {
-        "courseName": "Mechanical Engineering (M.Tech)",
-        "head": "2 Years",
-        "description": "59628/- INR"
-    },
-    {
-        "courseName": "Master of Computer Applications (MCA)",
-        "head": "3 Years",
-        "description": "67978/- INR"
-    }
+   {
+    id: 1,
+    courseName: "B.Tech in Computer Science Engineering, Data Science, Artificial Intelligence & Machine Learning, Information Technology, Electronics & Communication, Electrical & Electronics, Mechanical, and Civil Engineering",
+    head: "4 Years",
+    description: "Rs. 1,75,000 - Tuition Fee\nRs. 25,000 - Exam Fee + Additional Fee",
+  },
+  {
+    id: 2,
+    courseName: "BBA – Bachelor of Business Administration",
+    head: "3 Years",
+    description: "Rs. 99,000 - Tuition Fee\nRs. 25,000 - Exam Fee + Additional Fee",
+  },
+  {
+    id: 3,
+    courseName: "BCA – Bachelor of Computer Applications",
+    head: "3 Years",
+    description: "Rs. 99,000 - Tuition Fee\nRs. 25,000 - Exam Fee + Additional Fee",
+  },
+  {
+    id: 4,
+    courseName: "M.Tech in Computer Science Engineering, Electronics & Communication Engineering, Electrical & Electronics Engineering, Mechanical Engineering",
+    head: "2 Years",
+    description: "Rs. 1,30,000 - Tuition Fee\nRs. 25,000 - Exam Fee + Additional Fee",
+  },
+  {
+    id: 5,
+    courseName: "MCA – Master of Computer Applications",
+    head: "2 Years",
+    description: "Rs. 1,30,000 - Tuition Fee\nRs. 25,000 - Exam Fee + Additional Fee",
+  },
+  {
+    id: 6,
+    courseName: "MBA – Master of Business Administration (focus on modern management and leadership skills)",
+    head: "2 Years",
+    description: "Rs. 1,70,000 - Tuition Fee\nRs. 25,000 - Exam Fee + Additional Fee",
+  },
+  {
+    id: 7,
+    courseName: "Ph.D. programs",
+    head: "Duration varies",
+    description: "Rs. 75,000 - Tuition Fee\nRs. 25,000 - Exam Fee + Additional Fee",
+  },
 ];

@@ -4,9 +4,9 @@ import React, { useState, useEffect } from "react";
 import { API_NODE_URL } from "@/configs/config";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ProgramDynamicPage from "./ProgramDynamicPage";
+import DepartmentDynamicPage from "./DepartmentDynamicPage";
 
-function CreateDynamicProgram({ type, componentType }) {
+function CreateDynamicDepartment({ type, componentType }) {
     const [showPageDetails, setShowPageDetails] = useState(false);
     const [allPages, setAllPages] = useState([]);
     const [displayedPages, setDisplayedPages] = useState([]);
@@ -15,7 +15,7 @@ function CreateDynamicProgram({ type, componentType }) {
     const [pageIndex, setPageIndex] = useState(10);
     const [hasMore, setHasMore] = useState(true);
     const [selectedPage, setSelectedPage] = useState(null);
-    const [title, setTitle] = useState("");
+    const [Name, setTitle] = useState("");
     const [allData, setAllData] = useState({});
     const [pageType, setPageType] = useState("")
 
@@ -37,12 +37,11 @@ function CreateDynamicProgram({ type, componentType }) {
                     "Content-Type": "application/json",
                 },
                 credentials: "include",
-                body: JSON.stringify({ query: searchTerm, page: 1, limit: 10, type: ['Department', 'School'] }),
+                body: JSON.stringify({ query: searchTerm, page: 1, limit: 10, type: 'School' }),
             });
             const data = await response.json();
 
             const fetchedPages = data.data.pages || [];
-            console.log(fetchedPages);
 
             if (fetchedPages.length === 0) {
                 setAllPages([]);
@@ -169,8 +168,8 @@ function CreateDynamicProgram({ type, componentType }) {
             newErrors.selectedPage = "Please select a parent page.";
         }
 
-        if (!title) {
-            newErrors.title = "Please enter a title.";
+        if (!Name) {
+            newErrors.Name = "Please enter a Name.";
         }
 
         if (type === "Page" && !pageType) {
@@ -191,7 +190,7 @@ function CreateDynamicProgram({ type, componentType }) {
 
         const payload = {
             parent_id: selectedPage?.page_id,
-            name: title,
+            name: Name,
             type,
             ComponentType: selectedComponentType,
         };
@@ -279,7 +278,7 @@ function CreateDynamicProgram({ type, componentType }) {
                     <form className="space-y-6">
                         <div className="relative">
                             <label htmlFor="parent-page" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                                Choose School or Department Page
+                                Search And Select School
                                 <span className="text-red-500 ml-1">*</span>
                             </label>
                             <div className="relative">
@@ -334,7 +333,6 @@ function CreateDynamicProgram({ type, componentType }) {
                                                 )}
                                             </div>
                                         </div>
-
                                     ))}
                                     {hasMore && displayedPages.length > 0 && (
                                         <button
@@ -350,19 +348,19 @@ function CreateDynamicProgram({ type, componentType }) {
                         </div>
 
                         <div>
-                            <label htmlFor="title" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                                {type} Title
+                            <label htmlFor="Name" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                                {type} Name
                                 <span className="text-red-500 ml-1">*</span>
                             </label>
                             <input
-                                id="title"
+                                id="Name"
                                 type="text"
-                                value={title}
-                                placeholder={`Enter ${type} title...`}
+                                value={Name}
+                                placeholder={`Enter ${type} Name...`}
                                 onChange={(e) => setTitle(e.target.value)}
                                 className="w-full border-2 border-gray-200 font-novaReg rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
                             />
-                            {errors.title && <p className="text-sm text-red-600 ml-1 mt-1">{errors.title}</p>}
+                            {errors.Name && <p className="text-sm text-red-600 ml-1 mt-1">{errors.Name}</p>}
                         </div>
 
                         {type === "Page" && (
@@ -492,10 +490,10 @@ function CreateDynamicProgram({ type, componentType }) {
                 </div>
             )}
             {showPageDetails && (
-                <ProgramDynamicPage allData={allData} parentPage={selectedPage} type={type} componentType={componentType} />
+                <DepartmentDynamicPage allData={allData} parentPage={selectedPage} type={type} componentType={componentType} />
             )}
         </div>
     );
 }
 
-export default CreateDynamicProgram;
+export default CreateDynamicDepartment;

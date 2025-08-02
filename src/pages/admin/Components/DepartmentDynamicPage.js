@@ -1,5 +1,4 @@
 "use client"
-
 import React, { useState, useEffect } from "react"
 import dynamic from "next/dynamic"
 import { API_NODE_URL, IMAGE_PATH } from "@/configs/config"
@@ -23,13 +22,16 @@ const isValidDate = (date) => {
   return date && !isNaN(new Date(date).getTime())
 }
 
+
 const ImagePreview = ({ file, imageUrl, onDelete, label, dimensions, isUploading }) => {
   const [previewUrl, setPreviewUrl] = useState(null)
 
   React.useEffect(() => {
     if (imageUrl) {
+      // If we have a URL from upload, use it
       setPreviewUrl(imageUrl)
     } else if (file && typeof file === "object") {
+      // If we have a File object, create object URL
       const url = URL.createObjectURL(file)
       setPreviewUrl(url)
       return () => URL.revokeObjectURL(url)
@@ -82,6 +84,7 @@ const ImagePreview = ({ file, imageUrl, onDelete, label, dimensions, isUploading
   )
 }
 
+// Gallery Preview Component - Updated to handle URLs
 const GalleryPreview = ({ files, imageUrls, onDeleteFile, label, uploadingIndexes }) => {
   if ((!files || files.length === 0) && (!imageUrls || imageUrls.length === 0)) return null
 
@@ -97,8 +100,8 @@ const GalleryPreview = ({ files, imageUrls, onDeleteFile, label, uploadingIndexe
           const file = files?.[index]
           const imageUrl = imageUrls?.[index]
           const isUploading = uploadingIndexes?.includes(index)
-          let previewUrl = null
 
+          let previewUrl = null
           if (imageUrl) {
             previewUrl = imageUrl
           } else if (file) {
@@ -109,7 +112,7 @@ const GalleryPreview = ({ files, imageUrls, onDeleteFile, label, uploadingIndexe
             <div key={index} className="relative group">
               <div className="relative">
                 <img
-                  src={IMAGE_PATH + previewUrl || "/placeholder.svg"}
+                  src={previewUrl || "/placeholder.svg"}
                   alt={`Gallery ${index + 1}`}
                   className="w-full h-20 object-cover rounded-lg border"
                 />
@@ -141,6 +144,7 @@ const GalleryPreview = ({ files, imageUrls, onDeleteFile, label, uploadingIndexe
   )
 }
 
+// File Upload Component - Updated to handle immediate upload
 const FileUploadField = ({
   id,
   label,
@@ -151,15 +155,16 @@ const FileUploadField = ({
   dimensions,
   required = false,
   isUploading = false,
-  type = "image",
+  type = "image", // new prop with default type "image"
 }) => {
-  const accept = type === "pdf" ? "application/pdf" : "image/webp,image/jpeg,image/png"
+  const accept = type === "pdf" ? "application/pdf" : "image/webp,image/jpeg,image/png";
 
   return (
     <div className="space-y-2">
       <label htmlFor={id} className="block text-sm font-medium text-gray-700">
         {label} {required && <span className="text-red-500">*</span>}
       </label>
+
       <div className="border-2 border-dashed border-gray-300 hover:border-blue-400 transition-colors rounded-lg p-6 text-center bg-gray-50 hover:bg-gray-100">
         <div className="space-y-2">
           <svg className="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
@@ -170,20 +175,29 @@ const FileUploadField = ({
               strokeLinejoin="round"
             />
           </svg>
+
           <div className="text-sm text-gray-600">
             <p className="font-medium">Click to upload or drag and drop</p>
             <p className="text-xs text-gray-500 mt-1">
-              {type === "pdf" ? "PDF format only" : "WebP format recommended"}
+              {type === 'pdf' ? 'PDF format only' : 'WebP format recommended'}
             </p>
             {dimensions && <p className="text-xs text-gray-500">Dimensions: {dimensions}</p>}
           </div>
         </div>
-        <input type="file" id={id} accept={accept} onChange={onChange} className="hidden" disabled={isUploading} />
+
+        <input
+          type="file"
+          id={id}
+          accept={accept}
+          onChange={onChange}
+          className="hidden"
+          disabled={isUploading}
+        />
+
         <label
           htmlFor={id}
-          className={`mt-4 inline-flex items-center px-4 py-2 text-white text-sm font-medium rounded-lg cursor-pointer transition-colors ${
-            isUploading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
-          }`}
+          className={`mt-4 inline-flex items-center px-4 py-2 text-white text-sm font-medium rounded-lg cursor-pointer transition-colors ${isUploading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
+            }`}
         >
           {isUploading ? (
             <>
@@ -205,6 +219,7 @@ const FileUploadField = ({
           )}
         </label>
       </div>
+
       <ImagePreview
         file={file}
         imageUrl={imageUrl}
@@ -214,10 +229,11 @@ const FileUploadField = ({
         isUploading={isUploading}
       />
     </div>
-  )
-}
+  );
+};
 
-export default function DynamicPageDetails({ allData, parentPage, type, componentType }) {
+
+export default function DepartmentDynamicPage({ allData, parentPage, type, componentType }) {
   const router = useRouter()
   const [submitting, setSubmitting] = useState(false)
   const [searchValue, setSearchValue] = useState("")
@@ -226,9 +242,8 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
   const [selectedPage, setSelectedPage] = useState(null)
   const [hasMore, setHasMore] = useState(true)
   const [allPages, setAllPages] = useState([])
-  const [pageIndex, setPageIndex] = useState(0)
-  const [errors, setErrors] = useState({})
-  const [streamId, setStreamId] = useState("")
+  const [pageIndex, setPageIndex] = useState(0) // Declare pageIndex state
+
 
   // Upload states
   const [uploadingStates, setUploadingStates] = useState({})
@@ -236,7 +251,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
 
   const [formData, setFormData] = useState({
     page_id: allData?.page_id,
-    parent_id: 0, // Always set to 0 as requested
+    parent_id: allData?.parent_id,
     languageId: 1,
     price: "",
     name: allData?.name,
@@ -306,6 +321,12 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
     keywords_tag: "",
   })
 
+  useEffect(() => {
+    if (formData.parentPage) {
+      setSearchValue(formData.parentPage)
+    }
+  }, [formData.parentPage])
+
   const fetchPages = async (searchTerm = "") => {
     try {
       const response = await fetch(`${API_NODE_URL}slug/getParents`, {
@@ -314,14 +335,15 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
           "Content-Type": "application/json",
         },
         credentials: "include",
-        body: JSON.stringify({ query: searchTerm, page: 1, limit: 10, type: "School" }),
+        body: JSON.stringify({ query: searchTerm, page: 1, limit: 10, type: ['Department', 'School'] }),
       })
       const data = await response.json()
+
       const fetchedPages = data.data.pages || []
 
       if (fetchedPages.length === 0) {
         setAllPages([])
-        setDisplayedPages([{ name: "No streams found", page_id: null }])
+        setDisplayedPages([{ name: "This is parent page", reportId: null }])
         setHasMore(false)
       } else {
         setAllPages(fetchedPages)
@@ -329,7 +351,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
         setHasMore(fetchedPages.length > 10)
       }
     } catch (error) {
-      console.error("Error fetching streams:", error)
+      console.error("Error fetching parent pages:", error)
     }
   }
 
@@ -340,6 +362,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
   const handleInputChange = (e) => {
     const value = e.target.value
     setSearchValue(value)
+
     if (value.length > 0) {
       fetchPages(value)
       setShowDropdown(true)
@@ -352,19 +375,21 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
   const handleSuggestionClick = (page) => {
     setSearchValue(page.name) // Show the name in the input
     setSelectedPage(page) // Set the selected page
-    setStreamId(page.page_id) // Set the stream ID - this is the key fix
     setShowDropdown(false) // Hide the dropdown after selection
-
-    // Clear any previous errors
-    setErrors((prev) => ({ ...prev, selectedPage: "" }))
+    setFormData((prev) => ({
+      ...prev,
+      parent_id: page.page_id,
+      parentPage: page.name,
+    }))
   }
 
+  // Handle 'Show More' button click
   const handleShowMore = () => {
     const newIndex = pageIndex + 10
-    setDisplayedPages(allPages.slice(0, newIndex))
-    setPageIndex(newIndex)
+    setDisplayedPages(allPages.slice(0, newIndex)) // Show next 10 pages
+    setPageIndex(newIndex) // Update index
     if (newIndex >= allPages.length) {
-      setHasMore(false)
+      setHasMore(false) // Hide 'Show More' if no more pages
     }
   }
 
@@ -390,23 +415,31 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
     }))
   }
 
+  // Updated file change handler to upload immediately
   const handleFileChange = async (e, field) => {
     const file = e.target.files[0]
     if (!file) return
 
+    // Set uploading state
     setUploadingStates((prev) => ({ ...prev, [field]: true }))
 
     try {
+
+      // Upload the image
       const imageUrls = await uploadImages([file])
+
+      // Update form data with the URL
       setFormData((prevData) => ({
         ...prevData,
-        [field]: imageUrls[0],
+        [field]: imageUrls[0], // Store the URL string
       }))
+
       toast.success("Image uploaded successfully!")
     } catch (error) {
       console.error("Upload error:", error)
       toast.error("Failed to upload image. Please try again.")
     } finally {
+      // Clear uploading state
       setUploadingStates((prev) => ({ ...prev, [field]: false }))
     }
   }
@@ -418,27 +451,34 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
     }))
   }
 
+  // Updated gallery image handler
   const handleGalleryImg = async (e, field) => {
     const files = Array.from(e.target.files)
     if (files.length === 0) return
 
     const currentGallery = formData[field] || []
     const startIndex = currentGallery.length
-    const newUploadingIndexes = files.map((_, index) => startIndex + index)
 
+    // Set uploading states for new files
+    const newUploadingIndexes = files.map((_, index) => startIndex + index)
     setGalleryUploadingIndexes((prev) => [...prev, ...newUploadingIndexes])
 
     try {
+      // Upload all files
       const imageUrls = await uploadImages(files)
+
+      // Update form data with the URLs
       setFormData((prevData) => ({
         ...prevData,
         [field]: [...currentGallery, ...imageUrls],
       }))
+
       toast.success(`${files.length} image(s) uploaded successfully!`)
     } catch (error) {
       console.error("Upload error:", error)
       toast.error("Failed to upload images. Please try again.")
     } finally {
+      // Clear uploading states
       setGalleryUploadingIndexes((prev) => prev.filter((index) => !newUploadingIndexes.includes(index)))
     }
   }
@@ -452,7 +492,6 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
 
   const insertPage = async () => {
     const progressBar = document.getElementById("progress-bar")
-
     try {
       progressBar.style.width = "0%"
       progressBar.style.transition = "none"
@@ -460,16 +499,8 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
         progressBar.style.transition = "width 0.5s ease"
         progressBar.style.width = "100%"
       })
-
-      if (!streamId) {
-        toast.warning("Please select a stream")
-        setErrors((prev) => ({ ...prev, selectedPage: "Please select a stream" }))
-        return
-      }
-
       const payload = {
         ...formData,
-        stream: streamId, // Use streamId instead of selectedPage
         ComponentType: componentType || allData?.ComponentType,
       }
 
@@ -483,15 +514,16 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
       })
 
       const data = await response.json()
+      const fetchedPages = data.data.pages || []
 
       if (data.status) {
         toast.success(`${type} inserted Successfully`)
         router.push(`/admin/${type?.toLowerCase().replace(/\s+/g, "-")}-list`)
       } else {
-        toast.error(`Something went wrong: ${data?.message || "Unknown error"}`)
+        toast.error(`Something went wrong: ${fetchedPages?.message}`)
       }
     } catch (error) {
-      console.error("Error inserting page:", error)
+      console.error("Error fetching parent pages:", error)
       toast.error("An error occurred while processing your request.")
     } finally {
       progressBar.style.width = "0%"
@@ -500,8 +532,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setSubmitting(true)
-    insertPage().finally(() => setSubmitting(false))
+    insertPage()
   }
 
   return (
@@ -518,8 +549,8 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-3xl font-bold text-gray-900">Add {type} Details</h1>
-                <p className="text-gray-600 mt-2">
+                <h1 className="text-3xl font-novaBold text-gray-900">Add {type} Details</h1>
+                <p className="text-gray-600 mt-2 font-novaReg">
                   Create and configure your {type?.toLowerCase()} content with all necessary details
                 </p>
               </div>
@@ -534,7 +565,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                         d="M13 10V3L4 14h7v7l9-11h-7z"
                       />
                     </svg>
-                    <span className="font-semibold">Generate Meta with AI</span>
+                    <span className="font-novaSemi">Generate Meta with AI</span>
                   </div>
                 </div>
                 <button
@@ -568,22 +599,23 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-semibold text-gray-900">Basic Details</h2>
+              <h2 className="text-xl font-novaSemi text-gray-900">Basic Details</h2>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            <div className={`grid grid-cols-1 md:grid-cols-2  gap-6`}>
               <div className="relative">
-                <label htmlFor="stream-select" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Choose Stream
+                <label htmlFor="parent-page" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                  Choose School or Department Department
                   <span className="text-red-500 ml-1">*</span>
                 </label>
                 <div className="relative">
                   <input
-                    id="stream-select"
+                    id="parent-page"
                     type="text"
                     value={searchValue}
                     onChange={handleInputChange}
-                    placeholder="Search and select stream..."
-                    className="w-full border-2 border-gray-200 rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
+                    placeholder="Search and select parent page..."
+                    className="w-full border-2 border-gray-200 font-novaReg rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
                   />
                   <div className="absolute inset-y-0 right-0 flex items-center pr-3">
                     <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -596,44 +628,38 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                     </svg>
                   </div>
                 </div>
-                {errors.selectedPage && <p className="text-sm text-red-600 ml-1 mt-1">{errors.selectedPage}</p>}
 
                 {showDropdown && (
                   <div className="absolute z-20 w-full bg-white border-2 border-gray-200 rounded-xl mt-2 max-h-64 overflow-auto shadow-2xl">
-                    {displayedPages.map(
-                      (page, index) =>
-                        page.page_id != 0 && (
-                          <div
-                            key={index}
-                            onClick={() => handleSuggestionClick(page)}
-                            className="cursor-pointer px-5 py-2 hover:bg-blue-100/60 border-b border-gray-200 last:border-b-0 transition-all duration-150 rounded-md hover:shadow-sm group"
-                          >
-                            <div className="font-semibold text-gray-800 text-base group-hover:text-blue-700">
-                              {page.name}
-                            </div>
-                            <div className="flex items-center gap-3 mt-1 text-sm text-gray-500">
-                              {page?.type && (
-                                <span
-                                  className={`px-2 py-0.5 rounded-full text-xs ${
-                                    page.type === "School"
-                                      ? "bg-blue-100 text-blue-700"
-                                      : page.type === "Department"
-                                        ? "bg-green-100 text-green-700"
-                                        : "bg-gray-100 text-gray-700"
-                                  }`}
-                                >
-                                  {page.type}
-                                </span>
-                              )}
-                              {page?.page_id && (
-                                <span className="text-xs">
-                                  ID: <span className="font-medium text-gray-600">{page.page_id}</span>
-                                </span>
-                              )}
-                            </div>
-                          </div>
-                        ),
-                    )}
+                    {displayedPages.map((page, index) => (
+                      page.page_id != 0 &&
+                      <div
+                        key={index}
+                        onClick={() => handleSuggestionClick(page)}
+                        className="cursor-pointer px-5 py-2 hover:bg-blue-100/60 border-b border-gray-200 last:border-b-0 transition-all duration-150 rounded-md hover:shadow-sm group"
+                      >
+                        <div className="font-semibold text-gray-800 text-base group-hover:text-blue-700">
+                          {page.name}
+                        </div>
+
+                        <div className="flex items-center gap-3 mt-1 text-sm text-gray-500">
+                          {page?.type && (
+                            <span
+                              className={`px-2 py-0.5 rounded-full text-xs
+                                                        ${page.type === "School" ? "bg-blue-100 text-blue-700" :
+                                  page.type === "Department" ? "bg-green-100 text-green-700" :
+                                    "bg-gray-100 text-gray-700"}`}
+                            >
+                              {page.type}
+                            </span>
+
+                          )}
+                          {page?.page_id && (
+                            <span className="text-xs">ID: <span className="font-medium text-gray-600">{page.page_id}</span></span>
+                          )}
+                        </div>
+                      </div>
+                    ))}
                     {hasMore && displayedPages.length > 0 && (
                       <button
                         type="button"
@@ -649,7 +675,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
             </div>
           </div>
 
-          {/* Page Details Section */}
+          {/* Department Details Section */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <div className="flex items-center space-x-3 mb-6">
               <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
@@ -662,13 +688,14 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-semibold text-gray-900">{type} Details</h2>
+              <h2 className="text-xl font-novaSemi text-gray-900">Department Details</h2>
             </div>
+
             <div className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className={`grid grid-cols-1 ${type === "Department" ? "md:grid-cols-3" : "md:grid-cols-2"}  gap-6`}>
                 <div>
-                  <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
-                    {type} Title <span className="text-red-500">*</span>
+                  <label htmlFor="name" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                    Department Title <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -678,13 +705,13 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                     onChange={handleChange}
                     required
                     disabled
-                    className="w-full px-4 cursor-not-allowed py-3 border border-gray-300 text-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-4 cursor-not-allowed py-3 border border-gray-300 font-novaReg text-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     placeholder="Enter page title"
                   />
                 </div>
                 <div>
-                  <label htmlFor="date" className="block text-sm font-semibold text-gray-700 mb-2">
-                    {type} Date <span className="text-red-500">*</span>
+                  <label htmlFor="date" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                    Department Date <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="date"
@@ -693,7 +720,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                     value={formData.date}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   />
                 </div>
               </div>
@@ -713,30 +740,37 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-semibold text-gray-900">Content</h2>
+              <h2 className="text-xl font-novaSemi text-gray-900">Content</h2>
             </div>
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  {type} Short Description <span className="text-red-500">*</span>
+                <label className="block text-sm font-novaSemi text-gray-700 mb-2">
+                  Short Summary <span className="text-red-500">*</span>
                 </label>
-                <div className="border border-gray-300 rounded-lg overflow-hidden">
-                  <JoditEditor value={formData.shortdesc} onBlur={handleShortDescChange} />
+                <div className="border border-gray-300 font-novaReg rounded-lg overflow-hidden">
+                  <JoditEditor
+                    value={formData.shortdesc}
+                    onBlur={handleShortDescChange}
+                  />
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  {type} Description <span className="text-red-500">*</span>
+                <label className="block text-sm font-novaSemi text-gray-700 mb-2">
+                  Full Description <span className="text-red-500">*</span>
                 </label>
-                <div className="border border-gray-300 rounded-lg overflow-hidden">
-                  <JoditEditor value={formData.description} onBlur={handleDescChange} />
+                <div className="border border-gray-300 font-novaReg rounded-lg overflow-hidden">
+                  <JoditEditor
+                    value={formData.description}
+                    onBlur={handleDescChange}
+                  />
                 </div>
               </div>
             </div>
           </div>
 
           {/* Tags and Configuration */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          {/* <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <div className="flex items-center space-x-3 mb-6">
               <div className="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center">
                 <svg className="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -748,11 +782,12 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-semibold text-gray-900">Tags & Configuration</h2>
+              <h2 className="text-xl font-novaSemi text-gray-900">Tags & Configuration</h2>
             </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div>
-                <label htmlFor="tag1" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="tag1" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Tag 1
                 </label>
                 <input
@@ -761,12 +796,12 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   name="tag1"
                   value={formData.tag1}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="Enter tag"
                 />
               </div>
               <div>
-                <label htmlFor="tag2" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="tag2" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Tag 2
                 </label>
                 <input
@@ -775,12 +810,12 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   name="tag2"
                   value={formData.tag2}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="Enter tag"
                 />
               </div>
               <div>
-                <label htmlFor="tag3" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="tag3" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Tag 3
                 </label>
                 <input
@@ -789,12 +824,12 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   name="tag3"
                   value={formData.tag3}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="Enter tag"
                 />
               </div>
               <div>
-                <label htmlFor="featured_status" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="featured_status" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Featured Status
                 </label>
                 <select
@@ -802,7 +837,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   name="featured_status"
                   value={formData.featured_status}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                 >
                   <option value="">Select Status</option>
                   <option value="Yes">Yes</option>
@@ -812,8 +847,8 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
               <div>
-                <label htmlFor="video_url" className="block text-sm font-semibold text-gray-700 mb-2">
-                  URL
+                <label htmlFor="video_url" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                  Video URL
                 </label>
                 <input
                   type="url"
@@ -821,12 +856,12 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   name="video_url"
                   value={formData.video_url}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  placeholder="https://example.com"
+                  className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  placeholder="https://example.com/video"
                 />
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Media Upload Section */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
@@ -841,10 +876,10 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-semibold text-gray-900">Media Upload</h2>
+              <h2 className="text-xl font-novaSemi text-gray-900">Media Upload</h2>
             </div>
-
-            {type === "Download Center" && (
+            {
+              type === "Download Center" || type === "Circular" || type === "Notice" &&
               <div className="mb-10">
                 <FileUploadField
                   id="downloadCenterPdf"
@@ -857,12 +892,11 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   type="pdf"
                 />
               </div>
-            )}
-
+            }
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <FileUploadField
                 id="banner_img"
-                label="Banner Image"
+                label="Banner Image For Department"
                 imageUrl={formData.banner_img}
                 onChange={(e) => handleFileChange(e, "banner_img")}
                 onDelete={() => handleDeleteFile("banner_img")}
@@ -870,19 +904,21 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                 required
                 isUploading={uploadingStates.banner_img}
               />
-              <FileUploadField
+
+              {/* <FileUploadField
                 id="featured_img"
-                label="Featured Image"
+                label="Featured Image For Department"
                 imageUrl={formData.featured_img}
                 onChange={(e) => handleFileChange(e, "featured_img")}
                 onDelete={() => handleDeleteFile("featured_img")}
                 dimensions="100 W × 75 H"
                 required
                 isUploading={uploadingStates.featured_img}
-              />
+              /> */}
+
               <FileUploadField
                 id="mainReportImage"
-                label="Extra Image"
+                label="Extra Image For Department"
                 imageUrl={formData.mainReportImage}
                 onChange={(e) => handleFileChange(e, "mainReportImage")}
                 onDelete={() => handleDeleteFile("mainReportImage")}
@@ -892,19 +928,20 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
               />
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6 font-novaSemi">
               <FileUploadField
                 id="highlightBanner"
-                label="Highlight Banner"
+                label="Highlight Banner For Department"
                 imageUrl={formData.highlightBanner}
                 onChange={(e) => handleFileChange(e, "highlightBanner")}
                 onDelete={() => handleDeleteFile("highlightBanner")}
                 dimensions="936 W × 337 H"
                 isUploading={uploadingStates.highlightBanner}
               />
+
               <div className="space-y-2">
-                <label htmlFor="galleryimg" className="block text-sm font-semibold text-gray-700">
-                  Gallery Images
+                <label htmlFor="galleryimg" className="block text-sm font-novaSemi text-gray-700">
+                  Gallery Images For Department
                 </label>
                 <div className="border-2 border-dashed border-gray-300 hover:border-blue-400 transition-colors rounded-lg p-6 text-center bg-gray-50 hover:bg-gray-100">
                   <div className="space-y-2">
@@ -937,11 +974,10 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   />
                   <label
                     htmlFor="galleryimg"
-                    className={`mt-4 inline-flex items-center px-4 py-2 text-white text-sm font-medium rounded-lg cursor-pointer transition-colors ${
-                      galleryUploadingIndexes.length > 0
-                        ? "bg-gray-400 cursor-not-allowed"
-                        : "bg-blue-600 hover:bg-blue-700"
-                    }`}
+                    className={`mt-4 inline-flex items-center px-4 py-2 text-white text-sm font-medium rounded-lg cursor-pointer transition-colors ${galleryUploadingIndexes.length > 0
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-blue-600 hover:bg-blue-700"
+                      }`}
                   >
                     {galleryUploadingIndexes.length > 0 ? (
                       <>
@@ -986,11 +1022,12 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-semibold text-gray-900">SEO Meta Information</h2>
+              <h2 className="text-xl font-novaSemi text-gray-900">SEO Meta Information</h2>
             </div>
+
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <div>
-                <label htmlFor="metatitle" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="metatitle" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Meta Title <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -999,13 +1036,13 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   name="metatitle"
                   value={formData.metatitle}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="Enter meta title"
                 />
                 <p className="text-xs text-gray-500 mt-1">Recommended: 50-60 characters</p>
               </div>
               <div>
-                <label htmlFor="metadesc" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="metadesc" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Meta Description <span className="text-red-500">*</span>
                 </label>
                 <textarea
@@ -1014,13 +1051,13 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   rows={3}
                   value={formData.metadesc}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
+                  className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
                   placeholder="Enter meta description"
                 />
                 <p className="text-xs text-gray-500 mt-1">Recommended: 150-160 characters</p>
               </div>
               <div>
-                <label htmlFor="keywords_tag" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="keywords_tag" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Keywords <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -1029,7 +1066,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                   name="keywords_tag"
                   value={formData.keywords_tag}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="keyword1, keyword2, keyword3"
                 />
                 <p className="text-xs text-gray-500 mt-1">Separate keywords with commas</p>
@@ -1041,15 +1078,15 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-lg font-semibold text-gray-900">Ready to Submit?</h3>
-                <p className="text-gray-600 mt-1">Review all information before submitting the {type?.toLowerCase()}</p>
+                <h3 className="text-lg font-novaSemi text-gray-900">Ready to Submit?</h3>
+                <p className="text-gray-600 mt-1 font-novaReg">Review all information before submitting the page</p>
               </div>
               <button
                 type="submit"
                 disabled={
                   submitting || Object.values(uploadingStates).some(Boolean) || galleryUploadingIndexes.length > 0
                 }
-                className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-lg hover:from-green-600 hover:to-green-700 focus:ring-4 focus:ring-green-200 transition-all duration-200 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-novaSemi rounded-lg hover:from-green-600 hover:to-green-700 focus:ring-4 focus:ring-green-200 transition-all duration-200 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
                 {submitting ? (
                   <>
@@ -1061,7 +1098,7 @@ export default function DynamicPageDetails({ allData, parentPage, type, componen
                     <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    Submit {type}
+                    Submit Department
                   </>
                 )}
               </button>

@@ -312,7 +312,7 @@ const EnhancedFileUpload = ({
   );
 };
 
-function EditProgramPage({ type, componentType }) {
+function EditDepartmentPage({ type, componentType }) {
   const searchParams = useSearchParams()
   const page_id = searchParams.get("page_id")
   const router = useRouter()
@@ -326,6 +326,8 @@ function EditProgramPage({ type, componentType }) {
   const [hasMore, setHasMore] = useState(true)
   const [allPages, setAllPages] = useState([])
   const [pageIndex, setPageIndex] = useState(0)
+  const [searchQuery, setSearchQuery] = useState("") // State for search input
+  const [schools, setSchools] = useState([]) // State to hold school options
   const [compType, setCompType] = useState("");
 
   const [componentSearchValue, setComponentSearchValue] = useState("")
@@ -427,6 +429,29 @@ function EditProgramPage({ type, componentType }) {
     downloadCenterPdf: "",
   })
 
+  useEffect(() => {
+    const fetchSchools = async () => {
+      try {
+        const response = await fetch(`${API_NODE_URL}school/search?search=${searchQuery}`, {
+          credentials: "include",
+        })
+        const result = await response.json()
+        if (result.status) {
+          setSchools(Array.isArray(result?.data?.schools) ? result?.data?.schools : [])
+        } else {
+          toast.error(result.message || "Failed to fetch schools.")
+          setSchools([])
+        }
+      } catch (err) {
+        console.error("Error fetching schools:", err)
+        toast.error("An error occurred while fetching schools.")
+        setSchools([])
+      }
+    }
+    fetchSchools()
+  }, [searchQuery])
+
+
   const fetchParent = async (parent_id) => {
     if (parent_id) {
       try {
@@ -445,7 +470,7 @@ function EditProgramPage({ type, componentType }) {
 
   const fetchComponents = async (searchTerm = "", page = 1) => {
     try {
-      const url = new URL(`${API_NODE_URL}components/category/Department`)
+      const url = new URL(`${API_NODE_URL}components/category/Page`)
       url.searchParams.append("page", page)
       url.searchParams.append("limit", 10)
       if (searchTerm) {
@@ -506,7 +531,7 @@ function EditProgramPage({ type, componentType }) {
           "Content-Type": "application/json",
         },
         credentials: "include",
-        body: JSON.stringify({ query: searchTerm, page: 1, limit: 10, type: ['Department', 'School'] }),
+        body: JSON.stringify({ query: searchTerm, page: 1, limit: 10, type: "School" }),
       })
       const data = await response.json()
 
@@ -563,6 +588,7 @@ function EditProgramPage({ type, componentType }) {
       setHasMore(false) // Hide 'Show More' if no more pages
     }
   }
+
 
   useEffect(() => {
     if (!page_id) return
@@ -792,6 +818,7 @@ function EditProgramPage({ type, componentType }) {
       return
     }
 
+
     const payload = {
       ...formData,
       ComponentType: selectedComponentType || compType || componentType,
@@ -895,10 +922,10 @@ function EditProgramPage({ type, componentType }) {
               <h2 className="text-xl font-novaSemi text-gray-900">Basic Details</h2>
             </div>
 
-            <div className={`grid grid-cols-1 ${type === "Department" ? "md:grid-cols-3" : "md:grid-cols-2"} gap-6`}>
+            <div className={`grid grid-cols-1 ${type === "Page" ? "md:grid-cols-3" : "md:grid-cols-2"} gap-6`}>
               <div className="relative">
                 <label htmlFor="parent-page" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Choose School or Department Department
+                  Choose School Page
                   <span className="text-red-500 ml-1">*</span>
                 </label>
                 <div className="relative">
@@ -942,7 +969,7 @@ function EditProgramPage({ type, componentType }) {
                                                         ${page.type === "School" ? "bg-blue-100 text-blue-700" :
                                   page.type === "Department" ? "bg-green-100 text-green-700" :
                                     "bg-gray-100 text-gray-700"}`}
-                            >create-school
+                            >
                               {page.type}
                             </span>
 
@@ -965,7 +992,7 @@ function EditProgramPage({ type, componentType }) {
                   </div>
                 )}
               </div>
-              {type === "Department" && (
+              {type === "Page" && (
                 <div className="relative">
                   <label htmlFor="component-type" className="block text-sm font-novaSemi text-gray-700 mb-2">
                     Component Type <span className="text-red-500">*</span>
@@ -1033,7 +1060,7 @@ function EditProgramPage({ type, componentType }) {
             </div>
           </div>
 
-          {/* Department Details Section */}
+          {/* Page Details Section */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <div className="flex items-center space-x-3 mb-6">
               <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
@@ -1046,14 +1073,14 @@ function EditProgramPage({ type, componentType }) {
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-novaSemi text-gray-900">Department Details</h2>
+              <h2 className="text-xl font-novaSemi text-gray-900">Page Details</h2>
             </div>
 
             <div className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                    Department Title <span className="text-red-500">*</span>
+                    Page Title <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -1069,7 +1096,7 @@ function EditProgramPage({ type, componentType }) {
                 </div>
                 <div>
                   <label htmlFor="date" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                    Department Date <span className="text-red-500">*</span>
+                    Page Date <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="date"
@@ -1117,7 +1144,7 @@ function EditProgramPage({ type, componentType }) {
               </div>
               <div>
                 <label className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Full Description <span className="text-red-500">*</span>
+                  Page Description <span className="text-red-500">*</span>
                 </label>
                 <div className="border border-gray-300 rounded-lg overflow-hidden">
                   <JoditEditor
@@ -1514,4 +1541,4 @@ function EditProgramPage({ type, componentType }) {
   )
 }
 
-export default EditProgramPage
+export default EditDepartmentPage

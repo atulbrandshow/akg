@@ -10,7 +10,7 @@ const Button = {
 export default function Home() {
   return (
     <>
-      <Header Button={Button} position='center' title={<span className="text-4xl md:text-5xl lg:text-6xl pt-20">Experience First<br />Then Excel</span>} subHeading={<>Empowering Futures & Realizing Dreams through <strong>Exclusive Scholarships at AKG University</strong></>} gradient={"bg-gradient-to-r from-black to-black/20"} bgKey='BG1'/>
+      <Header Button={Button} position='center' title={<span className="text-4xl md:text-5xl lg:text-6xl pt-20">Discover First<br />Decide Later</span>} subHeading={<>Turning Dreams into Reality With <strong> Special Scholarship Program at AKG University</strong></>} gradient={"bg-gradient-to-r from-black to-black/20"} bgKey='BG1'/>
       <Admissions />
     </>
   );

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import Form from "./Form";
 
 const bgImages = {
     'BG1': "/image/building/building1.webp",
@@ -115,53 +116,17 @@ export default function Header({
 
             {isModalOpen && formConfig && (
                 <div className="relative md:absolute right-10 inset-0 flex items-center justify-end z-10">
-                    <div className="bg-white p-6 md:p-4 xl:p-6 rounded-lg shadow-lg w-[400px] max-w-full mr-4 animate-slide-in">
+                    <div className="relative h-max rounded-lg shadow-lg w-[400px] max-w-full mr-4 animate-slide-in">
                         <button
-                            className="absolute right-8 text-gray-500 hover:text-gray-900 transition"
+                            className="absolute top-24 right-3 text-gray-500 hover:text-gray-900 transition"
                             onClick={() => setIsModalOpen(false)}
+                            aria-label="Close Modal"
                         >
                             ✖
                         </button>
-                        <h2 className="text-xl xl:text-2xl font-bold mb-4 text-gray-800">{formConfig.title}</h2>
-                        <form>
-                            {formConfig.fields.map((field) => (
-                                <div className="relative mb-4" key={field.id}>
-                                    {field.type === "select" ? (
-                                        <select
-                                            id={field.id}
-                                            className="w-full px-3 py-2 border-2 border-gray-300 rounded-md focus:border-blue-500 focus:outline-none bg-transparent"
-                                            required={field.required}
-                                        >
-                                            <option value="" disabled selected>{field.label}</option>
-                                            {field.options.map((option) => (
-                                                <option key={option} value={option}>{option}</option>
-                                            ))}
-                                        </select>
-                                    ) : field.type === "textarea" ? (
-                                        <textarea
-                                            id={field.id}
-                                            className="w-full px-3 py-2 border-2 border-gray-300 rounded-md focus:border-blue-500 focus:outline-none h-24 resize-none bg-transparent"
-                                            placeholder=" "
-                                            required={field.required}
-                                        ></textarea>
-                                    ) : (
-                                        <input
-                                            type={field.type}
-                                            id={field.id}
-                                            className="w-full px-3 py-2 border-2 border-gray-300 rounded-md focus:border-blue-500 focus:outline-none bg-transparent"
-                                            placeholder=" "
-                                            required={field.required}
-                                        />
-                                    )}
-                                </div>
-                            ))}
-
-                            <div className="flex justify-end gap-2">
-                                <button type="button" className="px-4 py-2 bg-gray-300 rounded-md" onClick={() => setIsModalOpen(false)}>Cancel</button>
-                                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">Submit</button>
-                            </div>
-                        </form>
+                        <Form />
                     </div>
+
                 </div>
             )}
         </div>

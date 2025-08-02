@@ -560,7 +560,7 @@ const PageDataManager = () => {
               }}
               className="w-full border rounded-lg"
             />
-            <p className="text-sm text-gray-500">Use the rich text editor to format your content</p>
+            <p className="text-sm text-gray-500">Use the Description text editor to format your content</p>
           </div>
         )
       default:
@@ -813,8 +813,8 @@ const PageDataManager = () => {
   const uniqueDataTypes = [...new Set(params.map((param) => param.dataType))]
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto p-6">
+    <div className="">
+      <div className="">
         {/* Notification */}
         {notification.show && (
           <div
@@ -936,7 +936,7 @@ const PageDataManager = () => {
                                   : type === "multiple pdfs"
                                     ? "Multiple PDFs"
                                     : type === "description"
-                                      ? "Rich Text Content"
+                                      ? "Description"
                                       : type}
                         </option>
                       ))}
@@ -964,7 +964,7 @@ const PageDataManager = () => {
                                 : formData.dataType === "multiple pdfs"
                                   ? "Multiple PDFs"
                                   : formData.dataType === "description"
-                                    ? "Rich Text Content"
+                                    ? "Description"
                                     : formData.dataType}
                       </span>
                     </div>
@@ -1087,7 +1087,7 @@ const PageDataManager = () => {
                             : type === "multiple pdfs"
                               ? "Multiple PDFs"
                               : type === "description"
-                                ? "Rich Text Content"
+                                ? "Description"
                                 : type}
                   </option>
                 ))}
@@ -1191,7 +1191,7 @@ const PageDataManager = () => {
                                   : groupType === "multiple pdfs"
                                     ? "Multiple PDFs"
                                     : groupType === "description"
-                                      ? "Rich Text Content"
+                                      ? "Description"
                                       : groupType}
                         </span>
                       </h3>
@@ -1226,7 +1226,7 @@ const PageDataManager = () => {
                                         : param.dataType === "multiple pdfs"
                                           ? "PDFs"
                                           : param.dataType === "description"
-                                            ? "Rich Text"
+                                            ? "Description"
                                             : param.dataType}
                               </span>
                             )}

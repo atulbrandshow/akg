@@ -852,7 +852,7 @@ export default function CreateFacultyForm({ type, componentType }) {
                                                 d="M12 6v6m0 0v6m0-6h6m-6 0H6"
                                             />
                                         </svg>
-                                        + Add Faculty Member
+                                        Add Faculty Member
                                     </>
                                 )}
                             </button>

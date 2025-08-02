@@ -609,7 +609,7 @@ export default function DynamicSchoolDetails({ allData, parentPage, type, compon
               <div className={`grid grid-cols-1 md:grid-cols-2 gap-6`}>
                 <div>
                   <label htmlFor="name" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                    {type} Title <span className="text-red-500">*</span>
+                    {type} Name <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -625,7 +625,7 @@ export default function DynamicSchoolDetails({ allData, parentPage, type, compon
                 </div>
                 <div>
                   <label htmlFor="date" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                    {type} Date <span className="text-red-500">*</span>
+                    Established Date <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="date"
@@ -660,7 +660,7 @@ export default function DynamicSchoolDetails({ allData, parentPage, type, compon
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  {type} Short Description <span className="text-red-500">*</span>
+                  Short Summary<span className="text-red-500">*</span>
                 </label>
                 <div className="border border-gray-300 font-novaReg rounded-lg overflow-hidden">
                   <JoditEditor
@@ -671,7 +671,7 @@ export default function DynamicSchoolDetails({ allData, parentPage, type, compon
               </div>
               <div>
                 <label className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  {type} Description <span className="text-red-500">*</span>
+                  Full Description <span className="text-red-500">*</span>
                 </label>
                 <div className="border border-gray-300 font-novaReg rounded-lg overflow-hidden">
                   <JoditEditor
@@ -684,7 +684,7 @@ export default function DynamicSchoolDetails({ allData, parentPage, type, compon
           </div>
 
           {/* Tags and Configuration */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          {/* <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <div className="flex items-center space-x-3 mb-6">
               <div className="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center">
                 <svg className="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -775,7 +775,7 @@ export default function DynamicSchoolDetails({ allData, parentPage, type, compon
                 />
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Media Upload Section */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
@@ -810,7 +810,7 @@ export default function DynamicSchoolDetails({ allData, parentPage, type, compon
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <FileUploadField
                 id="banner_img"
-                label="Banner Image"
+                label="Banner Image For School"
                 imageUrl={formData.banner_img}
                 onChange={(e) => handleFileChange(e, "banner_img")}
                 onDelete={() => handleDeleteFile("banner_img")}
@@ -821,7 +821,7 @@ export default function DynamicSchoolDetails({ allData, parentPage, type, compon
 
               <FileUploadField
                 id="featured_img"
-                label="Featured Image"
+                label="Featured Image For School"
                 imageUrl={formData.featured_img}
                 onChange={(e) => handleFileChange(e, "featured_img")}
                 onDelete={() => handleDeleteFile("featured_img")}
@@ -832,7 +832,7 @@ export default function DynamicSchoolDetails({ allData, parentPage, type, compon
 
               <FileUploadField
                 id="mainReportImage"
-                label="Extra Image"
+                label="Extra Image For School"
                 imageUrl={formData.mainReportImage}
                 onChange={(e) => handleFileChange(e, "mainReportImage")}
                 onDelete={() => handleDeleteFile("mainReportImage")}
@@ -845,7 +845,7 @@ export default function DynamicSchoolDetails({ allData, parentPage, type, compon
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6 font-novaSemi">
               <FileUploadField
                 id="highlightBanner"
-                label="Highlight Banner"
+                label="Highlight Banner For School"
                 imageUrl={formData.highlightBanner}
                 onChange={(e) => handleFileChange(e, "highlightBanner")}
                 onDelete={() => handleDeleteFile("highlightBanner")}
@@ -855,7 +855,7 @@ export default function DynamicSchoolDetails({ allData, parentPage, type, compon
 
               <div className="space-y-2">
                 <label htmlFor="galleryimg" className="block text-sm font-novaSemi text-gray-700">
-                  Gallery Images
+                  Gallery Images For School
                 </label>
                 <div className="border-2 border-dashed border-gray-300 hover:border-blue-400 transition-colors rounded-lg p-6 text-center bg-gray-50 hover:bg-gray-100">
                   <div className="space-y-2">

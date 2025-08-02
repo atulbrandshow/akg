@@ -10,7 +10,7 @@ import DynamicSchoolDetails from "./DynamicSchoolDetails";
 function CreateSchoolPages({ type, componentType, parentId }) {
     const [showPageDetails, setShowPageDetails] = useState(false);
     const [selectedPage, setSelectedPage] = useState(null);
-    const [title, setTitle] = useState("");
+    const [Name, setTitle] = useState("");
     const [allData, setAllData] = useState({});
     const [errors, setErrors] = useState({});
 
@@ -18,8 +18,8 @@ function CreateSchoolPages({ type, componentType, parentId }) {
     const handleAddClick = async () => {
         const newErrors = {};
 
-        if (!title) {
-            newErrors.title = "Please enter a title.";
+        if (!Name) {
+            newErrors.Name = "Please enter School Name.";
         }
 
         // If there are any errors, update state and stop execution
@@ -32,7 +32,7 @@ function CreateSchoolPages({ type, componentType, parentId }) {
 
         const payload = {
             parent_id: parentId,
-            name: title,
+            name: Name,
             type,
             ComponentType: componentType,
         };
@@ -63,7 +63,11 @@ function CreateSchoolPages({ type, componentType, parentId }) {
                 toast.success(`${type} added Successfully`);
                 setShowPageDetails(true);
             } else {
-                alert(result.message);
+                if (result.message == "Page already exists with this title") {
+                    alert("School Name Already Taken");
+                } else {
+                    alert(result.message);
+                }
                 setAllData({});
             }
         } catch (err) {
@@ -113,19 +117,19 @@ function CreateSchoolPages({ type, componentType, parentId }) {
                 <div className="bg-white max-w-xl rounded-2xl shadow-xl p-8 border border-gray-100">
                     <form className="space-y-6">
                         <div>
-                            <label htmlFor="title" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                                {type} Title
+                            <label htmlFor="Name" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                                {type} Name
                                 <span className="text-red-500 ml-1">*</span>
                             </label>
                             <input
-                                id="title"
+                                id="Name"
                                 type="text"
-                                value={title}
-                                placeholder={`Enter ${type} title...`}
+                                value={Name}
+                                placeholder={`Enter ${type} Name...`}
                                 onChange={(e) => setTitle(e.target.value)}
                                 className="w-full border-2 border-gray-200 font-novaReg rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
                             />
-                            {errors.title && <p className="text-sm text-red-600 ml-1 mt-1">{errors.title}</p>}
+                            {errors.Name && <p className="text-sm text-red-600 ml-1 mt-1">{errors.Name}</p>}
                         </div>
 
                         <div className="flex space-x-4 pt-6">

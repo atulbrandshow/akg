@@ -1,5 +1,7 @@
+import { IMAGE_PATH } from '@/configs/config';
 import { splitTitle } from '@/utills/splitTitle';
 import { BookMarked, Calendar, HandCoins, History, Brain, Users, Microscope, BookOpen, Laptop2, GraduationCap } from 'lucide-react'
+import Image from 'next/image';
 import React from 'react'
 
 const AboutProgram = ({ data }) => {
@@ -41,8 +43,8 @@ const AboutProgram = ({ data }) => {
                     </div>
 
                     <div className="order-1 md:order-2">
-                        <img
-                            src="/image/Programs/students.webp"
+                        <Image
+                            src={IMAGE_PATH + d?.About_Image}
                             alt="Professional educator with tablet"
                             className="w-full h-auto rounded-lg shadow-lg"
                             width={600}

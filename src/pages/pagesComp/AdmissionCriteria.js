@@ -3,91 +3,102 @@ import React from 'react'
 
 const admissionData = [
   {
-    "courseName": "Bachelor of Technology in Computer Science and Engineering",
-    "head": "UG",
-    "description": "Candidates must have completed 10+2 or equivalent examination with Mathematics as one of the subjects and a minimum of 50% marks in aggregate from a recognized board."
+    courseName: "B.Tech (All Branches)",
+    head: "UG",
+    description: "10+2 with Physics, Chemistry, Mathematics, minimum 50% aggregate (varies by program). Entrance: AKGCET / JEE Main / Merit-Based.",
   },
   {
-    "courseName": "Bachelor of Technology in Computer Science and Engineering (Artificial Intelligence & Machine Learning)",
-    "head": "UG",
-    "description": "Candidates should have completed 10+2 with Mathematics and at least 50% marks in aggregate. An interest in AI and ML concepts is beneficial."
+    courseName: "Computer Science Engineering",
+    head: "UG",
+    description: "10+2 with PCM, minimum 50% aggregate. Entrance: AKGCET / JEE Main / Merit-Based.",
   },
   {
-    "courseName": "Bachelor of Technology in Computer Science and Engineering (Data Science)",
-    "head": "UG",
-    "description": "Candidates must have completed 10+2 with Mathematics and at least 50% marks in aggregate. Familiarity with statistical concepts is a plus."
+    courseName: "Data Science",
+    head: "UG",
+    description: "10+2 with PCM, minimum 50% aggregate. Entrance: AKGCET / JEE Main / Merit-Based.",
   },
   {
-    "courseName": "Bachelor of Science in Computer Science",
-    "head": "UG",
-    "description": "10+2 in Science stream with Mathematics as a subject and at least 50% marks in aggregate from a recognized board."
+    courseName: "AI & Machine Learning",
+    head: "UG",
+    description: "10+2 with PCM, minimum 50% aggregate. Entrance: AKGCET / JEE Main / Merit-Based.",
   },
   {
-    "courseName": "Bachelor of Technology in Computer Science and Engineering (Hindi Medium)",
-    "head": "UG",
-    "description": "Candidates should have passed 10+2 or equivalent examination with Mathematics and a minimum of 50% marks in aggregate, with instruction in Hindi."
+    courseName: "Information Technology",
+    head: "UG",
+    description: "10+2 with PCM, minimum 50% aggregate. Entrance: AKGCET / JEE Main / Merit-Based.",
   },
   {
-    "courseName": "Bachelor of Technology in Artificial Intelligence & Machine Learning",
-    "head": "UG",
-    "description": "Candidates must have completed 10+2 with Mathematics and at least 50% marks. A passion for technology and innovation is essential."
+    courseName: "Electronics & Communication Engineering",
+    head: "UG",
+    description: "10+2 with PCM, minimum 50% aggregate. Entrance: AKGCET / JEE Main / Merit-Based.",
   },
   {
-    "courseName": "Bachelor of Technology in Information Technology",
-    "head": "UG",
-    "description": "Candidates should have completed 10+2 with Mathematics and at least 50% marks in aggregate from a recognized board."
+    courseName: "Electrical & Electronics Engineering",
+    head: "UG",
+    description: "10+2 with PCM, minimum 50% aggregate. Entrance: AKGCET / JEE Main / Merit-Based.",
   },
   {
-    "courseName": "Bachelor of Technology in Computer Science and Information Technology",
-    "head": "UG",
-    "description": "Candidates must have completed 10+2 with Mathematics and a minimum of 50% marks in aggregate."
+    courseName: "Mechanical Engineering",
+    head: "UG",
+    description: "10+2 with PCM, minimum 50% aggregate. Entrance: AKGCET / JEE Main / Merit-Based.",
   },
   {
-    "courseName": "Bachelor of Technology in Electronics and Communication Engineering",
-    "head": "UG",
-    "description": "Candidates must have completed 10+2 with Physics and Mathematics, and at least 50% marks in aggregate from a recognized board."
+    courseName: "Civil Engineering",
+    head: "UG",
+    description: "10+2 with PCM, minimum 50% aggregate. Entrance: AKGCET / JEE Main / Merit-Based.",
   },
   {
-    "courseName": "Bachelor of Technology in Mechanical Engineering",
-    "head": "UG",
-    "description": "Candidates should have completed 10+2 with Physics, Chemistry, and Mathematics with a minimum of 50% marks in aggregate."
+    courseName: "BBA (Bachelor of Business Administration)",
+    head: "UG",
+    description: "10+2 in any stream with minimum 50% aggregate. Entrance: AKGCET / Merit-Based.",
   },
   {
-    "courseName": "Bachelor of Technology in Electrical and Electronics Engineering",
-    "head": "UG",
-    "description": "Candidates must have completed 10+2 with Physics and Mathematics and at least 50% marks in aggregate."
+    courseName: "BCA (Bachelor of Computer Applications)",
+    head: "UG",
+    description: "10+2 with Mathematics/Computer Science as one subject. Entrance: AKGCET / Merit-Based.",
   },
   {
-    "courseName": "Bachelor of Technology in Civil Engineering",
-    "head": "UG",
-    "description": "Candidates should have completed 10+2 with Physics, Chemistry, and Mathematics with a minimum of 50% marks in aggregate."
+    courseName: "M.Tech (All Specializations)",
+    head: "PG",
+    description: "B.Tech in relevant discipline with minimum 55% marks. Entrance: AKGCET / Merit-Based.",
   },
   {
-    "courseName": "Master of Technology in Computer Science and Engineering",
-    "head": "PG",
-    "description": "Bachelor's degree in Computer Science or related field with a minimum of 50% marks. Entrance exam scores may be required."
+    courseName: "M.Tech in Computer Science Engineering",
+    head: "PG",
+    description: "B.Tech in relevant discipline with minimum 55% marks. Entrance: AKGCET / Merit-Based.",
   },
   {
-    "courseName": "Master of Technology in Electrical and Electronics Engineering",
-    "head": "PG",
-    "description": "Bachelor's degree in Electrical Engineering or related field with a minimum of 50% marks. Entrance exam scores may be required."
+    courseName: "M.Tech in Electronics & Communication Engineering",
+    head: "PG",
+    description: "B.Tech in relevant discipline with minimum 55% marks. Entrance: AKGCET / Merit-Based.",
   },
   {
-    "courseName": "Master of Technology in Electronics and Communication Engineering",
-    "head": "PG",
-    "description": "Bachelor's degree in Electronics Engineering or related field with a minimum of 50% marks. Entrance exam scores may be required."
+    courseName: "M.Tech in Electrical & Electronics Engineering",
+    head: "PG",
+    description: "B.Tech in relevant discipline with minimum 55% marks. Entrance: AKGCET / Merit-Based.",
   },
   {
-    "courseName": "Master of Technology in Mechanical Engineering",
-    "head": "PG",
-    "description": "Bachelor's degree in Mechanical Engineering or related field with a minimum of 50% marks. Entrance exam scores may be required."
+    courseName: "M.Tech in Mechanical Engineering",
+    head: "PG",
+    description: "B.Tech in relevant discipline with minimum 55% marks. Entrance: AKGCET / Merit-Based.",
   },
   {
-    "courseName": "Master of Computer Applications (MCA)",
-    "head": "PG",
-    "description": "Bachelor's degree in any discipline with Mathematics at 10+2 level, with at least 50% marks from a recognized university. Entrance exam scores may be required."
-  }
+    courseName: "MCA (Master of Computer Applications)",
+    head: "PG",
+    description: "BCA/B.Sc (CS/IT) with minimum 50% marks and Mathematics at 10+2 or UG level. Entrance: AKGCET / Merit-Based.",
+  },
+  {
+    courseName: "MBA (Master of Business Administration)",
+    head: "PG",
+    description: "Graduation in any stream with minimum 50% marks. Entrance: AKGCET / CAT / MAT / XAT / Group Discussion & Interview.",
+  },
+  {
+    courseName: "Ph.D. Programs",
+    head: "Doctoral",
+    description: "Master’s degree in relevant field with minimum 55% marks. Entrance Test + Personal Interview.",
+  },
 ];
+
 
 const AdmissionCriteria = () => {
   const tableHeadings = ["Course Name", "Specialization", "Eligibility Criteria"];

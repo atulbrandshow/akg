@@ -492,15 +492,13 @@ const AIMLDepartment = () => {
             </div>
 
             {/* Fee Structure Section */}
-            <div className="bg-white rounded-2xl shadow-xl p-4 sm:p-8 border border-gray-100">
+            {/* <div className="bg-white rounded-2xl shadow-xl p-4 sm:p-8 border border-gray-100">
               <div className="flex items-center mb-8">
                 <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl flex items-center justify-center mr-4">
                   <IndianRupee className="w-6 h-6 text-white" />
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-novaBold text-gray-800">Fee Structure</h2>
               </div>
-
-              {/* Program Fee Card */}
               <div className="mb-8">
                 <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-t-xl p-4 sm:p-6">
                   <h3 className="text-xl font-novaBold text-white mb-2">Program Fee</h3>
@@ -523,8 +521,6 @@ const AIMLDepartment = () => {
                   </div>
                 </div>
               </div>
-
-              {/* Additional Fees */}
               <div>
                 <h3 className="text-2xl font-novaBold text-gray-800 mb-6">Additional Fees</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -583,8 +579,6 @@ const AIMLDepartment = () => {
                   </div>
                 </div>
               </div>
-
-              {/* Total Cost Summary */}
               <div className="mt-8 bg-gradient-to-r from-gray-800 to-gray-900 rounded-xl p-4 sm:p-6">
                 <div className="flex justify-between items-center text-white">
                   <span className="text-lg font-novaSemi">First Semester Total</span>
@@ -594,7 +588,7 @@ const AIMLDepartment = () => {
                   Includes semester fee, examination fee, lab deposit, and cloud access
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Right Column - Image and CTA */}
@@ -617,7 +611,7 @@ const AIMLDepartment = () => {
               </div>
 
               {/* Quick Stats */}
-              <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100">
+              {/* <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100">
                 <h3 className="text-xl font-novaBold text-gray-800 mb-6">Program Highlights</h3>
                 <div className="space-y-4">
                   <div className="flex items-center">
@@ -671,7 +665,7 @@ const AIMLDepartment = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               {/* CTA Button */}
               <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-6 text-white text-center">

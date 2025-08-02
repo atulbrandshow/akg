@@ -1,6 +1,6 @@
 "use client"
-import { useState, useEffect, useRef } from "react"
-import { useRouter } from "next/navigation"
+import { useEffect, useRef, useState } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
 import { toast } from "react-toastify"
 import { API_NODE_URL } from "@/configs/config"
 import dynamic from "next/dynamic"
@@ -13,9 +13,13 @@ const JoditEditor = dynamic(() => import("jodit-react"), {
     </div>
   ),
 })
-function CreateDepartment() {
+function EditDepartment() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const _id = searchParams.get("_id")
   const editor = useRef()
+
+  const [isLoading, setIsLoading] = useState(true)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
@@ -30,6 +34,54 @@ function CreateDepartment() {
   const [showDropdown, setShowDropdown] = useState(false)
   const [selectedSchool, setSelectedSchool] = useState(null)
   const [errors, setErrors] = useState({})
+  const [originalData, setOriginalData] = useState({})
+
+  useEffect(() => {
+    if (!_id) {
+      toast.error("Department ID is required")
+      router.push("/admin/department-list-details")
+      return
+    }
+
+    const fetchDepartment = async () => {
+      try {
+        const response = await fetch(`${API_NODE_URL}department/get-by-id?id=${_id}`, {
+          credentials: "include",
+        })
+        const result = await response.json()
+
+        if (result.status) {
+          const department = result.data
+          const departmentData = {
+            name: department.name || "",
+            school: department.school?._id || "",
+            description: department.description || "",
+            departmentCode: department.departmentCode || "",
+            programsOffered: Array.isArray(department.programsOffered)
+              ? department.programsOffered
+              : typeof department.programsOffered === "string"
+                ? department.programsOffered.split(",").map((p) => p.trim())
+                : [],
+          }
+          setFormData(departmentData)
+          setOriginalData(departmentData)
+          setSelectedSchool(department.school)
+          setSearchQuery(department.school?.name || "")
+        } else {
+          toast.error(result.message || "Failed to fetch department.")
+          router.push("/admin/department-list-details")
+        }
+      } catch (err) {
+        console.error("Error: ", err)
+        toast.error("An error occurred while fetching department data.")
+        router.push("/admin/department-list=details")
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchDepartment()
+  }, [_id, router])
 
   // Fetch schools for the dropdown
   useEffect(() => {
@@ -49,14 +101,11 @@ function CreateDepartment() {
         setSchools([])
       }
     }
-    fetchSchools()
+    if (searchQuery.trim()) {
+      fetchSchools()
+    }
   }, [searchQuery])
-  const handleShortDescChange = (value) => {
-    setFormData((prev) => ({
-      ...prev,
-      description: value || "",
-    }))
-  }
+
   const validateForm = () => {
     const newErrors = {}
 
@@ -123,6 +172,15 @@ function CreateDepartment() {
     }
   }
 
+  const hasChanges = () => {
+    return JSON.stringify(formData) !== JSON.stringify(originalData)
+  }
+  const handleShortDescChange = (value) => {
+    setFormData((prev) => ({
+      ...prev,
+      description: value || "",
+    }))
+  }
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -131,37 +189,32 @@ function CreateDepartment() {
       return
     }
 
+    if (!hasChanges()) {
+      toast.info("No changes detected")
+      return
+    }
+
     setIsSubmitting(true)
 
     try {
-      const response = await fetch(`${API_NODE_URL}department/add`, {
+      const response = await fetch(`${API_NODE_URL}department/update`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         credentials: "include",
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, _id }),
       })
 
       const result = await response.json()
 
       if (result.status) {
-        toast.success("Department added successfully!")
-        setFormData({
-          name: "",
-          school: "",
-          description: "",
-          departmentCode: "",
-          programsOffered: [],
-        })
-        setSearchQuery("")
-        setSelectedSchool(null)
-        setProgramInput("")
+        toast.success("Department updated successfully!")
         setTimeout(() => {
-          router.push("/admin/department-list")
+          router.push("/admin/-details")
         }, 2000)
       } else {
-        toast.error(result.message || "Failed to add department.")
+        toast.error(result.message || "Failed to update department.")
       }
     } catch (err) {
       console.error("Error:", err)
@@ -191,25 +244,41 @@ function CreateDepartment() {
     },
   ]
 
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="bg-white rounded-2xl shadow-xl p-8 flex items-center space-x-4">
+          <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+          <span className="text-gray-600 font-medium">Loading department data...</span>
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <div className="">
+    <div className="min-h-screen bg-gray-50 p-6">
       {/* Header Section */}
       <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 rounded-2xl p-8 mb-8 shadow-2xl">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <div className="bg-white/20 backdrop-blur-sm rounded-xl p-3">
               <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                />
               </svg>
             </div>
             <div>
-              <h1 className="text-3xl font-novaBold text-white">Add New Department</h1>
-              <p className="text-blue-100 font-novaReg">Create a new academic department</p>
+              <h1 className="text-3xl font-bold text-white mb-2">Edit Department</h1>
+              <p className="text-blue-100">Update department information</p>
             </div>
           </div>
           <button
-            onClick={() => router.push("/admin/department-list")}
-            className="bg-white/20 backdrop-blur-sm font-novaSemi text-white px-4 py-2 rounded-lg hover:bg-white/30 transition-all duration-200 flex items-center space-x-2"
+            onClick={() => router.push("/admin/department-list-details")}
+            className="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-lg hover:bg-white/30 transition-all duration-200 flex items-center space-x-2"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -220,19 +289,36 @@ function CreateDepartment() {
       </div>
 
       {/* Form Section */}
-      <div className="">
+      <div className="max-w-7xl mx-auto">
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
           <div className="bg-gradient-to-r from-gray-50 to-gray-100 px-8 py-6 border-b border-gray-200">
-            <h2 className="text-2xl font-novaBold text-gray-800 mb-1">Department Information</h2>
-            <p className="text-gray-600 font-novaReg">Please fill in all the required information about the department</p>
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-800 mb-2">Department Information</h2>
+                <p className="text-gray-600">Update the department details below</p>
+              </div>
+              {hasChanges() && (
+                <div className="flex items-center text-amber-600 bg-amber-50 px-3 py-2 rounded-lg">
+                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
+                    />
+                  </svg>
+                  <span className="text-sm font-medium">Unsaved changes</span>
+                </div>
+              )}
+            </div>
           </div>
 
           <form onSubmit={handleSubmit} className="p-8">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Form Fields */}
               {formFields.map((field) => (
                 <div key={field.name} className="space-y-2">
-                  <label htmlFor={field.name} className="flex items-center text-sm font-novaSemi text-gray-700 mb-2">
+                  <label htmlFor={field.name} className="flex items-center text-sm font-semibold text-gray-700 mb-2">
                     <span className="text-gray-400 mr-2">{field.icon}</span>
                     {field.label}
                     {field.required && <span className="text-red-500 ml-1">*</span>}
@@ -245,7 +331,7 @@ function CreateDepartment() {
                       value={formData[field.name]}
                       onChange={handleInputChange}
                       placeholder={field.placeholder}
-                      className={`w-full px-4 py-3 border-2 rounded-xl transition-all font-novaReg duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors[field.name]
+                      className={`w-full px-4 py-3 border-2 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors[field.name]
                         ? "border-red-300 bg-red-50"
                         : "border-gray-300 hover:border-gray-400 focus:border-blue-500"
                         }`}
@@ -268,8 +354,8 @@ function CreateDepartment() {
               ))}
 
               {/* School Selection */}
-              <div className="space-y-2">
-                <label htmlFor="school" className="flex items-center text-sm font-novaSemi text-gray-700 mb-2">
+              <div className="lg:col-span-2 space-y-2">
+                <label htmlFor="school" className="flex items-center text-sm font-semibold text-gray-700 mb-2">
                   <span className="text-gray-400 mr-2">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path
@@ -291,7 +377,7 @@ function CreateDepartment() {
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onFocus={() => setShowDropdown(true)}
                     placeholder="Search and select school..."
-                    className={`w-full px-4 py-3 border-2 rounded-xl font-novaReg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.school
+                    className={`w-full px-4 py-3 border-2 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.school
                       ? "border-red-300 bg-red-50"
                       : "border-gray-300 hover:border-gray-400 focus:border-blue-500"
                       }`}
@@ -314,14 +400,28 @@ function CreateDepartment() {
                             className="px-4 py-3 cursor-pointer hover:bg-blue-50 border-b border-gray-100 last:border-b-0 flex items-center justify-between"
                           >
                             <div>
-                              <div className="font-novaSemi text-gray-900">{school.name}</div>
-                              <div className="text-sm font-novaReg text-gray-500">{school.location}</div>
+                              <div className="font-medium text-gray-900">{school.name}</div>
+                              <div className="text-sm text-gray-500">{school.location}</div>
                             </div>
-                            <div className="text-sm font-novaSemi text-gray-400">{school.yearEstablished}</div>
+                            <div className="text-xs text-gray-400">{school.yearEstablished}</div>
                           </div>
                         ))}
                     </div>
                   )}
+
+                  {/* Current School Display */}
+                  {selectedSchool && (
+                    <div className="mt-3 p-3 bg-green-50 border border-green-200 rounded-lg">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <div className="font-medium text-green-800">Selected School:</div>
+                          <div className="text-sm text-green-600">{selectedSchool.name}</div>
+                        </div>
+                        <div className="text-xs text-green-500">{selectedSchool.location}</div>
+                      </div>
+                    </div>
+                  )}
+
                   {errors.school && (
                     <div className="flex items-center mt-2 text-red-600 text-sm">
                       <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -339,8 +439,8 @@ function CreateDepartment() {
               </div>
 
               {/* Programs Offered */}
-              <div className="space-y-2">
-                <label htmlFor="programs" className="flex items-center text-sm font-novaSemi text-gray-700 mb-2">
+              <div className="lg:col-span-2 space-y-2">
+                <label htmlFor="programs" className="flex items-center text-sm font-semibold text-gray-700 mb-2">
                   <span className="text-gray-400 mr-2">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path
@@ -362,24 +462,25 @@ function CreateDepartment() {
                     onChange={(e) => setProgramInput(e.target.value)}
                     onKeyDown={handleProgramAdd}
                     placeholder="Enter program name and press Enter..."
-                    className={`w-full px-4 py-3 border-2 rounded-xl font-novaReg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.programsOffered
+                    className={`w-full px-4 py-3 border-2 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.programsOffered
                       ? "border-red-300 bg-red-50"
                       : "border-gray-300 hover:border-gray-400 focus:border-blue-500"
                       }`}
                   />
                   <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-                    <kbd className="px-2 py-1 text-xs font-novaSemi text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">
+                    <kbd className="px-2 py-1 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg">
                       Enter
                     </kbd>
                   </div>
                 </div>
                 {formData.programsOffered.length > 0 && (
                   <div className="mt-4 space-y-2">
+                    <div className="text-sm font-medium text-gray-700">Added Programs:</div>
                     <div className="flex flex-wrap gap-2">
                       {formData.programsOffered.map((program, index) => (
                         <div
                           key={index}
-                          className="flex items-center bg-blue-100 text-blue-800 px-3 py-1.5 rounded-lg text-sm font-novaSemi"
+                          className="flex items-center bg-blue-100 text-blue-800 px-3 py-2 rounded-lg text-sm font-medium"
                         >
                           <span>{program}</span>
                           <button
@@ -388,7 +489,12 @@ function CreateDepartment() {
                             className="ml-2 text-blue-600 hover:text-blue-800 transition-colors duration-200"
                           >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M6 18L18 6M6 6l12 12"
+                              />
                             </svg>
                           </button>
                         </div>
@@ -410,10 +516,9 @@ function CreateDepartment() {
                   </div>
                 )}
               </div>
-
-              <div className="col-span-4 space-y-4">
+              <div className="lg:col-span-2 space-y-4">
                 {/* Label */}
-                <label htmlFor="description" className="flex items-center text-sm font-novaSemi text-gray-700">
+                <label htmlFor="description" className="flex items-center text-sm font-semibold text-gray-700">
                   <span className="text-gray-400 mr-2">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" />
@@ -427,13 +532,10 @@ function CreateDepartment() {
                 <JoditEditor
                   ref={editor}
                   value={formData.description}
-                  config={{
-                    height: "400px"
-                  }}
                   onBlur={handleShortDescChange}
                   onChange={handleShortDescChange}
-                  className={`w-full border-2 rounded-xl font-novaReg focus:outline-none focus:ring-2 transition-all duration-200 
-                  ${errors.description
+                  className={`w-full border-2 rounded-xl focus:outline-none focus:ring-2 transition-all duration-200 
+      ${errors.description
                       ? "border-red-300 bg-red-50 focus:ring-red-400"
                       : "border-gray-300 hover:border-gray-400 focus:ring-blue-500"}`}
                 />
@@ -448,38 +550,70 @@ function CreateDepartment() {
                   </div>
                 )}
               </div>
+              {/* Description Field */}
+              <div className="lg:col-span-2 space-y-2">
+                <label htmlFor="description" className="flex items-center text-sm font-semibold text-gray-700 mb-2">
+                  <span className="text-gray-400 mr-2">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" />
+                    </svg>
+                  </span>
+                  Description
+                  <span className="text-red-500 ml-1">*</span>
+                </label>
+                <textarea
+                  id="description"
+                  name="description"
+                  value={formData.description}
+                  onChange={handleInputChange}
+                  placeholder="Provide a detailed description of the department, its mission, faculty, and facilities..."
+                  rows="4"
+                  className={`w-full px-4 py-3 border-2 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none ${errors.description
+                    ? "border-red-300 bg-red-50"
+                    : "border-gray-300 hover:border-gray-400 focus:border-blue-500"
+                    }`}
+                />
+                {errors.description && (
+                  <div className="flex items-center mt-2 text-red-600 text-sm">
+                    <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    {errors.description}
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Submit Button */}
             <div className="flex justify-end space-x-4 mt-8 pt-6 border-t border-gray-200">
               <button
                 type="button"
-                onClick={() => router.push("/admin/department-list")}
-                className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-all duration-200 font-novaSemi"
+                onClick={() => router.push("/admin/department-list-details")}
+                className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-all duration-200 font-medium"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                disabled={isSubmitting}
-                className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 font-novaSemi disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
+                disabled={isSubmitting || !hasChanges()}
+                className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 font-semibold disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
               >
                 {isSubmitting ? (
                   <>
                     <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    <span>Creating Department...</span>
+                    <span>Updating Department...</span>
                   </>
                 ) : (
                   <>
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                      />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
-                    <span>Create Department</span>
+                    <span>Update Department</span>
                   </>
                 )}
               </button>
@@ -491,4 +625,4 @@ function CreateDepartment() {
   )
 }
 
-export default CreateDepartment
+export default EditDepartment

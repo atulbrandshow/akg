@@ -130,8 +130,8 @@ const navSections = [
         icon: BriefcaseBusiness,
         label: "Department",
         nestedLinks: [
-          { label: "Add Department", href: "/admin/create-department" },
-          { label: "List of Department", href: "/admin/department-list" },
+          { label: "Add Department", href: "/admin/create-department-details" },
+          { label: "List of Department", href: "/admin/department-list-details" },
         ],
       },
       {

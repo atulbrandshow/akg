@@ -539,7 +539,7 @@ function EditProgramPage({ type, componentType }) {
           "Content-Type": "application/json",
         },
         credentials: "include",
-        body: JSON.stringify({ query: searchTerm, page: 1, limit: 10, type }),
+        body: JSON.stringify({ query: searchTerm, page: 1, limit: 10, type: ['Department', 'School'] }),
       })
       const data = await response.json()
 
@@ -855,7 +855,7 @@ function EditProgramPage({ type, componentType }) {
     }
 
     console.log(payload);
-    
+
 
     setSubmitting(true)
     try {
@@ -955,7 +955,7 @@ function EditProgramPage({ type, componentType }) {
             <div className={`grid grid-cols-1 ${type === "Page" ? "md:grid-cols-3" : "md:grid-cols-2"} gap-6`}>
               <div className="relative">
                 <label htmlFor="parent-page" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Choose Parent Page
+                  Choose School or Department Page
                   <span className="text-red-500 ml-1">*</span>
                 </label>
                 <div className="relative">
@@ -985,10 +985,28 @@ function EditProgramPage({ type, componentType }) {
                       <div
                         key={index}
                         onClick={() => handleSuggestionClick(page)}
-                        className="cursor-pointer px-4 py-3 hover:bg-blue-50 border-b border-gray-100 last:border-b-0 transition-colors duration-150"
+                        className="cursor-pointer px-5 py-2 hover:bg-blue-100/60 border-b border-gray-200 last:border-b-0 transition-all duration-150 rounded-md hover:shadow-sm group"
                       >
-                        <div className="font-novaSemi text-gray-800">{page.name}</div>
-                        {page?.page_id && <div className="text-sm text-gray-500">ID: {page.page_id}</div>}
+                        <div className="font-semibold text-gray-800 text-base group-hover:text-blue-700">
+                          {page.name}
+                        </div>
+
+                        <div className="flex items-center gap-3 mt-1 text-sm text-gray-500">
+                          {page?.type && (
+                            <span
+                              className={`px-2 py-0.5 rounded-full text-xs
+                                                        ${page.type === "School" ? "bg-blue-100 text-blue-700" :
+                                  page.type === "Department" ? "bg-green-100 text-green-700" :
+                                    "bg-gray-100 text-gray-700"}`}
+                            >
+                              {page.type}
+                            </span>
+
+                          )}
+                          {page?.page_id && (
+                            <span className="text-xs">ID: <span className="font-medium text-gray-600">{page.page_id}</span></span>
+                          )}
+                        </div>
                       </div>
                     ))}
                     {hasMore && displayedPages.length > 0 && (
@@ -1424,8 +1442,8 @@ function EditProgramPage({ type, componentType }) {
                   <label
                     htmlFor="galleryimg"
                     className={`mt-4 inline-flex items-center px-4 py-2 text-white text-sm font-medium rounded-lg cursor-pointer transition-colors ${galleryUploadingIndexes.length > 0
-                        ? "bg-gray-400 cursor-not-allowed"
-                        : "bg-blue-600 hover:bg-blue-700"
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-blue-600 hover:bg-blue-700"
                       }`}
                   >
                     {galleryUploadingIndexes.length > 0 ? (

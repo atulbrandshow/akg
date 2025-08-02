@@ -644,7 +644,7 @@ export default function ProgramDynamicPage({ allData, parentPage, type, componen
             <div className={`grid grid-cols-1 md:grid-cols-2  gap-6`}>
               <div className="relative">
                 <label htmlFor="parent-page" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                  Choose Parent Page
+                  Choose School or Department Page
                   <span className="text-red-500 ml-1">*</span>
                 </label>
                 <div className="relative">

@@ -1,5 +1,5 @@
+import CreateDynamicFaculty from "../Components/CreateDynamicFaculty";
 import SideBar from "../Components/SideBar";
-import CreatePage from "./CreateFaculty";
 
 export default function Home() {
   return (
@@ -7,7 +7,7 @@ export default function Home() {
       <div className="flex bg-gray-100">
         <SideBar />
         <div className="pt-10 overflow-x-auto w-full h-screen px-10">
-          <CreatePage />
+          <CreateDynamicFaculty type="Faculty" componentType="faculty-details" />
         </div>
       </div>
     </>

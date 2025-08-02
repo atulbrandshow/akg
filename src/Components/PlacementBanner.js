@@ -1,29 +1,5 @@
 import React from 'react'
 
-const statsData = [
-    {
-        value: "1.13",
-        unit: "CR",
-        description: "International Highest Package Offered",
-    },
-    {
-        value: "33.80",
-        unit: "LPA",
-        description: "National Highest Package Offered",
-    },
-    {
-        value: "11",
-        unit: "LPA",
-        description: "Offered to Approx 306 Students",
-    },
-    {
-        value: "6",
-        unit: "LPA",
-        description: "Offered to 1042 Students",
-    },
-];
-
-
 const PlacementBanner = ({ data }) => {
     const d = data?.pageData;
 

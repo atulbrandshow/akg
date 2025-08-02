@@ -95,6 +95,11 @@ const navSections = [
         label: "Programs",
         href: "/admin/program-list"
       },
+      {
+        icon: Users,
+        label: "Faculty",
+        href: "/admin/faculty-list"
+      },
     ],
   },
   {
@@ -124,15 +129,6 @@ const navSections = [
   {
     title: "Academic Management",
     items: [
-      {
-        icon: Users,
-        label: "Faculty",
-        nestedLinks: [
-          { label: "Add Faculty", href: "/admin/create-faculty" },
-          { label: "List of Faculty", href: "/admin/faculty-list" },
-        ],
-      },
-      
       {
         icon: Users,
         label: "Topper Management",

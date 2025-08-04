@@ -338,8 +338,8 @@ const ITDepartment = () => {
                 </thead>
                 <tbody>
                   <tr className="border-b font-novaReg">
-                    <td className="py-3 px-4 text-gray-700">Semester Fee</td>
-                    <td className="py-3 px-4 text-gray-700">110000/- INR</td>
+                    <td className="py-3 px-4 text-gray-700">Fee Per Annum</td>
+                    <td className="py-3 px-4 text-gray-700">1,75,000/- INR</td>
                   </tr>
                 </tbody>
               </table>
@@ -359,17 +359,10 @@ const ITDepartment = () => {
                 </thead>
                 <tbody>
                   <tr className="border-b font-novaReg">
-                    <td className="py-3 px-4 text-gray-700">Examination Fee</td>
-                    <td className="py-3 px-4 text-gray-700">3500/- INR</td>
+                    <td className="py-3 px-4 text-gray-700">Examination Fee + Security Fee</td>
+                    <td className="py-3 px-4 text-gray-700">25000/- INR</td>
                   </tr>
-                  <tr className="border-b font-novaReg">
-                    <td className="py-3 px-4 text-gray-700">Security</td>
-                    <td className="py-3 px-4 text-gray-700">3000/- INR</td>
-                  </tr>
-                  <tr className="border-b font-novaReg">
-                    <td className="py-3 px-4 text-gray-700">Tech Kit Fee</td>
-                    <td className="py-3 px-4 text-gray-700">5000/- INR (One-time)</td>
-                  </tr>
+                 
                 </tbody>
               </table>
             </div>

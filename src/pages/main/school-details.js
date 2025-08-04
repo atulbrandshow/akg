@@ -182,7 +182,50 @@ const SchoolDetails = ({ data }) => {
   const d = data?.pageData;
 
   console.log(data);
-  
+
+  const items = [];
+  for (let i = 1; i <= 10; i++) {
+    const list_item = d?.[`FS_Item_${i}`];
+
+
+    if (list_item) {
+
+      items.push({
+        list_item,
+      });
+    }
+
+  }
+
+
+  const Objective_items = [];
+  for (let i = 1; i <= 10; i++) {
+
+    const Objective_list = d?.[`Objective-list-${i}`];
+
+    if (Objective_list) {
+      Objective_items.push({
+        Objective_list,
+      });
+    }
+  }
+
+  const Highlight_items = [];
+  for (let i = 1; i <= 10; i++) {
+
+    const Highlight_list = d?.[`Highlight-list-${i}`];
+
+    if (Highlight_list) {
+      Highlight_items.push({
+        Highlight_list,
+      });
+    }
+  }
+
+
+
+
+
 
   const description = "Empowering future engineers with hands-on experience and innovative solutions, our programs prepare students to excel in fields like computer science, mechanical, and civil engineering."
 
@@ -193,30 +236,27 @@ const SchoolDetails = ({ data }) => {
       <section className='max-w-7xl mx-auto px-5 max-sm:px-2 py-10'>
         <div>
           <div className='sm:flex justify-between'>
-            <h2 className='font-novaReg text-4xl md:w-1/2 lg:w-[60%] sm:w-[60%]'>School of Engineering and Technology</h2>
+            <h2 className='font-novaReg text-4xl md:w-1/2 lg:w-[60%] sm:w-[60%]'>{d?.Overview_Title}</h2>
             <button className='lg:px-6 sm:px-3 mt-3 sm:mt-0 py-3 px-5 md:px-4 lg:py-2 text-sm bg-black text-white font-novaSemi uppercase tracking-wider rounded-full hover:bg-gray-300 hover:text-black hover:border border-gray-300 transition duration-200 ease-linear flex items-center lg:gap-2 gap-3 sm:gap-1 md:gap-1'>
               <ArrowDownToLine size={18} strokeWidth={2} /> Download Brochure
             </button>
           </div>
           <h4 className='text-xl font-novaSemi my-3'>Overview</h4>
-          <p className='font-novaReg'>
-            A.K.G. University is committed to fostering an innovative learning environment where students can excel in their academic pursuits and develop their skills for the modern workforce. Recognized as a leading institution in India, A.K.G. provides a comprehensive education that blends theoretical knowledge with practical application.
-          </p>
-          <p className='font-novaReg my-3'>
-            With a focus on student engagement and hands-on learning, A.K.G. offers a dynamic curriculum that encourages creativity, critical thinking, and collaboration. Students are guided by experienced faculty members who are dedicated to nurturing talent and preparing graduates for success in their chosen fields.
-          </p>
-          <p className='font-novaReg'>
-            The mission of A.K.G. University is to empower students through rigorous education, ensuring they become well-rounded professionals capable of addressing the challenges of an ever-evolving global landscape.
-          </p>
+          <p className="leading-relaxed max-sm:text-sm font-novaReg text-justify" dangerouslySetInnerHTML={{ __html: d?.Overview_Description_ }} />
+
         </div>
 
         <div className='mt-5'>
-          <h2 className='font-novaSemi text-3xl'>Financial Statements</h2>
+          <h2 className='font-novaSemi text-3xl'>{d?.FS_Title}</h2>
           <ul className='mt-5 list-disc pl-5 text-cyan-600 font-novaSemi text-sm space-y-3'>
-            <li>Audited Financial Statement 2019-20</li>
-            <li>Audited Financial Statement 2020-21</li>
-            <li>Audited Financial Statement 2021-22</li>
-            <li>Audited Financial Statement 2022-23</li>
+            {items.map((item, index) => {
+              return (
+                <li key={index}>
+                  {item.list_item}
+                </li>
+              )
+            })}
+
           </ul>
         </div>
         <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 py-6 sm:py-10'>
@@ -225,17 +265,19 @@ const SchoolDetails = ({ data }) => {
               <img className='w-8 h-8' src="/image/icons/icon-return-on-investment.png" alt="investment logo" />
             </div>
             <div className='p-4'>
-              <h2 className="text-2xl font-novaBold mb-2 max-lg:text-xl max-md:text-lg">Objective</h2>
+              <h2 className="text-2xl font-novaBold mb-2 max-lg:text-xl max-md:text-lg">{d?.Objective_Title}</h2>
               <div className=''>
-                <p className="">
-                  The programmes under the <strong>A.K.G. University</strong> are designed to enable students to:
-                </p>
+                <p className="leading-relaxed max-sm:text-sm font-novaReg text-justify" dangerouslySetInnerHTML={{ __html: d?.Objective_Description_ }} />
+
                 <ul className='mt-3 list-disc pl-5 font-novaReg space-y-2'>
-                  <li className='leading-5'>Acquire a solid foundation in scientific and mathematical principles necessary for engineering practice.</li>
-                  <li className='leading-5'>Effectively analyze and solve complex engineering problems using innovative approaches.</li>
-                  <li className='leading-5'>Develop an understanding of diverse cultures and global perspectives in technology.</li>
-                  <li className='leading-5'>Cultivate professional integrity, intellectual growth, and a commitment to sustainable practices in engineering.</li>
-                  <li className='leading-5'>Enhance their communication skills to articulate technical information clearly and effectively.</li>
+                  {Objective_items.map((item, index) => {
+                    return (
+                      <li key={index}>
+                        {item.Objective_list}
+                      </li>
+                    )
+                  })}
+
                 </ul>
               </div>
             </div>
@@ -246,13 +288,16 @@ const SchoolDetails = ({ data }) => {
               <img className='w-8 h-8' src="/image/icons/icon-return-on-investment.png" alt="investment logo" />
             </div>
             <div className='p-4'>
-              <h2 className="text-2xl font-novaBold mb-2 max-lg:text-xl max-md:text-lg">Key Highlights</h2>
+              <h2 className="text-2xl font-novaBold mb-2 max-lg:text-xl  max-md:text-lg">{d?.Highlight_Title}</h2>
               <div className=''>
                 <ul className='mt-3 list-disc pl-5 font-novaReg space-y-2'>
-                  <li className='leading-5'>A.K.G. University recognized as a leading institution in engineering education in the region, receiving multiple accolades for academic excellence.</li>
-                  <li className='leading-5'>ISO 9001:2015 Certified Institute, ensuring high-quality education and continuous improvement in all operations.</li>
-                  <li className='leading-5'>Opportunities for engineering students to engage in international internships in countries like the USA, Germany, Canada, and Australia.</li>
-                  <li className='leading-5'>Strong placement record with partnerships with top industries, ensuring students have access to a wide range of career opportunities.</li>
+                    {Highlight_items.map((item, index) => {
+                    return (
+                      <li key={index}>
+                        {item.Highlight_list}
+                      </li>
+                    )
+                  })}
                 </ul>
               </div>
             </div>
@@ -488,14 +533,14 @@ const SchoolDetails = ({ data }) => {
         </div>
       </div>
       <HighlightsSection />
-      <DirectorMessage />
-      <AnnouncementSlider />
-      <ReviewSlider />
-      <FacultySlider />
-      <SliderEvent />
-      <PlacementData placementsData={placementsData} />
-      <Testimonial />
-      <LogoSlider />
+      <DirectorMessage data={d} />
+      <AnnouncementSlider data={d}/>
+      <ReviewSlider data={d}/>
+      <FacultySlider data={d} />
+      <SliderEvent data={d}/>
+      <PlacementData data={d} placementsData={placementsData} />
+      <Testimonial data={d}/>
+      <LogoSlider data={d}/>
     </>
   )
 }

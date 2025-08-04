@@ -1,6 +1,22 @@
 import { GraduationCap, Factory, Earth, BriefcaseBusiness, Sprout } from "lucide-react"
 
-const SchoolHeader = ({ heading, desc, gradientColors, banner }) => {
+const SchoolHeader = ({ heading, desc, gradientColors, banner, data }) => {
+
+    const icons = [GraduationCap, Factory, Earth, BriefcaseBusiness, Sprout]
+
+    const items = [];
+    for (let i = 1; i <= 10; i++) {
+        const title = data?.[`HT-${i}`];
+
+        if (title) {
+            const IconComponent = icons[i % icons.length];
+            items.push({
+                icon: <IconComponent size={24} strokeWidth={1} />,
+                title,
+            });
+        }
+    }
+
     const gradientStyle = {
         background: `linear-gradient(to right, ${gradientColors.join(', ')})`,
     };
@@ -13,26 +29,14 @@ const SchoolHeader = ({ heading, desc, gradientColors, banner }) => {
                         <h2 className='text-4xl max-lg:text-3xl max-md:text-2xl  font-novaReg leading-10'>{heading}</h2>
                         <p className='text-xs mt-4 leading-5'>{desc}</p>
                         <ul className='grid grid-cols-2 gap-5 mt-16'>
-                            <li className='flex items-center gap-2'>
-                                <GraduationCap size={32} strokeWidth={1} />
-                                <p className='font-novaReg'>Educational Mastery</p>
-                            </li>
-                            <li className='flex items-center gap-2'>
-                                <Factory size={28} strokeWidth={1} />
-                                <p className='font-novaReg'>Industry Collaboration</p>
-                            </li>
-                            <li className='flex items-center gap-2'>
-                                <Earth size={32} strokeWidth={1} />
-                                <p className='font-novaReg'>International Outlook</p>
-                            </li>
-                            <li className='flex items-center gap-2'>
-                                <BriefcaseBusiness size={28} strokeWidth={1} />
-                                <p className='font-novaReg'>Flexible Career Paths</p>
-                            </li>
-                            <li className='flex items-center gap-2'>
-                                <Sprout size={32} strokeWidth={1} />
-                                <p className='font-novaReg'>Value for Investment</p>
-                            </li>
+                            {items.map((item, index) => {
+                                return (
+                                    <li key={index} className='flex items-center gap-2'>
+                                        {item.icon}
+                                        <p className='font-novaReg'>{item.title}</p>
+                                    </li>
+                                )
+                            })}
                         </ul>
                     </div>
                 </div>

@@ -174,17 +174,22 @@ const CustomButton = ({ children, onClick, className, active }) => (
     )}
   </button>
 )
-const EngineeringTechnology = () => {
+const SchoolDetails = ({ data }) => {
   const [activeView, setActiveView] = useState("departments")
   const [hoveredProgramme, setHoveredProgramme] = useState(null)
   const [hoveredDepartment, setHoveredDepartment] = useState(null)
+
+  const d = data?.pageData;
+
+  console.log(data);
+  
 
   const description = "Empowering future engineers with hands-on experience and innovative solutions, our programs prepare students to excel in fields like computer science, mechanical, and civil engineering."
 
   const gradientColors = ['#6366F1', '#A855F7', '#EC4899'];
   return (
     <>
-      <SchoolHeader banner="bg-BG17" heading="AKGU School of Engineering and Technology" desc={description} gradientColors={gradientColors} />
+      <SchoolHeader data={d} banner="bg-BG17" heading={d?.Hero_Title} desc={description} gradientColors={gradientColors} />
       <section className='max-w-7xl mx-auto px-5 max-sm:px-2 py-10'>
         <div>
           <div className='sm:flex justify-between'>
@@ -495,4 +500,4 @@ const EngineeringTechnology = () => {
   )
 }
 
-export default EngineeringTechnology
+export default SchoolDetails

@@ -333,8 +333,8 @@ const DSDepartment = () => {
                 </thead>
                 <tbody>
                   <tr className="border-b font-novaReg">
-                    <td className="py-3 px-4 text-gray-700">Semester Fee</td>
-                    <td className="py-3 px-4 text-gray-700">135000/- INR</td>
+                    <td className="py-3 px-4 text-gray-700">Fee Per Annum</td>
+                    <td className="py-3 px-4 text-gray-700">1,75,000/- INR</td>
                   </tr>
                 </tbody>
               </table>
@@ -354,17 +354,17 @@ const DSDepartment = () => {
                 </thead>
                 <tbody>
                   <tr className="border-b font-novaReg">
-                    <td className="py-3 px-4 text-gray-700">Examination Fee</td>
-                    <td className="py-3 px-4 text-gray-700">4000/- INR</td>
+                    <td className="py-3 px-4 text-gray-700">Examination Fee + Security Fee</td>
+                    <td className="py-3 px-4 text-gray-700">25000/- INR</td>
                   </tr>
-                  <tr className="border-b font-novaReg">
+                  {/* <tr className="border-b font-novaReg">
                     <td className="py-3 px-4 text-gray-700">Data Lab Security Deposit</td>
                     <td className="py-3 px-4 text-gray-700">5000/- INR</td>
                   </tr>
                   <tr className="border-b font-novaReg">
                     <td className="py-3 px-4 text-gray-700">Cloud Computing Lab Fee</td>
                     <td className="py-3 px-4 text-gray-700">6000/- INR</td>
-                  </tr>
+                  </tr> */}
                 </tbody>
               </table>
             </div>

@@ -28,7 +28,7 @@ import HighlightSlider from '@/Components/HighlightSlider';
 import Breadcrumb from '@/Components/Breadcrumb';
 
 
-const AIMLDepartment = () => {
+const DepartmentDetails = () => {
   const features = [
     "Triple-Level Certification Program.",
     "15-hour Online/Blended Course with one credit for each level, aligned with industry standards.",
@@ -303,7 +303,7 @@ const AIMLDepartment = () => {
         </div>
       </main>
       {/* Section 1: Computer Science & Engineering */}
-      <section className="relative h-[40vh] xl:h-[50vh] bg-cover flex flex-col justify-between lg:p-10">
+      <section className="relative bg-cover flex flex-col justify-between py-6 sm:py-20 md:py-32">
         <div className="absolute inset-0 bg-BG42 bg-cover bg-fixed grayscale">
           <div className="absolute inset-0 bg-gray-800 bg-opacity-90" />
         </div>
@@ -331,7 +331,7 @@ const AIMLDepartment = () => {
 
 
       {/* Section 2: Blue Background with 3 Cards */}
-      <section className="bg-blue-600 px-8 py-16 h-full xl:h-[50vh]">
+      <section className="bg-blue-600 px-8 py-16 xl:pt-16">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-[1400px] mx-auto xl:-translate-y-40">
           {/* Department at a Glance Card */}
           <div className="bg-white rounded-lg p-6 shadow-lg">
@@ -929,4 +929,4 @@ const AIMLDepartment = () => {
   )
 }
 
-export default AIMLDepartment
+export default DepartmentDetails

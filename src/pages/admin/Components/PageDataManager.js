@@ -370,7 +370,7 @@ const PageDataManager = () => {
             />
             <p className="text-sm text-gray-500">Upload multiple images (JPG, PNG, GIF, WebP)</p>
             {formData.value && Array.isArray(formData.value) && formData.value.length > 0 && (
-              <div className="mt-3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+              <div className="mt-3 flex flex-wrap gap-2">
                 {formData.value.map((path, index) => (
                   <div key={index} className="relative group">
                     <img
@@ -620,7 +620,7 @@ const PageDataManager = () => {
         }
 
         return (
-          <div className="mt-2 grid grid-cols-4 gap-2"> 
+          <div className="mt-2 flex flex-wrap gap-2"> 
             {imageUrls.map((path, index) => (
               <img
                 key={index}

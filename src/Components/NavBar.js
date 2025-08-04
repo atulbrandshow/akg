@@ -125,7 +125,7 @@ export default function NavBar() {
                   />
                 </Link>
               </div>
-              <div className='text-indigo-950 flex flex-col items-center font-novaBold leading-none'>
+              <div className='sideimgs text-indigo-950 flex flex-col items-center font-novaBold leading-none'>
                 <h1 className='text-4xl tracking-tighter'>AKG</h1>
                 <h2 className='-mt-2 sm:-mt-1.5 text-xs font-semibold tracking-tight'>UNIVERSITY</h2>
               </div>

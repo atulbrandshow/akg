@@ -25,15 +25,21 @@ const TableList = ({ type, title, subTitle }) => {
                 credentials: "include",
             })
             const data = await response.json()
-            const fetchedData = data.data || []
-            const parentItems = fetchedData.filter(item => item.parent_id === 0);
-            const childItems = fetchedData
+            const fetchedData = data.data || [];
+
+            // Separate HomePage items first
+            const homePageItems = fetchedData.filter(item => item.ComponentType === "HomePage");
+
+            // Then, separate the rest (non-HomePage)
+            const otherItems = fetchedData.filter(item => item.ComponentType !== "HomePage");
+
+            const parentItems = otherItems.filter(item => item.parent_id === 0);
+            const childItems = otherItems
                 .filter(item => item.parent_id !== 0)
                 .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // or 'updatedAt'
 
-            // Merge the two
-            const sortedData = [...parentItems, ...childItems];
-
+            // Merge HomePage items first, then parent items, then children
+            const sortedData = [...homePageItems, ...parentItems, ...childItems];
 
             setNewsAndEvents(sortedData);
             setFilteredData(sortedData);
@@ -371,9 +377,8 @@ const TableList = ({ type, title, subTitle }) => {
                                                 }
                                                 <td className="px-6 py-4 whitespace-nowrap text-center">
                                                     <div className="flex items-center justify-center space-x-2">
-                                                        {/* Add Page Details Button */}
                                                         {
-                                                            (type === "Program" || type === "School" || type === "Department") &&
+                                                            (type === "Program" || type === "School" || type === "Department" || event.ComponentType === "HomePage") &&
                                                             <button
                                                                 onClick={() => router.push(
                                                                     `/admin/page-content-manager` +

@@ -5,21 +5,22 @@ import MainSection from "@/Components/MainSection";
 import NotificationSlider from "@/Components/NotificationSlider";
 
 export default function HomePage({ data }) {
+  
   return (
     <>
       <MainSection data={data} />
       <TopCard data={data} />
-      <ExploreCourses data={data}/>
+      <ExploreCourses data={data} />
       <SlickSlider data={data} />
-      <NotificationSlider />
-      <MilestonesSection />
-      <PlacementHighlights />
-      <LogoSlider />
-      <CampusSlider />
-      <StudentReviews />
-      <NewsEvents />
-      <FooterCard />
-      <ResearchEnvironment />
+      <NotificationSlider data={data} />
+      <MilestonesSection data={data} />
+      <PlacementHighlights data={data} />
+      <LogoSlider data={data} />
+      <CampusSlider data={data} />
+      <StudentReviews data={data} />
+      <NewsEvents data={data} />
+      <FooterCard data={data} />
+      <ResearchEnvironment data={data} />
     </>
   );
 }

@@ -1,104 +1,88 @@
-"use client";
-import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
-
-const cardDetails = [
-  {
-    id: 1,
-    title: "Honored at the Tech Startups Conclave & Awards 2022",
-    subheading: "Ishu Bansal",
-    images: [
-      "/image/home/IshuBansal.jpg",
-      "/image/home/AKTULITERARY1.jpg",
-      "/image/home/AKTULITERARY2.jpg",
-    ],
-  },
-  {
-    id: 2,
-    title: "The AKGU Robotics club is a student chapter formed on 8'MAY '2013",
-    subheading: "Robotics Club",
-    images: [
-      "/image/home/RoboticsHome.jpg",
-      "/image/home/Robocon2018_1.jpg",
-      "/image/home/Robocon2022_3.jpg",
-    ],
-  },
-  {
-    id: 3,
-    title: "Explore ICI Membership Benefits and Advanced Concrete Technology",
-    subheading: "A Grand Inaugural Ceremony",
-    images: [
-      "/image/home/ICI4.jpg",
-      "/image/home/ICI2.jpg",
-      "/image/home/ICI3.jpg",
-    ],
-  },
-  {
-    id: 4,
-    title: "Developing Top Engineers and Technicians for a Thriving Industry",
-    subheading: "ISTE",
-    images: [
-      "/image/home/iste.jpg",
-      "/image/home/Robocon2015_4.jpg",
-      "/image/home/Robocon2015_5.jpg",
-    ],
-  },
-  {
-    id: 5,
-    title: "SAE International: A Century of Engineering Excellence",
-    subheading: "SAE International",
-    images: [
-      "/image/home/Aacar2.jpg",
-      "/image/home/Aacar5.jpg",
-      "/image/home/SUPRA3.jpg",
-    ],
-  },
-  {
-    id: 6,
-    title: "Celebrating Future Innovators in Robotics and Automation",
-    subheading: "Robotics Competition",
-    images: [
-      "/image/home/Mitsubishi_1.jpg",
-      "/image/home/Mitsubishi_3.jpg",
-      "/image/home/Mitsubishi_2.jpg",
-    ],
-  },
-];
+"use client"
+import { IMAGE_PATH } from "@/configs/config"
+import { useState, useEffect } from "react"
 
 export default function SlickSlider({ data }) {
-  const router = useRouter()
-  const [extraComponentData, setExtraComponentData] = useState(data?.extraComponentData?.holder4);
-  const [stats, setStats] = useState([])
-  useEffect(() => {
-    if (data) {
-      setExtraComponentData(data?.extraComponentData?.holder4);
-      setStats(data?.extraComponentData?.holder4?.extraData[0]?.extraData || [])
+  const d = data?.pageData
+  const words = d?.Vibrant_Journey_Title?.trim().split(" ")
+  const last = words.slice(-2).join(" ") // Get last 2 words
+  const first = words.slice(0, -2).join(" ") // Get everything except last 2
+
+  const stats = []
+  for (let i = 1; i <= 10; i++) {
+    const count = d?.[`VJC-${i}`]
+    const title = d?.[`VJT-${i}`]
+    const desc = d?.[`VJD-${i}`]
+
+    if (count && title && desc) {
+      stats.push({
+        count,
+        title,
+        desc,
+      })
     }
-  }, [data])
+  }
 
-  const [imageIndex, setImageIndex] = useState(
-    cardDetails.reduce((acc, item) => {
-      acc[item.id] = 0; // Initialize each item's index to 0
-      return acc;
-    }, {})
-  );
+  // Create cardDetails from API data
+  const cardDetails = []
+  for (let i = 1; i <= 10; i++) {
+    const title = d?.[`VJC-Title-${i}`]
+    const subheading = d?.[`VJC-SubHeading-${i}`]
+    const images = d?.[`VJC-Images-${i}`]
 
+    if (title && subheading && images) {
+      cardDetails.push({
+        id: i,
+        title,
+        subheading,
+        images,
+      })
+    }
+  }
+
+  const [imageIndex, setImageIndex] = useState({})
+
+  // Initialize imageIndex when cardDetails changes
   useEffect(() => {
-    const intervals = cardDetails.map((item, idx) => {
-      return setInterval(() => {
-        setImageIndex((prevIndex) => {
-          const newIndex = { ...prevIndex };
-          newIndex[item.id] = (prevIndex[item.id] + 1) % item.images.length; // Increment index
-          return newIndex;
-        });
-      }, (idx + 1) * 1000); // Set different intervals for each item
-    });
+    if (cardDetails.length > 0) {
+      const initialIndex = cardDetails.reduce((acc, item) => {
+        acc[item.id] = 0
+        return acc
+      }, {})
+      setImageIndex(initialIndex)
+    }
+  }, [cardDetails.length])
 
-    // Clear all intervals on component unmount
+  // Set up staggered intervals for each card
+  useEffect(() => {
+    if (cardDetails.length === 0) return
+
+    const intervals = cardDetails.map((item, idx) => {
+      return setInterval(
+        () => {
+          setImageIndex((prevIndex) => {
+            const newIndex = { ...prevIndex }
+            if (item.images && item.images.length > 0) {
+              newIndex[item.id] = (prevIndex[item.id] + 1) % item.images.length
+            }
+            return newIndex
+          })
+        },
+        (idx + 1) * 1000,
+      ) // Different timing for each card: 1s, 2s, 3s, etc.
+    })
+
+    // Clear all intervals on cleanup
     return () => {
-      intervals.forEach(clearInterval);
-    };
-  }, [cardDetails]);
+      intervals.forEach(clearInterval)
+    }
+  }, [cardDetails.length]) // Only depend on length to avoid recreating intervals unnecessarily
+
+  const getGradientClass = (title) => {
+    return title.toLowerCase() === "engineering"
+      ? "bg-gradient-to-r from-blue-600 to-violet-600"
+      : "bg-gradient-to-tr from-amber-500 to-red-600"
+  }
 
   return (
     <>
@@ -106,80 +90,55 @@ export default function SlickSlider({ data }) {
         <div className="break1:max-w-[1500px] break2:max-w-[1320px] break3:max-w-[1200px] break4:max-w-[1040px] mx-auto">
           <header className="text-center mb-8 max-xl:mb-5">
             <h1 className="text-[42px] font-novaReg max-lg:text-4xl max-md:text-3xl max-sm:px-4 text-gray-700">
-              {extraComponentData?.param?.split("|")[0]}{" "}
+              {first}{" "}
               <span className="font-novaSemi bg-text-gradient bg-clip-text text-transparent animate-gradient">
-                {extraComponentData?.param?.split("|")[1]}
+                {last}
               </span>
             </h1>
           </header>
-
           <div className="grid grid-cols-12 gap-4">
             <div className="col-span-4 max-lg:col-span-12 max-lg:mb-4 flex items-center relative">
               {/* Unique Design Elements */}
-              <div
-                className="absolute left-[-30%] top-[-10%] h-64 w-64 transform rotate-45 bg-gradient-to-br from-yellow-300 via-yellow-500 to-orange-500 opacity-30 blur-xl rounded-full z-0"
-              />
-              <div
-                className="absolute max-lg:hidden right-[-20%] bottom-[20%] h-48 w-48 transform -rotate-45 bg-gradient-to-br from-amber-500 via-amber-700 to-amber-900 opacity-30 blur-xl rounded-full z-0"
-              />
-              <div
-                className="absolute left-[30%] top-[70%] h-32 w-32 transform rotate-12 bg-gradient-to-br from-red-400 via-red-600 to-red-800 opacity-30 blur-xl rounded-full z-0"
-              />
-
+              <div className="absolute left-[-30%] top-[-10%] h-64 w-64 transform rotate-45 bg-gradient-to-br from-yellow-300 via-yellow-500 to-orange-500 opacity-30 blur-xl rounded-full z-0" />
+              <div className="absolute max-lg:hidden right-[-20%] bottom-[20%] h-48 w-48 transform -rotate-45 bg-gradient-to-br from-amber-500 via-amber-700 to-amber-900 opacity-30 blur-xl rounded-full z-0" />
+              <div className="absolute left-[30%] top-[70%] h-32 w-32 transform rotate-12 bg-gradient-to-br from-red-400 via-red-600 to-red-800 opacity-30 blur-xl rounded-full z-0" />
               {/* Left Section */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 max-lg:grid-cols-2 max-lg:px-10 max-sm:px-5 max-[400px]:px-2 z-10 relative max-lg:w-full">
-                <article className="border-r border-b border-gray-300 p-6 max-xl:p-4 leading-5 max-lg:text-center">
-                  <h2 className="text-5xl xl:text-5xl font-novaThin mb-2 max-lg:text-3xl max-lg:mb-3 text-gray-700">
-                    {stats[0]?.param.split("|")[0] || 282}
-                  </h2>
-                  <span className="bg-gradient-to-tr from-amber-500 to-red-600 text-white py-1.5 max-[400px]:py-1 max-[400px]:text-xs mb-2 px-2 text-sm uppercase font-novaBold rounded-md font-bold">
-                    {stats[0]?.param.split("|")[1] || "Companies"}
-                  </span>
-                  <p className="mt-3 text-gray-600 text-[13px] font-novaReg max-md:text-xs leading-4" dangerouslySetInnerHTML={{ __html: stats[0]?.paramDesc }} />
-                </article>
-
-                <article className="border-b border-gray-300 p-6 max-xl:p-4 leading-5 max-lg:text-center">
-                  <h2 className="text-5xl xl:text-5xl font-novaThin mb-2 max-lg:text-3xl max-lg:mb-3 text-gray-700">
-                    {stats[1]?.param.split("|")[0] || 1406}
-                  </h2>
-                  <span className="bg-gradient-to-tr from-amber-500 to-red-600 text-white py-1.5 max-[400px]:py-1 max-[400px]:text-xs mb-2 px-2 text-sm uppercase font-novaBold rounded-md font-bold">
-                    {stats[1]?.param.split("|")[1] || "placements"}
-                  </span>
-                  <p className="mt-3 text-gray-600 text-[13px] font-novaReg max-md:text-xs leading-4" dangerouslySetInnerHTML={{ __html: stats[1]?.paramDesc }} />
-                </article>
-
-                <article className="border-r border-gray-300 p-6 max-xl:p-4 leading-5 max-lg:text-center">
-                  <h2 className="text-5xl xl:text-5xl font-novaThin mb-2 max-lg:text-3xl max-lg:mb-3 text-gray-700">
-                    <span className="whitespace-nowrap">
-                      {stats[2]?.param.split("|")[0] || 33.80}
-                      <span className="text-gray-600 font-novaLight text-xl max-xl:-ml-3 max-lg:-ml-2 pr-5 max-2xl:text-xl max-md:text-lg max-sm:text-base">
-                        {"LPA"}
+                {stats.map((item, i) => {
+                  const hasUnit = item.count.includes("LPA") || item.count.includes("CR")
+                  const [value, unit] = hasUnit ? item.count.split(" ") : [item.count, ""]
+                  return (
+                    <article
+                      key={i}
+                      className={`p-6 max-xl:p-4 leading-5 max-lg:text-center ${
+                        i < 2 ? "border-b" : ""
+                      } ${i % 2 === 0 ? "border-r" : ""} border-gray-300`}
+                    >
+                      <h2 className="text-5xl xl:text-5xl font-novaThin mb-2 max-lg:text-3xl max-lg:mb-3 text-gray-700">
+                        <span className="whitespace-nowrap">
+                          {value}
+                          {unit && (
+                            <span className="text-gray-600 font-novaLight text-xl pr-5 max-2xl:text-xl max-md:text-lg max-sm:text-base">
+                              {unit}
+                            </span>
+                          )}
+                        </span>
+                      </h2>
+                      <span
+                        className={`${getGradientClass(
+                          item.title,
+                        )} text-white py-1.5 max-[400px]:py-1 max-[400px]:text-xs mb-2 px-2 text-sm uppercase font-novaBold rounded-md font-bold`}
+                      >
+                        {item.title}
                       </span>
-                    </span>
-                  </h2>
-                  <span className="bg-gradient-to-r from-blue-600 to-violet-600 text-white py-1.5 max-[400px]:py-1 max-[400px]:text-xs mb-2 px-2 text-sm uppercase font-novaBold rounded-md font-bold">
-                    {stats[2]?.param.split("|")[1] || "Engineering"}
-                  </span>
-                  <p className="mt-3 text-gray-600 text-[13px] font-novaReg max-md:text-xs leading-4" dangerouslySetInnerHTML={{ __html: stats[2]?.paramDesc }} />
-                </article>
-
-                <article className="p-6 max-xl:p-4 leading-5 max-lg:text-center">
-                  <h2 className="text-5xl xl:text-5xl font-novaThin mb-2 max-lg:text-3xl max-lg:mb-3 text-gray-700">
-                    <span className="whitespace-nowrap">
-                      {stats[3]?.param.split("|")[0] || 1.13}
-                      <span className="text-gray-600 font-novaLight text-xl max-xl:-ml-3 max-lg:-ml-2 max-2xl:text-xl max-md:text-lg max-sm:text-base">
-                        CR
-                      </span>
-                    </span>
-                  </h2>
-                  <span className="bg-gradient-to-r from-blue-600 to-violet-600 text-white py-1.5 max-[400px]:py-1 max-[400px]:text-xs mb-2 px-2 text-sm uppercase font-novaBold rounded-md font-bold">
-                    {stats[3]?.param.split("|")[1] || "Engineering"}
-                  </span>
-                  <p className="mt-3 text-gray-600 text-[13px] font-novaReg max-md:text-xs leading-4" dangerouslySetInnerHTML={{ __html: stats[3]?.paramDesc }} />
-                </article>
+                      <p className="mt-3 w-32 max-lg:mx-auto text-gray-600 text-[13px] font-novaReg max-md:text-xs leading-4">
+                        {item.desc}
+                      </p>
+                    </article>
+                  )
+                })}
               </div>
             </div>
-
             {/* Right Section */}
             <div className="col-span-8 max-lg:col-span-12 max-lg:mx-auto">
               <section className="grid grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1">
@@ -189,7 +148,8 @@ export default function SlickSlider({ data }) {
                     className="group relative h-[20rem] w-full max-sm:h-80 max-sm:w-72 max-2xl:w-64 max-2xl:h-80 max-xl:w-52 max-xl:h-72 max-lg:h-96 max-lg:w-80 max-md:w-60 max-md:h-80 bg-white shadow-md overflow-hidden"
                   >
                     <img
-                      src={item.images[imageIndex[item.id] || 0]}
+                      key={`${item.id}-${imageIndex[item.id] || 0}`}
+                      src={IMAGE_PATH + item.images[imageIndex[item.id] || 0]}
                       alt={item.title}
                       className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
                     />
@@ -199,9 +159,7 @@ export default function SlickSlider({ data }) {
                     />
                     <div className="absolute bottom-0 left-0 p-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                       <blockquote>
-                        <p className="text-xs uppercase text-white">
-                          {item.subheading}
-                        </p>
+                        <p className="text-xs uppercase text-white">{item.subheading}</p>
                       </blockquote>
                       <figcaption className="mt-3 border-t border-white/20 pt-2">
                         <p className="font-novaReg">
@@ -219,5 +177,5 @@ export default function SlickSlider({ data }) {
         </div>
       </section>
     </>
-  );
+  )
 }

@@ -31,11 +31,11 @@ export default function PlacementHighlights() {
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mt-6">
                     <div className="text-start">
                         <p className="text-2xl md:text-3xl lg:text-5xl font-novaThin mt-4">1406</p>
-                        <p className="text-sm md:text-base font-novaReg leading-none mt-2">Placement <br /> Offers</p>
+                        <p className="text-sm md:text-base font-novaReg leading-none mt-2">Placement Offers</p>
                     </div>
                     <div className="text-start">
                         <p className="text-2xl md:text-3xl lg:text-5xl font-novaThin mt-4">282</p>
-                        <p className="text-sm md:text-base font-novaReg leading-none mt-2">Company <br /> Visits</p>
+                        <p className="text-sm md:text-base font-novaReg leading-none mt-2">Company Visits</p>
                     </div>
                     <div className="text-start">
                         <p className="text-2xl md:text-3xl lg:text-5xl font-novaThin mt-4">20 <small className="font-novaLight -ml-1 text-lg">LPA</small></p>

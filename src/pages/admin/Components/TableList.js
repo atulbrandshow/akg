@@ -302,12 +302,12 @@ const TableList = ({ type, title, subTitle }) => {
                                         filteredData.map((event, index) => (
                                             <tr
                                                 key={event._id}
-                                                className={`transition-colors duration-150 ${type !== "Page" && index === 0 && "bg-purple-100"}`}
+                                                className={`transition-colors duration-150`}
                                             >
                                                 <td className="px-2 py-4">
                                                     <div className="flex items-center">
                                                         <div className="ml-4">
-                                                            <div className="text-sm font-novaSemi text-gray-900 line-clamp-2">{type !== "Page" && index === 0 && "Main Page -"} {event.name}</div>
+                                                            <div className="text-sm font-novaSemi text-gray-900 line-clamp-2">{event.name}</div>
                                                         </div>
                                                     </div>
                                                 </td>

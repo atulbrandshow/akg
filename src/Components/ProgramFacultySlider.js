@@ -3,10 +3,13 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { facultyData } from '@/Json/BtechFacultyData';
+import { IMAGE_PATH } from '@/configs/config';
 
-const ProgramFacultySlider = () => {
+const ProgramFacultySlider = ({ data }) => {
   const sliderRef = useRef(null);
   const [autoSlide, setAutoSlide] = useState(true);
+
+  const facultyData = data?.faculties;
 
   const scroll = (direction) => {
     if (sliderRef.current) {
@@ -25,15 +28,6 @@ const ProgramFacultySlider = () => {
     return () => clearInterval(interval); // Clear interval on component unmount
   }, [autoSlide]);
 
-  const handleUserScroll = (direction) => {
-    setAutoSlide(false); // Stop auto sliding when the user interacts
-    scroll(direction);
-
-    // Restart auto sliding after a delay
-    setTimeout(() => {
-      setAutoSlide(true);
-    }, 5000); // 5-second delay before resuming auto sliding
-  };
 
   return (
     <section className="relative px-4 py-8 md:px-6 lg:px-8">
@@ -50,11 +44,11 @@ const ProgramFacultySlider = () => {
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {facultyData?.map((faculty) => (
-            <li key={faculty.id} className="flex-shrink-0 snap-start md:mr-6 last:mr-0 px-4">
+            <li key={faculty._id} className="flex-shrink-0 snap-start md:mr-6 last:mr-0 px-4">
               <div className="relative flex aspect-[3/4] w-64 sm:w-72 md:w-80 shrink-0 flex-col justify-end overflow-hidden rounded-2xl md:rounded-3xl">
                 <img
                   alt={faculty.name}
-                  src={faculty.img}
+                  src={IMAGE_PATH + faculty.banner_img}
                   className="absolute inset-0 h-full w-full object-cover"
                 />
                 <div
@@ -66,7 +60,7 @@ const ProgramFacultySlider = () => {
                     <p className="text-lg md:text-xl text-white leading-snug">
                       {faculty.name}
                     </p>
-                    <span className='text-sm max-sm:text-xs text-gray-400'>{faculty.designation} | {faculty.education}</span>
+                    <span className='text-sm max-sm:text-xs text-gray-400'>{faculty.param5}</span>
                   </blockquote>
                 </figure>
               </div>

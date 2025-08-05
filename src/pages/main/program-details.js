@@ -24,7 +24,7 @@ const ProgramDetails = ({ data }) => {
             <FeeStructure data={data} />
             <InternationalTieUps data={data} />
             <EligibilityCriteriaUnique data={data} />
-            <ProgramFacultySlider />
+            <ProgramFacultySlider data={data} />
             <DropdownsUI dropdownData={dropdownJsonData} />
         </section>
     )

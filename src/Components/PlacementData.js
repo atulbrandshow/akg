@@ -1,8 +1,6 @@
 import React from 'react'
 
 const PlacementData = ({ data }) => {
-    console.log(data);
-    
     const placementsData = []
     for (let i = 1; i <= 10; i++) {
         const title = data?.[`Placement-Title-${i}`]

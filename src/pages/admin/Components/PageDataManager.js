@@ -7,7 +7,15 @@ import { useSearchParams } from "next/navigation"
 import { uploadImages } from "@/utills/ImageUpload"
 
 // Dynamically import JoditEditor to avoid SSR issues
-const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false })
+const JoditEditor = dynamic(() => import("jodit-react"), {
+  ssr: false,
+  loading: () => (
+    <div className="flex items-center justify-center h-32 bg-gray-50 rounded-lg">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+      <span className="ml-2 text-gray-600">Loading editor...</span>
+    </div>
+  ),
+})
 
 const PageDataManager = () => {
   const searchParams = useSearchParams()
@@ -515,65 +523,7 @@ const PageDataManager = () => {
       case "description":
         return (
           <div className="space-y-2">
-            <JoditEditor
-              ref={editorRef}
-              value={formData.value}
-              onChange={handleDescChange}
-              config={{
-                readonly: false,
-                height: 300,
-                toolbar: true,
-                spellcheck: true,
-                language: "en",
-                toolbarButtonSize: "medium",
-                toolbarAdaptive: false,
-                showCharsCounter: true,
-                showWordsCounter: true,
-                showXPathInStatusbar: false,
-                askBeforePasteHTML: true,
-                askBeforePasteFromWord: true,
-                buttons: [
-                  "source",
-                  "|",
-                  "bold",
-                  "strikethrough",
-                  "underline",
-                  "italic",
-                  "|",
-                  "ul",
-                  "ol",
-                  "|",
-                  "outdent",
-                  "indent",
-                  "|",
-                  "font",
-                  "fontsize",
-                  "brush",
-                  "paragraph",
-                  "|",
-                  "image",
-                  "link",
-                  "table",
-                  "|",
-                  "align",
-                  "undo",
-                  "redo",
-                  "|",
-                  "hr",
-                  "eraser",
-                  "copyformat",
-                  "|",
-                  "symbol",
-                  "fullsize",
-                ],
-                uploader: {
-                  insertImageAsBase64URI: true,
-                },
-                width: "100%",
-                minHeight: 200,
-              }}
-              className="w-full border rounded-lg"
-            />
+            <JoditEditor ref={editorRef} value={formData.value} onBlur={handleDescChange} />
             <p className="text-sm text-gray-500">Use the Description text editor to format your content</p>
           </div>
         )
@@ -620,7 +570,7 @@ const PageDataManager = () => {
         }
 
         return (
-          <div className="mt-2 flex flex-wrap gap-2"> 
+          <div className="mt-2 flex flex-wrap gap-2">
             {imageUrls.map((path, index) => (
               <img
                 key={index}
@@ -865,13 +815,13 @@ const PageDataManager = () => {
   // Group parameters by type
   const groupedParams = groupByType
     ? filteredParams.reduce((groups, param) => {
-        const type = param.dataType
-        if (!groups[type]) {
-          groups[type] = []
-        }
-        groups[type].push(param)
-        return groups
-      }, {})
+      const type = param.dataType
+      if (!groups[type]) {
+        groups[type] = []
+      }
+      groups[type].push(param)
+      return groups
+    }, {})
     : { all: filteredParams }
 
   // Get unique data types for filter
@@ -883,9 +833,8 @@ const PageDataManager = () => {
         {/* Notification */}
         {notification.show && (
           <div
-            className={`fixed top-4 right-4 z-50 px-6 py-4 rounded-lg shadow-lg transition-all duration-300 transform ${
-              notification.type === "error" ? "bg-red-500 text-white" : "bg-green-500 text-white"
-            }`}
+            className={`fixed top-4 right-4 z-50 px-6 py-4 rounded-lg shadow-lg transition-all duration-300 transform ${notification.type === "error" ? "bg-red-500 text-white" : "bg-green-500 text-white"
+              }`}
           >
             <div className="flex items-center justify-between">
               <span className="font-novaReg">{notification.message}</span>
@@ -1167,11 +1116,10 @@ const PageDataManager = () => {
             <div className="flex items-center">
               <button
                 onClick={() => setGroupByType(!groupByType)}
-                className={`px-4 py-3 rounded-lg font-novaSemi transition-all duration-200 flex items-center space-x-2 ${
-                  groupByType
+                className={`px-4 py-3 rounded-lg font-novaSemi transition-all duration-200 flex items-center space-x-2 ${groupByType
                     ? "bg-blue-100 text-blue-700 hover:bg-blue-200"
                     : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                }`}
+                  }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14-7H5m14 14H5" />
@@ -1300,9 +1248,8 @@ const PageDataManager = () => {
                               </span>
                             )}
                             <span
-                              className={`px-2 py-1 rounded-full text-xs font-novaReg ${
-                                param.status ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
-                              }`}
+                              className={`px-2 py-1 rounded-full text-xs font-novaReg ${param.status ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
+                                }`}
                             >
                               {param.status ? "Published" : "Draft"}
                             </span>

@@ -21,10 +21,10 @@ const SchoolHeader = ({ heading, desc, gradientColors, banner, data }) => {
         background: `linear-gradient(to right, ${gradientColors.join(', ')})`,
     };
     return (
-        <section className={`relative ${banner} bg-cover bg-top w-full text-white`}>
+        <section className={`relative ${banner} bg-cover max-lg:bg-right bg-top h-[70vh] w-full text-white`}>
             <div className='absolute inset-0 max-lg:w-full opacity-75' style={gradientStyle}></div>
-            <div className='max-w-7xl pt-56 mx-auto relative z-10'>
-                <div className='grid grid-cols-2 gap-10 pb-10 max-lg:pb-0 max-lg:grid-cols-1'>
+            <div className='max-w-[1400px] mx-auto relative z-10 flex items-end justify-center h-full'>
+                <div className='grid grid-cols-2 gap-10 pb-10 max-lg:grid-cols-1'>
                     <div className='pb-10 px-5 max-lg:pb-0'>
                         <h2 className='text-4xl max-lg:text-3xl max-md:text-2xl  font-novaReg leading-10'>{heading}</h2>
                         <p className='font-novaReg mt-4 leading-5'>{desc}</p>

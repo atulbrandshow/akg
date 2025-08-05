@@ -249,12 +249,6 @@ const DepartmentDetails = ({ data }) => {
     },
   ];
 
-  const BreadCrumb = [
-    {
-      name: "Department Of Computer Science and Engineering",
-      Link: "/department-of-computer-science-and-engineering",
-    },
-  ];
 
   return (
     <section>
@@ -281,7 +275,7 @@ const DepartmentDetails = ({ data }) => {
         </div>
       </div>
       <main className="max-w-[1400px] max-[1450px]:container mx-auto py-10 px-10 max-sm:px-2">
-        <Breadcrumb data={BreadCrumb} />
+        {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}
         <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Left Column - Department Info */}
           <div className="lg:col-span-2 space-y-8">
@@ -450,10 +444,10 @@ const DepartmentDetails = ({ data }) => {
               {(() => {
                 try {
                   // 1. Remove all HTML tags
-                  const cleanString = d?.PCD_3.replace(/<\/?[^>]+(>|$)/g, '');
+                  const cleanString = d?.PCD_3?.replace(/<\/?[^>]+(>|$)/g, '');
 
                   // 2. Handle case where string might be "[...]" or just "..."
-                  const arrayString = cleanString.trim().startsWith('[')
+                  const arrayString = cleanString?.trim().startsWith('[')
                     ? cleanString
                     : `["${cleanString}"]`;
 

@@ -32,6 +32,7 @@ import Link from 'next/link';
 import { IMAGE_PATH } from '@/configs/config';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import Breadcrumb from '@/Components/Breadcrumb';
 
 const courses = {
   'Graduate': [
@@ -181,8 +182,9 @@ const SchoolDetails = ({ data }) => {
   return (
     <>
       <SchoolHeader data={d} banner="bg-BG17" heading={d?.Hero_Title} desc={d?.Hero_Desc} gradientColors={gradientColors} />
-      <section className='max-w-7xl mx-auto px-5 max-sm:px-2 py-10'>
-        <div>
+      <section className='max-w-[1400px] mx-auto px-5 max-sm:px-2 py-10'>
+        {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}
+        <div className='mt-10'>
           <div className='sm:flex justify-between'>
             <h2 className='font-novaReg text-4xl md:w-1/2 lg:w-[60%] sm:w-[60%]'>{d?.Overview_Title}</h2>
             <Link href={IMAGE_PATH + d?.Brochure_Pdf} target='_blank' className='lg:px-6 sm:px-3 mt-3 sm:mt-0 py-3 px-5 md:px-4 lg:py-2 text-sm bg-black text-white font-novaSemi uppercase tracking-wider rounded-full hover:bg-gray-300 hover:text-black hover:border border-gray-300 transition duration-200 ease-linear flex items-center lg:gap-2 gap-3 sm:gap-1 md:gap-1'>

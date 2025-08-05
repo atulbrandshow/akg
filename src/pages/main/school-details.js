@@ -25,112 +25,13 @@ import {
   Award,
   Users,
   ArrowDownToLine,
+  Atom, Beaker, FlaskConical, Hammer
 } from "lucide-react"
 import React, { useState } from 'react'
 import Link from 'next/link';
 import { IMAGE_PATH } from '@/configs/config';
-
-const departments = [
-  {
-    name: "Computer Science & Engineering",
-    code: "CSE",
-    icon: <Laptop size={28} strokeWidth={1.5} />,
-    color: "from-blue-500 to-cyan-500",
-    description: "Cutting-edge computing and software development",
-  },
-  {
-    name: "Information Technology",
-    code: "IT",
-    icon: <Cpu size={28} strokeWidth={1.5} />,
-    color: "from-purple-500 to-pink-500",
-    description: "Digital solutions and system architecture",
-  },
-  {
-    name: "Mechanical Engineering",
-    code: "ME",
-    icon: <Cog size={28} strokeWidth={1.5} />,
-    color: "from-orange-500 to-red-500",
-    description: "Design, manufacturing and automation",
-  },
-  {
-    name: "Civil Engineering",
-    code: "CE",
-    icon: <Building size={28} strokeWidth={1.5} />,
-    color: "from-green-500 to-teal-500",
-    description: "Infrastructure and construction technology",
-  },
-  {
-    name: "Electrical Engineering",
-    code: "EE",
-    icon: <PlugZap size={28} strokeWidth={1.5} />,
-    color: "from-yellow-500 to-orange-500",
-    description: "Power systems and electronics",
-  },
-  {
-    name: "Biotechnology",
-    code: "BT",
-    icon: <Biohazard size={28} strokeWidth={1.5} />,
-    color: "from-emerald-500 to-green-500",
-    description: "Life sciences and bioengineering",
-  },
-]
-
-const placementsData = [
-  {
-    title: "Computer Science and IT branches lead campus placements at AKGEC",
-    description: `The Computer Science and Information Technology departments at AKGEC have set new records in campus placements this year. 
-    With a focus on cutting-edge technologies like Artificial Intelligence, Machine Learning, Data Science, and Cloud Computing, 
-    students have demonstrated exceptional skills and innovation, attracting some of the biggest IT firms in the country. 
-    Renowned companies such as TCS, Infosys, Wipro, Capgemini, Cognizant, and Accenture visited the campus, offering lucrative packages 
-    to over 500 students. The highest international package reached Rs. 45 LPA, and the national package went up to Rs. 20 LPA.`,
-    companies: 80,
-    studentsSelected: 500,
-    highestPackage: "45",
-  },
-  {
-    title: "Mechanical, Mechatronics, and Automobile Engineering placements soar at AKGEC",
-    description: `The Mechanical, Mechatronics, and Automobile Engineering departments at AKGEC have witnessed tremendous success in 
-    placements this year, with over 40 companies hiring more than 200 students. Companies like Tata Motors, Hero MotoCorp, 
-    Mahindra & Mahindra, and Escorts visited the campus, offering packages as high as Rs. 12 LPA. These placements are a testament 
-    to the college's state-of-the-art laboratories and industry-relevant curriculum, which enable students to gain practical 
-    experience in areas such as robotics, automation, and advanced automotive systems.`,
-    companies: 40,
-    studentsSelected: 200,
-    highestPackage: "12",
-  },
-  {
-    title: "Civil and Electrical Engineering students at AKGEC excel in placements",
-    description: `AKGEC's Civil and Electrical Engineering branches have achieved commendable placement results this year, with 
-    more than 50 top companies, including L&T, Shapoorji Pallonji, Siemens, and ABB, selecting over 150 students. Civil 
-    Engineering students were particularly successful in securing roles in construction management, urban planning, and 
-    structural engineering, while Electrical Engineering students were recruited for power generation, automation, and renewable 
-    energy projects. The highest package offered to students in these branches was Rs. 10 LPA, with multiple offers coming from 
-    companies that are known for large-scale infrastructure projects both in India and abroad.`,
-    companies: 50,
-    studentsSelected: 150,
-    highestPackage: "10",
-  },
-  {
-    title: "Electronics and Communication Engineering placements shine at AKGEC",
-    description: `The Electronics and Communication Engineering (ECE) department at AKGEC continues to be a hub for innovation and 
-    technical excellence, as reflected in this year’s stellar placement results. More than 60 companies, including Samsung, 
-    Texas Instruments, Bharat Electronics, and Ericsson, visited the campus, offering positions to over 180 students. With a 
-    focus on emerging technologies such as 5G, IoT, semiconductor technology, and embedded systems, ECE students from AKGEC 
-    have consistently demonstrated their ability to contribute to high-impact projects and cutting-edge research.`,
-    companies: 60,
-    studentsSelected: 180,
-    highestPackage: "15",
-  },
-];
-
-const programmes = [
-  { name: "Graduate", icon: <GraduationCap size={20} />, students: "2,500+" },
-  { name: "Post Graduate", icon: <BookOpen size={20} />, students: "800+" },
-  { name: "Doctoral", icon: <Award size={20} />, students: "200+" },
-  { name: "Diploma", icon: <Users size={20} />, students: "600+" },
-  { name: "Integrated", icon: <GraduationCap size={20} />, students: "400+" },
-  { name: "Certificate", icon: <BookOpen size={20} />, students: "300+" },
-]
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 const courses = {
   'Graduate': [
@@ -178,6 +79,7 @@ const CustomButton = ({ children, onClick, className, active }) => (
   </button>
 )
 const SchoolDetails = ({ data }) => {
+  const router = useRouter();
   const [activeView, setActiveView] = useState("departments")
   const [hoveredProgramme, setHoveredProgramme] = useState(null)
   const [hoveredDepartment, setHoveredDepartment] = useState(null)
@@ -196,6 +98,84 @@ const SchoolDetails = ({ data }) => {
     ? DOMPurify.sanitize(d?.Highlight_Desc?.replace(/classname/gi, 'class'))
     : '';
 
+  const icons = [Laptop, Cpu, Cog, Building, PlugZap, Biohazard, Atom, Beaker, FlaskConical, Hammer];
+  const colors = [
+    "from-blue-500 to-cyan-500",
+    "from-purple-500 to-pink-500",
+    "from-orange-500 to-red-500",
+    "from-green-500 to-teal-500",
+    "from-yellow-500 to-orange-500",
+    "from-emerald-500 to-green-500",
+    "from-indigo-500 to-purple-500",
+    "from-rose-500 to-pink-500",
+    "from-sky-500 to-blue-500",
+    "from-lime-500 to-green-500",
+  ];
+
+  const departments = []
+  for (let i = 1; i <= 10; i++) {
+    const title = d?.[`Dept-Name-${i}`]
+    const link = d?.[`Dept-Link-${i}`]
+
+    if (title) {
+      // Create code from first letter of each word
+      const words = title
+        .replace(/[^a-zA-Z ]/g, "") // removes &, -, etc.
+        .split(" ")
+        .filter(Boolean); // remove empty strings
+
+      // Create code from first letters
+      const code = words.map((word) => word[0]).join("").toUpperCase();
+
+      const Icon = icons[i % icons.length];
+      const color = colors[i % colors.length];
+
+      departments.push({
+        name: title,
+        code,
+        link,
+        icon: <Icon size={28} strokeWidth={1.5} />,
+        color,
+      });
+    }
+  }
+
+  const programIcons = [GraduationCap, BookOpen, Award, Users, GraduationCap, BookOpen];
+
+  const programmes = [];
+  for (let i = 1; i <= 10; i++) {
+    const name = d?.[`Program-Title-${i}`]
+    console.log(name);
+
+    if (name) {
+      const Icon = programIcons[i % programIcons.length];
+      programmes.push({
+        name,
+        icon: <Icon size={20} />,
+      })
+    }
+  }
+
+  const courses = {}
+
+  programmes.forEach((programme) => {
+    const programmeType = programme.name; // e.g., "Graduate", "Post Graduate", "Certificate"
+    const key = programmeType.trim(); // in case of spaces
+
+    const programmeCourses = [];
+
+    for (let i = 1; i <= 20; i++) {
+      const keyName = programmeType.replace(/\s+/g, "-"); // replaces spaces with dashes
+      const value = d?.[`${keyName}-${i}`];
+      if (value) {
+        programmeCourses.push(value);
+      }
+    }
+
+    if (programmeCourses.length) {
+      courses[key] = programmeCourses;
+    }
+  });
 
   const gradientColors = ['#6366F1', '#A855F7', '#EC4899'];
   return (
@@ -239,11 +219,10 @@ const SchoolDetails = ({ data }) => {
           {/* Header Section */}
           <div className="text-center mb-12">
             <h2 className="text-4xl sm:text-5xl font-novaBold text-gray-900 mb-4">
-              Academic{" "}
-              <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">Excellence</span>
+              {d?.Academic_Title}
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto font-novaReg">
-              Explore our comprehensive range of departments and programmes designed to shape tomorrow's leaders
+              {d?.Academic_Desc}
             </p>
           </div>
 
@@ -262,7 +241,7 @@ const SchoolDetails = ({ data }) => {
                       strokeWidth={3}
                     />
                   )}
-                  Departments
+                  {d?.Department_Title}
                 </CustomButton>
                 <CustomButton
                   active={activeView === "programmes"}
@@ -275,7 +254,7 @@ const SchoolDetails = ({ data }) => {
                       strokeWidth={3}
                     />
                   )}
-                  Programmes 2024-25
+                  {d?.Programme_Title}
                 </CustomButton>
               </div>
             </div>
@@ -283,9 +262,10 @@ const SchoolDetails = ({ data }) => {
 
           {/* Departments View */}
           {activeView === "departments" && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {departments.map((dept, index) => (
                 <div
+                  onClick={() => router.push(dept.link)}
                   key={index}
                   className={`
                   group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl 
@@ -302,8 +282,8 @@ const SchoolDetails = ({ data }) => {
                   />
 
                   {/* Content */}
-                  <div className="relative p-6 sm:p-8">
-                    <div className="flex items-start space-x-4">
+                  <div className="relative p-2 sm:p-4">
+                    <div className="flex items-start space-x-3">
                       <div
                         className={`
                       p-3 rounded-xl bg-gradient-to-br ${dept.color} text-white 
@@ -314,14 +294,13 @@ const SchoolDetails = ({ data }) => {
                         {dept.icon}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center justify-between">
                           <span className="text-xs font-novaBold text-gray-500 tracking-wider uppercase">{dept.code}</span>
                           <ChevronRight className="h-5 w-5 text-gray-400 group-hover:text-blue-500 transition-colors duration-300" />
                         </div>
-                        <h3 className="text-lg sm:text-xl font-novaBold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">
+                        <h3 className="text-base sm:text-lg font-novaBold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">
                           {dept.name}
                         </h3>
-                        <p className="text-sm text-gray-600 leading-relaxed font-novaReg">{dept.description}</p>
                       </div>
                     </div>
                   </div>
@@ -373,14 +352,6 @@ const SchoolDetails = ({ data }) => {
                             </div>
                             <div>
                               <span className="font-novaSemi text-base block">{prog.name}</span>
-                              <span
-                                className={`
-                              text-xs transition-colors font-novaReg duration-300
-                              ${hoveredProgramme === prog.name ? "text-blue-100" : "text-gray-500"}
-                            `}
-                              >
-                                {prog.students} students
-                              </span>
                             </div>
                           </div>
                           <ChevronRight
@@ -400,8 +371,10 @@ const SchoolDetails = ({ data }) => {
 
                 {/* Content Area */}
                 <div className="lg:col-span-3 relative">
-                  <img
-                    src="/image/schools/group-students.jpg"
+                  <Image
+                    src={IMAGE_PATH + d?.Academic_Banner}
+                    height={400}
+                    width={400}
                     alt="Students studying together"
                     className="w-full h-full object-cover"
                   />

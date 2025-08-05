@@ -3,7 +3,6 @@ import Link from "next/link";
 
 export default function ExploreCourses({ data }) {
     const d = data?.pageData;
-    console.log(d?.Courses_Title);
 
     const words = d?.Courses_Title?.trim().split(" ");
     const last = words?.pop();

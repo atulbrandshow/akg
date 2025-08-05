@@ -1,6 +1,5 @@
 'use client';
 
-import { LogoSlider } from '@/Components';
 import AnnouncementSlider from '@/Components/AnnouncementSlider';
 import DirectorMessage from '@/Components/DirectorMessage';
 import FacultySlider from '@/Components/FacultySlider';
@@ -8,6 +7,7 @@ import HighlightsSection from '@/Components/HighlightsSection';
 import PlacementData from '@/Components/PlacementData';
 import ReviewSlider from '@/Components/ReviewSlider';
 import SchoolHeader from '@/Components/SchoolHeader'
+import SchoolLogoSlider from '@/Components/SchoolLogoSlider';
 import SliderEvent from '@/Components/SliderEvent';
 import { Testimonial } from '@/Components/Testimonial';
 import {
@@ -540,7 +540,7 @@ const SchoolDetails = ({ data }) => {
       <SliderEvent data={d}/>
       <PlacementData data={d} placementsData={placementsData} />
       <Testimonial data={d}/>
-      <LogoSlider data={d}/>
+      <SchoolLogoSlider data={d}/>
     </>
   )
 }

@@ -6,8 +6,8 @@ export default function ExploreCourses({ data }) {
     console.log(d?.Courses_Title);
 
     const words = d?.Courses_Title?.trim().split(" ");
-    const last = words.pop();
-    const first = words.join(" ");
+    const last = words?.pop();
+    const first = words?.join(" ");
 
     const stats = [];
     for (let i = 1; i <= 10; i++) {

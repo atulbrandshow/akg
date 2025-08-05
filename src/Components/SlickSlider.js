@@ -5,8 +5,8 @@ import { useState, useEffect } from "react"
 export default function SlickSlider({ data }) {
   const d = data?.pageData
   const words = d?.Vibrant_Journey_Title?.trim().split(" ")
-  const last = words.slice(-2).join(" ") // Get last 2 words
-  const first = words.slice(0, -2).join(" ") // Get everything except last 2
+  const last = words?.slice(-2).join(" ")
+  const first = words?.slice(0, -2).join(" ")
 
   const stats = []
   for (let i = 1; i <= 10; i++) {

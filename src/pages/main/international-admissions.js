@@ -2,9 +2,9 @@
 
 import "swiper/css";
 import "swiper/css/pagination";
-import { LogoSlider, MilestonesSection } from "@/Components";
+import { LogoSlider } from "@/Components";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -249,8 +249,6 @@ const InternationalAdmission = () => {
                 </div>
                 <ScholarshipHighlight heading={"Global Talent"} subheading={"Scholarship"} desc={"For International Students for the Academic"} ugSub={"B.Tech [For International Students]"} pgSub={"MCA [For International Students]"} />
             </section>
-
-            <MilestonesSection />
             <HighlightPlacement />
             <OurOffice />
             <ResearchFacility />

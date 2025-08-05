@@ -8,8 +8,8 @@ const MilestonesSection = ({ data }) => {
   const logos = d?.Achievements_Logos;
 
   const words = d?.Achievements_Title?.trim().split(" ");
-  const last = words.pop();
-  const first = words.join(" ");
+  const last = words?.pop();
+  const first = words?.join(" ");
 
   const milestones = []
   for (let i = 1; i <= 10; i++) {

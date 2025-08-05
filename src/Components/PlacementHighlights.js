@@ -7,8 +7,8 @@ export default function PlacementHighlights({ data }) {
     const d = data?.pageData;
 
     const words = d?.Placement_Title?.trim().split(" ");
-    const last = words.pop();
-    const first = words.join(" ");
+    const last = words?.pop();
+    const first = words?.join(" ");
 
     const placementData = [];
     for (let i = 1; i <= 10; i++) {

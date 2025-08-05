@@ -21,11 +21,13 @@ const MainSection = ({ data }) => {
     })
 
     useEffect(() => {
+        if (!Array.isArray(buildingImages) || buildingImages.length === 0) return;
+
         const interval = setInterval(() => {
             setCurrentImageIndex((prevIndex) => (prevIndex + 1) % buildingImages.length);
         }, 9000);
         return () => clearInterval(interval);
-    }, []);
+    }, [buildingImages]);
 
     return (
         <div className="overflow-hidden relative -mt-20">
@@ -54,7 +56,17 @@ const MainSection = ({ data }) => {
                 </div>
             </div>
             <div className="w-full h-full object-cover absolute left-0 top-0 z-10 bg-gradient-to-r from-black/60 to-white/0 "></div>
-            <Image src={IMAGE_PATH + buildingImages[currentImageIndex]} width={1920} height={1080} alt="Building" priority className="w-full h-full object-cover absolute left-0 top-0 z-0 animate-zoomInOut" />
+            {Array.isArray(buildingImages) && buildingImages.length > 0 && (
+                <Image
+                    src={IMAGE_PATH + buildingImages[currentImageIndex]}
+                    width={1920}
+                    height={1080}
+                    alt="Building"
+                    priority
+                    className="w-full h-full object-cover absolute left-0 top-0 z-0 animate-zoomInOut"
+                />
+            )}
+
         </div>
     )
 };

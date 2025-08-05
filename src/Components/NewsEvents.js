@@ -3,8 +3,8 @@ import { IMAGE_PATH } from "@/configs/config";
 export default function NewsEvents({ data }) {
     const d = data?.pageData;
     const words = d?.Spotlight_Title?.trim().split(" ");
-    const last = words.pop();
-    const first = words.join(" ");
+    const last = words?.pop();
+    const first = words?.join(" ");
 
     const posts = [];
     for (let i = 1; i <= 10; i++) {

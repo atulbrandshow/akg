@@ -7,8 +7,8 @@ import { Navigation, Autoplay } from "swiper/modules";
 import { IMAGE_PATH } from "@/configs/config";
 
 export default function SchoolLogoSlider({ data }) {
-    // Define an array of image data
-    const images = data?.pageData?.Logo_Images || [];
+    const images = data?.Logo_Images || [];
+    
     const breakpoints = {
         320: { slidesPerView: 2 },
         480: { slidesPerView: 3 },

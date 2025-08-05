@@ -43,8 +43,8 @@ const ReviewSlider = ({ data }) => {
             }}
             className="mySwiper"
           >
-            {studentReviewsData?.map((review) => (
-              <SwiperSlide key={review.id}>
+            {studentReviewsData?.map((review, index) => (
+              <SwiperSlide key={index}>
                 <div className="my-10 text-center flex flex-col items-center mx-10 max-sm:mx-5">
                   <p className="max-w-3xl max-md:text-sm">{review.quote}</p>
                   <div className="flex flex-col items-center mt-10">

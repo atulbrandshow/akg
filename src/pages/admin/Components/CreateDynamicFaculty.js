@@ -280,17 +280,17 @@ export default function CreateFacultyForm({ type, componentType }) {
             })
             const result = await response.json()
             if (result.status && result.data) {
-                const data = result.data
-                // Parse param5 for basic info (firstName|lastName|emailAddress|designation)
-                const basicInfo = data.param5 ? data.param5.split("|") : ["", "", "", ""]
+                const data = result.data;
+                console.log(data);
+
                 setFormData((prev) => ({
                     ...prev,
                     page_id: data.page_id,
                     parent_id: data.parent_id,
-                    firstName: basicInfo[0] || "",
-                    lastName: basicInfo[1] || "",
-                    emailAddress: basicInfo[2] || "",
-                    designation: basicInfo[3] || "",
+                    firstName: data.param7 || "",
+                    lastName: data.param8 || "",
+                    emailAddress: data.param6 || "",
+                    designation: data.param5 || "",
                     subjectsTaught: data.param4 || "",
                     profilePicture: data.banner_img || "",
                     bio: data.shortdesc || "",
@@ -318,6 +318,7 @@ export default function CreateFacultyForm({ type, componentType }) {
                     param4: data.param4 || "",
                     param5: data.param5 || "",
                 }))
+
 
                 // Set social links from params
                 const socialLinksArray = [data.param1, data.param2, data.param3].filter((link) => link && link.trim())
@@ -500,10 +501,10 @@ export default function CreateFacultyForm({ type, componentType }) {
         const newErrors = {}
         if (!formData.firstName) newErrors.firstName = "First name is required"
         if (!formData.lastName) newErrors.lastName = "Last name is required"
-        if (!formData.emailAddress) newErrors.emailAddress = "Email address is required"
+        // if (!formData.emailAddress) newErrors.emailAddress = "Email address is required"
         if (!formData.designation) newErrors.designation = "Designation is required"
         if (!isEditMode && !formData.selectedSchool) newErrors.selectedSchool = "Please select a school"
-        if (!formData.subjectsTaught) newErrors.subjectsTaught = "Subjects taught is required"
+        // if (!formData.subjectsTaught) newErrors.subjectsTaught = "Subjects taught is required"
 
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors)
@@ -551,7 +552,10 @@ export default function CreateFacultyForm({ type, componentType }) {
                     param2: formData.socialLinks[1] || "",
                     param3: formData.socialLinks[2] || "",
                     param4: formData.subjectsTaught,
-                    param5: `${formData.firstName}|${formData.lastName}|${formData.emailAddress}|${formData.designation}`,
+                    param5: formData.designation,
+                    param6: formData.emailAddress,
+                    param7: formData.firstName,
+                    param8: formData.lastName,
                 }
 
                 const updateResponse = await fetch(`${API_NODE_URL}slug/update`, {
@@ -629,7 +633,10 @@ export default function CreateFacultyForm({ type, componentType }) {
                     param2: formData.socialLinks[1] || "",
                     param3: formData.socialLinks[2] || "",
                     param4: formData.subjectsTaught,
-                    param5: `${formData.firstName}|${formData.lastName}|${formData.emailAddress}|${formData.designation}`,
+                    param5: formData.designation,
+                    param6: formData.emailAddress,
+                    param7: formData.firstName,
+                    param8: formData.lastName,
                 }
 
                 const updateResponse = await fetch(`${API_NODE_URL}slug/update`, {
@@ -859,8 +866,8 @@ export default function CreateFacultyForm({ type, componentType }) {
                                         <label
                                             htmlFor="profilePicture"
                                             className={`cursor-pointer inline-flex items-center px-4 py-2 text-sm font-novaSemi rounded-lg transition-colors ${uploadingStates.profilePicture
-                                                    ? "bg-gray-400 text-white cursor-not-allowed"
-                                                    : "bg-blue-600 text-white hover:bg-blue-700"
+                                                ? "bg-gray-400 text-white cursor-not-allowed"
+                                                : "bg-blue-600 text-white hover:bg-blue-700"
                                                 }`}
                                         >
                                             {uploadingStates.profilePicture ? (

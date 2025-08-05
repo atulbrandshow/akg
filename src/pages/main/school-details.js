@@ -146,8 +146,6 @@ const SchoolDetails = ({ data }) => {
   const programmes = [];
   for (let i = 1; i <= 10; i++) {
     const name = d?.[`Program-Title-${i}`]
-    console.log(name);
-
     if (name) {
       const Icon = programIcons[i % programIcons.length];
       programmes.push({

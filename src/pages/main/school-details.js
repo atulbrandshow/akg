@@ -9,6 +9,7 @@ import ReviewSlider from '@/Components/ReviewSlider';
 import SchoolHeader from '@/Components/SchoolHeader'
 import SchoolLogoSlider from '@/Components/SchoolLogoSlider';
 import SliderEvent from '@/Components/SliderEvent';
+import DOMPurify from 'dompurify';
 import { Testimonial } from '@/Components/Testimonial';
 import {
   Laptop,
@@ -26,6 +27,8 @@ import {
   ArrowDownToLine,
 } from "lucide-react"
 import React, { useState } from 'react'
+import Link from 'next/link';
+import { IMAGE_PATH } from '@/configs/config';
 
 const departments = [
   {
@@ -181,83 +184,33 @@ const SchoolDetails = ({ data }) => {
 
   const d = data?.pageData;
 
-  console.log(data);
+  const overviewHtml = d?.Overview_Description_
+    ? DOMPurify.sanitize(d?.Overview_Description_?.replace(/classname/gi, 'class'))
+    : '';
 
-  const items = [];
-  for (let i = 1; i <= 10; i++) {
-    const list_item = d?.[`FS_Item_${i}`];
+  const objectiveHtml = d?.Objective_Desc
+    ? DOMPurify.sanitize(d?.Objective_Desc?.replace(/classname/gi, 'class'))
+    : '';
 
+  const highlightHtml = d?.Highlight_Desc
+    ? DOMPurify.sanitize(d?.Highlight_Desc?.replace(/classname/gi, 'class'))
+    : '';
 
-    if (list_item) {
-
-      items.push({
-        list_item,
-      });
-    }
-
-  }
-
-
-  const Objective_items = [];
-  for (let i = 1; i <= 10; i++) {
-
-    const Objective_list = d?.[`Objective-list-${i}`];
-
-    if (Objective_list) {
-      Objective_items.push({
-        Objective_list,
-      });
-    }
-  }
-
-  const Highlight_items = [];
-  for (let i = 1; i <= 10; i++) {
-
-    const Highlight_list = d?.[`Highlight-list-${i}`];
-
-    if (Highlight_list) {
-      Highlight_items.push({
-        Highlight_list,
-      });
-    }
-  }
-
-
-
-
-
-
-  const description = "Empowering future engineers with hands-on experience and innovative solutions, our programs prepare students to excel in fields like computer science, mechanical, and civil engineering."
 
   const gradientColors = ['#6366F1', '#A855F7', '#EC4899'];
   return (
     <>
-      <SchoolHeader data={d} banner="bg-BG17" heading={d?.Hero_Title} desc={description} gradientColors={gradientColors} />
+      <SchoolHeader data={d} banner="bg-BG17" heading={d?.Hero_Title} desc={d?.Hero_Desc} gradientColors={gradientColors} />
       <section className='max-w-7xl mx-auto px-5 max-sm:px-2 py-10'>
         <div>
           <div className='sm:flex justify-between'>
             <h2 className='font-novaReg text-4xl md:w-1/2 lg:w-[60%] sm:w-[60%]'>{d?.Overview_Title}</h2>
-            <button className='lg:px-6 sm:px-3 mt-3 sm:mt-0 py-3 px-5 md:px-4 lg:py-2 text-sm bg-black text-white font-novaSemi uppercase tracking-wider rounded-full hover:bg-gray-300 hover:text-black hover:border border-gray-300 transition duration-200 ease-linear flex items-center lg:gap-2 gap-3 sm:gap-1 md:gap-1'>
+            <Link href={IMAGE_PATH + d?.Brochure_Pdf} target='_blank' className='lg:px-6 sm:px-3 mt-3 sm:mt-0 py-3 px-5 md:px-4 lg:py-2 text-sm bg-black text-white font-novaSemi uppercase tracking-wider rounded-full hover:bg-gray-300 hover:text-black hover:border border-gray-300 transition duration-200 ease-linear flex items-center lg:gap-2 gap-3 sm:gap-1 md:gap-1'>
               <ArrowDownToLine size={18} strokeWidth={2} /> Download Brochure
-            </button>
+            </Link>
           </div>
           <h4 className='text-xl font-novaSemi my-3'>Overview</h4>
-          <p className="leading-relaxed max-sm:text-sm font-novaReg text-justify" dangerouslySetInnerHTML={{ __html: d?.Overview_Description_ }} />
-
-        </div>
-
-        <div className='mt-5'>
-          <h2 className='font-novaSemi text-3xl'>{d?.FS_Title}</h2>
-          <ul className='mt-5 list-disc pl-5 text-cyan-600 font-novaSemi text-sm space-y-3'>
-            {items.map((item, index) => {
-              return (
-                <li key={index}>
-                  {item.list_item}
-                </li>
-              )
-            })}
-
-          </ul>
+          <p className="leading-relaxed max-sm:text-sm font-novaReg text-justify" dangerouslySetInnerHTML={{ __html: overviewHtml }} />
         </div>
         <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 py-6 sm:py-10'>
           <div className="bg-[#f6ffaa] text-black rounded-3xl overflow-hidden pb-5">
@@ -266,20 +219,7 @@ const SchoolDetails = ({ data }) => {
             </div>
             <div className='p-4'>
               <h2 className="text-2xl font-novaBold mb-2 max-lg:text-xl max-md:text-lg">{d?.Objective_Title}</h2>
-              <div className=''>
-                <p className="leading-relaxed max-sm:text-sm font-novaReg text-justify" dangerouslySetInnerHTML={{ __html: d?.Objective_Description_ }} />
-
-                <ul className='mt-3 list-disc pl-5 font-novaReg space-y-2'>
-                  {Objective_items.map((item, index) => {
-                    return (
-                      <li key={index}>
-                        {item.Objective_list}
-                      </li>
-                    )
-                  })}
-
-                </ul>
-              </div>
+              <div className='font-novaReg' dangerouslySetInnerHTML={{ __html: objectiveHtml }} />
             </div>
 
           </div>
@@ -289,23 +229,12 @@ const SchoolDetails = ({ data }) => {
             </div>
             <div className='p-4'>
               <h2 className="text-2xl font-novaBold mb-2 max-lg:text-xl  max-md:text-lg">{d?.Highlight_Title}</h2>
-              <div className=''>
-                <ul className='mt-3 list-disc pl-5 font-novaReg space-y-2'>
-                    {Highlight_items.map((item, index) => {
-                    return (
-                      <li key={index}>
-                        {item.Highlight_list}
-                      </li>
-                    )
-                  })}
-                </ul>
-              </div>
+              <div className='font-novaReg' dangerouslySetInnerHTML={{ __html: highlightHtml }} />
             </div>
           </div>
         </div>
       </section>
       <div className="w-full bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-10 relative overflow-hidden">
-
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Header Section */}
           <div className="text-center mb-12">
@@ -532,15 +461,15 @@ const SchoolDetails = ({ data }) => {
           )}
         </div>
       </div>
-      <HighlightsSection />
+      <HighlightsSection data={d} />
       <DirectorMessage data={d} />
-      <AnnouncementSlider data={d}/>
-      <ReviewSlider data={d}/>
-      <FacultySlider data={d} />
-      <SliderEvent data={d}/>
-      <PlacementData data={d} placementsData={placementsData} />
-      <Testimonial data={d}/>
-      <SchoolLogoSlider data={d}/>
+      <AnnouncementSlider />
+      <ReviewSlider data={d} />
+      <FacultySlider data={data} />
+      <SliderEvent />
+      <PlacementData data={d} />
+      <Testimonial />
+      <SchoolLogoSlider data={d} />
     </>
   )
 }

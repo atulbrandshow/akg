@@ -27,7 +27,7 @@ const SchoolHeader = ({ heading, desc, gradientColors, banner, data }) => {
                 <div className='grid grid-cols-2 gap-10 pb-10 max-lg:pb-0 max-lg:grid-cols-1'>
                     <div className='pb-10 px-5 max-lg:pb-0'>
                         <h2 className='text-4xl max-lg:text-3xl max-md:text-2xl  font-novaReg leading-10'>{heading}</h2>
-                        <p className='text-xs mt-4 leading-5'>{desc}</p>
+                        <p className='font-novaReg mt-4 leading-5'>{desc}</p>
                         <ul className='grid grid-cols-2 gap-5 mt-16'>
                             {items.map((item, index) => {
                                 return (

@@ -8,12 +8,6 @@ import { useEffect, useState } from "react";
 
 const TopCard = ({ data }) => {
     const router = useRouter()
-    const [extraComponentData, setExtraComponentData] = useState({})
-    useEffect(() => {
-        if (data) {
-            setExtraComponentData(data?.extraComponentData?.holder2)
-        }
-    }, [data])
     return (
         // 
         <div className="relative bg-gray-100">
@@ -43,9 +37,11 @@ const TopCard = ({ data }) => {
             </div>
             <div className="lg:block hidden pt-16 bg-white">
                 <h2 className="text-[42px] font-novaReg text-center text-black">
-                    <span className="font-novaSemi bg-text-gradient bg-clip-text text-transparent animate-gradient">{extraComponentData?.param}</span>
+                    <span className="font-novaSemi bg-text-gradient bg-clip-text text-transparent animate-gradient">Achievements & Milestones</span>
                 </h2>
-                <p className="max-w-3xl mx-auto text-xl font-novaReg text-center"  dangerouslySetInnerHTML={{ __html: extraComponentData?.paramDesc }} />
+                <p className="max-w-3xl mx-auto text-xl font-novaReg text-center">
+                    This section showcases our <strong>Notable Achievements & Significant Milestones, </strong> reflecting our dedication, growth, and commitment to excellence over time.
+                </p>
                 <div className="mt-5 md:flex items-center justify-center">
                     <div className="flex flex-wrap justify-between gap-2">
                         <div className="grid grid-cols-3">

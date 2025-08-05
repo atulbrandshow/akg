@@ -3,44 +3,45 @@ import React, { useRef } from 'react';
 
 const membersData = [
     {
-      name: "Dr. Nitisha Shrivastava",
-      role: "Dean, Students Welfare",
-      image: "/image/Faculty/Dr. Nitisha Shrivastava.jpg",
+        name: "Dr. Nitisha Shrivastava",
+        role: "Dean, Students Welfare",
+        image: "/image/Faculty/Dr. Nitisha Shrivastava.jpg",
     },
     {
-      name: "Dr. J. G. Yadav",
-      role: "Director, Sports",
-      image: "/image/Faculty/Dr. J. G. Yadav.jpg",
+        name: "Dr. J. G. Yadav",
+        role: "Director, Sports",
+        image: "/image/Faculty/Dr. J. G. Yadav.jpg",
     },
     {
-      name: "Prof. V.K. Parashar",
-      role: "Director, BCA",
-      image: "/image/Faculty/Prof. V.K. Parashar.jpg",
+        name: "Prof. V.K. Parashar",
+        role: "Director, BCA",
+        image: "/image/Faculty/Prof. V.K. Parashar.jpg",
     },
     {
-      name: "Dr. Nitisha Shrivastava",
-      role: "Dean, Students Welfare",
-      image: "/image/Faculty/Dr. Nitisha Shrivastava.jpg",
+        name: "Dr. Nitisha Shrivastava",
+        role: "Dean, Students Welfare",
+        image: "/image/Faculty/Dr. Nitisha Shrivastava.jpg",
     },
     {
-      name: "Dr. J. G. Yadav",
-      role: "Director, Sports",
-      image: "/image/Faculty/Dr. J. G. Yadav.jpg",
+        name: "Dr. J. G. Yadav",
+        role: "Director, Sports",
+        image: "/image/Faculty/Dr. J. G. Yadav.jpg",
     },
     {
-      name: "Prof. V.K. Parashar",
-      role: "Director, BCA",
-      image: "/image/Faculty/Prof. V.K. Parashar.jpg",
+        name: "Prof. V.K. Parashar",
+        role: "Director, BCA",
+        image: "/image/Faculty/Prof. V.K. Parashar.jpg",
     },
     {
-      name: "Dr. Nitisha Shrivastava",
-      role: "Dean, Students Welfare",
-      image: "/image/Faculty/Dr. Nitisha Shrivastava.jpg",
+        name: "Dr. Nitisha Shrivastava",
+        role: "Dean, Students Welfare",
+        image: "/image/Faculty/Dr. Nitisha Shrivastava.jpg",
     },
     // Add more members as needed
 ];
 
-const FacultySlider = () => {
+const FacultySlider = ({ data }) => {
+    const d = data?.pageData;
     const sliderRef = useRef(null);
 
     const scrollLeft = () => {
@@ -61,18 +62,18 @@ const FacultySlider = () => {
         <section className='w-full bg-[#f1f5fe]'>
             <div className='max-w-7xl mx-auto py-10 text-center'>
                 <p className='text-blue-600 uppercase font-novaBold tracking-wider text-lg'>Faculty</p>
-                <h2 className='text-3xl font-novaBold'>Leaders in Education, Mentors in Innovation</h2>
-                <p className='mt-3 font-novaReg'>Our faculty comprises dedicated professionals who bring expertise, passion, and innovation to the classroom. Each member is committed to providing an exceptional learning experience, fostering curiosity, and inspiring students to reach their full potential. Meet the individuals shaping the minds of tomorrow.</p>
-                
+                <h2 className='text-3xl font-novaBold'>{d?.Faculty_Title}</h2>
+                <p className='mt-3 font-novaReg'>{d?.Faculty_Description_}</p>
+
                 <div className="relative mt-6 px-12">
-                    <button 
+                    <button
                         className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow"
                         onClick={scrollLeft}
                         aria-label="Scroll Left"
                     >
                         <CircleArrowLeft size={24} className="text-[#432c6e]" />
                     </button>
-                    
+
                     <div
                         ref={sliderRef}
                         className="overflow-x-auto scrollbar-none flex gap-6 py-10"
@@ -99,8 +100,8 @@ const FacultySlider = () => {
                             </div>
                         ))}
                     </div>
-                    
-                    <button 
+
+                    <button
                         className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow"
                         onClick={scrollRight}
                         aria-label="Scroll Right"

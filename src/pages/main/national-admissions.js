@@ -3,7 +3,7 @@
 import "swiper/css";
 import "swiper/css/pagination";
 import { Globe, GraduationCap, MapPin, PlaneTakeoff, ChevronRight, ChevronLeft } from "lucide-react";
-import { Button, LogoSlider, MilestonesSection, TopCard } from "@/Components";
+import { LogoSlider, TopCard } from "@/Components";
 import React, { useState, useEffect, useRef } from "react";
 import AdmissionForm from "@/Components/AdmissionForm";
 import AdmissionsShowcase from "@/Components/AdmissionsShowcase";
@@ -312,8 +312,6 @@ const NationalAdmissions = () => {
                     </div>
                 </div>
             </section>
-
-            <MilestonesSection />
             <HighlightPlacement />
             <LogoSlider />
 

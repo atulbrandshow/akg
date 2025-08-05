@@ -104,15 +104,15 @@ export const Academics = {
         "Schools":[
             {
                 name: "AKGU School of Engineering and Technology",
-                url: "/schools/school-of-engineering-and-technology"
+                url: "/school-of-engineering-and-technology"
             },
             {
                 name: "AKGU School of Business Studies",
-                url: "/schools/school-of-business-studies"
+                url: "/school-of-business-studies"
             },
             {
                 name: "AKGU School of Humanities & Social Sciences",
-                url: "/schools/school-of-humanities-and-social-sciences"
+                url: "/school-of-humanities-and-social-sciences"
             },
         ],
         "Academics": [

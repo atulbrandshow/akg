@@ -23,9 +23,8 @@ const HomeTopCard = ({ data }) => {
                     navigation
                 >
                     {banners && banners.length > 0 && banners.map((banner, index) => (
-                        <SwiperSlide>
+                        <SwiperSlide key={index}>
                             <img
-                                key={index}
                                 src={IMAGE_PATH + banner}
                                 alt="card-top"
                                 className="w-full h-auto border transform hover:scale-105 focus:scale-105 transition duration-300 ease-in-out mx-auto"

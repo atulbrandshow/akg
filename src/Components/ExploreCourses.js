@@ -52,8 +52,8 @@ export default function ExploreCourses({ data }) {
 
                 <div className="my-5 mx-auto max-w-6xl">
                     <dl className="grid grid-cols-2 gap-4 text-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                        {stats?.map((stat) => (
-                            <div key={stat._id} className="mx-auto flex max-w-xs flex-col py-4">
+                        {stats?.map((stat, index) => (
+                            <div key={index} className="mx-auto flex max-w-xs flex-col py-4">
                                 <dd className="order-first text-2xl sm:text-3xl md:text-4xl font-novaLight tracking-tight">
                                     {stat.title}
                                 </dd>

@@ -60,52 +60,56 @@ export default function Home() {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-100">
+    <div className="flex min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
       <SideBar />
       <div className="flex-1 p-8">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
-          <div className="mb-8">
-            <h1 className="text-3xl text-center font-bold text-gray-800">FAQ Management</h1>
-            <p className="text-gray-600 text-center mt-2">
-              Page ID: <span className="font-mono bg-gray-100 px-2 py-1 rounded">{page_id}</span>
+          <div className="mb-8 text-center">
+            <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-700">
+              FAQ Management
+            </h1>
+            <p className="text-gray-600 mt-2">
+              Page ID: <span className="font-mono bg-blue-100 text-blue-800 px-2 py-1 rounded-md">{page_id}</span>
             </p>
           </div>
 
           {/* Form Section */}
-          <div className="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+          <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-8 border border-gray-100">
             <div className="p-6">
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">Create New FAQ</h2>
+              <h2 className="text-xl font-semibold text-gray-800 mb-6 pb-2 border-b border-gray-100">
+                Create New FAQ
+              </h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Type Input */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
                     FAQ Type
                   </label>
                   <input
                     type="text"
                     value={type}
                     onChange={(e) => setType(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-                    placeholder="e.g., Faculty , General, Departments etc."
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-300 focus:border-blue-400 transition-all duration-200 shadow-sm"
+                    placeholder="e.g., Faculty, General, Departments etc."
                     required
                   />
                 </div>
 
                 {/* Questions & Answers */}
                 <div>
-                  <div className="flex justify-between items-center mb-2">
+                  <div className="flex justify-between items-center mb-3">
                     <label className="block text-sm font-medium text-gray-700">
                       Questions & Answers
                     </label>
                     <button
                       type="button"
                       onClick={addQuestion}
-                      className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-medium rounded-lg shadow-md hover:from-indigo-600 hover:to-purple-700 transition-all duration-200"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-4 w-4 mr-1"
+                        className="h-4 w-4 mr-2"
                         viewBox="0 0 20 20"
                         fill="currentColor"
                       >
@@ -123,10 +127,10 @@ export default function Home() {
                     {questions.map((q, index) => (
                       <div
                         key={index}
-                        className="p-4 border border-gray-200 rounded-lg bg-gray-50/50 hover:bg-gray-50 transition"
+                        className="p-4 border border-gray-200 rounded-lg bg-gradient-to-br from-gray-50 to-gray-100 hover:from-white hover:to-gray-50 transition-all duration-200 shadow-sm"
                       >
-                        <div className="mb-3">
-                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                        <div className="mb-4">
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
                             Question {index + 1}
                           </label>
                           <input
@@ -136,12 +140,12 @@ export default function Home() {
                               handleQuestionChange(index, "question", e.target.value)
                             }
                             placeholder="What is...?"
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                            className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-300 focus:border-blue-400 transition-all duration-200"
                             required
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
                             Answer
                           </label>
                           <textarea
@@ -151,16 +155,16 @@ export default function Home() {
                             }
                             placeholder="The answer is..."
                             rows={3}
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                            className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-300 focus:border-blue-400 transition-all duration-200"
                             required
                           />
                         </div>
                         {questions.length > 1 && (
-                          <div className="mt-2 flex justify-end">
+                          <div className="mt-3 flex justify-end">
                             <button
                               type="button"
                               onClick={() => removeQuestion(index)}
-                              className="inline-flex items-center text-sm text-red-600 hover:text-red-800 focus:outline-none"
+                              className="inline-flex items-center text-sm text-red-500 hover:text-red-700 focus:outline-none transition-colors duration-200"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -184,14 +188,14 @@ export default function Home() {
                 </div>
 
                 {/* Submit Button */}
-                <div className="pt-2">
+                <div className="pt-4">
                   <button
                     type="submit"
                     disabled={loading}
-                    className={`w-full flex justify-center items-center px-6 py-3 border border-transparent rounded-lg shadow-sm text-base font-medium text-white ${
+                    className={`w-full flex justify-center items-center px-6 py-3 rounded-lg shadow-lg text-lg font-semibold text-white transition-all duration-300 ${
                       loading
                         ? "bg-gray-400 cursor-not-allowed"
-                        : "bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                        : "bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 transform hover:-translate-y-0.5"
                     }`}
                   >
                     {loading ? (
@@ -219,7 +223,21 @@ export default function Home() {
                         Processing...
                       </>
                     ) : (
-                      "Create FAQ"
+                      <>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-5 w-5 mr-2"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                        Create FAQ
+                      </>
                     )}
                   </button>
                 </div>
@@ -228,15 +246,17 @@ export default function Home() {
           </div>
 
           {/* Created FAQs Section */}
-          <div className="bg-white rounded-xl shadow-md overflow-hidden">
+          <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
             <div className="p-6">
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">Your FAQs</h2>
+              <h2 className="text-xl font-semibold text-gray-800 mb-6 pb-2 border-b border-gray-100">
+                Your FAQs
+              </h2>
               
               {createdFaqs.length === 0 ? (
                 <div className="text-center py-8 text-gray-500">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-12 w-12 mx-auto text-gray-400"
+                    className="h-16 w-16 mx-auto text-gray-300"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -244,31 +264,40 @@ export default function Home() {
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      strokeWidth={1}
+                      d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                     />
                   </svg>
-                  <p className="mt-2">No FAQs created yet</p>
-                  <p className="text-sm">Your created FAQs will appear here</p>
+                  <p className="mt-4 text-lg text-gray-600">No FAQs created yet</p>
+                  <p className="text-sm text-gray-400">Your created FAQs will appear here</p>
                 </div>
               ) : (
                 <div className="space-y-6">
                   {createdFaqs.map((faq, faqIndex) => (
-                    <div key={faqIndex} className="border-b border-gray-200 pb-6 last:border-0 last:pb-0">
+                    <div key={faqIndex} className="border-b border-gray-100 pb-6 last:border-0 last:pb-0">
                       <div className="flex items-start justify-between">
-                        <h3 className="text-lg font-medium text-blue-600">{faq.type}</h3>
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        <h3 className="text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                          {faq.type}
+                        </h3>
+                        <span className="inline-flex items-center px-3 py-0.5 rounded-full text-xs font-medium bg-gradient-to-r from-green-100 to-blue-100 text-green-800">
+                          <svg
+                            className="-ml-0.5 mr-1.5 h-2 w-2 text-green-500"
+                            fill="currentColor"
+                            viewBox="0 0 8 8"
+                          >
+                            <circle cx="4" cy="4" r="3" />
+                          </svg>
                           Active
                         </span>
                       </div>
-                      <div className="mt-3 space-y-4">
+                      <div className="mt-4 space-y-3">
                         {faq.questions.map((item, qIndex) => (
                           <div key={qIndex} className="group">
-                            <details className="p-3 border border-gray-200 rounded-lg hover:border-blue-300 transition">
+                            <details className="p-4 border border-gray-200 rounded-lg hover:border-blue-300 transition-all duration-200 bg-gradient-to-br from-gray-50 to-white">
                               <summary className="flex justify-between items-center cursor-pointer list-none">
                                 <span className="font-medium text-gray-800">{item.question}</span>
                                 <svg
-                                  className="h-5 w-5 text-gray-500 transform group-hover:rotate-90 transition"
+                                  className="h-5 w-5 text-gray-400 transform group-hover:rotate-90 transition-transform duration-200"
                                   xmlns="http://www.w3.org/2000/svg"
                                   viewBox="0 0 20 20"
                                   fill="currentColor"
@@ -280,7 +309,7 @@ export default function Home() {
                                   />
                                 </svg>
                               </summary>
-                              <div className="mt-2 p-3 bg-gray-50 rounded text-gray-700">
+                              <div className="mt-3 p-3 bg-blue-50 rounded-lg text-gray-700 border border-blue-100">
                                 {item.answer}
                               </div>
                             </details>

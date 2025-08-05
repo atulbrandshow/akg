@@ -1,6 +1,7 @@
 "use client";
 
-import { CampusSlider, FooterCard, LogoSlider, MilestonesSection, NewsEvents, PlacementHighlights, ExploreCourses, ResearchEnvironment, SlickSlider, StickyFooter, StudentReviews, TopCard } from "@/Components";
+import { CampusSlider, FooterCard, MilestonesSection, NewsEvents, PlacementHighlights, ExploreCourses, ResearchEnvironment, SlickSlider, StickyFooter, StudentReviews, TopCard } from "@/Components";
+import HomeLogoSlider from "@/Components/HomeLogoSlider";
 import MainSection from "@/Components/MainSection";
 import NotificationSlider from "@/Components/NotificationSlider";
 
@@ -15,7 +16,7 @@ export default function HomePage({ data }) {
       {data && <NotificationSlider data={data} />}
       {data && <MilestonesSection data={data} />}
       {data && <PlacementHighlights data={data} />}
-      {data && <LogoSlider data={data} />}
+      {data && <HomeLogoSlider data={data} />}
       {data && <CampusSlider data={data} />}
       {data && <StudentReviews data={data} />}
       {data && <NewsEvents data={data} />}

@@ -129,12 +129,12 @@ export default function NavBar() {
                 <h1 className='text-4xl tracking-tighter'>AKG</h1>
                 <h2 className='-mt-2 sm:-mt-1.5 text-xs font-semibold tracking-tight'>UNIVERSITY</h2>
               </div> */}
-              <div className={`grid gap-0 grid-cols-4 max-lg:grid-cols-4 max-[1700px]:grid-cols-2 max-[500px]:grid-cols-2 pr-2`}>
+              {/* <div className={`grid gap-0 grid-cols-4 max-lg:grid-cols-4 max-[1700px]:grid-cols-2 max-[500px]:grid-cols-2 pr-2`}>
                 <img src="/image/NaaC.webp" alt="NAAC Logo" className={`sideimgs h-10 max-[500px]:h-7 max-sm:h-8 object-contain bg-blend-color-dodge relative z-[4] shadow-effect-right`} />
                 <img src="/image/nba.jpg" alt="NBA Logo" className={`sideimgs h-10 max-[500px]:h-7 max-sm:h-8 object-contain bg-blend-color-dodge relative z-[3] shadow-effect-right`} />
                 <img src="/image/qs-i-gauge.jpg" alt="QS-I-GAUGE Logo" className={`sideimgs h-10 max-[500px]:h-7 max-sm:h-8 object-contain bg-blend-color-dodge relative z-[2] shadow-effect-right`} />
                 <img src="/image/iic.jpg" alt="IIC Logo" className={`sideimgs h-10 max-[500px]:h-7 max-sm:h-8 object-contain bg-blend-color-dodge relative z-[1] shadow-effect-right`} />
-              </div>
+              </div> */}
               {BigMenuToggle &&
                 <button
                   onClick={() => setBigMenuToggle(!BigMenuToggle)}

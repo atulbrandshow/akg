@@ -117,18 +117,18 @@ export default function NavBar() {
               <div className="flex justify-center">
                 <Link href="/home" as="/">
                   <Image
-                    src="/image/AKGEC_LOGO.webp"
+                    src="/image/akg-logo.webp"
                     alt="AKG University Logo"
-                    height={60}
-                    width={60}
-                    className={`logo h-12 w-12 object-contain bg-blend-color-dodge cursor-pointer`}
+                    height={300}
+                    width={300}
+                    className={`logo h-12 w-40 object-contain bg-blend-color-dodge cursor-pointer`}
                   />
                 </Link>
               </div>
-              <div className='sideimgs text-indigo-950 flex flex-col items-center font-novaBold leading-none'>
+              {/* <div className='sideimgs text-indigo-950 flex flex-col items-center font-novaBold leading-none'>
                 <h1 className='text-4xl tracking-tighter'>AKG</h1>
                 <h2 className='-mt-2 sm:-mt-1.5 text-xs font-semibold tracking-tight'>UNIVERSITY</h2>
-              </div>
+              </div> */}
               <div className={`grid gap-0 grid-cols-4 max-lg:grid-cols-4 max-[1700px]:grid-cols-2 max-[500px]:grid-cols-2 pr-2`}>
                 <img src="/image/NaaC.webp" alt="NAAC Logo" className={`sideimgs h-10 max-[500px]:h-7 max-sm:h-8 object-contain bg-blend-color-dodge relative z-[4] shadow-effect-right`} />
                 <img src="/image/nba.jpg" alt="NBA Logo" className={`sideimgs h-10 max-[500px]:h-7 max-sm:h-8 object-contain bg-blend-color-dodge relative z-[3] shadow-effect-right`} />

@@ -295,6 +295,10 @@ export const Programs = {
                     {
                         name: 'B.Tech',
                         url: '/department-of-electronics-and-communication-engineering'
+                    },
+                    {
+                        name: 'BCA',
+                        url: '/'
                     }
                 ],
                 "Post Graduate": [
@@ -317,12 +321,12 @@ export const Programs = {
                 // },
             ],
             "Program": {
-                // "Graduate": [
-                //     {
-                //         name: 'BBA',
-                //         url: '/'
-                //     }
-                // ],
+                "Graduate": [
+                    {
+                        name: 'BBA',
+                        url: '/'
+                    }
+                ],
                 "Post Graduate": [
                     {
                         name: 'MBA',

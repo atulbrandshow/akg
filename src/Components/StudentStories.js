@@ -4,25 +4,6 @@ import { useRef } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { IMAGE_PATH } from '@/configs/config';
 
-const testimonials = [
-  {
-    name: "Avinash Singh",
-    education: "B.Tech IT (2015-2019)",
-    company: "UKG",
-    designation: "Senior Product Manager",
-    image: "/",
-    speaks: "My experience at AKGEC has been nothing less than phenomenal. The college provided me with a supportive environment that fostered growth and learning. The faculty was welcoming, and their guidance greatly aided our academic journey, moving us closer toward our goals. I had mentors who consistently went the extra mile to offer help and guidance. Being a part of Software Incubator - SDC, an R&D center at our college, was transformative, expanding my knowledge of diverse technologies and the corporate landscape. The camaraderie within the team was truly remarkable, nurturing a supportive and collaborative environment."
-  },
-  {
-    name: "Ishu Bansal",
-    education: "B.Tech IT (2007-2011)",
-    company: "Truck Suvidha",
-    designation: "Founder & CEO",
-    image: "/",
-    speaks: "While at AKGEC, I was actively involved in various societies, won awards for academic and extracurricular achievements, and was a founding member of the Software Incubator. These experiences have shaped my journey, ultimately leading me to found TruckSuvidha, a startup aimed at revolutionizing the transportation industry.",
-  }
-]
-
 const StudentStories = ({ studentReviews }) => {
   const sliderRef = useRef(null)
 
@@ -41,7 +22,7 @@ const StudentStories = ({ studentReviews }) => {
           className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-4 md:-mx-6 lg:-mx-8 px-4 md:px-6 lg:px-8"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          {studentReviews.map((review) => (
+          {studentReviews?.length > 0 && studentReviews?.map((review) => (
             <div
               key={review?._id}
               className="flex-shrink-0 snap-start w-[280px] sm:w-[320px] md:w-[360px] mr-4 md:mr-6 last:mr-0 py-4"

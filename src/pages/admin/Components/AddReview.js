@@ -302,7 +302,7 @@ export default function AddReview() {
 
                                     <div className="space-y-3">
                                         <label htmlFor="image" className="block text-sm font-medium text-gray-700">
-                                            Profile Image URL
+                                            Upload Image 
                                         </label>
                                         <input
                                             type="url"

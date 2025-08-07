@@ -418,7 +418,7 @@ const TableList = ({ type, title, subTitle }) => {
                                                             FAQ
                                                         </button>
 
-                                                        {(event.ComponentType === "HomePage") && (
+                                                        {(type === "School" || type === "Department" || event.ComponentType === "HomePage") && (
                                                             <button
                                                                 onClick={() => router.push(
                                                                     `/admin/add-review` +

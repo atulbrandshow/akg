@@ -872,7 +872,7 @@ function EditDynamicPages({ type, componentType }) {
                                                         ${page.type === "School" ? "bg-blue-100 text-blue-700" :
                                   page.type === "Department" ? "bg-green-100 text-green-700" :
                                     "bg-gray-100 text-gray-700"}`}
-                            >create-school
+                            >
                               {page.type}
                             </span>
 

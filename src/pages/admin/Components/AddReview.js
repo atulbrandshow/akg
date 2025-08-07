@@ -22,6 +22,7 @@ export default function AddReview() {
     const [reviews, setReviews] = useState([]);
     const [isLoadingReviews, setIsLoadingReviews] = useState(true);
     const [editingReview, setEditingReview] = useState(null);
+    const [showForm, setShowForm] = useState(false);
 
     // Fetch existing reviews on component mount
     useEffect(() => {
@@ -125,6 +126,7 @@ export default function AddReview() {
 
             fetchReviews(); // Refresh the list
             resetForm();
+            setShowForm(false);
 
         } catch (err) {
             console.error("Submission error:", err);
@@ -158,6 +160,7 @@ export default function AddReview() {
             description: review.description,
             image: review.image || ""
         });
+        setShowForm(true);
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
@@ -190,6 +193,7 @@ export default function AddReview() {
             fetchReviews(); // Refresh the list
             if (editingReview?._id === reviewId) {
                 resetForm();
+                setShowForm(false);
             }
 
         } catch (err) {
@@ -202,28 +206,57 @@ export default function AddReview() {
         }
     };
 
-
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
             <ToastContainer position="top-center" />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 {/* Header with gradient */}
-                <div className="text-center mb-16">
+                <div className="text-center mb-12">
                     <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-500 mb-4">
-                       Student Review Management
+                        Student Review Management
                     </h1>
                     <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                        {editingReview ? 'Make changes to your existing review' : 'Help others by sharing your learning experience'}
+                        {editingReview ? 'Edit existing review' : 'Manage and add student reviews'}
                     </p>
+                    
+                    {!showForm && (
+                        <button
+                            onClick={() => {
+                                setShowForm(true);
+                                resetForm();
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                            }}
+                            className="mt-8 px-8 py-3 bg-gradient-to-r from-indigo-600 to-blue-500 hover:from-indigo-700 hover:to-blue-600 text-white font-medium rounded-xl shadow-md transition-all duration-300"
+                        >
+                            Add New Review
+                        </button>
+                    )}
                 </div>
 
                 {/* Main content grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                    {/* Form Section - Takes 2/3 space on large screens */}
-                    <div className="lg:col-span-2">
+                <div className="grid grid-cols-1 gap-12">
+                    {/* Form Section - Only shown when showForm is true */}
+                    {showForm && (
                         <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
                             <div className="p-10">
+                                <div className="flex justify-between items-center mb-8">
+                                    <h2 className="text-2xl font-bold text-gray-800">
+                                        {editingReview ? 'Edit Review' : 'Add New Review'}
+                                    </h2>
+                                    <button
+                                        onClick={() => {
+                                            setShowForm(false);
+                                            resetForm();
+                                        }}
+                                        className="p-2 text-gray-500 hover:text-gray-700 rounded-full hover:bg-gray-100 transition"
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
+                                </div>
+
                                 {error && (
                                     <div className="mb-8 p-4 bg-red-50/80 backdrop-blur-sm text-red-700 rounded-xl border border-red-200 flex items-center">
                                         <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -339,7 +372,10 @@ export default function AddReview() {
                                         {editingReview && (
                                             <button
                                                 type="button"
-                                                onClick={resetForm}
+                                                onClick={() => {
+                                                    resetForm();
+                                                    setShowForm(false);
+                                                }}
                                                 className="py-4 px-6 text-lg font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition-all duration-300"
                                             >
                                                 Cancel
@@ -349,88 +385,102 @@ export default function AddReview() {
                                 </form>
                             </div>
                         </div>
-                    </div>
+                    )}
 
-                    {/* Reviews Section - Takes 1/3 space on large screens */}
-                    <div className="lg:col-span-1">
-                        <div className="sticky top-8">
-                            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
-                                <div className="p-6 bg-gradient-to-r from-indigo-600 to-blue-500">
-                                    <h2 className="text-2xl font-bold text-white">Recent Reviews</h2>
-                                </div>
-
-                                <div className="p-6">
-                                    {isLoadingReviews ? (
-                                        <div className="flex justify-center items-center py-12">
-                                            <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-indigo-500"></div>
-                                        </div>
-                                    ) : reviews.length === 0 ? (
-                                        <div className="text-center py-8">
-                                            <svg className="mx-auto h-14 w-14 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
-                                            </svg>
-                                            <h3 className="mt-4 text-lg font-medium text-gray-900">No reviews yet</h3>
-                                            <p className="mt-2 text-gray-500">Your review could be the first!</p>
-                                        </div>
-                                    ) : (
-                                        <div className="space-y-6 max-h-[calc(100vh-300px)] overflow-y-auto pr-2">
-                                            {reviews.map((review) => (
-                                                <div key={review._id} className="group relative bg-gray-50/50 hover:bg-gray-100/50 rounded-xl p-5 transition-all duration-200 border border-gray-200">
-                                                    <div className="flex items-start">
-                                                        {review.image ? (
-                                                            <img
-                                                                src={review.image}
-                                                                alt={review.name}
-                                                                className="w-10 h-10 rounded-full object-cover mr-3 border-2 border-white shadow-sm"
-                                                            />
-                                                        ) : (
-                                                            <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center mr-3 border-2 border-white shadow-sm">
-                                                                <svg className="h-5 w-5 text-indigo-500" fill="currentColor" viewBox="0 0 24 24">
-                                                                    <path d="M12 14.75c2.67 0 8 1.34 8 4v1.25H4v-1.25c0-2.66 5.33-4 8-4zm0-9.5c-2.22 0-4 1.78-4 4s1.78 4 4 4 4-1.78 4-4-1.78-4-4-4zm0 6c-1.11 0-2-.89-2-2s.89-2 2-2 2 .89 2 2-.89 2-2 2z" />
-                                                                </svg>
-                                                            </div>
-                                                        )}
-                                                        <div className="flex-1 min-w-0">
-                                                            <div className="flex justify-between items-start">
-                                                                <h3 className="text-sm font-semibold text-gray-900 truncate">{review.name}</h3>
-                                                                <span className="text-xs text-gray-500 whitespace-nowrap ml-2">
-                                                                    {new Date(review.createdAt || new Date()).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-                                                                </span>
-                                                            </div>
-                                                            <p className="text-xs text-indigo-600 font-medium mt-0.5 truncate">
-                                                                {review.course} • {review.company_name}
-                                                            </p>
-                                                            <p className="mt-2 text-sm text-gray-700 line-clamp-2">{review.description}</p>
-                                                        </div>
-                                                    </div>
-
-                                                    {/* Edit/Delete Buttons - Shown on hover */}
-                                                    <div className="absolute top-3 right-3 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                                                        <button
-                                                            onClick={() => handleEdit(review)}
-                                                            className="p-1.5 bg-white text-indigo-600 rounded-lg shadow-sm hover:bg-indigo-50 transition"
-                                                            title="Edit"
-                                                        >
-                                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                                            </svg>
-                                                        </button>
-                                                        <button
-                                                            onClick={() => handleDelete(review._id)}
-                                                            className="p-1.5 bg-white text-red-600 rounded-lg shadow-sm hover:bg-red-50 transition"
-                                                            title="Delete"
-                                                        >
-                                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
+                    {/* Reviews Section - Always shown */}
+                    <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
+                        <div className="p-6 bg-gradient-to-r from-indigo-600 to-blue-500">
+                            <div className="flex justify-between items-center">
+                                <h2 className="text-2xl font-bold text-white">All Reviews</h2>
+                                <button
+                                    onClick={() => {
+                                        setShowForm(true);
+                                        resetForm();
+                                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                                    }}
+                                    className="px-4 py-2 bg-white text-indigo-600 font-medium rounded-lg shadow hover:bg-gray-100 transition"
+                                >
+                                    Add Review
+                                </button>
                             </div>
+                        </div>
+
+                        <div className="p-6">
+                            {isLoadingReviews ? (
+                                <div className="flex justify-center items-center py-12">
+                                    <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-indigo-500"></div>
+                                </div>
+                            ) : reviews.length === 0 ? (
+                                <div className="text-center py-8">
+                                    <svg className="mx-auto h-14 w-14 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+                                    </svg>
+                                    <h3 className="mt-4 text-lg font-medium text-gray-900">No reviews yet</h3>
+                                    <p className="mt-2 text-gray-500">Your review could be the first!</p>
+                                    <button
+                                        onClick={() => setShowForm(true)}
+                                        className="mt-4 px-6 py-2 bg-indigo-600 text-white font-medium rounded-lg shadow hover:bg-indigo-700 transition"
+                                    >
+                                        Add First Review
+                                    </button>
+                                </div>
+                            ) : (
+                                <div className="space-y-6">
+                                    {reviews.map((review) => (
+                                        <div key={review._id} className="group relative bg-gray-50/50 hover:bg-gray-100/50 rounded-xl p-5 transition-all duration-200 border border-gray-200">
+                                            <div className="flex items-start">
+                                                {review.image ? (
+                                                    <img
+                                                        src={review.image}
+                                                        alt={review.name}
+                                                        className="w-10 h-10 rounded-full object-cover mr-3 border-2 border-white shadow-sm"
+                                                    />
+                                                ) : (
+                                                    <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center mr-3 border-2 border-white shadow-sm">
+                                                        <svg className="h-5 w-5 text-indigo-500" fill="currentColor" viewBox="0 0 24 24">
+                                                            <path d="M12 14.75c2.67 0 8 1.34 8 4v1.25H4v-1.25c0-2.66 5.33-4 8-4zm0-9.5c-2.22 0-4 1.78-4 4s1.78 4 4 4 4-1.78 4-4-1.78-4-4-4zm0 6c-1.11 0-2-.89-2-2s.89-2 2-2 2 .89 2 2-.89 2-2 2z" />
+                                                        </svg>
+                                                    </div>
+                                                )}
+                                                <div className="flex-1 min-w-0">
+                                                    <div className="flex justify-between items-start">
+                                                        <h3 className="text-sm font-semibold text-gray-900 truncate">{review.name}</h3>
+                                                        <span className="text-xs text-gray-500 whitespace-nowrap ml-2">
+                                                            {new Date(review.createdAt || new Date()).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                                                        </span>
+                                                    </div>
+                                                    <p className="text-xs text-indigo-600 font-medium mt-0.5 truncate">
+                                                        {review.course} • {review.company_name}
+                                                    </p>
+                                                    <p className="mt-2 text-sm text-gray-700">{review.description}</p>
+                                                </div>
+                                            </div>
+
+                                            {/* Edit/Delete Buttons - Shown on hover */}
+                                            <div className="absolute top-3 right-3 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <button
+                                                    onClick={() => handleEdit(review)}
+                                                    className="p-1.5 bg-white text-indigo-600 rounded-lg shadow-sm hover:bg-indigo-50 transition"
+                                                    title="Edit"
+                                                >
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                                    </svg>
+                                                </button>
+                                                <button
+                                                    onClick={() => handleDelete(review._id)}
+                                                    className="p-1.5 bg-white text-red-600 rounded-lg shadow-sm hover:bg-red-50 transition"
+                                                    title="Delete"
+                                                >
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>

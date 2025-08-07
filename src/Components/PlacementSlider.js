@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import {  Autoplay } from "swiper/modules";
+import { IMAGE_PATH } from "@/configs/config";
 
 
 const PlacementSlider = ({placement, delay}) => {
@@ -21,7 +22,7 @@ const PlacementSlider = ({placement, delay}) => {
                     <article className="max-xl:w-full mx-auto cursor-grab">
                       <img
                       className=""
-                        src={item}
+                        src={IMAGE_PATH + item}
                         alt="placement"
                       />
                     </article>

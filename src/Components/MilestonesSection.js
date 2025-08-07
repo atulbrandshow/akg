@@ -1,39 +1,33 @@
 "use client";
+import { IMAGE_PATH } from '@/configs/config';
 import React from 'react';
 
-const MilestonesSection = () => {
-  const milestones = [
-    {
-      rank: '77',
-      sup: 'th',
-      description: 'Universities In India By INDIA TODAY Rankings 2024',
-    },
-    {
-      rank: '80',
-      sup: 'th',
-      description: 'Universities In India By THE WEEK Rankings 2024',
-    },
-    {
-      rank: '251',
-      sup: 'st',
-      description: 'Universities In India By NIRF Rankings 2020',
-    },
-    {
-      rank: '44',
-      sup: 'th',
-      description: 'Universities In India By OUTLOOK Rankings 2024',
-    },
-    {
-      rank: '61',
-      sup: 'st',
-      description: 'Universities In India By IIRF Rankings 2023',
-    },
-    // {
-    //   rank: '149',
-    //   sup: 'th',
-    //   description: 'Universities In India By TOI Rankings 2024',
-    // },
-  ];
+const MilestonesSection = ({ data }) => {
+  const d = data?.pageData;
+
+  const logos = d?.Achievements_Logos;
+
+  const words = d?.Achievements_Title?.trim().split(" ");
+  const last = words?.pop();
+  const first = words?.join(" ");
+
+  const milestones = []
+  for (let i = 1; i <= 10; i++) {
+    const rank = d?.[`Rank-${i}`]
+    const description = d?.[`RankDesc-${i}`]
+
+    if (rank && description) {
+      const match = rank.match(/^(\d+)(\D+)$/); // matches digits + non-digits
+      const number = match?.[1] || rank;
+      const sup = match?.[2] || '';
+
+      milestones.push({
+        rank: number,
+        sup,
+        description,
+      })
+    }
+  }
 
   return (
     <div className="break2:max-w-[1320px] break3:max-w-[1140px] break4:max-w-[960px] mx-auto py-12 bg-white">
@@ -56,21 +50,23 @@ const MilestonesSection = () => {
           </svg>
 
         </div>
-        <h2 className="text-5xl font-novaLight max-lg:text-4xl max-md:text-3xl text-gray-800 mt-5">A Journey of Exceptional <span className='font-novaSemi bg-text-gradient bg-clip-text text-transparent animate-gradient'>Achievements</span>!</h2>
+        <h2 className="text-5xl font-novaLight max-lg:text-4xl max-md:text-3xl text-gray-800 mt-5">{first} {" "}<span className='font-novaSemi bg-text-gradient bg-clip-text text-transparent animate-gradient'>{last}</span>!</h2>
         <div className="my-14 flex justify-center space-x-14 max-lg:grid max-lg:grid-cols-3 max-sm:grid-cols-3 max-lg:space-x-0 max-lg:gap-4 max-lg:place-items-center">
-          <img src="/image/company-logos/india_today.webp" alt="India Today" className="h-12" />
-          <img src="/image/company-logos/the_week.webp" alt="The Week" className="h-12" />
-          <img src="/image/company-logos/nirf.webp" alt="NIRF" className="h-12" />
-          <img src="/image/company-logos/outlook.webp" alt="Outlook" className="h-12" />
-          <img src="/image/company-logos/iirf.webp" alt="IIRF" className="h-12" />
-          <img src="/image/company-logos/times-of-india.webp" alt="TTI" className="h-12" />
+          {logos?.map((logo, index) => (
+            <img
+              key={index}
+              src={IMAGE_PATH + logo}
+              alt={`Logo ${index + 1}`}
+              className="h-12 max-lg:h-10 max-sm:h-8 object-contain"
+            />
+          ))}
         </div>
       </div>
       <div className="flex justify-between space-x-0 max-lg:space-x-0  mx-auto max-lg:grid max-lg:grid-cols-3 max-md:grid-cols-2 max-lg:justify-start max-lg:gap-y-5">
         {milestones?.map((milestone, index) => (
           <div key={index} className="text-left after:content-link relative after:absolute after:left-5 after:top-0 after:w-6 after:h-full px-10 mb-1">
             <p className="text-xs uppercase bg-gradient-to-r from-blue-600 to-rose-600 bg-clip-text text-transparent font-novaBold">Ranked</p>
-            <p className="text-4xl font-novaLight text-gray-900 max-lg:text-2xl">{milestone.rank}<sup className='text-3xl font-novaLight max-lg:text-lg ml-1'>th</sup></p>
+            <p className="text-4xl font-novaLight text-gray-900 max-lg:text-2xl">{milestone.rank}<sup className='text-3xl font-novaLight max-lg:text-lg ml-1'>{milestone.sup}</sup></p>
             <p className="text-sm font-novaReg text-black max-lg:text-xs max-sm:text-[10px]">among The Best</p>
             <p className="text-[15px] font-novaReg capitalize max-lg:text-xs max-sm:text-[10px]">{milestone.description}</p>
           </div>

@@ -18,16 +18,6 @@ export default function LogoSlider() {
         { alt: "TCS", src: "/image/company-logos/tcs.webp", width: 158, height: 48 },
         { alt: "Amdocs", src: "/image/company-logos/amdocsIcon.webp", width: 158, height: 48 },
         { alt: "Wipro", src: "/image/company-logos/WIPRO.webp", width: 158, height: 48 },
-        { alt: "Amazon", src: "/image/company-logos/AmozonIcon.webp", width: 158, height: 48 },
-        { alt: "Google", src: "/image/company-logos/Google.png", width: 158, height: 48 },
-        { alt: "Microsoft", src: "/image/company-logos/Microsoft.png", width: 158, height: 48 },
-        { alt: "IBM", src: "/image/company-logos/ibm.webp", width: 158, height: 48 },
-        { alt: "Accenture", src: "/image/company-logos/AccentureIcon.webp", width: 158, height: 48 },
-        { alt: "Infosys", src: "/image/company-logos/infosys.webp", width: 158, height: 48 },
-        { alt: "Adobe", src: "/image/company-logos/Adobe.png", width: 158, height: 48 },
-        { alt: "TCS", src: "/image/company-logos/tcs.webp", width: 158, height: 48 },
-        { alt: "Amdocs", src: "/image/company-logos/amdocsIcon.webp", width: 158, height: 48 },
-        { alt: "Wipro", src: "/image/company-logos/WIPRO.webp", width: 158, height: 48 }
     ];
     const breakpoints = {
         320: { slidesPerView: 2 },

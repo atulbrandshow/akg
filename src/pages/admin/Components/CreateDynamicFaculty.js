@@ -19,16 +19,14 @@ const JoditEditor = dynamic(() => import("jodit-react"), {
     ),
 })
 
-const isValidDate = (date) => {
-    return date && !isNaN(new Date(date).getTime())
-}
-
 const ImagePreview = ({ file, imageUrl, onDelete, label, isUploading }) => {
     const [previewUrl, setPreviewUrl] = useState(null)
 
     React.useEffect(() => {
         if (imageUrl) {
-            setPreviewUrl(imageUrl)
+            // If imageUrl already includes IMAGE_PATH, use it as is, otherwise prepend IMAGE_PATH
+            const fullUrl = imageUrl.startsWith("http") ? imageUrl : `${IMAGE_PATH}${imageUrl}`
+            setPreviewUrl(fullUrl)
         } else if (file && typeof file === "object") {
             const url = URL.createObjectURL(file)
             setPreviewUrl(url)
@@ -42,13 +40,16 @@ const ImagePreview = ({ file, imageUrl, onDelete, label, isUploading }) => {
         <div className="mt-3 p-3 bg-gray-50 rounded-lg border">
             <div className="flex items-start justify-between">
                 <div className="flex-1">
-                    <p className="text-sm font-medium text-gray-700 mb-2">{label}</p>
+                    <p className="text-sm font-novaSemi text-gray-700 mb-2">{label}</p>
                     <div className="flex items-center space-x-3">
                         <div className="relative">
                             <img
-                                src={IMAGE_PATH + previewUrl || "/placeholder.svg"}
+                                src={previewUrl || "/placeholder.svg?height=64&width=64"}
                                 alt="Preview"
                                 className="w-16 h-16 object-cover rounded-lg border"
+                                onError={(e) => {
+                                    e.target.src = "/placeholder.svg?height=64&width=64"
+                                }}
                             />
                             {isUploading && (
                                 <div className="absolute inset-0 bg-black bg-opacity-50 rounded-lg flex items-center justify-center">
@@ -81,6 +82,56 @@ const ImagePreview = ({ file, imageUrl, onDelete, label, isUploading }) => {
     )
 }
 
+const SearchableDropdown = ({
+    label,
+    value,
+    onChange,
+    onInputChange,
+    options,
+    showDropdown,
+    onToggleDropdown,
+    placeholder,
+    required = false,
+    error,
+}) => {
+    return (
+        <div className="relative">
+            <label className="block text-sm font-novaSemi text-gray-700 mb-2">
+                {label} {required && <span className="text-red-500">*</span>}
+            </label>
+            <div className="relative">
+                <input
+                    type="text"
+                    value={value}
+                    onChange={onInputChange}
+                    placeholder={placeholder}
+                    className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50 hover:bg-white"
+                />
+                <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+            </div>
+            {error && <p className="text-sm text-red-600 mt-1">{error}</p>}
+            {showDropdown && options.length > 0 && (
+                <div className="absolute z-20 w-full bg-white border border-gray-300 font-novaReg rounded-lg mt-1 max-h-64 overflow-auto shadow-lg">
+                    {options.map((option, index) => (
+                        <div
+                            key={index}
+                            onClick={() => onToggleDropdown(option)}
+                            className="cursor-pointer px-4 py-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0 transition-colors"
+                        >
+                            <div className="font-novaSemi text-gray-900">{option.name}</div>
+                            <div className="text-sm text-gray-500">{option.type}</div>
+                        </div>
+                    ))}
+                </div>
+            )}
+        </div>
+    )
+}
+
 export default function CreateFacultyForm({ type, componentType }) {
     const searchParams = useSearchParams()
     const page_id = searchParams.get("page_id")
@@ -91,13 +142,6 @@ export default function CreateFacultyForm({ type, componentType }) {
     // Form states
     const [isEditMode, setIsEditMode] = useState(!!page_id)
     const [loading, setLoading] = useState(!!page_id)
-    const [searchValue, setSearchValue] = useState("")
-    const [showDropdown, setShowDropdown] = useState(false)
-    const [displayedPages, setDisplayedPages] = useState([])
-    const [selectedPage, setSelectedPage] = useState(null)
-    const [hasMore, setHasMore] = useState(true)
-    const [allPages, setAllPages] = useState([])
-    const [pageIndex, setPageIndex] = useState(10)
 
     // Upload states
     const [uploadingStates, setUploadingStates] = useState({})
@@ -113,18 +157,15 @@ export default function CreateFacultyForm({ type, componentType }) {
         lastName: "",
         emailAddress: "",
         designation: "",
-
         // Academic Information - separate selections
         selectedSchool: null,
         selectedDepartment: null,
         selectedProgram: null,
         subjectsTaught: "",
-
         // Additional Information
         profilePicture: "",
         socialLinks: [],
         bio: "",
-
         // Backend fields
         page_id: "",
         parent_id: "",
@@ -166,7 +207,7 @@ export default function CreateFacultyForm({ type, componentType }) {
     const [departmentPages, setDepartmentPages] = useState([])
     const [programPages, setProgramPages] = useState([])
 
-    // Replace fetchPages function with separate fetch functions:
+    // Fetch functions
     const fetchSchools = async (searchTerm = "") => {
         try {
             const response = await fetch(`${API_NODE_URL}slug/getParents`, {
@@ -221,12 +262,10 @@ export default function CreateFacultyForm({ type, componentType }) {
         }
     }
 
-    // Replace useEffect with:
     useEffect(() => {
         fetchSchools()
         fetchDepartments()
         fetchPrograms()
-
         if (isEditMode && page_id) {
             fetchExistingData()
         }
@@ -234,28 +273,24 @@ export default function CreateFacultyForm({ type, componentType }) {
 
     const fetchExistingData = async () => {
         if (!page_id) return
-
         setLoading(true)
         try {
             const response = await fetch(`${API_NODE_URL}slug/getbyid?page_id=${page_id}`, {
                 credentials: "include",
             })
             const result = await response.json()
-
             if (result.status && result.data) {
-                const data = result.data
-
-                // Parse param5 for basic info (firstName|lastName|emailAddress|designation)
-                const basicInfo = data.param5 ? data.param5.split("|") : ["", "", "", ""]
+                const data = result.data;
+                console.log(data);
 
                 setFormData((prev) => ({
                     ...prev,
                     page_id: data.page_id,
                     parent_id: data.parent_id,
-                    firstName: basicInfo[0] || "",
-                    lastName: basicInfo[1] || "",
-                    emailAddress: basicInfo[2] || "",
-                    designation: basicInfo[3] || "",
+                    firstName: data.param7 || "",
+                    lastName: data.param8 || "",
+                    emailAddress: data.param6 || "",
+                    designation: data.param5 || "",
                     subjectsTaught: data.param4 || "",
                     profilePicture: data.banner_img || "",
                     bio: data.shortdesc || "",
@@ -284,6 +319,7 @@ export default function CreateFacultyForm({ type, componentType }) {
                     param5: data.param5 || "",
                 }))
 
+
                 // Set social links from params
                 const socialLinksArray = [data.param1, data.param2, data.param3].filter((link) => link && link.trim())
                 setSocialLinks(socialLinksArray)
@@ -291,7 +327,6 @@ export default function CreateFacultyForm({ type, componentType }) {
                 // Set search values for dropdowns
                 if (data.tag1) {
                     setSchoolSearchValue(data.tag1)
-                    // You might want to fetch and set the selected school object here
                 }
                 if (data.tag2) {
                     setDepartmentSearchValue(data.tag2)
@@ -308,7 +343,7 @@ export default function CreateFacultyForm({ type, componentType }) {
         }
     }
 
-    // Add new handler functions:
+    // Handler functions
     const handleSchoolInputChange = (e) => {
         const value = e.target.value
         setSchoolSearchValue(value)
@@ -374,7 +409,7 @@ export default function CreateFacultyForm({ type, componentType }) {
         setShowProgramDropdown(false)
     }
 
-    // Update social links handlers to use param fields:
+    // Social links handlers
     const handleSocialLinkAdd = () => {
         if (socialLinkInput.trim() && !socialLinks.includes(socialLinkInput.trim())) {
             const newLinks = [...socialLinks, socialLinkInput.trim()]
@@ -409,6 +444,55 @@ export default function CreateFacultyForm({ type, componentType }) {
         }
     }
 
+    const handleChange = (e) => {
+        const { name, value } = e.target
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value,
+        }))
+    }
+
+    const handleFileChange = async (e, field) => {
+        const file = e.target.files[0]
+        if (file) {
+            setUploadingStates((prev) => ({
+                ...prev,
+                [field]: true,
+            }))
+
+            try {
+                const imageUrl = await uploadImages(file)
+                setFormData((prev) => ({
+                    ...prev,
+                    [field]: imageUrl,
+                }))
+                toast.success("Image uploaded successfully!")
+            } catch (error) {
+                console.error("Upload error:", error)
+                toast.error("Failed to upload image")
+            } finally {
+                setUploadingStates((prev) => ({
+                    ...prev,
+                    [field]: false,
+                }))
+            }
+        }
+    }
+
+    const handleDeleteFile = (field) => {
+        setFormData((prev) => ({
+            ...prev,
+            [field]: "",
+        }))
+    }
+
+    const handleBioChange = (newContent) => {
+        setFormData((prev) => ({
+            ...prev,
+            bio: newContent,
+        }))
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         setSubmitting(true)
@@ -417,10 +501,10 @@ export default function CreateFacultyForm({ type, componentType }) {
         const newErrors = {}
         if (!formData.firstName) newErrors.firstName = "First name is required"
         if (!formData.lastName) newErrors.lastName = "Last name is required"
-        if (!formData.emailAddress) newErrors.emailAddress = "Email address is required"
+        // if (!formData.emailAddress) newErrors.emailAddress = "Email address is required"
         if (!formData.designation) newErrors.designation = "Designation is required"
         if (!isEditMode && !formData.selectedSchool) newErrors.selectedSchool = "Please select a school"
-        if (!formData.subjectsTaught) newErrors.subjectsTaught = "Subjects taught is required"
+        // if (!formData.subjectsTaught) newErrors.subjectsTaught = "Subjects taught is required"
 
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors)
@@ -431,7 +515,6 @@ export default function CreateFacultyForm({ type, componentType }) {
         setErrors({})
 
         const progressBar = document.getElementById("progress-bar")
-
         try {
             progressBar.style.width = "0%"
             progressBar.style.transition = "none"
@@ -469,7 +552,10 @@ export default function CreateFacultyForm({ type, componentType }) {
                     param2: formData.socialLinks[1] || "",
                     param3: formData.socialLinks[2] || "",
                     param4: formData.subjectsTaught,
-                    param5: `${formData.firstName}|${formData.lastName}|${formData.emailAddress}|${formData.designation}`,
+                    param5: formData.designation,
+                    param6: formData.emailAddress,
+                    param7: formData.firstName,
+                    param8: formData.lastName,
                 }
 
                 const updateResponse = await fetch(`${API_NODE_URL}slug/update`, {
@@ -482,7 +568,6 @@ export default function CreateFacultyForm({ type, componentType }) {
                 })
 
                 const updateResult = await updateResponse.json()
-
                 if (updateResult.status) {
                     progressBar.style.width = "100%"
                     toast.success(`${type} updated successfully!`)
@@ -493,7 +578,7 @@ export default function CreateFacultyForm({ type, componentType }) {
                     throw new Error(updateResult.message)
                 }
             } else {
-                // Create mode - existing logic
+                // Create mode
                 const createPayload = {
                     parent_id: formData.selectedSchool?.page_id,
                     name: `${formData.firstName} ${formData.lastName}`,
@@ -511,7 +596,6 @@ export default function CreateFacultyForm({ type, componentType }) {
                 })
 
                 const createResult = await createResponse.json()
-
                 if (!createResult.status) {
                     if (createResult.message === "Page already exists with this title") {
                         toast.warn("Name Already Exists")
@@ -549,7 +633,10 @@ export default function CreateFacultyForm({ type, componentType }) {
                     param2: formData.socialLinks[1] || "",
                     param3: formData.socialLinks[2] || "",
                     param4: formData.subjectsTaught,
-                    param5: `${formData.firstName}|${formData.lastName}|${formData.emailAddress}|${formData.designation}`,
+                    param5: formData.designation,
+                    param6: formData.emailAddress,
+                    param7: formData.firstName,
+                    param8: formData.lastName,
                 }
 
                 const updateResponse = await fetch(`${API_NODE_URL}slug/update`, {
@@ -562,7 +649,6 @@ export default function CreateFacultyForm({ type, componentType }) {
                 })
 
                 const updateResult = await updateResponse.json()
-
                 if (updateResult.status) {
                     progressBar.style.width = "100%"
                     toast.success(`${type} created successfully!`)
@@ -588,47 +674,6 @@ export default function CreateFacultyForm({ type, componentType }) {
         router.back()
     }
 
-    const handleChange = (e) => {
-        const { name, value } = e.target
-        setFormData((prev) => ({
-            ...prev,
-            [name]: value,
-        }))
-    }
-
-    const handleFileChange = async (e, field) => {
-        const file = e.target.files[0]
-        if (file) {
-            setUploadingStates((prev) => ({
-                ...prev,
-                [field]: true,
-            }))
-            const imageUrl = await uploadImages(file)
-            setFormData((prev) => ({
-                ...prev,
-                [field]: imageUrl,
-            }))
-            setUploadingStates((prev) => ({
-                ...prev,
-                [field]: false,
-            }))
-        }
-    }
-
-    const handleDeleteFile = (field) => {
-        setFormData((prev) => ({
-            ...prev,
-            [field]: "",
-        }))
-    }
-
-    const handleBioChange = (newContent) => {
-        setFormData((prev) => ({
-            ...prev,
-            bio: newContent,
-        }))
-    }
-
     if (loading) {
         return (
             <div className="min-h-screen flex items-center justify-center">
@@ -641,23 +686,47 @@ export default function CreateFacultyForm({ type, componentType }) {
     }
 
     return (
-        <div className="min-h-screen  ">
+        <div className="">
             <div id="progress-bar" className="fixed top-0 left-0 h-1 bg-blue-500 z-50 transition-all duration-500"></div>
-
-            <div className="max-w-5xl">
+            <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 rounded-2xl p-6 mb-8 shadow-2xl">
+                <div className="flex items-center space-x-4">
+                    <div className="bg-white/20 backdrop-blur-sm rounded-full p-3">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="28"
+                            height="28"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="text-white"
+                        >
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="16" />
+                            <line x1="8" y1="12" x2="16" y2="12" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 className="text-2xl font-novaBold text-white tracking-wide">Create {type}</h1>
+                        <p className="text-blue-100 font-novaReg text-sm mt-1">Add a {type?.toLowerCase()} page to your website structure</p>
+                    </div>
+                </div>
+            </div>
+            <div>
                 <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
                     <form onSubmit={handleSubmit} className="p-8 space-y-8">
                         {/* Personal Information Section */}
                         <div className="space-y-6">
                             <div className="flex items-center space-x-3">
                                 <div className="w-1 h-6 bg-blue-500 rounded-full"></div>
-                                <h2 className="text-lg font-semibold text-gray-900">Personal Information</h2>
-                                {isEditMode && <span className="text-sm text-blue-600 bg-blue-100 px-2 py-1 rounded">Edit Mode</span>}
+                                <h2 className="text-lg font-novaBold text-gray-900">Personal Information</h2>
+                                {isEditMode && <span className="text-sm text-blue-600 bg-blue-100 px-2 font-novaReg py-1 rounded">Edit Mode</span>}
                             </div>
-
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
-                                    <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
+                                    <label htmlFor="firstName" className="block text-sm font-novaSemi text-gray-700 mb-2">
                                         First Name <span className="text-red-500">*</span>
                                     </label>
                                     <input
@@ -667,13 +736,12 @@ export default function CreateFacultyForm({ type, componentType }) {
                                         value={formData.firstName}
                                         onChange={handleChange}
                                         placeholder="Enter first name"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50 hover:bg-white"
+                                        className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50 hover:bg-white"
                                     />
                                     {errors.firstName && <p className="text-sm text-red-600 mt-1">{errors.firstName}</p>}
                                 </div>
-
                                 <div>
-                                    <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
+                                    <label htmlFor="lastName" className="block text-sm font-novaSemi text-gray-700 mb-2">
                                         Last Name <span className="text-red-500">*</span>
                                     </label>
                                     <input
@@ -683,13 +751,12 @@ export default function CreateFacultyForm({ type, componentType }) {
                                         value={formData.lastName}
                                         onChange={handleChange}
                                         placeholder="Enter last name"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50 hover:bg-white"
+                                        className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50 hover:bg-white"
                                     />
                                     {errors.lastName && <p className="text-sm text-red-600 mt-1">{errors.lastName}</p>}
                                 </div>
-
                                 <div>
-                                    <label htmlFor="emailAddress" className="block text-sm font-medium text-gray-700 mb-2">
+                                    <label htmlFor="emailAddress" className="block text-sm font-novaSemi text-gray-700 mb-2">
                                         Email Address <span className="text-red-500">*</span>
                                     </label>
                                     <input
@@ -699,13 +766,12 @@ export default function CreateFacultyForm({ type, componentType }) {
                                         value={formData.emailAddress}
                                         onChange={handleChange}
                                         placeholder="Enter email address"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50 hover:bg-white"
+                                        className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50 hover:bg-white"
                                     />
                                     {errors.emailAddress && <p className="text-sm text-red-600 mt-1">{errors.emailAddress}</p>}
                                 </div>
-
                                 <div>
-                                    <label htmlFor="designation" className="block text-sm font-medium text-gray-700 mb-2">
+                                    <label htmlFor="designation" className="block text-sm font-novaSemi text-gray-700 mb-2">
                                         Designation <span className="text-red-500">*</span>
                                     </label>
                                     <input
@@ -715,7 +781,7 @@ export default function CreateFacultyForm({ type, componentType }) {
                                         value={formData.designation}
                                         onChange={handleChange}
                                         placeholder="Enter designation"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50 hover:bg-white"
+                                        className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50 hover:bg-white"
                                     />
                                     {errors.designation && <p className="text-sm text-red-600 mt-1">{errors.designation}</p>}
                                 </div>
@@ -726,125 +792,44 @@ export default function CreateFacultyForm({ type, componentType }) {
                         <div className="space-y-6">
                             <div className="flex items-center space-x-3">
                                 <div className="w-1 h-6 bg-purple-500 rounded-full"></div>
-                                <h2 className="text-lg font-semibold text-gray-900">Academic Information</h2>
+                                <h2 className="text-lg font-novaBold text-gray-900">Academic Information</h2>
                             </div>
-
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                {/* School Selection */}
-                                <div className="relative">
-                                    <label htmlFor="school" className="block text-sm font-medium text-gray-700 mb-2">
-                                        Select School <span className="text-red-500">*</span>
-                                    </label>
-                                    <div className="relative">
-                                        <input
-                                            id="school"
-                                            type="text"
-                                            value={schoolSearchValue}
-                                            onChange={handleSchoolInputChange}
-                                            placeholder="Search and select school..."
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50 hover:bg-white"
-                                        />
-                                        <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-                                            <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    {errors.selectedSchool && <p className="text-sm text-red-600 mt-1">{errors.selectedSchool}</p>}
-
-                                    {showSchoolDropdown && (
-                                        <div className="absolute z-20 w-full bg-white border border-gray-300 rounded-lg mt-1 max-h-64 overflow-auto shadow-lg">
-                                            {schoolPages.map((page, index) => (
-                                                <div
-                                                    key={index}
-                                                    onClick={() => handleSchoolSuggestionClick(page)}
-                                                    className="cursor-pointer px-4 py-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0 transition-colors"
-                                                >
-                                                    <div className="font-medium text-gray-900">{page.name}</div>
-                                                    <div className="text-sm text-gray-500">{page.type}</div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-
-                                {/* Department Selection */}
-                                <div className="relative">
-                                    <label htmlFor="department" className="block text-sm font-medium text-gray-700 mb-2">
-                                        Select Department
-                                    </label>
-                                    <div className="relative">
-                                        <input
-                                            id="department"
-                                            type="text"
-                                            value={departmentSearchValue}
-                                            onChange={handleDepartmentInputChange}
-                                            placeholder="Search and select department..."
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50 hover:bg-white"
-                                        />
-                                        <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-                                            <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                                            </svg>
-                                        </div>
-                                    </div>
-
-                                    {showDepartmentDropdown && (
-                                        <div className="absolute z-20 w-full bg-white border border-gray-300 rounded-lg mt-1 max-h-64 overflow-auto shadow-lg">
-                                            {departmentPages.map((page, index) => (
-                                                <div
-                                                    key={index}
-                                                    onClick={() => handleDepartmentSuggestionClick(page)}
-                                                    className="cursor-pointer px-4 py-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0 transition-colors"
-                                                >
-                                                    <div className="font-medium text-gray-900">{page.name}</div>
-                                                    <div className="text-sm text-gray-500">{page.type}</div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-
-                                {/* Program Selection */}
-                                <div className="relative">
-                                    <label htmlFor="program" className="block text-sm font-medium text-gray-700 mb-2">
-                                        Select Program
-                                    </label>
-                                    <div className="relative">
-                                        <input
-                                            id="program"
-                                            type="text"
-                                            value={programSearchValue}
-                                            onChange={handleProgramInputChange}
-                                            placeholder="Search and select program..."
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50 hover:bg-white"
-                                        />
-                                        <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-                                            <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                                            </svg>
-                                        </div>
-                                    </div>
-
-                                    {showProgramDropdown && (
-                                        <div className="absolute z-20 w-full bg-white border border-gray-300 rounded-lg mt-1 max-h-64 overflow-auto shadow-lg">
-                                            {programPages.map((page, index) => (
-                                                <div
-                                                    key={index}
-                                                    onClick={() => handleProgramSuggestionClick(page)}
-                                                    className="cursor-pointer px-4 py-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0 transition-colors"
-                                                >
-                                                    <div className="font-medium text-gray-900">{page.name}</div>
-                                                    <div className="text-sm text-gray-500">{page.type}</div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
+                                <SearchableDropdown
+                                    label="Select School"
+                                    value={schoolSearchValue}
+                                    onChange={handleSchoolInputChange}
+                                    onInputChange={handleSchoolInputChange}
+                                    options={schoolPages}
+                                    showDropdown={showSchoolDropdown}
+                                    onToggleDropdown={handleSchoolSuggestionClick}
+                                    placeholder="Search and select school..."
+                                    required={!isEditMode}
+                                    error={errors.selectedSchool}
+                                />
+                                <SearchableDropdown
+                                    label="Select Department"
+                                    value={departmentSearchValue}
+                                    onChange={handleDepartmentInputChange}
+                                    onInputChange={handleDepartmentInputChange}
+                                    options={departmentPages}
+                                    showDropdown={showDepartmentDropdown}
+                                    onToggleDropdown={handleDepartmentSuggestionClick}
+                                    placeholder="Search and select department..."
+                                />
+                                <SearchableDropdown
+                                    label="Select Program"
+                                    value={programSearchValue}
+                                    onChange={handleProgramInputChange}
+                                    onInputChange={handleProgramInputChange}
+                                    options={programPages}
+                                    showDropdown={showProgramDropdown}
+                                    onToggleDropdown={handleProgramSuggestionClick}
+                                    placeholder="Search and select program..."
+                                />
                             </div>
-
                             <div>
-                                <label htmlFor="subjectsTaught" className="block text-sm font-medium text-gray-700 mb-2">
+                                <label htmlFor="subjectsTaught" className="block text-sm font-novaSemi text-gray-700 mb-2">
                                     Subjects Taught <span className="text-red-500">*</span>
                                 </label>
                                 <textarea
@@ -854,7 +839,7 @@ export default function CreateFacultyForm({ type, componentType }) {
                                     onChange={handleChange}
                                     rows={3}
                                     placeholder="Enter subjects taught (comma separated)"
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50 hover:bg-white resize-none"
+                                    className="w-full px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50 hover:bg-white resize-none"
                                 />
                                 {errors.subjectsTaught && <p className="text-sm text-red-600 mt-1">{errors.subjectsTaught}</p>}
                             </div>
@@ -864,12 +849,11 @@ export default function CreateFacultyForm({ type, componentType }) {
                         <div className="space-y-6">
                             <div className="flex items-center space-x-3">
                                 <div className="w-1 h-6 bg-green-500 rounded-full"></div>
-                                <h2 className="text-lg font-semibold text-gray-900">Additional Information</h2>
+                                <h2 className="text-lg font-novaBold text-gray-900">Additional Information</h2>
                             </div>
-
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">Profile Picture</label>
+                                    <label className="block text-sm font-novaSemi text-gray-700 mb-2">Profile Picture</label>
                                     <div className="border-2 border-dashed border-gray-300 hover:border-blue-400 transition-colors rounded-lg p-6 text-center bg-gray-50 hover:bg-gray-100">
                                         <input
                                             type="file"
@@ -881,7 +865,7 @@ export default function CreateFacultyForm({ type, componentType }) {
                                         />
                                         <label
                                             htmlFor="profilePicture"
-                                            className={`cursor-pointer inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-colors ${uploadingStates.profilePicture
+                                            className={`cursor-pointer inline-flex items-center px-4 py-2 text-sm font-novaSemi rounded-lg transition-colors ${uploadingStates.profilePicture
                                                 ? "bg-gray-400 text-white cursor-not-allowed"
                                                 : "bg-blue-600 text-white hover:bg-blue-700"
                                                 }`}
@@ -904,9 +888,8 @@ export default function CreateFacultyForm({ type, componentType }) {
                                         isUploading={uploadingStates.profilePicture}
                                     />
                                 </div>
-
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">Social Links</label>
+                                    <label className="block text-sm font-novaSemi text-gray-700 mb-2">Social Links</label>
                                     <div className="space-y-3">
                                         <div className="flex space-x-2">
                                             <input
@@ -915,7 +898,7 @@ export default function CreateFacultyForm({ type, componentType }) {
                                                 onChange={(e) => setSocialLinkInput(e.target.value)}
                                                 onKeyPress={handleSocialLinkKeyPress}
                                                 placeholder="Enter social media links"
-                                                className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50 hover:bg-white"
+                                                className="flex-1 px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50 hover:bg-white"
                                             />
                                             <button
                                                 type="button"
@@ -925,7 +908,6 @@ export default function CreateFacultyForm({ type, componentType }) {
                                                 Add
                                             </button>
                                         </div>
-
                                         {socialLinks.length > 0 && (
                                             <div className="space-y-2">
                                                 {socialLinks.map((link, index) => (
@@ -955,11 +937,10 @@ export default function CreateFacultyForm({ type, componentType }) {
                                     </div>
                                 </div>
                             </div>
-
                             {/* Bio Section */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Bio</label>
-                                <div className="border border-gray-300 rounded-lg overflow-hidden">
+                                <label className="block text-sm font-novaSemi text-gray-700 mb-2">Bio</label>
+                                <div className="border border-gray-300 font-novaReg rounded-lg overflow-hidden">
                                     <JoditEditor value={formData.bio} onBlur={handleBioChange} />
                                 </div>
                             </div>
@@ -970,14 +951,14 @@ export default function CreateFacultyForm({ type, componentType }) {
                             <button
                                 type="button"
                                 onClick={handleCancel}
-                                className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                                className="px-6 py-3 border border-gray-300 font-novaReg text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
                             >
                                 Cancel
                             </button>
                             <button
                                 type="submit"
                                 disabled={submitting || Object.values(uploadingStates).some(Boolean)}
-                                className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="inline-flex items-center px-6 py-3 bg-blue-600 font-novaSemi text-white rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {submitting ? (
                                     <>
@@ -998,7 +979,7 @@ export default function CreateFacultyForm({ type, componentType }) {
                                                 }
                                             />
                                         </svg>
-                                        {isEditMode ? "Update Faculty Member" : "+ Add Faculty Member"}
+                                        {isEditMode ? "Update Faculty Member" : "Add Faculty Member"}
                                     </>
                                 )}
                             </button>

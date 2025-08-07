@@ -176,7 +176,7 @@ const ITDepartment = () => {
         </div>
       </main>
       {/* Section 1: Information Technology */}
-      <section className="relative h-[40vh] xl:h-[50vh] bg-cover flex flex-col justify-between lg:p-10">
+      <section className="relative bg-cover flex flex-col justify-between py-6 sm:py-20 md:py-32">
         <div className="absolute inset-0 bg-BG42 bg-cover bg-fixed grayscale">
           <div className="absolute inset-0 bg-gray-800 bg-opacity-90" />
         </div>
@@ -204,7 +204,7 @@ const ITDepartment = () => {
 
 
       {/* Section 2: Blue Background with 3 Cards */}
-      <section className="bg-blue-600 px-8 py-16 h-full xl:h-[50vh]">
+      <section className="bg-blue-600 px-8 py-16 xl:pt-16">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-[1400px] mx-auto xl:-translate-y-40">
           {/* Department at a Glance Card */}
           <div className="bg-white rounded-lg p-6 shadow-lg">
@@ -338,8 +338,8 @@ const ITDepartment = () => {
                 </thead>
                 <tbody>
                   <tr className="border-b font-novaReg">
-                    <td className="py-3 px-4 text-gray-700">Semester Fee</td>
-                    <td className="py-3 px-4 text-gray-700">110000/- INR</td>
+                    <td className="py-3 px-4 text-gray-700">Fee Per Annum</td>
+                    <td className="py-3 px-4 text-gray-700">1,75,000/- INR</td>
                   </tr>
                 </tbody>
               </table>
@@ -359,17 +359,10 @@ const ITDepartment = () => {
                 </thead>
                 <tbody>
                   <tr className="border-b font-novaReg">
-                    <td className="py-3 px-4 text-gray-700">Examination Fee</td>
-                    <td className="py-3 px-4 text-gray-700">3500/- INR</td>
+                    <td className="py-3 px-4 text-gray-700">Examination Fee + Security Fee</td>
+                    <td className="py-3 px-4 text-gray-700">25000/- INR</td>
                   </tr>
-                  <tr className="border-b font-novaReg">
-                    <td className="py-3 px-4 text-gray-700">Security</td>
-                    <td className="py-3 px-4 text-gray-700">3000/- INR</td>
-                  </tr>
-                  <tr className="border-b font-novaReg">
-                    <td className="py-3 px-4 text-gray-700">Tech Kit Fee</td>
-                    <td className="py-3 px-4 text-gray-700">5000/- INR (One-time)</td>
-                  </tr>
+                 
                 </tbody>
               </table>
             </div>

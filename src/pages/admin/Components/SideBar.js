@@ -22,6 +22,7 @@ import {
   NotepadText,
   Book,
   LibraryBig,
+  BookmarkCheck,
 } from "lucide-react"
 import { API_NODE_URL } from "@/configs/config"
 import Image from "next/image"
@@ -40,6 +41,16 @@ const navSections = [
         label: "Online Application",
         href: "/admin/online-applications"
       },
+      {
+        icon: BookmarkCheck,
+        label: "Student Reviews",
+        href: "/admin/student-reviews"
+      },
+       {
+        icon: Users,
+        label: "Testimonial",
+        href: "/admin/testimonial-list"
+      }
     ],
   },
   {

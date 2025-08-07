@@ -2,14 +2,10 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
-import { splitTitle } from '@/utills/splitTitle'
 
-export default function IndustryPartnerSlider({ data }) {
+export default function IndustryPartnerSlider() {
   const [scrollPosition, setScrollPosition] = useState(0)
   const sliderRef = useRef(null)
-
-  const d = data?.pageData;
-  const { first, middle, last } = splitTitle(d?.Industry_Title);
 
   useEffect(() => {
     const slider = sliderRef.current
@@ -36,43 +32,43 @@ export default function IndustryPartnerSlider({ data }) {
   }, [scrollPosition])
 
   const logos = [
-    { alt: "Amazon", src: "/image/company-logos/AmozonIcon.webp" },
-    { alt: "Google", src: "/image/company-logos/Google.png" },
-    { alt: "Microsoft", src: "/image/company-logos/Microsoft.png" },
-    { alt: "IBM", src: "/image/company-logos/ibm.webp" },
-    { alt: "Accenture", src: "/image/company-logos/AccentureIcon.webp" },
-    { alt: "Infosys", src: "/image/company-logos/infosys.webp" },
-    { alt: "Adobe", src: "/image/company-logos/Adobe.png" },
-    { alt: "TCS", src: "/image/company-logos/tcs.webp" },
-    { alt: "Amdocs", src: "/image/company-logos/amdocsIcon.webp" },
-    { alt: "Wipro", src: "/image/company-logos/WIPRO.webp" },
-    { alt: "Amazon", src: "/image/company-logos/AmozonIcon.webp" },
-    { alt: "Google", src: "/image/company-logos/Google.png" },
-    { alt: "Microsoft", src: "/image/company-logos/Microsoft.png" },
-    { alt: "IBM", src: "/image/company-logos/ibm.webp" },
-    { alt: "Accenture", src: "/image/company-logos/AccentureIcon.webp" },
-    { alt: "Infosys", src: "/image/company-logos/infosys.webp" },
-    { alt: "Adobe", src: "/image/company-logos/Adobe.png" },
-    { alt: "TCS", src: "/image/company-logos/tcs.webp" },
-    { alt: "Amdocs", src: "/image/company-logos/amdocsIcon.webp" },
-    { alt: "Wipro", src: "/image/company-logos/WIPRO.webp" }
+    { alt: "Amazon", src: "/image/company-logos/AmozonIcon.webp", width: 158, height: 48 },
+    { alt: "Google", src: "/image/company-logos/Google.png", width: 158, height: 48 },
+    { alt: "Microsoft", src: "/image/company-logos/Microsoft.png", width: 158, height: 48 },
+    { alt: "IBM", src: "/image/company-logos/ibm.webp", width: 158, height: 48 },
+    { alt: "Accenture", src: "/image/company-logos/AccentureIcon.webp", width: 158, height: 48 },
+    { alt: "Infosys", src: "/image/company-logos/infosys.webp", width: 158, height: 48 },
+    { alt: "Adobe", src: "/image/company-logos/Adobe.png", width: 158, height: 48 },
+    { alt: "TCS", src: "/image/company-logos/tcs.webp", width: 158, height: 48 },
+    { alt: "Amdocs", src: "/image/company-logos/amdocsIcon.webp", width: 158, height: 48 },
+    { alt: "Wipro", src: "/image/company-logos/WIPRO.webp", width: 158, height: 48 },
+    { alt: "Amazon", src: "/image/company-logos/AmozonIcon.webp", width: 158, height: 48 },
+    { alt: "Google", src: "/image/company-logos/Google.png", width: 158, height: 48 },
+    { alt: "Microsoft", src: "/image/company-logos/Microsoft.png", width: 158, height: 48 },
+    { alt: "IBM", src: "/image/company-logos/ibm.webp", width: 158, height: 48 },
+    { alt: "Accenture", src: "/image/company-logos/AccentureIcon.webp", width: 158, height: 48 },
+    { alt: "Infosys", src: "/image/company-logos/infosys.webp", width: 158, height: 48 },
+    { alt: "Adobe", src: "/image/company-logos/Adobe.png", width: 158, height: 48 },
+    { alt: "TCS", src: "/image/company-logos/tcs.webp", width: 158, height: 48 },
+    { alt: "Amdocs", src: "/image/company-logos/amdocsIcon.webp", width: 158, height: 48 },
+    { alt: "Wipro", src: "/image/company-logos/WIPRO.webp", width: 158, height: 48 }
   ];
 
+  // Duplicate logos for seamless scrolling
   const allLogos = [...logos, ...logos]
 
   return (
     <section className='py-10 bg-gray-100'>
       <div className="max-w-7xl mx-auto pt-6 overflow-hidden shadow-lg bg-white">
         <div className="">
-          <h1 className="text-[42px] text-center font-novaReg max-lg:text-4xl max-md:text-3xl max-sm:px-4 text-gray-700">
-            {first}{" "}
-            <span className="font-novaSemi bg-text-gradient bg-clip-text text-transparent animate-gradient">
-              {middle}{" "}
-            </span>
-            {last}
-          </h1>
-          <p className="text-center font-novaReg text-gray-600 mb-12 max-w-4xl mx-auto px-3 max-sm:text-sm mt-3">
-            {d?.Industry_Description}
+        <h1 className="text-[42px] text-center font-novaReg max-lg:text-4xl max-md:text-3xl max-sm:px-4 text-gray-700">
+        Industry{" "}
+              <span className="font-novaSemi bg-text-gradient bg-clip-text text-transparent animate-gradient">
+              Tie-Ups
+              </span>
+            </h1>
+          <p className="text-center text-gray-600 mb-12 max-w-4xl mx-auto px-3 max-sm:text-sm mt-3">
+          At AKG University, immersive industry engagement empowers students with the critical skills and practical insights needed to thrive in today’s dynamic and competitive professional landscape.
           </p>
 
           <div className="relative px-4">
@@ -86,10 +82,10 @@ export default function IndustryPartnerSlider({ data }) {
                   className="flex-shrink-0 flex items-center justify-center"
                 >
                   <Image
-                    src={logo.src || "/image/company-logos/defaultLogo.png"}
+                    src={logo.src}
                     alt={logo.alt}
-                    width={130}
-                    height={130}
+                    width={logo.width}
+                    height={logo.height}
                     className="object-contain max-sm:h-20 max-sm:w-20"
                   />
                 </div>
@@ -97,9 +93,9 @@ export default function IndustryPartnerSlider({ data }) {
             </div>
           </div>
 
-          <div className="bg-blue-600 text-white p-6 sm:p-10 text-sm sm:text-base text-center font-novaReg">
+          <div className="bg-blue-600 text-white p-6 sm:p-10 text-sm sm:text-base text-center">
             <p>
-              {d?.Industry_Bottom_Description}
+            The AKG Centre of Excellence for AI stands as a testament to the university’s dedication to pioneering research and innovation in deep learning. With five expert faculty members from the CSE Department spearheading AI-focused training, the institution is shaping future-ready professionals in emerging technologies.
             </p>
           </div>
         </div>

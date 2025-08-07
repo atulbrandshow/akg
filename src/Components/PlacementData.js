@@ -1,6 +1,25 @@
 import React from 'react'
 
-const PlacementData = ({placementsData}) => {
+const PlacementData = ({ data }) => {
+    const placementsData = []
+    for (let i = 1; i <= 10; i++) {
+        const title = data?.[`Placement-Title-${i}`]
+        const description = data?.[`Placement-Desc-${i}`]
+        const companies = data?.[`Placement-Company-${i}`]
+        const studentsSelected = data?.[`Placement-Students-${i}`]
+        const highestPackage = data?.[`Placement-Package-${i}`]
+
+        if (title && description && companies && studentsSelected && highestPackage) {
+            placementsData.push({
+                title,
+                description,
+                companies,
+                studentsSelected,
+                highestPackage
+            })
+        }
+    }
+
     return (
         <section className="mx-auto max-w-7xl max-xl:max-w-5xl max-lg:max-w-2xl max-md:max-w-xl grid grid-cols-2 max-lg:grid-cols-1 gap-5 pb-10 px-4 max-md:px-2 py-10">
             {placementsData?.map((placement, index) => (

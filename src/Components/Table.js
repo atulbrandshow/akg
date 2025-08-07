@@ -77,7 +77,7 @@ const Table = ({ tableHeadings, heading, paragraph, data }) => {
 
             <table className="min-w-full my-4 bg-white border border-gray-300">
                 <thead>
-                    <tr className="bg-[#363c83] border-inherit text-white h-[44px]">
+                    <tr className="bg-amber-500 border-inherit text-white h-[44px]">
                         {tableHeadings.map((heading, index) => (
                             <th
                                 key={index}
@@ -90,7 +90,7 @@ const Table = ({ tableHeadings, heading, paragraph, data }) => {
                 </thead>
                 <tbody>
                     {currentEntries?.map((course, index) => (
-                        <tr key={index} className="bg-indigo-950 text-white border-inherit">
+                        <tr key={index} className="bg-blue-800 text-white border-inherit">
                             <td className="py-4 px-4 text-sm border-b" style={{ borderColor: 'rgba(255, 255, 255, 0.2)' }}>
                                 <Link href={`/course/${course.id}`} passHref className="text-white hover:underline">
                                     {course.courseName}

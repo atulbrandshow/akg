@@ -104,15 +104,15 @@ export const Academics = {
         "Schools":[
             {
                 name: "AKGU School of Engineering and Technology",
-                url: "/schools/school-of-engineering-and-technology"
+                url: "/school-of-engineering-and-technology"
             },
             {
                 name: "AKGU School of Business Studies",
-                url: "/schools/school-of-business-studies"
+                url: "/school-of-business-studies"
             },
             {
                 name: "AKGU School of Humanities & Social Sciences",
-                url: "/schools/school-of-humanities-and-social-sciences"
+                url: "/school-of-humanities-and-social-sciences"
             },
         ],
         "Academics": [
@@ -295,6 +295,10 @@ export const Programs = {
                     {
                         name: 'B.Tech',
                         url: '/department-of-electronics-and-communication-engineering'
+                    },
+                    {
+                        name: 'BCA',
+                        url: '/'
                     }
                 ],
                 "Post Graduate": [
@@ -317,12 +321,12 @@ export const Programs = {
                 // },
             ],
             "Program": {
-                // "Graduate": [
-                //     {
-                //         name: 'BBA',
-                //         url: '/'
-                //     }
-                // ],
+                "Graduate": [
+                    {
+                        name: 'BBA',
+                        url: '/'
+                    }
+                ],
                 "Post Graduate": [
                     {
                         name: 'MBA',

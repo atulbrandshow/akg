@@ -1,11 +1,13 @@
-// utils/uploadImages.js
-import { API_NODE_URL } from "@/configs/config";
+import { API_NODE_URL } from "@/configs/config"
 
 export async function uploadImages(files) {
-  const formData = new FormData();
+  const formData = new FormData()
 
-  for (const file of files) {
-    formData.append("files", file);
+  // Handle both single file and array of files
+  const fileArray = Array.isArray(files) ? files : [files]
+
+  for (const file of fileArray) {
+    formData.append("files", file)
   }
 
   try {
@@ -13,27 +15,29 @@ export async function uploadImages(files) {
       method: "POST",
       body: formData,
       credentials: "include",
-    });
+    })
 
-    const data = await response.json();
-    
+    const data = await response.json()
+
     if (!response.ok) {
-      throw new Error(data.message || "Image upload failed");
+      throw new Error(data.message || "Image upload failed")
     }
 
-    // Only return image path like "/123.png"
-    return data.data.fileUrls.map((url) => {
+    // Return single URL for single file, array for multiple files
+    const urls = data.data.fileUrls.map((url) => {
       try {
-        const parsedUrl = new URL(url);
-        return parsedUrl.pathname;
+        const parsedUrl = new URL(url)
+        return parsedUrl.pathname
       } catch {
         // fallback if not a full URL
-        const parts = url.split("/");
-        return "/" + parts.slice(-2).join("/");
+        const parts = url.split("/")
+        return "/" + parts.slice(-2).join("/")
       }
-    });
+    })
+
+    return Array.isArray(files) ? urls : urls[0]
   } catch (error) {
-    console.error("Upload error:", error);
-    throw error;
+    console.error("Upload error:", error)
+    throw error
   }
 }

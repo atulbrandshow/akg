@@ -103,7 +103,7 @@ export default function AddReview() {
         }
     };
 
-    const filteredAllReviews = allReviews.filter(review => 
+    const filteredAllReviews = allReviews.filter(review =>
         review.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         review.course.toLowerCase().includes(searchTerm.toLowerCase()) ||
         review.company_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -203,6 +203,25 @@ export default function AddReview() {
                                                     <p className="mt-2 text-sm text-gray-700">{review.description}</p>
                                                 </div>
                                             </div>
+                                            {/* Checkmark icon for added reviews */}
+                                            <div className="absolute top-3 right-3">
+                                                <div className="p-1.5 bg-green-100 text-green-600 rounded-full">
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        className="h-5 w-5"
+                                                        fill="none"
+                                                        viewBox="0 0 24 24"
+                                                        stroke="currentColor"
+                                                        strokeWidth="2"
+                                                    >
+                                                        <path
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            d="M5 13l4 4L19 7"
+                                                        />
+                                                    </svg>
+                                                </div>
+                                            </div>
                                         </div>
                                     ))}
                                 </div>
@@ -274,20 +293,50 @@ export default function AddReview() {
                                                 </div>
                                             </div>
 
-                                            {/* Add to Page Button - Shown on hover */}
-                                            {page_id && !pageReviews.some(r => r._id === review._id) && (
+                                            {/* Show checkmark if already added to page, otherwise show add button */}
+                                            {page_id && (pageReviews.some(r => r._id === review._id) ? (
+                                                <div className="absolute top-3 right-3">
+                                                    <div className="p-1.5 bg-green-100 text-green-600 rounded-full">
+                                                        <svg
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            className="h-5 w-5"
+                                                            fill="none"
+                                                            viewBox="0 0 24 24"
+                                                            stroke="currentColor"
+                                                            strokeWidth="2"
+                                                        >
+                                                            <path
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round"
+                                                                d="M5 13l4 4L19 7"
+                                                            />
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            ) : (
                                                 <div className="absolute top-3 right-3 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                                                     <button
                                                         onClick={() => handleAddToPage(review._id)}
-                                                        className="p-1.5 bg-white text-green-600 rounded-lg shadow-sm hover:bg-green-50 transition"
+                                                        className="p-2 bg-green-100 hover:bg-green-200 text-green-700 rounded-full shadow-md transition-all duration-200"
                                                         title="Add to this page"
                                                     >
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                                        <svg
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            className="h-5 w-5 stroke-2"
+                                                            fill="none"
+                                                            viewBox="0 0 24 24"
+                                                            stroke="currentColor"
+                                                        >
+                                                            <path
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round"
+                                                                strokeWidth="3"
+                                                                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                                                            />
                                                         </svg>
                                                     </button>
                                                 </div>
-                                            )}
+                                            ))}
                                         </div>
                                     ))}
                                 </div>

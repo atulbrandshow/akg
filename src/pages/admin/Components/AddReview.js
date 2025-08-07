@@ -10,21 +10,10 @@ export default function AddReview() {
     const page_id = searchParams.get("page_id");
     const router = useRouter();
 
-    const [formData, setFormData] = useState({
-        name: "",
-        course: "",
-        company_name: "",
-        description: "",
-        image: "",
-        page_id: page_id || ""
-    });
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [error, setError] = useState("");
     const [allReviews, setAllReviews] = useState([]); // All recent reviews
     const [pageReviews, setPageReviews] = useState([]); // Reviews for current page_id
     const [isLoading, setIsLoading] = useState(true);
-    const [editingReview, setEditingReview] = useState(null);
-    const [showForm, setShowForm] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("");
 
     // Fetch existing reviews on component mount
     useEffect(() => {
@@ -74,149 +63,27 @@ export default function AddReview() {
         }
     };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
-    };
-
-    const validateForm = () => {
-        if (!formData.name.trim()) {
-            setError("Name is required");
-            return false;
-        }
-        if (!formData.course.trim()) {
-            setError("Course name is required");
-            return false;
-        }
-        if (!formData.company_name.trim()) {
-            setError("Company name is required");
-            return false;
-        }
-        if (!formData.description.trim()) {
-            setError("Description is required");
-            return false;
-        }
-        if (formData.image && !/^https?:\/\/.+\..+/.test(formData.image)) {
-            setError("Please enter a valid image URL");
-            return false;
-        }
-        setError("");
-        return true;
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        if (!validateForm()) {
-            return;
-        }
-
-        setIsSubmitting(true);
-
+    const handleAddToPage = async (reviewId) => {
         try {
-            const url = editingReview
-                ? `${API_NODE_URL}review/${editingReview._id}`
-                : `${API_NODE_URL}review/create`;
-
-            const method = editingReview ? "PUT" : "POST";
-
-            const response = await fetch(url, {
-                method,
+            const response = await fetch(`${API_NODE_URL}review/${reviewId}`, {
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${localStorage.getItem('token') || ''}`
                 },
                 credentials: "include",
-                body: JSON.stringify(formData),
+                body: JSON.stringify({
+                    page_id: page_id
+                }),
             });
 
             const data = await response.json();
 
             if (!response.ok) {
-                throw new Error(data.message || "Failed to submit review");
+                throw new Error(data.message || "Failed to add review to page");
             }
 
-            toast.success(`Review ${editingReview ? 'updated' : 'added'} successfully!`, {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                theme: "colored",
-            });
-
-            // Refresh both sets of reviews
-            fetchAllReviews();
-            if (page_id) {
-                fetchPageReviews();
-            }
-
-            resetForm();
-            setShowForm(false);
-
-        } catch (err) {
-            console.error("Submission error:", err);
-            toast.error(err.message || "Failed to submit review. Please try again.", {
-                position: "top-right",
-                autoClose: 5000,
-                theme: "colored",
-            });
-        } finally {
-            setIsSubmitting(false);
-        }
-    };
-
-    const resetForm = () => {
-        setFormData({
-            name: "",
-            course: "",
-            company_name: "",
-            description: "",
-            image: "",
-            page_id: page_id || ""
-        });
-        setEditingReview(null);
-    };
-
-    const handleEdit = (review) => {
-        setEditingReview(review);
-        setFormData({
-            name: review.name,
-            course: review.course,
-            company_name: review.company_name,
-            description: review.description,
-            image: review.image || "",
-            page_id: review.page_id || page_id || ""
-        });
-        setShowForm(true);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-
-    const handleDelete = async (reviewId) => {
-        if (!window.confirm("Are you sure you want to delete this review?")) {
-            return;
-        }
-
-        try {
-            const response = await fetch(`${API_NODE_URL}review/${reviewId}`, {
-                method: "DELETE",
-                headers: {
-                    "Authorization": `Bearer ${localStorage.getItem('token') || ''}`
-                },
-                credentials: "include",
-            });
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.message || "Failed to delete review");
-            }
-
-            toast.success("Review deleted successfully!", {
+            toast.success("Review added to page successfully!", {
                 position: "top-right",
                 autoClose: 3000,
                 theme: "colored",
@@ -224,24 +91,24 @@ export default function AddReview() {
 
             // Refresh both sets of reviews
             fetchAllReviews();
-            if (page_id) {
-                fetchPageReviews();
-            }
-
-            if (editingReview?._id === reviewId) {
-                resetForm();
-                setShowForm(false);
-            }
+            fetchPageReviews();
 
         } catch (err) {
-            console.error("Delete error:", err);
-            toast.error(err.message || "Failed to delete review", {
+            console.error("Error adding review to page:", err);
+            toast.error(err.message || "Failed to add review to page", {
                 position: "top-right",
                 autoClose: 5000,
                 theme: "colored",
             });
         }
     };
+
+    const filteredAllReviews = allReviews.filter(review =>
+        review.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        review.course.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        review.company_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        review.description.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
@@ -254,403 +121,230 @@ export default function AddReview() {
                         Student Review Management
                     </h1>
                     <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                        {editingReview ? 'Edit existing review' : 'Manage and add student reviews'}
+                        Manage student reviews for this page
                     </p>
                     {page_id && (
                         <p className="text-lg text-indigo-600 mt-2">
                             Current Page ID: {page_id}
                         </p>
                     )}
-
-                    {!showForm && (
-                        <button
-                            onClick={() => {
-                                setShowForm(true);
-                                resetForm();
-                                window.scrollTo({ top: 0, behavior: 'smooth' });
-                            }}
-                            className="mt-8 px-8 py-3 bg-gradient-to-r from-indigo-600 to-blue-500 hover:from-indigo-700 hover:to-blue-600 text-white font-medium rounded-xl shadow-md transition-all duration-300"
-                        >
-                            Add New Review
-                        </button>
-                    )}
                 </div>
 
-                {/* Main content grid */}
-                <div className="grid grid-cols-1 gap-12">
-                    {/* Form Section - Only shown when showForm is true */}
-                    {showForm && (
-                        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
-                            <div className="p-10">
-                                <div className="flex justify-between items-center mb-8">
-                                    <h2 className="text-2xl font-bold text-gray-800">
-                                        {editingReview ? 'Edit Review' : 'Add New Review'}
-                                    </h2>
-                                    <button
-                                        onClick={() => {
-                                            setShowForm(false);
-                                            resetForm();
-                                        }}
-                                        className="p-2 text-gray-500 hover:text-gray-700 rounded-full hover:bg-gray-100 transition"
-                                    >
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                                        </svg>
-                                    </button>
-                                </div>
+                {/* Search Bar */}
+                <div className="mb-8">
+                    <div className="relative max-w-2xl mx-auto">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                        <input
+                            type="text"
+                            placeholder="Search reviews by name, course, company or description..."
+                            className="block w-full pl-10 pr-3 py-4 border border-gray-300 rounded-xl bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
+                    </div>
+                </div>
 
-                                {error && (
-                                    <div className="mb-8 p-4 bg-red-50/80 backdrop-blur-sm text-red-700 rounded-xl border border-red-200 flex items-center">
-                                        <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                        </svg>
-                                        {error}
-                                    </div>
-                                )}
-
-                                <form onSubmit={handleSubmit} className="space-y-8">
-                                    {page_id && (
-                                        <div className="space-y-3">
-                                            <label htmlFor="page_id" className="block text-sm font-medium text-gray-700">
-                                                Page ID (auto-filled)
-                                            </label>
-                                            <input
-                                                type="text"
-                                                id="page_id"
-                                                name="page_id"
-                                                value={formData.page_id}
-                                                readOnly
-                                                className="w-full px-5 py-4 text-base rounded-xl border border-gray-200 bg-gray-100 cursor-not-allowed"
-                                            />
-                                        </div>
-                                    )}
-
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                        <div className="space-y-3">
-                                            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                                                Your Name <span className="text-red-500">*</span>
-                                            </label>
-                                            <input
-                                                type="text"
-                                                id="name"
-                                                name="name"
-                                                value={formData.name}
-                                                onChange={handleChange}
-                                                required
-                                                className="w-full px-5 py-4 text-base rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 hover:border-gray-300"
-                                                placeholder="John Doe"
-                                            />
-                                        </div>
-
-                                        <div className="space-y-3">
-                                            <label htmlFor="course" className="block text-sm font-medium text-gray-700">
-                                                Course Name <span className="text-red-500">*</span>
-                                            </label>
-                                            <input
-                                                type="text"
-                                                id="course"
-                                                name="course"
-                                                value={formData.course}
-                                                onChange={handleChange}
-                                                required
-                                                className="w-full px-5 py-4 text-base rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 hover:border-gray-300"
-                                                placeholder="Web Development"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="space-y-3">
-                                        <label htmlFor="company_name" className="block text-sm font-medium text-gray-700">
-                                            Company/Institution <span className="text-red-500">*</span>
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="company_name"
-                                            name="company_name"
-                                            value={formData.company_name}
-                                            onChange={handleChange}
-                                            required
-                                            className="w-full px-5 py-4 text-base rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 hover:border-gray-300"
-                                            placeholder="ABC University"
-                                        />
-                                    </div>
-
-                                    <div className="space-y-3">
-                                        <label htmlFor="description" className="block text-sm font-medium text-gray-700">
-                                            Your Experience <span className="text-red-500">*</span>
-                                        </label>
-                                        <textarea
-                                            id="description"
-                                            name="description"
-                                            rows={6}
-                                            value={formData.description}
-                                            onChange={handleChange}
-                                            required
-                                            className="w-full px-5 py-4 text-base rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 hover:border-gray-300"
-                                            placeholder="Share your learning journey..."
-                                        />
-                                    </div>
-
-                                    <div className="space-y-3">
-                                        <label htmlFor="image" className="block text-sm font-medium text-gray-700">
-                                            Upload Image
-                                        </label>
-                                        <input
-                                            type="url"
-                                            id="image"
-                                            name="image"
-                                            value={formData.image}
-                                            onChange={handleChange}
-                                            className="w-full px-5 py-4 text-base rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 hover:border-gray-300"
-                                            placeholder="https://example.com/your-photo.jpg"
-                                        />
-                                        <p className="mt-2 text-xs text-gray-500">We recommend using a square image (1:1 ratio)</p>
-                                    </div>
-
-                                    <div className="pt-2 flex gap-4">
-                                        <button
-                                            type="submit"
-                                            disabled={isSubmitting}
-                                            className={`flex-1 py-4 px-6 text-lg font-medium rounded-xl shadow-md transition-all duration-300 ${editingReview
-                                                ? 'bg-amber-500 hover:bg-amber-600 text-white'
-                                                : 'bg-gradient-to-r from-indigo-600 to-blue-500 hover:from-indigo-700 hover:to-blue-600 text-white'
-                                                } ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
-                                        >
-                                            {isSubmitting ? (
-                                                <span className="flex items-center justify-center">
-                                                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                                    </svg>
-                                                    {editingReview ? 'Updating...' : 'Submitting...'}
-                                                </span>
-                                            ) : editingReview ? 'Update Review' : 'Submit Review'}
-                                        </button>
-
-                                        {editingReview && (
-                                            <button
-                                                type="button"
-                                                onClick={() => {
-                                                    resetForm();
-                                                    setShowForm(false);
-                                                }}
-                                                className="py-4 px-6 text-lg font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition-all duration-300"
-                                            >
-                                                Cancel
-                                            </button>
-                                        )}
-                                    </div>
-                                </form>
+                {/* Main content grid - 2 columns */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    {/* Left Column - Reviews for this page */}
+                    <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
+                        <div className="p-6 bg-gradient-to-r from-green-600 to-emerald-500">
+                            <div className="flex justify-between items-center">
+                                <h2 className="text-2xl font-bold text-white">
+                                    Page Reviews ({pageReviews.length})
+                                </h2>
                             </div>
                         </div>
-                    )}
-
-                    {/* Page-Specific Reviews Section (only shown when page_id exists) */}
-{page_id && (
-    <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
-        <div className="p-6 bg-gradient-to-r from-green-600 to-emerald-500">
-            <div className="flex justify-between items-center">
-                <h2 className="text-2xl font-bold text-white">
-                    Reviews for This Page ({pageReviews.length})
-                </h2>
-                <button
-                    onClick={() => {
-                        setShowForm(true);
-                        resetForm();
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                    className="px-4 py-2 bg-white text-green-600 font-medium rounded-lg shadow hover:bg-gray-100 transition"
-                >
-                    Add Review for This Page
-                </button>
-            </div>
-        </div>
-        <div className="p-6">
-            {isLoading ? (
-                <div className="flex justify-center items-center py-12">
-                    <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-green-500"></div>
-                </div>
-            ) : pageReviews.length === 0 ? (
-                <div className="text-center py-8">
-                    <svg className="mx-auto h-14 w-14 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
-                    </svg>
-                    <h3 className="mt-4 text-lg font-medium text-gray-900">No reviews for this page yet</h3>
-                    <p className="mt-2 text-gray-500">Be the first to share your experience!</p>
-                    <button
-                        onClick={() => setShowForm(true)}
-                        className="mt-4 px-6 py-2 bg-green-600 text-white font-medium rounded-lg shadow hover:bg-green-700 transition"
-                    >
-                        Add First Review
-                    </button>
-                </div>
-            ) : (
-                <div className="space-y-6">
-                    {pageReviews.map((review) => (
-                        <div key={review._id} className="group relative bg-green-50/30 hover:bg-green-100/30 rounded-xl p-5 transition-all duration-200 border border-green-200">
-                            <div className="flex items-start">
-                                {review.image ? (
-                                    <img
-                                        src={review.image}
-                                        alt={review.name}
-                                        className="w-10 h-10 rounded-full object-cover mr-3 border-2 border-white shadow-sm"
-                                    />
-                                ) : (
-                                    <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3 border-2 border-white shadow-sm">
-                                        <svg className="h-5 w-5 text-green-500" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M12 14.75c2.67 0 8 1.34 8 4v1.25H4v-1.25c0-2.66 5.33-4 8-4zm0-9.5c-2.22 0-4 1.78-4 4s1.78 4 4 4 4-1.78 4-4-1.78-4-4-4zm0 6c-1.11 0-2-.89-2-2s.89-2 2-2 2 .89 2 2-.89 2-2 2z" />
-                                        </svg>
-                                    </div>
-                                )}
-                                <div className="flex-1 min-w-0">
-                                    <div className="flex justify-between items-start">
-                                        <h3 className="text-sm font-semibold text-gray-900 truncate">{review.name}</h3>
-                                        <span className="text-xs text-gray-500 whitespace-nowrap ml-2">
-                                            {new Date(review.createdAt || new Date()).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-                                        </span>
-                                    </div>
-                                    <p className="text-xs text-green-600 font-medium mt-0.5 truncate">
-                                        {review.course} • {review.company_name}
-                                    </p>
-                                    <p className="mt-2 text-sm text-gray-700">{review.description}</p>
+                        <div className="p-6">
+                            {isLoading ? (
+                                <div className="flex justify-center items-center py-12">
+                                    <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-green-500"></div>
                                 </div>
-                            </div>
-
-                            {/* Edit/Delete Buttons - Shown on hover */}
-                            <div className="absolute top-3 right-3 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <button
-                                    onClick={() => handleEdit(review)}
-                                    className="p-1.5 bg-white text-green-600 rounded-lg shadow-sm hover:bg-green-50 transition"
-                                    title="Edit"
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                            ) : pageReviews.length === 0 ? (
+                                <div className="text-center py-8">
+                                    <svg className="mx-auto h-14 w-14 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
                                     </svg>
-                                </button>
-                                <button
-                                    onClick={() => handleDelete(review._id)}
-                                    className="p-1.5 bg-white text-red-600 rounded-lg shadow-sm hover:bg-red-50 transition"
-                                    title="Delete"
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            )}
-        </div>
-    </div>
-)}
-
-{/* All Reviews Section */}
-<div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
-    <div className="p-6 bg-gradient-to-r from-indigo-600 to-blue-500">
-        <div className="flex justify-between items-center">
-            <h2 className="text-2xl font-bold text-white">All Reviews ({allReviews.length})</h2>
-            <button
-                onClick={() => {
-                    setShowForm(true);
-                    resetForm();
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-                className="px-4 py-2 bg-white text-indigo-600 font-medium rounded-lg shadow hover:bg-gray-100 transition"
-            >
-                Add Review
-            </button>
-        </div>
-    </div>
-
-    <div className="p-6">
-        {isLoading ? (
-            <div className="flex justify-center items-center py-12">
-                <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-indigo-500"></div>
-            </div>
-        ) : allReviews.length === 0 ? (
-            <div className="text-center py-8">
-                <svg className="mx-auto h-14 w-14 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
-                </svg>
-                <h3 className="mt-4 text-lg font-medium text-gray-900">No reviews yet</h3>
-                <p className="mt-2 text-gray-500">Your review could be the first!</p>
-                <button
-                    onClick={() => setShowForm(true)}
-                    className="mt-4 px-6 py-2 bg-indigo-600 text-white font-medium rounded-lg shadow hover:bg-indigo-700 transition"
-                >
-                    Add First Review
-                </button>
-            </div>
-        ) : (
-            <div className="space-y-6">
-                {allReviews.map((review) => (
-                    <div key={review._id} className="group relative bg-gray-50/50 hover:bg-gray-100/50 rounded-xl p-5 transition-all duration-200 border border-gray-200">
-                        <div className="flex items-start">
-                            {review.image ? (
-                                <img
-                                    src={review.image}
-                                    alt={review.name}
-                                    className="w-10 h-10 rounded-full object-cover mr-3 border-2 border-white shadow-sm"
-                                />
+                                    <h3 className="mt-4 text-lg font-medium text-gray-900">No reviews for this page yet</h3>
+                                    <p className="mt-2 text-gray-500">Add reviews from the right column</p>
+                                </div>
                             ) : (
-                                <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center mr-3 border-2 border-white shadow-sm">
-                                    <svg className="h-5 w-5 text-indigo-500" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12 14.75c2.67 0 8 1.34 8 4v1.25H4v-1.25c0-2.66 5.33-4 8-4zm0-9.5c-2.22 0-4 1.78-4 4s1.78 4 4 4 4-1.78 4-4-1.78-4-4-4zm0 6c-1.11 0-2-.89-2-2s.89-2 2-2 2 .89 2 2-.89 2-2 2z" />
-                                    </svg>
+                                <div className="space-y-6">
+                                    {pageReviews.map((review) => (
+                                        <div key={review._id} className="group relative bg-green-50/30 hover:bg-green-100/30 rounded-xl p-5 transition-all duration-200 border border-green-200">
+                                            <div className="flex items-start">
+                                                {review.image ? (
+                                                    <img
+                                                        src={review.image}
+                                                        alt={review.name}
+                                                        className="w-10 h-10 rounded-full object-cover mr-3 border-2 border-white shadow-sm"
+                                                    />
+                                                ) : (
+                                                    <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3 border-2 border-white shadow-sm">
+                                                        <svg className="h-5 w-5 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+                                                            <path d="M12 14.75c2.67 0 8 1.34 8 4v1.25H4v-1.25c0-2.66 5.33-4 8-4zm0-9.5c-2.22 0-4 1.78-4 4s1.78 4 4 4 4-1.78 4-4-1.78-4-4-4zm0 6c-1.11 0-2-.89-2-2s.89-2 2-2 2 .89 2 2-.89 2-2 2z" />
+                                                        </svg>
+                                                    </div>
+                                                )}
+                                                <div className="flex-1 min-w-0">
+                                                    <div className="flex justify-between items-start">
+                                                        <h3 className="text-sm font-semibold text-gray-900 truncate">{review.name}</h3>
+                                                        <span className="text-xs text-gray-500 whitespace-nowrap ml-2">
+                                                            {new Date(review.createdAt || new Date()).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                                                        </span>
+                                                    </div>
+                                                    <p className="text-xs text-green-600 font-medium mt-0.5 truncate">
+                                                        {review.course} • {review.company_name}
+                                                    </p>
+                                                    <p className="mt-2 text-sm text-gray-700">{review.description}</p>
+                                                </div>
+                                            </div>
+                                            {/* Checkmark icon for added reviews */}
+                                            <div className="absolute top-3 right-3">
+                                                <div className="p-1.5 bg-green-100 text-green-600 rounded-full">
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        className="h-5 w-5"
+                                                        fill="none"
+                                                        viewBox="0 0 24 24"
+                                                        stroke="currentColor"
+                                                        strokeWidth="2"
+                                                    >
+                                                        <path
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            d="M5 13l4 4L19 7"
+                                                        />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
                             )}
-                            <div className="flex-1 min-w-0">
-                                <div className="flex justify-between items-start">
-                                    <h3 className="text-sm font-semibold text-gray-900 truncate">{review.name}</h3>
-                                    <span className="text-xs text-gray-500 whitespace-nowrap ml-2">
-                                        {new Date(review.createdAt || new Date()).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-                                    </span>
-                                </div>
-                                <p className="text-xs text-indigo-600 font-medium mt-0.5 truncate">
-                                    {review.course} • {review.company_name}
-                                    {review.page_id && (
-                                        <span className="ml-2 bg-indigo-100 text-indigo-800 text-xs px-2 py-0.5 rounded">
-                                            Page: {review.page_id}
-                                        </span>
-                                    )}
-                                </p>
-                                <p className="mt-2 text-sm text-gray-700">{review.description}</p>
+                        </div>
+                    </div>
+
+                    {/* Right Column - All Reviews */}
+                    <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
+                        <div className="p-6 bg-gradient-to-r from-indigo-600 to-blue-500">
+                            <div className="flex justify-between items-center">
+                                <h2 className="text-2xl font-bold text-white">
+                                    All Reviews ({filteredAllReviews.length})
+                                </h2>
                             </div>
                         </div>
 
-                        {/* Edit/Delete Buttons - Shown on hover */}
-                        <div className="absolute top-3 right-3 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <button
-                                onClick={() => handleEdit(review)}
-                                className="p-1.5 bg-white text-indigo-600 rounded-lg shadow-sm hover:bg-indigo-50 transition"
-                                title="Edit"
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                </svg>
-                            </button>
-                            <button
-                                onClick={() => handleDelete(review._id)}
-                                className="p-1.5 bg-white text-red-600 rounded-lg shadow-sm hover:bg-red-50 transition"
-                                title="Delete"
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                </svg>
-                            </button>
+                        <div className="p-6">
+                            {isLoading ? (
+                                <div className="flex justify-center items-center py-12">
+                                    <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-indigo-500"></div>
+                                </div>
+                            ) : filteredAllReviews.length === 0 ? (
+                                <div className="text-center py-8">
+                                    <svg className="mx-auto h-14 w-14 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+                                    </svg>
+                                    <h3 className="mt-4 text-lg font-medium text-gray-900">
+                                        {searchTerm ? 'No matching reviews found' : 'No reviews yet'}
+                                    </h3>
+                                    <p className="mt-2 text-gray-500">
+                                        {searchTerm ? 'Try a different search term' : 'Create reviews in the admin panel'}
+                                    </p>
+                                </div>
+                            ) : (
+                                <div className="space-y-6">
+                                    {filteredAllReviews.map((review) => (
+                                        <div key={review._id} className="group relative bg-gray-50/50 hover:bg-gray-100/50 rounded-xl p-5 transition-all duration-200 border border-gray-200">
+                                            <div className="flex items-start">
+                                                {review.image ? (
+                                                    <img
+                                                        src={review.image}
+                                                        alt={review.name}
+                                                        className="w-10 h-10 rounded-full object-cover mr-3 border-2 border-white shadow-sm"
+                                                    />
+                                                ) : (
+                                                    <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center mr-3 border-2 border-white shadow-sm">
+                                                        <svg className="h-5 w-5 text-indigo-500" fill="currentColor" viewBox="0 0 24 24">
+                                                            <path d="M12 14.75c2.67 0 8 1.34 8 4v1.25H4v-1.25c0-2.66 5.33-4 8-4zm0-9.5c-2.22 0-4 1.78-4 4s1.78 4 4 4 4-1.78 4-4-1.78-4-4-4zm0 6c-1.11 0-2-.89-2-2s.89-2 2-2 2 .89 2 2-.89 2-2 2z" />
+                                                        </svg>
+                                                    </div>
+                                                )}
+                                                <div className="flex-1 min-w-0">
+                                                    <div className="flex justify-between items-start">
+                                                        <h3 className="text-sm font-semibold text-gray-900 truncate">{review.name}</h3>
+                                                        <span className="text-xs text-gray-500 whitespace-nowrap ml-2">
+                                                            {new Date(review.createdAt || new Date()).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                                                        </span>
+                                                    </div>
+                                                    <p className="text-xs text-indigo-600 font-medium mt-0.5 truncate">
+                                                        {review.course} • {review.company_name}
+                                                        {review.page_id && (
+                                                            <span className="ml-2 bg-indigo-100 text-indigo-800 text-xs px-2 py-0.5 rounded">
+                                                                Page: {review.page_id}
+                                                            </span>
+                                                        )}
+                                                    </p>
+                                                    <p className="mt-2 text-sm text-gray-700">{review.description}</p>
+                                                </div>
+                                            </div>
+
+                                            {/* Show checkmark if already added to page, otherwise show add button */}
+                                            {page_id && (pageReviews.some(r => r._id === review._id) ? (
+                                                <div className="absolute top-3 right-3">
+                                                    <div className="p-1.5 bg-green-100 text-green-600 rounded-full">
+                                                        <svg
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            className="h-5 w-5"
+                                                            fill="none"
+                                                            viewBox="0 0 24 24"
+                                                            stroke="currentColor"
+                                                            strokeWidth="2"
+                                                        >
+                                                            <path
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round"
+                                                                d="M5 13l4 4L19 7"
+                                                            />
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                <div className="absolute top-3 right-3 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                    <button
+                                                        onClick={() => handleAddToPage(review._id)}
+                                                        className="p-2 bg-green-100 hover:bg-green-200 text-green-700 rounded-full shadow-md transition-all duration-200"
+                                                        title="Add to this page"
+                                                    >
+                                                        <svg
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            className="h-5 w-5 stroke-2"
+                                                            fill="none"
+                                                            viewBox="0 0 24 24"
+                                                            stroke="currentColor"
+                                                        >
+                                                            <path
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round"
+                                                                strokeWidth="3"
+                                                                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                                                            />
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </div>
-                ))}
-            </div>
-        )}
-    </div>
-</div>
                 </div>
-
-
             </div>
-
         </div>
     )
 }

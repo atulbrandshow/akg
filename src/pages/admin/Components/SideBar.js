@@ -40,6 +40,11 @@ const navSections = [
         label: "Online Application",
         href: "/admin/online-applications"
       },
+      {
+        icon: Users,
+        label: "Student Reviews",
+        href: "/admin/student-reviews"
+      }
     ],
   },
   {

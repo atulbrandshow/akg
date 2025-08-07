@@ -231,8 +231,21 @@ const PageDataManager = () => {
       case "multiple image":
         if (files && files.length > 0) {
           const uploadedPaths = await handleFileUpload(Array.from(files), true)
-          // Store as array, not string
-          setFormData({ ...formData, value: uploadedPaths })
+          // Get current images and append new ones
+          let currentImages = formData.value
+          if (typeof currentImages === "string") {
+            try {
+              currentImages = JSON.parse(currentImages || "[]")
+            } catch {
+              currentImages = []
+            }
+          }
+          if (!Array.isArray(currentImages)) {
+            currentImages = []
+          }
+          // Append new images to existing ones
+          const updatedImages = [...currentImages, ...uploadedPaths]
+          setFormData({ ...formData, value: updatedImages })
         }
         break
       case "pdf":
@@ -244,8 +257,21 @@ const PageDataManager = () => {
       case "multiple pdfs":
         if (files && files.length > 0) {
           const uploadedPaths = await handleFileUpload(Array.from(files), true)
-          // Store as array, not string
-          setFormData({ ...formData, value: uploadedPaths })
+          // Get current PDFs and append new ones
+          let currentPdfs = formData.value
+          if (typeof currentPdfs === "string") {
+            try {
+              currentPdfs = JSON.parse(currentPdfs || "[]")
+            } catch {
+              currentPdfs = []
+            }
+          }
+          if (!Array.isArray(currentPdfs)) {
+            currentPdfs = []
+          }
+          // Append new PDFs to existing ones
+          const updatedPdfs = [...currentPdfs, ...uploadedPaths]
+          setFormData({ ...formData, value: updatedPdfs })
         }
         break
       default:
@@ -1117,8 +1143,8 @@ const PageDataManager = () => {
               <button
                 onClick={() => setGroupByType(!groupByType)}
                 className={`px-4 py-3 rounded-lg font-novaSemi transition-all duration-200 flex items-center space-x-2 ${groupByType
-                    ? "bg-blue-100 text-blue-700 hover:bg-blue-200"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  ? "bg-blue-100 text-blue-700 hover:bg-blue-200"
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

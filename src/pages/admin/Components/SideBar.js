@@ -45,6 +45,11 @@ const navSections = [
         icon: BookmarkCheck,
         label: "Student Reviews",
         href: "/admin/student-reviews"
+      },
+       {
+        icon: Users,
+        label: "Testimonial",
+        href: "/admin/testimonial-list"
       }
     ],
   },

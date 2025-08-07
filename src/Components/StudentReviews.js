@@ -32,7 +32,7 @@ export default function StudentReviews({ data }) {
                         {d?.Echoes_of_Success_Desc}
                     </p>
                 </div>
-                <StudentStories />
+                <StudentStories studentReviews={data?.studentReviews} />
                 <div className="w-full flex justify-center items-center">
                     <Button text={'Read All Reviews'} className=" py-3 max-[400px]:py-2 max-[400px]:px-6 px-10 mt-5 text-[15px] text-white rounded-xl font-novaBold uppercase bg-btn-gradient  w-max  hover:bg-[#3c5686] hover:border-b-4 hover:text-white hover:border-[#beb6ff] hover:transform hover:transition-transform hover:ease-in-out  hover:duration-500 scale-y-105" />
                 </div>

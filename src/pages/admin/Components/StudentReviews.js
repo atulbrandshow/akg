@@ -128,10 +128,8 @@ export default function StudentReview() {
                 setIsUploadingImage(true);
                 try {
                     imageUrl = await uploadImages(selectedFile);
-                    toast.success("Image uploaded successfully!");
                 } catch (uploadError) {
                     console.error("Image upload failed:", uploadError);
-                    toast.error("Failed to upload image. Proceeding without image.");
                     imageUrl = "";
                 } finally {
                     setIsUploadingImage(false);
@@ -198,7 +196,7 @@ export default function StudentReview() {
             image: review.image || ""
         });
         if (review.image) {
-            setImagePreview(review.image);
+            setImagePreview(IMAGE_PATH + review.image);
         }
         setShowForm(true);
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -329,7 +327,7 @@ export default function StudentReview() {
                                             <div className="relative inline-block">
                                                 <div className="relative w-32 h-32 rounded-2xl overflow-hidden shadow-lg">
                                                     <img
-                                                        src={editingReview ? IMAGE_PATH + imagePreview : imagePreview || "/placeholder.svg"}
+                                                        src={imagePreview || "/placeholder.svg"}
                                                         alt="Preview"
                                                         className="w-full h-full object-cover"
                                                     />

@@ -280,15 +280,15 @@ const TableList = ({ type, title, subTitle }) => {
                                         <th className="px-6 py-4 text-left text-xs font-novaSemi text-gray-700 uppercase tracking-wider">
                                             {type} Details
                                         </th>
-                                        <th className="px-6 py-4 text-left text-xs font-novaSemi text-gray-700 uppercase tracking-wider">
+                                        {/* <th className="px-6 py-4 text-left text-xs font-novaSemi text-gray-700 uppercase tracking-wider">
                                             Component
-                                        </th>
+                                        </th> */}
                                         <th className="px-6 py-4 text-left text-xs font-novaSemi text-gray-700 uppercase tracking-wider">
                                             Path & Id
                                         </th>
-                                        <th className="px-6 py-4 text-left text-xs font-novaSemi text-gray-700 uppercase tracking-wider">
+                                        {/* <th className="px-6 py-4 text-left text-xs font-novaSemi text-gray-700 uppercase tracking-wider">
                                             Author & Date
-                                        </th>
+                                        </th> */}
                                         <th className="px-6 py-4 text-left text-xs font-novaSemi text-gray-700 uppercase tracking-wider">
                                             Status
                                         </th>
@@ -317,7 +317,7 @@ const TableList = ({ type, title, subTitle }) => {
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td className="px-6 py-4">
+                                                {/* <td className="px-6 py-4">
                                                     <div className="flex flex-col space-y-1">
                                                         {event.ComponentType && (
                                                             <span className="text-sm font-novaBold flex gap-1 items-center w-fit text-gray-600 bg-gray-100 px-2 py-1 rounded">
@@ -326,7 +326,7 @@ const TableList = ({ type, title, subTitle }) => {
                                                             </span>
                                                         )}
                                                     </div>
-                                                </td>
+                                                </td> */}
                                                 <td className="px-6 py-4">
                                                     <div className="flex flex-col space-y-1">
                                                         <Link target="_blank" href={event.path} className="text-xs text-nowrap flex gap-1 items-center w-fit bg-blue-100 px-2 py-1 rounded text-gray-800 font-novaSemi hover:bg-gray-200 ">
@@ -336,7 +336,7 @@ const TableList = ({ type, title, subTitle }) => {
                                                         <span className="text-xs font-novaSemi text-gray-500">ID: {event.page_id}</span>
                                                     </div>
                                                 </td>
-                                                <td className="px-6 py-4">
+                                                {/* <td className="px-6 py-4">
                                                     <div className="flex flex-col space-y-1">
                                                         <span className="text-sm font-novaSemi text-gray-900">{event.addedby || "Unknown"}</span>
                                                         <span className="text-xs text-gray-500 font-novaSemi">{formatDate(event.addedon)}</span>
@@ -346,7 +346,7 @@ const TableList = ({ type, title, subTitle }) => {
                                                             </span>
                                                         )}
                                                     </div>
-                                                </td>
+                                                </td> */}
                                                 <td className="px-6 py-4 whitespace-nowrap">
                                                     <span
                                                         className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-novaSemi border ${getStatusColor(
@@ -396,7 +396,7 @@ const TableList = ({ type, title, subTitle }) => {
                                                                     />
                                                                 </svg>
 
-                                                                Add {type} Data
+                                                                Dynamic {type}
                                                             </button>
                                                         }
                                                         <button
@@ -418,24 +418,26 @@ const TableList = ({ type, title, subTitle }) => {
                                                             FAQ
                                                         </button>
 
-                                                          <button
-                                                            onClick={() => router.push(
-                                                                `/admin/add-review` +
-                                                                `?page_id=${event?.page_id}`
-                                                            )}
-                                                            className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-novaSemi rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition-all duration-200 transform hover:scale-105"
-                                                            title="Review Page"
-                                                        >
-                                                            <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                <path
-                                                                    strokeLinecap="round"
-                                                                    strokeLinejoin="round"
-                                                                    strokeWidth={2}
-                                                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                                                                />
-                                                            </svg>
-                                                            Review 
-                                                        </button>
+                                                        {(event.ComponentType === "HomePage") && (
+                                                            <button
+                                                                onClick={() => router.push(
+                                                                    `/admin/add-review` +
+                                                                    `?page_id=${event?.page_id}`
+                                                                )}
+                                                                className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-novaSemi rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all duration-200 transform hover:scale-105"
+                                                                title="Review Page"
+                                                            >
+                                                                <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path
+                                                                        strokeLinecap="round"
+                                                                        strokeLinejoin="round"
+                                                                        strokeWidth={2}
+                                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                                                                    />
+                                                                </svg>
+                                                                Student Review
+                                                            </button>
+                                                        )}
 
                                                         <button
                                                             onClick={() => router.push(

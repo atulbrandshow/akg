@@ -45,7 +45,7 @@ const FacultySlider = ({ data }) => {
     const d = data?.pageData;
     const sliderRef = useRef(null);
 
-    const facultyData = data?.faculties;
+    const facultyData = data?.faculties || [];
 
     const scrollLeft = () => {
         sliderRef.current.scrollBy({

@@ -228,21 +228,7 @@ const AddFAQ = () => {
                         
                         <div className="p-6">
                             <form onSubmit={handleSubmit} className="space-y-6">
-                                {/* Type Input */}
-                                <div>
-                                    <label className="block text-sm font-semibold text-gray-700 mb-3">
-                                        FAQ Category
-                                    </label>
-                                    <input
-                                        type="text"
-                                        value={type}
-                                        onChange={(e) => setType(e.target.value)}
-                                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-200 shadow-sm hover:border-gray-300"
-                                        placeholder="e.g., General, Academic, Admissions, Faculty"
-                                        required
-                                    />
-                                </div>
-
+                                
                                 {/* Questions & Answers */}
                                 <div>
                                     <div className="flex justify-between items-center mb-4">

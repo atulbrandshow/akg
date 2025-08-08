@@ -48,7 +48,7 @@ const MainSection = ({ data }) => {
                         <div className="h-20">
                             <Button
                                 text={"Apply Today"}
-                                onClick={() => setShowForm(true)} // Show form on click
+                                onClick={() => setShowForm(!showForm)} // Show form on click
                                 className="py-3 max-sm:px-6 max-sm:text-xs px-10 mt-5 text-[15px] rounded-xl font-novaBold uppercase bg-btn-gradient animate-gradient text-white w-max  hover:bg-[#3c5686] hover:border-b-4 hover:border-[#beb6ff] hover:transform  scale-y-105 tracking-widest"
                             />
                         </div>

@@ -33,6 +33,7 @@ import { IMAGE_PATH } from '@/configs/config';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Breadcrumb from '@/Components/Breadcrumb';
+import FAQHolder from '@/Components/FAQHolder';
 
 const courses = {
   'Graduate': [
@@ -443,6 +444,7 @@ const SchoolDetails = ({ data }) => {
       <PlacementData data={d} />
       <Testimonial data={data} />
       <SchoolLogoSlider data={d} />
+      {data?.faq && (<FAQHolder data={data} />)}
     </>
   )
 }

@@ -1180,7 +1180,7 @@ const DepartmentDetails = ({ data }) => {
           </div>
         </div>
       </div>
-
+      {data?.faq && (<FAQHolder data={data} />)}
     </section>
   );
 };

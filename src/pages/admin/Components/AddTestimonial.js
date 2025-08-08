@@ -9,8 +9,8 @@ export default function AddTestimonial() {
     const page_id = searchParams.get("page_id");
     const router = useRouter();
 
-    const [allTestimonials, setAllTestimonials] = useState([]); // All testimonials
-    const [pageTestimonials, setPageTestimonials] = useState([]); // Testimonials for current page_id
+    const [allTestimonials, setAllTestimonials] = useState([]);
+    const [pageTestimonials, setPageTestimonials] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
     const [eventName, setEventName] = useState("");
@@ -22,7 +22,6 @@ export default function AddTestimonial() {
         }
     }, []);
 
-    // Fetch existing testimonials on component mount
     useEffect(() => {
         fetchAllTestimonials();
         if (page_id) {
@@ -64,37 +63,35 @@ export default function AddTestimonial() {
         }
     };
 
-    const handleAddToPage = async (testimonialId) => {
-        try {
-            const response = await fetch(`${API_NODE_URL}testimonial/${testimonialId}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${localStorage.getItem('token') || ''}`
-                },
-                credentials: "include",
-                body: JSON.stringify({
-                    page_id: page_id
-                }),
-            });
+   const handleAddToPage = async (testimonialId) => {
+    try {
+        const response = await fetch(`${API_NODE_URL}testimonial/add-to-page`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem('token') || ''}`
+            },
+            body: JSON.stringify({
+                testimonial_id: testimonialId,
+                page_id: page_id
+            }),
+        });
 
-            const data = await response.json();
+        const data = await response.json();
 
-            if (!response.ok) {
-                throw new Error(data.message || "Failed to add testimonial to page");
-            }
-
-            toast.success("Testimonial added to page successfully!");
-
-            // Refresh both sets of testimonials
-            fetchAllTestimonials();
-            fetchPageTestimonials();
-
-        } catch (err) {
-            console.error("Error adding testimonial to page:", err);
-            toast.error(err.message || "Failed to add testimonial to page");
+        if (!response.ok) {
+            throw new Error(data.message || "Failed to add testimonial to page");
         }
-    };
+
+        toast.success("Testimonial added to page successfully!");
+        fetchAllTestimonials();
+        fetchPageTestimonials();
+
+    } catch (err) {
+        console.error("Error adding testimonial to page:", err);
+        toast.error(err.message || "Failed to add testimonial to page");
+    }
+};
 
     const filteredAllTestimonials = allTestimonials.filter(testimonial =>
         testimonial.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -103,10 +100,14 @@ export default function AddTestimonial() {
         testimonial.description.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    // Check if testimonial is already added to current page
+    const isTestimonialAdded = (testimonial) => {
+        return testimonial.page_ids && testimonial.page_ids.includes(page_id);
+    };
+
     return (
         <div>
             <div className="py-12">
-                {/* Header with gradient */}
                 <div className="text-center mb-6">
                     <h1 className="text-4xl font-novaBold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-500 mb-1">
                         Testimonial Management
@@ -117,7 +118,6 @@ export default function AddTestimonial() {
                     <div className="font-novaBold">Page: - <span className="text-blue-600 font-novaSemi">{eventName}</span></div>
                 </div>
 
-                {/* Search Bar */}
                 <div className="mb-8">
                     <div className="relative max-w-4xl mx-auto">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -135,7 +135,6 @@ export default function AddTestimonial() {
                     </div>
                 </div>
 
-                {/* Main content grid - 2 columns */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     {/* All Testimonials Column */}
                     <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
@@ -205,8 +204,7 @@ export default function AddTestimonial() {
                                                 </div>
                                             </div>
 
-                                            {/* Show checkmark if already added to page, otherwise show add button */}
-                                            {page_id && (pageTestimonials.some(t => t._id === testimonial._id) ? (
+                                            {page_id && (isTestimonialAdded(testimonial) ? (
                                                 <div className="absolute top-6 right-3">
                                                     <div className="p-1.5 bg-green-100 text-green-600 rounded-full">
                                                         <svg
@@ -319,7 +317,6 @@ export default function AddTestimonial() {
                                                     <p className="mt-1 text-sm line-clamp-2 text-gray-700">{testimonial.description}</p>
                                                 </div>
                                             </div>
-                                            {/* Checkmark icon for added testimonials */}
                                             <div className="absolute top-6 right-3">
                                                 <div className="p-1.5 bg-green-100 text-green-600 rounded-full">
                                                     <svg

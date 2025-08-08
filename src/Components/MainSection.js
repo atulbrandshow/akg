@@ -35,7 +35,7 @@ const MainSection = ({ data }) => {
             <div className="flex justify-center relative z-20 min-h-screen">
                 <div className="grid grid-cols-2 max-lg:grid-cols-1 max-lg:pb-10">
                     <div className="slide flex justify-center max-w-3xl flex-col pl-20 max-lg:mt-52 max-lg:items-center max-lg:px-5 ">
-                        <h1 className="max-w-4xl font-novaThin max-sm:text-3xl tracking-tight text-white max-xl:text-5xl text-6xl max-lg:text-center max-[350px]:text-2xl">
+                        <h1 className="max-w-4xl font-novaThin max-sm:text-3xl tracking-tight text-white max-xl:text-5xl text-5xl max-lg:text-center max-[350px]:text-2xl">
                             {d?.Hero_Subheading} <br />
                             <span className="relative whitespace-nowrap ">
                                 <svg aria-hidden="true" viewBox="0 0 418 42" className="absolute left-0 top-2/3 h-[0.58em] w-full fill-blue-300/90" preserveAspectRatio="none">
@@ -44,7 +44,7 @@ const MainSection = ({ data }) => {
                                 <span className="relative font-novaSemi text-white uppercase"> {d?.Hero_Highlight_Title}</span>
                             </span>
                         </h1>
-                        <p className="mt-8 text-white text-2xl font-novaReg max-lg:text-base max-lg:text-center">{d?.Hero_Paragraph}</p>
+                        <p className="mt-8 text-white text-xl font-novaReg max-lg:text-base max-lg:text-center">{d?.Hero_Paragraph}</p>
                         <div className="h-20">
                             <Button
                                 text={"Apply Today"}

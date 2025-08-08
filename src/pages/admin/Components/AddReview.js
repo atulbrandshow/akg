@@ -66,6 +66,12 @@ export default function AddReview() {
 
     const handleAddToPage = async (reviewId) => {
         try {
+            // First check if review already has a page_id
+            const review = allReviews.find(r => r._id === reviewId);
+            if (review?.page_id) {
+                throw new Error("This review is already assigned to another page");
+            }
+
             const response = await fetch(`${API_NODE_URL}review/${reviewId}`, {
                 method: "PUT",
                 headers: {
@@ -85,8 +91,6 @@ export default function AddReview() {
             }
 
             toast.success("Review added to page successfully!");
-
-            // Refresh both sets of reviews
             fetchAllReviews();
             fetchPageReviews();
 
@@ -96,12 +100,16 @@ export default function AddReview() {
         }
     };
 
-    const filteredAllReviews = allReviews.filter(review =>
-        review.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        review.course.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        review.company_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        review.description.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const filteredAllReviews = allReviews.filter(review => {
+        // Filter by search term
+        const matchesSearch =
+            review.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            review.course.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            review.company_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            review.description.toLowerCase().includes(searchTerm.toLowerCase());
+
+        return matchesSearch;
+    });
 
     return (
         <div>
@@ -139,11 +147,9 @@ export default function AddReview() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
                         <div className="p-6 bg-gradient-to-r from-indigo-600 to-blue-500">
-                            <div className="flex justify-between items-center">
-                                <h2 className="text-2xl font-novaBold text-white">
-                                    All Reviews ({filteredAllReviews.length})
-                                </h2>
-                            </div>
+                            <h2 className="text-2xl font-novaBold text-white">
+                                All Reviews ({filteredAllReviews.length})
+                            </h2>
                         </div>
                         <div className="p-6">
                             {isLoading ? (
@@ -156,91 +162,57 @@ export default function AddReview() {
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
                                     </svg>
                                     <h3 className="mt-4 text-lg font-novaSemi text-gray-900">
-                                        {searchTerm ? 'No matching reviews found' : 'No reviews yet'}
+                                        {searchTerm ? 'No matching reviews found' : 'No reviews available'}
                                     </h3>
-                                    <p className="mt-2 text-gray-500">
-                                        {searchTerm ? 'Try a different search term' : 'Create reviews in the admin panel'}
-                                    </p>
                                 </div>
                             ) : (
-                                <div className="space-y-3">
+                                <div className="space-y-4">
                                     {filteredAllReviews.map((review) => (
-                                        <div key={review._id} className="group relative bg-gray-50/50 hover:bg-gray-100/50 rounded-xl p-3 transition-all duration-200 border border-gray-200">
-                                            <div className="flex items-start">
+                                        <div key={review._id} className="p-4 border rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
+                                            <div className="flex items-start gap-3">
                                                 {review.image ? (
                                                     <img
-                                                        src={IMAGE_PATH + review.image}
+                                                        src={`${IMAGE_PATH}${review.image}`}
                                                         alt={review.name}
-                                                        className="w-10 h-10 rounded-full object-cover mr-3 border-2 border-white shadow-sm"
+                                                        className="w-12 h-12 rounded-full object-cover border-2 border-white"
                                                     />
                                                 ) : (
-                                                    <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center mr-3 border-2 border-white shadow-sm">
-                                                        <svg className="h-5 w-5 text-indigo-500" fill="currentColor" viewBox="0 0 24 24">
-                                                            <path d="M12 14.75c2.67 0 8 1.34 8 4v1.25H4v-1.25c0-2.66 5.33-4 8-4zm0-9.5c-2.22 0-4 1.78-4 4s1.78 4 4 4 4-1.78 4-4-1.78-4-4-4zm0 6c-1.11 0-2-.89-2-2s.89-2 2-2 2 .89 2 2-.89 2-2 2z" />
-                                                        </svg>
+                                                    <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center border-2 border-white">
+                                                        <span className="text-indigo-600 text-lg font-bold">
+                                                            {review.name.charAt(0)}
+                                                        </span>
                                                     </div>
                                                 )}
-                                                <div className="flex-1 min-w-0">
+                                                <div className="flex-1">
                                                     <div className="flex justify-between items-start">
-                                                        <h3 className="text-sm font-novaSemi text-gray-900 truncate">{review.name}</h3>
+                                                        <h3 className="font-novaSemi text-gray-900">{review.name}</h3>
+                                                        {review.page_id && (
+                                                            <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
+                                                                {review.page_id === page_id ? 'This page' : 'Assigned'}
+                                                            </span>
+                                                        )}
                                                     </div>
-                                                    <p className="text-xs text-indigo-600 font-novaSemi mt-0.5 truncate">
+                                                    <p className="text-sm text-indigo-600 mt-1">
                                                         {review.course} • {review.company_name}
                                                     </p>
-                                                    <p className="mt-1 font-novaReg line-clamp-2 text-sm text-gray-700">{review.description}</p>
+                                                    <p className="mt-2 text-sm text-gray-700">{review.description}</p>
                                                 </div>
                                             </div>
-
-                                            {/* Show checkmark if already added to page, otherwise show add button */}
-                                            {page_id && (pageReviews.some(r => r._id === review._id) ? (
-                                                <div className="absolute top-6 right-3">
-                                                    <div className="p-1.5 bg-green-100 text-green-600 rounded-full">
-                                                        <svg
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            className="h-5 w-5"
-                                                            fill="none"
-                                                            viewBox="0 0 24 24"
-                                                            stroke="currentColor"
-                                                            strokeWidth="2"
-                                                        >
-                                                            <path
-                                                                strokeLinecap="round"
-                                                                strokeLinejoin="round"
-                                                                d="M5 13l4 4L19 7"
-                                                            />
-                                                        </svg>
-                                                    </div>
-                                                </div>
-                                            ) : (
-                                                <div className="absolute top-6 right-3 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                                                    <button
-                                                        onClick={() => handleAddToPage(review._id)}
-                                                        className="p-2 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-full shadow-md transition-all duration-200"
-                                                        title="Add to this page"
-                                                    >
-                                                        <svg
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            className="h-5 w-5 stroke-2"
-                                                            fill="none"
-                                                            viewBox="0 0 24 24"
-                                                            stroke="currentColor"
-                                                        >
-                                                            <path
-                                                                strokeLinecap="round"
-                                                                strokeLinejoin="round"
-                                                                strokeWidth="3"
-                                                                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                                                            />
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                            ))}
+                                            {!review.page_id && page_id && (
+                                                <button
+                                                    onClick={() => handleAddToPage(review._id)}
+                                                    className="mt-3 w-full py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+                                                >
+                                                    Add to this page
+                                                </button>
+                                            )}
                                         </div>
                                     ))}
                                 </div>
                             )}
                         </div>
                     </div>
+
                     <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
                         <div className="p-6 bg-gradient-to-r from-green-600 to-emerald-500">
                             <div className="flex justify-between items-center">

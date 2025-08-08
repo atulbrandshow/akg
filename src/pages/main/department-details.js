@@ -212,10 +212,6 @@ const DepartmentDetails = ({ data }) => {
     ? DOMPurify.sanitize(d?.PCD_2?.replace(/classname/gi, 'class'))
     : '';
 
-  const programCardDesc2 = d?.PCD_3
-    ? DOMPurify.sanitize(d?.PCD_3?.replace(/classname/gi, 'class'))
-    : '';
-
   const services = [
     {
       title: "Study Abroad",
@@ -412,7 +408,7 @@ const DepartmentDetails = ({ data }) => {
               </svg>
               <h2 className="text-2xl font-novaSemi text-black">{d?.PCT_1}</h2>
             </div>
-            <div dangerouslySetInnerHTML={{ __html: programCardDesc || "" }}></div>
+            <div dangerouslySetInnerHTML={{ __html: programCardDesc}}/>
             <button className="py-2 max-sm:py-1.5 max-sm:px-4 max-sm:text-xs px-5 mt-5 text-[15px] rounded-lg font-novaBold uppercase bg-btn-gradient animate-gradient text-white w-max  hover:bg-[#3c5686] hover:border-b-4 hover:border-[#beb6ff] hover:transform scale-y-105 tracking-widest flex items-center gap-1">
               VIEW MORE <MoveRight className="w-5 h-5" />
             </button>

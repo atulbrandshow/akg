@@ -16,6 +16,14 @@ const AddFAQ = () => {
     const [editQuestion, setEditQuestion] = useState("");
     const [editAnswer, setEditAnswer] = useState("");
     const [deleteLoading, setDeleteLoading] = useState(null);
+    const [eventName, setEventName] = useState("");
+
+    useEffect(() => {
+        const name = sessionStorage.getItem("faqEventName");
+        if (name) {
+            setEventName(name);
+        }
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -149,9 +157,10 @@ const AddFAQ = () => {
                         <h1 className="text-4xl font-novaBold text-gray-900 mb-3">
                             FAQ Management Center
                         </h1>
-                        <p className="font-novaReg  text-gray-600 mb-6 max-w-2xl mx-auto">
+                        <p className="font-novaReg  text-gray-600 mb-3 max-w-2xl mx-auto">
                             Create, manage, and organize frequently asked questions with our intuitive management system
                         </p>
+                        <div className="font-novaBold">Page: - <span className="text-blue-600 font-novaSemi">{eventName}</span></div>
                     </div>
                 </div>
             </div>

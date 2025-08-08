@@ -401,10 +401,10 @@ const TableList = ({ type, title, subTitle }) => {
                                                         }
                                                         {(type === "School" || type === "Department" || type === "Program") && (
                                                             <button
-                                                                onClick={() => router.push(
-                                                                    `/admin/add-faq` +
-                                                                    `?page_id=${event?.page_id}`
-                                                                )}
+                                                                onClick={() => {
+                                                                    sessionStorage.setItem("faqEventName", event?.name);
+                                                                    router.push(`/admin/add-faq?page_id=${event?.page_id}`);
+                                                                }}
                                                                 className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-novaSemi rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition-all duration-200 transform hover:scale-105"
                                                                 title="FAQ"
                                                             >
@@ -422,10 +422,10 @@ const TableList = ({ type, title, subTitle }) => {
 
                                                         {(type === "School" || type === "Department" || event.ComponentType === "HomePage") && (
                                                             <button
-                                                                onClick={() => router.push(
-                                                                    `/admin/add-testimonial` +
-                                                                    `?page_id=${event?.page_id}`
-                                                                )}
+                                                                onClick={() => {
+                                                                    sessionStorage.setItem("faqEventName", event?.name);
+                                                                    router.push(`/admin/add-testimonial?page_id=${event?.page_id}`);
+                                                                }}
                                                                 className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-novaSemi rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition-all duration-200 transform hover:scale-105"
                                                                 title="Testimonial"
                                                             >
@@ -443,10 +443,10 @@ const TableList = ({ type, title, subTitle }) => {
 
                                                         {(type === "School" || type === "Department" || event.ComponentType === "HomePage") && (
                                                             <button
-                                                                onClick={() => router.push(
-                                                                    `/admin/add-review` +
-                                                                    `?page_id=${event?.page_id}`
-                                                                )}
+                                                                onClick={() => {
+                                                                    sessionStorage.setItem("faqEventName", event?.name);
+                                                                    router.push(`/admin/add-review?page_id=${event?.page_id}`);
+                                                                }}
                                                                 className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-novaSemi rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all duration-200 transform hover:scale-105"
                                                                 title="Review Page"
                                                             >

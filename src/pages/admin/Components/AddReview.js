@@ -13,6 +13,14 @@ export default function AddReview() {
     const [pageReviews, setPageReviews] = useState([]); // Reviews for current page_id
     const [isLoading, setIsLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
+    const [eventName, setEventName] = useState("");
+
+    useEffect(() => {
+        const name = sessionStorage.getItem("faqEventName");
+        if (name) {
+            setEventName(name);
+        }
+    }, []);
 
     // Fetch existing reviews on component mount
     useEffect(() => {
@@ -103,9 +111,10 @@ export default function AddReview() {
                     <h1 className="text-4xl font-novaBold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-500 mb-1">
                         Student Review Management
                     </h1>
-                    <p className="font-novaReg text-gray-600 max-w-3xl mx-auto">
+                    <p className="font-novaReg text-gray-600 max-w-3xl mx-auto mb-3">
                         Manage student reviews for this page
                     </p>
+                    <div className="font-novaBold">Page: - <span className="text-blue-600 font-novaSemi">{eventName}</span></div>
                 </div>
 
                 {/* Search Bar */}

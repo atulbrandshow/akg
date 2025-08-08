@@ -150,6 +150,8 @@ export default function CreateFacultyForm({ type, componentType }) {
     // Social Links state
     const [socialLinks, setSocialLinks] = useState([])
     const [socialLinkInput, setSocialLinkInput] = useState("")
+    const [qualificationInput, setQualificationInput] = useState("");
+
 
     const [formData, setFormData] = useState({
         // Personal Information
@@ -194,6 +196,8 @@ export default function CreateFacultyForm({ type, componentType }) {
         param3: "", // Social Link 3
         param4: "", // Subjects Taught
         param5: "", // Additional info
+        qualification: [], // Add this line for qualification array
+        param9: "",
     })
 
     // Add separate states for each dropdown
@@ -206,6 +210,7 @@ export default function CreateFacultyForm({ type, componentType }) {
     const [schoolPages, setSchoolPages] = useState([])
     const [departmentPages, setDepartmentPages] = useState([])
     const [programPages, setProgramPages] = useState([])
+
 
     // Fetch functions
     const fetchSchools = async (searchTerm = "") => {
@@ -283,6 +288,10 @@ export default function CreateFacultyForm({ type, componentType }) {
                 const data = result.data;
                 console.log(data);
 
+                const qualificationArray = data.param9
+                    ? data.param9.split(',').map(q => q.trim()).filter(q => q)
+                    : [];
+
                 setFormData((prev) => ({
                     ...prev,
                     page_id: data.page_id,
@@ -317,6 +326,8 @@ export default function CreateFacultyForm({ type, componentType }) {
                     param3: data.param3 || "",
                     param4: data.param4 || "",
                     param5: data.param5 || "",
+                    qualification: qualificationArray,
+                    param9: data.param9 || "",
                 }))
 
 
@@ -493,6 +504,28 @@ export default function CreateFacultyForm({ type, componentType }) {
         }))
     }
 
+    // Add these handler functions
+    const handleQualificationAdd = () => {
+        if (qualificationInput.trim() && !formData.qualification.includes(qualificationInput.trim())) {
+            const newQualifications = [...formData.qualification, qualificationInput.trim()];
+            setFormData(prev => ({
+                ...prev,
+                qualification: newQualifications,
+                param9: newQualifications.join(', ') // Store as comma-separated string in param9
+            }));
+            setQualificationInput("");
+        }
+    };
+
+    const handleQualificationRemove = (qualToRemove) => {
+        const newQualifications = formData.qualification.filter(q => q !== qualToRemove);
+        setFormData(prev => ({
+            ...prev,
+            qualification: newQualifications,
+            param9: newQualifications.join(', ') // Update param9 when removing
+        }));
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         setSubmitting(true)
@@ -556,6 +589,7 @@ export default function CreateFacultyForm({ type, componentType }) {
                     param6: formData.emailAddress,
                     param7: formData.firstName,
                     param8: formData.lastName,
+                    param9: formData.qualification.join(', '),
                 }
 
                 const updateResponse = await fetch(`${API_NODE_URL}slug/update`, {
@@ -637,6 +671,7 @@ export default function CreateFacultyForm({ type, componentType }) {
                     param6: formData.emailAddress,
                     param7: formData.firstName,
                     param8: formData.lastName,
+                    param9: formData.qualification.join(', '),
                 }
 
                 const updateResponse = await fetch(`${API_NODE_URL}slug/update`, {
@@ -888,52 +923,110 @@ export default function CreateFacultyForm({ type, componentType }) {
                                         isUploading={uploadingStates.profilePicture}
                                     />
                                 </div>
-                                <div>
-                                    <label className="block text-sm font-novaSemi text-gray-700 mb-2">Social Links</label>
-                                    <div className="space-y-3">
-                                        <div className="flex space-x-2">
-                                            <input
-                                                type="url"
-                                                value={socialLinkInput}
-                                                onChange={(e) => setSocialLinkInput(e.target.value)}
-                                                onKeyPress={handleSocialLinkKeyPress}
-                                                placeholder="Enter social media links"
-                                                className="flex-1 px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50 hover:bg-white"
-                                            />
-                                            <button
-                                                type="button"
-                                                onClick={handleSocialLinkAdd}
-                                                className="px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                                            >
-                                                Add
-                                            </button>
-                                        </div>
-                                        {socialLinks.length > 0 && (
-                                            <div className="space-y-2">
-                                                {socialLinks.map((link, index) => (
-                                                    <div
-                                                        key={index}
-                                                        className="flex items-center justify-between bg-gray-50 px-3 py-2 rounded-lg"
-                                                    >
-                                                        <span className="text-sm text-gray-700 truncate">{link}</span>
-                                                        <button
-                                                            type="button"
-                                                            onClick={() => handleSocialLinkRemove(link)}
-                                                            className="text-red-500 hover:text-red-700 ml-2"
-                                                        >
-                                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                <path
-                                                                    strokeLinecap="round"
-                                                                    strokeLinejoin="round"
-                                                                    strokeWidth={2}
-                                                                    d="M6 18L18 6M6 6l12 12"
-                                                                />
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                ))}
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    {/* Social Links Field (keep existing) */}
+                                    <div>
+                                        <label className="block text-sm font-novaSemi text-gray-700 mb-2">Social Links</label>
+                                        <div className="space-y-3">
+                                            <div className="flex space-x-2">
+                                                <input
+                                                    type="url"
+                                                    value={socialLinkInput}
+                                                    onChange={(e) => setSocialLinkInput(e.target.value)}
+                                                    onKeyPress={handleSocialLinkKeyPress}
+                                                    placeholder="Enter social media links"
+                                                    className="flex-1 px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50 hover:bg-white"
+                                                />
+                                                <button
+                                                    type="button"
+                                                    onClick={handleSocialLinkAdd}
+                                                    className="px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                                                >
+                                                    Add
+                                                </button>
                                             </div>
-                                        )}
+                                            {socialLinks.length > 0 && (
+                                                <div className="space-y-2">
+                                                    {socialLinks.map((link, index) => (
+                                                        <div
+                                                            key={index}
+                                                            className="flex items-center justify-between bg-gray-50 px-3 py-2 rounded-lg"
+                                                        >
+                                                            <span className="text-sm text-gray-700 truncate">{link}</span>
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => handleSocialLinkRemove(link)}
+                                                                className="text-red-500 hover:text-red-700 ml-2"
+                                                            >
+                                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path
+                                                                        strokeLinecap="round"
+                                                                        strokeLinejoin="round"
+                                                                        strokeWidth={2}
+                                                                        d="M6 18L18 6M6 6l12 12"
+                                                                    />
+                                                                </svg>
+                                                            </button>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+
+                                    {/* Qualifications Field (new implementation) */}
+                                    <div>
+                                        <label className="block text-sm font-novaSemi text-gray-700 mb-2">Qualifications</label>
+                                        <div className="space-y-3">
+                                            <div className="flex space-x-2">
+                                                <input
+                                                    type="text"
+                                                    value={qualificationInput}
+                                                    onChange={(e) => setQualificationInput(e.target.value)}
+                                                    onKeyPress={(e) => {
+                                                        if (e.key === 'Enter') {
+                                                            e.preventDefault();
+                                                            handleQualificationAdd();
+                                                        }
+                                                    }}
+                                                    placeholder="Add qualification (e.g. B.Tech)"
+                                                    className="flex-1 px-4 py-3 border border-gray-300 font-novaReg rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50 hover:bg-white"
+                                                />
+                                                <button
+                                                    type="button"
+                                                    onClick={handleQualificationAdd}
+                                                    className="px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                                                >
+                                                    Add
+                                                </button>
+                                            </div>
+                                            {formData.qualification.length > 0 && (
+                                                <div className="space-y-2">
+                                                    {formData.qualification.map((qual, index) => (
+                                                        <div
+                                                            key={index}
+                                                            className="flex items-center justify-between bg-gray-50 px-3 py-2 rounded-lg"
+                                                        >
+                                                            <span className="text-sm text-gray-700">{qual}</span>
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => handleQualificationRemove(qual)}
+                                                                className="text-red-500 hover:text-red-700 ml-2"
+                                                            >
+                                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path
+                                                                        strokeLinecap="round"
+                                                                        strokeLinejoin="round"
+                                                                        strokeWidth={2}
+                                                                        d="M6 18L18 6M6 6l12 12"
+                                                                    />
+                                                                </svg>
+                                                            </button>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
                             </div>

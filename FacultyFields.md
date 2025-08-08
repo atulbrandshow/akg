@@ -21,6 +21,7 @@ This document explains how the user-friendly form fields map to the backend data
 | Select Department | `tag2` | Links faculty to their department (optional) |
 | Select Program | `tag3` | Links faculty to their program (optional) |
 | Subjects Taught | `param4` | Stores comma-separated subjects |
+| Qualification | qualification  |Stores up to 3 social media links |
 
 ### Additional Information Section
 

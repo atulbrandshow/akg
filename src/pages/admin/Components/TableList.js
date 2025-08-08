@@ -399,7 +399,7 @@ const TableList = ({ type, title, subTitle }) => {
                                                                 Dynamic {type}
                                                             </button>
                                                         }
-                                                        {(type === "School" || type === "Department" || event.ComponentType === "HomePage") && (
+                                                        {(type === "School" || type === "Department" || type === "Program") && (
                                                             <button
                                                                 onClick={() => router.push(
                                                                     `/admin/add-faq` +

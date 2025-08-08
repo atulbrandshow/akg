@@ -107,7 +107,7 @@ export default function NavBar() {
 
   return (
     <header
-      className={`navbar z-[100] w-full sticky top-0 left-0 transition-all duration-200 shadow-lg ${isScrolled ? "bg-[#F7F7F7]" : "bg-transparent"}`}>
+      className={`navbar z-[100] w-full sticky top-0 left-0 transition-all duration-200 shadow-lg ${isScrolled ? "bg-[#F7F7F7]" : "bg-white/50"}`}>
       <div className="grid grid-cols-8 max-xl:grid-cols-12 max-lg:grid-cols-12 max-md:grid-cols-12 gap-x-5 max-[1320px]:gap-x-0 max-md:gap-x-2">
         <div className="col-span-2 flex max-xl:col-span-3 max-lg:col-span-9 max-md:col-span-10 max-sm:col-span-10">
           <div
@@ -121,7 +121,7 @@ export default function NavBar() {
                     alt="AKG University Logo"
                     height={300}
                     width={800}
-                    className={`logo h-16 w-96 object-contain bg-blend-color-dodge cursor-pointer`}
+                    className={`logo h-12 lg:h-16 w-fit rounded-md object-contain bg-blend-color-dodge cursor-pointer`}
                   />
                 </Link>
               </div>
@@ -234,7 +234,7 @@ export default function NavBar() {
                 </div>
               </>}
               <li className="relative group">
-                <button onClick={() => toggleMenu('about')} className={` relative px-3 max-xl:px-1 py-3 focus:outline-none ${isScrolled?"text-gray-700":"text-white"} font-novaBold text-sm max-[1600px]:text-sm flex items-center gap-1 tracking-widest`}>
+                <button onClick={() => toggleMenu('about')} className={` relative px-3 max-xl:px-1 py-3 focus:outline-none font-novaBold text-sm max-[1600px]:text-sm flex items-center gap-1 tracking-widest`}>
                   ABOUT{" "}
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6" /></svg>
                   <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
@@ -295,7 +295,7 @@ export default function NavBar() {
                 </div>
               </li>
               <li className="group">
-                <button onClick={() => toggleMenu('programs')} className={` relative px-3 max-xl:px-1 ${isScrolled ? "py-3" : "py-3"}  focus:outline-none ${isScrolled?"text-gray-700":"text-white"} font-novaBold text-sm3 max-[1600px]:text-sm flex items-center gap-1 tracking-widest`}>
+                <button onClick={() => toggleMenu('programs')} className={` relative px-3 max-xl:px-1 ${isScrolled ? "py-3" : "py-3"}  focus:outline-none font-novaBold text-sm3 max-[1600px]:text-sm flex items-center gap-1 tracking-widest`}>
                   PROGRAMS{" "}
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6" /></svg>
                   <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
@@ -369,7 +369,7 @@ export default function NavBar() {
                 </div>
               </li>
               <li className="relative group">
-                <button onClick={() => toggleMenu('academics')} className={` relative px-3 max-xl:px-1 ${isScrolled ? "py-3" : "py-3"}  focus:outline-none ${isScrolled?"text-gray-700":"text-white"} font-novaBold text-sm max-[1600px]:text-sm flex items-center gap-1 tracking-widest`}>
+                <button onClick={() => toggleMenu('academics')} className={` relative px-3 max-xl:px-1 ${isScrolled ? "py-3" : "py-3"}  focus:outline-none font-novaBold text-sm max-[1600px]:text-sm flex items-center gap-1 tracking-widest`}>
                   ACADEMICS{" "}
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6" /></svg>
                   <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
@@ -428,7 +428,7 @@ export default function NavBar() {
                 </div>
               </li>
               <li className="relative group">
-                <button onClick={() => toggleMenu('admissions')} className={` relative px-3 max-xl:px-1 ${isScrolled ? "py-3" : "py-3"}  focus:outline-none ${isScrolled?"text-gray-700":"text-white"} font-novaBold text-sm max-[1600px]:text-sm flex items-center gap-1 tracking-widest`}>
+                <button onClick={() => toggleMenu('admissions')} className={` relative px-3 max-xl:px-1 ${isScrolled ? "py-3" : "py-3"}  focus:outline-none font-novaBold text-sm max-[1600px]:text-sm flex items-center gap-1 tracking-widest`}>
                   ADMISSIONS{" "}
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6" /></svg>
                   <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
@@ -488,7 +488,7 @@ export default function NavBar() {
                 </div>
               </li>
               <li className="relative group">
-                <button onClick={() => toggleMenu('campus-life')} className={` relative px-3 max-xl:px-1 ${isScrolled ? "py-3" : "py-3"}  focus:outline-none ${isScrolled?"text-gray-700":"text-white"} font-novaBold text-sm max-[1600px]:text-sm flex items-center gap-1 whitespace-nowrap tracking-widest`}>
+                <button onClick={() => toggleMenu('campus-life')} className={` relative px-3 max-xl:px-1 ${isScrolled ? "py-3" : "py-3"}  focus:outline-none font-novaBold text-sm max-[1600px]:text-sm flex items-center gap-1 whitespace-nowrap tracking-widest`}>
                   CAMPUS LIFE{" "}
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6" /></svg>
                   <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
@@ -551,7 +551,7 @@ export default function NavBar() {
                 </div>
               </li>
               <li className="group">
-                <button onClick={() => toggleMenu('placements')} className={` relative px-3 max-xl:px-1 ${isScrolled ? "py-3" : "py-3"}  focus:outline-none ${isScrolled?"text-gray-700":"text-white"} font-novaBold text-sm max-[1600px]:text-sm flex items-center gap-1 tracking-widest`}>
+                <button onClick={() => toggleMenu('placements')} className={` relative px-3 max-xl:px-1 ${isScrolled ? "py-3" : "py-3"}  focus:outline-none font-novaBold text-sm max-[1600px]:text-sm flex items-center gap-1 tracking-widest`}>
                   PLACEMENTS{" "}
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6" /></svg>
                   <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
@@ -614,7 +614,7 @@ export default function NavBar() {
                 </div>
               </li>
               <li className="group relative">
-                <button onClick={() => toggleMenu('research')} className={` relative px-3 max-xl:px-1 ${isScrolled ? "py-3" : "py-3"}  focus:outline-none ${isScrolled?"text-gray-700":"text-white"} font-novaBold text-sm max-[1600px]:text-sm flex items-center gap-1 whitespace-nowrap tracking-widest`}>
+                <button onClick={() => toggleMenu('research')} className={` relative px-3 max-xl:px-1 ${isScrolled ? "py-3" : "py-3"}  focus:outline-none font-novaBold text-sm max-[1600px]:text-sm flex items-center gap-1 whitespace-nowrap tracking-widest`}>
                   RESEARCH & INNOVATION{" "}
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6" /></svg>
                   <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />

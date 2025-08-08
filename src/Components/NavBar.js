@@ -211,7 +211,7 @@ export default function NavBar() {
               className={`${BigMenuToggle
                 ? "fixed w-full h-full left-0 top-0 py-20 overflow-y-auto"
                 : `hidden relative`}  lg:flex items-center justify-end gap-2 max-[1320px]:gap-0
-                text-black font-semibold text-sm  ${isScrolled ? "bg-[#F7F7F7]" : "bg-transparent"} max-xl:pl-2`}>
+                text-black font-semibold text-sm  ${isScrolled ? "bg-[#F7F7F7]" : BigMenuToggle ? "bg-white" : "bg-transparent"} max-xl:pl-2`}>
 
               {BigMenuToggle && <>
                 <div className="my-6">

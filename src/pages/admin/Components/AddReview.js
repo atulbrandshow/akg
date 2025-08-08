@@ -9,8 +9,8 @@ export default function AddReview() {
     const page_id = searchParams.get("page_id");
     const router = useRouter();
 
-    const [allReviews, setAllReviews] = useState([]); // All recent reviews
-    const [pageReviews, setPageReviews] = useState([]); // Reviews for current page_id
+    const [allReviews, setAllReviews] = useState([]);
+    const [pageReviews, setPageReviews] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
     const [eventName, setEventName] = useState("");
@@ -22,7 +22,6 @@ export default function AddReview() {
         }
     }, []);
 
-    // Fetch existing reviews on component mount
     useEffect(() => {
         fetchAllReviews();
         if (page_id) {
@@ -66,12 +65,6 @@ export default function AddReview() {
 
     const handleAddToPage = async (reviewId) => {
         try {
-            // First check if review already has a page_id
-            const review = allReviews.find(r => r._id === reviewId);
-            if (review?.page_id) {
-                throw new Error("This review is already assigned to another page");
-            }
-
             const response = await fetch(`${API_NODE_URL}review/${reviewId}`, {
                 method: "PUT",
                 headers: {
@@ -80,7 +73,7 @@ export default function AddReview() {
                 },
                 credentials: "include",
                 body: JSON.stringify({
-                    page_id: page_id
+                    page_ids: [page_id] // For multiple page assignments
                 }),
             });
 
@@ -101,7 +94,6 @@ export default function AddReview() {
     };
 
     const filteredAllReviews = allReviews.filter(review => {
-        // Filter by search term
         const matchesSearch =
             review.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
             review.course.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -111,10 +103,16 @@ export default function AddReview() {
         return matchesSearch;
     });
 
+    // Check if a review is assigned to the current page
+    const isAssignedToCurrentPage = (review) => {
+        if (!page_id) return false;
+        return review.page_id === page_id || 
+               (review.page_ids && review.page_ids.includes(page_id));
+    };
+
     return (
         <div>
             <div className="py-12">
-                {/* Header with gradient */}
                 <div className="text-center mb-6">
                     <h1 className="text-4xl font-novaBold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-500 mb-1">
                         Student Review Management
@@ -125,7 +123,6 @@ export default function AddReview() {
                     <div className="font-novaBold">Page: - <span className="text-blue-600 font-novaSemi">{eventName}</span></div>
                 </div>
 
-                {/* Search Bar */}
                 <div className="mb-8">
                     <div className="relative max-w-4xl mx-auto">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -143,8 +140,8 @@ export default function AddReview() {
                     </div>
                 </div>
 
-                {/* Main content grid - 2 columns */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    {/* All Reviews Column */}
                     <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
                         <div className="p-6 bg-gradient-to-r from-indigo-600 to-blue-500">
                             <h2 className="text-2xl font-novaBold text-white">
@@ -167,52 +164,66 @@ export default function AddReview() {
                                 </div>
                             ) : (
                                 <div className="space-y-4">
-                                    {filteredAllReviews.map((review) => (
-                                        <div key={review._id} className="p-4 border rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
-                                            <div className="flex items-start gap-3">
-                                                {review.image ? (
-                                                    <img
-                                                        src={`${IMAGE_PATH}${review.image}`}
-                                                        alt={review.name}
-                                                        className="w-12 h-12 rounded-full object-cover border-2 border-white"
-                                                    />
-                                                ) : (
-                                                    <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center border-2 border-white">
-                                                        <span className="text-indigo-600 text-lg font-bold">
-                                                            {review.name.charAt(0)}
-                                                        </span>
-                                                    </div>
-                                                )}
-                                                <div className="flex-1">
-                                                    <div className="flex justify-between items-start">
-                                                        <h3 className="font-novaSemi text-gray-900">{review.name}</h3>
-                                                        {review.page_id && (
-                                                            <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
-                                                                {review.page_id === page_id ? 'This page' : 'Assigned'}
+                                    {filteredAllReviews.map((review) => {
+                                        const isAssigned = isAssignedToCurrentPage(review);
+                                        
+                                        return (
+                                            <div key={review._id} className="p-4 border rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
+                                                <div className="flex items-start gap-3">
+                                                    {review.image ? (
+                                                        <img
+                                                            src={`${IMAGE_PATH}${review.image}`}
+                                                            alt={review.name}
+                                                            className="w-12 h-12 rounded-full object-cover border-2 border-white"
+                                                        />
+                                                    ) : (
+                                                        <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center border-2 border-white">
+                                                            <span className="text-indigo-600 text-lg font-bold">
+                                                                {review.name.charAt(0)}
                                                             </span>
-                                                        )}
+                                                        </div>
+                                                    )}
+                                                    <div className="flex-1">
+                                                        <div className="flex justify-between items-start">
+                                                            <h3 className="font-novaSemi text-gray-900">{review.name}</h3>
+                                                            {page_id && !isAssigned && (
+                                                                <button
+                                                                    onClick={() => handleAddToPage(review._id)}
+                                                                    className="p-1.5 bg-blue-100 text-blue-600 rounded-full hover:bg-blue-200 transition-colors"
+                                                                    title="Add to this page"
+                                                                >
+                                                                    <svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        className="h-5 w-5"
+                                                                        fill="none"
+                                                                        viewBox="0 0 24 24"
+                                                                        stroke="currentColor"
+                                                                        strokeWidth="2"
+                                                                    >
+                                                                        <path
+                                                                            strokeLinecap="round"
+                                                                            strokeLinejoin="round"
+                                                                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                                                                        />
+                                                                    </svg>
+                                                                </button>
+                                                            )}
+                                                        </div>
+                                                        <p className="text-sm text-indigo-600 mt-1">
+                                                            {review.course} • {review.company_name}
+                                                        </p>
+                                                        <p className="mt-2 text-sm text-gray-700">{review.description}</p>
                                                     </div>
-                                                    <p className="text-sm text-indigo-600 mt-1">
-                                                        {review.course} • {review.company_name}
-                                                    </p>
-                                                    <p className="mt-2 text-sm text-gray-700">{review.description}</p>
                                                 </div>
                                             </div>
-                                            {!review.page_id && page_id && (
-                                                <button
-                                                    onClick={() => handleAddToPage(review._id)}
-                                                    className="mt-3 w-full py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
-                                                >
-                                                    Add to this page
-                                                </button>
-                                            )}
-                                        </div>
-                                    ))}
+                                        );
+                                    })}
                                 </div>
                             )}
                         </div>
                     </div>
 
+                    {/* Page Reviews Column */}
                     <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
                         <div className="p-6 bg-gradient-to-r from-green-600 to-emerald-500">
                             <div className="flex justify-between items-center">
@@ -262,7 +273,6 @@ export default function AddReview() {
                                                     <p className="mt-1 text-sm line-clamp-2 text-gray-700">{review.description}</p>
                                                 </div>
                                             </div>
-                                            {/* Checkmark icon for added reviews */}
                                             <div className="absolute top-6 right-3">
                                                 <div className="p-1.5 bg-green-100 text-green-600 rounded-full">
                                                     <svg

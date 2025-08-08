@@ -175,7 +175,7 @@ export default function NavBar() {
               className={` lg:${isScrolled?"bg-gray-700":"bg-transparent"} max-md:hidden lg:flex max-md:pt-0 lg:gap-x-6 justify-end pl-7 max-xl:pl-0 items-center max-md:px-1  overflow-hidden`}
             >
               <div className="notification max-w-lg max-2xl:max-w-md max-[1400px]:max-w-sm max-[1300px]:max-w-xs max-[1180px]:hidden">
-                <h2 className={`text-center ${isScrolled?"text-white":"text-gray-600"} text-xs font-novaBold uppercase`}>Notifications
+                <h2 className={`text-center ${isScrolled?"text-white":"text-gray-800"} text-xs font-novaBold uppercase`}>Notifications
                 </h2>
                 <Swiper
                   modules={[Pagination, Autoplay]}
@@ -187,17 +187,17 @@ export default function NavBar() {
                 >
                   {notifications.map((notification, index) => (
                     <SwiperSlide key={index}>
-                      <p className={`text-center ${isScrolled?"text-white":"text-gray-600"} font-novaReg cursor-grab text-xs`}>{notification}</p>
+                      <p className={`text-center ${isScrolled?"text-white":"text-gray-900"} font-novaReg cursor-grab text-xs`}>{notification}</p>
                     </SwiperSlide>
                   ))}
                 </Swiper>
               </div>
               <div className="hidden lg:flex gap-10  justify-start max-xl:gap-8  text-[13px] font-novaLight whitespace-nowrap">
-                <Link href="/news" className={`leading-6 text-sm font-bold uppercase ${isScrolled?"text-white":"text-gray-600"} hover:underline hover:text-gray-400 transition duration-500`}>News</Link>
-                <Link href="/events" className={`leading-6 text-sm font-bold uppercase ${isScrolled?"text-white":"text-gray-600"} hover:underline hover:text-gray-400 transition duration-500`}>Event</Link>
-                <Link href="/articles" className={`leading-6 text-sm font-bold uppercase ${isScrolled?"text-white":"text-gray-600"} hover:underline hover:text-gray-400 transition duration-500`}>Article</Link>
-                <Link href="/circulars" className={`leading-6 text-sm font-bold uppercase ${isScrolled?"text-white":"text-gray-600"} hover:underline hover:text-gray-400 transition duration-500`}>Circulars</Link>
-                <Link href="/notice" className={`leading-6 text-sm font-bold uppercase ${isScrolled?"text-white":"text-gray-600"} hover:underline hover:text-gray-400 transition duration-500`}>Notices</Link>
+                <Link href="/news" className={`leading-6 text-sm font-bold uppercase ${isScrolled?"text-white":"text-black"} hover:underline hover:text-gray-400 transition duration-500`}>News</Link>
+                <Link href="/events" className={`leading-6 text-sm font-bold uppercase ${isScrolled?"text-white":"text-black"} hover:underline hover:text-gray-400 transition duration-500`}>Event</Link>
+                <Link href="/articles" className={`leading-6 text-sm font-bold uppercase ${isScrolled?"text-white":"text-black"} hover:underline hover:text-gray-400 transition duration-500`}>Article</Link>
+                <Link href="/circulars" className={`leading-6 text-sm font-bold uppercase ${isScrolled?"text-white":"text-black"} hover:underline hover:text-gray-400 transition duration-500`}>Circulars</Link>
+                <Link href="/notice" className={`leading-6 text-sm font-bold uppercase ${isScrolled?"text-white":"text-black"} hover:underline hover:text-gray-400 transition duration-500`}>Notices</Link>
                 {/* <Link href="#" className="leading-6 text-sm font-bold uppercase text-white hover:underline hover:text-gray-400 transition duration-500">Contact us</Link> */}
               </div>
               <div className="flex justify-end">

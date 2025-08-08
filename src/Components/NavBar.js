@@ -117,11 +117,11 @@ export default function NavBar() {
               <div className="flex justify-center">
                 <Link href="/home" as="/">
                   <Image
-                    src="/image/akg-logo.webp"
+                    src="/image/akg-logo.jpg"
                     alt="AKG University Logo"
                     height={300}
-                    width={300}
-                    className={`logo h-12 w-40 object-contain bg-blend-color-dodge cursor-pointer`}
+                    width={800}
+                    className={`logo h-16 w-96 object-contain bg-blend-color-dodge cursor-pointer`}
                   />
                 </Link>
               </div>

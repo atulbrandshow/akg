@@ -441,7 +441,7 @@ const SchoolDetails = ({ data }) => {
       <FacultySlider data={data} />
       <SliderEvent />
       <PlacementData data={d} />
-      <Testimonial />
+      <Testimonial data={data} />
       <SchoolLogoSlider data={d} />
     </>
   )

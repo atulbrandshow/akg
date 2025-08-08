@@ -1,65 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay, Navigation } from "swiper/modules";
-import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { API_NODE_URL, IMAGE_PATH } from '@/configs/config';
 import Link from 'next/link';
 import Image from 'next/image';
-
-
-const events = [
-  {
-    date: '22 Aug 2023',
-    title: "Celebrating Diwali: Unity in Diversity at AKGEC",
-    description: 'Ajay Kumar Garg University (AKGEC), Ghaziabad, celebrated Diwali on November 4, 2023...',
-    image: '/image/event/Diwali2022_3.jpg ',
-  },
-  {
-    date: '3 November 2023',
-    title: 'VE Cell Workshop: Nurturing Relationships through Self-Exploration',
-    description: 'The workshop’s objective was to help students to see their innate potential ...',
-    image: '/image/event/ve-cell-workshop.jpg',
-  },
-  {
-    date: '03 Dec 2022',
-    title: 'AKGEC celebrated the nation’s 75th Independence day',
-    description: '76th Independence day on 15 Aug 2022 was celebrated at Ajay Kumar Garg University...',
-    image: '/image/event/Independence2023_4.jpg',
-  },
-  {
-    date: '23 Nov 2022',
-    title: 'IT department and won Smart India Hackathon',
-    description: 'The B.Tech. (Information Technology) Program is NBA Re-Accredited...',
-    image: '/image/event/ITAchieve3.jpg',
-  },
-  {
-    date: '22 Aug 2023',
-    title: "Innovating Insights: AKGEC's Big Data Centre of Excellence",
-    description: 'The Big Data Centre of Excellence at AKGEC, established...',
-    image: '/image/event/Sanrachna2.jpg',
-  },
-  {
-    date: '13 February, 2020',
-    title: 'India STEM College Award 2020',
-    description: 'AKGEC has been honored with STEM Award–2020 under “India STEM College Award 2020...',
-    image: '/image/event/Stem4.jpg',
-  },
-  {
-    date: '02 Jun 2023',
-    title: 'A Grand Farewell for B. Tech & MCA Graduates',
-    description: 'Samvartan’, the farewell ceremony for the final year students...',
-    image: '/image/event/samvartan-2023-farewell-party.jpg',
-  },
-  {
-    date: '15 March 2024',
-    title: '"30Hacks” Hackathon organised by Hitachi x GlobalLogic',
-    description: 'Team VidyutKavach from Ajay Kumar Garg University was recently...',
-    image: '/image/event/hackathon-organised.jpg',
-  },
-]
 
 export default function SliderEvent() {
   const [eventData, setEventData] = useState([]);
@@ -70,10 +18,8 @@ export default function SliderEvent() {
         credentials: "include",
       })
       const data = await response.json();
-      console.log(data);
-
       if (data.status && data.data) {
-        setEventData(data.data)
+        setEventData([...data.data].reverse());
       } else {
         setEventData([])
       }
@@ -83,13 +29,7 @@ export default function SliderEvent() {
     }
   }
 
-  // useEffect(() => {
-  //   fetchNews();
-  // }, [])
-
   !eventData.length > 0 && fetchEvent();
-  console.log(eventData);
-
 
   const breakpoints = {
     320: { slidesPerView: 1 },

@@ -172,7 +172,7 @@ export default function NavBar() {
         <div className="col-span-6 max-lg:flex max-lg:items-center max-lg:justify-center max-md:order-3 max-xl:col-span-9 max-lg:col-span-2 max-md:col-span-1 max-md:justify-start">
           <nav className="" >
             <div
-              className={` lg:${isScrolled?"bg-gray-700":"bg-transparent"} max-md:hidden lg:flex max-md:pt-0 lg:gap-x-6 justify-end pl-7 max-xl:pl-0 items-center max-md:px-1  overflow-hidden`}
+              className={` ${isScrolled?"lg:bg-gray-700":"lg:bg-transparent"} max-md:hidden lg:flex max-md:pt-0 lg:gap-x-6 justify-end pl-7 max-xl:pl-0 items-center max-md:px-1  overflow-hidden`}
             >
               <div className="notification max-w-lg max-2xl:max-w-md max-[1400px]:max-w-sm max-[1300px]:max-w-xs max-[1180px]:hidden">
                 <h2 className={`text-center ${isScrolled?"text-white":"text-gray-800"} text-xs font-novaBold uppercase`}>Notifications

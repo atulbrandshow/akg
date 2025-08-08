@@ -1,10 +1,13 @@
 "use client";
 
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay, Navigation } from "swiper/modules";
 import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { API_NODE_URL, IMAGE_PATH } from '@/configs/config';
+import Link from 'next/link';
+import Image from 'next/image';
 
 
 const events = [
@@ -59,6 +62,34 @@ const events = [
 ]
 
 export default function SliderEvent() {
+  const [eventData, setEventData] = useState([]);
+
+  const fetchEvent = async () => {
+    try {
+      const response = await fetch(`${API_NODE_URL}list-detail-page/all?type=Event`, {
+        credentials: "include",
+      })
+      const data = await response.json();
+      console.log(data);
+
+      if (data.status && data.data) {
+        setEventData(data.data)
+      } else {
+        setEventData([])
+      }
+    } catch (error) {
+      console.error("Failed to fetch news:", error)
+      setEventData([])
+    }
+  }
+
+  // useEffect(() => {
+  //   fetchNews();
+  // }, [])
+
+  !eventData.length > 0 && fetchEvent();
+  console.log(eventData);
+
 
   const breakpoints = {
     320: { slidesPerView: 1 },
@@ -69,7 +100,7 @@ export default function SliderEvent() {
   };
   return (
     <div className="bg-blue-400 py-10">
-      <h2 className="text-4xl font-novaReg text-white uppercase text-center mb-8">School News and Updates</h2>
+      <h2 className="text-4xl font-novaReg text-white uppercase text-center mb-10">School Events and Updates</h2>
       <div className="relative mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-32">
         <Swiper
           modules={[Autoplay, Navigation]}
@@ -82,24 +113,30 @@ export default function SliderEvent() {
             prevEl: '#slider-button-left',
           }}
         >
-          {events.map((event, index) => (
-            <SwiperSlide key={index}>
+          {eventData.map((event) => (
+            <SwiperSlide key={event._id}>
               <div className="bg-white rounded-lg overflow-hidden shadow-lg cursor-grab">
-                <img src={event.image} alt={event.title} className="w-full h-48 object-cover" style={{
+                <Image src={IMAGE_PATH + event.banner_img} alt={event.name} className="w-full h-48 object-cover" height={400} width={400} style={{
                   clipPath:
                     "polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 2vw))",
                 }} />
                 <div className="p-4">
-                  <div className="bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-full mb-2 w-14 h-14 flex items-center justify-center text-center leading-[18px] italic break-words  top-[130px] left-[15px]       absolute">
+                  <div className="bg-blue-500 text-white text-xs font-novaBold px-2 py-1 rounded-full mb-2 w-14 h-14 flex items-center justify-center text-center leading-[18px] italic break-words  top-[130px] left-[15px]       absolute">
                     <span>Event</span>
                   </div>
-                  <p className="text-gray-600 text-sm mb-2">{event.date}</p>
-                  <h3 className="font-novaSemi leading-5 text-lg mb-2 line-clamp-2">{event.title}</h3>
-                  <p className="text-gray-700 text-sm line-clamp-2">{event.description}</p>
-                  <button className="mt-4 text-white text-sm bg-blue-500 py-1.5 px-4 rounded-lg hover:bg-blue-700">
+                  <p className="text-gray-600 font-novaSemi text-sm mb-2">
+                    {new Date(event.date).toLocaleDateString("en-IN", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    })}
+                  </p>
+                  <h3 className="font-novaSemi leading-5 text-lg mb-2 line-clamp-2">{event.name}</h3>
+                  <p className="text-gray-700 text-sm line-clamp-2 mb-3 font-novaReg" dangerouslySetInnerHTML={{ __html: event.description }} />
+                  <Link href={event?.path} className="text-white text-sm bg-blue-500 py-1.5 px-4 rounded-lg hover:bg-blue-700">
                     Read More
                     <ArrowRight className="inline-block ml-1 w-4 h-4" />
-                  </button>
+                  </Link>
                 </div>
               </div>
             </SwiperSlide>

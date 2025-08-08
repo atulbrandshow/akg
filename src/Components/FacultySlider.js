@@ -1,5 +1,5 @@
 import { IMAGE_PATH } from '@/configs/config';
-import { CircleArrowRight, CircleArrowLeft, CircleUserRound } from 'lucide-react';
+import { CircleArrowRight, CircleArrowLeft, CircleUserRound, GraduationCap } from 'lucide-react';
 import React, { useRef } from 'react';
 
 const membersData = [
@@ -89,11 +89,15 @@ const FacultySlider = ({ data }) => {
                                             <img className="h-32 w-32 rounded-full" src={IMAGE_PATH + faculty.banner_img} alt={faculty.name} />
                                         </div>
                                     </div>
-                                    <div className="mt-4">
+                                    <div className="mt-4 space-y-2">
                                         <h4 className="text-lg font-novaBold mb-4">{faculty.name}</h4>
                                         <div className="flex justify-center items-center gap-1">
                                             <CircleUserRound size={16} />
                                             <p className="text-sm text-gray-600">{faculty.param5}</p>
+                                        </div>
+                                        <div className="flex justify-center items-center gap-1">
+                                            <GraduationCap size={16} />
+                                            <p className="text-sm text-gray-600">{faculty.param9}</p>
                                         </div>
                                     </div>
                                     <div className="mt-6 w-full flex items-center justify-end">

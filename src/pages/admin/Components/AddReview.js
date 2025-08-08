@@ -73,7 +73,7 @@ export default function AddReview() {
                 },
                 credentials: "include",
                 body: JSON.stringify({
-                    page_ids: [page_id] // For multiple page assignments
+                    page_id: page_id // For multiple page assignments
                 }),
             });
 
@@ -163,21 +163,21 @@ export default function AddReview() {
                                     </h3>
                                 </div>
                             ) : (
-                                <div className="space-y-4">
+                                <div className="space-y-3">
                                     {filteredAllReviews.map((review) => {
                                         const isAssigned = isAssignedToCurrentPage(review);
                                         
                                         return (
-                                            <div key={review._id} className="p-4 border rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
+                                            <div key={review._id} className="p-3 border rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
                                                 <div className="flex items-start gap-3">
                                                     {review.image ? (
                                                         <img
                                                             src={`${IMAGE_PATH}${review.image}`}
                                                             alt={review.name}
-                                                            className="w-12 h-12 rounded-full object-cover border-2 border-white"
+                                                            className="w-10 h-10 rounded-full object-cover border-2 border-white"
                                                         />
                                                     ) : (
-                                                        <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center border-2 border-white">
+                                                        <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center border-2 border-white">
                                                             <span className="text-indigo-600 text-lg font-bold">
                                                                 {review.name.charAt(0)}
                                                             </span>
@@ -185,7 +185,7 @@ export default function AddReview() {
                                                     )}
                                                     <div className="flex-1">
                                                         <div className="flex justify-between items-start">
-                                                            <h3 className="font-novaSemi text-gray-900">{review.name}</h3>
+                                                            <h3 className="font-novaSemi text-sm text-gray-900">{review.name}</h3>
                                                             {page_id && !isAssigned && (
                                                                 <button
                                                                     onClick={() => handleAddToPage(review._id)}
@@ -209,10 +209,10 @@ export default function AddReview() {
                                                                 </button>
                                                             )}
                                                         </div>
-                                                        <p className="text-sm text-indigo-600 mt-1">
+                                                        <p className="text-xs font-novaSemi text-indigo-600">
                                                             {review.course} • {review.company_name}
                                                         </p>
-                                                        <p className="mt-2 text-sm text-gray-700">{review.description}</p>
+                                                        <p className="mt-1 text-sm line-clamp-2 font-novaReg text-gray-700">{review.description}</p>
                                                     </div>
                                                 </div>
                                             </div>

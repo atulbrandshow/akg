@@ -22,9 +22,6 @@ const DepartmentDetails = ({ data }) => {
   const timerRef = useRef(null)
   const componentRef = useRef(null)
   const sliderRef = useRef(null)
-
-  console.log(data);
-
   const d = data?.pageData;
 
   const icons = [Brain, Cpu, Database, Code];
@@ -108,22 +105,7 @@ const DepartmentDetails = ({ data }) => {
     }
   }
 
-  const studentReviewsData = [];
-  for (let i = 1; i <= 10; i++) {
-    const quote = d?.[`Review_Quote-${i}`];
-    const student = d?.[`Review_Student-${i}`];
-    const company = d?.[`Review_Company-${i}`];
-    const image = d?.[`Review_Image-${i}`];
-
-    if (quote && student && company && image) {
-      studentReviewsData.push({
-        quote,
-        student,
-        company,
-        image
-      });
-    }
-  }
+  const studentReviewsData = data?.studentReviews || [];
 
   const slidesData = [];
   for (let i = 1; i <= 10; i++) {
@@ -408,7 +390,7 @@ const DepartmentDetails = ({ data }) => {
               </svg>
               <h2 className="text-2xl font-novaSemi text-black">{d?.PCT_1}</h2>
             </div>
-            <div dangerouslySetInnerHTML={{ __html: programCardDesc}}/>
+            <div dangerouslySetInnerHTML={{ __html: programCardDesc }} />
             <button className="py-2 max-sm:py-1.5 max-sm:px-4 max-sm:text-xs px-5 mt-5 text-[15px] rounded-lg font-novaBold uppercase bg-btn-gradient animate-gradient text-white w-max  hover:bg-[#3c5686] hover:border-b-4 hover:border-[#beb6ff] hover:transform scale-y-105 tracking-widest flex items-center gap-1">
               VIEW MORE <MoveRight className="w-5 h-5" />
             </button>
@@ -935,12 +917,13 @@ const DepartmentDetails = ({ data }) => {
             {studentReviewsData?.map((review) => (
               <SwiperSlide key={review.id}>
                 <div className="my-6 text-center flex flex-col items-center mx-10 max-sm:mx-5">
-                  <img className="w-16 mb-3" src={IMAGE_PATH + review.image} alt="Quote" />
-                  <p className="max-w-4xl text-2xl font-novaReg max-md:text-xl">{review.quote}</p>
+                  {review.image && (<Image className="w-16 mb-3" src={IMAGE_PATH + review.image} alt={review.name} height={200} width={200} />)}
+                  <p className="mt-4 sm:mt-8 max-w-4xl text-2xl font-novaReg max-md:text-xl">{review.description}</p>
                   <div className="flex flex-col items-center mt-10">
                     <div className="mt-4 uppercase text-center">
-                      <h4 className="font-novaBold">{review.student}</h4>
-                      <small>{review.company}</small>
+                      <h4 className="font-novaBold tracking-wider">{review.name}</h4>
+                      <p className='mb-4 text-xs font-novaReg'>{review.course}</p>
+                      <small>{review.company_name}</small>
                     </div>
                   </div>
                 </div>

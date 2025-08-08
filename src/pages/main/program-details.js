@@ -1,17 +1,16 @@
 "use client";
 
 import AboutProgram from '@/Components/AboutProgram'
-import DropdownsUI from '@/Components/DropdownsUI'
 import EligibilityCriteriaUnique from '@/Components/EligibilityCriteriaUnique'
 import FeeStructure from '@/Components/FeeStructure'
 import InternationalTieUps from '@/Components/InternationalTieUps'
 import ProgramHeroSection from '@/Components/ProgramHeroSection'
 import ProgramCarousel from '@/Components/ProgramsCarousel'
-import { dropdownJsonData } from '@/Json/DropdownJsonData'
 import React from 'react'
 import ProgramFacultySlider from '@/Components/ProgramFacultySlider';
 import PlacementBannerDynamic from '@/Components/PlacementBannerDynamic';
 import IndustryPartnerSliderDynamic from '@/Components/IndustryPartnerSliderDynamic';
+import FAQHolder from '@/Components/FAQHolder';
 
 const ProgramDetails = ({ data }) => {
     return (
@@ -25,7 +24,7 @@ const ProgramDetails = ({ data }) => {
             <InternationalTieUps data={data} />
             <EligibilityCriteriaUnique data={data} />
             <ProgramFacultySlider data={data} />
-            <DropdownsUI dropdownData={dropdownJsonData} />
+            <FAQHolder data={data} />
         </section>
     )
 }

@@ -437,7 +437,7 @@ const SchoolDetails = ({ data }) => {
       <HighlightsSection data={d} />
       <DirectorMessage data={d} />
       <AnnouncementSlider />
-      <ReviewSlider data={d} />
+      <ReviewSlider data={data} />
       <FacultySlider data={data} />
       <SliderEvent />
       <PlacementData data={d} />

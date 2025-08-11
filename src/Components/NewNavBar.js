@@ -12,6 +12,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import Image from 'next/image';
+import { AlignJustify, Phone } from 'lucide-react';
 
 const notifications = [
   "Admissions Open: PGDM and MBA Programs 2024-2025",
@@ -84,7 +85,7 @@ export default function NewNavBar() {
 
   return (
     <header
-      className={`navbar z-[100] w-full fixed top-0 left-0 transition-all duration-200 ${isScrolled ? "bg-blue-700" : "bg-white/0"}`}>
+      className={`navbar z-[9999] w-full fixed top-0 left-0 transition-all duration-200 ${isScrolled ? "bg-blue-700" : "bg-white/0"}`}>
       <div className="grid grid-cols-12 gap-x-5 px-3 pt-1">
         <div className="col-span-3 flex">
           <div
@@ -157,10 +158,24 @@ export default function NewNavBar() {
                 {/* <Link href="#" className="leading-6 text-sm font-bold uppercase text-white hover:underline hover:text-gray-400 transition duration-500">Contact us</Link> */}
               </div>
               <div className="flex justify-end">
-                <a href="tel:1800-200-0777" className="bg-cyan-500 whitespace-nowrap flex justify-center items-center gap-2 py-3 px-4">
-                  <PhoneIcon className={`h-5 w-5 text-white`} aria-hidden="true" />
-                  <span className="text-white text-sm uppercase font-bold">Call Now</span>
-                </a>
+                <div className='bg-blue-500 flex justify-between gap-12 items-center rounded-md p-3'>
+                  <Link href="tel:1800-200-0777">
+                    <div className='flex gap-2'>
+                      <div className='h-10 w-10 flex items-center justify-center border-2 border-gray-300 rounded-full'>
+                        <Phone size={20} className='text-white' />
+                      </div>
+                      <div className='flex flex-col justify-center leading-none text-white'>
+                        <small className='font-novaReg text-xs'>Admission Helpline</small>
+                        <span className='font-novaBold leading-none text-lg'>1800-200-0777</span>
+                      </div>
+                    </div>
+                  </Link>
+                  <Link href="#" className='text-white'>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="size-8">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                  </Link>
+                </div>
               </div>
             </div>
           </nav>

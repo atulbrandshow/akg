@@ -420,7 +420,7 @@ const TableList = ({ type, title, subTitle }) => {
                                                             </button>
                                                         )}
 
-                                                         {(type === "Program") && (
+                                                         {/* {(type === "Program") && (
                                                             <button
                                                                 onClick={() => {
                                                                     router.push(`/admin/add-labs?page_id=${event?.page_id}`);
@@ -438,7 +438,7 @@ const TableList = ({ type, title, subTitle }) => {
                                                                 </svg>
                                                                 Add Labs
                                                             </button>
-                                                        )}
+                                                        )} */}
 
                                                         {(type === "School" || type === "Department" || event.ComponentType === "HomePage") && (
                                                             <button

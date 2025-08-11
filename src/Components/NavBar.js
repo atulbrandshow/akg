@@ -107,13 +107,13 @@ export default function NavBar() {
 
   return (
     <header
-      className={`navbar z-[100] w-full sticky top-0 left-0 transition-all duration-200 shadow-lg ${isScrolled ? "bg-white/30 backdrop-blur-md" : "bg-white/50"}`}>
+      className={`navbar z-[100] w-full sticky top-0 left-0 transition-all duration-200 shadow-lg backdrop-blur-md ${isScrolled ? BigMenuToggle && "bg-white/30 backdrop-blur-none" : "bg-white/30 backdrop-blur-none"}`}>
       <div className="grid grid-cols-8 max-xl:grid-cols-12 max-lg:grid-cols-12 max-md:grid-cols-12 gap-x-5 max-[1320px]:gap-x-0 max-md:gap-x-2">
         <div className="col-span-2 flex max-xl:col-span-3 max-lg:col-span-9 max-md:col-span-10 max-sm:col-span-10">
           <div
             className={`text-white flex `}
           >
-            <div className={`flex justify-start items-center gap-2 pl-3 ${BigMenuToggle && "relative z-[20] shadow-lg w-screen bg-[#F7F7F7]"}`}>
+            <div className={`flex justify-start items-center gap-2 pl-3 ${BigMenuToggle && "relative z-[20] shadow-lg w-screen py-2"}`}>
               <div className="flex justify-center">
                 <Link href="/home" as="/">
                   <Image
@@ -160,22 +160,24 @@ export default function NavBar() {
           </div>
         </div>
         <div className="flex lg:hidden max-md:order-2 max-lg:col-span-1 max-md:col-span-2 max-sm:col-span-2 max-md:pt-0 max-md:justify-end justify-center">
-          <button
-            type="button"
-            onClick={() => setBigMenuToggle(!BigMenuToggle)}
-            className="flex flex-col items-center justify-center rounded-md p-2 text-black">
-            <span className="sr-only">Open main menu</span>
-            <Bars2Icon aria-hidden="true" className="h-9 w-9" />
-            <p className="text-xs uppercase -mt-1">Menu</p>
-          </button>
+          {!BigMenuToggle && (
+            <button
+              type="button"
+              onClick={() => setBigMenuToggle(!BigMenuToggle)}
+              className="flex flex-col items-center justify-center rounded-md p-2 text-black">
+              <span className="sr-only">Open main menu</span>
+              <Bars2Icon aria-hidden="true" className="h-9 w-9" />
+              <p className="text-xs uppercase -mt-1">Menu</p>
+            </button>
+          )}
         </div>
         <div className="col-span-6 max-lg:flex max-lg:items-center max-lg:justify-center max-md:order-3 max-xl:col-span-9 max-lg:col-span-2 max-md:col-span-1 max-md:justify-start">
           <nav className="" >
             <div
-              className={` ${isScrolled?"lg:bg-gray-700":"lg:bg-transparent"} max-md:hidden lg:flex max-md:pt-0 lg:gap-x-6 justify-end pl-7 max-xl:pl-0 items-center max-md:px-1  overflow-hidden`}
+              className={`max-md:hidden lg:flex max-md:pt-0 lg:gap-x-6 justify-end pl-7 max-xl:pl-0 items-center max-md:px-1  overflow-hidden`}
             >
               <div className="notification max-w-lg max-2xl:max-w-md max-[1400px]:max-w-sm max-[1300px]:max-w-xs max-[1180px]:hidden">
-                <h2 className={`text-center ${isScrolled?"text-white":"text-gray-800"} text-xs font-novaBold uppercase`}>Notifications
+                <h2 className={`text-center text-gray-800 text-xs font-novaBold uppercase`}>Notifications
                 </h2>
                 <Swiper
                   modules={[Pagination, Autoplay]}
@@ -187,17 +189,17 @@ export default function NavBar() {
                 >
                   {notifications.map((notification, index) => (
                     <SwiperSlide key={index}>
-                      <p className={`text-center ${isScrolled?"text-white":"text-gray-900"} font-novaReg cursor-grab text-xs`}>{notification}</p>
+                      <p className={`text-center text-gray-800 font-novaReg cursor-grab text-xs`}>{notification}</p>
                     </SwiperSlide>
                   ))}
                 </Swiper>
               </div>
-              <div className="hidden lg:flex gap-10  justify-start max-xl:gap-8  text-[13px] font-novaLight whitespace-nowrap">
-                <Link href="/news" className={`leading-6 text-sm font-bold uppercase ${isScrolled?"text-white":"text-black"} hover:underline hover:text-gray-400 transition duration-500`}>News</Link>
-                <Link href="/events" className={`leading-6 text-sm font-bold uppercase ${isScrolled?"text-white":"text-black"} hover:underline hover:text-gray-400 transition duration-500`}>Event</Link>
-                <Link href="/articles" className={`leading-6 text-sm font-bold uppercase ${isScrolled?"text-white":"text-black"} hover:underline hover:text-gray-400 transition duration-500`}>Article</Link>
-                <Link href="/circulars" className={`leading-6 text-sm font-bold uppercase ${isScrolled?"text-white":"text-black"} hover:underline hover:text-gray-400 transition duration-500`}>Circulars</Link>
-                <Link href="/notice" className={`leading-6 text-sm font-bold uppercase ${isScrolled?"text-white":"text-black"} hover:underline hover:text-gray-400 transition duration-500`}>Notices</Link>
+              <div className="hidden lg:flex gap-10  justify-start max-xl:gap-8  text-[13px] font-novaLight whitespace-nowrap text-black">
+                <Link href="/news" className={`leading-6 text-sm font-bold uppercase hover:underline hover:text-gray-400 transition duration-500`}>News</Link>
+                <Link href="/events" className={`leading-6 text-sm font-bold uppercase hover:underline hover:text-gray-400 transition duration-500`}>Event</Link>
+                <Link href="/articles" className={`leading-6 text-sm font-bold uppercase hover:underline hover:text-gray-400 transition duration-500`}>Article</Link>
+                <Link href="/circulars" className={`leading-6 text-sm font-bold uppercase hover:underline hover:text-gray-400 transition duration-500`}>Circulars</Link>
+                <Link href="/notice" className={`leading-6 text-sm font-bold uppercase hover:underline hover:text-gray-400 transition duration-500`}>Notices</Link>
                 {/* <Link href="#" className="leading-6 text-sm font-bold uppercase text-white hover:underline hover:text-gray-400 transition duration-500">Contact us</Link> */}
               </div>
               <div className="flex justify-end">
@@ -209,9 +211,9 @@ export default function NavBar() {
             </div>
             <ul
               className={`${BigMenuToggle
-                ? "fixed w-full h-full left-0 top-0 py-20 overflow-y-auto"
+                ? "fixed w-full h-full left-0 top-0 py-20 overflow-y-auto bg-white/30 backdrop-blur-md"
                 : `hidden relative`}  lg:flex items-center justify-end gap-2 max-[1320px]:gap-0
-                text-black font-semibold text-sm  ${isScrolled ? "bg-[#F7F7F7]" : BigMenuToggle ? "bg-white" : "bg-transparent"} max-xl:pl-2`}>
+                text-black font-semibold text-sm max-xl:pl-2`}>
 
               {BigMenuToggle && <>
                 <div className="my-6">
@@ -240,7 +242,7 @@ export default function NavBar() {
                   <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
                 </button>
                 <div
-                  className={`${BigMenuToggle ? "relative w-full" : "absolute w-max"
+                  className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-max"
                     } ${openMenu === 'about' && "absolute h-auto mt-0 w-full"} left-0 h-0 mt-5 overflow-hidden lg:group-hover:h-auto lg:group-hover:mt-0 transition-all bg-white
                                     text-black rounded-lg shadow-lg `}
                 >
@@ -301,13 +303,13 @@ export default function NavBar() {
                   <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
                 </button>
                 <div
-                  className={`${BigMenuToggle ? "relative w-full" : "absolute"
+                  className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute"
                     } ${openMenu === 'programs' && "absolute h-auto mt-0 w-full"} left-0 h-0 mt-5 overflow-hidden lg:group-hover:h-auto lg:group-hover:mt-0 transition-all bg-white
                                     text-black rounded-lg shadow-lg`}
                 >
                   <div className="grid grid-cols-3">
                     <div className="col-span-2 max-md:col-span-3 p-0 transition-all">
-                      <div className=" w-full h-16 flex justify-center items-center gap-1">
+                      <div className=" w-full h-32 sm:h-16 flex justify-center items-center gap-1">
                         {
                           Object.keys(Programs.sublinks)?.map((key, index) => <button onClick={() => { setActiveTab(key) }} key={index}
                             className={`h-full w-full border-r border-r-gray-200 text-sm font-novaLight px-2 ${key === activeTab ? 'bg-yellow-100/50' : 'bg-white'}`}>
@@ -375,7 +377,7 @@ export default function NavBar() {
                   <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
                 </button>
                 <div
-                  className={`${BigMenuToggle ? "relative w-full" : "absolute w-[840px]"
+                  className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-[840px]"
                     } ${openMenu === 'academics' && "absolute h-auto mt-0 w-full"} -left-52 max-lg:left-0 h-0  mt-5 overflow-hidden lg:group-hover:h-auto lg:group-hover:mt-0 transition-all bg-white
                                     text-black rounded-lg shadow-lg `}
                 >
@@ -434,7 +436,7 @@ export default function NavBar() {
                   <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
                 </button>
                 <div
-                  className={`${BigMenuToggle ? "relative w-full" : "absolute"
+                  className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute"
                     } ${openMenu === 'admissions' && "absolute h-auto mt-0 w-full"} left-0 h-0 mt-5 overflow-hidden lg:group-hover:h-auto lg:group-hover:mt-0 transition-all bg-white
                                     text-black rounded-lg shadow-lg `}
                 >
@@ -494,7 +496,7 @@ export default function NavBar() {
                   <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
                 </button>
                 <div
-                  className={`${BigMenuToggle ? "relative w-full" : "absolute w-[420px]"
+                  className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-[420px]"
                     } ${openMenu === 'campus-life' && "absolute h-auto mt-0 w-full"} left-0 h-0 mt-5 overflow-hidden lg:group-hover:h-auto lg:group-hover:mt-0 transition-all bg-white
                                     text-black rounded-lg shadow-lg `}
                 >
@@ -557,7 +559,7 @@ export default function NavBar() {
                   <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
                 </button>
                 <div
-                  className={`${BigMenuToggle ? "relative w-full" : "absolute w-[600px]"
+                  className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-[600px]"
                     } ${openMenu === 'placements' && "absolute h-auto mt-0 w-full"} right-0 h-0 mt-5 overflow-hidden lg:group-hover:h-auto lg:group-hover:mt-0 transition-all bg-white
                                     text-black rounded-lg shadow-lg `}
                 >
@@ -620,7 +622,7 @@ export default function NavBar() {
                   <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
                 </button>
                 <div
-                  className={`${BigMenuToggle ? "relative w-full" : "absolute w-max"
+                  className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-max"
                     } ${openMenu === 'research' && "absolute h-auto mt-0 w-full"} right-0 h-0 mt-5 overflow-hidden lg:group-hover:h-auto lg:group-hover:mt-0 transition-all bg-white
                                     text-black rounded-lg shadow-lg`}
                 >

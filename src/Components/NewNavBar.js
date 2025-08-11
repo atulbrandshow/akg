@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from "react";
-import { Bars2Icon, PhoneIcon, } from "@heroicons/react/20/solid";
+import { Bars2Icon } from "@heroicons/react/20/solid";
 import { About, Academics, Admissions, CampusLife, ResearchInnovation, Placements, Programs } from "../Json/MenuItem";
 import Link from "next/link";
 import { useGSAP } from "@gsap/react";
@@ -12,7 +12,30 @@ import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import Image from 'next/image';
-import { AlignJustify, Phone } from 'lucide-react';
+import { Phone } from 'lucide-react';
+
+const socialLinks = [
+  {
+    name: "Facebook",
+    url: "https://www.facebook.com/Official.AKGU",
+    svg: <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' className='lucide lucide-facebook'><path d='M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z' /></svg>
+  },
+  {
+    name: "Instagram",
+    url: "https://www.instagram.com/official.akgec/",
+    svg: <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' className='lucide lucide-instagram'><rect width='20' height='20' x='2' y='2' rx='5' ry='5' /><path d='M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z' /><line x1='17.5' y1='6.5' x2='17.51' y2='6.5' /></svg>
+  },
+  {
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/school/officialakgec",
+    svg: <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' className='lucide lucide-linkedin'><path d='M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z' /><rect width='4' height='12' x='2' y='9' /><circle cx='4' cy='4' r='2' /></svg>
+  },
+  {
+    name: "Twitter",
+    url: "https://x.com/official_akgec",
+    svg: <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' className='lucide lucide-twitter'><path d='M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z' /></svg>
+  }
+]
 
 const notifications = [
   "Admissions Open: PGDM and MBA Programs 2024-2025",
@@ -86,8 +109,33 @@ export default function NewNavBar() {
   return (
     <header
       className={`navbar z-[9999] w-full fixed top-0 left-0 transition-all duration-200 ${isScrolled ? "bg-blue-700" : "bg-white/0"}`}>
-      <div className="grid grid-cols-12 gap-x-5 px-3 pt-1">
-        <div className="col-span-3 flex">
+      <div className={`overflow-hidden w-full transition-all duration-300 ease-in-out ${isScrolled ? "-mt-4" : "py-1.5"} flex justify-end items-center px-3 border-b border-gray-400/30`}>
+        <div className="notification w-full">
+          <Swiper
+            modules={[Pagination, Autoplay]}
+            spaceBetween={50}
+            slidesPerView={1}
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            loop={true}
+            className="w-full"
+          >
+            {notifications.map((notification, index) => (
+              <SwiperSlide key={index}>
+                <p className={`text-center text-white font-novaReg cursor-grab text-xs`}>{notification}</p>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+        <div className="flex gap-10">
+          {socialLinks?.map((item, index) => (
+            <Link href={item.url} target="_blank" key={index} className="text-xs text-center flex flex-col justify-start items-center text-white">
+              {item.svg}
+            </Link>
+          ))}
+        </div>
+      </div>
+      <div className="flex justify-between items-center px-3 pt-1.5">
+        <div className="flex">
           <div
             className={`text-white flex `}
           >
@@ -126,59 +174,36 @@ export default function NewNavBar() {
             </button>
           )}
         </div>
-        <div className="col-span-9 flex justify-end items-center">
-          <nav className="" >
-            <div
-              className={`flex gap-x-6 justify-end items-center`}
-            >
-              <div className="notification max-w-lg max-2xl:max-w-md max-[1400px]:max-w-sm max-[1300px]:max-w-xs max-[1180px]:hidden">
-                <h2 className={`text-center text-white text-xs font-novaBold uppercase`}>Notifications
-                </h2>
-                <Swiper
-                  modules={[Pagination, Autoplay]}
-                  spaceBetween={50}
-                  slidesPerView={1}
-                  autoplay={{ delay: 3000, disableOnInteraction: false }}
-                  loop={true}
-                  className="w-full"
-                >
-                  {notifications.map((notification, index) => (
-                    <SwiperSlide key={index}>
-                      <p className={`text-center text-white font-novaReg cursor-grab text-xs`}>{notification}</p>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-              </div>
-              <div className="hidden lg:flex gap-10  justify-start max-xl:gap-8  text-[13px] font-novaLight whitespace-nowrap text-white">
-                <Link href="/news" className={`leading-6 text-sm font-bold uppercase hover:underline hover:text-gray-400 transition duration-500`}>News</Link>
-                <Link href="/events" className={`leading-6 text-sm font-bold uppercase hover:underline hover:text-gray-400 transition duration-500`}>Event</Link>
-                <Link href="/articles" className={`leading-6 text-sm font-bold uppercase hover:underline hover:text-gray-400 transition duration-500`}>Article</Link>
-                <Link href="/circulars" className={`leading-6 text-sm font-bold uppercase hover:underline hover:text-gray-400 transition duration-500`}>Circulars</Link>
-                <Link href="/notice" className={`leading-6 text-sm font-bold uppercase hover:underline hover:text-gray-400 transition duration-500`}>Notices</Link>
-                {/* <Link href="#" className="leading-6 text-sm font-bold uppercase text-white hover:underline hover:text-gray-400 transition duration-500">Contact us</Link> */}
-              </div>
-              <div className="flex justify-end">
-                <div className='bg-blue-500 flex justify-between gap-12 items-center rounded-md p-3'>
-                  <Link href="tel:1800-200-0777">
-                    <div className='flex gap-2'>
-                      <div className='h-10 w-10 flex items-center justify-center border-2 border-gray-300 rounded-full'>
-                        <Phone size={20} className='text-white' />
-                      </div>
-                      <div className='flex flex-col justify-center leading-none text-white'>
-                        <small className='font-novaReg text-xs'>Admission Helpline</small>
-                        <span className='font-novaBold leading-none text-lg'>1800-200-0777</span>
-                      </div>
-                    </div>
-                  </Link>
-                  <Link href="#" className='text-white'>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="size-8">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                    </svg>
-                  </Link>
+        <div className="flex justify-end items-center">
+          <div className={`flex gap-x-6 justify-end items-center`}>
+            <div className="flex gap-10 text-sm uppercase font-novaLight tracking-wider whitespace-nowrap text-white">
+              <Link href="/news" className={`hover:underline hover:text-gray-400 transition duration-500`}>News</Link>
+              <Link href="/events" className={`hover:underline hover:text-gray-400 transition duration-500`}>Event</Link>
+              <Link href="/articles" className={`hover:underline hover:text-gray-400 transition duration-500`}>Article</Link>
+              <Link href="/circulars" className={`hover:underline hover:text-gray-400 transition duration-500`}>Circulars</Link>
+              <Link href="/notice" className={`hover:underline hover:text-gray-400 transition duration-500`}>Notices</Link>
+            </div>
+          </div>
+        </div>
+        <div className="flex justify-end">
+          <div className='bg-blue-500 flex justify-between gap-12 items-center rounded-md p-3'>
+            <Link href="tel:1800-200-0777">
+              <div className='flex gap-2'>
+                <div className='h-10 w-10 flex items-center justify-center border-2 border-gray-300 rounded-full'>
+                  <Phone size={20} className='text-white' />
+                </div>
+                <div className='flex flex-col justify-center leading-none text-white'>
+                  <small className='font-novaReg text-xs'>Admission Helpline</small>
+                  <span className='font-novaBold whitespace-nowrap leading-none text-lg'>1800-200-0777</span>
                 </div>
               </div>
-            </div>
-          </nav>
+            </Link>
+            <Link href="#" className='text-white'>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="size-8">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+            </Link>
+          </div>
         </div>
       </div>
       <div className='mt-2 px-3'>

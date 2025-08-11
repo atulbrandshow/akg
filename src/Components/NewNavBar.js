@@ -194,15 +194,14 @@ export default function NewNavBar() {
             </div>
           </>}
           <li className="relative group">
-            <button onClick={() => toggleMenu('about')} className={` relative focus:outline-none font-novaBold flex pb-2 items-center gap-1 tracking-widest pb-2`}>
+            <button onClick={() => toggleMenu('about')} className={` relative focus:outline-none font-novaBold flex pb-2 items-center gap-1 tracking-widest`}>
               ABOUT{" "}
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6" /></svg>
-              <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
+              <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
             </button>
             <div
               className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-max"
-                } ${openMenu === 'about' && "absolute h-auto mt-0 w-full"} left-0 h-0 mt-5 overflow-hidden lg:group-hover:h-auto lg:group-hover:mt-0 transition-all bg-white
-                                    text-black rounded-lg shadow-lg `}
+                } ${openMenu === 'about' && "absolute h-auto mt-0 w-full"} left-0 h-0 mt-5 overflow-hidden lg:group-hover:h-auto lg:group-hover:mt-0 transition-all bg-white text-black rounded-lg shadow-lg `}
             >
               <div className="grid grid-cols-3">
                 <div className="col-span-2 max-md:col-span-3 p-5 transition-all">
@@ -258,7 +257,7 @@ export default function NewNavBar() {
             <button onClick={() => toggleMenu('programs')} className={` relative  focus:outline-none font-novaBold flex pb-2 items-center gap-1 tracking-widest`}>
               PROGRAMS{" "}
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6" /></svg>
-              <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
+              <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
             </button>
             <div
               className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-max"
@@ -332,7 +331,7 @@ export default function NewNavBar() {
             <button onClick={() => toggleMenu('academics')} className={` relative  focus:outline-none font-novaBold flex pb-2 items-center gap-1 tracking-widest`}>
               ACADEMICS{" "}
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6" /></svg>
-              <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
+              <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
             </button>
             <div
               className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-[840px]"
@@ -391,7 +390,7 @@ export default function NewNavBar() {
             <button onClick={() => toggleMenu('admissions')} className={` relative  focus:outline-none font-novaBold flex pb-2 items-center gap-1 tracking-widest`}>
               ADMISSIONS{" "}
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6" /></svg>
-              <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
+              <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
             </button>
             <div
               className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute"
@@ -451,7 +450,7 @@ export default function NewNavBar() {
             <button onClick={() => toggleMenu('campus-life')} className={` relative  focus:outline-none font-novaBold flex pb-2 items-center gap-1 whitespace-nowrap tracking-widest`}>
               CAMPUS LIFE{" "}
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6" /></svg>
-              <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
+              <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
             </button>
             <div
               className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-[420px]"
@@ -514,7 +513,7 @@ export default function NewNavBar() {
             <button onClick={() => toggleMenu('placements')} className={` relative  focus:outline-none font-novaBold flex pb-2 items-center gap-1 tracking-widest`}>
               PLACEMENTS{" "}
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6" /></svg>
-              <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
+              <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
             </button>
             <div
               className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-[600px]"
@@ -577,7 +576,7 @@ export default function NewNavBar() {
             <button onClick={() => toggleMenu('research')} className={` relative  focus:outline-none font-novaBold flex pb-2 items-center gap-1 whitespace-nowrap tracking-widest`}>
               RESEARCH & INNOVATION{" "}
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6" /></svg>
-              <span className="absolute inset-x-0 top-0 h-1 bg-secondary transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
+              <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
             </button>
             <div
               className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-max"

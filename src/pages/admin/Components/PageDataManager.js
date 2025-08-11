@@ -1,4 +1,5 @@
 "use client"
+
 import { API_NODE_URL, IMAGE_PATH } from "@/configs/config"
 import { useState, useEffect, useRef } from "react"
 import dynamic from "next/dynamic"
@@ -38,8 +39,12 @@ const PageDataManager = () => {
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedTypeFilter, setSelectedTypeFilter] = useState("all")
   const [groupByType, setGroupByType] = useState(true)
-  const editorRef = useRef(null)
 
+  // Collapsible sections state
+  const [collapsedSections, setCollapsedSections] = useState({})
+  const [allCollapsed, setAllCollapsed] = useState(false)
+
+  const editorRef = useRef(null)
   const [formData, setFormData] = useState({
     key: "",
     value: "",
@@ -84,7 +89,6 @@ const PageDataManager = () => {
   // Filter and search functionality
   useEffect(() => {
     let filtered = params
-
     // Search filter
     if (searchQuery) {
       filtered = filtered.filter(
@@ -94,14 +98,35 @@ const PageDataManager = () => {
           (typeof param.value === "string" && param.value.toLowerCase().includes(searchQuery.toLowerCase())),
       )
     }
-
     // Type filter
     if (selectedTypeFilter !== "all") {
       filtered = filtered.filter((param) => param.dataType === selectedTypeFilter)
     }
-
     setFilteredParams(filtered)
   }, [params, searchQuery, selectedTypeFilter])
+
+  // Collapsible section functions
+  const toggleSection = (sectionType) => {
+    setCollapsedSections((prev) => ({
+      ...prev,
+      [sectionType]: !prev[sectionType],
+    }))
+  }
+
+  const toggleAllSections = () => {
+    const newCollapsedState = !allCollapsed
+    setAllCollapsed(newCollapsedState)
+
+    // Get all unique data types
+    const uniqueTypes = [...new Set(filteredParams.map((param) => param.dataType))]
+    const newCollapsedSections = {}
+
+    uniqueTypes.forEach((type) => {
+      newCollapsedSections[type] = newCollapsedState
+    })
+
+    setCollapsedSections(newCollapsedSections)
+  }
 
   const showNotification = (message, type = "success") => {
     setNotification({ show: true, message, type })
@@ -116,7 +141,6 @@ const PageDataManager = () => {
       const response = await fetch(`${API_NODE_URL}page-params/get-by-pageid?pageId=${pageid}`)
       const result = await response.json()
       console.log(result)
-
       if (result.status) {
         setParams(result.data)
       } else {
@@ -217,7 +241,6 @@ const PageDataManager = () => {
   // Handle different input types
   const handleInputChange = async (e, inputType) => {
     const { name, value, files } = e.target
-
     switch (inputType) {
       case "text":
         setFormData({ ...formData, [name]: value })
@@ -231,7 +254,6 @@ const PageDataManager = () => {
       case "multiple image":
         if (files && files.length > 0) {
           const uploadedPaths = await handleFileUpload(Array.from(files), true)
-          // Get current images and append new ones
           let currentImages = formData.value
           if (typeof currentImages === "string") {
             try {
@@ -243,7 +265,6 @@ const PageDataManager = () => {
           if (!Array.isArray(currentImages)) {
             currentImages = []
           }
-          // Append new images to existing ones
           const updatedImages = [...currentImages, ...uploadedPaths]
           setFormData({ ...formData, value: updatedImages })
         }
@@ -257,7 +278,6 @@ const PageDataManager = () => {
       case "multiple pdfs":
         if (files && files.length > 0) {
           const uploadedPaths = await handleFileUpload(Array.from(files), true)
-          // Get current PDFs and append new ones
           let currentPdfs = formData.value
           if (typeof currentPdfs === "string") {
             try {
@@ -269,7 +289,6 @@ const PageDataManager = () => {
           if (!Array.isArray(currentPdfs)) {
             currentPdfs = []
           }
-          // Append new PDFs to existing ones
           const updatedPdfs = [...currentPdfs, ...uploadedPaths]
           setFormData({ ...formData, value: updatedPdfs })
         }
@@ -287,7 +306,6 @@ const PageDataManager = () => {
   // Delete individual image from multiple images
   const handleDeleteImage = (indexToDelete) => {
     try {
-      // Handle both array and string formats for backward compatibility
       let currentImages = formData.value
       if (typeof currentImages === "string") {
         currentImages = JSON.parse(currentImages || "[]")
@@ -295,7 +313,6 @@ const PageDataManager = () => {
       if (!Array.isArray(currentImages)) {
         currentImages = []
       }
-
       const updatedImages = currentImages.filter((_, index) => index !== indexToDelete)
       setFormData({ ...formData, value: updatedImages })
     } catch (error) {
@@ -332,7 +349,7 @@ const PageDataManager = () => {
     <div className="flex items-center justify-between w-full">
       <span>{option.label}</span>
       {option.isExisting && (
-        <span className={`px-2 py-1 rounded-full text-xs font-novaReg ${getDataTypeColor(option.dataType)}`}>
+        <span className={`px-2 py-1 rounded-full text-xs font-novaSemi ${getDataTypeColor(option.dataType)}`}>
           {option.dataType}
         </span>
       )}
@@ -342,7 +359,6 @@ const PageDataManager = () => {
   // Render input based on data type
   const renderValueInput = () => {
     const { dataType } = formData
-
     switch (dataType) {
       case "text":
         return (
@@ -350,7 +366,7 @@ const PageDataManager = () => {
             name="value"
             value={formData.value}
             onChange={(e) => handleInputChange(e, "text")}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-vertical"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-vertical"
             placeholder="Enter the text content for this section..."
             rows="4"
             required
@@ -363,7 +379,7 @@ const PageDataManager = () => {
               type="file"
               accept="image/*"
               onChange={(e) => handleInputChange(e, "image")}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-novaSemi file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
               required={!formData.value}
             />
             <p className="text-sm text-gray-500">Upload a single image (JPG, PNG, GIF, WebP)</p>
@@ -399,7 +415,7 @@ const PageDataManager = () => {
               accept="image/*"
               multiple
               onChange={(e) => handleInputChange(e, "multiple image")}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-novaSemi file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
               required={!formData.value || (Array.isArray(formData.value) && formData.value.length === 0)}
             />
             <p className="text-sm text-gray-500">Upload multiple images (JPG, PNG, GIF, WebP)</p>
@@ -438,7 +454,7 @@ const PageDataManager = () => {
               type="file"
               accept=".pdf"
               onChange={(e) => handleInputChange(e, "pdf")}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-novaSemi file:bg-red-50 file:text-red-700 hover:file:bg-red-100"
               required={!formData.value}
             />
             <p className="text-sm text-gray-500">Upload a PDF document</p>
@@ -494,7 +510,7 @@ const PageDataManager = () => {
               accept=".pdf"
               multiple
               onChange={(e) => handleInputChange(e, "multiple pdfs")}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-novaSemi file:bg-red-50 file:text-red-700 hover:file:bg-red-100"
               required={!formData.value || (Array.isArray(formData.value) && formData.value.length === 0)}
             />
             <p className="text-sm text-gray-500">Upload multiple PDF documents</p>
@@ -559,7 +575,7 @@ const PageDataManager = () => {
             name="value"
             value={formData.value}
             onChange={(e) => handleInputChange(e, "text")}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-vertical"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-vertical"
             placeholder="Enter the content for this section..."
             rows="4"
             required
@@ -582,7 +598,6 @@ const PageDataManager = () => {
           </div>
         )
       case "multiple image":
-        // Handle both array and string formats for backward compatibility
         let imageUrls = value
         if (typeof value === "string") {
           try {
@@ -594,7 +609,6 @@ const PageDataManager = () => {
         if (!Array.isArray(imageUrls)) {
           imageUrls = []
         }
-
         return (
           <div className="mt-2 flex flex-wrap gap-2">
             {imageUrls.map((path, index) => (
@@ -629,7 +643,6 @@ const PageDataManager = () => {
           </div>
         )
       case "multiple pdfs":
-        // Handle both array and string formats for backward compatibility
         let pdfUrls = value
         if (typeof value === "string") {
           try {
@@ -641,7 +654,6 @@ const PageDataManager = () => {
         if (!Array.isArray(pdfUrls)) {
           pdfUrls = []
         }
-
         return (
           <div className="mt-2 space-y-2">
             {pdfUrls.map((path, index) => (
@@ -668,16 +680,14 @@ const PageDataManager = () => {
       case "description":
         return (
           <div
-            className="mt-2 p-3 bg-gray-50 rounded-lg prose prose-sm max-w-none border font-novaReg"
+            className="mt-2 p-3 bg-gray-50 rounded-lg prose font-novaReg prose-sm max-w-none border"
             dangerouslySetInnerHTML={{ __html: value }}
           />
         )
       default:
         return (
           <div className="mt-2 p-3 bg-gray-50 rounded-lg border">
-            <code className="text-sm text-gray-800 break-all font-novaReg whitespace-pre-wrap">
-              {formatValue(value, dataType)}
-            </code>
+            <code className="text-sm text-gray-800 break-all font-novaReg whitespace-pre-wrap">{formatValue(value, dataType)}</code>
           </div>
         )
     }
@@ -686,17 +696,14 @@ const PageDataManager = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
-
     try {
       const payload = {
         ...formData,
         pageid: pageid,
         pageType: type || formData.pageType,
       }
-
       const url = editingId ? `${API_NODE_URL}page-params/update/${editingId}` : `${API_NODE_URL}page-params/add`
       const method = editingId ? "PUT" : "POST"
-
       const response = await fetch(url, {
         method,
         headers: {
@@ -704,9 +711,7 @@ const PageDataManager = () => {
         },
         body: JSON.stringify(payload),
       })
-
       const result = await response.json()
-
       if (result.status) {
         showNotification(result.message)
         resetForm()
@@ -726,11 +731,8 @@ const PageDataManager = () => {
 
   const handleEdit = (param) => {
     setEditingId(param._id)
-
-    // Handle different data types properly
     let value = param.value
     if (param.dataType === "multiple image" || param.dataType === "multiple pdfs") {
-      // If it's stored as string, parse it; if it's already array, keep it
       if (typeof param.value === "string") {
         try {
           value = JSON.parse(param.value)
@@ -743,7 +745,6 @@ const PageDataManager = () => {
         value = []
       }
     }
-
     setFormData({
       key: param.key,
       value: value,
@@ -751,7 +752,6 @@ const PageDataManager = () => {
       dataType: param.dataType,
       status: param.status,
     })
-
     const existingKey = availableKeys.find((key) => key.key === param.key)
     if (existingKey) {
       setSelectedKey({
@@ -770,9 +770,7 @@ const PageDataManager = () => {
       })
       setIsNewKey(true)
     }
-
     setShowAddForm(true)
-    // Scroll to top
     setTimeout(() => {
       formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
     }, 100)
@@ -780,15 +778,12 @@ const PageDataManager = () => {
 
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this content section?")) return
-
     setLoading(true)
     try {
       const response = await fetch(`${API_NODE_URL}page-params/delete/${id}`, {
         method: "DELETE",
       })
-
       const result = await response.json()
-
       if (result.status) {
         showNotification(result.message)
         fetchParams()
@@ -841,17 +836,25 @@ const PageDataManager = () => {
   // Group parameters by type
   const groupedParams = groupByType
     ? filteredParams.reduce((groups, param) => {
-      const type = param.dataType
-      if (!groups[type]) {
-        groups[type] = []
-      }
-      groups[type].push(param)
-      return groups
-    }, {})
+        const type = param.dataType
+        if (!groups[type]) {
+          groups[type] = []
+        }
+        groups[type].push(param)
+        return groups
+      }, {})
     : { all: filteredParams }
 
   // Get unique data types for filter
   const uniqueDataTypes = [...new Set(params.map((param) => param.dataType))]
+
+  // Get section summary for collapsed view
+  const getSectionSummary = (groupParams) => {
+    const total = groupParams.length
+    const published = groupParams.filter((param) => param.status).length
+    const draft = total - published
+    return { total, published, draft }
+  }
 
   return (
     <div className="">
@@ -859,11 +862,12 @@ const PageDataManager = () => {
         {/* Notification */}
         {notification.show && (
           <div
-            className={`fixed top-4 right-4 z-50 px-6 py-4 rounded-lg shadow-lg transition-all duration-300 transform ${notification.type === "error" ? "bg-red-500 text-white" : "bg-green-500 text-white"
-              }`}
+            className={`fixed top-4 right-4 z-50 px-6 py-4 rounded-lg shadow-lg transition-all duration-300 transform ${
+              notification.type === "error" ? "bg-red-500 text-white" : "bg-green-500 text-white"
+            }`}
           >
             <div className="flex items-center justify-between">
-              <span className="font-novaReg">{notification.message}</span>
+              <span className="font-novaSemi">{notification.message}</span>
               <button
                 onClick={() => setNotification({ show: false, message: "", type: "" })}
                 className="ml-4 text-white hover:text-gray-200 transition-colors"
@@ -884,7 +888,7 @@ const PageDataManager = () => {
               <div className="flex flex-wrap items-center gap-2">
                 <p className="text-gray-600 font-novaReg">
                   Managing content for{" "}
-                  <span className="font-semibold text-blue-600">{pageDetails?.name || pageid}</span>
+                  <span className="font-novaSemi text-blue-600">{pageDetails?.name || pageid}</span>
                 </p>
                 {type && (
                   <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-novaSemi">{type}</span>
@@ -913,23 +917,22 @@ const PageDataManager = () => {
         {showAddForm && (
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-semibold text-gray-900">
+              <h2 className="text-2xl font-novaSemi text-gray-900">
                 {editingId ? "Edit Content Section" : "Add New Content Section"}
               </h2>
               {editingId && (
-                <span className="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-novaReg">
+                <span className="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-novaSemi">
                   Editing Mode
                 </span>
               )}
             </div>
-
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div className="lg:col-span-2">
                   <label className="block text-sm font-novaSemi text-gray-700 mb-2">
                     Content Section Name <span className="text-red-500">*</span>
                     {isNewKey && (
-                      <span className="ml-2 text-green-600 text-xs font-novaReg">(Creating New Section)</span>
+                      <span className="ml-2 text-green-600 text-xs font-novaSemi">(Creating New Section)</span>
                     )}
                   </label>
                   <CreatableSelect
@@ -946,7 +949,7 @@ const PageDataManager = () => {
                     classNamePrefix="react-select"
                     formatCreateLabel={(inputValue) => `Create "${inputValue}"`}
                   />
-                  <p className="text-xs text-gray-500 font-novaReg mt-1">
+                  <p className="text-xs text-gray-500 mt-1 font-novaReg">
                     Choose from existing sections or type a new name to create one
                   </p>
                 </div>
@@ -954,7 +957,7 @@ const PageDataManager = () => {
                 {/* Data Type Selection */}
                 {isNewKey && selectedKey && (
                   <div>
-                    <label className="block text-sm font-novaReg text-gray-700 mb-2">
+                    <label className="block text-sm font-novaSemi text-gray-700 mb-2">
                       Content Type <span className="text-red-500">*</span>
                     </label>
                     <select
@@ -964,7 +967,7 @@ const PageDataManager = () => {
                         const newValue = newDataType === "multiple image" || newDataType === "multiple pdfs" ? [] : ""
                         setFormData({ ...formData, dataType: newDataType, value: newValue })
                       }}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      className="w-full px-4 py-3 border font-novaReg border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                       required
                     >
                       {dataTypes.map((type) => (
@@ -992,10 +995,10 @@ const PageDataManager = () => {
                 {/* Existing Data Type Display */}
                 {!isNewKey && selectedKey && (
                   <div>
-                    <label className="block text-sm font-novaReg text-gray-700 mb-2">Content Type</label>
+                    <label className="block text-sm font-novaSemi text-gray-700 mb-2">Content Type</label>
                     <div className="w-full px-4 py-3 border border-gray-200 rounded-lg bg-gray-50">
                       <span
-                        className={`px-3 py-1 rounded-full text-xs font-novaReg ${getDataTypeColor(formData.dataType)}`}
+                        className={`px-3 py-1 rounded-full text-xs font-novaSemi ${getDataTypeColor(formData.dataType)}`}
                       >
                         {formData.dataType === "text"
                           ? "Text Content"
@@ -1019,7 +1022,7 @@ const PageDataManager = () => {
                 {/* Page Type */}
                 {!type && (
                   <div>
-                    <label className="block text-sm font-novaReg text-gray-700 mb-2">
+                    <label className="block text-sm font-novaSemi text-gray-700 mb-2">
                       Page Category <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -1027,7 +1030,7 @@ const PageDataManager = () => {
                       name="pageType"
                       value={formData.pageType}
                       onChange={(e) => setFormData({ ...formData, pageType: e.target.value })}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                       placeholder="e.g., homepage, about, services, blog"
                       required
                     />
@@ -1041,7 +1044,7 @@ const PageDataManager = () => {
               {/* Content Input */}
               {selectedKey && (
                 <div>
-                  <label className="block text-sm font-novaReg text-gray-700 mb-2">
+                  <label className="block text-sm font-novaSemi text-gray-700 mb-2">
                     Content <span className="text-red-500">*</span>
                   </label>
                   {renderValueInput()}
@@ -1053,7 +1056,7 @@ const PageDataManager = () => {
                 <button
                   type="submit"
                   disabled={loading || uploadingFiles || !selectedKey}
-                  className="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white px-8 py-3 rounded-lg font-novaReg transition-all duration-200 flex items-center justify-center space-x-2 shadow-sm hover:shadow-md"
+                  className="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white px-8 py-3 rounded-lg font-novaSemi transition-all duration-200 flex items-center justify-center space-x-2 shadow-sm hover:shadow-md"
                 >
                   {loading ? (
                     <>
@@ -1072,7 +1075,7 @@ const PageDataManager = () => {
                 <button
                   type="button"
                   onClick={resetForm}
-                  className="bg-gray-500 hover:bg-gray-600 text-white px-8 py-3 rounded-lg font-novaReg transition-all duration-200 shadow-sm hover:shadow-md"
+                  className="bg-gray-500 hover:bg-gray-600 text-white px-8 py-3 rounded-lg font-novaSemi transition-all duration-200 shadow-sm hover:shadow-md"
                 >
                   Cancel
                 </button>
@@ -1105,7 +1108,7 @@ const PageDataManager = () => {
                   placeholder="Search content sections..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                 />
               </div>
             </div>
@@ -1115,7 +1118,7 @@ const PageDataManager = () => {
               <select
                 value={selectedTypeFilter}
                 onChange={(e) => setSelectedTypeFilter(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg font-novaReg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
               >
                 <option value="all">All Types</option>
                 {uniqueDataTypes.map((type) => (
@@ -1139,19 +1142,39 @@ const PageDataManager = () => {
             </div>
 
             {/* Group Toggle */}
-            <div className="flex items-center">
+            <div className="flex items-center space-x-2">
               <button
                 onClick={() => setGroupByType(!groupByType)}
-                className={`px-4 py-3 rounded-lg font-novaSemi transition-all duration-200 flex items-center space-x-2 ${groupByType
-                  ? "bg-blue-100 text-blue-700 hover:bg-blue-200"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                  }`}
+                className={`px-4 py-3 rounded-lg font-novaSemi transition-all duration-200 flex items-center space-x-2 ${
+                  groupByType
+                    ? "bg-blue-100 text-blue-700 hover:bg-blue-200"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14-7H5m14 14H5" />
                 </svg>
                 <span>Group by Type</span>
               </button>
+
+              {/* Collapse All Toggle */}
+              {groupByType && filteredParams.length > 0 && (
+                <button
+                  onClick={toggleAllSections}
+                  className="px-4 py-3 rounded-lg font-novaSemi transition-all duration-200 flex items-center space-x-2 bg-gray-100 text-gray-700 hover:bg-gray-200"
+                >
+                  {allCollapsed ? (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  ) : (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                    </svg>
+                  )}
+                  <span>{allCollapsed ? "Expand All" : "Collapse All"}</span>
+                </button>
+              )}
             </div>
           </div>
 
@@ -1196,7 +1219,7 @@ const PageDataManager = () => {
                     d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                   />
                 </svg>
-                <h3 className="text-lg font-novaReg text-gray-900 mb-2">
+                <h3 className="text-lg font-novaSemi text-gray-900 mb-2">
                   {searchQuery ? "No matching content sections found" : "No content sections found"}
                 </h3>
                 <p className="text-gray-500 mb-4">
@@ -1215,171 +1238,222 @@ const PageDataManager = () => {
               </div>
             </div>
           ) : (
-            Object.entries(groupedParams).map(([groupType, groupParams]) => (
-              <div key={groupType} className="bg-white rounded-xl shadow-sm border border-gray-200">
-                {/* Group Header */}
-                {groupByType && groupType !== "all" && (
-                  <div className="px-6 py-4 border-b border-gray-200 bg-gray-50 rounded-t-xl">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-lg font-semibold text-gray-900 flex items-center space-x-2">
-                        <span className={`px-3 py-1 rounded-full text-sm font-novaReg ${getDataTypeColor(groupType)}`}>
-                          {groupType === "text"
-                            ? "Text Content"
-                            : groupType === "image"
-                              ? "Single Image"
-                              : groupType === "multiple image"
-                                ? "Multiple Images"
-                                : groupType === "pdf"
-                                  ? "PDF Document"
-                                  : groupType === "multiple pdfs"
-                                    ? "Multiple PDFs"
-                                    : groupType === "description"
-                                      ? "Description"
-                                      : groupType}
-                        </span>
-                      </h3>
-                      <span className="text-sm text-gray-500">
-                        {groupParams.length} section{groupParams.length !== 1 ? "s" : ""}
-                      </span>
-                    </div>
-                  </div>
-                )}
+            Object.entries(groupedParams).map(([groupType, groupParams]) => {
+              const isCollapsed = collapsedSections[groupType]
+              const summary = getSectionSummary(groupParams)
 
-                {/* Group Content */}
-                <div className="divide-y divide-gray-200">
-                  {groupParams.map((param) => (
-                    <div key={param._id} className="p-6 hover:bg-gray-50 transition-colors duration-200">
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1 min-w-0">
-                          {/* Header */}
-                          <div className="flex items-center space-x-3 mb-3">
-                            <h4 className="text-lg font-novaReg text-gray-900 truncate">{param.key}</h4>
-                            {!groupByType && (
-                              <span
-                                className={`px-2 py-1 rounded-full text-xs font-novaReg ${getDataTypeColor(param.dataType)}`}
+              return (
+                <div key={groupType} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                  {/* Group Header */}
+                  {groupByType && groupType !== "all" && (
+                    <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
+                      <div className="flex items-center justify-between">
+                        <button
+                          onClick={() => toggleSection(groupType)}
+                          className="flex items-center space-x-3 hover:bg-gray-100 rounded-lg p-2 -ml-2 transition-colors duration-200"
+                        >
+                          <div className="flex items-center space-x-2">
+                            {isCollapsed ? (
+                              <svg
+                                className="w-5 h-5 text-gray-500"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
                               >
-                                {param.dataType === "text"
-                                  ? "Text"
-                                  : param.dataType === "image"
-                                    ? "Image"
-                                    : param.dataType === "multiple image"
-                                      ? "Images"
-                                      : param.dataType === "pdf"
-                                        ? "PDF"
-                                        : param.dataType === "multiple pdfs"
-                                          ? "PDFs"
-                                          : param.dataType === "description"
-                                            ? "Description"
-                                            : param.dataType}
-                              </span>
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                              </svg>
+                            ) : (
+                              <svg
+                                className="w-5 h-5 text-gray-500"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                              </svg>
                             )}
                             <span
-                              className={`px-2 py-1 rounded-full text-xs font-novaReg ${param.status ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
-                                }`}
+                              className={`px-3 py-1 rounded-full text-sm font-novaSemi ${getDataTypeColor(groupType)}`}
                             >
-                              {param.status ? "Published" : "Draft"}
+                              {groupType === "text"
+                                ? "Text Content"
+                                : groupType === "image"
+                                  ? "Single Image"
+                                  : groupType === "multiple image"
+                                    ? "Multiple Images"
+                                    : groupType === "pdf"
+                                      ? "PDF Document"
+                                      : groupType === "multiple pdfs"
+                                        ? "Multiple PDFs"
+                                        : groupType === "description"
+                                          ? "Description"
+                                          : groupType}
                             </span>
                           </div>
+                        </button>
 
-                          {/* Content Preview */}
-                          <div className="mb-4">
-                            <span className="text-sm font-novaReg text-gray-700 mb-2 block">Content Preview:</span>
-                            {renderValueDisplay(param.value, param.dataType)}
-                          </div>
-
-                          {/* Metadata */}
-                          <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500">
-                            <span className="flex items-center space-x-1">
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={2}
-                                  d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
-                                />
-                              </svg>
-                              <span>
-                                Category: <span className="font-novaSemi text-gray-700">{param.pageType}</span>
-                              </span>
-                            </span>
-                            <span className="flex items-center space-x-1">
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={2}
-                                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                                />
-                              </svg>
-                              <span className="font-novaSemi">
-                                Created: {new Date(param.createdAt).toLocaleDateString()}
-                              </span>
-                            </span>
-                            {param.updatedAt !== param.createdAt && (
+                        <div className="flex items-center space-x-4 text-sm text-gray-500">
+                          {isCollapsed && (
+                            <div className="flex items-center space-x-3">
                               <span className="flex items-center space-x-1">
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                                <span>{summary.published} Published</span>
+                              </span>
+                              <span className="flex items-center space-x-1">
+                                <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                                <span>{summary.draft} Draft</span>
+                              </span>
+                            </div>
+                          )}
+                          <span className="font-novaSemi">
+                            {groupParams.length} section{groupParams.length !== 1 ? "s" : ""}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Group Content */}
+                  <div
+                    className={`transition-all duration-300 ease-in-out ${isCollapsed ? "max-h-0 overflow-hidden" : "max-h-none"}`}
+                  >
+                    <div className="divide-y divide-gray-200">
+                      {groupParams.map((param) => (
+                        <div key={param._id} className="p-6 hover:bg-gray-50 transition-colors duration-200">
+                          <div className="flex items-start justify-between">
+                            <div className="flex-1 min-w-0">
+                              {/* Header */}
+                              <div className="flex items-center space-x-3 mb-3">
+                                <h4 className="text-lg font-novaSemi text-gray-900 truncate">{param.key}</h4>
+                                {!groupByType && (
+                                  <span
+                                    className={`px-2 py-1 rounded-full text-xs font-novaSemi ${getDataTypeColor(param.dataType)}`}
+                                  >
+                                    {param.dataType === "text"
+                                      ? "Text"
+                                      : param.dataType === "image"
+                                        ? "Image"
+                                        : param.dataType === "multiple image"
+                                          ? "Images"
+                                          : param.dataType === "pdf"
+                                            ? "PDF"
+                                            : param.dataType === "multiple pdfs"
+                                              ? "PDFs"
+                                              : param.dataType === "description"
+                                                ? "Description"
+                                                : param.dataType}
+                                  </span>
+                                )}
+                                <span
+                                  className={`px-2 py-1 rounded-full text-xs font-novaSemi ${
+                                    param.status ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
+                                  }`}
+                                >
+                                  {param.status ? "Published" : "Draft"}
+                                </span>
+                              </div>
+
+                              {/* Content Preview */}
+                              <div className="mb-4">
+                                <span className="text-sm font-novaSemi text-gray-700 mb-2 block">Content Preview:</span>
+                                {renderValueDisplay(param.value, param.dataType)}
+                              </div>
+
+                              {/* Metadata */}
+                              <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500">
+                                <span className="flex items-center space-x-1">
+                                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                                    />
+                                  </svg>
+                                  <span>
+                                    Category: <span className="font-novaSemi text-gray-700">{param.pageType}</span>
+                                  </span>
+                                </span>
+                                <span className="flex items-center space-x-1">
+                                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    />
+                                  </svg>
+                                  <span className="font-novaSemi">
+                                    Created: {new Date(param.createdAt).toLocaleDateString()}
+                                  </span>
+                                </span>
+                                {param.updatedAt !== param.createdAt && (
+                                  <span className="flex items-center space-x-1">
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                                      />
+                                    </svg>
+                                    <span className="font-novaSemi">
+                                      Updated: {new Date(param.updatedAt).toLocaleDateString()}
+                                    </span>
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+
+                            {/* Actions */}
+                            <div className="flex items-center space-x-2 ml-4 flex-shrink-0">
+                              <button
+                                onClick={() => handleEdit(param)}
+                                className="p-2 text-blue-600 hover:bg-blue-100 rounded-lg transition-colors duration-200 group"
+                                title="Edit content section"
+                              >
+                                <svg
+                                  className="w-5 h-5 group-hover:scale-110 transition-transform"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
                                   <path
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
                                     strokeWidth={2}
-                                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
                                   />
                                 </svg>
-                                <span className="font-novaSemi">
-                                  Updated: {new Date(param.updatedAt).toLocaleDateString()}
-                                </span>
-                              </span>
-                            )}
+                              </button>
+                              <button
+                                onClick={() => handleDelete(param._id)}
+                                className="p-2 text-red-600 hover:bg-red-100 rounded-lg transition-colors duration-200 group"
+                                title="Delete content section"
+                              >
+                                <svg
+                                  className="w-5 h-5 group-hover:scale-110 transition-transform"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                  />
+                                </svg>
+                              </button>
+                            </div>
                           </div>
                         </div>
-
-                        {/* Actions */}
-                        <div className="flex items-center space-x-2 ml-4 flex-shrink-0">
-                          <button
-                            onClick={() => handleEdit(param)}
-                            className="p-2 text-blue-600 hover:bg-blue-100 rounded-lg transition-colors duration-200 group"
-                            title="Edit content section"
-                          >
-                            <svg
-                              className="w-5 h-5 group-hover:scale-110 transition-transform"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                              />
-                            </svg>
-                          </button>
-                          <button
-                            onClick={() => handleDelete(param._id)}
-                            className="p-2 text-red-600 hover:bg-red-100 rounded-lg transition-colors duration-200 group"
-                            title="Delete content section"
-                          >
-                            <svg
-                              className="w-5 h-5 group-hover:scale-110 transition-transform"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                              />
-                            </svg>
-                          </button>
-                        </div>
-                      </div>
+                      ))}
                     </div>
-                  ))}
+                  </div>
                 </div>
-              </div>
-            ))
+              )
+            })
           )}
         </div>
       </div>

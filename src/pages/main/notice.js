@@ -133,7 +133,7 @@ export default function NoticeBoard() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       {/* Modern Header */}
-      <div className="bg-gradient-to-r from-indigo-900 via-blue-900 to-purple-900 text-white relative overflow-hidden">
+      <div className="pt-32 lg:pt-48 bg-gradient-to-r from-indigo-900 via-blue-900 to-purple-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-10"></div>
         <div className="relative max-w-7xl mx-auto px-4 py-8">
           <div className="flex items-center justify-between">

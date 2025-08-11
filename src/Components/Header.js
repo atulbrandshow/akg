@@ -80,7 +80,7 @@ export default function Header({
     const formConfig = formConfigs[formKey];
 
     return (
-        <div className={`relative isolate xl:overflow-hidden py-24 sm:py-32 xl:py-36 max-[400px]:py-12 ${height}`}>
+        <div className={`relative isolate xl:overflow-hidden py-24 sm:py-32 xl:py-56 max-[400px]:py-12 ${height}`}>
             <div className="absolute inset-0 -z-10 h-full w-full">
                 <img alt="" src={bg} className={`h-full w-full object-${position} object-cover`} />
                 {gradient && <div className={`absolute inset-0 ${typeof gradient === "string" ? gradient : "bg-gradient-to-r from-black/70 to-transparent"}`}></div>}

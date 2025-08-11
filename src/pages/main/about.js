@@ -11,7 +11,7 @@ export default function About() {
     return (
         <div className="about-page-container">
             {/* Section 1 */}
-            <motion.section className="relative w-full h-screen" style={{ overflow: "hidden" }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
+            <section className="relative w-full h-[120vh]">
                 {/* Background Image */}
                 <div
                     className="absolute inset-0 bg-cover bg-center"
@@ -24,7 +24,7 @@ export default function About() {
                 <div className="absolute inset-0 bg-[#2240c5] opacity-70"></div>
 
                 {/* Center Box */}
-                <motion.div className="relative z-10 max-w-7xl mx-auto flex items-center justify-start max-sm:justify-center h-full px-4 max-sm:px-0" initial={{ y: 50 }} animate={{ y: 0 }} transition={{ duration: 0.8, ease: "easeOut" }}>
+                <div className="relative max-w-7xl mx-auto flex items-center justify-start max-sm:justify-center h-full px-4 max-sm:px-0">
                     <div className="bg-white shadow-lg rounded-lg w-[90%] max-w-md h-[600px] flex flex-col items-center justify-center px-10 max-sm:px-6" style={{ fontFamily: "Arial, sans-serif" }}>
                         {/* Heading */}
                         <h1 className="text-3xl max-sm:text-2xl font-novaSemi uppercase tracking-wide text-center mb-4">
@@ -42,8 +42,8 @@ export default function About() {
                             READ MORE
                         </motion.button>
                     </div>
-                </motion.div>
-            </motion.section>
+                </div>
+            </section>
 
             {/* Section 2 */}
             <motion.section className="relative w-full min-h-screen" style={{ overflow: "hidden" }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>

@@ -420,6 +420,26 @@ const TableList = ({ type, title, subTitle }) => {
                                                             </button>
                                                         )}
 
+                                                         {(type === "Program") && (
+                                                            <button
+                                                                onClick={() => {
+                                                                    router.push(`/admin/add-labs?page_id=${event?.page_id}`);
+                                                                }}
+                                                                className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-novaSemi rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition-all duration-200 transform hover:scale-105"
+                                                                title="Add Labs"
+                                                            >
+                                                                <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path
+                                                                        strokeLinecap="round"
+                                                                        strokeLinejoin="round"
+                                                                        strokeWidth={2}
+                                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                                                                    />
+                                                                </svg>
+                                                                Add Labs
+                                                            </button>
+                                                        )}
+
                                                         {(type === "School" || type === "Department" || event.ComponentType === "HomePage") && (
                                                             <button
                                                                 onClick={() => {
@@ -440,6 +460,8 @@ const TableList = ({ type, title, subTitle }) => {
                                                                 Testimonial
                                                             </button>
                                                         )}
+
+                                                        
 
                                                         {(type === "School" || type === "Department" || event.ComponentType === "HomePage") && (
                                                             <button

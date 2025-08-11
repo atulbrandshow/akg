@@ -86,11 +86,11 @@ export default function NewNavBar() {
 
   const LinksList = ({ title, links, titleClassName, ulClassName, setBigMenuToggle }) => (
     <div className="pr-6 max-md:w-full">
-      {title && <h3 className={`font-novaBold ${titleClassName}`}>{title}</h3>}
-      <ul className={`space-y-0 ${ulClassName}`}>
+      {title && <h3 className={`font-novaBold max-lg:mb-3 ${titleClassName}`}>{title}</h3>}
+      <ul className={`space-y-1 lg:space-y-0 ${ulClassName}`}>
         {links?.map((link, index) => (
           <li key={index} className="">
-            <Link href={link?.url || "/"} className="hover:underline cursor-pointer text-left font-novaLight text-sm"
+            <Link href={link?.url || "/"} className="hover:underline cursor-pointer text-left font-novaReg text-sm"
               onClick={() => {
                 setBigMenuToggle(false); // Close the menu
               }}>
@@ -111,7 +111,7 @@ export default function NewNavBar() {
   return (
     <header
       className={`navbar z-[9999] w-full fixed top-0 left-0 transition-all duration-200 ${isScrolled ? "bg-blue-700" : "bg-white/0"}`}>
-      <div className={`overflow-hidden w-full transition-all duration-300 ease-in-out ${isScrolled ? "-mt-4" : "py-1.5"} flex justify-end items-center px-3 border-b border-gray-400/30`}>
+      <div className={`hidden md:flex overflow-hidden w-full transition-all duration-300 ease-in-out ${isScrolled ? "-mt-4" : "py-1.5"} justify-end items-center px-3 border-b border-gray-400/30`}>
         <div className="notification w-full">
           <Swiper
             modules={[Pagination, Autoplay]}
@@ -123,7 +123,7 @@ export default function NewNavBar() {
           >
             {notifications.map((notification, index) => (
               <SwiperSlide key={index}>
-                <p className={`text-center text-white font-novaReg cursor-grab text-xs`}>{notification}</p>
+                <p className={`text-center text-white font-novaReg cursor-pointer text-xs`}>{notification}</p>
               </SwiperSlide>
             ))}
           </Swiper>
@@ -141,7 +141,7 @@ export default function NewNavBar() {
           <div
             className={`text-white flex `}
           >
-            <div className={`flex justify-start items-center gap-2 ${BigMenuToggle && "relative z-[20] shadow-lg w-screen py-2"}`}>
+            <div className={`flex justify-start items-center gap-2 ${BigMenuToggle && "relative z-[20] shadow-lg w-screen pb-1.5"}`}>
               <div className="flex justify-center">
                 <Link href="/home" as="/">
                   <Image
@@ -156,27 +156,15 @@ export default function NewNavBar() {
               {BigMenuToggle &&
                 <button
                   onClick={() => setBigMenuToggle(!BigMenuToggle)}
-                  className="absolute right-2 top-3 text-black"
+                  className="absolute right-5 top-3 text-black"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
                 </button>
               }
             </div>
           </div>
         </div>
-        <div className="flex lg:hidden max-md:order-2">
-          {!BigMenuToggle && (
-            <button
-              type="button"
-              onClick={() => setBigMenuToggle(!BigMenuToggle)}
-              className="flex flex-col items-center justify-center rounded-md p-2 text-black">
-              <span className="sr-only">Open main menu</span>
-              <Bars2Icon aria-hidden="true" className="h-9 w-9" />
-              <p className="text-xs uppercase -mt-1">Menu</p>
-            </button>
-          )}
-        </div>
-        <div className="flex justify-end items-center">
+        <div className="hidden lg:flex justify-end items-center">
           <div className={`flex gap-x-6 justify-end items-center`}>
             <div className="flex gap-10 text-sm uppercase font-novaLight tracking-wider whitespace-nowrap text-white">
               <Link href="/news" className={`hover:underline hover:text-gray-400 transition duration-500`}>News</Link>
@@ -188,8 +176,8 @@ export default function NewNavBar() {
           </div>
         </div>
         <div className="flex justify-end">
-          <div className='bg-blue-500 flex justify-between gap-12 items-center rounded-md p-3'>
-            <Link href="tel:1800-200-0777">
+          <div className='bg-blue-500 flex justify-between gap-8 items-center rounded-md p-1 sm:p-3'>
+            <Link href="tel:1800-200-0777" className='hidden sm:block'>
               <div className='flex gap-2'>
                 <div className='h-10 w-10 flex items-center justify-center border-2 border-gray-300 rounded-full'>
                   <Phone size={20} className='text-white' />
@@ -200,21 +188,21 @@ export default function NewNavBar() {
                 </div>
               </div>
             </Link>
-            <Link href="#" className='text-white'>
+            <button onClick={() => setBigMenuToggle(!BigMenuToggle)} className='block lg:hidden text-white'>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="size-8">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
               </svg>
-            </Link>
+            </button>
           </div>
         </div>
       </div>
-      <div className='mt-2 px-3'>
+      <div className='mt-3 px-3'>
         <ul
           className={`${BigMenuToggle
-            ? "fixed w-full h-full left-0 top-0 py-20 overflow-y-auto bg-white/30 backdrop-blur-md"
-            : `hidden relative`} bg-white/30 pt-2 rounded-xl lg:flex items-center justify-between gap-2 text-white font-semibold text-lg px-20`}>
+            ? "fixed w-full h-full left-0 top-0 py-20 overflow-y-auto backdrop-blur-lg"
+            : `hidden relative`} bg-white/30 lg:pt-2 rounded-xl lg:flex items-center justify-between max-lg:space-y-3 gap-2 text-white font-novaSemi px-4 lg:px-8 text-sm xl:text-lg xl:px-6 2xl:px-20`}>
           {BigMenuToggle && <>
-            <div className="my-6">
+            <div className="my-10">
               <h2 className="text-center text-black text-sm font-novaSemi mb-1 uppercase">Notifications
               </h2>
               <Swiper
@@ -227,14 +215,14 @@ export default function NewNavBar() {
               >
                 {notifications.map((notification, index) => (
                   <SwiperSlide key={index}>
-                    <p className="text-center text-gray-700 font-novaReg cursor-grab text-sm">{notification}</p>
+                    <p className="text-center text-gray-800 font-novaReg cursor-grab text-sm">{notification}</p>
                   </SwiperSlide>
                 ))}
               </Swiper>
             </div>
           </>}
           <li className="relative group">
-            <button onClick={() => toggleMenu('about')} className={` relative focus:outline-none font-novaBold flex pb-2 items-center gap-1 tracking-widest`}>
+            <button onClick={() => toggleMenu('about')} className={` relative focus:outline-none font-novaBold flex lg:pb-2 items-center gap-1 tracking-widest`}>
               ABOUT{" "}
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6" /></svg>
               <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />

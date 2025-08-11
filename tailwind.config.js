@@ -18,7 +18,7 @@ module.exports = {
         "offwhite-gradient": 'linear-gradient(90deg, rgb(242, 244, 248) 70%, rgba(242, 244, 248, .1))',
         "edgeGradient": 'linear-gradient(to right, #00949a, #f7cc23, #000)',
         "gradient-conic":
-        "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         'text-gradient': 'linear-gradient(to right, #dc2626, #1d4ed8)',
         'custom-image': "url('/image/slider-home/asfdasda.jpg')",
         'About': "url('/image/lab/User-Manual-AKGEC 5.webp')",
@@ -99,7 +99,7 @@ module.exports = {
         'BG-Building-12': "url('/image/building/building-22.webp')",
         'BG-Building-13': "url('/image/building/building-23.webp')",
         'BG-Building-14': "url('/image/building/building-24.webp')",
-        
+
       },
       boxShadow: {
         'cardShadow': '0 0.5rem 1rem rgba(0, 0, 0, 0.15)',
@@ -127,7 +127,7 @@ module.exports = {
       },
     },
     animation: {
-      zoomInOut: 'zoomInOut 20s ease-in-out infinite',
+      zoomInOut: 'zoomInOut 16s ease-in-out infinite',
     },
   },
   plugins: [

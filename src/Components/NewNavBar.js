@@ -84,13 +84,13 @@ export default function NewNavBar() {
 
   return (
     <header
-      className={`navbar z-[100] w-full fixed top-0 left-0 transition-all duration-200 ${isScrolled ? "bg-[#0c4763]" : "bg-white/0"}`}>
-      <div className="grid grid-cols-12 gap-x-5">
-        <div className="col-span-2 flex">
+      className={`navbar z-[100] w-full fixed top-0 left-0 transition-all duration-200 ${isScrolled ? "bg-blue-700" : "bg-white/0"}`}>
+      <div className="grid grid-cols-12 gap-x-5 px-3 pt-1">
+        <div className="col-span-3 flex">
           <div
             className={`text-white flex `}
           >
-            <div className={`flex justify-start items-center gap-2 pl-3 ${BigMenuToggle && "relative z-[20] shadow-lg w-screen py-2"}`}>
+            <div className={`flex justify-start items-center gap-2 ${BigMenuToggle && "relative z-[20] shadow-lg w-screen py-2"}`}>
               <div className="flex justify-center">
                 <Link href="/home" as="/">
                   <Image
@@ -125,7 +125,7 @@ export default function NewNavBar() {
             </button>
           )}
         </div>
-        <div className="col-span-10 flex justify-end items-center">
+        <div className="col-span-9 flex justify-end items-center">
           <nav className="" >
             <div
               className={`flex gap-x-6 justify-end items-center`}
@@ -170,9 +170,7 @@ export default function NewNavBar() {
         <ul
           className={`${BigMenuToggle
             ? "fixed w-full h-full left-0 top-0 py-20 overflow-y-auto bg-white/30 backdrop-blur-md"
-            : `hidden relative`}  bg-white/30 pt-2 rounded-xl lg:flex items-center justify-between gap-2
-                text-white font-semibold text-lg px-20`}>
-
+            : `hidden relative`} bg-white/30 pt-2 rounded-xl lg:flex items-center justify-between gap-2 text-white font-semibold text-lg px-20`}>
           {BigMenuToggle && <>
             <div className="my-6">
               <h2 className="text-center text-black text-sm font-novaSemi mb-1 uppercase">Notifications

@@ -116,7 +116,7 @@ const ECDepartment = () => {
 
     return (
         <section>
-            <div className="relative h-[90vh] max-lg:h-full bg-cover">
+            <div className="relative h-screen max-lg:h-full bg-cover">
                 <div className="absolute inset-0 bg-BG42 bg-cover grayscale">
                     <div className="absolute inset-0 bg-black bg-opacity-70" />
                 </div>

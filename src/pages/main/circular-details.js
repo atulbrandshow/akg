@@ -42,17 +42,8 @@ export default function CircularDetailPage({ data }) {
 
     return (
         <div className="bg-gradient-to-br from-amber-50 to-yellow-100">
-            {/* Hero Section with Breadcrumb */}
-            <div className="bg-gradient-to-r from-blue-600 to-blue-600 text-white">
-                <div className="max-w-7xl mx-auto px-4 py-6">
-                    <div className="mb-4">
-                        <Breadcrumb data={data?.breadCrumb} />
-                    </div>
-                </div>
-            </div>
-
             {/* Title Section */}
-            <div className="bg-gradient-to-r from-blue-600 to-blue-600 text-white pb-16">
+            <div className="pt-48 bg-gradient-to-r from-blue-600 to-blue-600 text-white pb-16">
                 <div className="max-w-7xl mx-auto px-4">
                     <div className="flex items-start space-x-6">
                         {/* Document Icon */}
@@ -88,9 +79,14 @@ export default function CircularDetailPage({ data }) {
                     </div>
                 </div>
             </div>
+            <div className="max-w-7xl mx-auto px-4 py-6">
+                <div className="mb-4">
+                    <Breadcrumb data={data?.breadCrumb} />
+                </div>
+            </div>
 
             {/* Main Content */}
-            <div className="max-w-7xl mx-auto px-4 mt-8 pb-16">
+            <div className="max-w-7xl mx-auto px-4 pb-16">
                 <div className="grid lg:grid-cols-4 gap-8">
                     {/* Sidebar - Details Card */}
                     <div className="lg:col-span-1">

@@ -87,13 +87,15 @@ export default function NewNavBar() {
   const LinksList = ({ title, links, titleClassName, ulClassName, setBigMenuToggle }) => (
     <div className="pr-6 max-md:w-full">
       {title && <h3 className={`font-novaBold ${titleClassName}`}>{title}</h3>}
-      <ul className={`mt-2 ${ulClassName}`}>
+      <ul className={`space-y-0 ${ulClassName}`}>
         {links?.map((link, index) => (
           <li key={index} className="">
-            <button className="py-0.5 hover:underline cursor-pointer text-left font-novaLight text-sm" onClick={() => {
-              router.push(link.url);
-              setBigMenuToggle(false); // Close the menu
-            }}>{link.name}</button>
+            <Link href={link?.url || "/"} className="hover:underline cursor-pointer text-left font-novaLight text-sm"
+              onClick={() => {
+                setBigMenuToggle(false); // Close the menu
+              }}>
+              {link.name}
+            </Link>
           </li>
         ))}
       </ul>

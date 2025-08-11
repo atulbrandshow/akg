@@ -17,7 +17,7 @@ const CSEForm = () => {
         e.preventDefault()
     }
     return (
-        <div className="max-w-xl w-full bg-white rounded-lg shadow-lg p-6 space-y-6">
+        <div className="max-w-lg xl:max-w-xl w-full bg-white rounded-lg shadow-lg p-6 space-y-6">
             <div className="text-center">
                 <p className="text-gray-500 text-sm font-novaReg">APPLY TODAY FOR</p>
                 <h1 className="text-xl font-novaBold text-gray-900">CSE ENGINEERING PROGRAM</h1>

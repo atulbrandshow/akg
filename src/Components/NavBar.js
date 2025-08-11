@@ -117,7 +117,7 @@ export default function NavBar() {
               <div className="flex justify-center">
                 <Link href="/home" as="/">
                   <Image
-                    src="/image/akge u.png"
+                    src="/image/akg-logo.webp"
                     alt="AKG University Logo"
                     height={300}
                     width={800}

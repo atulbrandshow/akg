@@ -29,7 +29,7 @@ const ScholarshipHighlight = ({heading, desc, pgSub, ugSub}) => {
                     <div className=" bg-[#F7F7F7] border w-full border-gray-300 shadow-lg">
                         <div className=" text-center py-3">
                             <img
-                                src="/image/AKGEC_LOGO.webp"
+                                src="/image/akgec-logo.webp"
                                 alt="logo"
                                 className="inline-block w-20 mb-2"
                             />
@@ -85,7 +85,7 @@ const ScholarshipHighlight = ({heading, desc, pgSub, ugSub}) => {
                     <div className="bg-[#F7F7F7] border w-full border-gray-300 shadow-lg ">
                         <div className=" text-center py-3">
                             <img
-                                src="/image/AKGEC_LOGO.webp"
+                                src="/image/akgec-logo.webp"
                                 alt="logo"
                                 className="inline-block w-20 mb-2"
                             />

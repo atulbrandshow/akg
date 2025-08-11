@@ -107,7 +107,7 @@ export default function NavBar() {
 
   return (
     <header
-      className={`navbar z-[100] w-full sticky top-0 left-0 transition-all duration-200 shadow-lg ${isScrolled ? "bg-[#F7F7F7]" : "bg-white/50"}`}>
+      className={`navbar z-[100] w-full sticky top-0 left-0 transition-all duration-200 shadow-lg ${isScrolled ? "bg-white/30 backdrop-blur-md" : "bg-white/50"}`}>
       <div className="grid grid-cols-8 max-xl:grid-cols-12 max-lg:grid-cols-12 max-md:grid-cols-12 gap-x-5 max-[1320px]:gap-x-0 max-md:gap-x-2">
         <div className="col-span-2 flex max-xl:col-span-3 max-lg:col-span-9 max-md:col-span-10 max-sm:col-span-10">
           <div
@@ -117,7 +117,7 @@ export default function NavBar() {
               <div className="flex justify-center">
                 <Link href="/home" as="/">
                   <Image
-                    src="/image/akg-logo.jpg"
+                    src="/image/akge u.png"
                     alt="AKG University Logo"
                     height={300}
                     width={800}

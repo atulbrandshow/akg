@@ -43,7 +43,7 @@ const MainSection = ({ data }) => {
   }, [buildingImages])
 
   return (
-    <div className="overflow-hidden relative -mt-[90px]">
+    <div className="overflow-hidden relative">
       <div className="flex justify-center relative z-20 min-h-screen">
         <div className="grid grid-cols-2 max-lg:grid-cols-1 max-lg:pb-10">
           <div className="slide flex justify-center max-w-3xl flex-col pl-20 max-lg:mt-52 max-lg:items-center max-lg:px-5">

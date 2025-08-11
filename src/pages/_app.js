@@ -1,13 +1,13 @@
 'use client';
 
 import '../styles/globals.css';
-import NavBar from '@/Components/NavBar';
 import { StickyFooter } from '@/Components';
 import Footer from '@/Components/Footer';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import NewNavBar from '@/Components/NewNavBar';
 
 function MyApp({ Component, pageProps }) {
     const [isShowNavAndFooter, setIsShowNavAndFooter] = useState(false);
@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }) {
 
     return (
         <>
-            {isShowNavAndFooter && <NavBar />}
+            {isShowNavAndFooter && <NewNavBar />}
             <Component {...pageProps} />
             <ToastContainer
                 position="top-right"

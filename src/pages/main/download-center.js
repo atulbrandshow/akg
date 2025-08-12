@@ -3,7 +3,9 @@
 import Header from "@/Components/Header"
 import { API_NODE_URL, IMAGE_PATH } from "@/configs/config"
 import { Download } from "lucide-react"
+import Link from "next/link"
 import { useState, useEffect } from "react"
+import { toast } from "react-toastify"
 
 const DownloadCenter = ({ data }) => {
   const [searchTerm, setSearchTerm] = useState("")
@@ -61,59 +63,22 @@ const DownloadCenter = ({ data }) => {
   }
 
   const handleDownload = async (downloadId, fileName) => {
+    console.log(downloadId, fileName);
+
     try {
-      // Add Safari-specific headers and credentials
-      const requestOptions = {
-        credentials: 'include', // Essential for Safari to include cookies
-        headers: {
-          'Content-Type': 'application/json',
-          'Cache-Control': 'no-cache' // Safari caching workaround
-        }
-      };
-
-      const response = await fetch(
-        `${API_NODE_URL}downloads/${downloadId}/download`,
-        requestOptions
-      );
-
-      // Handle non-JSON responses
-      const contentType = response.headers.get('content-type');
-      const data = contentType?.includes('application/json')
-        ? await response.json()
-        : { success: false, message: 'Invalid response from server' };
+      const response = await fetch(`${API_NODE_URL}downloads/${downloadId}/download`)
+      const data = await response.json()
 
       if (data.success) {
-        const fileUrl = `${IMAGE_PATH}${data.data.fileUrl}`;
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-
-        if (isIOS) {
-          // iOS Safari requires this specific approach
-          const newWindow = window.open('', '_blank');
-          newWindow.location = fileUrl;
-        } else {
-          // Standard download for other browsers
-          const link = document.createElement("a");
-          link.href = fileUrl;
-          link.download = fileName;
-          link.style.display = "none";
-          document.body.appendChild(link);
-          link.click();
-          setTimeout(() => {
-            document.body.removeChild(link);
-          }, 100);
-        }
-
-        fetchDownloads();
+        fetchDownloads()
       } else {
-        // More detailed error message
-        const errorMsg = data.message || `Server responded with status ${response.status}`;
-        alert(`Error downloading file: ${errorMsg}`);
+        toast.error("Error downloading file: " + data.message)
       }
     } catch (error) {
-      console.error("Error downloading file:", error);
-      alert(`Network error: ${error.message}`);
+      console.error("Error downloading file:", error)
+      toast.error("Error downloading file")
     }
-  };
+  }
 
   const getFileIcon = (fileType) => {
     switch (fileType) {
@@ -296,13 +261,15 @@ const DownloadCenter = ({ data }) => {
                               </span>
                               <span>{item.downloads.toLocaleString()} downloads</span>
                             </div>
-                            <button
+                            <Link
+                              href={IMAGE_PATH + item.fileUrl}
+                              target="_blank"
                               onClick={() => handleDownload(item._id, item.fileName)}
                               className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg font-novaSemi transition-colors flex items-center gap-1"
                             >
                               <Download size={18} />
                               Download
-                            </button>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -362,13 +329,15 @@ const DownloadCenter = ({ data }) => {
                           </span>
                         </div>
                       </div>
-                      <button
+                      <Link
+                        href={IMAGE_PATH + item.fileUrl}
                         onClick={() => handleDownload(item._id, item.fileName)}
+                        target="_blank"
                         className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-lg font-novaSemi transition-colors flex items-center gap-1"
                       >
                         <Download size={18} />
                         Download
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 ))}

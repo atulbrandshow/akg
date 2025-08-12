@@ -134,9 +134,7 @@ const navSections = [
       {
         icon: Users,
         label: "Topper Management",
-        nestedLinks: [
-          { label: "Toppers", href: "/admin/topper-managment" },
-        ],
+        href: "/admin/topper-managment"
       },
     ],
   },

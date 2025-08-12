@@ -134,7 +134,7 @@ const navSections = [
       {
         icon: Users,
         label: "Topper Management",
-        href: "/admin/topper-managment"
+        href: "/admin/topper-management"
       },
     ],
   },

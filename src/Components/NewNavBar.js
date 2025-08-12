@@ -86,7 +86,7 @@ export default function NewNavBar() {
 
   const LinksList = ({ title, links, titleClassName, ulClassName, setBigMenuToggle }) => (
     <div className="pr-6 max-md:w-full">
-      {title && <h3 className={`font-novaBold max-lg:mb-3 ${titleClassName}`}>{title}</h3>}
+      {title && <h3 className={`font-novaBold leading-none mb-3 ${titleClassName}`}>{title}</h3>}
       <ul className={`space-y-1 lg:space-y-0 ${ulClassName}`}>
         {links?.map((link, index) => (
           <li key={index} className="">
@@ -362,7 +362,7 @@ export default function NewNavBar() {
               <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
             </button>
             <div
-              className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-[840px]"
+              className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-max"
                 } ${openMenu === 'academics' && "absolute h-auto mt-0 w-full"} -left-52 max-lg:left-0 h-0  mt-5 overflow-hidden lg:group-hover:h-auto lg:group-hover:mt-0 transition-all bg-white
                                     text-black rounded-lg shadow-lg `}
             >
@@ -481,7 +481,7 @@ export default function NewNavBar() {
               <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
             </button>
             <div
-              className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-[420px]"
+              className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-max"
                 } ${openMenu === 'campus-life' && "absolute h-auto mt-0 w-full"} left-0 h-0 mt-5 overflow-hidden lg:group-hover:h-auto lg:group-hover:mt-0 transition-all bg-white
                                     text-black rounded-lg shadow-lg `}
             >
@@ -544,7 +544,7 @@ export default function NewNavBar() {
               <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
             </button>
             <div
-              className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-[600px]"
+              className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-[650px]"
                 } ${openMenu === 'placements' && "absolute h-auto mt-0 w-full"} right-0 h-0 mt-5 overflow-hidden lg:group-hover:h-auto lg:group-hover:mt-0 transition-all bg-white
                                     text-black rounded-lg shadow-lg `}
             >
@@ -607,11 +607,11 @@ export default function NewNavBar() {
               <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
             </button>
             <div
-              className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-max"
+              className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-[1050px]"
                 } ${openMenu === 'research' && "absolute h-auto mt-0 w-full"} right-0 h-0 mt-5 overflow-hidden lg:group-hover:h-auto lg:group-hover:mt-0 transition-all bg-white
                                     text-black rounded-lg shadow-lg`}
             >
-              <div className="grid grid-cols-5">
+              <div className="grid grid-cols-6">
                 <div className="col-span-2 max-md:hidden">
                   <div className="bg-Research bg-cover bg-black bg-blend-multiply bg-opacity-70">
                     <div className="flex flex-col justify-start items-start pt-5 px-6">
@@ -649,15 +649,15 @@ export default function NewNavBar() {
                     </div>
                   </div>
                 </div>
-                <div className="col-span-3 max-md:col-span-5 p-5 transition-all max-md:max-h-72 max-md:overflow-y-scroll max-md:flex-col">
+                <div className="col-span-4 max-md:col-span-4 p-5 transition-all max-md:max-h-72 max-md:overflow-y-scroll max-md:flex-col">
                   <div className={`flex ${BigMenuToggle && "flex-col gap-y-5"}`}>
-                    <div className={`w-40 pr-2 ${BigMenuToggle && "w-full"}`}>
+                    <div className={`w-52 pr-2 ${BigMenuToggle && "w-full"}`}>
                       <LinksList title="Research Intensive University" links={ResearchInnovation.sublinks['Research Intensive University']} setBigMenuToggle={setBigMenuToggle} />
                     </div>
-                    <div className={`w-40 pr-2 ${BigMenuToggle && "w-full"}`}>
+                    <div className={`w-52 pr-2 ${BigMenuToggle && "w-full"}`}>
                       <LinksList title="Entrepreneurship Cells" links={ResearchInnovation.sublinks['Entrepreneurship Cells']} setBigMenuToggle={setBigMenuToggle} />
                     </div>
-                    <div className={`w-40 pr-2 ${BigMenuToggle && "w-full"}`}>
+                    <div className={`w-52 pr-2 ${BigMenuToggle && "w-full"}`}>
                       <LinksList title="Sustainable Development Goals (SDG's)" links={ResearchInnovation.sublinks[`Sustainable Development Goals (SDG's)`]} setBigMenuToggle={setBigMenuToggle} />
                     </div>
                   </div>

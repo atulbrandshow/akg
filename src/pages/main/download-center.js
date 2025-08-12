@@ -62,26 +62,40 @@ const DownloadCenter = ({ data }) => {
 
   const handleDownload = async (downloadId, fileName) => {
     try {
-      const response = await fetch(`${API_NODE_URL}downloads/${downloadId}/download`);
-      const data = await response.json();
+      // Add Safari-specific headers and credentials
+      const requestOptions = {
+        credentials: 'include', // Essential for Safari to include cookies
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-cache' // Safari caching workaround
+        }
+      };
+
+      const response = await fetch(
+        `${API_NODE_URL}downloads/${downloadId}/download`,
+        requestOptions
+      );
+
+      // Handle non-JSON responses
+      const contentType = response.headers.get('content-type');
+      const data = contentType?.includes('application/json')
+        ? await response.json()
+        : { success: false, message: 'Invalid response from server' };
 
       if (data.success) {
         const fileUrl = `${IMAGE_PATH}${data.data.fileUrl}`;
-
-        // Detect iOS devices
         const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
         if (isIOS) {
-          // iOS-specific solution
-          const newWindow = window.open();
-          newWindow.location.href = fileUrl;
+          // iOS Safari requires this specific approach
+          const newWindow = window.open('', '_blank');
+          newWindow.location = fileUrl;
         } else {
-          // Standard download method for other browsers
+          // Standard download for other browsers
           const link = document.createElement("a");
           link.href = fileUrl;
           link.download = fileName;
           link.style.display = "none";
-          link.target = "_blank";
           document.body.appendChild(link);
           link.click();
           setTimeout(() => {
@@ -89,14 +103,15 @@ const DownloadCenter = ({ data }) => {
           }, 100);
         }
 
-        // Refresh downloads to update count
         fetchDownloads();
       } else {
-        alert("Error downloading file: " + data.message);
+        // More detailed error message
+        const errorMsg = data.message || `Server responded with status ${response.status}`;
+        alert(`Error downloading file: ${errorMsg}`);
       }
     } catch (error) {
       console.error("Error downloading file:", error);
-      alert("Error downloading file");
+      alert(`Network error: ${error.message}`);
     }
   };
 
@@ -168,7 +183,7 @@ const DownloadCenter = ({ data }) => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Header
-        title="Download Center..."
+        title="Download Center"
         gradient="bg-gradient-to-r from-gray-800 to-transparent"
         bgUrl={data?.banner_img}
         custom={true}

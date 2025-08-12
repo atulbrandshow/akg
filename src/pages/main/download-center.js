@@ -62,28 +62,40 @@ const DownloadCenter = ({ data }) => {
 
   const handleDownload = async (downloadId, fileName) => {
     try {
-      const response = await fetch(`${API_NODE_URL}downloads/${downloadId}/download`)
-      const data = await response.json()
+      const response = await fetch(`${API_NODE_URL}downloads/${downloadId}/download`);
+      const data = await response.json();
 
       if (data.success) {
-        // Create a temporary link to download the file
-        const link = document.createElement("a")
-        link.href = `${IMAGE_PATH}${data.data.fileUrl}`
-        link.target = "_blank"
-        document.body.appendChild(link)
-        link.click()
-        document.body.removeChild(link)
+        // Safari-compatible download solution
+        const fileUrl = `${IMAGE_PATH}${data.data.fileUrl}`;
+
+        if (/Version\/\d+.*Safari/.test(navigator.userAgent)) {
+          // Safari requires a different approach
+          window.open(fileUrl, '_blank');
+        } else {
+          // Standard method for other browsers
+          const link = document.createElement("a");
+          link.href = fileUrl;
+          link.download = fileName;
+          link.target = "_blank";
+          link.style.display = 'none';
+          document.body.appendChild(link);
+          link.click();
+          setTimeout(() => {
+            document.body.removeChild(link);
+          }, 100);
+        }
 
         // Refresh downloads to update count
-        fetchDownloads()
+        fetchDownloads();
       } else {
-        alert("Error downloading file: " + data.message)
+        alert("Error downloading file: " + data.message);
       }
     } catch (error) {
-      console.error("Error downloading file:", error)
-      alert("Error downloading file")
+      console.error("Error downloading file:", error);
+      alert("Error downloading file");
     }
-  }
+  };
 
   const getFileIcon = (fileType) => {
     switch (fileType) {
@@ -153,7 +165,7 @@ const DownloadCenter = ({ data }) => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Header
-        title="Download Center..."
+        title="Download Center"
         gradient="bg-gradient-to-r from-gray-800 to-transparent"
         bgUrl={data?.banner_img}
         custom={true}

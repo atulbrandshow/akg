@@ -35,7 +35,7 @@ export default function LabsShowcase({ data }) {
   }
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-gradient-to-r from-cyan-200 to-indigo-100 ">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <motion.div
@@ -45,14 +45,14 @@ export default function LabsShowcase({ data }) {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-extrabold text-gray-900">
+          <h1 className="text-[42px] text-center font-novaReg max-lg:text-4xl max-md:text-3xl max-sm:px-4 text-gray-700">
             {first}{" "}
             <span className="font-novaSemi bg-text-gradient bg-clip-text text-transparent animate-gradient">
               {middle}{" "}
             </span>
             {last}
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto mt-4">
+          </h1>
+          <p className="text-gray-600 max-w-2xl mx-auto mt-2 font-novaReg">
             {d?.Lab_Description}
           </p>
         </motion.div>
@@ -85,7 +85,7 @@ export default function LabsShowcase({ data }) {
                   className={`absolute inset-0 bg-gradient-to-tr ${lab.gradient}`}
                 ></div>
                 <span
-                  className={`absolute top-4 left-4 bg-${lab.color}-100 text-${lab.color}-800 text-xs font-semibold px-3 py-1 rounded-full shadow-sm`}
+                  className={`absolute top-4 left-4 bg-${lab.color}-100 text-${lab.color}-800 text-xs font-novaSemi px-3 py-1 rounded-full shadow-sm`}
                 >
                   {lab.type}
                 </span>
@@ -94,23 +94,23 @@ export default function LabsShowcase({ data }) {
               {/* Rest of the content remains the same */}
               <div className="w-1/2 p-6 flex flex-col">
                 <h3
-                  className={`text-lg font-bold text-gray-900 mb-3 group-hover:text-${lab.color}-600 transition-colors duration-300`}
+                  className={`text-lg font-novaBold text-gray-900 mb-3 group-hover:text-${lab.color}-600 transition-colors duration-300`}
                 >
                   {lab.title}
                 </h3>
-                <p className="text-gray-600 text-sm flex-1 leading-relaxed">
+                <p className="text-gray-600 font-novaReg text-sm flex-1 leading-relaxed">
                   {lab.description}
                 </p>
 
                 <div className="mt-4">
-                  <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                  <h4 className="text-xs font-novaSemi text-gray-500 uppercase tracking-wider mb-2">
                     {d[`Program_Title-${lab.id}`] || "Associated Programs"}
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {lab.programs.map((program, i) => (
                       <span
                         key={i}
-                        className={`bg-${lab.color}-50 text-${lab.color}-800 text-xs px-3 py-1 rounded-full border border-${lab.color}-100`}
+                        className={`bg-${lab.color}-50 text-${lab.color}-800 text-xs font-novaSemi px-3 py-0.5 rounded-full border border-${lab.color}-100`}
                       >
                         {program}
                       </span>
@@ -119,7 +119,7 @@ export default function LabsShowcase({ data }) {
                 </div>
 
                 <button
-                  className={`mt-6 bg-${lab.color}-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-${lab.color}-700 shadow-md hover:shadow-lg transition-all duration-300`}
+                  className={`mt-6 bg-${lab.color}-600 text-white py-2 px-4 rounded-lg font-novaSemi hover:bg-${lab.color}-700 shadow-md hover:shadow-lg transition-all duration-300`}
                 >
                   View More Details
                 </button>

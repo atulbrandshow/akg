@@ -260,9 +260,13 @@ const TableList = ({ type, title, subTitle }) => {
                             </span>
                         )}
                     </p>
-                    <Link href={`create-${type?.toLowerCase()}`} className="flex gap-1 items-center bg-gradient-to-r from-purple-500 font-novaSemi to-pink-600 text-white px-6 py-2 rounded-lg cursor-pointer hover:from-purple-600 hover:to-pink-700 transition-all duration-200 transform hover:scale-105 shadow-lg">
+                    <Link
+                        href={`create-${type?.toLowerCase().replace(/\s+/g, "-")}`}
+                        className="flex gap-1 items-center bg-gradient-to-r from-purple-500 font-novaSemi to-pink-600 text-white px-6 py-2 rounded-lg cursor-pointer hover:from-purple-600 hover:to-pink-700 transition-all duration-200 transform hover:scale-105 shadow-lg"
+                    >
                         <Plus size={18} />
-                        Add {type}</Link>
+                        Add {type}
+                    </Link>
                 </div>
 
                 {/* Table Container */}
@@ -420,7 +424,7 @@ const TableList = ({ type, title, subTitle }) => {
                                                             </button>
                                                         )}
 
-                                                         {/* {(type === "Program") && (
+                                                        {/* {(type === "Program") && (
                                                             <button
                                                                 onClick={() => {
                                                                     router.push(`/admin/add-labs?page_id=${event?.page_id}`);
@@ -461,7 +465,7 @@ const TableList = ({ type, title, subTitle }) => {
                                                             </button>
                                                         )}
 
-                                                        
+
 
                                                         {(type === "School" || type === "Department" || event.ComponentType === "HomePage") && (
                                                             <button

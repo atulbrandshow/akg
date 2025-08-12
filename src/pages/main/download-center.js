@@ -153,7 +153,7 @@ const DownloadCenter = ({ data }) => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Header
-        title="Download Center"
+        title="Download Center..."
         gradient="bg-gradient-to-r from-gray-800 to-transparent"
         bgUrl={data?.banner_img}
         custom={true}

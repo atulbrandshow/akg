@@ -110,7 +110,7 @@ export default function NewNavBar() {
 
   return (
     <header
-      className={`navbar z-[9999] w-full fixed top-0 left-0 transition-all duration-200 ${isScrolled ? "bg-blue-700" : "bg-white/0"}`}>
+      className={`navbar z-[100] w-full fixed top-0 left-0 transition-all duration-200 ${isScrolled ? "bg-blue-700" : "bg-white/0"}`}>
       <div className={`hidden md:flex overflow-hidden w-full transition-all duration-300 ease-in-out ${isScrolled ? "-mt-4" : "py-1.5"} justify-end items-center px-3 border-b border-gray-400/30`}>
         <div className="notification w-full">
           <Swiper

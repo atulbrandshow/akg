@@ -41,16 +41,6 @@ const navSections = [
         label: "Online Application",
         href: "/admin/online-applications"
       },
-      {
-        icon: BookmarkCheck,
-        label: "Student Reviews",
-        href: "/admin/student-reviews"
-      },
-       {
-        icon: Users,
-        label: "Testimonial",
-        href: "/admin/testimonial-list"
-      }
     ],
   },
   {
@@ -117,12 +107,19 @@ const navSections = [
     title: "Resources",
     items: [
       {
+        icon: BookmarkCheck,
+        label: "Student Reviews",
+        href: "/admin/student-reviews"
+      },
+      {
+        icon: Users,
+        label: "Testimonial",
+        href: "/admin/testimonial-list"
+      },
+      {
         icon: Download,
         label: "Download Center",
-        nestedLinks: [
-          { label: "Add Download Center", href: "/admin/create-download-center" },
-          { label: "List of Download Center", href: "/admin/download-center-list" },
-        ],
+        href: "/admin/download-center-list"
       },
       {
         icon: Notebook,

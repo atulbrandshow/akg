@@ -218,25 +218,20 @@ const DSDepartment = () => {
                 Department at a Glance
               </h2>
             </div>
-            <ul className="space-y-2 font-novaReg">
+            <ul className="space-y-2 list-disc font-novaReg">
               <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
                 <span className="text-gray-600">AI and Machine Learning integrated curriculum</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
                 <span className="text-gray-600">Hands-on experience with Big Data technologies</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
                 <span className="text-gray-600">Industry collaborations with leading data companies</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
                 <span className="text-gray-600">High-demand career opportunities in analytics and AI</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span>
                 <span className="text-gray-600">Real-world data projects and case studies</span>
               </li>
             </ul>

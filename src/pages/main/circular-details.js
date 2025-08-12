@@ -43,7 +43,7 @@ export default function CircularDetailPage({ data }) {
     return (
         <div className="bg-gradient-to-br from-amber-50 to-yellow-100">
             {/* Title Section */}
-            <div className="pt-48 bg-gradient-to-r from-blue-600 to-blue-600 text-white pb-16">
+            <div className="pt-32 lg:pt-56 bg-gradient-to-r from-blue-600 to-blue-600 text-white pb-16">
                 <div className="max-w-7xl mx-auto px-4">
                     <div className="flex items-start space-x-6">
                         {/* Document Icon */}

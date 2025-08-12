@@ -53,10 +53,11 @@ export default function ArticleDetailPage({ data }) {
 
     return (
         <div className="bg-gradient-to-br from-gray-50 via-white to-blue-50 min-h-screen">
+            <div className="pt-40 bg-blue-700"></div>
             {/* Breadcrumb */}
             {data?.breadCrumb && (
                 <div className="bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-200 sticky top-0 z-50">
-                    <div className="max-w-7xl mx-auto px-4 py-4">
+                    <div className="max-w-7xl mx-auto px-4 py-6">
                         <Breadcrumb data={data.breadCrumb} />
                     </div>
                 </div>
@@ -256,7 +257,7 @@ export default function ArticleDetailPage({ data }) {
 
                     {/* Enhanced Sidebar */}
                     <div className="lg:col-span-1">
-                        <div className="sticky top-32 space-y-8">
+                        <div className="sticky top-36 space-y-8">
                             {/* Article Info Card */}
                             <div className="bg-gradient-to-br from-white to-blue-50 rounded-2xl shadow-xl p-5 sm:p-6 border border-blue-100">
                                 <h3 className="text-xl font-novaBold text-gray-900 mb-6 flex items-center">

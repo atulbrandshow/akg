@@ -62,7 +62,7 @@ export default function ArticleList({ data }) {
     return (
         <div className="min-h-screen bg-gray-50">
             {/* Hero Section */}
-            <section className="relative bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 overflow-hidden">
+            <section className="pt-32 relative bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 overflow-hidden">
                 <div className="absolute inset-0 bg-black opacity-20"></div>
                 <div className="absolute inset-0">
                     <div className="absolute top-10 left-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>

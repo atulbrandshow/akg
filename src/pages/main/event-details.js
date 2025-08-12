@@ -42,15 +42,6 @@ export default function EventDetailPage({ data }) {
 
     return (
         <div className="bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 min-h-screen">
-            {/* Breadcrumb */}
-            {data?.breadCrumb && (
-                <div className="bg-white/80 backdrop-blur-sm border-b border-purple-100 sticky top-0 z-10">
-                    <div className="max-w-7xl mx-auto px-4 py-4">
-                        <Breadcrumb data={data.breadCrumb} />
-                    </div>
-                </div>
-            )}
-
             {/* Hero Banner Section */}
             {data.banner_img && (
                 <div className="relative h-80 sm:h-96 md:h-[600px] overflow-hidden">
@@ -60,6 +51,14 @@ export default function EventDetailPage({ data }) {
                         <h1 className="text-3xl sm:text-4xl md:text-6xl font-novaBold text-center mb-4 drop-shadow-lg">
                             {data.title || data.name || "Event Details"}
                         </h1>
+                    </div>
+                </div>
+            )}
+
+            {data?.breadCrumb && (
+                <div className="bg-white/80 backdrop-blur-sm border-b border-purple-100 sticky top-0 z-10">
+                    <div className="max-w-7xl mx-auto px-4 py-6">
+                        <Breadcrumb data={data.breadCrumb} />
                     </div>
                 </div>
             )}
@@ -158,7 +157,7 @@ export default function EventDetailPage({ data }) {
 
                     {/* Sidebar */}
                     <div className="lg:col-span-1">
-                        <div className="sticky top-24 space-y-6">
+                        <div className="sticky top-36 space-y-6">
                             {/* Event Details Card */}
                             <div className="bg-white rounded-3xl shadow-xl p-5 sm:p-8 border border-purple-100">
                                 <h3 className="text-2xl font-novaBold text-gray-900 mb-6 flex items-center">

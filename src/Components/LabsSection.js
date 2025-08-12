@@ -1,0 +1,133 @@
+// components/LabsShowcase.jsx
+'use client';
+
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { splitTitle } from '@/utills/splitTitle';
+import { IMAGE_PATH } from '@/configs/config';
+
+export default function LabsShowcase({ data }) {
+  const d = data?.pageData || {};
+  const { first, middle, last } = splitTitle(d?.Lab_Title);
+
+  // Dynamically generate labsData
+  const labsData = [];
+  let i = 1;
+  while (d[`Lab_Title-${i}`]) {
+    labsData.push({
+      id: i,
+      type: i === 1 ? "COMPUTER LAB" : i === 2 ? "ROBOTICS LAB" : "LAB",
+      title: d[`Lab_Title-${i}`],
+      description: d[`Lab_Desc-${i}`],
+      image: d[`Lab-${i}_Image`] ? IMAGE_PATH + d[`Lab-${i}_Image`] : null,
+      programs: Object.keys(d)
+        .filter((key) => key.startsWith(`Lab-${i}_p-`))
+        .map((key) => d[key]),
+      gradient:
+        i === 1
+          ? "from-blue-600/70 via-blue-400/50 to-transparent"
+          : i === 2
+            ? "from-red-600/70 via-red-400/50 to-transparent"
+            : "from-indigo-600/70 via-indigo-400/50 to-transparent",
+      color: i === 1 ? "blue" : i === 2 ? "red" : "indigo",
+    });
+    i++;
+  }
+
+  return (
+    <section className="py-20 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl font-extrabold text-gray-900">
+            {first}{" "}
+            <span className="font-novaSemi bg-text-gradient bg-clip-text text-transparent animate-gradient">
+              {middle}{" "}
+            </span>
+            {last}
+          </h2>
+          <p className="text-gray-600 max-w-2xl mx-auto mt-4">
+            {d?.Lab_Description}
+          </p>
+        </motion.div>
+
+        {/* Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {labsData.map((lab) => (
+            <motion.div
+              key={lab.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
+              viewport={{ once: true }}
+              className="group bg-white rounded-2xl shadow-lg overflow-hidden flex border border-gray-100 hover:shadow-2xl hover:border-gray-200 transition-all duration-300"
+            >
+              {/* Image Side - Updated to match ProgramFacultySlider */}
+              <div className="w-1/2 relative overflow-hidden">
+                {lab.image ? (
+                  <img
+                    alt={lab.title}
+                    src={lab.image}
+                    className="absolute inset-0 h-full w-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                  />
+                ) : (
+                  <div className="absolute inset-0 bg-gray-200 flex items-center justify-center">
+                    <span className="text-gray-500">No Image</span>
+                  </div>
+                )}
+                <div
+                  className={`absolute inset-0 bg-gradient-to-tr ${lab.gradient}`}
+                ></div>
+                <span
+                  className={`absolute top-4 left-4 bg-${lab.color}-100 text-${lab.color}-800 text-xs font-semibold px-3 py-1 rounded-full shadow-sm`}
+                >
+                  {lab.type}
+                </span>
+              </div>
+
+              {/* Rest of the content remains the same */}
+              <div className="w-1/2 p-6 flex flex-col">
+                <h3
+                  className={`text-lg font-bold text-gray-900 mb-3 group-hover:text-${lab.color}-600 transition-colors duration-300`}
+                >
+                  {lab.title}
+                </h3>
+                <p className="text-gray-600 text-sm flex-1 leading-relaxed">
+                  {lab.description}
+                </p>
+
+                <div className="mt-4">
+                  <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                    {d[`Program_Title-${lab.id}`] || "Associated Programs"}
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {lab.programs.map((program, i) => (
+                      <span
+                        key={i}
+                        className={`bg-${lab.color}-50 text-${lab.color}-800 text-xs px-3 py-1 rounded-full border border-${lab.color}-100`}
+                      >
+                        {program}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <button
+                  className={`mt-6 bg-${lab.color}-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-${lab.color}-700 shadow-md hover:shadow-lg transition-all duration-300`}
+                >
+                  View More Details
+                </button>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

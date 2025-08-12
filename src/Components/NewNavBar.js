@@ -172,6 +172,7 @@ export default function NewNavBar() {
               <Link href="/articles" className={`hover:underline hover:text-gray-400 transition duration-500`}>Article</Link>
               <Link href="/circulars" className={`hover:underline hover:text-gray-400 transition duration-500`}>Circulars</Link>
               <Link href="/notice" className={`hover:underline hover:text-gray-400 transition duration-500`}>Notices</Link>
+              <Link href="/download-center" className={`hover:underline hover:text-gray-400 transition duration-500`}>Download Center</Link>
             </div>
           </div>
         </div>

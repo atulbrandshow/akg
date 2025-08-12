@@ -124,13 +124,7 @@ const navSections = [
       {
         icon: Notebook,
         label: "Highlight Banner",
-        nestedLinks: [
-          { label: "Add Highlight Banner", href: "/admin/create-highlight-banner" },
-          {
-            label: "List of Highlight Banner",
-            href: "/admin/highlight-banner-list",
-          },
-        ],
+        href: "/admin/highlight-banner-list"
       },
     ],
   },

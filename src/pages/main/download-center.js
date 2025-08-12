@@ -66,19 +66,22 @@ const DownloadCenter = ({ data }) => {
       const data = await response.json();
 
       if (data.success) {
-        // Safari-compatible download solution
         const fileUrl = `${IMAGE_PATH}${data.data.fileUrl}`;
 
-        if (/Version\/\d+.*Safari/.test(navigator.userAgent)) {
-          // Safari requires a different approach
-          window.open(fileUrl, '_blank');
+        // Detect iOS devices
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+        if (isIOS) {
+          // iOS-specific solution
+          const newWindow = window.open();
+          newWindow.location.href = fileUrl;
         } else {
-          // Standard method for other browsers
+          // Standard download method for other browsers
           const link = document.createElement("a");
           link.href = fileUrl;
           link.download = fileName;
+          link.style.display = "none";
           link.target = "_blank";
-          link.style.display = 'none';
           document.body.appendChild(link);
           link.click();
           setTimeout(() => {
@@ -165,7 +168,7 @@ const DownloadCenter = ({ data }) => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Header
-        title="Download Center"
+        title="Download Center..."
         gradient="bg-gradient-to-r from-gray-800 to-transparent"
         bgUrl={data?.banner_img}
         custom={true}

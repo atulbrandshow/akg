@@ -69,7 +69,6 @@ const DownloadCenter = ({ data }) => {
         // Create a temporary link to download the file
         const link = document.createElement("a")
         link.href = `${IMAGE_PATH}${data.data.fileUrl}`
-        link.download = fileName
         link.target = "_blank"
         document.body.appendChild(link)
         link.click()

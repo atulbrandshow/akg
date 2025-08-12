@@ -3,8 +3,8 @@
 import { API_NODE_URL } from "@/configs/config"
 import { SquarePen, Trash2 } from "lucide-react"
 import { useState, useEffect } from "react"
-import { DownloadForm } from "./DownloadForm"
 import { toast } from "react-toastify"
+import DownloadForm from "./DownloadForm"
 
 const DownloadCenterList = () => {
     const [downloads, setDownloads] = useState([])

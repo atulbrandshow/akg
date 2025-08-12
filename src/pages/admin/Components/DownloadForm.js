@@ -6,7 +6,7 @@ import { toast } from "react-toastify"
 const { uploadImages } = require("@/utills/ImageUpload")
 
 // Enhanced Download Form Component
-export const DownloadForm = ({ download, onClose, apiUrl }) => {
+const DownloadForm = ({ download, onClose, apiUrl }) => {
     const [formData, setFormData] = useState({
         title: download?.title || "",
         description: download?.description || "",
@@ -353,3 +353,5 @@ export const DownloadForm = ({ download, onClose, apiUrl }) => {
         </div>
     )
 }
+
+export default DownloadForm;

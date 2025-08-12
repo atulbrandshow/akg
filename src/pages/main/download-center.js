@@ -169,7 +169,7 @@ const DownloadCenter = ({ data }) => {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar */}
           <div className="lg:w-1/4">
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sticky top-36">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6 sticky top-36">
               <h3 className="text-lg font-novaSemi text-gray-900 mb-4">Categories</h3>
               <div className="space-y-2">
                 {updatedCategories.map((category) => (
@@ -201,7 +201,7 @@ const DownloadCenter = ({ data }) => {
           {/* Main Content */}
           <div className="lg:w-3/4">
             {/* Search and Filter Bar */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6 mb-8">
               <div className="flex flex-col md:flex-row gap-4">
                 <div className="flex-1">
                   <div className="relative">
@@ -246,23 +246,23 @@ const DownloadCenter = ({ data }) => {
             {featuredDownloads.length > 0 && (
               <div className="mb-8">
                 <h2 className="text-2xl font-novaBold text-gray-900 mb-6">Featured Downloads</h2>
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid xl:grid-cols-2 gap-6">
                   {featuredDownloads.map((item) => (
                     <div
                       key={item._id}
-                      className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl p-6 border border-emerald-200"
+                      className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl p-4 sm:p-6 border border-emerald-200"
                     >
-                      <div className="flex items-start gap-4">
+                      <div className="flex items-start gap-4 max-sm:flex-col max-sm:items-start">
                         {getFileIcon(item.fileType)}
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-2">
                             <h3 className="text-lg font-novaSemi text-gray-900">{item.title}</h3>
-                            <span className="bg-emerald-100 text-emerald-800 text-xs px-2 py-1 rounded-full font-novaSemi">
+                            <span className="max-sm:hidden bg-emerald-100 text-emerald-800 text-xs px-2 py-1 rounded-full font-novaSemi">
                               Featured
                             </span>
                           </div>
                           <p className="text-gray-600 mb-4 font-novaReg">{item.description}</p>
-                          <div className="flex items-center justify-between">
+                          <div className="flex items-center justify-between max-sm:flex-col max-sm:items-start max-sm:space-y-2">
                             <div className="flex items-center gap-4 font-novaSemi text-sm text-gray-500">
                               <span>
                                 {item.fileType} • {item.fileSize}
@@ -292,21 +292,21 @@ const DownloadCenter = ({ data }) => {
                 {downloads.map((item) => (
                   <div
                     key={item._id}
-                    className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow"
+                    className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6 hover:shadow-md transition-shadow"
                   >
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-4 max-sm:flex-col max-sm:items-start">
                       {getFileIcon(item.fileType)}
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
                           <h3 className="text-lg font-novaSemi text-gray-900">{item.title}</h3>
                           {item.featured && (
-                            <span className="bg-emerald-100 text-emerald-800 text-xs px-2 py-1 rounded-full font-novaSemi">
+                            <span className="max-sm:hidden bg-emerald-100 text-emerald-800 text-xs px-2 py-1 rounded-full font-novaSemi">
                               Featured
                             </span>
                           )}
                         </div>
                         <p className="text-gray-600 mb-3 font-novaReg">{item.description}</p>
-                        <div className="flex items-center gap-6 font-novaSemi text-sm text-gray-500">
+                        <div className="flex items-center gap-x-6 gap-y-1 font-novaSemi flex-wrap text-sm text-gray-500">
                           <span className="flex items-center gap-1">
                             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                               <path

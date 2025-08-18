@@ -1,77 +1,20 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { API_NODE_URL } from "@/configs/config"
+import { API_NODE_URL, IMAGE_PATH } from "@/configs/config"
+import { uploadImages } from "@/utills/ImageUpload"
 
 const TopperManagement = () => {
-  // Dummy data for demonstration
-  const dummyToppers = [
-    {
-      _id: "1",
-      name: "Rajesh Kumar",
-      rank: 1,
-      percentage: 98.5,
-      school: "School Of Computer Science",
-      year: "2024",
-      subject: "JEE Main",
-      profileImage: "/placeholder.svg?height=100&width=100",
-    },
-    {
-      _id: "2",
-      name: "Priya Sharma",
-      rank: 2,
-      percentage: 97.8,
-      school:"School Of Computer Science",
-      year: "2024",
-      subject: "NEET",
-      profileImage: "/placeholder.svg?height=100&width=100",
-    },
-    {
-      _id: "3",
-      name: "Arjun Patel",
-      rank: 3,
-      percentage: 96.9,
-      school: "School Of Computer Science",
-      year: "2024",
-      subject: "JEE Advanced",
-      profileImage: "/placeholder.svg?height=100&width=100",
-    },
-    {
-      _id: "4",
-      name: "Sneha Reddy",
-      rank: 4,
-      percentage: 96.2,
-      school: "School Of Computer Science",
-      year: "2024",
-      subject: "EAMCET",
-      profileImage: "/placeholder.svg?height=100&width=100",
-    },
-    {
-      _id: "5",
-      name: "Vikram Singh",
-      rank: 5,
-      percentage: 95.7,
-      school: "School Of Computer Science",
-      year: "2024",
-      subject: "CBSE Board",
-      profileImage: "/placeholder.svg?height=100&width=100",
-    },
-    {
-      _id: "6",
-      name: "Ananya Gupta",
-      rank: 6,
-      percentage: 95.1,
-      school: "School Of Computer Science",
-      year: "2024",
-      subject: "ICSE Board",
-      profileImage: "/placeholder.svg?height=100&width=100",
-    },
-  ]
-
-  const [toppers, setToppers] = useState(dummyToppers)
+  const [toppers, setToppers] = useState([])
   const [loading, setLoading] = useState(false)
   const [showModal, setShowModal] = useState(false)
   const [editingTopper, setEditingTopper] = useState(null)
+  const [stats, setStats] = useState({
+    totalToppers: 0,
+    avgPercentage: 0,
+    topRank: 0,
+    totalSchools: 0,
+  })
   const [formData, setFormData] = useState({
     name: "",
     rank: "",
@@ -84,22 +27,48 @@ const TopperManagement = () => {
   const [imagePreview, setImagePreview] = useState("")
   const [uploading, setUploading] = useState(false)
 
-  // API base URL - adjust according to your server
-  const API_BASE = API_NODE_URL
-
-  // Simulate fetch all toppers with dummy data
+  // Fetch all toppers
   const fetchToppers = async () => {
     setLoading(true)
-    // Simulate API delay
-    setTimeout(() => {
-      setToppers(dummyToppers)
+    try {
+      const response = await fetch(`${API_NODE_URL}toppers?sortBy=rank&sortOrder=asc`, {
+        credentials: "include",
+      })
+      const data = await response.json()
+
+      if (data.success) {
+        setToppers(data.data.toppers)
+      } else {
+        console.error("Error fetching toppers:", data.message)
+        alert("Error fetching toppers: " + data.message)
+      }
+    } catch (error) {
+      console.error("Error fetching toppers:", error)
+      alert("Error fetching toppers")
+    } finally {
       setLoading(false)
-    }, 1000)
+    }
+  }
+
+  // Fetch statistics
+  const fetchStats = async () => {
+    try {
+      const response = await fetch(`${API_NODE_URL}toppers/stats`, {
+        credentials: "include",
+      })
+      const data = await response.json()
+
+      if (data.success) {
+        setStats(data.data)
+      }
+    } catch (error) {
+      console.error("Error fetching stats:", error)
+    }
   }
 
   useEffect(() => {
-    // Load dummy data immediately
-    setToppers(dummyToppers)
+    fetchToppers()
+    fetchStats()
   }, [])
 
   // Handle form input changes
@@ -129,15 +98,7 @@ const TopperManagement = () => {
     }
   }
 
-  // Upload image using the provided function (dummy implementation)
-  const uploadImages = async (images, folder) => {
-    // Simulate upload delay
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-    // Return dummy URL
-    return ["/placeholder.svg?height=100&width=100"]
-  }
-
-  // Handle form submission (dummy implementation)
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault()
     setUploading(true)
@@ -147,36 +108,49 @@ const TopperManagement = () => {
 
       // Upload image if new image is selected
       if (formData.profileImage) {
-        const urls = await uploadImages([formData.profileImage], "TopperProfiles")
-        imageUrl = urls[0] || ""
+        try {
+          imageUrl = await uploadImages(formData.profileImage)
+        } catch (uploadError) {
+          console.error("Image upload failed:", uploadError)
+          alert("Image upload failed: " + uploadError.message)
+          setUploading(false)
+          return
+        }
       }
 
       const topperData = {
-        _id: editingTopper ? editingTopper._id : Date.now().toString(),
         name: formData.name,
         rank: Number.parseInt(formData.rank),
         percentage: Number.parseFloat(formData.percentage),
         school: formData.school,
         year: formData.year,
         subject: formData.subject,
-        profileImage: imageUrl || "/placeholder.svg?height=100&width=100",
+        profileImage: imageUrl,
       }
 
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500))
+      const url = editingTopper ? `${API_NODE_URL}toppers/${editingTopper._id}` : API_NODE_URL + "toppers"
+      const method = editingTopper ? "PUT" : "POST"
 
-      if (editingTopper) {
-        // Update existing topper
-        setToppers((prev) => prev.map((t) => (t._id === editingTopper._id ? topperData : t)))
-        alert("Topper updated successfully!")
+      const response = await fetch(url, {
+        method,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(topperData),
+      })
+
+      const data = await response.json()
+
+      if (data.success) {
+        alert(editingTopper ? "Topper updated successfully!" : "Topper added successfully!")
+        setShowModal(false)
+        resetForm()
+        fetchToppers()
+        fetchStats()
       } else {
-        // Add new topper
-        setToppers((prev) => [...prev, topperData])
-        alert("Topper added successfully!")
+        alert("Error: " + data.message)
       }
-
-      setShowModal(false)
-      resetForm()
     } catch (error) {
       console.error("Error saving topper:", error)
       alert("Error saving topper")
@@ -185,16 +159,25 @@ const TopperManagement = () => {
     }
   }
 
-  // Delete topper (dummy implementation)
+  // Delete topper
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this topper?")) return
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 500))
+      const response = await fetch(`${API_NODE_URL}toppers/${id}`, {
+        method: "DELETE",
+        credentials: "include",
+      })
 
-      setToppers((prev) => prev.filter((t) => t._id !== id))
-      alert("Topper deleted successfully!")
+      const data = await response.json()
+
+      if (data.success) {
+        alert("Topper deleted successfully!")
+        fetchToppers()
+        fetchStats()
+      } else {
+        alert("Error: " + data.message)
+      }
     } catch (error) {
       console.error("Error deleting topper:", error)
       alert("Error deleting topper")
@@ -239,18 +222,18 @@ const TopperManagement = () => {
   }
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
-      <div className="max-w-7xl mx-auto">
+    <div className="">
+      <div className="">
         {/* Header */}
         <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Topper Management</h1>
-              <p className="text-gray-600 mt-1">Manage your academic toppers list</p>
+              <h1 className="text-3xl font-novaBold text-gray-900">Topper Management</h1>
+              <p className="text-gray-600 mt-1 font-novaReg">Manage your academic toppers list</p>
             </div>
             <button
               onClick={openAddModal}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200 flex items-center gap-2"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-novaSemi transition-colors duration-200 flex items-center gap-2"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -275,8 +258,8 @@ const TopperManagement = () => {
                 </svg>
               </div>
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Total Toppers</p>
-                <p className="text-2xl font-bold text-gray-900">{toppers.length}</p>
+                <p className="text-sm font-novaSemi text-gray-600">Total Toppers</p>
+                <p className="text-2xl font-novaBold text-gray-900">{stats.totalToppers}</p>
               </div>
             </div>
           </div>
@@ -294,13 +277,8 @@ const TopperManagement = () => {
                 </svg>
               </div>
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Avg Percentage</p>
-                <p className="text-2xl font-bold text-gray-900">
-                  {toppers.length > 0
-                    ? (toppers.reduce((sum, t) => sum + t.percentage, 0) / toppers.length).toFixed(1)
-                    : 0}
-                  %
-                </p>
+                <p className="text-sm font-novaSemi text-gray-600">Avg Percentage</p>
+                <p className="text-2xl font-novaBold text-gray-900">{stats.avgPercentage.toFixed(1)}%</p>
               </div>
             </div>
           </div>
@@ -318,8 +296,8 @@ const TopperManagement = () => {
                 </svg>
               </div>
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Top Rank</p>
-                <p className="text-2xl font-bold text-gray-900">#{Math.min(...toppers.map((t) => t.rank))}</p>
+                <p className="text-sm font-novaSemi text-gray-600">Top Rank</p>
+                <p className="text-2xl font-novaBold text-gray-900">#{stats.topRank || "N/A"}</p>
               </div>
             </div>
           </div>
@@ -337,8 +315,8 @@ const TopperManagement = () => {
                 </svg>
               </div>
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Schools</p>
-                <p className="text-2xl font-bold text-gray-900">{new Set(toppers.map((t) => t.school)).size}</p>
+                <p className="text-sm font-novaSemi text-gray-600">Schools</p>
+                <p className="text-2xl font-novaBold text-gray-900">{stats.totalSchools}</p>
               </div>
             </div>
           </div>
@@ -347,13 +325,13 @@ const TopperManagement = () => {
         {/* Toppers List */}
         <div className="bg-white rounded-lg shadow-sm">
           <div className="p-6 border-b border-gray-200">
-            <h2 className="text-xl font-semibold text-gray-900">All Toppers ({toppers.length})</h2>
+            <h2 className="text-xl font-novaSemi text-gray-900">All Toppers ({toppers.length})</h2>
           </div>
 
           {loading ? (
             <div className="p-8 text-center">
               <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-              <p className="mt-2 text-gray-600">Loading toppers...</p>
+              <p className="mt-2 text-gray-600 font-novaReg">Loading toppers...</p>
             </div>
           ) : toppers.length === 0 ? (
             <div className="p-8 text-center text-gray-500">
@@ -370,7 +348,7 @@ const TopperManagement = () => {
                   d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
                 />
               </svg>
-              <p className="text-lg font-medium">No toppers found</p>
+              <p className="text-lg font-novaSemi">No toppers found</p>
               <p className="mt-1">Add your first topper to get started</p>
             </div>
           ) : (
@@ -378,28 +356,28 @@ const TopperManagement = () => {
               <table className="w-full">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-novaSemi text-gray-500 uppercase tracking-wider">
                       Profile
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-novaSemi text-gray-500 uppercase tracking-wider">
                       Name
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-novaSemi text-gray-500 uppercase tracking-wider">
                       Rank
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-novaSemi text-gray-500 uppercase tracking-wider">
                       Percentage
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-novaSemi text-gray-500 uppercase tracking-wider">
                       School
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-novaSemi text-gray-500 uppercase tracking-wider">
                       Year
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-novaSemi text-gray-500 uppercase tracking-wider">
                       Subject
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-novaSemi text-gray-500 uppercase tracking-wider">
                       Actions
                     </th>
                   </tr>
@@ -411,9 +389,9 @@ const TopperManagement = () => {
                         <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-200">
                           {topper.profileImage ? (
                             <img
-                              src={topper.profileImage || "/placeholder.svg"}
+                              src={IMAGE_PATH + topper.profileImage}
                               alt={topper.name}
-                              className="w-full h-full object-cover"
+                              className="w-full h-full object-cover object-top"
                             />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center text-gray-400">
@@ -430,26 +408,25 @@ const TopperManagement = () => {
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm font-medium text-gray-900">{topper.name}</div>
+                        <div className="text-sm font-novaSemi text-gray-900">{topper.name}</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span
-                          className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                            topper.rank === 1
-                              ? "bg-yellow-100 text-yellow-800"
-                              : topper.rank === 2
-                                ? "bg-gray-100 text-gray-800"
-                                : topper.rank === 3
-                                  ? "bg-orange-100 text-orange-800"
-                                  : "bg-green-100 text-green-800"
-                          }`}
+                          className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-novaSemi ${topper.rank === 1
+                            ? "bg-yellow-100 text-yellow-800"
+                            : topper.rank === 2
+                              ? "bg-gray-100 text-gray-800"
+                              : topper.rank === 3
+                                ? "bg-orange-100 text-orange-800"
+                                : "bg-green-100 text-green-800"
+                            }`}
                         >
                           #{topper.rank}
                         </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                         <div className="flex items-center">
-                          <span className="font-medium">{topper.percentage}%</span>
+                          <span className="font-novaSemi">{topper.percentage}%</span>
                           {topper.percentage >= 95 && (
                             <svg className="w-4 h-4 ml-1 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                               <path
@@ -461,14 +438,14 @@ const TopperManagement = () => {
                           )}
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{topper.school}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{topper.year}</td>
+                      <td className="px-6 py-4 whitespace-nowrap font-novaReg text-sm text-gray-900">{topper.school}</td>
+                      <td className="px-6 py-4 whitespace-nowrap font-novaReg text-sm text-gray-900">{topper.year}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-novaSemi bg-blue-100 text-blue-800">
                           {topper.subject}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-novaSemi">
                         <div className="flex space-x-2">
                           <button
                             onClick={() => openEditModal(topper)}
@@ -515,7 +492,7 @@ const TopperManagement = () => {
           <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b border-gray-200">
               <div className="flex justify-between items-center">
-                <h3 className="text-lg font-semibold text-gray-900">
+                <h3 className="text-lg font-novaSemi text-gray-900">
                   {editingTopper ? "Edit Topper" : "Add New Topper"}
                 </h3>
                 <button
@@ -533,12 +510,16 @@ const TopperManagement = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Profile Image */}
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Profile Image</label>
+                  <label className="block text-sm font-novaSemi text-gray-700 mb-2">Profile Image</label>
                   <div className="flex items-center space-x-4">
-                    <div className="w-20 h-20 rounded-full overflow-hidden bg-gray-200">
+                    <div className="w-24 h-20 rounded-full overflow-hidden bg-gray-200">
                       {imagePreview ? (
                         <img
-                          src={imagePreview || "/placeholder.svg"}
+                          src={
+                            imagePreview?.startsWith("data:") // base64 uploaded image
+                              ? imagePreview
+                              : IMAGE_PATH + imagePreview // existing stored image
+                          }
                           alt="Preview"
                           className="w-full h-full object-cover"
                         />
@@ -559,14 +540,14 @@ const TopperManagement = () => {
                       type="file"
                       accept="image/*"
                       onChange={handleImageChange}
-                      className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                      className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-novaSemi file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                     />
                   </div>
                 </div>
 
                 {/* Name */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Name *</label>
+                  <label className="block text-sm font-novaSemi text-gray-700 mb-2">Name *</label>
                   <input
                     type="text"
                     name="name"
@@ -580,7 +561,7 @@ const TopperManagement = () => {
 
                 {/* Rank */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Rank *</label>
+                  <label className="block text-sm font-novaSemi text-gray-700 mb-2">Rank *</label>
                   <input
                     type="number"
                     name="rank"
@@ -595,7 +576,7 @@ const TopperManagement = () => {
 
                 {/* Percentage */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Percentage *</label>
+                  <label className="block text-sm font-novaSemi text-gray-700 mb-2">Percentage *</label>
                   <input
                     type="number"
                     name="percentage"
@@ -612,7 +593,7 @@ const TopperManagement = () => {
 
                 {/* School */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">School *</label>
+                  <label className="block text-sm font-novaSemi text-gray-700 mb-2">School *</label>
                   <input
                     type="text"
                     name="school"
@@ -626,7 +607,7 @@ const TopperManagement = () => {
 
                 {/* Year */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Year *</label>
+                  <label className="block text-sm font-novaSemi text-gray-700 mb-2">Year *</label>
                   <input
                     type="text"
                     name="year"
@@ -640,7 +621,7 @@ const TopperManagement = () => {
 
                 {/* Subject */}
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Subject *</label>
+                  <label className="block text-sm font-novaSemi text-gray-700 mb-2">Subject *</label>
                   <input
                     type="text"
                     name="subject"
@@ -657,14 +638,14 @@ const TopperManagement = () => {
                 <button
                   type="button"
                   onClick={() => setShowModal(false)}
-                  className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                  className="px-4 py-2 text-sm font-novaSemi text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={uploading}
-                  className="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                  className="px-4 py-2 text-sm font-novaSemi text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                 >
                   {uploading && <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>}
                   {uploading ? "Saving..." : editingTopper ? "Update Topper" : "Add Topper"}

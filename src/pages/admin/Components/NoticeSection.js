@@ -238,51 +238,6 @@ export default function NoticeSection() {
         </button>
       </div>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white p-6 rounded-lg border shadow-sm">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-gray-600">Total Notices</p>
-              <p className="text-2xl font-bold text-gray-900">{stats.overview?.totalNotices || 0}</p>
-            </div>
-            <FileText className="w-8 h-8 text-blue-600" />
-          </div>
-        </div>
-
-        <div className="bg-white p-6 rounded-lg border shadow-sm">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-gray-600">Total Views</p>
-              <p className="text-2xl font-bold text-gray-900">{stats.overview?.totalViews || 0}</p>
-            </div>
-            <Eye className="w-8 h-8 text-green-600" />
-          </div>
-        </div>
-
-        <div className="bg-white p-6 rounded-lg border shadow-sm">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-gray-600">Categories</p>
-              <p className="text-2xl font-bold text-gray-900">{stats.categories?.length || 0}</p>
-            </div>
-            <Building className="w-8 h-8 text-purple-600" />
-          </div>
-        </div>
-
-        <div className="bg-white p-6 rounded-lg border shadow-sm">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-gray-600">Urgent Notices</p>
-              <p className="text-2xl font-bold text-gray-900">
-                {stats.priorities?.find((p) => p._id === "Urgent")?.count || 0}
-              </p>
-            </div>
-            <AlertCircle className="w-8 h-8 text-red-600" />
-          </div>
-        </div>
-      </div>
-
       {/* Filters */}
       <div className="bg-white p-4 rounded-lg border shadow-sm">
         <div className="flex flex-col sm:flex-row gap-4">
@@ -570,10 +525,10 @@ export default function NoticeSection() {
                           <Calendar className="w-4 h-4" />
                           {new Date(notice.createdAt).toLocaleDateString()}
                         </span>
-                        <span className="flex items-center gap-1">
+                        {/* <span className="flex items-center gap-1">
                           <Eye className="w-4 h-4" />
                           {notice.views} views
-                        </span>
+                        </span> */}
                       </div>
                     </div>
 

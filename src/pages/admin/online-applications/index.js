@@ -7,9 +7,9 @@ const OnlineApplication = () => {
     
 
     return (
-        <div className="flex bg-gray-50 min-h-screen">
+        <div className="flex bg-gray-50">
             <SideBar />
-            <div className="flex-1 pt-10 px-10 overflow-x-auto">
+            <div className="pt-10 px-10 overflow-x-auto w-full h-screen">
                 <ApplicationTable />
             </div>
         </div>

@@ -63,10 +63,11 @@ const PageDataManager = () => {
           const response = await fetch(`${API_NODE_URL}slug/getbyid?page_id=${pageid}`, {
             credentials: "include",
           })
-          const data = await response.json()
+          const data = await response.json();
           if (data.status) {
             setType(data?.data?.type || "Page")
             setPageDetails(data?.data || {})
+            fetchAvailableKeys(data?.data?.type || "Page");
           } else {
             setType("Page")
             setPageDetails({})
@@ -140,7 +141,7 @@ const PageDataManager = () => {
     try {
       const response = await fetch(`${API_NODE_URL}page-params/get-by-pageid?pageId=${pageid}`)
       const result = await response.json()
-      console.log(result)
+
       if (result.status) {
         setParams(result.data)
       } else {
@@ -154,10 +155,11 @@ const PageDataManager = () => {
     }
   }
 
-  const fetchAvailableKeys = async () => {
+  const fetchAvailableKeys = async (type) => {
     try {
       const response = await fetch(`${API_NODE_URL}page-params/get-keys/?pageType=${type}`)
-      const result = await response.json()
+      const result = await response.json();
+
       if (result.status) {
         setAvailableKeys(result.data || [])
       }
@@ -166,13 +168,15 @@ const PageDataManager = () => {
     }
   }
 
-  // Prepare options for React Select
-  const keyOptions = availableKeys.map((key) => ({
-    value: key.key,
-    label: key.key,
-    dataType: key.dataType,
-    isExisting: true,
-  }))
+  const existingParamKeys = params.map((param) => param.key)
+  const keyOptions = availableKeys
+    .filter((key) => !existingParamKeys.includes(key.key))
+    .map((key) => ({
+      value: key.key,
+      label: key.key,
+      dataType: key.dataType,
+      isExisting: true,
+    }))
 
   // Handle file upload using the provided utility
   const handleFileUpload = async (files, isMultiple = false) => {
@@ -717,7 +721,7 @@ const PageDataManager = () => {
         resetForm()
         fetchParams()
         if (isNewKey) {
-          fetchAvailableKeys()
+          fetchAvailableKeys(type)
         }
       } else {
         showNotification(result.message, "error")
@@ -836,13 +840,13 @@ const PageDataManager = () => {
   // Group parameters by type
   const groupedParams = groupByType
     ? filteredParams.reduce((groups, param) => {
-        const type = param.dataType
-        if (!groups[type]) {
-          groups[type] = []
-        }
-        groups[type].push(param)
-        return groups
-      }, {})
+      const type = param.dataType
+      if (!groups[type]) {
+        groups[type] = []
+      }
+      groups[type].push(param)
+      return groups
+    }, {})
     : { all: filteredParams }
 
   // Get unique data types for filter
@@ -862,9 +866,8 @@ const PageDataManager = () => {
         {/* Notification */}
         {notification.show && (
           <div
-            className={`fixed top-4 right-4 z-50 px-6 py-4 rounded-lg shadow-lg transition-all duration-300 transform ${
-              notification.type === "error" ? "bg-red-500 text-white" : "bg-green-500 text-white"
-            }`}
+            className={`fixed top-4 right-4 z-50 px-6 py-4 rounded-lg shadow-lg transition-all duration-300 transform ${notification.type === "error" ? "bg-red-500 text-white" : "bg-green-500 text-white"
+              }`}
           >
             <div className="flex items-center justify-between">
               <span className="font-novaSemi">{notification.message}</span>
@@ -1145,11 +1148,10 @@ const PageDataManager = () => {
             <div className="flex items-center space-x-2">
               <button
                 onClick={() => setGroupByType(!groupByType)}
-                className={`px-4 py-3 rounded-lg font-novaSemi transition-all duration-200 flex items-center space-x-2 ${
-                  groupByType
-                    ? "bg-blue-100 text-blue-700 hover:bg-blue-200"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                }`}
+                className={`px-4 py-3 rounded-lg font-novaSemi transition-all duration-200 flex items-center space-x-2 ${groupByType
+                  ? "bg-blue-100 text-blue-700 hover:bg-blue-200"
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  }`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14-7H5m14 14H5" />
@@ -1345,9 +1347,8 @@ const PageDataManager = () => {
                                   </span>
                                 )}
                                 <span
-                                  className={`px-2 py-1 rounded-full text-xs font-novaSemi ${
-                                    param.status ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
-                                  }`}
+                                  className={`px-2 py-1 rounded-full text-xs font-novaSemi ${param.status ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
+                                    }`}
                                 >
                                   {param.status ? "Published" : "Draft"}
                                 </span>

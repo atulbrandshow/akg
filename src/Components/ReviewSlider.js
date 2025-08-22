@@ -9,10 +9,10 @@ const ReviewSlider = ({ data }) => {
 
   return (
     <section className="bg-[#1c1f52] w-full ">
-      <div className="max-w-6xl max-xl:max-w-4xl max-lg:max-w-3xl mx-auto h-full flex justify-start pt-10 items-center flex-col text-white bg-center bg-contain bg-world-map">
+      <div className="h-full flex justify-start pt-10 items-center flex-col text-white bg-center bg-contain bg-world-map">
         <span className="text-[#d58544] text-3xl font-novaReg max-sm:text-2xl">Reviews</span>
         <h1 className="text-5xl font-novaBold max-sm:text-4xl">{data?.pageData?.Reviews_Title}</h1>
-        <div className="relative w-full flex justify-center items-center">
+        <div className="max-w-2xl md:max-w-3xl lg:max-w-4xl mx-auto relative w-full flex justify-center items-center">
           <Swiper
             modules={[Navigation, Autoplay]}
             spaceBetween={30}

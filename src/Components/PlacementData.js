@@ -9,14 +9,28 @@ const PlacementData = ({ data }) => {
         const studentsSelected = data?.[`Placement-Students-${i}`]
         const highestPackage = data?.[`Placement-Package-${i}`]
 
+        console.log(highestPackage);
+
+
         if (title && description && companies && studentsSelected && highestPackage) {
+            const match = highestPackage.match(/^(\d+(?:\.\d+)?)([a-zA-Z]+)?$/);
+            let packageValue = null, packageUnit = null;
+
+            if (match) {
+                packageValue = parseFloat(match[1]);
+                packageUnit = match[2] || null;
+            }
+
             placementsData.push({
                 title,
                 description,
                 companies,
                 studentsSelected,
-                highestPackage
-            })
+                highestPackage: {
+                    value: packageValue,
+                    unit: packageUnit
+                }
+            });
         }
     }
 
@@ -40,7 +54,7 @@ const PlacementData = ({ data }) => {
                         </div>
                         <div className="flex-1 flex justify-center items-center flex-col bg-[#5c5c5c] py-5">
                             <span className="block text-center text-5xl max-sm:text-2xl font-novaBold">
-                                {placement.highestPackage} <span className="text-xl max-sm:text-base -ml-2">LPA</span>
+                                {placement.highestPackage.value} <span className="text-xl max-sm:text-base -ml-2">{placement.highestPackage.unit}</span>
                             </span>
                             <p className="text-center text-sm leading-none max-w-28">International Highest Package</p>
                         </div>

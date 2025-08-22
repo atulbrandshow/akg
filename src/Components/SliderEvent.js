@@ -40,7 +40,7 @@ export default function SliderEvent() {
   };
   return (
     <div className="bg-blue-400 py-10">
-      <h2 className="text-4xl font-novaReg text-white uppercase text-center mb-10">School Events and Updates</h2>
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-novaReg text-white uppercase text-center mb-10">School Events and Updates</h2>
       <div className="relative mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-32">
         <Swiper
           modules={[Autoplay, Navigation]}

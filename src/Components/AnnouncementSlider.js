@@ -140,7 +140,7 @@ export default function AnnouncementSlider() {
     return (
         <div className="w-full max-w-7xl mx-auto sm:p-4 p-2">
             <div className="flex justify-between items-center mb-6">
-                <h2 className="text-3xl font-novaBold text-gray-800 tracking-tight">ANNOUNCEMENTS</h2>
+                <h2 className="text-2xl sm:text-3xl font-novaBold text-gray-800 tracking-tight">ANNOUNCEMENTS</h2>
                 {announcements.length > 1 && (
                     <div className="max-sm:hidden flex gap-3">
                         <button
@@ -192,7 +192,7 @@ export default function AnnouncementSlider() {
                                                     href={announcement.link || "#"}
                                                     className="group block"
                                                 >
-                                                    <h3 className="text-lg sm:text-xl font-novaBold text-gray-800 group-hover:text-blue-700 transition-colors duration-200 leading-tight mb-3">
+                                                    <h3 className="sm:text-lg md:text-xl font-novaBold text-gray-800 group-hover:text-blue-700 transition-colors duration-200 leading-tight mb-3">
                                                         {announcement.title}
                                                     </h3>
                                                 </Link>

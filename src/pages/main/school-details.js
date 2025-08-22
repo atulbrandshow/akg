@@ -186,7 +186,7 @@ const SchoolDetails = ({ data }) => {
         <div className='mt-10'>
           <div className='sm:flex justify-between'>
             <h2 className='font-novaReg text-4xl md:w-1/2 lg:w-[60%] sm:w-[60%]'>{d?.Overview_Title}</h2>
-            <Link href={IMAGE_PATH + d?.Brochure_Pdf} target='_blank' className='lg:px-6 sm:px-3 mt-3 sm:mt-0 py-3 px-5 md:px-4 lg:py-2 text-sm bg-black text-white font-novaSemi uppercase tracking-wider rounded-full hover:bg-gray-300 hover:text-black hover:border border-gray-300 transition duration-200 ease-linear flex items-center lg:gap-2 gap-3 sm:gap-1 md:gap-1'>
+            <Link href={IMAGE_PATH + d?.Brochure_Pdf} target='_blank' className='max-sm:mt-5 px-4 py-2.5 w-fit h-fit text-sm bg-black text-white font-novaSemi uppercase tracking-wider rounded-full hover:bg-gray-300 hover:text-black hover:border border-gray-300 transition duration-200 ease-linear flex items-center lg:gap-2 gap-3 sm:gap-1 md:gap-1'>
               <ArrowDownToLine size={18} strokeWidth={2} /> Download Brochure
             </Link>
           </div>
@@ -219,10 +219,10 @@ const SchoolDetails = ({ data }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Header Section */}
           <div className="text-center mb-12">
-            <h2 className="text-4xl sm:text-5xl font-novaBold text-gray-900 mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-novaBold text-gray-900 mb-4">
               {d?.Academic_Title}
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto font-novaReg">
+            <p className="sm:text-lg text-gray-600 max-w-2xl mx-auto font-novaReg">
               {d?.Academic_Desc}
             </p>
           </div>
@@ -237,10 +237,12 @@ const SchoolDetails = ({ data }) => {
                   className="min-w-[140px] sm:min-w-[160px]"
                 >
                   {activeView === "departments" && (
-                    <Check
-                      className="inline-block mr-2 h-5 w-5 bg-white rounded-full p-1 text-blue-600"
-                      strokeWidth={3}
-                    />
+                    <div>
+                      <Check
+                        className="inline-block mr-2 h-5 w-5 bg-white rounded-full p-1 text-blue-600"
+                        strokeWidth={3}
+                      />
+                    </div>
                   )}
                   {d?.Department_Title}
                 </CustomButton>
@@ -250,10 +252,12 @@ const SchoolDetails = ({ data }) => {
                   className="min-w-[140px] sm:min-w-[180px]"
                 >
                   {activeView === "programmes" && (
-                    <Check
-                      className="inline-block mr-2 h-5 w-5 bg-white rounded-full p-1 text-blue-600"
-                      strokeWidth={3}
-                    />
+                    <div>
+                      <Check
+                        className="inline-block mr-2 h-5 w-5 bg-white rounded-full p-1 text-blue-600"
+                        strokeWidth={3}
+                      />
+                    </div>
                   )}
                   {d?.Programme_Title}
                 </CustomButton>

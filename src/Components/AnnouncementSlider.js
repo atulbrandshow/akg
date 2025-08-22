@@ -27,10 +27,6 @@ export default function AnnouncementSlider() {
                 credentials: "include"
             })
 
-            if (!res.ok) {
-                throw new Error('Failed to fetch announcements')
-            }
-
             const result = await res.json()
             if (result.status) {
                 const activeAnnouncements = result?.data?.filter(announcement => announcement.status).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))

@@ -84,21 +84,27 @@ const FacultySlider = ({ data }) => {
                         {facultyData?.map((faculty) => (
                             <div key={faculty._id} className="min-w-[250px] bg-[#fff7f7] border border-blue-400 text-black overflow-hidden shadow transition hover:duration-300 hover:ease-in-out hover:shadow-2xl rounded-xl">
                                 <div className="py-8 px-4">
-                                    <div className="flex items-center justify-center">
-                                        <div className="h-34 w-34 rounded-full border-4 border-[#E7EBFB]">
-                                            <img className="h-32 w-32 rounded-full" src={IMAGE_PATH + faculty.banner_img} alt={faculty.name} />
+                                    {faculty.banner_img && (
+                                        <div className="flex items-center justify-center">
+                                            <div className="h-34 w-34 rounded-full border-4 border-[#E7EBFB]">
+                                                <img className="h-32 w-32 rounded-full" src={IMAGE_PATH + faculty.banner_img} alt={faculty.name} />
+                                            </div>
                                         </div>
-                                    </div>
+                                    )}
                                     <div className="mt-4 space-y-2">
                                         <h4 className="text-lg font-novaBold mb-4">{faculty.name}</h4>
-                                        <div className="flex justify-center items-center gap-1">
-                                            <CircleUserRound size={16} />
-                                            <p className="text-sm text-gray-600">{faculty.param5}</p>
-                                        </div>
-                                        <div className="flex justify-center items-center gap-1">
-                                            <GraduationCap size={16} />
-                                            <p className="text-sm text-gray-600">{faculty.param9}</p>
-                                        </div>
+                                        {faculty.param5 && (
+                                            <div className="flex justify-center items-center gap-1">
+                                                <CircleUserRound size={16} />
+                                                <p className="text-sm text-gray-600">{faculty.param5}</p>
+                                            </div>
+                                        )}
+                                        {faculty.param9 && (
+                                            <div className="flex justify-center items-center gap-1">
+                                                <GraduationCap size={16} />
+                                                <p className="text-sm text-gray-600">{faculty.param9}</p>
+                                            </div>
+                                        )}
                                     </div>
                                     <div className="mt-6 w-full flex items-center justify-end">
                                         <CircleArrowRight className="h-8 w-8 text-primary items-end" />

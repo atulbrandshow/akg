@@ -28,9 +28,9 @@ export default function LogoSlider() {
     };
 
     return (
-        
-        <div className="break1:max-w-[1650px] break2:max-w-[1320px] break3:max-w-[1140px] break4:max-w-[960px] mx-auto bg-white block px-16 max-md:px-3">
-            <div className="mx-auto py-10">
+
+        <div className="bg-white block px-16 max-md:px-3">
+            <div className="max-w-[1400px] mx-auto py-10">
                 <Swiper
                     modules={[Autoplay, Navigation]}
                     spaceBetween={10}

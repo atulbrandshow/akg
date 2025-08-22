@@ -97,9 +97,9 @@ export default function SliderEvent() {
       </div>
 
       <div className="text-center mt-8 sm:mb-4">
-        <button className="bg-yellow-400 text-black px-6 py-2 rounded-md font-semibold">
+        <Link href="/events" className="bg-yellow-400 text-black px-6 py-2 rounded-md font-semibold">
           View More
-        </button>
+        </Link>
       </div>
     </div>
   )

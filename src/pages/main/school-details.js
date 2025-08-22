@@ -438,11 +438,11 @@ const SchoolDetails = ({ data }) => {
       <HighlightsSection data={d} />
       <DirectorMessage data={d} />
       <AnnouncementSlider />
-      <ReviewSlider data={data} />
-      <FacultySlider data={data} />
+      {data?.studentReviews.length > 0 && <ReviewSlider data={data} />}
+      {data?.faculties.length > 0 && <FacultySlider data={data} />}
       <SliderEvent />
       <PlacementData data={d} />
-      <Testimonial data={data} />
+      {data?.testimonials.length > 0 && <Testimonial data={data} />}
       <SchoolLogoSlider data={d} />
       {data?.faq && (<FAQHolder data={data} />)}
     </>

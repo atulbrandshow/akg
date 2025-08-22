@@ -34,11 +34,11 @@ const NotificationSlider = ({ data }) => {
     !eventsData && fetchEvents();
 
     return (
-        <main className='bg-gray-200 py-2'>
+        <main className='bg-gray-100 py-2'>
             <div className="max-w-[1500px] m-auto px-2 grid grid-cols-12 gap-4">
                 <section className="col-span-4 max-lg:col-span-12 max-lg:mb-4">
                     <div className="max-lg:px-10 max-md:px-8 max-sm:px-1 h-full ">
-                        <section className="swiper-container ">
+                        <section className="swiper-container drop-shadow-lg">
                             <Swiper
                                 slidesPerView={1}
                                 spaceBetween={10}
@@ -72,7 +72,7 @@ const NotificationSlider = ({ data }) => {
                         </section>
                     </div>
                 </section>
-                <section className="col-span-8 max-lg:col-span-12 h-full max-lg:mb-4 max-lg:px-10 max-md:px-8 max-sm:px-1 max-lg:ml-0 ">
+                <section className="col-span-8 max-lg:col-span-12 h-full max-lg:mb-4 max-lg:px-10 max-md:px-8 max-sm:px-1 max-lg:ml-0 drop-shadow-lg">
                     <section className="bg-gradient-to-r from-cyan-500 to-indigo-600 animate-gradient rounded-lg h-full">
                         <div className="grid grid-cols-12 h-full">
                             <div className="col-span-2 max-sm:hidden p-2 flex justify-center items-center">

@@ -33,13 +33,15 @@ const ReviewSlider = ({ data }) => {
                 <div className="my-10 text-center flex flex-col items-center mx-10 max-sm:mx-5">
                   <p className="max-w-3xl max-md:text-sm">{review.description}</p>
                   <div className="flex flex-col items-center mt-10">
-                    <div className="border-[6px] border-[#FFFFFF1A] rounded-full">
-                      <img
-                        className="h-20 w-20 object-cover object-top rounded-full bg-gray-400"
-                        src={IMAGE_PATH + review.image}
-                        alt={review.name}
-                      />
-                    </div>
+                    {review.image && (
+                      <div className="border-[6px] border-[#FFFFFF1A] rounded-full">
+                        <img
+                          className="h-20 w-20 object-cover object-top rounded-full bg-gray-400"
+                          src={IMAGE_PATH + review.image}
+                          alt={review.name}
+                        />
+                      </div>
+                    )}
                     <div className="mt-4 uppercase text-center">
                       <h4 className="font-bold">{review.name}</h4>
                       <small>{review.company_name}</small>

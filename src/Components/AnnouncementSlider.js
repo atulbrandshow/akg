@@ -32,7 +32,6 @@ export default function AnnouncementSlider() {
             }
 
             const result = await res.json()
-            console.log(result)
             if (result.status) {
                 const activeAnnouncements = result?.data?.filter(announcement => announcement.status).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
                 setAnnouncements(activeAnnouncements)

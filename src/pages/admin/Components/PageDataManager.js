@@ -6,6 +6,7 @@ import dynamic from "next/dynamic"
 import CreatableSelect from "react-select/creatable"
 import { useSearchParams } from "next/navigation"
 import { uploadImages } from "@/utills/ImageUpload"
+import Link from "next/link"
 
 // Dynamically import JoditEditor to avoid SSR issues
 const JoditEditor = dynamic(() => import("jodit-react"), {
@@ -628,8 +629,8 @@ const PageDataManager = () => {
       case "pdf":
         return (
           <div className="mt-2">
-            <a
-              href={`${API_NODE_URL.replace("/api/", "")}${value}`}
+            <Link
+              href={IMAGE_PATH + value}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center space-x-2 text-red-600 hover:text-red-800 transition-colors"
@@ -643,7 +644,7 @@ const PageDataManager = () => {
                 />
               </svg>
               <span>View PDF</span>
-            </a>
+            </Link>
           </div>
         )
       case "multiple pdfs":

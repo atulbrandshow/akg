@@ -43,7 +43,7 @@ const ProgramFacultySlider = ({ data }) => {
           className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-4 md:-mx-6 lg:-mx-8 px-4 md:px-6 lg:px-8"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          {facultyData?.map((faculty) => (
+          {facultyData.length > 0 && facultyData?.map((faculty) => (
             <li key={faculty._id} className="flex-shrink-0 snap-start md:mr-6 last:mr-0 px-4">
               <div className="relative flex aspect-[3/4] w-64 sm:w-72 md:w-80 shrink-0 flex-col justify-end overflow-hidden rounded-2xl md:rounded-3xl">
                 <img

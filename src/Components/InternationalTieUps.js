@@ -27,7 +27,7 @@ const InternationalTieUps = ({ data }) => {
         }
     }
 
-    return (
+    return slidesData.length > 0 && (
         <section className='py-10'>
             <div className='max-w-4xl mx-auto text-center px-3'>
                 <h1 className="text-[42px] text-center font-novaReg max-lg:text-4xl max-md:text-3xl max-sm:px-4 text-gray-700">

@@ -25,9 +25,11 @@ const ProgramHeroSection = ({ data }) => {
                             <span className="relative font-novaBold text-yellow-500">{d?.Highlight_Title}</span>
                         </span>
                     </h2>
-                    <div className='mt-8'>
-                        <button className="py-3 max-sm:px-6 max-sm:text-xs px-10 text-[15px] rounded-xl font-novaBold uppercase bg-btn-gradient animate-gradient text-white w-max  hover:bg-[#3c5686] hover:border-b-4 hover:border-[#beb6ff] hover:transform  scale-y-105 tracking-widest">{d?.Top_Button_Title}</button>
-                    </div>
+                    {d?.Top_Button_Title && (
+                        <div className='mt-8'>
+                            <button className="py-3 max-sm:px-6 max-sm:text-xs px-10 text-[15px] rounded-xl font-novaBold uppercase bg-btn-gradient animate-gradient text-white w-max  hover:bg-[#3c5686] hover:border-b-4 hover:border-[#beb6ff] hover:transform  scale-y-105 tracking-widest">{d?.Top_Button_Title}</button>
+                        </div>
+                    )}
                 </div>
                 {/* <div className='mt-auto py-10 w-full grid grid-cols-4 max-lg:grid-cols-2 gap-5 max-[400px]:gap-2
                     '>

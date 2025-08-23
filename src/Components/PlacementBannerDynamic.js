@@ -21,7 +21,7 @@ const PlacementBannerDynamic = ({ data }) => {
             });
         }
     }
-    return (
+    return statsData.length > 0 && (
         <section>
             <div className='relative bg-cover bg-top h-full lg:h-[70vh]'
                 style={{

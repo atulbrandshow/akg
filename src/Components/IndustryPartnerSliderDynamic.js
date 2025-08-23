@@ -40,7 +40,7 @@ export default function IndustryPartnerSliderDynamic({ data }) {
 
   const allLogos = [...logos, ...logos]
 
-  return (
+  return logos.length > 0 && (
     <section className='py-10 bg-gray-100'>
       <div className="max-w-7xl mx-auto pt-6 overflow-hidden shadow-lg bg-white">
         <div className="">

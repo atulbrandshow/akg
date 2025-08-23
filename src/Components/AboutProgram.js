@@ -24,7 +24,7 @@ const AboutProgram = ({ data }) => {
             });
         }
     }
-    return (
+    return aboutData.length > 0 && (
         <section className='bg-white h-full flex items-center justify-center'>
             <div className="max-w-7xl mx-auto px-4 py-12 md:py-16">
                 <div className="grid md:grid-cols-2 gap-8 items-center">
@@ -42,15 +42,17 @@ const AboutProgram = ({ data }) => {
                         </div>
                     </div>
 
-                    <div className="order-1 md:order-2">
-                        <Image
-                            src={IMAGE_PATH + d?.About_Image}
-                            alt="Professional educator with tablet"
-                            className="w-full h-auto rounded-lg shadow-lg"
-                            width={600}
-                            height={400}
-                        />
-                    </div>
+                    {d?.About_Image && (
+                        <div className="order-1 md:order-2">
+                            <Image
+                                src={IMAGE_PATH + d?.About_Image}
+                                alt="Professional educator with tablet"
+                                className="w-full h-auto rounded-lg shadow-lg"
+                                width={600}
+                                height={400}
+                            />
+                        </div>
+                    )}
                 </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 text-center">

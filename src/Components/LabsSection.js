@@ -34,7 +34,7 @@ export default function LabsShowcase({ data }) {
     i++;
   }
 
-  return (
+  return labsData.length > 0 && (
     <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-r from-cyan-200 to-indigo-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}

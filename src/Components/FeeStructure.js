@@ -18,7 +18,7 @@ export default function FeeStructure({ data }) {
         ? DOMPurify.sanitize(d?.Scholarship_2025?.replace(/classname/gi, 'class'))
         : '';
 
-    return (
+    return (d?.Scholarship_2025 || d?.Fee_Structure_2025) && (
         <section className='py-10'>
             <div>
                 <h1 className="text-[42px] text-center font-novaReg max-lg:text-4xl max-md:text-3xl max-sm:px-4 text-gray-700">

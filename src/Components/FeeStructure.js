@@ -18,7 +18,7 @@ export default function FeeStructure({ data }) {
         ? DOMPurify.sanitize(d?.Scholarship_2025?.replace(/classname/gi, 'class'))
         : '';
 
-    return (d?.Scholarship_2025 || d?.Fee_Structure_2025) && (
+    return (d?.Fee_Structure_Title || d?.Scholarship_2025 || d?.Fee_Structure_2025) && (
         <section className='py-10'>
             <div>
                 <h1 className="text-[42px] text-center font-novaReg max-lg:text-4xl max-md:text-3xl max-sm:px-4 text-gray-700">
@@ -26,7 +26,6 @@ export default function FeeStructure({ data }) {
                     <span className="font-novaSemi bg-text-gradient bg-clip-text text-transparent animate-gradient">
                         {middle}{" "}{last}
                     </span>
-
                 </h1>
             </div>
             <div className="max-w-6xl mx-auto p-4 sm:p-6 font-novaReg">
@@ -84,12 +83,12 @@ export default function FeeStructure({ data }) {
                             <p className="text-center text-gray-500">No scholarship data available</p>
                         )}
                     </div>
-                    <button className="mt-4 text-blue-600 hover:text-blue-800 font-medium flex items-center gap-2 mx-auto">
+                    <Link href="/admissions/scholarship" className="mt-4 text-blue-600 hover:text-blue-800 font-medium flex justify-center items-center gap-2 mx-auto">
                         View full Scholarship
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                         </svg>
-                    </button>
+                    </Link>
                 </div>
             </div>
         </section>

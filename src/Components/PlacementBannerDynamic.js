@@ -21,7 +21,7 @@ const PlacementBannerDynamic = ({ data }) => {
             });
         }
     }
-    return statsData.length > 0 && (
+    return (d?.Placement_Banner || d?.Placement_Company_Logo || d?.Placement_Student_Name || d?.Placement_Company_Name || d?.Placement_Highlight_Title || d?.Placement_Highlight_Desc || statsData.length > 0) && (
         <section>
             <div className='relative bg-cover bg-top h-full lg:h-[70vh]'
                 style={{

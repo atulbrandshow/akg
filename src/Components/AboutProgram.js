@@ -18,14 +18,14 @@ const AboutProgram = ({ data }) => {
         if (lable && value) {
             const IconComponent = icons[i % icons.length];
             aboutData.push({
-                icon: <IconComponent className="w-8 h-8" strokeWidth={1.5} />,
+                icon: <IconComponent className="w-8 h-8 text-white" strokeWidth={1.5} />,
                 lable,
                 value
             });
         }
     }
     return (
-        <section className='bg-gray-300 h-full flex items-center justify-center'>
+        <section className='bg-white h-full flex items-center justify-center'>
             <div className="max-w-7xl mx-auto px-4 py-12 md:py-16">
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                     <div className="order-2 md:order-1">
@@ -57,11 +57,11 @@ const AboutProgram = ({ data }) => {
                     {aboutData?.map((item, index) => (
                         <div
                             key={index}
-                            className=" flex items-center justify-center flex-col rounded-tr-3xl py-4 bg-indigo-300 shadow-md"
+                            className=" flex items-center justify-center flex-col rounded-tr-3xl py-4 bg-gradient-to-r from-blue-500 to-indigo-600 shadow-md"
                         >
                             <div className="mb-2">{item.icon}</div>
-                            <h3 className="text-gray-800 font-novaSemi text-sm mb-1">{item.lable}</h3>
-                            <p className="text-gray-800 font-semibold">{item.value}</p>
+                            <h3 className="text-gray-100 font-novaSemi text-sm mb-1">{item.lable}</h3>
+                            <p className="text-gray-300 font-semibold">{item.value}</p>
                         </div>
                     ))}
                 </div>

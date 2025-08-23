@@ -1,7 +1,6 @@
 // components/LabsShowcase.jsx
 'use client';
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { splitTitle } from '@/utills/splitTitle';
 import { IMAGE_PATH } from '@/configs/config';
@@ -34,7 +33,7 @@ export default function LabsShowcase({ data }) {
     i++;
   }
 
-  return labsData.length > 0 && (
+  return (d?.Lab_Title || d?.Lab_Description || labsData.length > 0) && (
     <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-r from-cyan-200 to-indigo-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}

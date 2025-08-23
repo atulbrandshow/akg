@@ -68,7 +68,7 @@ export default function ProgramCarousel({ data }) {
         return () => clearInterval(timer)
     }, [isAutoPlaying, nextSlide])
 
-    return items.length > 0 && (
+    return (d?.Overview_Title || d?.Overview_Description || items.length > 0) && (
         <section className='bg-gray-100'>
             <div className="w-full max-w-7xl mx-auto px-4 py-8">
                 <h1 className="text-[42px] text-center font-novaReg max-lg:text-4xl max-md:text-3xl max-sm:px-4 text-gray-700">

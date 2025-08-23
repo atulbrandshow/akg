@@ -209,11 +209,11 @@ export const Programs = {
             "Programs": [
                 {
                     name: 'B.Tech in Computer Science Engineering',
-                    url: '/department-of-computer-science-and-engineering'
+                    url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-computer-science-and-engineering'
                 },
                 {
                     name: 'B.Tech in Data Science',
-                    url: '/department-of-data-science'
+                    url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-data-science'
                 },
                 {
                     name: 'B.Tech in Artificial Intelligence & Machine Learning',

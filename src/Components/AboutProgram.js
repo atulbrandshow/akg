@@ -24,7 +24,7 @@ const AboutProgram = ({ data }) => {
             });
         }
     }
-    return aboutData.length > 0 && (
+    return (d?.About_Title || d?.About_Description || d?.About_Image || aboutData.length > 0) && (
         <section className='bg-white h-full flex items-center justify-center'>
             <div className="max-w-7xl mx-auto px-4 py-12 md:py-16">
                 <div className="grid md:grid-cols-2 gap-8 items-center">

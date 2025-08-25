@@ -217,19 +217,19 @@ export const Programs = {
                 },
                 {
                     name: 'B.Tech in Artificial Intelligence & Machine Learning',
-                    url: '/department-of-artificial-intelligence-&-machine-learning'
+                    url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-artificial-intelligence-machine-learning'
                 },
                 {
                     name: 'B.Tech in Information Technology',
-                    url: '/department-of-information-technology'
+                    url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-information-technology'
                 },
                 {
                     name: 'M.Tech in Computer Science Engineering',
-                    url: '/department-of-masters-in-computer-science-and-engineering'
+                    url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-computer-science-engineering'
                 },
                 {
                     name: 'Master of Computer Applications (MCA)',
-                    url: '/department-of-masters-of-computer-application'
+                    url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/master-of-computer-applications'
                 },
                 // {
                 //     name: 'Ph.D',
@@ -240,7 +240,7 @@ export const Programs = {
                 "Graduate": [
                     {
                         name: 'B.Tech',
-                        url: '/department-of-artificial-intelligence-&-machine-learning'
+                        url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-computer-science-and-engineering'
                     },
                     // {
                     //     name: 'BCA',
@@ -250,11 +250,11 @@ export const Programs = {
                 "Post Graduate": [
                     {
                         name: 'M.Tech',
-                        url: '/department-of-masters-in-computer-science-and-engineering'
+                        url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-computer-science-engineering'
                     },
                     {
                         name: 'MCA',
-                        url: '/department-of-masters-of-computer-application'
+                        url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/master-of-computer-applications'
                     }
                 ]
             }
@@ -263,27 +263,27 @@ export const Programs = {
             "Programs": [
                 {
                     name: 'B.Tech in Electronics and Communication Engineering',
-                    url: '/department-of-electronics-and-communication-engineering'
+                    url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-electronics-and-communication-engineering'
                 },
                 {
                     name: 'B.Tech in Electrical & Electronics Engineering',
-                    url: '/department-of-electrical-and-electronics-engineering'
+                    url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-electrical-electronics-engineering'
                 },
                 {
                     name: 'B.Tech in Mechanical Engineering',
-                    url: '/department-of-mechanical-engineering'
+                    url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-mechanical-engineering'
                 },
                 {
                     name: 'B.Tech in Civil Engineering',
-                    url: '/department-of-civil-engineering'
+                    url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-civil-engineering'
                 },
                 {
                     name: 'M.Tech in Electronics and Communication Engineering',
-                    url: '/department-of-masters-in-electronics-and-communication-engineering'
+                    url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-electronics-and-communication-engineering'
                 },
                 {
                     name: 'M.Tech in Electrical & Electronics Engineering',
-                    url: '/department-of-masters-in-electrical-and-electronics-engineering'
+                    url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-electrical-electronics-engineering'
                 },
                 // {
                 //     name: 'Ph.D',
@@ -294,17 +294,17 @@ export const Programs = {
                 "Graduate": [
                     {
                         name: 'B.Tech',
-                        url: '/department-of-electronics-and-communication-engineering'
+                        url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-electronics-and-communication-engineering'
                     },
                     {
                         name: 'BCA',
-                        url: '/'
+                        url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/bachelor-of-computer-application'
                     }
                 ],
                 "Post Graduate": [
                     {
                         name: 'M.Tech',
-                        url: '/department-of-masters-in-electronics-and-communication-engineering'
+                        url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-electronics-and-communication-engineering'
                     }
                 ]
             }
@@ -313,7 +313,7 @@ export const Programs = {
             "Programs": [
                 {
                     name: 'MBA- Master of Business Administration',
-                    url: '/department-of-masters-in-business-adminintration'
+                    url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/master-of-business-administration'
                 },
                 // {
                 //     name: 'Ph.D',
@@ -324,13 +324,13 @@ export const Programs = {
                 "Graduate": [
                     {
                         name: 'BBA',
-                        url: '/'
+                        url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/bachelor-of-business-administration'
                     }
                 ],
                 "Post Graduate": [
                     {
                         name: 'MBA',
-                        url: '/department-of-masters-in-business-adminintration'
+                        url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/master-of-business-administration'
                     }
                 ]
             }

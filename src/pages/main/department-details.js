@@ -14,6 +14,9 @@ import { IMAGE_PATH } from "@/configs/config";
 import DOMPurify from 'dompurify';
 import { splitTitle } from '@/utills/splitTitle'
 import { Button } from '@headlessui/react';
+import UniqueUniversity from '@/Components/UniqueUniversity';
+import VisionMission from '@/Components/VisionMission';
+import DeptScholarship from '@/Components/DeptScholarship';
 
 
 const DepartmentDetails = ({ data }) => {
@@ -680,23 +683,28 @@ const DepartmentDetails = ({ data }) => {
           </div>
         </div>
       </div>
+      <DeptScholarship />
 
-      <div className="w-full max-w-7xl mx-auto px-4 py-8">
-        <h1 className="text-center text-3xl font-novaSemi mb-12 text-gray-800">{d?.Placement_Title}</h1>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-start">
-          {placements.map((placement, index) => (
-            <div key={index} className="flex flex-col items-center space-y-2">
-              <div className="text-3xl lg:text-4xl font-novaBold mb-2">
-                <span className={placement.isRed ? "text-red-500" : "text-gray-600"}>{placement.count}</span>
-                <span className="text-gray-400 text-lg ml-1">LPA</span>
+      <section className='bg-gray-200'>
+        <div className="w-full max-w-7xl mx-auto px-4 py-8">
+          <h1 className="text-center text-3xl font-novaSemi mb-12 text-gray-800">{d?.Placement_Title}</h1>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-start">
+            {placements.map((placement, index) => (
+              <div key={index} className="flex flex-col items-center space-y-2">
+                <div className="text-3xl lg:text-4xl font-novaBold mb-2">
+                  <span className={placement.isRed ? "text-red-500" : "text-gray-600"}>{placement.count}</span>
+                  <span className="text-gray-400 text-lg ml-1">LPA</span>
+                </div>
+                <div className="w-32 h-12 relative">
+                  <Image src={IMAGE_PATH + placement.logo} alt="company logo" fill className="object-contain" />
+                </div>
               </div>
-              <div className="w-32 h-12 relative">
-                <Image src={IMAGE_PATH + placement.logo} alt="company logo" fill className="object-contain" />
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
+      <UniqueUniversity />
+      <VisionMission />
       <section className="bg-indigo-900">
         <div className="max-w-[1400px] mx-auto px-4 py-12">
           <h1 className="text-3xl font-novaReg text-white leading-7 mb-8" dangerouslySetInnerHTML={{ __html: d?.Career_Title || "" }}>
@@ -766,7 +774,7 @@ const DepartmentDetails = ({ data }) => {
                 </li>
               ))}
             </ul>
-            <Link href="#" className="group font-novaSemi inline-flex items-center gap-2 rounded-full bg-btn-gradient animate-gradient px-6 py-2 text-sm font-novaSemi text-white transition-colors hover:bg-red-700">
+            <Link href="#" className="group inline-flex items-center gap-2 rounded-full bg-btn-gradient animate-gradient px-6 py-2 text-sm font-novaSemi text-white transition-colors hover:bg-red-700">
               VIEW MORE
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>

@@ -457,21 +457,21 @@ const DepartmentDetails = ({ data }) => {
       </section>
 
       <div className="max-w-[1400px] mx-auto px-2 sm:px-6 py-8 sm:py-16">
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
           {/* Left Column - Main Content */}
-          <div className="xl:col-span-2 space-y-8">
+          <div className="lg:col-span-2 space-y-8">
             {/* Eligibility Section */}
             <div className="bg-white rounded-2xl shadow-xl p-4 sm:p-8 border border-gray-100">
               <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center mr-4">
+                <div className="w-12 h-12 aspect-square bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center mr-4">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-novaBold text-gray-800">{d?.Admission_Title}</h2>
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-novaBold text-gray-800">{d?.Admission_Title}</h2>
               </div>
 
-              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 sm:p-6 border-l-4 border-indigo-500">
+              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl font-novaReg p-4 sm:p-6 border-l-4 border-indigo-500">
                 <p
                   dangerouslySetInnerHTML={{ __html: d?.Admission_Description_ || "" }}>
                 </p>
@@ -595,8 +595,8 @@ const DepartmentDetails = ({ data }) => {
           </div>
 
           {/* Right Column - Image and CTA */}
-          <div className="xl:col-span-1">
-            <div className="sticky top-28 space-y-6">
+          <div className="lg:col-span-1">
+            <div className="sticky top-28 space-y-6 max-lg:grid grid-cols-1 sm:grid-cols-2 gap-2">
               {/* Hero Image Card */}
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
                 <div className="relative">
@@ -671,7 +671,7 @@ const DepartmentDetails = ({ data }) => {
               </div> */}
 
               {/* CTA Button */}
-              <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-6 text-white text-center">
+              <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-6 text-white text-center h-fit">
                 <h3 className="text-xl font-novaBold mb-2">{d?.Apply_Title}</h3>
                 <p className="text-indigo-100 mb-4 text-sm font-novaReg">{d?.Apply_Description_}</p>
                 <button className="w-full bg-white text-indigo-600 font-novaBold py-3 px-6 rounded-xl hover:bg-gray-100 transition-colors">Apply Now</button>
@@ -933,7 +933,7 @@ const DepartmentDetails = ({ data }) => {
         </div>
       </section>
 
-      <div className="-mt-60 max-w-[1500px] max-2xl:max-w-7xl w-full mx-auto mb-6">
+      <div className="mt-5 lg:-mt-40 max-w-[1500px] max-2xl:max-w-7xl w-full mx-auto mb-6">
         <Swiper
           spaceBetween={20}
           loop={true}

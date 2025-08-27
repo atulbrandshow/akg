@@ -27,7 +27,7 @@ export default function VisionMission() {
     ];
 
     return (
-        <div className="bg-white pb-12">
+        <div className="bg-white py-12">
             <div className="max-w-[1400px] px-4 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-5 items-end">
                 {/* Left Column - Vision and Mission Text */}
                 <div className="space-y-8">

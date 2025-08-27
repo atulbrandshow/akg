@@ -17,6 +17,7 @@ import { Button } from '@headlessui/react';
 import UniqueUniversity from '@/Components/UniqueUniversity';
 import VisionMission from '@/Components/VisionMission';
 import DeptScholarship from '@/Components/DeptScholarship';
+import Abroad from '@/Components/Abroad';
 
 
 const DepartmentDetails = ({ data }) => {
@@ -703,6 +704,7 @@ const DepartmentDetails = ({ data }) => {
           </div>
         </div>
       </section>
+      <Abroad />
       <UniqueUniversity />
       <VisionMission />
       <section className="bg-indigo-900">

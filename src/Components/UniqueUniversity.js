@@ -51,14 +51,14 @@ export const uniqueFeatures = [
 
 const UniqueUniversity = () => {
     return (
-        <section className="bg-white py-16 px-4">
+        <section className="bg-green-700 py-16 px-4">
             <div className="mb-12 max-w-[1400px] mx-auto text-center md:text-left">
-                <h2 className="text-3xl font-novaReg mb-4">
+                <h2 className="text-3xl text-white font-novaReg mb-4">
                     What makes University Institute
                     <br />
                     of Sciences Unique?
                 </h2>
-                <p className="leading-relaxed font-novaReg">
+                <p className="leading-relaxed text-gray-200 font-novaReg">
                     Since inception, UIS has established the highest standards of delivering science education in the region. While delivering innovative academics and practical based learning, the institute has been emerging on the ideal
                     of interactive learning that is purposeful and transformative. What else makes us unique is:
                 </p>

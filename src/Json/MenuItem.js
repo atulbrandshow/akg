@@ -101,7 +101,7 @@ export const Academics = {
     name: 'Academics',
     links: '/',
     sublinks: {
-        "Schools":[
+        "Schools": [
             {
                 name: "AKGU School of Engineering and Technology",
                 url: "/school-of-engineering-and-technology"
@@ -193,9 +193,9 @@ export const Academics = {
 }
 export const Programs2 = [
     {
-        name : "School of Computer Science & Engineering",
+        name: "School of Computer Science & Engineering",
         sublinks: [
-            { name: 'Department of Computer Science & Engineering', url: '/'},
+            { name: 'Department of Computer Science & Engineering', url: '/' },
             { name: 'Department of Information Technology', url: '/' },
             { name: 'Department of Artificial Intelligence & Machine Learning', url: '/' }
         ]
@@ -206,7 +206,7 @@ export const Programs = {
     links: "/",
     sublinks: {
         "School of Computer Science Engineering & Technology": {
-            "Programs": [
+            "Graduate Program": [
                 {
                     name: 'B.Tech in Computer Science Engineering',
                     url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-computer-science-and-engineering'
@@ -223,44 +223,28 @@ export const Programs = {
                     name: 'B.Tech in Information Technology',
                     url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-information-technology'
                 },
-                {
-                    name: 'M.Tech in Computer Science Engineering',
-                    url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-computer-science-engineering'
-                },
-                {
-                    name: 'Master of Computer Applications (MCA)',
-                    url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/master-of-computer-applications'
-                },
-                // {
-                //     name: 'Ph.D',
-                //     url: '/'
-                // },
             ],
             "Program": {
-                "Graduate": [
+                "Post Graduate Program": [
                     {
-                        name: 'B.Tech',
-                        url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-computer-science-and-engineering'
-                    },
-                    // {
-                    //     name: 'BCA',
-                    //     url: '/'
-                    // }
-                ],
-                "Post Graduate": [
-                    {
-                        name: 'M.Tech',
+                        name: 'M.Tech in Computer Science Engineering',
                         url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-computer-science-engineering'
                     },
                     {
-                        name: 'MCA',
+                        name: 'Master of Computer Applications (MCA)',
                         url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/master-of-computer-applications'
-                    }
+                    },
+                ],
+                "Doctrate Graduate Program": [
+                    {
+                        name: 'Ph.D in Computer Science and Engineering',
+                        url: '/'
+                    },
                 ]
             }
         },
         "School of Engineering & Technology": {
-            "Programs": [
+            "Graduate Program": [
                 {
                     name: 'B.Tech in Electronics and Communication Engineering',
                     url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-electronics-and-communication-engineering'
@@ -278,56 +262,52 @@ export const Programs = {
                     url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-civil-engineering'
                 },
                 {
-                    name: 'M.Tech in Electronics and Communication Engineering',
-                    url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-electronics-and-communication-engineering'
+                    name: '-',
+                    url: '#'
                 },
                 {
-                    name: 'M.Tech in Electrical & Electronics Engineering',
-                    url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-electrical-electronics-engineering'
+                    name: 'BCA',
+                    url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/bachelor-of-computer-application'
                 },
-                // {
-                //     name: 'Ph.D',
-                //     url: '/'
-                // },
             ],
             "Program": {
-                "Graduate": [
+                "Post Graduate Program": [
                     {
-                        name: 'B.Tech',
-                        url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-electronics-and-communication-engineering'
+                        name: 'M.Tech in Electronics and Communication Engineering',
+                        url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-electronics-and-communication-engineering'
                     },
                     {
-                        name: 'BCA',
-                        url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/bachelor-of-computer-application'
-                    }
+                        name: 'M.Tech in Electrical & Electronics Engineering',
+                        url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-electrical-electronics-engineering'
+                    },
                 ],
-                "Post Graduate": [
-                    {
-                        name: 'M.Tech',
-                        url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-electronics-and-communication-engineering'
-                    }
+                "Doctrate Graduate Program": [
+                    // {
+                    //     name: 'M.Tech',
+                    //     url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-electronics-and-communication-engineering'
+                    // }
                 ]
             }
         },
         "School of Business Studies": {
             "Programs": [
-                {
-                    name: 'MBA- Master of Business Administration',
-                    url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/master-of-business-administration'
-                },
+                // {
+                //     name: 'MBA- Master of Business Administration',
+                //     url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/master-of-business-administration'
+                // },
                 // {
                 //     name: 'Ph.D',
                 //     url: '/'
                 // },
             ],
             "Program": {
-                "Graduate": [
+                "Graduate Program": [
                     {
                         name: 'BBA',
                         url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/bachelor-of-business-administration'
                     }
                 ],
-                "Post Graduate": [
+                "Post Graduate Program": [
                     {
                         name: 'MBA',
                         url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/master-of-business-administration'
@@ -569,46 +549,46 @@ export const ResearchInnovation = {
     name: 'Research & Innovation',
     links: '/',
     sublinks: {
-        "Research Intensive University":[
+        "Research Intensive University": [
             {
-                name:"Research Overview",
-                url:"/research"
+                name: "Research Overview",
+                url: "/research"
             },
             {
-                name:"Patent & Publications",
-                url:"/patent"
+                name: "Patent & Publications",
+                url: "/patent"
             },
             {
-                name:"Centres Of Research",
-                url:"/research/centres-of-research"
+                name: "Centres Of Research",
+                url: "/research/centres-of-research"
             },
             {
-                name:"Centres of Excellence",
-                url:"/research/centres-of-excellence"
+                name: "Centres of Excellence",
+                url: "/research/centres-of-excellence"
             },
             {
-                name:"Visiting Scholars",
-                url:"/research/visiting-scholars"
+                name: "Visiting Scholars",
+                url: "/research/visiting-scholars"
             },
             // {
             //     name:"AKG Global Management Review",
             //     url:"/"
             // }
         ],
-        "Entrepreneurship Cells":[
+        "Entrepreneurship Cells": [
             {
-                name:"Technology Business Incubator (TBI)",
-                url:"/research/technology-business-incubator"
+                name: "Technology Business Incubator (TBI)",
+                url: "/research/technology-business-incubator"
             },
             {
-                name:"Innovation & Entrepreneurship Development Cell (IEDC)",
-                url:"/research/entrepreneurship"
+                name: "Innovation & Entrepreneurship Development Cell (IEDC)",
+                url: "/research/entrepreneurship"
             }
         ],
-        "Sustainable Development Goals (SDG's)":[
+        "Sustainable Development Goals (SDG's)": [
             {
-                name:"Policies & Strategies",
-                url:"/research/policies-and-strategies"
+                name: "Policies & Strategies",
+                url: "/research/policies-and-strategies"
             }
         ]
     }

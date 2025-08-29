@@ -85,8 +85,8 @@ export default function NewNavBar() {
   };
 
   const LinksList = ({ title, links, titleClassName, ulClassName, setBigMenuToggle }) => (
-    <div className="pr-6 max-md:w-full">
-      {title && <h3 className={`font-novaBold leading-none mb-3 ${titleClassName}`}>{title}</h3>}
+    <div className="pr-3 max-md:w-full">
+      {title && <h3 className={`font-novaBold text-base text-blue-900 leading-none mb-3 ${titleClassName}`}>{title}</h3>}
       <ul className={`space-y-1 lg:space-y-0 ${ulClassName}`}>
         {links?.map((link, index) => (
           <li key={index} className="">
@@ -288,12 +288,12 @@ export default function NewNavBar() {
               <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
             </button>
             <div
-              className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-max"
+              className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-[1000px]"
                 } ${openMenu === 'programs' && "absolute h-auto mt-0 w-full"} left-0 h-0 mt-5 overflow-hidden lg:group-hover:h-auto lg:group-hover:mt-0 transition-all bg-white
                                     text-black rounded-lg shadow-lg`}
             >
-              <div className="grid grid-cols-3">
-                <div className="col-span-2 max-md:col-span-3 p-0 transition-all">
+              <div className="grid grid-cols-12">
+                <div className="col-span-8 max-md:col-span-3 p-0 transition-all">
                   <div className=" w-full h-32 sm:h-16 flex justify-center items-center">
                     {
                       Object.keys(Programs.sublinks)?.map((key, index) => <button onClick={() => { setActiveTab(key) }} key={index}
@@ -301,10 +301,10 @@ export default function NewNavBar() {
                         {key}</button>)
                     }
                   </div>
-                  <div className="flex max-md:flex-col p-5 max-xl:p-4 gap-5">
+                  <div className="flex max-md:flex-col p-5 max-xl:py-4">
                     {
                       Object.keys(Programs.sublinks[activeTab])?.map((key, index) => {
-                        if (key === 'Programs') {
+                        if (key === 'Graduate Program') {
                           return <LinksList key={index} title={key} links={Programs.sublinks[activeTab][key]} setBigMenuToggle={setBigMenuToggle} />
                         }
                         if (key === 'Program') {
@@ -317,7 +317,7 @@ export default function NewNavBar() {
                   </div>
                 </div>
 
-                <div className="w-full relative max-md:hidden">
+                <div className="col-span-4 w-full relative max-md:hidden">
                   <div
                     className="absolute inset-0 bg-cover bg-center rounded-lg shadow-md"
                     style={{

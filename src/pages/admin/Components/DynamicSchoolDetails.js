@@ -319,6 +319,7 @@ export default function DynamicSchoolDetails({ allData, parentPage, type, compon
     metatitle: "",
     metadesc: "",
     keywords_tag: "",
+    stream: allData?.page_id
   })
 
  
@@ -359,40 +360,6 @@ export default function DynamicSchoolDetails({ allData, parentPage, type, compon
   useEffect(() => {
     fetchPages()
   }, [])
-
-  const handleInputChange = (e) => {
-    const value = e.target.value
-    setSearchValue(value)
-
-    if (value.length > 0) {
-      fetchPages(value)
-      setShowDropdown(true)
-    } else {
-      setDisplayedPages(allPages.slice(0, 10))
-      setShowDropdown(false)
-    }
-  }
-
-  const handleSuggestionClick = (page) => {
-    setSearchValue(page.name) // Show the name in the input
-    setSelectedPage(page) // Set the selected page
-    setShowDropdown(false) // Hide the dropdown after selection
-    setFormData((prev) => ({
-      ...prev,
-      parent_id: page.page_id,
-      parentPage: page.name,
-    }))
-  }
-
-  // Handle 'Show More' button click
-  const handleShowMore = () => {
-    const newIndex = pageIndex + 10
-    setDisplayedPages(allPages.slice(0, newIndex)) // Show next 10 pages
-    setPageIndex(newIndex) // Update index
-    if (newIndex >= allPages.length) {
-      setHasMore(false) // Hide 'Show More' if no more pages
-    }
-  }
 
   const handleChange = (e) => {
     const { name, value } = e.target

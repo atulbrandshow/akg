@@ -105,7 +105,6 @@ export default function NewNavBar() {
   useGSAP(() => {
     gsap.from(".logo", { scale: 0, duration: 0.5, ease: easeIn })
     gsap.from(".notification", { y: -30, duration: 0.5, ease: easeIn })
-    gsap.from(".sideimgs", { scale: 0, duration: 0.5, ease: easeIn, stagger: 0.1 })
   })
 
   return (

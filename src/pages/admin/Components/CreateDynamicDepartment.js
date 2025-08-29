@@ -40,6 +40,8 @@ function CreateDynamicDepartment({ type, componentType }) {
                 body: JSON.stringify({ query: searchTerm, page: 1, limit: 10, type: 'School' }),
             });
             const data = await response.json();
+            console.log(data);
+            
 
             const fetchedPages = data.data.pages || [];
 

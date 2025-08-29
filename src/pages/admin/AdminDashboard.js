@@ -48,11 +48,11 @@ export default function AdminDashboard({ onAuthError }) {
 
     const getIcon = (category) => {
         const iconMap = {
-            announcement: Megaphone,
+            article: Megaphone,
             circular: RotateCcw,
             departments: Building2,
-            downloadCenter: Download,
-            faculty: GraduationCap,
+            event: Download,
+            program: GraduationCap,
             news: Newspaper,
             pages: FileText,
             schools: School,
@@ -62,11 +62,11 @@ export default function AdminDashboard({ onAuthError }) {
 
     const getCategoryName = (category) => {
         const nameMap = {
-            announcement: "Announcements",
+            article: "Articles",
             circular: "Circulars",
             departments: "Departments",
-            downloadCenter: "Download Center",
-            faculty: "Faculty",
+            event: "Events",
+            program: "Programs",
             news: "News",
             pages: "Total Pages",
             schools: "Schools",

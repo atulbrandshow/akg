@@ -408,24 +408,39 @@ function EditSchoolPage({ type, componentType }) {
   useEffect(() => {
     const fetchSchools = async () => {
       try {
-        const response = await fetch(`${API_NODE_URL}school/search?search=${searchQuery}`, {
+        const response = await fetch(`${API_NODE_URL}slug/getParents`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
           credentials: "include",
-        })
-        const result = await response.json()
-        if (result.status) {
-          setSchools(Array.isArray(result?.data?.schools) ? result?.data?.schools : [])
+          body: JSON.stringify({
+            query: searchQuery,
+            page: 1,
+            limit: 10,
+            type: "School",
+          }),
+        });
+
+        const result = await response.json();
+        const fetchedPages = result?.data?.pages || [];
+
+        if (fetchedPages.length > 0) {
+          setSchools(fetchedPages);
         } else {
-          toast.error(result.message || "Failed to fetch schools.")
-          setSchools([])
+          setSchools([]);
+          toast.error("No schools found.");
         }
       } catch (err) {
-        console.error("Error fetching schools:", err)
-        toast.error("An error occurred while fetching schools.")
-        setSchools([])
+        console.error("Error fetching schools:", err);
+        toast.error("An error occurred while fetching schools.");
+        setSchools([]);
       }
-    }
-    fetchSchools()
-  }, [searchQuery])
+    };
+
+    fetchSchools();
+  }, [searchQuery]);
+
 
 
   const fetchParent = async (parent_id) => {
@@ -494,9 +509,6 @@ function EditSchoolPage({ type, componentType }) {
         })
         const data = await response.json();
 
-        console.log(data);
-        
-
         if (data.status) {
           const parent_id = data?.data?.parent_id
           const parentPageName = parent_id !== 0 ? await fetchParent(parent_id) : "This is Main page"
@@ -505,6 +517,7 @@ function EditSchoolPage({ type, componentType }) {
           setComponentSearchValue(data?.data?.ComponentType)
           setFormData({
             page_id: data?.data?.page_id || "",
+            stream: data?.data?.page_id || "",
             parent_id: data?.data?.parent_id != 0 ? data?.data?.parent_id : 0,
             languageId: data?.data?.languageId || 1,
             price: data?.data?.price || "",
@@ -715,14 +728,14 @@ function EditSchoolPage({ type, componentType }) {
       return
     }
 
-   
+
     const payload = {
       ...formData,
       ComponentType: selectedComponentType || compType || componentType,
     }
 
     console.log(payload);
-    
+
 
     setSubmitting(true)
     try {
@@ -1098,8 +1111,8 @@ function EditSchoolPage({ type, componentType }) {
                   <label
                     htmlFor="galleryimg"
                     className={`mt-4 inline-flex items-center px-4 py-2 text-white text-sm font-medium rounded-lg cursor-pointer transition-colors ${galleryUploadingIndexes.length > 0
-                        ? "bg-gray-400 cursor-not-allowed"
-                        : "bg-blue-600 hover:bg-blue-700"
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-blue-600 hover:bg-blue-700"
                       }`}
                   >
                     {galleryUploadingIndexes.length > 0 ? (

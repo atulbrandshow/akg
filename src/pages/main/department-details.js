@@ -18,6 +18,7 @@ import UniqueUniversity from '@/Components/UniqueUniversity';
 import VisionMission from '@/Components/VisionMission';
 import DeptScholarship from '@/Components/DeptScholarship';
 import Abroad from '@/Components/Abroad';
+import FAQHolder from '@/Components/FAQHolder';
 
 
 const DepartmentDetails = ({ data }) => {

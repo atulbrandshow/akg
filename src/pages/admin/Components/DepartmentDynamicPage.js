@@ -252,6 +252,7 @@ export default function DepartmentDynamicPage({ allData, parentPage, type, compo
   const [formData, setFormData] = useState({
     page_id: allData?.page_id,
     parent_id: allData?.parent_id,
+    stream: allData?.parent_id,
     languageId: 1,
     price: "",
     name: allData?.name,

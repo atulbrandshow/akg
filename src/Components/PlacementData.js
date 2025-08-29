@@ -9,9 +9,6 @@ const PlacementData = ({ data }) => {
         const studentsSelected = data?.[`Placement-Students-${i}`]
         const highestPackage = data?.[`Placement-Package-${i}`]
 
-        console.log(highestPackage);
-
-
         if (title && description && companies && studentsSelected && highestPackage) {
             const match = highestPackage.match(/^(\d+(?:\.\d+)?)([a-zA-Z]+)?$/);
             let packageValue = null, packageUnit = null;

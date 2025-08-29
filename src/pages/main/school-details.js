@@ -27,37 +27,15 @@ import {
   ArrowDownToLine,
   Atom, Beaker, FlaskConical, Hammer
 } from "lucide-react"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link';
-import { IMAGE_PATH } from '@/configs/config';
+import { API_NODE_URL, IMAGE_PATH } from '@/configs/config';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Breadcrumb from '@/Components/Breadcrumb';
 import FAQHolder from '@/Components/FAQHolder';
-
-const courses = {
-  'Graduate': [
-    'Bachelor of Technology (Computer Science & Engineering)',
-    'Bachelor of Technology (Electronics & Computer Engineering)',
-    'Bachelor of Technology (Electrical and Electronics Engineering)',
-    'Bachelor of Technology (Information Technology)',
-    'Bachelor of Technology (Electronics and Communication Engineering) with Specialization in VLSI Design and Technology',
-    'Bachelor of Technology (Mechanical Engineering)',
-    'Bachelor of Technology (Civil Engineering)',
-    'Bachelor of Science (Information Technology)'
-  ],
-  'Post Graduate': [
-    'Master of Technology (Computer Science & Engineering)',
-    'Master of Technology (Electronics & Computer Engineering)',
-    'Master of Technology (Electrical and Electronics Engineering)',
-    'Master of Technology (Information Technology)',
-    'Master of Technology (Electronics and Communication Engineering) with Specialization in VLSI Design and Technology',
-    'Master of Technology (Mechanical Engineering)',
-    'Master of Technology (Structural Engineering)',
-    'Master of Business Administration (MBA) in Technology Management'
-  ],
-};
-
+import LargeHighlightBannerSlider from '@/Components/LargeHighlightBannerSlider copy';
+import MediumHighlightBannerSlider from '@/Components/MediumHighlightBannerSlider';
 
 
 const CustomButton = ({ children, onClick, className, active }) => (
@@ -85,6 +63,45 @@ const SchoolDetails = ({ data }) => {
   const [activeView, setActiveView] = useState("departments")
   const [hoveredProgramme, setHoveredProgramme] = useState(null)
   const [hoveredDepartment, setHoveredDepartment] = useState(null)
+  const [largeHighlightBanner, setLargeHighlightBanner] = useState([]);
+  const [mediumHighlightBanner, setMediumHighlightBanner] = useState([]);
+  const [smallHighlightBanner, setSmallHighlightBanner] = useState([]);
+
+
+  const fetchHighlightBanners = async (streamId) => {
+    try {
+      const res = await fetch(`${API_NODE_URL}highlight-banner/get-by-tags?stream=${streamId}`, {
+        method: "GET",
+        credentials: "include",
+      });
+      const resData = await res.json();
+      console.log(resData);
+
+      if (resData?.status) {
+        const banners = resData?.data?.banners || [];
+
+        // filter by size
+        setLargeHighlightBanner(banners.filter((b) => b.size === "large"));
+        setMediumHighlightBanner(banners.filter((b) => b.size === "medium"));
+        setSmallHighlightBanner(banners.filter((b) => b.size === "small"));
+      } else {
+        setLargeHighlightBanner([]);
+        setMediumHighlightBanner([]);
+        setSmallHighlightBanner([]);
+      }
+    } catch (err) {
+      console.error("Fetch error:", err);
+      setLargeHighlightBanner([]);
+      setMediumHighlightBanner([]);
+      setSmallHighlightBanner([]);
+    }
+  };
+
+  useEffect(() => {
+    if (data?.stream) {
+      fetchHighlightBanners(data?.stream);
+    }
+  }, [data?.stream]);
 
   const d = data?.pageData;
 
@@ -215,6 +232,9 @@ const SchoolDetails = ({ data }) => {
           </div>
         </div>
       </section>
+      <LargeHighlightBannerSlider
+        banners={largeHighlightBanner}
+      />
       <div className="w-full bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-10 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Header Section */}

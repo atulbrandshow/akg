@@ -41,29 +41,41 @@ export default function AnnouncementModal({ isOpen, onClose, onSuccess, announce
     }
   }, [isOpen, announcement])
   const handleSchoolSelect = (school) => {
-    setStreamId(school?._id);
+    setStreamId(school?.page_id);
     setSearchQuery(school.name); // Show stream name
-    setFormData((prev) => ({ ...prev, stream: school?._id })); // Save stream ID
+    setFormData((prev) => ({ ...prev, stream: school?.page_id })); // Save stream ID
     setShowSchoolDropdown(false);
   };
   useEffect(() => {
-    const fetchSchools = async () => {
+    const fetchSchools = async (searchTerm = "") => {
       try {
-        const response = await fetch(`${API_NODE_URL}school/search?search=${searchQuery}`, {
+        const response = await fetch(`${API_NODE_URL}slug/getParents`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
           credentials: "include",
+          body: JSON.stringify({
+            query: searchTerm,
+            page: 1,
+            limit: 10,
+            type: "School",
+          }),
         });
-        const result = await response.json();
-        if (result.status) {
-          setSchools(Array.isArray(result?.data?.schools) ? result?.data?.schools : []);
-        } else {
-          setSchools([]);
-        }
-      } catch (err) {
-        console.error("Error fetching streams:", err);
+
+        const data = await response.json();
+        const fetchedPages = data?.data?.pages || [];
+
+        setSchools(Array.isArray(fetchedPages) ? fetchedPages : []);
+      } catch (error) {
+        console.error("Error fetching parent pages:", error);
         setSchools([]);
       }
     };
-    if (searchQuery) fetchSchools();
+
+    if (searchQuery) {
+      fetchSchools(searchQuery);
+    }
   }, [searchQuery]);
 
   // Validate form
@@ -223,6 +235,7 @@ export default function AnnouncementModal({ isOpen, onClose, onSuccess, announce
                 {showSchoolDropdown && schools.length > 0 && (
                   <div className="absolute z-20 w-full bg-white border border-gray-200 rounded-lg mt-2 max-h-64 overflow-auto shadow-lg">
                     {schools.map((school) => (
+                      school.page_id != 0 &&
                       <div
                         key={school._id}
                         onClick={() => handleSchoolSelect(school)}

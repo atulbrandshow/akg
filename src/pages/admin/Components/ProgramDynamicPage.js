@@ -233,7 +233,7 @@ const FileUploadField = ({
 };
 
 
-export default function ProgramDynamicPage({ allData, parentPage, type, componentType }) {
+export default function ProgramDynamicPage({ allData, parentPage, streamId, type, componentType }) {
   const router = useRouter()
   const [submitting, setSubmitting] = useState(false)
   const [searchValue, setSearchValue] = useState("")
@@ -251,6 +251,7 @@ export default function ProgramDynamicPage({ allData, parentPage, type, componen
   const [formData, setFormData] = useState({
     page_id: allData?.page_id,
     parent_id: allData?.parent_id,
+    stream: streamId,
     languageId: 1,
     price: "",
     name: allData?.name,

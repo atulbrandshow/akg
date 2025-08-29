@@ -432,24 +432,39 @@ function EditDepartmentPage({ type, componentType }) {
   useEffect(() => {
     const fetchSchools = async () => {
       try {
-        const response = await fetch(`${API_NODE_URL}school/search?search=${searchQuery}`, {
+        const response = await fetch(`${API_NODE_URL}slug/getParents`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
           credentials: "include",
-        })
-        const result = await response.json()
-        if (result.status) {
-          setSchools(Array.isArray(result?.data?.schools) ? result?.data?.schools : [])
+          body: JSON.stringify({
+            query: searchQuery,
+            page: 1,
+            limit: 10,
+            type: "School",
+          }),
+        });
+
+        const result = await response.json();
+        const fetchedPages = result?.data?.pages || [];
+
+        if (fetchedPages.length > 0) {
+          setSchools(fetchedPages);
         } else {
-          toast.error(result.message || "Failed to fetch schools.")
-          setSchools([])
+          setSchools([]);
+          toast.error("No schools found.");
         }
       } catch (err) {
-        console.error("Error fetching schools:", err)
-        toast.error("An error occurred while fetching schools.")
-        setSchools([])
+        console.error("Error fetching schools:", err);
+        toast.error("An error occurred while fetching schools.");
+        setSchools([]);
       }
-    }
-    fetchSchools()
-  }, [searchQuery])
+    };
+
+    fetchSchools();
+  }, [searchQuery]);
+
 
 
   const fetchParent = async (parent_id) => {
@@ -609,6 +624,7 @@ function EditDepartmentPage({ type, componentType }) {
           setFormData({
             page_id: data?.data?.page_id || "",
             parent_id: data?.data?.parent_id != 0 ? data?.data?.parent_id : 0,
+            stream: data?.data?.parent_id != 0 ? data?.data?.parent_id : 0,
             languageId: data?.data?.languageId || 1,
             price: data?.data?.price || "",
             name: data?.data?.name || "",

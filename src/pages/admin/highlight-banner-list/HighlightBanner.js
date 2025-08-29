@@ -2,10 +2,7 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { toast } from "react-toastify"
-import { API_NODE_URL } from "@/configs/config"
-
-// Mock API configuration - replace with your actual config
-const IMAGE_PATH =  "http://localhost:3001/"
+import { API_NODE_URL, IMAGE_PATH } from "@/configs/config"
 
 const HighlightBannerList = () => {
   const router = useRouter()
@@ -41,6 +38,8 @@ const HighlightBannerList = () => {
       })
 
       const data = await response.json()
+      console.log(data);
+      
 
       if (data.status) {
         setBanners(data.data.banners || [])
@@ -161,8 +160,8 @@ const HighlightBannerList = () => {
   )
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
-      <div className="max-w-7xl mx-auto">
+    <div>
+      <div>
         {/* Header */}
         <div className="bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 rounded-2xl p-6 mb-8 shadow-xl">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">

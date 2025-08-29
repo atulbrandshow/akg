@@ -235,9 +235,9 @@ const EnhancedFileUpload = ({
   dimensions,
   required = false,
   isUploading = false,
-  type = 'image', // type can be 'pdf' or 'image'
+  type = "image", // type can be 'pdf' or 'image'
 }) => {
-  const accept = type === 'pdf' ? 'application/pdf' : 'image/webp,image/png,image/jpeg';
+  const accept = type === "pdf" ? "application/pdf" : "image/webp,image/png,image/jpeg"
 
   return (
     <div className="space-y-2">
@@ -258,20 +258,13 @@ const EnhancedFileUpload = ({
           <div className="text-sm text-gray-600">
             <p className="font-semibold">Click to upload or drag and drop</p>
             <p className="text-xs text-gray-500 mt-1">
-              {type === 'pdf' ? 'PDF format only' : 'WebP format recommended'}
+              {type === "pdf" ? "PDF format only" : "WebP format recommended"}
             </p>
             {dimensions && <p className="text-xs text-gray-500">Dimensions: {dimensions}</p>}
           </div>
         </div>
 
-        <input
-          type="file"
-          id={id}
-          accept={accept}
-          onChange={onChange}
-          className="hidden"
-          disabled={isUploading}
-        />
+        <input type="file" id={id} accept={accept} onChange={onChange} className="hidden" disabled={isUploading} />
 
         <label
           htmlFor={id}
@@ -309,8 +302,8 @@ const EnhancedFileUpload = ({
         isUploading={isUploading}
       />
     </div>
-  );
-};
+  )
+}
 
 function EditProgramPage({ type, componentType }) {
   const searchParams = useSearchParams()
@@ -326,7 +319,7 @@ function EditProgramPage({ type, componentType }) {
   const [hasMore, setHasMore] = useState(true)
   const [allPages, setAllPages] = useState([])
   const [pageIndex, setPageIndex] = useState(0)
-  const [compType, setCompType] = useState("");
+  const [compType, setCompType] = useState("")
 
   const [componentSearchValue, setComponentSearchValue] = useState("")
   const [showComponentDropdown, setShowComponentDropdown] = useState(false)
@@ -334,6 +327,17 @@ function EditProgramPage({ type, componentType }) {
   const [displayedComponents, setDisplayedComponents] = useState([])
   const [hasMoreComponents, setHasMoreComponents] = useState(true)
   const [allComponents, setAllComponents] = useState([])
+  const [errors, setErrors] = useState({})
+
+  const [streamId, setStreamId] = useState("")
+
+  const [allStreams, setAllStreams] = useState([])
+  const [displayedStreams, setDisplayedStreams] = useState([])
+  const [streamSearchValue, setStreamSearchValue] = useState("")
+  const [showStreamDropdown, setShowStreamDropdown] = useState(false)
+  const [streamIndex, setStreamIndex] = useState(10)
+  const [hasMoreStreams, setHasMoreStreams] = useState(true)
+  const [selectedStream, setSelectedStream] = useState(null)
 
   // Upload states
   const [uploadingStates, setUploadingStates] = useState({})
@@ -427,13 +431,14 @@ function EditProgramPage({ type, componentType }) {
     downloadCenterPdf: "",
   })
 
-  const fetchParent = async (parent_id) => {
-    if (parent_id) {
+  const fetchParent = async (id) => {
+    if (id) {
       try {
-        const response = await fetch(`${API_NODE_URL}slug/getbyid?page_id=${parent_id}`, {
+        const response = await fetch(`${API_NODE_URL}slug/getbyid?page_id=${id}`, {
           credentials: "include",
         })
         const result = await response.json()
+        setSelectedPage(result?.data || null)
         return result?.data?.name || ""
       } catch (err) {
         console.error("Error fetching parent:", err)
@@ -441,6 +446,51 @@ function EditProgramPage({ type, componentType }) {
       }
     }
     return ""
+  }
+
+  const fetchStream = async (id) => {
+    if (id) {
+      try {
+        const response = await fetch(`${API_NODE_URL}slug/getbyid?page_id=${id}`, {
+          credentials: "include",
+        })
+        const result = await response.json()
+        setStreamId(result?.data.stream || null)
+        return result?.data?.name || ""
+      } catch (err) {
+        console.error("Error fetching parent:", err)
+        return ""
+      }
+    }
+    return ""
+  }
+
+  const fetchStreams = async (searchTerm = "") => {
+    try {
+      const response = await fetch(`${API_NODE_URL}slug/getParents`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({ query: searchTerm, page: 1, limit: 10, type: "School" }),
+      })
+      const data = await response.json()
+
+      const fetchedStreams = data.data.pages || []
+
+      if (fetchedStreams.length === 0) {
+        setAllStreams([])
+        setDisplayedStreams([])
+        setHasMoreStreams(false)
+      } else {
+        setAllStreams(fetchedStreams)
+        setDisplayedStreams(fetchedStreams.slice(0, 10))
+        setHasMoreStreams(fetchedStreams.length > 10)
+      }
+    } catch (error) {
+      console.error("Error fetching streams:", error)
+    }
   }
 
   const fetchComponents = async (searchTerm = "", page = 1) => {
@@ -506,7 +556,7 @@ function EditProgramPage({ type, componentType }) {
           "Content-Type": "application/json",
         },
         credentials: "include",
-        body: JSON.stringify({ query: searchTerm, page: 1, limit: 10, type: ['Department', 'School'] }),
+        body: JSON.stringify({ query: searchTerm, page: 1, limit: 10, type: ["Department", "School"] }),
       })
       const data = await response.json()
 
@@ -552,6 +602,16 @@ function EditProgramPage({ type, componentType }) {
       parent_id: page.page_id,
       parentPage: page.name,
     }))
+
+    if (page.type === "School") {
+      setStreamId(page.page_id)
+      setSelectedStream(null)
+      setStreamSearchValue("")
+    } else if (page.type === "Department") {
+      setStreamId("")
+      setSelectedStream(null)
+      setStreamSearchValue("")
+    }
   }
 
   // Handle 'Show More' button click
@@ -572,17 +632,22 @@ function EditProgramPage({ type, componentType }) {
         const response = await fetch(`${API_NODE_URL}slug/getbyid?page_id=${page_id}`, {
           credentials: "include",
         })
-        const data = await response.json()
-
+        const data = await response.json();
+        console.log(data);
+        
         if (data.status) {
           const parent_id = data?.data?.parent_id
+          const stream_id = data?.data?.stream
           const parentPageName = parent_id !== 0 ? await fetchParent(parent_id) : "This is Main page"
+          const streamName = stream_id ? await fetchStream(stream_id) : ""
+          setStreamSearchValue(streamName)
           setSearchValue(parentPageName)
-          setCompType(data?.data?.ComponentType);
+          setCompType(data?.data?.ComponentType)
           setComponentSearchValue(data?.data?.ComponentType)
           setFormData({
             page_id: data?.data?.page_id || "",
             parent_id: data?.data?.parent_id != 0 ? data?.data?.parent_id : 0,
+
             languageId: data?.data?.languageId || 1,
             price: data?.data?.price || "",
             name: data?.data?.name || "",
@@ -697,7 +762,6 @@ function EditProgramPage({ type, componentType }) {
     setUploadingStates((prev) => ({ ...prev, [field]: true }))
 
     try {
-
       // Upload the image
       const imageUrls = await uploadImages([file])
 
@@ -795,10 +859,11 @@ function EditProgramPage({ type, componentType }) {
     const payload = {
       ...formData,
       ComponentType: selectedComponentType || compType || componentType,
+      stream: streamId,
     }
 
     console.log(payload);
-
+    
 
     setSubmitting(true)
     try {
@@ -828,6 +893,35 @@ function EditProgramPage({ type, componentType }) {
   const handleSubmit = (e) => {
     e.preventDefault()
     insertPage()
+  }
+
+  const handleStreamInputChange = (e) => {
+    const value = e.target.value
+    setStreamSearchValue(value)
+
+    if (value.length > 0) {
+      fetchStreams(value)
+      setShowStreamDropdown(true)
+    } else {
+      setDisplayedStreams(allStreams.slice(0, 10))
+      setShowStreamDropdown(false)
+    }
+  }
+
+  const handleStreamSuggestionClick = (stream) => {
+    setStreamSearchValue(stream.name)
+    setSelectedStream(stream)
+    setShowStreamDropdown(false)
+    setStreamId(stream.page_id)
+  }
+
+  const handleShowMoreStreams = () => {
+    const newIndex = streamIndex + 10
+    setDisplayedStreams(allStreams.slice(0, newIndex))
+    setStreamIndex(newIndex)
+    if (newIndex >= allStreams.length) {
+      setHasMoreStreams(false)
+    }
   }
 
   if (loading) {
@@ -895,7 +989,7 @@ function EditProgramPage({ type, componentType }) {
               <h2 className="text-xl font-novaSemi text-gray-900">Basic Details</h2>
             </div>
 
-            <div className={`grid grid-cols-1 ${type === "Department" ? "md:grid-cols-3" : "md:grid-cols-2"} gap-6`}>
+            <div className={`grid grid-cols-2 gap-6`}>
               <div className="relative">
                 <label htmlFor="parent-page" className="block text-sm font-novaSemi text-gray-700 mb-2">
                   Choose School or Department Department
@@ -924,35 +1018,42 @@ function EditProgramPage({ type, componentType }) {
 
                 {showDropdown && (
                   <div className="absolute z-20 w-full bg-white border-2 border-gray-200 rounded-xl mt-2 max-h-64 overflow-auto shadow-2xl">
-                    {displayedPages.map((page, index) => (
-                      page.page_id != 0 &&
-                      <div
-                        key={index}
-                        onClick={() => handleSuggestionClick(page)}
-                        className="cursor-pointer px-5 py-2 hover:bg-blue-100/60 border-b border-gray-200 last:border-b-0 transition-all duration-150 rounded-md hover:shadow-sm group"
-                      >
-                        <div className="font-semibold text-gray-800 text-base group-hover:text-blue-700">
-                          {page.name}
-                        </div>
+                    {displayedPages.map(
+                      (page, index) =>
+                        page.page_id != 0 && (
+                          <div
+                            key={index}
+                            onClick={() => handleSuggestionClick(page)}
+                            className="cursor-pointer px-5 py-2 hover:bg-blue-100/60 border-b border-gray-200 last:border-b-0 transition-all duration-150 rounded-md hover:shadow-sm group"
+                          >
+                            <div className="font-semibold text-gray-800 text-base group-hover:text-blue-700">
+                              {page.name}
+                            </div>
 
-                        <div className="flex items-center gap-3 mt-1 text-sm text-gray-500">
-                          {page?.type && (
-                            <span
-                              className={`px-2 py-0.5 rounded-full text-xs
-                                                        ${page.type === "School" ? "bg-blue-100 text-blue-700" :
-                                  page.type === "Department" ? "bg-green-100 text-green-700" :
-                                    "bg-gray-100 text-gray-700"}`}
-                            >create-school
-                              {page.type}
-                            </span>
-
-                          )}
-                          {page?.page_id && (
-                            <span className="text-xs">ID: <span className="font-medium text-gray-600">{page.page_id}</span></span>
-                          )}
-                        </div>
-                      </div>
-                    ))}
+                            <div className="flex items-center gap-3 mt-1 text-sm text-gray-500">
+                              {page?.type && (
+                                <span
+                                  className={`px-2 py-0.5 rounded-full text-xs
+                                                        ${page.type === "School"
+                                      ? "bg-blue-100 text-blue-700"
+                                      : page.type === "Department"
+                                        ? "bg-green-100 text-green-700"
+                                        : "bg-gray-100 text-gray-700"
+                                    }`}
+                                >
+                                  create-school
+                                  {page.type}
+                                </span>
+                              )}
+                              {page?.page_id && (
+                                <span className="text-xs">
+                                  ID: <span className="font-medium text-gray-600">{page.page_id}</span>
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        ),
+                    )}
                     {hasMore && displayedPages.length > 0 && (
                       <button
                         type="button"
@@ -965,6 +1066,71 @@ function EditProgramPage({ type, componentType }) {
                   </div>
                 )}
               </div>
+              {selectedPage?.type === "Department" && (
+                <div className="relative">
+                  <label htmlFor="stream" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                    Choose Stream
+                    <span className="text-red-500 ml-1">*</span>
+                  </label>
+                  <div className="relative">
+                    <input
+                      id="stream"
+                      type="text"
+                      value={streamSearchValue}
+                      onChange={handleStreamInputChange}
+                      placeholder="Search and select stream..."
+                      className="w-full border-2 font-novaReg border-gray-200 rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
+                    />
+                    <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+                      <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                  {errors.selectedStream && <p className="text-sm text-red-600 ml-1 mt-1">{errors.selectedStream}</p>}
+
+                  {showStreamDropdown && (
+                    <div className="absolute z-20 w-full bg-white border-2 border-gray-200 rounded-xl mt-2 max-h-64 overflow-auto shadow-2xl">
+                      {displayedStreams.map(
+                        (stream, index) =>
+                          stream.page_id != 0 && (
+                            <div
+                              key={index}
+                              onClick={() => handleStreamSuggestionClick(stream)}
+                              className="cursor-pointer px-5 py-2 hover:bg-blue-100/60 border-b border-gray-200 last:border-b-0 transition-all duration-150 rounded-md hover:shadow-sm group"
+                            >
+                              <div className="font-semibold text-gray-800 text-base group-hover:text-blue-700">
+                                {stream.name}
+                              </div>
+                              <div className="flex items-center gap-3 mt-1 text-sm text-gray-500">
+                                {stream?.page_id && (
+                                  <span className="text-xs">
+                                    ID: <span className="font-medium text-gray-600">{stream.page_id}</span>
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                          ),
+                      )}
+                      {hasMoreStreams && displayedStreams.length > 0 && (
+                        <button
+                          type="button"
+                          onClick={handleShowMoreStreams}
+                          className="w-full px-4 py-3 text-blue-600 hover:bg-blue-50 font-novaReg transition-colors duration-150"
+                        >
+                          Load More Streams
+                        </button>
+                      )}
+                    </div>
+                  )}
+                </div>
+              )}
+
               {type === "Department" && (
                 <div className="relative">
                   <label htmlFor="component-type" className="block text-sm font-novaSemi text-gray-700 mb-2">
@@ -1241,8 +1407,7 @@ function EditProgramPage({ type, componentType }) {
               </div>
               <h2 className="text-xl font-novaSemi text-gray-900">Media Upload</h2>
             </div>
-            {
-              type === "Download Center" &&
+            {type === "Download Center" && (
               <div className="mb-10">
                 <EnhancedFileUpload
                   id="downloadCenterPdf"
@@ -1256,7 +1421,7 @@ function EditProgramPage({ type, componentType }) {
                   type="pdf"
                 />
               </div>
-            }
+            )}
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 font-novaSemi">
               <EnhancedFileUpload
@@ -1344,8 +1509,8 @@ function EditProgramPage({ type, componentType }) {
                   <label
                     htmlFor="galleryimg"
                     className={`mt-4 inline-flex items-center px-4 py-2 text-white text-sm font-medium rounded-lg cursor-pointer transition-colors ${galleryUploadingIndexes.length > 0
-                      ? "bg-gray-400 cursor-not-allowed"
-                      : "bg-blue-600 hover:bg-blue-700"
+                        ? "bg-gray-400 cursor-not-allowed"
+                        : "bg-blue-600 hover:bg-blue-700"
                       }`}
                   >
                     {galleryUploadingIndexes.length > 0 ? (

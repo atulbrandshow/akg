@@ -1,23 +1,33 @@
-"use client";
+"use client"
 
-import React, { useState, useEffect } from "react";
-import { API_NODE_URL } from "@/configs/config";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import ProgramDynamicPage from "./ProgramDynamicPage";
+import { useState } from "react"
+import { toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+import ProgramDynamicPage from "./ProgramDynamicPage"
+import { API_NODE_URL } from "@/configs/config"
 
 function CreateDynamicProgram({ type, componentType }) {
-    const [showPageDetails, setShowPageDetails] = useState(false);
-    const [allPages, setAllPages] = useState([]);
-    const [displayedPages, setDisplayedPages] = useState([]);
-    const [searchValue, setSearchValue] = useState("");
-    const [showDropdown, setShowDropdown] = useState(false);
-    const [pageIndex, setPageIndex] = useState(10);
-    const [hasMore, setHasMore] = useState(true);
-    const [selectedPage, setSelectedPage] = useState(null);
-    const [title, setTitle] = useState("");
-    const [allData, setAllData] = useState({});
+    const [showPageDetails, setShowPageDetails] = useState(false)
+    const [allPages, setAllPages] = useState([])
+    const [displayedPages, setDisplayedPages] = useState([])
+    const [searchValue, setSearchValue] = useState("")
+    const [showDropdown, setShowDropdown] = useState(false)
+    const [pageIndex, setPageIndex] = useState(10)
+    const [hasMore, setHasMore] = useState(true)
+    const [selectedPage, setSelectedPage] = useState(null)
+    const [title, setTitle] = useState("")
+    const [allData, setAllData] = useState({})
     const [pageType, setPageType] = useState("")
+
+    const [streamId, setStreamId] = useState("")
+
+    const [allStreams, setAllStreams] = useState([])
+    const [displayedStreams, setDisplayedStreams] = useState([])
+    const [streamSearchValue, setStreamSearchValue] = useState("")
+    const [showStreamDropdown, setShowStreamDropdown] = useState(false)
+    const [streamIndex, setStreamIndex] = useState(10)
+    const [hasMoreStreams, setHasMoreStreams] = useState(true)
+    const [selectedStream, setSelectedStream] = useState(null)
 
     // Component Type states
     const [allComponents, setAllComponents] = useState([])
@@ -27,7 +37,7 @@ function CreateDynamicProgram({ type, componentType }) {
     const [componentIndex, setComponentIndex] = useState(10)
     const [hasMoreComponents, setHasMoreComponents] = useState(true)
     const [selectedComponentType, setSelectedComponentType] = useState("")
-    const [errors, setErrors] = useState({});
+    const [errors, setErrors] = useState({})
 
     const fetchPages = async (searchTerm = "") => {
         try {
@@ -37,72 +47,112 @@ function CreateDynamicProgram({ type, componentType }) {
                     "Content-Type": "application/json",
                 },
                 credentials: "include",
-                body: JSON.stringify({ query: searchTerm, page: 1, limit: 10, type: ['Department', 'School'] }),
-            });
-            const data = await response.json();
+                body: JSON.stringify({ query: searchTerm, page: 1, limit: 10, type: ["Department", "School"] }),
+            })
+            const data = await response.json()
 
-            const fetchedPages = data.data.pages || [];
-            console.log(fetchedPages);
+            const fetchedPages = data.data.pages || []
 
             if (fetchedPages.length === 0) {
-                setAllPages([]);
-                setDisplayedPages([{ name: "This is parent page", reportId: null }]);
-                setHasMore(false);
+                setAllPages([])
+                setDisplayedPages([{ name: "This is parent page", reportId: null }])
+                setHasMore(false)
             } else {
-                setAllPages(fetchedPages);
-                setDisplayedPages(fetchedPages.slice(0, 10));
-                setHasMore(fetchedPages.length > 10);
+                setAllPages(fetchedPages)
+                setDisplayedPages(fetchedPages.slice(0, 10))
+                setHasMore(fetchedPages.length > 10)
             }
         } catch (error) {
-            console.error("Error fetching parent pages:", error);
+            console.error("Error fetching parent pages:", error)
         }
-    };
+    }
+
+    const fetchStreams = async (searchTerm = "") => {
+        try {
+            const response = await fetch(`${API_NODE_URL}slug/getParents`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: "include",
+                body: JSON.stringify({ query: searchTerm, page: 1, limit: 10, type: "School" }),
+            })
+            const data = await response.json()
+
+            const fetchedStreams = data.data.pages || []
+
+            if (fetchedStreams.length === 0) {
+                setAllStreams([])
+                setDisplayedStreams([])
+                setHasMoreStreams(false)
+            } else {
+                setAllStreams(fetchedStreams)
+                setDisplayedStreams(fetchedStreams.slice(0, 10))
+                setHasMoreStreams(fetchedStreams.length > 10)
+            }
+        } catch (error) {
+            console.error("Error fetching streams:", error)
+        }
+    }
 
     const fetchComponents = async (searchTerm = "", page = 1) => {
         try {
             // URL with search parameter
-            const url = new URL(`${API_NODE_URL}components/category/Page`);
-            url.searchParams.append('page', page);
-            url.searchParams.append('limit', 10);
+            const url = new URL(`${API_NODE_URL}components/category/Page`)
+            url.searchParams.append("page", page)
+            url.searchParams.append("limit", 10)
             if (searchTerm) {
-                url.searchParams.append('search', searchTerm);
+                url.searchParams.append("search", searchTerm)
             }
 
             const response = await fetch(url, {
                 credentials: "include",
-            });
-            const result = await response.json();
+            })
+            const result = await response.json()
 
             if (result.status) {
                 if (page === 1) {
-                    setAllComponents(result.data);
+                    setAllComponents(result.data)
                 } else {
-                    setAllComponents(prev => [...prev, ...result.data]);
+                    setAllComponents((prev) => [...prev, ...result.data])
                 }
 
                 // Update displayed components
-                setDisplayedComponents(result.data);
+                setDisplayedComponents(result.data)
 
                 // Check if more pages exist
-                setHasMoreComponents(result.currentPage < result.totalPages);
+                setHasMoreComponents(result.currentPage < result.totalPages)
             }
         } catch (error) {
-            console.error("Error fetching components:", error);
+            console.error("Error fetching components:", error)
         }
-    };
+    }
 
     const handleInputChange = (e) => {
-        const value = e.target.value;
-        setSearchValue(value);
+        const value = e.target.value
+        setSearchValue(value)
 
         if (value.length > 0) {
-            fetchPages(value);
-            setShowDropdown(true);
+            fetchPages(value)
+            setShowDropdown(true)
         } else {
-            setDisplayedPages(allPages.slice(0, 10));
-            setShowDropdown(false);
+            setDisplayedPages(allPages.slice(0, 10))
+            setShowDropdown(false)
         }
-    };
+    }
+
+    const handleStreamInputChange = (e) => {
+        const value = e.target.value
+        setStreamSearchValue(value)
+
+        if (value.length > 0) {
+            fetchStreams(value)
+            setShowStreamDropdown(true)
+        } else {
+            setDisplayedStreams(allStreams.slice(0, 10))
+            setShowStreamDropdown(false)
+        }
+    }
 
     const handleComponentInputChange = (e) => {
         const value = e.target.value
@@ -123,20 +173,51 @@ function CreateDynamicProgram({ type, componentType }) {
     }
 
     const handleSuggestionClick = (page) => {
-        setSearchValue(page.name); // Show the name in the input
-        setSelectedPage(page); // Set the selected page
-        setShowDropdown(false); // Hide the dropdown after selection
-    };
+        setSearchValue(page.name) // Show the name in the input
+        setSelectedPage(page) // Set the selected page
+        setShowDropdown(false) // Hide the dropdown after selection
+
+        if (page.type === "School") {
+            // If school is selected, save school page_id to streamId
+            setStreamId(page.page_id)
+            // Reset stream selection
+            setSelectedStream(null)
+            setStreamSearchValue("")
+        } else if (page.type === "Department") {
+            // If department is selected, reset streamId and fetch streams
+            setStreamId("")
+            setSelectedStream(null)
+            setStreamSearchValue("")
+            fetchStreams() // Fetch streams for department selection
+        }
+    }
+
+    const handleStreamSuggestionClick = (stream) => {
+        setStreamSearchValue(stream.name)
+        setSelectedStream(stream)
+        setShowStreamDropdown(false)
+        // Save stream ID to streamId state
+        setStreamId(stream.page_id)
+    }
 
     // Handle 'Show More' button click
     const handleShowMore = () => {
-        const newIndex = pageIndex + 10;
-        setDisplayedPages(allPages.slice(0, newIndex)); // Show next 10 pages
-        setPageIndex(newIndex); // Update index
+        const newIndex = pageIndex + 10
+        setDisplayedPages(allPages.slice(0, newIndex)) // Show next 10 pages
+        setPageIndex(newIndex) // Update index
         if (newIndex >= allPages.length) {
-            setHasMore(false); // Hide 'Show More' if no more pages
+            setHasMore(false) // Hide 'Show More' if no more pages
         }
-    };
+    }
+
+    const handleShowMoreStreams = () => {
+        const newIndex = streamIndex + 10
+        setDisplayedStreams(allStreams.slice(0, newIndex))
+        setStreamIndex(newIndex)
+        if (newIndex >= allStreams.length) {
+            setHasMoreStreams(false)
+        }
+    }
 
     const handleShowMoreComponents = () => {
         const newIndex = componentIndex + 10
@@ -161,50 +242,54 @@ function CreateDynamicProgram({ type, componentType }) {
         }
     }
 
-
     const handleAddClick = async () => {
-        const newErrors = {};
+        const newErrors = {}
 
         if (!selectedPage) {
-            newErrors.selectedPage = "Please select a parent page.";
+            newErrors.selectedPage = "Please select a parent page."
+        }
+
+        if (selectedPage?.type === "Department" && !selectedStream) {
+            newErrors.selectedStream = "Please select a stream."
         }
 
         if (!title) {
-            newErrors.title = "Please enter a title.";
+            newErrors.title = "Please enter a title."
         }
 
         if (type === "Page" && !pageType) {
-            newErrors.pageType = "Please select page type.";
+            newErrors.pageType = "Please select page type."
         }
 
         if (pageType === "Page" && !selectedComponentType) {
-            newErrors.selectedComponentType = "Please select a component type.";
+            newErrors.selectedComponentType = "Please select a component type."
         }
 
         // If there are any errors, update state and stop execution
         if (Object.keys(newErrors).length > 0) {
-            setErrors(newErrors);
-            return;
+            setErrors(newErrors)
+            return
         }
 
-        setErrors({}); // Clear previous errors
+        setErrors({}) // Clear previous errors
 
         const payload = {
             parent_id: selectedPage?.page_id,
             name: title,
             type,
             ComponentType: selectedComponentType,
-        };
+            streamId: streamId, // Added streamId to payload
+        }
 
-        const progressBar = document.getElementById("progress-bar");
+        const progressBar = document.getElementById("progress-bar")
 
         try {
-            progressBar.style.width = "0%";
-            progressBar.style.transition = "none";
+            progressBar.style.width = "0%"
+            progressBar.style.transition = "none"
             requestAnimationFrame(() => {
-                progressBar.style.transition = "width 0.5s ease";
-                progressBar.style.width = "100%";
-            });
+                progressBar.style.transition = "width 0.5s ease"
+                progressBar.style.width = "100%"
+            })
 
             const response = await fetch(`${API_NODE_URL}slug/add`, {
                 method: "POST",
@@ -213,25 +298,25 @@ function CreateDynamicProgram({ type, componentType }) {
                 },
                 credentials: "include",
                 body: JSON.stringify(payload),
-            });
+            })
 
-            const result = await response.json();
+            const result = await response.json()
 
             if (result.status) {
-                setAllData(result?.data);
-                toast.success(`${type} added Successfully`);
-                setShowPageDetails(true);
+                setAllData(result?.data)
+                toast.success(`${type} added Successfully`)
+                setShowPageDetails(true)
             } else {
-                alert(result.message);
-                setAllData({});
+                alert(result.message)
+                setAllData({})
             }
         } catch (err) {
-            console.error("Error: ", err);
-            toast.error("An error occurred while processing your request.");
+            console.error("Error: ", err)
+            toast.error("An error occurred while processing your request.")
         } finally {
             progressBar.style.width = "0%"
         }
-    };
+    }
 
     const handleClear = () => {
         setShowPageDetails(false)
@@ -243,6 +328,10 @@ function CreateDynamicProgram({ type, componentType }) {
         setSelectedComponentType("")
         setComponentSearchValue("")
         setShowComponentDropdown(false)
+        setStreamId("")
+        setSelectedStream(null)
+        setStreamSearchValue("")
+        setShowStreamDropdown(false)
     }
 
     return (
@@ -270,7 +359,9 @@ function CreateDynamicProgram({ type, componentType }) {
                     </div>
                     <div>
                         <h1 className="text-2xl font-novaBold text-white tracking-wide">Create {type}</h1>
-                        <p className="text-blue-100 font-novaReg text-sm mt-1">Add a {type?.toLowerCase()} page to your website structure</p>
+                        <p className="text-blue-100 font-novaReg text-sm mt-1">
+                            Add a {type?.toLowerCase()} page to your website structure
+                        </p>
                     </div>
                 </div>
             </div>
@@ -306,36 +397,41 @@ function CreateDynamicProgram({ type, componentType }) {
 
                             {showDropdown && (
                                 <div className="absolute z-20 w-full bg-white border-2 border-gray-200 rounded-xl mt-2 max-h-64 overflow-auto shadow-2xl">
-                                    {displayedPages.map((page, index) => (
-                                        page.page_id != 0 &&
-                                        <div
-                                            key={index}
-                                            onClick={() => handleSuggestionClick(page)}
-                                            className="cursor-pointer px-5 py-2 hover:bg-blue-100/60 border-b border-gray-200 last:border-b-0 transition-all duration-150 rounded-md hover:shadow-sm group"
-                                        >
-                                            <div className="font-semibold text-gray-800 text-base group-hover:text-blue-700">
-                                                {page.name}
-                                            </div>
+                                    {displayedPages.map(
+                                        (page, index) =>
+                                            page.page_id != 0 && (
+                                                <div
+                                                    key={index}
+                                                    onClick={() => handleSuggestionClick(page)}
+                                                    className="cursor-pointer px-5 py-2 hover:bg-blue-100/60 border-b border-gray-200 last:border-b-0 transition-all duration-150 rounded-md hover:shadow-sm group"
+                                                >
+                                                    <div className="font-semibold text-gray-800 text-base group-hover:text-blue-700">
+                                                        {page.name}
+                                                    </div>
 
-                                            <div className="flex items-center gap-3 mt-1 text-sm text-gray-500">
-                                                {page?.type && (
-                                                    <span
-                                                        className={`px-2 py-0.5 rounded-full text-xs
-                                                        ${page.type === "School" ? "bg-blue-100 text-blue-700" :
-                                                                page.type === "Department" ? "bg-green-100 text-green-700" :
-                                                                    "bg-gray-100 text-gray-700"}`}
-                                                    >
-                                                        {page.type}
-                                                    </span>
-
-                                                )}
-                                                {page?.page_id && (
-                                                    <span className="text-xs">ID: <span className="font-medium text-gray-600">{page.page_id}</span></span>
-                                                )}
-                                            </div>
-                                        </div>
-
-                                    ))}
+                                                    <div className="flex items-center gap-3 mt-1 text-sm text-gray-500">
+                                                        {page?.type && (
+                                                            <span
+                                                                className={`px-2 py-0.5 rounded-full text-xs
+                                                        ${page.type === "School"
+                                                                        ? "bg-blue-100 text-blue-700"
+                                                                        : page.type === "Department"
+                                                                            ? "bg-green-100 text-green-700"
+                                                                            : "bg-gray-100 text-gray-700"
+                                                                    }`}
+                                                            >
+                                                                {page.type}
+                                                            </span>
+                                                        )}
+                                                        {page?.page_id && (
+                                                            <span className="text-xs">
+                                                                ID: <span className="font-medium text-gray-600">{page.page_id}</span>
+                                                            </span>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            ),
+                                    )}
                                     {hasMore && displayedPages.length > 0 && (
                                         <button
                                             type="button"
@@ -348,6 +444,69 @@ function CreateDynamicProgram({ type, componentType }) {
                                 </div>
                             )}
                         </div>
+
+                        {selectedPage?.type === "Department" && (
+                            <div className="relative">
+                                <label htmlFor="stream" className="block text-sm font-novaSemi text-gray-700 mb-2">
+                                    Choose Stream
+                                    <span className="text-red-500 ml-1">*</span>
+                                </label>
+                                <div className="relative">
+                                    <input
+                                        id="stream"
+                                        type="text"
+                                        value={streamSearchValue}
+                                        onChange={handleStreamInputChange}
+                                        placeholder="Search and select stream..."
+                                        className="w-full border-2 font-novaReg border-gray-200 rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
+                                    />
+                                    <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+                                        <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                            ></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                {errors.selectedStream && <p className="text-sm text-red-600 ml-1 mt-1">{errors.selectedStream}</p>}
+
+                                {showStreamDropdown && (
+                                    <div className="absolute z-20 w-full bg-white border-2 border-gray-200 rounded-xl mt-2 max-h-64 overflow-auto shadow-2xl">
+                                        {displayedStreams.map((stream, index) => (
+                                            stream.page_id != 0 &&
+                                            <div
+                                                key={index}
+                                                onClick={() => handleStreamSuggestionClick(stream)}
+                                                className="cursor-pointer px-5 py-2 hover:bg-blue-100/60 border-b border-gray-200 last:border-b-0 transition-all duration-150 rounded-md hover:shadow-sm group"
+                                            >
+                                                <div className="font-semibold text-gray-800 text-base group-hover:text-blue-700">
+                                                    {stream.name}
+                                                </div>
+                                                <div className="flex items-center gap-3 mt-1 text-sm text-gray-500">
+                                                    {stream?.page_id && (
+                                                        <span className="text-xs">
+                                                            ID: <span className="font-medium text-gray-600">{stream.page_id}</span>
+                                                        </span>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        ))}
+                                        {hasMoreStreams && displayedStreams.length > 0 && (
+                                            <button
+                                                type="button"
+                                                onClick={handleShowMoreStreams}
+                                                className="w-full px-4 py-3 text-blue-600 hover:bg-blue-50 font-novaReg transition-colors duration-150"
+                                            >
+                                                Load More Streams
+                                            </button>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                        )}
 
                         <div>
                             <label htmlFor="title" className="block text-sm font-novaSemi text-gray-700 mb-2">
@@ -400,7 +559,9 @@ function CreateDynamicProgram({ type, componentType }) {
                                         placeholder="Search and select component type..."
                                         className="w-full border-2 border-gray-200 font-novaReg rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 bg-gray-50 hover:bg-white"
                                     />
-                                    {errors.selectedComponentType && <p className="text-sm text-red-600 ml-1 mt-1">{errors.selectedComponentType}</p>}
+                                    {errors.selectedComponentType && (
+                                        <p className="text-sm text-red-600 ml-1 mt-1">{errors.selectedComponentType}</p>
+                                    )}
                                     <div className="absolute inset-y-0 right-0 flex items-center pr-3">
                                         <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path
@@ -437,20 +598,6 @@ function CreateDynamicProgram({ type, componentType }) {
                                 )}
                             </div>
                         )}
-
-                        {/* <div>
-                            <label htmlFor="page-type" className="block text-sm font-novaSemi text-gray-700 mb-2">
-                                Page Type
-                                <span className="text-red-500 ml-1">*</span>
-                            </label>
-                            <input
-                                id="page-type"
-                                value={type}
-                                disabled
-                                className="w-full border-2 border-gray-200 text-gray-500 font-novaSemi rounded-xl py-3 px-4  cursor-not-allowed"
-                            >
-                            </input>
-                        </div> */}
 
                         <div className="flex space-x-4 pt-6">
                             <button
@@ -492,10 +639,10 @@ function CreateDynamicProgram({ type, componentType }) {
                 </div>
             )}
             {showPageDetails && (
-                <ProgramDynamicPage allData={allData} parentPage={selectedPage} type={type} componentType={componentType} />
+                <ProgramDynamicPage allData={allData} parentPage={selectedPage} type={type} streamId={streamId} componentType={componentType} />
             )}
         </div>
-    );
+    )
 }
 
-export default CreateDynamicProgram;
+export default CreateDynamicProgram

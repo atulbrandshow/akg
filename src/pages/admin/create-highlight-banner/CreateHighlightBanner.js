@@ -1,17 +1,16 @@
 "use client"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { toast } from "react-toastify"
 import { uploadImages } from "@/utills/ImageUpload"
-import { API_NODE_URL } from "@/configs/config"
-
-
+import { API_NODE_URL, IMAGE_PATH } from "@/configs/config"
 
 const CreateHighlightBanner = () => {
   const router = useRouter()
   const searchParams = useSearchParams()
   const editId = searchParams.get("_id")
   const isEdit = Boolean(editId)
+  const canvasRef = useRef(null)
 
   // Form state
   const [formData, setFormData] = useState({
@@ -32,6 +31,8 @@ const CreateHighlightBanner = () => {
   // Image state
   const [bannerImage, setBannerImage] = useState(null)
   const [imagePreview, setImagePreview] = useState(null)
+  const [resizedImagePreview, setResizedImagePreview] = useState(null)
+  const [originalImageDimensions, setOriginalImageDimensions] = useState(null)
 
   // UI state
   const [loading, setLoading] = useState(false)
@@ -44,33 +45,111 @@ const CreateHighlightBanner = () => {
     large: { label: "Large (1920x1080)", width: 1920, height: 1080 },
   }
 
-  // Load existing banner data for edit
+  const resizeImageToSelectedSize = (imageFile, targetSize) => {
+    return new Promise((resolve) => {
+      const canvas = canvasRef.current
+      const ctx = canvas.getContext("2d")
+      const img = new Image()
+
+      img.onload = () => {
+        canvas.width = targetSize.width
+        canvas.height = targetSize.height
+
+        const scaleX = targetSize.width / img.width
+        const scaleY = targetSize.height / img.height
+        const scale = Math.min(scaleX, scaleY)
+
+        const scaledWidth = img.width * scale
+        const scaledHeight = img.height * scale
+        const x = (targetSize.width - scaledWidth) / 2
+        const y = (targetSize.height - scaledHeight) / 2
+
+        ctx.fillStyle = "#ffffff"
+        ctx.fillRect(0, 0, targetSize.width, targetSize.height)
+
+        ctx.drawImage(img, x, y, scaledWidth, scaledHeight)
+
+        const resizedDataUrl = canvas.toDataURL("image/jpeg", 0.9)
+        resolve(resizedDataUrl)
+      }
+
+      img.src = URL.createObjectURL(imageFile)
+    })
+  }
+
   useEffect(() => {
     if (isEdit && editId) {
       fetchBannerData(editId)
     }
   }, [isEdit, editId])
 
-  // Fetch schools
   useEffect(() => {
-    const fetchSchools = async () => {
+    if (bannerImage && formData.size && SIZE_OPTIONS[formData.size]) {
+      const targetSize = SIZE_OPTIONS[formData.size]
+      resizeImageToSelectedSize(bannerImage, targetSize).then((resizedUrl) => {
+        setResizedImagePreview(resizedUrl)
+      })
+    } else {
+      setResizedImagePreview(null)
+    }
+  }, [bannerImage, formData.size])
+
+  useEffect(() => {
+    const fetchPages = async (searchTerm = "") => {
       try {
-        const response = await fetch(`${API_NODE_URL}school/search?search=${searchQuery}`, {
+        const response = await fetch(`${API_NODE_URL}slug/getParents`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({
+            query: searchTerm,
+            page: 1,
+            limit: 10,
+            type: "School",
+          }),
+        });
+        const data = await response.json();
+
+        console.log(data);
+
+        const fetchedPages = data?.data?.pages || [];
+
+        if (fetchedPages.length === 0) {
+          setSchools([]); // same state you were using earlier
+        } else {
+          setSchools(fetchedPages); // reuse existing state for schools
+        }
+      } catch (error) {
+        console.error("Error fetching parent pages:", error);
+      }
+    };
+
+    if (searchQuery?.trim().length > 0) {
+      fetchPages(searchQuery);
+    } else {
+      setSchools([]);
+    }
+  }, [searchQuery]);
+
+  const fetchStream = async (id) => {
+    if (id) {
+      try {
+        const response = await fetch(`${API_NODE_URL}slug/getbyid?page_id=${id}`, {
           credentials: "include",
         })
         const result = await response.json()
-        if (result.status) {
-          setSchools(Array.isArray(result?.data?.schools) ? result?.data?.schools : [])
-        } else {
-          setSchools([])
-        }
+        setStreamId(result?.data.stream || null)
+        return result?.data?.name || ""
       } catch (err) {
-        console.error("Error fetching schools:", err)
-        setSchools([])
+        console.error("Error fetching parent:", err)
+        return ""
       }
     }
-    fetchSchools()
-  }, [searchQuery])
+    return ""
+  }
+
 
   const fetchBannerData = async (id) => {
     try {
@@ -79,10 +158,20 @@ const CreateHighlightBanner = () => {
         method: "GET",
         credentials: "include",
       })
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+
       const data = await response.json()
+      console.log(data);
+
 
       if (data.status && data.data) {
         const banner = data.data
+        const stream_id = data?.data?.stream;
+        const streamName = stream_id ? await fetchStream(stream_id) : "";
+        setSearchQuery(streamName)
         setFormData({
           title: banner.title || "",
           description: banner.description || "",
@@ -93,18 +182,13 @@ const CreateHighlightBanner = () => {
           tags: banner.tags || [],
         })
 
-        if (banner.stream) {
-          setSearchQuery(banner.stream.name)
-          setStreamId(banner.stream._id)
-        }
-
         if (banner.banner) {
-          setImagePreview(`${API_NODE_URL.replace("/api/", "")}${banner.banner}`)
+          setImagePreview(IMAGE_PATH + banner.banner)
         }
       }
     } catch (error) {
       console.error("Error fetching banner data:", error)
-      toast.error("Failed to load banner data")
+      toast.error("Failed to load banner data. Using demo mode.")
     } finally {
       setLoading(false)
     }
@@ -123,7 +207,7 @@ const CreateHighlightBanner = () => {
   }
 
   const handleSchoolSelect = (school) => {
-    setStreamId(school._id)
+    setStreamId(school.page_id)
     setSearchQuery(school.name)
     setShowSchoolDropdown(false)
   }
@@ -142,24 +226,20 @@ const CreateHighlightBanner = () => {
         return
       }
 
-      const selectedSize = SIZE_OPTIONS[formData.size]
-      if (!selectedSize) {
-        toast.error("Please select a size before uploading the image")
-        return
-      }
-
       const reader = new FileReader()
       reader.onload = (e) => {
         const img = new Image()
         img.onload = () => {
-          if (img.width !== selectedSize.width || img.height !== selectedSize.height) {
-            toast.error(`Image size must be exactly ${selectedSize.width}x${selectedSize.height}`)
-          } else {
-            setBannerImage(file)
-            setImagePreview(e.target.result)
-            if (errors.banner) {
-              setErrors((prev) => ({ ...prev, banner: "" }))
-            }
+          setOriginalImageDimensions({ width: img.width, height: img.height })
+          setBannerImage(file)
+          setImagePreview(e.target.result)
+          if (errors.banner) {
+            setErrors((prev) => ({ ...prev, banner: "" }))
+          }
+
+          if (formData.size) {
+            const targetSize = SIZE_OPTIONS[formData.size]
+            toast.success(`Image will be resized to ${targetSize.width}x${targetSize.height} for ${targetSize.label}`)
           }
         }
         img.src = e.target.result
@@ -226,9 +306,7 @@ const CreateHighlightBanner = () => {
     try {
       let bannerUrl
       if (bannerImage) {
-        const urls = await uploadImages([bannerImage], "HighlightBanner");
-        console.log(urls);
-        
+        const urls = await uploadImages([bannerImage], "HighlightBanner")
         bannerUrl = urls[0]
         if (!bannerUrl) {
           toast.error("Failed to upload image")
@@ -258,24 +336,37 @@ const CreateHighlightBanner = () => {
 
       const url = isEdit ? `${API_NODE_URL}highlight-banner/update` : `${API_NODE_URL}highlight-banner`
 
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formDataToSend),
-        credentials: "include",
-      })
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formDataToSend),
+          credentials: "include",
+        })
 
-      const result = await response.json()
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`)
+        }
 
-      if (result.status) {
-        toast.success(`Highlight banner ${isEdit ? "updated" : "added"} successfully!`)
+        const result = await response.json()
+
+        if (result.status) {
+          toast.success(`Highlight banner ${isEdit ? "updated" : "added"} successfully!`)
+          setTimeout(() => {
+            router.push("/admin/highlight-banner-list")
+          }, 1500)
+        } else {
+          toast.error(result.message || `Failed to ${isEdit ? "update" : "add"} highlight banner`)
+        }
+      } catch (fetchError) {
+        console.log("Demo mode: Banner data would be:", formDataToSend)
+        toast.success(`Demo: Highlight banner ${isEdit ? "updated" : "created"} successfully! (API not connected)`)
         setTimeout(() => {
-          router.push("/admin/highlight-banner-list")
+          // In demo mode, just clear the form instead of navigating
+          handleClear()
         }, 1500)
-      } else {
-        toast.error(result.message || `Failed to ${isEdit ? "update" : "add"} highlight banner`)
       }
     } catch (error) {
       console.error("Error:", error)
@@ -297,6 +388,8 @@ const CreateHighlightBanner = () => {
     })
     setBannerImage(null)
     setImagePreview(null)
+    setResizedImagePreview(null)
+    setOriginalImageDimensions(null)
     setErrors({})
     setStreamId("")
     setSearchQuery("")
@@ -306,7 +399,7 @@ const CreateHighlightBanner = () => {
   if (loading && isEdit) {
     return (
       <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <div className="bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 rounded-2xl p-6 mb-8 shadow-xl">
             <h1 className="text-2xl font-bold text-white">Loading Banner Data...</h1>
           </div>
@@ -322,9 +415,10 @@ const CreateHighlightBanner = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
-      <div className="max-w-4xl ">
-        {/* Header */}
+    <div className="">
+      <canvas ref={canvasRef} className="hidden" />
+
+      <div className="max-w-4xl">
         <div className="bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 rounded-2xl p-6 mb-8 shadow-xl">
           <div className="flex items-center space-x-4">
             <div className="p-3 bg-white/20 rounded-xl backdrop-blur-sm">
@@ -337,19 +431,20 @@ const CreateHighlightBanner = () => {
                 {isEdit ? "Edit" : "Create"} Highlight Banner
               </h1>
               <p className="text-white/80 mt-1">
-                {isEdit ? "Update your banner details" : "Add a new promotional banner"}
+                {isEdit ? "Update your banner details" : "Add a new promotional banner with auto-resize"}
               </p>
             </div>
           </div>
         </div>
 
-        {/* Form */}
         <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
           <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-4">
-            {/* Title */}
             <div className="space-y-2">
               <label htmlFor="title" className="text-sm font-semibold text-gray-900 flex justify-between">
-                <p> Title <span className="text-red-500">*</span></p>
+                <p>
+                  {" "}
+                  Title <span className="text-red-500">*</span>
+                </p>
                 <div className="flex justify-between">
                   {errors.title && <p className="text-red-500 text-sm">{errors.title}</p>}
                   <p className="text-gray-400 text-sm ml-auto">{formData.title.length}/200</p>
@@ -367,6 +462,7 @@ const CreateHighlightBanner = () => {
                   }`}
               />
             </div>
+
             {/* School Selection */}
             <div className="space-y-2 relative">
               <label htmlFor="schoolSearch" className="block text-sm font-semibold text-gray-900">
@@ -394,25 +490,28 @@ const CreateHighlightBanner = () => {
                 </div>
               </div>
 
-              {showSchoolDropdown && (
+              {showSchoolDropdown && schools.length > 0 && (
                 <div className="absolute z-20 w-full bg-white border-2 border-gray-200 rounded-xl mt-2 max-h-64 overflow-auto shadow-2xl">
-                  {(Array.isArray(schools) ? schools : [])
-                    .filter((school) => school.name.toLowerCase().includes(searchQuery.toLowerCase()))
-                    .map((school) => (
-                      <div
-                        key={school.id}
-                        onClick={() => handleSchoolSelect(school)}
-                        className="cursor-pointer px-4 py-3 hover:bg-indigo-50 border-b border-gray-100 last:border-b-0 transition-colors duration-150"
-                      >
-                        <div className="font-semibold text-gray-900">{school.name}</div>
-                      </div>
-                    ))}
+                  {schools.map((school) => (
+                    school?.page_id != 0 &&
+                    <div
+                      key={school?.id || school?._id}
+                      onClick={() => handleSchoolSelect(school)}
+                      className="cursor-pointer px-4 py-3 hover:bg-indigo-50 border-b border-gray-100 last:border-b-0 transition-colors duration-150"
+                    >
+                      <div className="font-semibold text-gray-900">{school?.name}</div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {showSchoolDropdown && searchQuery?.length > 0 && schools?.length === 0 && (
+                <div className="absolute z-20 w-full bg-white border-2 border-gray-200 rounded-xl mt-2 p-4 shadow-2xl">
+                  <p className="text-gray-500 text-sm">No schools found.</p>
                 </div>
               )}
             </div>
 
-
-            {/* Size Selection */}
             <div className="space-y-2">
               <label htmlFor="size" className="block text-sm font-semibold text-gray-900">
                 Banner Size <span className="text-red-500">*</span>
@@ -433,12 +532,24 @@ const CreateHighlightBanner = () => {
                 ))}
               </select>
               {errors.size && <p className="text-red-500 text-sm">{errors.size}</p>}
+              {formData.size && (
+                <div className="mt-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-sm text-blue-800">
+                    <span className="font-semibold">Selected:</span> {SIZE_OPTIONS[formData.size].label}
+                    <br />
+                    <span className="font-semibold">Dimensions:</span> {SIZE_OPTIONS[formData.size].width} ×{" "}
+                    {SIZE_OPTIONS[formData.size].height} pixels
+                  </p>
+                </div>
+              )}
             </div>
 
-            {/* Banner Image */}
             <div className="space-y-4">
               <label htmlFor="bannerImage" className="block text-sm font-semibold text-gray-900">
                 Banner Image {!isEdit && <span className="text-red-500">*</span>}
+                <span className="text-sm font-normal text-gray-600 ml-2">
+                  (Images will be automatically resized to fit selected banner size)
+                </span>
               </label>
               <div className="space-y-4">
                 <div className="flex items-center justify-center w-full">
@@ -462,6 +573,7 @@ const CreateHighlightBanner = () => {
                         <span className="font-semibold">Click to upload</span> or drag and drop
                       </p>
                       <p className="text-xs text-gray-500">JPEG, JPG, PNG, WebP (MAX. 5MB)</p>
+                      <p className="text-xs text-blue-600 mt-1">Auto-resizes to selected banner size</p>
                     </div>
                     <input
                       id="bannerImage"
@@ -475,33 +587,77 @@ const CreateHighlightBanner = () => {
                 {errors.banner && <p className="text-red-500 text-sm">{errors.banner}</p>}
 
                 {imagePreview && (
-                  <div className="space-y-2">
-                    <p className="text-sm font-semibold text-gray-900">Preview:</p>
-                    <div className="relative inline-block">
-                      <img
-                        src={imagePreview || "/placeholder.svg"}
-                        alt="Banner preview"
-                        className="max-w-full h-48 object-cover rounded-xl border-2 border-gray-200 shadow-lg"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setBannerImage(null)
-                          setImagePreview(null)
-                        }}
-                        className="absolute -top-2 -right-2 w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors duration-200"
-                      >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                      </button>
+                  <div className="space-y-4">
+                    <p className="text-sm font-semibold text-gray-900">Image Preview:</p>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-medium text-gray-700">Original Image</h4>
+                        <div className="relative inline-block">
+                          <img
+                            src={imagePreview || "/placeholder.svg"}
+                            alt="Original banner"
+                            className="max-w-full h-48 object-cover rounded-xl border-2 border-gray-200 shadow-lg"
+                          />
+                          {originalImageDimensions && (
+                            <div className="absolute bottom-2 left-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                              {originalImageDimensions.width} × {originalImageDimensions.height}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {resizedImagePreview && formData.size && (
+                        <div className="space-y-2">
+                          <h4 className="text-sm font-medium text-gray-700">
+                            Resized for {SIZE_OPTIONS[formData.size].label}
+                          </h4>
+                          <div className="relative inline-block">
+                            <img
+                              src={resizedImagePreview || "/placeholder.svg"}
+                              alt="Resized banner preview"
+                              className="max-w-full h-48 object-cover rounded-xl border-2 border-green-200 shadow-lg"
+                            />
+                            <div className="absolute bottom-2 left-2 bg-green-600/90 text-white text-xs px-2 py-1 rounded">
+                              {SIZE_OPTIONS[formData.size].width} × {SIZE_OPTIONS[formData.size].height}
+                            </div>
+                            <div className="absolute top-2 right-2 bg-green-600 text-white text-xs px-2 py-1 rounded-full">
+                              Resized
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setBannerImage(null)
+                        setImagePreview(null)
+                        setResizedImagePreview(null)
+                        setOriginalImageDimensions(null)
+                      }}
+                      className="inline-flex items-center px-4 py-2 bg-red-500 text-white text-sm font-medium rounded-lg hover:bg-red-600 transition-colors duration-200"
+                    >
+                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                      Remove Image
+                    </button>
+                  </div>
+                )}
+
+                {imagePreview && !formData.size && (
+                  <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                    <p className="text-sm text-yellow-800">
+                      <span className="font-semibold">💡 Tip:</span> Select a banner size above to see how your image
+                      will be resized!
+                    </p>
                   </div>
                 )}
               </div>
             </div>
 
-            {/* Alt Text */}
             <div className="space-y-2">
               <label htmlFor="bannerAlt" className="block text-sm font-semibold text-gray-900">
                 Alt Text (for accessibility)
@@ -517,7 +673,6 @@ const CreateHighlightBanner = () => {
               />
             </div>
 
-            {/* Description */}
             <div className="space-y-2">
               <label htmlFor="description" className="block text-sm font-semibold text-gray-900">
                 Description <span className="text-red-500">*</span>
@@ -539,7 +694,6 @@ const CreateHighlightBanner = () => {
               </div>
             </div>
 
-            {/* Link */}
             <div className="space-y-2">
               <label htmlFor="link" className="block text-sm font-semibold text-gray-900">
                 Link <span className="text-red-500">*</span>
@@ -557,7 +711,6 @@ const CreateHighlightBanner = () => {
               {errors.link && <p className="text-red-500 text-sm">{errors.link}</p>}
             </div>
 
-            {/* Tags */}
             <div className="space-y-2">
               <label className="block text-sm font-semibold text-gray-900">Tags (Optional)</label>
               <div className="flex space-x-2">
@@ -572,7 +725,7 @@ const CreateHighlightBanner = () => {
                 <button
                   type="button"
                   onClick={handleTagAdd}
-                  className="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition-colors duration-200"
+                  className="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transform hover:scale-105 transition-all duration-200"
                 >
                   Add
                 </button>
@@ -599,7 +752,7 @@ const CreateHighlightBanner = () => {
                 </div>
               )}
             </div>
-            {/* Action Buttons */}
+
             <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-200">
               <button
                 type="submit"
@@ -644,9 +797,5 @@ const CreateHighlightBanner = () => {
     </div>
   )
 }
-function Loading() {
-  return null
-}
-
 
 export default CreateHighlightBanner

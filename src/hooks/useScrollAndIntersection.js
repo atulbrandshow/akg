@@ -7,7 +7,6 @@ const useScrollAndIntersection = (threshold = 0.5) => {
   const sectionRefs = useRef([]);
 
   useEffect(() => {
-    // Intersection Observer logic
     const options = {
       root: null,
       rootMargin: "0px",

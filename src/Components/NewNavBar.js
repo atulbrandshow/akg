@@ -85,11 +85,11 @@ export default function NewNavBar() {
   };
 
   const LinksList = ({ title, links, titleClassName, ulClassName, setBigMenuToggle }) => (
-    <div className="pr-3 max-md:w-full">
+    <div className="w-fit max-lg:mb-5 lg:mr-10 max-md:w-full">
       {title && <h3 className={`font-novaBold text-base text-blue-900 leading-none mb-3 ${titleClassName}`}>{title}</h3>}
-      <ul className={`space-y-1 lg:space-y-0 ${ulClassName}`}>
+      <ul className={`space-y-1 lg:space-y-2 ${ulClassName}`}>
         {links?.map((link, index) => (
-          <li key={index} className="">
+          <li key={index} className="leading-none">
             <Link href={link?.url || "/"} className="hover:underline cursor-pointer text-left font-novaReg text-sm"
               onClick={() => {
                 setBigMenuToggle(false); // Close the menu
@@ -281,19 +281,19 @@ export default function NewNavBar() {
               </div>
             </div>
           </li>
-          <li className="relative group">
+          <li className="group">
             <button onClick={() => toggleMenu('programs')} className={` relative  focus:outline-none font-novaBold flex pb-2 items-center gap-1 tracking-widest`}>
               PROGRAMS{" "}
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6" /></svg>
               <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
             </button>
             <div
-              className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-[1000px]"
+              className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-[1100px]"
                 } ${openMenu === 'programs' && "absolute h-auto mt-0 w-full"} left-0 h-0 mt-5 overflow-hidden lg:group-hover:h-auto lg:group-hover:mt-0 transition-all bg-white
                                     text-black rounded-lg shadow-lg`}
             >
               <div className="grid grid-cols-12">
-                <div className="col-span-8 max-md:col-span-3 p-0 transition-all">
+                <div className="col-span-9 max-lg:col-span-12 p-0 transition-all">
                   <div className=" w-full h-32 sm:h-16 flex justify-center items-center">
                     {
                       Object.keys(Programs.sublinks)?.map((key, index) => <button onClick={() => { setActiveTab(key) }} key={index}
@@ -301,7 +301,7 @@ export default function NewNavBar() {
                         {key}</button>)
                     }
                   </div>
-                  <div className="flex max-md:flex-col p-5 max-xl:py-4">
+                  <div className="flex max-lg:flex-col p-2">
                     {
                       Object.keys(Programs.sublinks[activeTab])?.map((key, index) => {
                         if (key === 'Graduate Program') {
@@ -317,7 +317,7 @@ export default function NewNavBar() {
                   </div>
                 </div>
 
-                <div className="col-span-4 w-full relative max-md:hidden">
+                <div className="col-span-3 w-full relative max-lg:hidden">
                   <div
                     className="absolute inset-0 bg-cover bg-center rounded-lg shadow-md"
                     style={{

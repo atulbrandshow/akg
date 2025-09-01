@@ -142,7 +142,7 @@ export default function NewNavBar() {
           >
             <div className={`flex justify-start items-center gap-2 ${BigMenuToggle && "relative z-[20] shadow-lg w-screen pb-1.5"}`}>
               <div className="flex justify-center">
-                <Link href="/home" as="/">
+                <Link href="/" as="/">
                   <Image
                     src="/image/akg-logo.webp"
                     alt="AKG University Logo"

@@ -11,7 +11,7 @@ export default function About() {
     return (
         <div className="about-page-container">
             {/* Section 1 */}
-            <section className="relative w-full h-[120vh]">
+            <section className="relative w-full h-full">
                 {/* Background Image */}
                 <div
                     className="absolute inset-0 bg-cover bg-center"
@@ -24,7 +24,7 @@ export default function About() {
                 <div className="absolute inset-0 bg-[#2240c5] opacity-70"></div>
 
                 {/* Center Box */}
-                <div className="pb-10 relative max-w-7xl mx-auto flex items-center justify-start max-sm:justify-center h-full px-4 max-sm:px-0 max-lg:items-end max-xl:items-end">
+                <div className="pt-24 pb-5 sm:pt-32 sm:pb-10 lg:pt-52 lg:pb-16 relative max-w-7xl mx-auto flex items-center justify-start max-sm:justify-center h-full px-4 max-sm:px-0 max-lg:items-end max-xl:items-end">
                     <div className="bg-white shadow-lg rounded-lg w-[90%] max-w-md h-[600px] flex flex-col items-center justify-center px-10 max-sm:px-6" style={{ fontFamily: "Arial, sans-serif" }}>
                         {/* Heading */}
                         <h1 className="text-3xl max-sm:text-2xl font-novaSemi uppercase tracking-wide text-center mb-4">

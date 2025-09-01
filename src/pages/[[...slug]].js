@@ -92,6 +92,11 @@ export async function getServerSideProps(context) {
         return { notFound: true };
     }
 
+    // If it's home page, change path to /home
+    if (path === "/home" || path === "/") {
+        path = "/home";
+    }
+
     try {
         const response = await fetch(`${API_NODE_URL}slug?path=${encodeURIComponent(path)}`, {
             method: "GET",

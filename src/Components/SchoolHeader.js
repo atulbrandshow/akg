@@ -20,7 +20,7 @@ const SchoolHeader = ({ heading, desc, banner, data }) => {
     
     return (
         <section className={`relative ${banner} bg-cover bg-center h-full w-full text-white`}>
-            <div className='absolute inset-0 opacity-75 bg-gradient-to-r from-cyan-600 via-cyan-900 to-transparent'></div>
+            <div className='absolute inset-0 opacity-75 bg-gradient-to-r from-black via-gray-900 to-transparent'></div>
             <div className='max-w-[1440px] mx-auto relative z-10 h-full flex items-center py-16 sm:py-32 lg:py-40'>
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-10 px-5 lg:px-10 pt-20'>
                     <div className='flex flex-col justify-center h-full'>

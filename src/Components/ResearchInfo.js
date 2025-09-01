@@ -21,14 +21,16 @@ const ResearchInfo = () => {
     return (
         <section className="w-full bg-primary text-center">
             <div className="max-w-7xl mx-auto px-3">
-                <div className="grid grid-cols-4 gap-4 mb-8 px-4">
+                {/* Responsive grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8 px-4">
                     {red.map((item, i) => (
                         <div
                             key={i}
-                            className={`py-6 flex flex-col justify-center px-4 text-center ${i % 2 === 0 ? 'bg-primary text-white' : 'bg-secondary'}`}
+                            className={`py-6 flex flex-col justify-center px-4 text-center transition-all duration-300 
+                                ${i % 2 === 0 ? 'bg-primary text-white' : 'bg-secondary text-black'}`}
                         >
-                            <h3 className="text-4xl font-novaBold mb-2">{item.title}</h3>
-                            <p className="text-sm font-novaReg mb-8">{item.desc}</p>
+                            <h3 className="text-2xl md:text-3xl lg:text-4xl font-novaBold mb-2">{item.title}</h3>
+                            <p className="text-sm md:text-base font-novaReg mb-4">{item.desc}</p>
                         </div>
                     ))}
                 </div>
@@ -37,4 +39,4 @@ const ResearchInfo = () => {
     )
 }
 
-export default ResearchInfo
+export default ResearchInfo;

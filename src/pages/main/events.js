@@ -54,13 +54,13 @@ export default function EventList({ data }) {
 
     return (
         <div className=" ">
-            <section className="relative bg-BG27 bg-center bg-no-repeat bg-cover h-[50vh] sm:h-[60vh] md:h-[80vh]">
+            <section className="relative bg-BG27 bg-center bg-no-repeat bg-cover h-full">
                 <div className='absolute inset-0 bg-gradient-to-r from-black to-transparent opacity-80' />
-                <div className="max-w-7xl mx-auto px-3">
+                <div className="max-w-7xl mx-auto px-3 py-52 md:py-80">
                     <div className="absolute inset-0 flex">
 
                         <div className="w-full md:w-1/2 bg-blue-300 opacity-80 h-full flex items-center justify-center flex-col">
-                            <div className="max-w-xl px-4 text-center">
+                            <div className="max-w-xl px-4 text-center pt-20 md:pt-32">
                                 <h2 className="text-3xl md:text-5xl lg:text-6xl font-novaReg uppercase mb-3">
                                     Elevating <span className="font-semibold text-white">Events</span>, Creating Experiences
                                 </h2>

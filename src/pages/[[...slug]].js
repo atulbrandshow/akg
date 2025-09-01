@@ -93,8 +93,8 @@ export async function getServerSideProps(context) {
     }
 
     // If it's home page, change path to /home
-    if (path === "/home" || path === "/") {
-        path = "/home";
+    if (path === "/") {
+        path = "/";
     }
 
     try {

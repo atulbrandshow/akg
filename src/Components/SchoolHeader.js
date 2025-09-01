@@ -19,11 +19,11 @@ const SchoolHeader = ({ heading, desc, banner, data }) => {
 
     
     return (
-        <section className={`relative ${banner} bg-cover bg-center h-[70vh] lg:h-[90vh] w-full text-white`}>
+        <section className={`relative ${banner} bg-cover bg-center h-full w-full text-white`}>
             <div className='absolute inset-0 opacity-75 bg-gradient-to-r from-cyan-600 via-cyan-900 to-transparent'></div>
-            <div className='max-w-[1440px] mx-auto relative z-10 h-full flex items-end justify-start'>
-                <div className='grid grid-cols-1 lg:grid-cols-2 gap-10 px-5 lg:px-10'>
-                    <div className='flex flex-col justify-center h-full pb-10'>
+            <div className='max-w-[1440px] mx-auto relative z-10 h-full flex items-center py-16 sm:py-32 lg:py-40'>
+                <div className='grid grid-cols-1 lg:grid-cols-2 gap-10 px-5 lg:px-10 pt-20'>
+                    <div className='flex flex-col justify-center h-full'>
                         <h2 className='text-2xl lg:text-3xl xl:text-4xl font-novaReg leading-tight lg:leading-snug'>{heading}</h2>
                         <p className='font-novaReg mt-4 lg:text-lg leading-snug max-w-2xl'>{desc}</p>
                         <ul className='grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-5 mt-10 lg:mt-16'>

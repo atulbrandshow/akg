@@ -244,10 +244,10 @@ export const Programs = {
                         url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/master-of-computer-applications'
                     },
                 ],
-                "Doctrate Graduate Program": [
+                "Doctorate Graduate Program": [
                     {
                         name: 'Ph.D in Computer Science and Engineering',
-                        url: '/'
+                        url: '/school-of-computer-science-engineering-and-technology/phd-computer-science-and-engineering'
                     },
                 ]
             }
@@ -282,7 +282,7 @@ export const Programs = {
                         url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-electrical-electronics-engineering'
                     },
                 ],
-                "Doctrate Graduate Program": [
+                "Doctorate Graduate Program": [
                     // {
                     //     name: 'M.Tech',
                     //     url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-electronics-and-communication-engineering'

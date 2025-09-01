@@ -60,7 +60,7 @@ const CustomButton = ({ children, onClick, className, active }) => (
 )
 const SchoolDetails = ({ data }) => {
   const router = useRouter();
-  const [activeView, setActiveView] = useState("departments")
+  const [activeView, setActiveView] = useState("schools")
   const [hoveredProgramme, setHoveredProgramme] = useState(null)
   const [hoveredDepartment, setHoveredDepartment] = useState(null)
   const [largeHighlightBanner, setLargeHighlightBanner] = useState([]);
@@ -133,8 +133,8 @@ const SchoolDetails = ({ data }) => {
 
   const departments = []
   for (let i = 1; i <= 10; i++) {
-    const title = d?.[`Dept-Name-${i}`]
-    const link = d?.[`Dept-Link-${i}`]
+    const title = d?.[`School-Name-${i}`]
+    const link = d?.[`School-Link-${i}`]
 
     if (title) {
       // Create code from first letter of each word
@@ -172,7 +172,6 @@ const SchoolDetails = ({ data }) => {
       })
     }
   }
-
   const courses = {}
 
   programmes.forEach((programme) => {
@@ -183,9 +182,16 @@ const SchoolDetails = ({ data }) => {
 
     for (let i = 1; i <= 20; i++) {
       const keyName = programmeType.replace(/\s+/g, "-"); // replaces spaces with dashes
+      console.log(keyName);
+
       const value = d?.[`${keyName}-${i}`];
-      if (value) {
-        programmeCourses.push(value);
+      const link = d?.[`${keyName}-Link-${i}`];
+
+      if (value || link) {
+        programmeCourses.push({
+          value: value || null,
+          link: link || null,
+        });
       }
     }
 
@@ -194,10 +200,11 @@ const SchoolDetails = ({ data }) => {
     }
   });
 
-  const gradientColors = ['#6366F1', '#A855F7', '#EC4899'];
+  console.log(courses);
+
   return (
     <>
-      <SchoolHeader data={d} banner="bg-BG17" heading={d?.Hero_Title} desc={d?.Hero_Desc} gradientColors={gradientColors} />
+      <SchoolHeader data={d} banner="bg-BG17" heading={d?.Hero_Title} desc={d?.Hero_Desc} />
       <section className='max-w-[1400px] mx-auto px-5 max-sm:px-2 py-10'>
         {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}
         <div className='mt-10'>
@@ -252,11 +259,11 @@ const SchoolDetails = ({ data }) => {
             <div className="bg-white p-2 rounded-full shadow-xl border border-gray-100 backdrop-blur-sm">
               <div className="flex space-x-2">
                 <CustomButton
-                  active={activeView === "departments"}
-                  onClick={() => setActiveView("departments")}
+                  active={activeView === "schools"}
+                  onClick={() => setActiveView("schools")}
                   className="min-w-[140px] sm:min-w-[160px]"
                 >
-                  {activeView === "departments" && (
+                  {activeView === "schools" && (
                     <div>
                       <Check
                         className="inline-block mr-2 h-5 w-5 bg-white rounded-full p-1 text-blue-600"
@@ -264,7 +271,7 @@ const SchoolDetails = ({ data }) => {
                       />
                     </div>
                   )}
-                  {d?.Department_Title}
+                  {d?.School_Title}
                 </CustomButton>
                 <CustomButton
                   active={activeView === "programmes"}
@@ -286,7 +293,7 @@ const SchoolDetails = ({ data }) => {
           </div>
 
           {/* Departments View */}
-          {activeView === "departments" && (
+          {activeView === "schools" && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {departments.map((dept, index) => (
                 <div
@@ -408,7 +415,7 @@ const SchoolDetails = ({ data }) => {
                   <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent" />
 
                   {/* Course Details Overlay */}
-                  {(hoveredProgramme === "Graduate" || hoveredProgramme === "Post Graduate") && (
+                  {(hoveredProgramme === "Graduate" || hoveredProgramme === "Post Graduate" || hoveredProgramme === "Doctorate") && (
                     <div className="absolute inset-0 bg-white/95 backdrop-blur-sm">
                       <div className="h-full overflow-y-auto">
                         <div className="p-8">
@@ -420,36 +427,22 @@ const SchoolDetails = ({ data }) => {
                           </div>
 
                           <div className="space-y-2">
-                            {courses[hoveredProgramme].map((course, idx) => (
-                              <div
+                            {courses[hoveredProgramme]?.map((course, idx) => (
+                              <Link
                                 key={idx}
-                                className="group p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-300 cursor-pointer"
+                                href={course.link || "#"} // fallback if link is missing
+                                className="group block p-3 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-300 cursor-pointer"
                               >
                                 <div className="flex items-center justify-between">
                                   <p className="text-gray-800 font-novaSemi group-hover:text-blue-700 transition-colors duration-300 flex-1 pr-4">
-                                    {course}
+                                    {course.value}
                                   </p>
                                   <ChevronRight className="h-5 w-5 text-gray-400 group-hover:text-blue-500 transition-colors duration-300 flex-shrink-0" />
                                 </div>
-                              </div>
+                              </Link>
                             ))}
                           </div>
                         </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Default overlay for other programmes */}
-                  {hoveredProgramme && hoveredProgramme !== "Graduate" && hoveredProgramme !== "Post Graduate" && (
-                    <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-                      <div className="text-center text-white p-8">
-                        <div className="mb-4">
-                          <div className="inline-flex p-4 bg-white/20 rounded-full backdrop-blur-sm">
-                            {programmes.find((p) => p.name === hoveredProgramme)?.icon}
-                          </div>
-                        </div>
-                        <h3 className="text-2xl font-novaBold mb-2">{hoveredProgramme} Programme</h3>
-                        <p className="text-blue-100">Course details coming soon</p>
                       </div>
                     </div>
                   )}

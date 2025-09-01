@@ -1,6 +1,6 @@
 import { GraduationCap, Factory, Earth, BriefcaseBusiness, Sprout } from "lucide-react"
 
-const SchoolHeader = ({ heading, desc, gradientColors, banner, data }) => {
+const SchoolHeader = ({ heading, desc, banner, data }) => {
 
     const icons = [GraduationCap, Factory, Earth, BriefcaseBusiness, Sprout]
 
@@ -17,13 +17,10 @@ const SchoolHeader = ({ heading, desc, gradientColors, banner, data }) => {
         }
     }
 
-    const gradientStyle = {
-        background: `linear-gradient(to right, ${gradientColors.join(', ')})`,
-    };
     
     return (
         <section className={`relative ${banner} bg-cover bg-center h-[70vh] lg:h-[90vh] w-full text-white`}>
-            <div className='absolute inset-0 opacity-75' style={gradientStyle}></div>
+            <div className='absolute inset-0 opacity-75 bg-gradient-to-r from-cyan-600 via-cyan-900 to-transparent'></div>
             <div className='max-w-[1440px] mx-auto relative z-10 h-full flex items-end justify-start'>
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-10 px-5 lg:px-10'>
                     <div className='flex flex-col justify-center h-full pb-10'>

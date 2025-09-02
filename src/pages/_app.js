@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NewNavBar from '@/Components/NewNavBar';
+import { AppDataProvider } from '@/context/AppDataContext';
 
 function MyApp({ Component, pageProps }) {
     const [isShowNavAndFooter, setIsShowNavAndFooter] = useState(false);
@@ -24,7 +25,7 @@ function MyApp({ Component, pageProps }) {
     }, [router.pathname]);
 
     return (
-        <>
+        <AppDataProvider>
             {isShowNavAndFooter && <NewNavBar />}
             <Component {...pageProps} />
             <ToastContainer
@@ -39,7 +40,7 @@ function MyApp({ Component, pageProps }) {
             />
             {isShowNavAndFooter && <StickyFooter streamId={pageProps?.data?.data?.stream} />}
             {isShowNavAndFooter && <Footer />}
-        </>
+        </AppDataProvider>
     );
 }
 

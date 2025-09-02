@@ -1,4 +1,4 @@
-import HomePage from "./HomePage";
+import HomePage from "../pagesComp/HomePage";
 
 export default function DynamicPageWrapper({ children }) {
   return (

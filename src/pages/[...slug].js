@@ -71,10 +71,6 @@ export async function getServerSideProps(context) {
     const { slug = [] } = context.params || {};
     let path = "/" + slug.join("/");
     console.log("Path :", path);
-    // If it's home page, change path to /home
-    if (path === "/") {
-        path = "/";
-    }
 
     if (path.includes("?")) path = path.split("?")[0];
 

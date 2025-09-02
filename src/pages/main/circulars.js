@@ -75,69 +75,6 @@ export default function CircularList({ data }) {
         }
     }
 
-    // Loading State
-    if (loading) {
-        return (
-            <section className="bg-gradient-to-br from-blue-50 to-yellow-100 py-12">
-                <div className="max-w-6xl mx-auto px-4">
-                    <div className="text-center mb-12">
-                        <div className="inline-flex items-center bg-blue-600 text-white px-6 py-2 rounded-full text-sm font-novaBold mb-4">
-                            <svg className="w-4 h-4 mr-2 animate-spin" fill="currentColor" viewBox="0 0 20 20">
-                                <path
-                                    fillRule="evenodd"
-                                    d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
-                                    clipRule="evenodd"
-                                />
-                            </svg>
-                            LOADING
-                        </div>
-                        <h2 className="text-4xl font-novaBold text-gray-900 mb-4">Loading Circulars...</h2>
-                        <div className="w-24 h-1 bg-blue-600 mx-auto"></div>
-                    </div>
-                    <div className="space-y-6">
-                        {[1, 2, 3].map((i) => (
-                            <div
-                                key={i}
-                                className="bg-white rounded-xl shadow-lg border-l-4 border-blue-500 overflow-hidden animate-pulse"
-                            >
-                                <div className="flex flex-col md:flex-row">
-                                    <div className="md:w-32 bg-gray-300 h-32 md:h-auto"></div>
-                                    <div className="flex-1 p-6">
-                                        <div className="h-4 bg-gray-300 rounded mb-4 w-3/4"></div>
-                                        <div className="h-6 bg-gray-300 rounded mb-3 w-full"></div>
-                                        <div className="h-4 bg-gray-300 rounded mb-2 w-full"></div>
-                                        <div className="h-4 bg-gray-300 rounded w-2/3"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-        )
-    }
-
-    // Empty State
-    if (eventsData.length === 0 && !loading) {
-        return (
-            <section className="bg-gradient-to-br from-blue-50 to-orange-100 py-16">
-                <div className="max-w-7xl mx-auto px-4 text-center">
-                    <div className="w-24 h-24 mx-auto mb-6 bg-blue-100 rounded-full flex items-center justify-center">
-                        <svg className="w-12 h-12 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path
-                                fillRule="evenodd"
-                                d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
-                                clipRule="evenodd"
-                            />
-                        </svg>
-                    </div>
-                    <h3 className="text-2xl font-novaBold text-gray-700 mb-2">No Circulars Available</h3>
-                    <p className="text-gray-500">Official notices and circulars will appear here when published.</p>
-                </div>
-            </section>
-        )
-    }
-
     return (
         <section className="bg-gradient-to-br from-blue-50 to-indigo-100">
             <Header

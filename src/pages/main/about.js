@@ -21,7 +21,7 @@ export default function About() {
                 ></div>
 
                 {/* Overlay with Opacity */}
-                <div className="absolute inset-0 bg-[#2240c5] opacity-70"></div>
+                <div className="absolute inset-0 bg-black opacity-60"></div>
 
                 {/* Center Box */}
                 <div className="pt-24 pb-5 sm:pt-32 sm:pb-10 lg:pt-52 lg:pb-16 relative max-w-7xl mx-auto flex items-center justify-start max-sm:justify-center h-full px-4 max-sm:px-0 max-lg:items-end max-xl:items-end">
@@ -56,7 +56,7 @@ export default function About() {
                 ></div>
 
                 {/* Overlay with Opacity */}
-                <div className="absolute inset-0 bg-[#28bcc7] opacity-70"></div>
+                <div className="absolute inset-0 bg-black opacity-60"></div>
 
                 {/* Content Area */}
                 <div className="relative z-10 flex flex-col-reverse lg:flex-row lg:items-center lg:justify-evenly w-full min-h-screen px-6 lg:px-20 py-10 gap-10">
@@ -110,7 +110,7 @@ export default function About() {
                 ></div>
 
                 {/* Overlay with Opacity */}
-                <div className="absolute inset-0 bg-[#511ea3] opacity-70"></div>
+                <div className="absolute inset-0 bg-black opacity-60"></div>
 
                 {/* Content Area */}
                 <div className="relative z-10 flex flex-col-reverse lg:flex-row lg:items-center lg:justify-between w-full min-h-screen px-6 lg:px-20 py-10 gap-10">
@@ -193,7 +193,7 @@ export default function About() {
                         backgroundImage: "url('/image/building/building10.webp')",
                     }}
                 >
-                    <div className="absolute inset-0 bg-[#c78f28] opacity-70"></div>
+                    <div className="absolute inset-0 bg-black opacity-60"></div>
                 </div>
 
                 {/* Container for Flex Layout */}
@@ -250,7 +250,7 @@ export default function About() {
                         backgroundImage: "url('/image/building/building5.webp')",
                     }}
                 >
-                    <div className="absolute inset-0 bg-[#23aa98] opacity-80"></div>
+                    <div className="absolute inset-0 bg-black opacity-60"></div>
                 </div>
 
                 {/* Main Flex Container */}

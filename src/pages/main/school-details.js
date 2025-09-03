@@ -218,7 +218,7 @@ const SchoolDetails = ({ data }) => {
           <p className="leading-relaxed max-sm:text-sm font-novaReg text-justify" dangerouslySetInnerHTML={{ __html: overviewHtml }} />
         </div>
         <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 py-6 sm:py-10'>
-          <div className="bg-[#f6ffaa] text-black rounded-3xl overflow-hidden pb-5">
+          <div className="bg-white drop-shadow-lg border text-black rounded-3xl overflow-hidden pb-5">
             <div className='h-16 flex items-center pl-5 bg-indigo-950'>
               <img className='w-8 h-8' src="/image/icons/icon-return-on-investment.png" alt="investment logo" />
             </div>
@@ -228,7 +228,7 @@ const SchoolDetails = ({ data }) => {
             </div>
 
           </div>
-          <div className="bg-[#96fffa] text-black rounded-3xl overflow-hidden pb-5">
+          <div className="bg-white drop-shadow-lg border text-black rounded-3xl overflow-hidden pb-5">
             <div className='h-16 flex items-center pl-5 bg-indigo-950'>
               <img className='w-8 h-8' src="/image/icons/icon-return-on-investment.png" alt="investment logo" />
             </div>

@@ -165,7 +165,7 @@ export default function NewNavBar() {
         </div>
         <div className="hidden lg:flex justify-end items-center px-2">
           <div className={`flex gap-x-6 justify-end items-center`}>
-            <div className="flex gap-10 text-sm uppercase font-novaLight tracking-wider whitespace-nowrap text-white">
+            <div className="flex gap-5 xl:gap-10 text-sm uppercase font-novaLight tracking-wider whitespace-nowrap text-white">
               <Link href="/news" className={`hover:underline hover:text-gray-400 transition duration-500`}>News</Link>
               <Link href="/events" className={`hover:underline hover:text-gray-400 transition duration-500`}>Event</Link>
               <Link href="/articles" className={`hover:underline hover:text-gray-400 transition duration-500`}>Article</Link>

@@ -163,7 +163,7 @@ export default function NewNavBar() {
             </div>
           </div>
         </div>
-        <div className="hidden lg:flex justify-end items-center">
+        <div className="hidden lg:flex justify-end items-center px-2">
           <div className={`flex gap-x-6 justify-end items-center`}>
             <div className="flex gap-10 text-sm uppercase font-novaLight tracking-wider whitespace-nowrap text-white">
               <Link href="/news" className={`hover:underline hover:text-gray-400 transition duration-500`}>News</Link>
@@ -200,7 +200,7 @@ export default function NewNavBar() {
         <ul
           className={`${BigMenuToggle
             ? "fixed w-full h-full left-0 top-0 py-20 overflow-y-auto backdrop-blur-lg"
-            : `hidden relative`} bg-white/30 lg:pt-2 rounded-xl lg:flex items-center justify-between max-lg:space-y-3 gap-2 text-white font-novaSemi px-4 lg:px-8 text-sm xl:text-lg xl:px-6 2xl:px-20`}>
+            : `hidden relative`} bg-white/30 lg:pt-2 rounded-xl lg:flex items-center justify-between max-lg:space-y-3 gap-2 text-white font-novaSemi px-4 lg:px-8 text-sm 2xl:text-base xl:px-6 2xl:px-20`}>
           {BigMenuToggle && <>
             <div className="my-10">
               <h2 className="text-center text-black text-sm font-novaSemi mb-1 uppercase">Notifications

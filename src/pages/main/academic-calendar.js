@@ -29,8 +29,7 @@ const Home = () => {
             title={<>Academic <br /> Calendar 2024-25</>}
             bgKey="BG11"
             buttonText="Apply Now"
-            buttonType={"link"}
-            buttonLink="/"
+            buttonType={"form"}
             position="bottom"
             gradient={"bg-gradient-to-r from-black to-slate-700/"}
         />

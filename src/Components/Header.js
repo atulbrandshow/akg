@@ -91,43 +91,20 @@ export default function Header({
                     <h2 className="text-3xl max-w-lg font-novaReg tracking-tight text-white sm:text-[40px]">{title}</h2>
                     <p className="mt-2 text-white font-novaReg max-w-xl text-lg lg:text-xl">{subHeading}</p>
                     {buttonType && (
-                        <div className="mt-8">{
-                            buttonType === "link" ? (
-                                <Link
-                                    href={buttonLink}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="rounded-md uppercase bg-btn-gradient animate-gradient px-5 py-3 max-sm:py-2 max-sm:text-sm text-base font-novaBold tracking-wider text-white hover:pl-8 shadow-sm duration-500"
-                                >
-                                    {buttonText} ➜
-                                </Link>
-                            ) : (
-                                <button
-                                    onClick={() => setIsModalOpen(true)}
-                                    className="rounded-md uppercase bg-btn-gradient animate-gradient px-5 py-3 max-sm:py-2 max-sm:text-sm text-base font-novaBold tracking-wider text-white hover:pl-8 shadow-sm duration-500"
-                                >
-                                    {buttonText} ➜
-                                </button>
-                            )}
+                        <div className="mt-8">
+                            <button
+                                onClick={() => setIsModalOpen(true)}
+                                className="rounded-md uppercase bg-btn-gradient animate-gradient px-5 py-3 max-sm:py-2 max-sm:text-sm text-base font-novaBold tracking-wider text-white hover:pl-8 shadow-sm duration-500"
+                            >
+                                {buttonText} ➜
+                            </button>
                         </div>
                     )}
                 </div>
             </div>
 
             {isModalOpen && formConfig && (
-                <div className="relative md:absolute right-10 inset-0 flex items-center justify-end z-10">
-                    <div className="relative h-max rounded-lg shadow-lg w-[400px] max-w-full mr-4 animate-slide-in">
-                        <button
-                            className="absolute top-24 right-3 text-gray-500 hover:text-gray-900 transition"
-                            onClick={() => setIsModalOpen(false)}
-                            aria-label="Close Modal"
-                        >
-                            ✖
-                        </button>
-                        <Form />
-                    </div>
-
-                </div>
+                <Form setIsModalOpen={setIsModalOpen} />
             )}
         </div>
     );

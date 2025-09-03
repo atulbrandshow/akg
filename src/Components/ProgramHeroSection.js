@@ -1,8 +1,8 @@
-import Link from 'next/link';
-import React from 'react'
+import React, { useState } from 'react'
+import Form from './Form';
 
 const ProgramHeroSection = ({ data }) => {
-
+    const [isModalOpen, setIsModalOpen] = useState(false)
     console.log(data);
 
     const d = data?.pageData;
@@ -27,29 +27,13 @@ const ProgramHeroSection = ({ data }) => {
                     </h2>
                     {d?.Top_Button_Title && (
                         <div className='mt-8'>
-                            <button className="py-3 max-sm:px-6 max-sm:text-xs px-10 text-[15px] rounded-xl font-novaBold uppercase bg-btn-gradient animate-gradient text-white w-max  hover:bg-[#3c5686] hover:border-b-4 hover:border-[#beb6ff] hover:transform  scale-y-105 tracking-widest">{d?.Top_Button_Title}</button>
+                            <button onClick={() => setIsModalOpen(!isModalOpen)} className="py-3 max-sm:px-6 max-sm:text-xs px-10 text-[15px] rounded-xl font-novaBold uppercase bg-btn-gradient animate-gradient text-white w-max  hover:bg-[#3c5686] hover:border-b-4 hover:border-[#beb6ff] hover:transform  scale-y-105 tracking-widest">{d?.Top_Button_Title}</button>
                         </div>
                     )}
+                    {isModalOpen && (
+                        <Form setIsModalOpen={setIsModalOpen} />
+                    )}
                 </div>
-                {/* <div className='mt-auto py-10 w-full grid grid-cols-4 max-lg:grid-cols-2 gap-5 max-[400px]:gap-2
-                    '>
-                    <div className='flex flex-col items-center justify-center text-gray-300 border-r-4 border-yellow-400 max-sm:border-none'>
-                        <span className='flex items-center text-6xl max-xl:text-5xl max-lg:text-4xl max-[400px]:text-3xl font-novaBold'><IndianRupee className='w-12 h-12 max-xl:h-8 max-xl:w-8 max-lg:h-6 max-lg:w-6' />1.13<small className='text-2xl max-lg:text-base max-lg:mt-3 font-novaReg mt-5'>CR</small></span>
-                        <span className='font-novaSemi tracking-wider text-sm max-sm:text-xs w-32 text-center text-gray-400'>Highest National Package</span>
-                    </div>
-                    <div className='flex flex-col items-center justify-center text-gray-300 border-r-4 max-lg:border-none border-yellow-400'>
-                        <span className='flex items-center text-6xl max-xl:text-5xl max-lg:text-4xl max-[400px]:text-3xl font-novaBold'>1406<small className='text-2xl font-novaReg mt-5'></small></span>
-                        <span className='font-novaSemi tracking-wider text-sm max-sm:text-xs w-28 max-sm:w-24 text-center text-gray-400'>Placement Offers</span>
-                    </div>
-                    <div className='flex flex-col items-center justify-center text-gray-300 border-r-4 border-yellow-400 max-sm:border-none'>
-                        <span className='flex items-center text-6xl max-xl:text-5xl max-lg:text-4xl max-[400px]:text-3xl font-novaBold'><IndianRupee className='w-12 h-12 max-xl:h-8 max-xl:w-8 max-lg:h-6 max-lg:w-6' />33.80 <small className='text-2xl max-lg:text-base max-lg:mt-3 font-novaReg mt-5'>LPA</small></span>
-                        <span className='font-novaSemi tracking-wider text-sm max-sm:text-xs w-48 max-sm:w-32 text-center text-gray-400'>Highest International Package</span>
-                    </div>
-                    <div className='flex flex-col items-center justify-center text-gray-300'>
-                        <span className='flex items-center text-6xl max-xl:text-5xl max-lg:text-4xl max-[400px]:text-3xl font-novaBold'>282<small className='text-2xl font-novaReg mt-5'></small></span>
-                        <span className='font-novaSemi tracking-wider text-sm max-sm:text-xs w-28 max-sm:w-20 text-center text-gray-400'>Highest Package</span>
-                    </div>
-                </div> */}
             </div>
         </div>
     )

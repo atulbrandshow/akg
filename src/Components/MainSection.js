@@ -13,7 +13,7 @@ const MainSection = ({ data }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [nextImageIndex, setNextImageIndex] = useState(1)
   const [isTransitioning, setIsTransitioning] = useState(false)
-  const [showForm, setShowForm] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const buildingImages = d?.Hero_Banners
 
@@ -67,15 +67,13 @@ const MainSection = ({ data }) => {
             <div className="h-20">
               <Button
                 text={"Apply Today"}
-                onClick={() => setShowForm(!showForm)}
+                onClick={() => setIsModalOpen(!isModalOpen)}
                 className="py-3 max-sm:px-6 max-sm:text-xs px-10 mt-5 text-[15px] rounded-xl font-novaBold uppercase bg-btn-gradient animate-gradient text-white w-max hover:bg-[#3c5686] hover:border-b-4 hover:border-[#beb6ff] hover:transform scale-y-105 tracking-widest"
               />
             </div>
           </div>
-          {showForm && (
-            <div className="popup max-md:mt-10 max-sm:px-6 max-[330px]:px-2">
-              <Form />
-            </div>
+          {isModalOpen && (
+            <Form setIsModalOpen={setIsModalOpen} />
           )}
         </div>
       </div>
@@ -92,9 +90,8 @@ const MainSection = ({ data }) => {
             height={1080}
             alt="Building"
             priority
-            className={`w-full h-full object-cover absolute left-0 top-0 transition-opacity duration-1000 ease-in-out animate-zoomInOut ${
-              isTransitioning ? "opacity-0" : "opacity-100"
-            }`}
+            className={`w-full h-full object-cover absolute left-0 top-0 transition-opacity duration-1000 ease-in-out animate-zoomInOut ${isTransitioning ? "opacity-0" : "opacity-100"
+              }`}
           />
         </div>
       )}

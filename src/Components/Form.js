@@ -1,8 +1,9 @@
 "use client"
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { API_NODE_URL } from "@/configs/config"
 import Button from "./Button"
 import Link from "next/link"
+import { X } from "lucide-react"
 
 const programData = [
   {
@@ -37,7 +38,8 @@ const programData = [
   },
 ]
 
-export default function Form() {
+export default function Form({ setIsModalOpen }) {
+  const modalRef = useRef(null)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -217,9 +219,15 @@ export default function Form() {
     }
   }
 
+  const handleBackdropClick = (e) => {
+    if (modalRef.current && !modalRef.current.contains(e.target)) {
+      setIsModalOpen(false)
+    }
+  }
+
   return (
-    <div className="flex items-center justify-center h-full pb-4 md:pt-20">
-      <div className="bg-white rounded-lg shadow-lg max-w-md w-full overflow-hidden">
+    <div  onClick={handleBackdropClick} className="fixed inset-0 flex items-center justify-center h-full pb-4 md:pt-20 backdrop-blur-md bg-black/60 z-[999] px-2">
+      <div ref={modalRef} className="relative bg-white rounded-lg shadow-lg max-w-md w-full overflow-hidden mt-10">
         <div className="bg-gray-100 flex flex-col justify-center items-center px-8 py-6 max-sm:py-6">
           <h2 className="text-sm bg-gradient-to-r from-blue-600 to-rose-600 bg-clip-text text-transparent font-novaBold tracking-wider text-center">
             APPLY TODAY FOR
@@ -229,13 +237,16 @@ export default function Form() {
             Registration End Date (Phase-II) - 30 Aug 2024
           </p>
         </div>
+        <div className="absolute top-3 right-3 cursor-pointer text-gray-600 hover:text-gray-900" onClick={() => setIsModalOpen(false)}>
+          <X />
+        </div>
 
         {/* Status Messages */}
         {submitStatus && (
           <div
             className={`mx-6 mt-4 p-3 rounded-md text-sm ${submitStatus.type === "success"
-                ? "bg-green-100 text-green-700 border border-green-300"
-                : "bg-red-100 text-red-700 border border-red-300"
+              ? "bg-green-100 text-green-700 border border-green-300"
+              : "bg-red-100 text-red-700 border border-red-300"
               }`}
           >
             {submitStatus.message}

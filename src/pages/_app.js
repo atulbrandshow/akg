@@ -7,8 +7,8 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import NewNavBar from '@/Components/NewNavBar';
 import { AppDataProvider } from '@/context/AppDataContext';
+import LatestNavbar from '@/Components/LatestNavbar';
 
 function MyApp({ Component, pageProps }) {
     const [isShowNavAndFooter, setIsShowNavAndFooter] = useState(false);
@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }) {
 
     return (
         <AppDataProvider>
-            {isShowNavAndFooter && <NewNavBar />}
+            {isShowNavAndFooter && <LatestNavbar />}
             <Component {...pageProps} />
             <ToastContainer
                 position="top-right"

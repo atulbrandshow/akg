@@ -2,7 +2,7 @@
 export default function ShimmerContent() {
     return (
         <div className="min-h-screen bg-white">
-            <div className="bg-blue-600 w-full py-8 sm:py-10 md:py-14 lg:py-20"></div>
+            <div className="bg-blue-600 w-full py-7 sm:py-7 md:py-[43px] xl:py-[55px]"></div>
             <div className="h-[80vh] w-full flex justify-center items-center">
                 <div className="dot-spinner">
                     <div className="dot-spinner__dot"></div>

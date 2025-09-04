@@ -64,8 +64,8 @@ export default function PlacementHighlights({ data }) {
                     <Button text={"VIEW PLACEMENTS"} className="border border-white tracking-wider text-white text-sm font-novaBold px-4 py-2 max-[360px]:text-[11px] rounded-md hover:bg-white hover:text-black" />
                 </div>
             </div>
-            <div className="flex flex-col justify-center">
-                <div className="grid grid-cols-1 sm:grid-cols-2 xl:place-content-start max-xl:place-content-center gap-5 max-sm:gap-2 max-sm:px-2 h-full max-lg:px-5">
+            <div className="flex flex-col justify-center my-auto">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-sm:gap-2 max-sm:px-2 max-xl:px-5">
                     <PlacementSlider placement={placement1} delay={4000} />
                     <PlacementSlider placement={placement2} delay={3000} />
                     <PlacementSlider placement={placement3} delay={3500} />

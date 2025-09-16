@@ -65,7 +65,6 @@ export default function Header({
     title,
     height,
     subHeading,
-    buttonType,
     buttonText = "Click Here",
     buttonLink = "#",
     formKey = "applyNow",
@@ -90,16 +89,14 @@ export default function Header({
                 <div className="mx-auto lg:mx-0">
                     <h2 className="text-3xl max-w-lg font-novaReg tracking-tight text-white sm:text-[40px]">{title}</h2>
                     <p className="mt-2 text-white font-novaReg max-w-xl text-lg lg:text-xl">{subHeading}</p>
-                    {buttonType && (
-                        <div className="mt-8">
-                            <button
-                                onClick={() => setIsModalOpen(true)}
-                                className="rounded-md uppercase bg-btn-gradient animate-gradient px-5 py-3 max-sm:py-2 max-sm:text-sm text-base font-novaBold tracking-wider text-white hover:pl-8 shadow-sm duration-500"
-                            >
-                                {buttonText} ➜
-                            </button>
-                        </div>
-                    )}
+                    <div className="mt-8">
+                        <button
+                            onClick={() => setIsModalOpen(true)}
+                            className="rounded-md uppercase bg-btn-gradient animate-gradient px-5 py-3 max-sm:py-2 max-sm:text-sm text-base font-novaBold tracking-wider text-white hover:pl-8 shadow-sm duration-500"
+                        >
+                            Apply Now ➜
+                        </button>
+                    </div>
                 </div>
             </div>
 

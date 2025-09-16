@@ -10,15 +10,11 @@ export default function VisionAndMission() {
                         </p>
                     </div>
                 </div>
-                <div className="col-span-1 max-sm:hidden">
-                    <div className="w-full h-full relative flex justify-end items-end">
-                        <div className="absolute bg-gradient-to-r from-white to-blue-800/50 w-full h-full left-0 top-0" />
-                        <img
-                            alt="Vision"
-                            src="/image/target.png"
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
+                <div
+                    className="col-span-1 max-sm:hidden bg-cover bg-center"
+                    style={{ backgroundImage: "url('/image/target.png')" }}
+                >
+                    <div className="bg-gradient-to-r from-white to-blue-800/50 w-full h-full" />
                 </div>
             </div>
 
@@ -31,15 +27,11 @@ export default function VisionAndMission() {
                         </p>
                     </div>
                 </div>
-                <div className="col-span-1 max-sm:hidden">
-                    <div className="w-full h-full relative flex justify-end items-end">
-                        <div className="absolute bg-gradient-to-r from-white to-blue-800/20 w-full h-full left-0 top-0" />
-                        <img
-                            alt="Mission"
-                            src="/image/mission-1.jpg"
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
+                <div
+                    className="col-span-1 max-sm:hidden bg-cover bg-center"
+                    style={{ backgroundImage: "url('/image/mission-1.jpg')" }}
+                >
+                    <div className="bg-gradient-to-r from-white to-blue-800/20 w-full h-full" />
                 </div>
             </div>
 
@@ -52,15 +44,11 @@ export default function VisionAndMission() {
                         </p>
                     </div>
                 </div>
-                <div className="col-span-1 max-sm:hidden">
-                    <div className="w-full h-full relative flex justify-end items-end">
-                        <div className="absolute bg-gradient-to-r from-white to-blue-800/20 w-full h-full left-0 top-0" />
-                        <img
-                            alt="Quality Policy"
-                            src="/image/Quality.jpg"
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
+                <div
+                    className="col-span-1 max-sm:hidden bg-cover bg-center"
+                    style={{ backgroundImage: "url('/image/Quality.jpg')" }}
+                >
+                    <div className="bg-gradient-to-r from-white to-blue-800/20 w-full h-full" />
                 </div>
             </div>
         </div>

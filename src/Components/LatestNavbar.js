@@ -128,12 +128,15 @@ export default function LatestNavbar() {
         <div className="hidden lg:flex justify-end items-center px-2">
           <div className={`flex gap-x-6 justify-end items-center`}>
             <div className="flex items-center gap-5 xl:gap-10 text-sm uppercase font-novaLight tracking-wider whitespace-nowrap text-white">
+              <Link href="#" className={`hover:underline hover:text-gray-400 transition duration-500`}>Campus</Link>
+              <Link href="/campus-life/library" className={`hover:underline hover:text-gray-400 transition duration-500`}>Library</Link>
+              <Link href="#" className={`hover:underline hover:text-gray-400 transition duration-500`}>Student Services</Link>
               <Link href="/news" className={`hover:underline hover:text-gray-400 transition duration-500`}>News</Link>
-              <Link href="/events" className={`hover:underline hover:text-gray-400 transition duration-500`}>Event</Link>
-              <Link href="/articles" className={`hover:underline hover:text-gray-400 transition duration-500`}>Article</Link>
+              <Link href="/events" className={`hover:underline hover:text-gray-400 transition duration-500`}>Events</Link>
+              {/* <Link href="/articles" className={`hover:underline hover:text-gray-400 transition duration-500`}>Article</Link> */}
               <Link href="/circulars" className={`hover:underline hover:text-gray-400 transition duration-500`}>Circulars</Link>
-              <Link href="/notice" className={`hover:underline hover:text-gray-400 transition duration-500`}>Notices</Link>
-              <Link href="/download-center" className={`hover:underline hover:text-gray-400 transition duration-500`}>Download Center</Link>
+              {/* <Link href="/notice" className={`hover:underline hover:text-gray-400 transition duration-500`}>Notices</Link> */}
+              {/* <Link href="/download-center" className={`hover:underline hover:text-gray-400 transition duration-500`}>Download Center</Link> */}
               <Link href="tel:1800-200-0777" className=''>
                 <div className='h-6 w-12 flex items-center justify-center border-2 border-gray-300 rounded-full'>
                   <Phone size={15} className='text-white' />
@@ -178,7 +181,7 @@ export default function LatestNavbar() {
             }
           </div>
         </div>
-        <div className='pr-3 xl:pl-20 w-full'> 
+        <div className='pr-3 xl:pl-20 w-full'>
           <ul
             className={`${BigMenuToggle
               ? "fixed w-full h-full left-0 top-0 py-20 overflow-y-auto backdrop-blur-lg bg-black/50 px-3"

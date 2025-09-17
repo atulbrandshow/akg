@@ -13,6 +13,7 @@ import IndustryPartnerSliderDynamic from '@/Components/IndustryPartnerSliderDyna
 import FAQHolder from '@/Components/FAQHolder';
 import LabsNewsSection from '@/Components/LabsSection';
 import Breadcrumb from '@/Components/Breadcrumb';
+import AlumniSection from '@/Components/AlumniSection';
 
 const ProgramDetails = ({ data }) => {
     return (
@@ -28,6 +29,7 @@ const ProgramDetails = ({ data }) => {
             <FeeStructure data={data} />
             <LabsNewsSection data={data} />
             <InternationalTieUps data={data} />
+            <AlumniSection />
             <EligibilityCriteriaUnique data={data} />
             {data?.faculties.length > 0 && <ProgramFacultySlider data={data} />}
             {data?.faq.length > 0 && <FAQHolder data={data} />}

@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import { toast } from "react-toastify"
 import { API_NODE_URL } from "@/configs/config"
 import { adminLogin } from "@/utils/api"
-import { menuItems } from '@/configs/sidebarMenu'
+import { menuItems, submodules } from '@/configs/sidebarMenu'
 import { Eye, EyeOff, Lock, Mail, AlertCircle, CheckCircle } from "lucide-react"
 import Image from "next/image"
 
@@ -66,8 +66,8 @@ export default function CSIPAdminLogin() {
             return
           } else if (permissions?.length === 0 && role === "SubAdmin") {
             router.push("/admin/no-access")
-          } else if (menuItems.filter((e) => e.name === permissions[0]?.module).length > 0) {
-            const item = menuItems.filter((e) => e.name === permissions[0]?.module)
+          } else if ([...menuItems,...submodules].filter((e) => e.name === permissions[0]?.module).length > 0) {
+            const item = [...menuItems,...submodules].filter((e) => e.name === permissions[0]?.module)
             router.push(item[0].href)
           } else {
             router.push("/admin/dashboard")
@@ -112,8 +112,8 @@ export default function CSIPAdminLogin() {
             router.push("/admin/dashboard")
           } else if (permissions?.length === 0 && admin.role === "SubAdmin") {
             router.push("/admin/no-access")
-          } else if (menuItems.filter((e) => e.name === permissions[0]?.module).length > 0) {
-            const item = menuItems.filter((e) => e.name === permissions[0]?.module)
+          } else if ([...menuItems,...submodules].filter((e) => e.name === permissions[0]?.module).length > 0) {
+            const item = [...menuItems,...submodules].filter((e) => e.name === permissions[0]?.module)
             router.push(item[0].href)
           } else {
             router.push("/admin/dashboard")

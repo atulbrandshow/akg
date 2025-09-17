@@ -1,7 +1,7 @@
 // components/layout.js
 "use client"
 import React, { useEffect, useState } from "react"
-import { menuItems } from "@/configs/sidebarMenu"
+import { menuItems, submodules } from "@/configs/sidebarMenu"
 import { usePathname, useRouter } from "next/navigation"
 import usePermission from "@/hooks/usePermission"
 import SideBar from "./SideBar"
@@ -38,7 +38,7 @@ const Layout = ({ children }) => {
         }
 
         // Find current menu item by href
-        const currentMenuItem = menuItems.find((item) => item.href === cleanPath)
+        const currentMenuItem = [...menuItems,...submodules].find((item) => item.href === cleanPath)
         console.log(currentMenuItem);
 
         // If user has access to current route, show it
@@ -60,7 +60,7 @@ const Layout = ({ children }) => {
         }
 
         // Otherwise, go to first permitted route
-        const firstPermitted = menuItems.find(
+        const firstPermitted = [...menuItems,...submodules].find(
             (item) =>
                 item.name &&
                 hasPermission(item.name, "view")

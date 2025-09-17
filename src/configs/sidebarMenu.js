@@ -171,3 +171,33 @@ export const menuItems = [
         permission: "Admin Logs",
     },
 ];
+export const submodules = [
+    {
+        name: 'Edit Page',
+        href: 'admin/edit-page'
+    },
+    {
+        name: 'Edit News',
+        href: 'admin/edit-news'
+    },
+    {
+        name: 'Edit Path',
+        href: 'admin/edit-path'
+    },
+    {
+        name: 'Add Review',
+        href: 'admin/add-review'
+    },
+    {
+        name: 'Add Testimonial',
+        href: 'admin/add-testimonial'
+    },
+    {
+        name: 'Dynamic Page',
+        href: 'admin/page-content-manager'
+    },
+    {
+        name: 'Extra Components',
+        href: 'admin/extra-components'
+    }
+]

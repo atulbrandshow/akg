@@ -173,6 +173,14 @@ export const menuItems = [
 ];
 export const submodules = [
     {
+        name: 'Create Page',
+        href: 'admin/create-page'
+    },
+    {
+        name: 'Create News',
+        href: 'admin/create-news'
+    },
+    {
         name: 'Edit Page',
         href: 'admin/edit-page'
     },

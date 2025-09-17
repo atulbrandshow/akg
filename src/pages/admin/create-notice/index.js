@@ -1,15 +1,12 @@
 import CreateDynamicPages from "../Components/CreateDynamicPages";
-import SideBar from "../Components/SideBar";
+import Layout from "../Components/Layout";
 
 export default function Home() {
   return (
     <>
-      <div className="flex bg-gray-100">
-        <SideBar />
-        <div className="pt-10 px-10 overflow-x-auto w-full h-screen">
-          <CreateDynamicPages type="Notice" componentType="circular-details" parentId={864268} />
-        </div>
-      </div>
+      <Layout>
+       <CreateDynamicPages type="Notice" componentType="circular-details" parentId={864268} />
+     </Layout>
     </>
   );
 }

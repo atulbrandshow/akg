@@ -5,8 +5,10 @@ import { API_NODE_URL } from "@/configs/config";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DepartmentDynamicPage from "./DepartmentDynamicPage";
+import usePermission from "@/hooks/usePermission";
 
 function CreateDynamicDepartment({ type, componentType }) {
+    const { hasPermission } = usePermission()
     const [showPageDetails, setShowPageDetails] = useState(false);
     const [allPages, setAllPages] = useState([]);
     const [displayedPages, setDisplayedPages] = useState([]);
@@ -41,7 +43,7 @@ function CreateDynamicDepartment({ type, componentType }) {
             });
             const data = await response.json();
             console.log(data);
-            
+
 
             const fetchedPages = data.data.pages || [];
 
@@ -453,23 +455,26 @@ function CreateDynamicDepartment({ type, componentType }) {
                         </div> */}
 
                         <div className="flex space-x-4 pt-6">
-                            <button
-                                onClick={handleAddClick}
-                                type="button"
-                                className="flex-1 bg-gradient-to-r from-green-500 to-green-600 text-white py-3 px-6 rounded-xl font-novaSemi text-sm uppercase tracking-wide hover:from-green-600 hover:to-green-700 hover:scale-105 transform transition-all duration-200 shadow-lg hover:shadow-xl"
-                            >
-                                <span className="flex items-center justify-center space-x-2">
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth="2"
-                                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                                        ></path>
-                                    </svg>
-                                    <span>Add Page</span>
-                                </span>
-                            </button>
+                            {
+                                hasPermission(`Create ${type}`,'create') &&
+                                <button
+                                    onClick={handleAddClick}
+                                    type="button"
+                                    className="flex-1 bg-gradient-to-r from-green-500 to-green-600 text-white py-3 px-6 rounded-xl font-novaSemi text-sm uppercase tracking-wide hover:from-green-600 hover:to-green-700 hover:scale-105 transform transition-all duration-200 shadow-lg hover:shadow-xl"
+                                >
+                                    <span className="flex items-center justify-center space-x-2">
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                                            ></path>
+                                        </svg>
+                                        <span>Add Page</span>
+                                    </span>
+                                </button>
+                            }
                             <button
                                 type="button"
                                 onClick={handleClear}

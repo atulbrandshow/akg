@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from "react"
 import { toast } from "react-toastify"
 import Layout from "../Components/Layout"
-import { menuItems } from "@/configs/sidebarMenu"
+import { menuItems, submodules } from "@/configs/sidebarMenu"
 import { API_NODE_URL } from "@/configs/config"
 
 // Module Selector Component
@@ -325,7 +325,7 @@ export default function PermissionManagement({ currentAdmin }) {
   })
   const [showFilters, setShowFilters] = useState(false)
 
-  const options = menuItems
+  const options = [...menuItems, ...submodules]
   const subModuleMap = {
     Pages: types || [],
   }

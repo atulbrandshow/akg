@@ -14,7 +14,7 @@ export default function FileUpload({
     const [dragActive, setDragActive] = useState(false)
 
     const getFileIcon = (fileType) => {
-        if (fileType.startsWith("image/")) return <ImageIcon className="w-4 h-4" />
+        if (fileType?.startsWith("image/")) return <ImageIcon className="w-4 h-4" />
         if (fileType.includes("pdf")) return <FileText className="w-4 h-4" />
         return <File className="w-4 h-4" />
     }
@@ -33,7 +33,7 @@ export default function FileUpload({
             const isValidSize = file.size <= 10 * 1024 * 1024 // 10MB
             const isValidType = acceptedTypes.split(",").some((type) => {
                 if (type.trim() === "image/*") return file.type.startsWith("image/")
-                if (type.trim().startsWith(".")) return file.name.toLowerCase().endsWith(type.trim())
+                if (type.trim()?.startsWith(".")) return file.name.toLowerCase().endsWith(type.trim())
                 return file.type === type.trim()
             })
             return isValidSize && isValidType

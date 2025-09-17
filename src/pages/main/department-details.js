@@ -430,7 +430,7 @@ const DepartmentDetails = ({ data }) => {
                   const cleanString = d?.PCD_3?.replace(/<\/?[^>]+(>|$)/g, '');
 
                   // 2. Handle case where string might be "[...]" or just "..."
-                  const arrayString = cleanString?.trim().startsWith('[')
+                  const arrayString = cleanString?.trim()?.startsWith('[')
                     ? cleanString
                     : `["${cleanString}"]`;
 

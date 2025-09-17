@@ -242,8 +242,7 @@ export default function About() {
             </motion.section>
 
             {/* Section 5 */}
-            <motion.section className="relative w-full min-h-screen flex items-center justify-center" style={{ overflow: "hidden" }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
-                {/* Background Image with Opacity Overlay */}
+            {/* <motion.section className="relative w-full min-h-screen flex items-center justify-center" style={{ overflow: "hidden" }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
                 <div
                     className="absolute inset-0 z-0 bg-cover bg-center"
                     style={{
@@ -253,9 +252,7 @@ export default function About() {
                     <div className="absolute inset-0 bg-black opacity-60"></div>
                 </div>
 
-                {/* Main Flex Container */}
                 <div className="lg:flex lg:w-full w-full relative z-10 flex-col lg:flex-row">
-                    {/* Left Box (Unblemished Placements) */}
                     <div className="lg:w-1/3 w-full flex items-center justify-center relative z-10 p-10 lg:mx-32">
                         <div className="bg-white shadow-lg p-8 flex flex-col items-center justify-center">
                             <h1 className="text-5xl max-xl:text-4xl max-sm:text-3xl font-normal text-center mb-10">
@@ -269,26 +266,21 @@ export default function About() {
                         </div>
                     </div>
 
-                    {/* Right Box (Placement Successes) */}
                     <div className="lg:w-1/2 w-full flex items-center justify-center relative z-10">
                         <div className="h-full w-3/4 lg:w-4/5 max-sm:w-full p-6 flex flex-col items-center text-white">
                             <h2 className="text-4xl max-sm:text-3xl font-novaReg text-center mb-6">2023-24 Placement Successes</h2>
 
-                            {/* Stats Box with Background, Padding, and Shadow */}
                             <div className="flex flex-wrap xl:flex-nowrap justify-between gap-6 lg:gap-10 mb-6 lg:mr-10">
-                                {/* Highest Number of Companies */}
                                 <div className="text-center space-y-2 p-6 text-white rounded-lg shadow-lg w-full lg:w-1/3">
                                     <p className="text-6xl max-sm:text-3xl font-slick">282</p>
                                     <p className="text-sm font-novaReg">Highest Number of Companies</p>
                                 </div>
 
-                                {/* Placement Offers */}
                                 <div className="text-center space-y-2 p-6 text-white rounded-lg shadow-lg w-full lg:w-1/3">
                                     <p className="text-6xl max-sm:text-3xl font-slick">1406</p>
                                     <p className="text-sm font-novaReg">Placement Offers</p>
                                 </div>
 
-                                {/* Highest Package Offered */}
                                 <div className="text-center space-y-2 p-6 text-white rounded-lg shadow-lg w-full lg:w-1/3">
                                     <p className="text-6xl max-sm:text-3xl font-slick">
                                         33.80<span className="text-xl max-sm:text-lg">LPA</span>
@@ -297,17 +289,15 @@ export default function About() {
                                 </div>
                             </div>
 
-                            {/* Line Between Stats and Description */}
                             <div className="border-b border-gray-300 w-full mb-6"></div>
 
-                            {/* Additional Information */}
                             <p className="text-sm text-center">
                                 Continuing the Tradition of Excellence, AKGU Secures <span className="font-novaBold">1406</span> Placement Offers.
                             </p>
                         </div>
                     </div>
                 </div>
-            </motion.section>
+            </motion.section> */}
 
             {/* Last Section - Top Hiring Partners */}
             <motion.section className="relative w-full py-20 bg-[#f9fafb]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>

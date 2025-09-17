@@ -58,7 +58,7 @@ export default function StudentReview() {
         const file = e.target.files[0];
         if (file) {
             // Validate file type
-            if (!file.type.startsWith('image/')) {
+            if (!file.type?.startsWith('image/')) {
                 toast.error("Please select a valid image file", {
                     position: "top-right",
                     autoClose: 3000,

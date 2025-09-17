@@ -10,7 +10,7 @@ import {
 import { API_NODE_URL } from "@/configs/config"
 import Image from "next/image"
 import usePermission from "@/hooks/usePermission"
-import { menuItems } from '../../../configs/sidebarMenu'
+import { menuItems, submodules } from '../../../configs/sidebarMenu'
 
 export default function SideBar({ onLogout }) {
   const router = useRouter()
@@ -48,13 +48,12 @@ export default function SideBar({ onLogout }) {
       }
     } catch (err) {
       console.log(err);
-
       alert("Logout failed")
     }
   }
 
   // Filter menu items based on permissions
-  const filteredMenuItems = menuItems.filter(item => {
+  const filteredMenuItems =menuItems.filter(item => {
     if (isSuperAdmin) return true
     if (!item.permission) return true
     return hasPermission(item.permission, "view")

@@ -5,7 +5,7 @@ import { Download, Eye, File, ImageIcon, FileText, X } from "lucide-react"
 
 export default function AttachmentViewer({ attachments, onRemove, editable = false }) {
     const getFileIcon = (type) => {
-        if (type.startsWith("image/")) return <ImageIcon className="w-5 h-5" />
+        if (type?.startsWith("image/")) return <ImageIcon className="w-5 h-5" />
         if (type.includes("pdf")) return <FileText className="w-5 h-5" />
         return <File className="w-5 h-5" />
     }
@@ -28,7 +28,7 @@ export default function AttachmentViewer({ attachments, onRemove, editable = fal
     }
 
     const handlePreview = (attachment) => {
-        if (attachment.type.startsWith("image/")) {
+        if (attachment.type?.startsWith("image/")) {
             window.open(IMAGE_PATH + attachment.url, "_blank")
         } else if (attachment.type.includes("pdf")) {
             window.open(IMAGE_PATH + attachment.url, "_blank")

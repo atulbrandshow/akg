@@ -171,3 +171,57 @@ export const menuItems = [
         permission: "Admin Logs",
     },
 ];
+export const submodules = [
+    {
+        name: 'Create Page',
+        href: 'admin/create-page'
+    },
+    {
+        name: 'Create News',
+        href: 'admin/create-news'
+    },
+    {
+        name: 'Create Article',
+        href: 'admin/create-article'
+    },
+    {
+        name: 'Create Event',
+        href: 'admin/create-event'
+    },
+    {
+        name: 'Create Circular',
+        href: 'admin/create-circular'
+    },
+    {
+        name: 'Edit Page',
+        href: 'admin/edit-page'
+    },
+    {
+        name: 'Edit News',
+        href: 'admin/edit-news'
+    },
+    {
+        name: 'Edit Path',
+        href: 'admin/edit-path'
+    },
+    {
+        name: 'Student Review',
+        href: 'admin/add-review'
+    },
+    {
+        name: 'Create Testimonial',
+        href: 'admin/add-testimonial'
+    },
+    {
+        name: 'Create FAQ',
+        href: 'admin/add-faq'
+    },
+    {
+        name: 'Dynamic Page',
+        href: 'admin/page-content-manager'
+    },
+    {
+        name: 'Extra Components',
+        href: 'admin/extra-components'
+    }
+]

@@ -2,17 +2,17 @@ import React from "react";
 
 const auditoriumData = [
   {
-    name: "Saraswati Auditorium",
+    name: "Auditorium 1",
     image: "/image/auditorium/Auditorium-1.jpg",
     description: "With its excellent technical facilities and theatre-style seating...",
   },
   {
-    name: "Vidyut Auditorium",
+    name: "Auditorium 2",
     image: "/image/auditorium/Auditorium-2.jpg",
     description: "With its amphitheatre design and a vast stage, Visvesvaraya Auditorium is a hub for all the...",
   },
   {
-    name: "Samriddhi Auditorium",
+    name: "Auditorium 3",
     image: "/image/auditorium/Auditorium-3.jpg",
     description: "With its excellent technical facilities and theatre style seating capacity, the visually stunning...",
   },

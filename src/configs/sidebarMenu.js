@@ -193,12 +193,16 @@ export const submodules = [
         href: 'admin/edit-path'
     },
     {
-        name: 'Add Review',
+        name: 'Student Review',
         href: 'admin/add-review'
     },
     {
-        name: 'Add Testimonial',
+        name: 'Create Testimonial',
         href: 'admin/add-testimonial'
+    },
+    {
+        name: 'Create FAQ',
+        href: 'admin/add-faq'
     },
     {
         name: 'Dynamic Page',

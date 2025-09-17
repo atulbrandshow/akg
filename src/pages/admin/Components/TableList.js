@@ -6,8 +6,10 @@ import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { Boxes, Plus, View } from "lucide-react"
 import Link from "next/link"
+import usePermission from "@/hooks/usePermission"
 
 const TableList = ({ type, title, subTitle }) => {
+    const { hasPermission } = usePermission()
     const router = useRouter()
     const [newsAndEvents, setNewsAndEvents] = useState([])
     const [filteredData, setFilteredData] = useState([])
@@ -154,6 +156,8 @@ const TableList = ({ type, title, subTitle }) => {
             minute: "2-digit",
         })
     }
+
+
     return (
         <div className="">
             {/* Progress bar */}
@@ -260,13 +264,16 @@ const TableList = ({ type, title, subTitle }) => {
                             </span>
                         )}
                     </p>
-                    <Link
-                        href={`create-${type?.toLowerCase().replace(/\s+/g, "-")}`}
-                        className="flex gap-1 items-center bg-gradient-to-r from-purple-500 font-novaSemi to-pink-600 text-white px-6 py-2 rounded-lg cursor-pointer hover:from-purple-600 hover:to-pink-700 transition-all duration-200 transform hover:scale-105 shadow-lg"
-                    >
-                        <Plus size={18} />
-                        Add {type}
-                    </Link>
+                    {
+                        hasPermission(type, 'create') &&
+                        <Link
+                            href={`create-${type?.toLowerCase().replace(/\s+/g, "-")}`}
+                            className="flex gap-1 items-center bg-gradient-to-r from-purple-500 font-novaSemi to-pink-600 text-white px-6 py-2 rounded-lg cursor-pointer hover:from-purple-600 hover:to-pink-700 transition-all duration-200 transform hover:scale-105 shadow-lg"
+                        >
+                            <Plus size={18} />
+                            Add {type}
+                        </Link>
+                    }
                 </div>
 
                 {/* Table Container */}
@@ -364,25 +371,28 @@ const TableList = ({ type, title, subTitle }) => {
                                                     type !== "Faculty" &&
                                                     <td className="px-6 py-4 whitespace-nowrap h-full">
                                                         <div className="flex justify-center items-center">
-                                                            <button
-                                                                onClick={() =>
-                                                                    router.push({
-                                                                        pathname: '/admin/extra-components',
-                                                                        query: { page_id: event.page_id }, // or whatever your page_id variable is
-                                                                    })
-                                                                }
-                                                                className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-novaSemi rounded-md text-white bg-violet-500 hover:bg-violet-600 focus:outline-none transition-all duration-200 transform hover:scale-105"
-                                                                title="Manage Page"
-                                                            >
-                                                                Manage
-                                                            </button>
+                                                            {
+                                                                hasPermission(type, 'create') &&
+                                                                <button
+                                                                    onClick={() =>
+                                                                        router.push({
+                                                                            pathname: '/admin/extra-components',
+                                                                            query: { page_id: event.page_id }, // or whatever your page_id variable is
+                                                                        })
+                                                                    }
+                                                                    className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-novaSemi rounded-md text-white bg-violet-500 hover:bg-violet-600 focus:outline-none transition-all duration-200 transform hover:scale-105"
+                                                                    title="Manage Page"
+                                                                >
+                                                                    Manage
+                                                                </button>
+                                                            }
                                                         </div>
                                                     </td>
                                                 }
                                                 <td className="px-6 py-4 whitespace-nowrap text-center">
                                                     <div className="flex items-center justify-center space-x-2">
                                                         {
-                                                            (type === "Program" || type === "School" || type === "Department" || event.ComponentType === "HomePage") &&
+                                                            (type === "Program" || type === "School" || type === "Department" || event.ComponentType === "HomePage") && hasPermission(type, 'create') &&
                                                             <button
                                                                 onClick={() => router.push(
                                                                     `/admin/page-content-manager` +
@@ -403,7 +413,7 @@ const TableList = ({ type, title, subTitle }) => {
                                                                 Dynamic {type}
                                                             </button>
                                                         }
-                                                        {(type === "School" || type === "Department" || type === "Program") && (
+                                                        {(type === "School" || type === "Department" || type === "Program") && hasPermission(type, 'create') && (
                                                             <button
                                                                 onClick={() => {
                                                                     sessionStorage.setItem("faqEventName", event?.name);
@@ -444,7 +454,7 @@ const TableList = ({ type, title, subTitle }) => {
                                                             </button>
                                                         )} */}
 
-                                                        {(type === "School" || type === "Department" || event.ComponentType === "HomePage") && (
+                                                        {(type === "School" || type === "Department" || event.ComponentType === "HomePage") && hasPermission(type, 'create') && (
                                                             <button
                                                                 onClick={() => {
                                                                     sessionStorage.setItem("faqEventName", event?.name);
@@ -467,7 +477,7 @@ const TableList = ({ type, title, subTitle }) => {
 
 
 
-                                                        {(type === "School" || type === "Department" || event.ComponentType === "HomePage") && (
+                                                        {(type === "School" || type === "Department" || event.ComponentType === "HomePage") && hasPermission(type, 'create') && (
                                                             <button
                                                                 onClick={() => {
                                                                     sessionStorage.setItem("faqEventName", event?.name);
@@ -488,41 +498,47 @@ const TableList = ({ type, title, subTitle }) => {
                                                             </button>
                                                         )}
 
-                                                        <button
-                                                            onClick={() => router.push(
-                                                                `/admin/edit-${type?.toLowerCase().replace(/\s+/g, '-')}` +
-                                                                `?page_id=${event?.page_id}`
-                                                            )}
-                                                            className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-novaSemi rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all duration-200 transform hover:scale-105"
-                                                            title="Edit Page"
-                                                        >
-                                                            <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                <path
-                                                                    strokeLinecap="round"
-                                                                    strokeLinejoin="round"
-                                                                    strokeWidth={2}
-                                                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                                                                />
-                                                            </svg>
-                                                            Edit
-                                                        </button>
+                                                        {
+                                                            hasPermission(type, 'edit') &&
+                                                            <button
+                                                                onClick={() => router.push(
+                                                                    `/admin/edit-${type?.toLowerCase().replace(/\s+/g, '-')}` +
+                                                                    `?page_id=${event?.page_id}`
+                                                                )}
+                                                                className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-novaSemi rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all duration-200 transform hover:scale-105"
+                                                                title="Edit Page"
+                                                            >
+                                                                <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path
+                                                                        strokeLinecap="round"
+                                                                        strokeLinejoin="round"
+                                                                        strokeWidth={2}
+                                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                                                                    />
+                                                                </svg>
+                                                                Edit
+                                                            </button>
+                                                        }
 
                                                         {/* Edit Path Button */}
-                                                        <button
-                                                            onClick={() => router.push(`/admin/edit-path/${event?.page_id}`)}
-                                                            className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-novaSemi rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 transform hover:scale-105"
-                                                            title="Edit Path"
-                                                        >
-                                                            <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                <path
-                                                                    strokeLinecap="round"
-                                                                    strokeLinejoin="round"
-                                                                    strokeWidth={2}
-                                                                    d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
-                                                                />
-                                                            </svg>
-                                                            Edit Path
-                                                        </button>
+                                                        {
+                                                            hasPermission(type, 'edit') &&
+                                                            <button
+                                                                onClick={() => router.push(`/admin/edit-path/${event?.page_id}`)}
+                                                                className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-novaSemi rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 transform hover:scale-105"
+                                                                title="Edit Path"
+                                                            >
+                                                                <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path
+                                                                        strokeLinecap="round"
+                                                                        strokeLinejoin="round"
+                                                                        strokeWidth={2}
+                                                                        d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
+                                                                    />
+                                                                </svg>
+                                                                Edit Path
+                                                            </button>
+                                                        }
 
                                                         {/* Delete Button */}
                                                         {/* <button

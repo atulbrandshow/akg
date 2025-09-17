@@ -181,6 +181,18 @@ export const submodules = [
         href: 'admin/create-news'
     },
     {
+        name: 'Create Article',
+        href: 'admin/create-article'
+    },
+    {
+        name: 'Create Event',
+        href: 'admin/create-event'
+    },
+    {
+        name: 'Create Circular',
+        href: 'admin/create-circular'
+    },
+    {
         name: 'Edit Page',
         href: 'admin/edit-page'
     },

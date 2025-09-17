@@ -7,7 +7,7 @@ import usePermission from "@/hooks/usePermission"
 import SideBar from "./SideBar"
 const Layout = ({ children }) => {
     const pathname = usePathname()
-    const cleanPath = pathname.startsWith("/") ? pathname.slice(1) : pathname
+    const cleanPath = pathname?.startsWith("/") ? pathname.slice(1) : pathname
     const { hasPermission, permissions, isSuperAdmin, loading } = usePermission()
     const [hasMounted, setHasMounted] = useState(false)
     const [isAuthenticating, setIsAuthenticating] = useState(true)

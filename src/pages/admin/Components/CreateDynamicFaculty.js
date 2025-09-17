@@ -25,7 +25,7 @@ const ImagePreview = ({ file, imageUrl, onDelete, label, isUploading }) => {
     React.useEffect(() => {
         if (imageUrl) {
             // If imageUrl already includes IMAGE_PATH, use it as is, otherwise prepend IMAGE_PATH
-            const fullUrl = imageUrl.startsWith("http") ? imageUrl : `${IMAGE_PATH}${imageUrl}`
+            const fullUrl = imageUrl?.startsWith("http") ? imageUrl : `${IMAGE_PATH}${imageUrl}`
             setPreviewUrl(fullUrl)
         } else if (file && typeof file === "object") {
             const url = URL.createObjectURL(file)

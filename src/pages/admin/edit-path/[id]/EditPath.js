@@ -74,7 +74,7 @@ export default function EditPath({ pageId }) {
       {/* Message Box */}
       {message && (
         <div
-          className={`px-4 py-2 rounded text-sm font-medium ${message.startsWith("✅")
+          className={`px-4 py-2 rounded text-sm font-medium ${message?.startsWith("✅")
               ? "bg-green-100 text-green-800"
               : "bg-red-100 text-red-800"
             }`}

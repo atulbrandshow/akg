@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }) {
         const hiddenPrefixes = ['/admin']; // only prefix, no *
 
         const shouldHide = hiddenPrefixes.some(prefix =>
-            router.pathname === prefix || router.pathname.startsWith(prefix + '/')
+            router.pathname === prefix || router.pathname?.startsWith(prefix + '/')
         );
 
         setIsShowNavAndFooter(!shouldHide);

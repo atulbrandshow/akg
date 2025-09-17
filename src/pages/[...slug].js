@@ -102,9 +102,9 @@ export async function getServerSideProps(context) {
 
   if (
     ignoredPaths.includes(path) ||
-    path.startsWith("/_next") ||
-    path.startsWith("/static") ||
-    path.startsWith("/api") ||
+    path?.startsWith("/_next") ||
+    path?.startsWith("/static") ||
+    path?.startsWith("/api") ||
     path.match(/\.(js|css|map|json|svg|png|jpg|jpeg|ico)$/)
   ) {
     return { notFound: true };

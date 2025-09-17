@@ -1,33 +1,33 @@
 const hostels = [
     {
         img: "/image/infrastructure/building-1.webp",
-        title: "Elysium Residence",
-        desc: "Elysium Residence offers a nurturing environment for students, with spacious rooms and communal spaces that foster friendships and collaboration.",
+        title: "Boys Hostel 1",
+        desc: "Boys Hostel 1 provides comfortable rooms and essential amenities, ensuring a safe and supportive environment for students.",
     },
     {
         img: "/image/infrastructure/building-2.webp",
-        title: "Harmony Hostel",
-        desc: "Harmony Hostel combines modern design with comfort, featuring well-equipped facilities and a vibrant community atmosphere for all residents.",
+        title: "Boys Hostel 2",
+        desc: "Boys Hostel 2 offers spacious living areas with modern facilities, designed to create a convenient and friendly atmosphere for residents.",
     },
     {
         img: "/image/infrastructure/building-3.webp",
-        title: "Tranquil Stay",
-        desc: "Tranquil Stay provides a serene ambiance for students looking for a peaceful living environment, complete with study lounges and recreational areas.",
+        title: "Boys Hostel 3",
+        desc: "Boys Hostel 3 ensures a balanced lifestyle with dedicated study spaces and recreational facilities for student growth and relaxation.",
     },
     {
         img: "/image/infrastructure/building-4.webp",
-        title: "Safe Haven Hostel",
-        desc: "Safe Haven Hostel prioritizes security and comfort, offering round-the-clock support and amenities to ensure a worry-free stay for students.",
+        title: "Girls Hostel 1",
+        desc: "Girls Hostel 1 provides a secure and comfortable stay, equipped with modern amenities to support academic and personal needs.",
     },
     {
         img: "/image/infrastructure/building-5.webp",
-        title: "Unity House",
-        desc: "Unity House is designed for students to thrive, featuring collaborative workspaces and leisure activities that promote teamwork and bonding.",
+        title: "Girls Hostel 2",
+        desc: "Girls Hostel 2 offers a peaceful environment with well-maintained rooms and communal spaces for collaboration and bonding.",
     },
     {
         img: "/image/infrastructure/building-6.webp",
-        title: "Explorer's Lodge",
-        desc: "Explorer's Lodge caters to adventurous spirits, providing a dynamic living experience with various events and outings to explore the surroundings.",
+        title: "Girls Hostel 3",
+        desc: "Girls Hostel 3 combines comfort and safety with facilities that encourage both academic focus and social interaction.",
     },
 ];
 

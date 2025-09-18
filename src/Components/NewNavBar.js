@@ -48,7 +48,7 @@ export default function NewNavBar() {
   const [isBelowLg, setIsBelowLg] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [BigMenuToggle, setBigMenuToggle] = useState(false);
-  const [activeTab, setActiveTab] = useState("School of Engineering & Technology");
+  const [activeTab, setActiveTab] = useState("School of Computer Science Engineering & Technology");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -165,13 +165,16 @@ export default function NewNavBar() {
         </div>
         <div className="hidden lg:flex justify-end items-center px-2">
           <div className={`flex gap-x-6 justify-end items-center`}>
-            <div className="flex gap-5 xl:gap-10 text-sm uppercase font-novaLight tracking-wider whitespace-nowrap text-white">
+            <div className="flex gap-10 text-sm uppercase font-novaLight tracking-wider whitespace-nowrap text-white max-lg:gap-4 max-xl:gap-6">
+              <Link href="#" className={`hover:underline hover:text-gray-400 transition duration-500`}>Campus</Link>
+              <Link href="/campus-life/library" className={`hover:underline hover:text-gray-400 transition duration-500`}>Library</Link>
+              <Link href="#" className={`hover:underline hover:text-gray-400 transition duration-500`}>Student Services</Link>
               <Link href="/news" className={`hover:underline hover:text-gray-400 transition duration-500`}>News</Link>
               <Link href="/events" className={`hover:underline hover:text-gray-400 transition duration-500`}>Event</Link>
-              <Link href="/articles" className={`hover:underline hover:text-gray-400 transition duration-500`}>Article</Link>
+              {/* <Link href="/articles" className={`hover:underline hover:text-gray-400 transition duration-500`}>Article</Link> */}
               <Link href="/circulars" className={`hover:underline hover:text-gray-400 transition duration-500`}>Circulars</Link>
-              <Link href="/notice" className={`hover:underline hover:text-gray-400 transition duration-500`}>Notices</Link>
-              <Link href="/download-center" className={`hover:underline hover:text-gray-400 transition duration-500`}>Download Center</Link>
+              {/* <Link href="/notice" className={`hover:underline hover:text-gray-400 transition duration-500`}>Notices</Link>
+              <Link href="/download-center" className={`hover:underline hover:text-gray-400 transition duration-500`}>Download Center</Link> */}
             </div>
           </div>
         </div>
@@ -184,7 +187,7 @@ export default function NewNavBar() {
                 </div>
                 <div className='flex flex-col justify-center leading-none text-white'>
                   <small className='font-novaReg text-xs'>Admission Helpline</small>
-                  <span className='font-novaBold whitespace-nowrap leading-none text-lg'>1800-200-0777</span>
+                  <span className='font-novaBold whitespace-nowrap leading-none text-lg max-md:text-base'>1800-200-0777</span>
                 </div>
               </div>
             </Link>

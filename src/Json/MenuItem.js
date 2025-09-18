@@ -277,6 +277,10 @@ export const Programs = {
                         name: 'M.Tech in Electrical & Electronics Engineering',
                         url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-electrical-electronics-engineering'
                     },
+                    {
+                        name: 'M.Tech in Mechanical Engineering',
+                        url: '/school-of-engineering-and-technology/mtech-in-mechanical-engineering'
+                    },
                 ],
                 "Doctorate Graduate Program": [
                     // {

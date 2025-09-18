@@ -74,7 +74,7 @@ export default function Header({
     bgUrl,
     custom = false
 }) {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(true);
     const bg = custom ? bgUrl : bgImages[bgKey] || "/image/header-image.jpg";
     const formConfig = formConfigs[formKey];
 

@@ -1,5 +1,6 @@
 "use client"
-import { useRef, useState } from "react"
+
+import { useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 import { API_NODE_URL } from "@/configs/config"
 import Button from "./Button"
@@ -41,6 +42,7 @@ const programData = [
 
 export default function Form({ setIsModalOpen }) {
   const modalRef = useRef(null)
+  const [mounted, setMounted] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -73,6 +75,12 @@ export default function Form({ setIsModalOpen }) {
       }))
     }
   }
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null
 
   const handleDisciplineChange = (e) => {
     const selected = e.target.value
@@ -226,8 +234,8 @@ export default function Form({ setIsModalOpen }) {
     }
   }
 
-  return createPortal (
-    <div  onClick={handleBackdropClick} className="fixed inset-0 flex items-center justify-center h-full pb-4 md:pt-20 backdrop-blur-md bg-black/60 z-[999999] px-2">
+  return createPortal(
+    <div onClick={handleBackdropClick} className="fixed inset-0 flex items-center justify-center h-full pb-4 md:pt-20 backdrop-blur-md bg-black/60 z-[999999] px-2">
       <div ref={modalRef} className="relative bg-white rounded-lg shadow-lg max-w-md w-full overflow-hidden mt-10">
         <div className="bg-gray-100 flex flex-col justify-center items-center px-8 py-6 max-sm:py-6">
           <h2 className="text-sm bg-gradient-to-r from-blue-600 to-rose-600 bg-clip-text text-transparent font-novaBold tracking-wider text-center">

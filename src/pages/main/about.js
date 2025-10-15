@@ -33,8 +33,7 @@ export default function About() {
 
                         {/* Description */}
                         <p className="text-gray-500 text-base sm:text-lg mb-6 text-center" style={{ fontFamily: "font-novareg" }}>
-                            Ajay Kumar Garg University (AKGU) is a full-fledged University affiliated with Dr. A.P.J. Abdul Kalam Technical University (AKTU), Lucknow. It is approved by the All India Council for Technical Education (AICTE)
-                            and recognized for its right to offer undergraduate and postgraduate degrees in engineering and technology.
+                            AKG University stands as a dynamic hub of innovation and academic excellence, building on the distinguished legacy of Ajay Kumar Garg Engineering College. Spread across a sprawling 40-acre campus in Ghaziabad, Uttar Pradesh, the university offers cutting-edge undergraduate, postgraduate, and doctoral programs in engineering, technology, and management, supported by state-of-the-art laboratories, automated libraries, and high-tech research centers.
                         </p>
 
                         {/* Button */}
@@ -90,10 +89,9 @@ export default function About() {
                     >
                         <h1 className="text-4xl lg:text-3xl sm:text-2xl font-normal tracking-wide mb-6">About AKG University</h1>
                         <p className="text-gray-500 font-novaReg">
-                            Ajay Kumar Garg University (AKGU), Ghaziabad is affiliated to Dr. A.P.J. Abdul Kalam Technical University, Lucknow, and is approved by the All India Council for Technical Education. The college was established in
-                            1998 and offers B.Tech courses in nine disciplines of Engineering namely Computer Science and Engineering, Information Technology, Computer Science, Computer Science & Information Technology, Computer Science and
-                            Engineering (Artificial Intelligence & Machine Learning), Computer Science and Engineering (Data Science), Computer Science and Engineering (Hindi), Artificial Intelligence & Machine Learning, Electronics and
-                            Communication Engineering, Electrical and Electronics Engineering, Mechanical Engineering and Civil Engineering.
+                            AKG University is dedicated to nurturing future-ready leaders through an interdisciplinary approach, practical learning, and strong industry collaborations with top multinational organizations. The campus features Wi-Fi-enabled hostels, top-tier sports and recreation facilities, and a vibrant student life that fosters creativity and holistic development. 
+                            <br/>
+                            With a commitment to outstanding placements and academic results, AKG University boasts a remarkable record of alumni success and industry recognition, while fostering ethical values and social responsibility. Guided by visionary leadership and an accomplished faculty, the university is shaping technologists, innovators, and responsible citizens for global impact. 
                         </p>
                     </motion.div>
                 </div>

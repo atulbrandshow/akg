@@ -13,7 +13,7 @@ export const About = {
                 url: '/about'
             },
             {
-                name: 'Our Identity',
+                name: 'Our Legacy',
                 url: '/about/our-identity'
             },
             {
@@ -31,6 +31,10 @@ export const About = {
             {
                 name: 'Core Value',
                 url: '/about/core-values'
+            },
+            {
+                name: 'Objectives',
+                url: '/about/objectives'
             },
             {
                 name: 'Recognition & Approvals',

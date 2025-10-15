@@ -34,6 +34,7 @@ module.exports = {
         'Empathy': "url('/image/core-value/empathy.webp')",
         'HumanDignity': "url('/image/core-value/human-dignity.webp')",
         'Giving': "url('/image/core-value/giving.webp')",
+        'IndustryFocus': "url('/image/core-value/industry-focus.webp')",
         'PaperBackground': "url('/image/background-paper.png')",
         'BG2': "url('/image/MainBG2.jpg')",
         'BG3': "url('/image/MainBG.jpg')",

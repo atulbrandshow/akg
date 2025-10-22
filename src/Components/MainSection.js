@@ -61,7 +61,11 @@ const MainSection = ({ data }) => {
                 <span className="relative font-novaSemi text-white uppercase">{d?.Hero_Highlight_Title}</span>
               </span>
             </h1>
-            <p className="mt-8 text-white text-xl font-novaReg max-lg:text-base max-lg:text-center">
+            <h2 className="mt-4 text-blue-400 font-novaReg text-2xl max-lg:text-xl max-lg:text-center tracking-wide italic">
+              “Igniting Minds, Fuelling Innovation”
+            </h2>
+
+            <p className="mt-4 text-white text-xl font-novaReg max-lg:text-base max-lg:text-center">
               {d?.Hero_Paragraph}
             </p>
             <div className="h-20">

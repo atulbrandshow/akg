@@ -1,7 +1,6 @@
 import React from 'react'
 import { Bookmark } from "lucide-react"
 
-
 const features = [
     {
         title: "The Color Blue",
@@ -57,4 +56,4 @@ const OurIdentity = () => {
     )
 }
 
-export default OurIdentity
+export default OurIdentity;

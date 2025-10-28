@@ -117,18 +117,18 @@ export const Academics = {
             },
         ],
         "Academics": [
-            {
-                name: 'Exam Results',
-                url: '/academics/exam-results'
-            },
+            // {
+            //     name: 'Exam Results',
+            //     url: '/academics/exam-results'
+            // },
             {
                 name: 'Examination Schedule',
                 url: '/academics/examination-schedule'
             },
-            {
-                name: 'Examination Annual Report',
-                url: '/academics/examination-annual-report'
-            },
+            // {
+            //     name: 'Examination Annual Report',
+            //     url: '/academics/examination-annual-report'
+            // },
             // {
             //     name: 'Academics Overview',
             //     url: '/academics'
@@ -157,10 +157,10 @@ export const Academics = {
                 name: 'Programme Curriculum',
                 url: '/academics/programme-curriculum'
             },
-            {
-                name: 'Curricula Feedback',
-                url: '/academics/curricula-feedback'
-            },
+            // {
+            //     name: 'Curricula Feedback',
+            //     url: '/academics/curricula-feedback'
+            // },
             {
                 name: 'University Brochure',
                 url: '/academics/university-brochure'
@@ -185,10 +185,10 @@ export const Academics = {
                 name: 'Professional Bodies',
                 url: '/academics/professional-bodies'
             },
-            {
-                name: 'Professors of Practice',
-                url: '/academics/professors-of-practice'
-            },
+            // {
+            //     name: 'Professors of Practice',
+            //     url: '/academics/professors-of-practice'
+            // },
         ]
     }
 }

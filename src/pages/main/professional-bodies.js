@@ -1,41 +1,93 @@
 
+// const data = [
+//     {
+//         logoImg: '/image/company-logos/logo1.jpg',
+//         title: "Leading Solar Technology Innovators",
+//         members: "17+"
+//     },
+//     {
+//         logoImg: '/image/company-logos/logo2.jpg',
+//         title: "Experts in Pneumatic Solutions",
+//         members: "34+"
+//     },
+//     {
+//         logoImg: '/image/company-logos/logo3.jpg',
+//         title: "Robotics and Automation Specialists",
+//         members: "52+"
+//     },
+//     {
+//         logoImg: '/image/company-logos/logo4.jpg',
+//         title: "Global Leaders in Industrial Gases",
+//         members: "45+"
+//     },
+//     {
+//         logoImg: '/image/company-logos/logo5.jpg',
+//         title: "Advanced Electrical and Automation Solutions",
+//         members: "78+"
+//     },
+//     {
+//         logoImg: '/image/company-logos/logo6.jpg',
+//         title: "Precision Motion Control Systems",
+//         members: "625+"
+//     },
+//     {
+//         logoImg: '/image/company-logos/logo7.jpg',
+//         title: "World-Class Clamping and Gripping Technology",
+//         members: "45+"
+//     }
+// ]
+
 const data = [
     {
-        logoImg: '/image/company-logos/logo1.jpg',
-        title: "Leading Solar Technology Innovators",
-        members: "17+"
+        course: "B.Tech",
+        eligibility: "10+2 with PCM, minimum 45% (40% SC/ST)",
+        duration: "4 years",
+        admission: "JEE Main / UPTAC Counselling",
+        fee: "3.56 Lakhs - 12.5 Lakhs"
     },
     {
-        logoImg: '/image/company-logos/logo2.jpg',
-        title: "Experts in Pneumatic Solutions",
-        members: "34+"
+        course: "BCA",
+        eligibility: "10+2 from a recognized board",
+        duration: "3 years",
+        admission: "Merit-based / Entrance",
+        fee: "1.29 Lakhs - 3.45 Lakhs"
     },
     {
-        logoImg: '/image/company-logos/logo3.jpg',
-        title: "Robotics and Automation Specialists",
-        members: "52+"
+        course: "BBA",
+        eligibility: "10+2 with minimum 50%",
+        duration: "3 years",
+        admission: "Merit-based / Counselling",
+        fee: "Approx. 1.28 Lakhs"
     },
     {
-        logoImg: '/image/company-logos/logo4.jpg',
-        title: "Global Leaders in Industrial Gases",
-        members: "45+"
+        course: "MBA",
+        eligibility: "Graduation with minimum 50%",
+        duration: "2 years",
+        admission: "Entrance exam (CAT/MAT/UPTAC) + Counselling",
+        fee: "1.1 - 1.5 Lakhs"
     },
     {
-        logoImg: '/image/company-logos/logo5.jpg',
-        title: "Advanced Electrical and Automation Solutions",
-        members: "78+"
+        course: "B.Sc. Computer Science",
+        eligibility: "10+2 Science stream, minimum 45%",
+        duration: "3 years",
+        admission: "Merit-based / Entrance testing",
+        fee: "50,000 - 1.5 Lakhs"
     },
     {
-        logoImg: '/image/company-logos/logo6.jpg',
-        title: "Precision Motion Control Systems",
-        members: "625+"
+        course: "B.Sc. Data Science",
+        eligibility: "10+2 Science/Maths, minimum 45%",
+        duration: "3 years",
+        admission: "Merit-based / Entrance testing",
+        fee: "50,000 - 1.5 Lakhs"
     },
     {
-        logoImg: '/image/company-logos/logo7.jpg',
-        title: "World-Class Clamping and Gripping Technology",
-        members: "45+"
+        course: "B.Sc. Forensic Science",
+        eligibility: "10+2 Science stream, minimum 45%",
+        duration: "3 years",
+        admission: "Merit-based / Entrance testing",
+        fee: "50,000 - 1 lakh"
     }
-]
+];
 
 function ProfessionalBodies() {
     return (
@@ -48,10 +100,28 @@ function ProfessionalBodies() {
                     <button className='bg-white w-fit text-xs py-2.5 px-6 tracking-widest text-black uppercase font-novaBold rounded-xl'>Know More</button>
                 </div>
             </section>
-            <section className='max-w-7xl mx-auto text-center py-16 max-sm:py-10'>
-                <h3 className='text-xs text-[#939393] font-novaReg uppercase'>What are the Professional Bodies at AKG?</h3>
-                <p className='mt-2 text-2xl max-md:text-xl px-2 max-sm:text-base font-novaLight max-w-4xl mx-auto'>They can comprise <strong>student and professional members</strong> who come together to understand how to comprehend solutions to real-world problems. These bodies help in empowering people through the power of knowledge and organise lessons revolving around <strong>value-added courses</strong>, and various kinds of learning series and competitions.</p>
+            <section className='max-w-6xl mx-auto py-16 px-6 text-justify'>
+                <p className='text-lg max-md:text-base font-novaLight leading-relaxed'>
+                    AKG University proudly affiliates with a range of esteemed professional bodies that elevate academic standards and provide students with industry-relevant exposure. These associations foster professional development, networking opportunities, and access to the latest technical resources, enhancing the overall learning experience. Through active participation in these bodies, students and faculty stay abreast of cutting-edge advancements and best practices, preparing graduates to excel in global careers.
+                </p>
+                <p className='mt-6 text-lg max-md:text-base font-novaLight leading-relaxed'>
+                    These affiliations reflect AKG University’s commitment to integrating academic rigor with practical industry engagement, nurturing skilled professionals who lead with innovation and integrity.
+                </p>
+                <ul className='mt-8 grid grid-cols-2 max-md:grid-cols-1 gap-3 list-disc pl-6 font-novaReg'>
+                    <li>Indian Society for Technical Education (ISTE)</li>
+                    <li>Institute of Electrical and Electronics Engineers (IEEE) - Student Branch</li>
+                    <li>Society of Automotive Engineers (SAE) - India Collegiate Club</li>
+                    <li>Institution of Electronics and Telecommunication Engineers (IETE)</li>
+                    <li>Computer Society of India (CSI)</li>
+                    <li>National Instruments LabVIEW Academy</li>
+                    <li>KUKA Robotics Academy</li>
+                    <li>Bosch Rexroth Centre of Excellence</li>
+                    <li>Siemens Centre of Excellence</li>
+                    <li>Mitsubishi Electric Automation Training Centre</li>
+                    <li>Fronius Welding Technology Academy</li>
+                </ul>
             </section>
+
             <section className='relative bg-BG17 bg-cover bg-center'>
                 <div className='absolute inset-0 w-[75%] ' style={{ background: 'linear-gradient(to right, #172646 55%, rgba(256, 256, 256, 0.0))' }}></div>
                 <div className='relative max-w-7xl mx-auto py-32 px-6'>
@@ -69,7 +139,7 @@ function ProfessionalBodies() {
                     </p>
                 </div>
             </section>
-            <section className='relative bg-BG13 bg-cover min-h-screen'>
+            {/* <section className='relative bg-BG13 bg-cover min-h-screen'>
                 <div className='hidden max-lg:block absolute inset-0 bg-black opacity-70'></div>
                 <div className='absolute inset-0 max-w-[1300px] mx-auto flex justify-end max-lg:justify-center'>
                     <div className='p-10 max-lg:p-0'>
@@ -109,7 +179,42 @@ function ProfessionalBodies() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> */}
+
+            <section className='relative bg-BG13 bg-cover min-h-screen'>
+    <div className='hidden max-lg:block absolute inset-0 bg-black opacity-70'></div>
+    <div className='absolute inset-0 max-w-[1300px] mx-auto flex justify-end max-lg:justify-center'>
+        <div className='p-10 max-lg:p-0'>
+            <div className="container mx-auto px-4 py-10 mb-20">
+                <h2 className='text-4xl max-lg:text-3xl text-center max-md:text-2xl font-novaSemi mb-5 max-lg:text-white'>
+                    Our Courses
+                </h2>
+                <table className="bg-white border border-gray-300 w-full">
+                    <thead>
+                        <tr className="bg-[#333643] text-white">
+                            <th className="px-6 py-2 text-left text-sm font-novaSemi max-sm:text-xs uppercase">Course</th>
+                            <th className="px-6 py-2 text-left text-sm font-novaSemi max-sm:text-xs uppercase">Eligibility</th>
+                            <th className="px-6 py-2 text-left text-sm font-novaSemi max-sm:text-xs uppercase">Duration</th>
+                            <th className="px-6 py-2 text-left text-sm font-novaSemi max-sm:text-xs uppercase">Admission Process</th>
+                            <th className="px-6 py-2 text-left text-sm font-novaSemi max-sm:text-xs uppercase">Approx. Total Fee (INR)</th>
+                        </tr>
+                    </thead>
+                    <tbody className="bg-white border border-gray-500 divide-gray-200">
+                        {data.map((item, index) => (
+                            <tr key={index}>
+                                <td className="px-6 py-4 border border-gray-500 text-sm max-sm:text-xs">{item.course}</td>
+                                <td className="px-6 py-4 border border-gray-500 text-sm max-sm:text-xs">{item.eligibility}</td>
+                                <td className="px-6 py-4 border border-gray-500 text-sm max-sm:text-xs">{item.duration}</td>
+                                <td className="px-6 py-4 border border-gray-500 text-sm max-sm:text-xs">{item.admission}</td>
+                                <td className="px-6 py-4 border border-gray-500 text-sm max-sm:text-xs">{item.fee}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
         </>
     )
 }

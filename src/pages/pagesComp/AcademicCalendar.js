@@ -1,5 +1,6 @@
 
 const AcademicCalendar = ({calendarData, currentSemester}) => {
+    const notes = calendarData?.filter(entry => entry.type === "note");
     return (
         <div className="container mx-auto">
             <h1 className="text-[40px] max-2xl:text-3xl max-md:text-2xl leading-none font-novaReg mb-2.5 ">
@@ -39,6 +40,21 @@ const AcademicCalendar = ({calendarData, currentSemester}) => {
                         ))}
                     </tbody>
                 </table>
+                {/* Notes Section */}
+                {notes?.length > 0 && (
+                    <div className="bg-yellow-50 border-l-4 border-yellow-600 text-yellow-900 p-5 mt-8 rounded-xl shadow-sm">
+                        <div className="flex items-start gap-2">
+                            <span className="text-yellow-700 font-novaBold uppercase tracking-wide text-sm">
+                                Disclaimer:
+                            </span>
+                        </div>
+                        <p className="font-novaSemi text-sm leading-relaxed mt-2 whitespace-pre-line">
+                            {notes[0].description
+                                .replace(/^(Note|Disclaimer):/i, "")
+                                .trim()}
+                        </p>
+                    </div>
+                )}
             </div>
         </div>
     );

@@ -1,12 +1,13 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import * as pdfjsLib from "pdfjs-dist/build/pdf";
-import pdfjsWorker from "pdfjs-dist/build/pdf.worker.entry";
 import FlipBookWrapper from "../../Components/FlipBookWrapper";
 
 // Setup pdf.js worker
-pdfjsLib.GlobalWorkerOptions.workerSrc = pdfjsWorker;
+if (typeof window !== "undefined") {
+  pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
+}
 
 export default function UniversityHandbooks() {
   const [flipbookVisible, setFlipbookVisible] = useState(false);

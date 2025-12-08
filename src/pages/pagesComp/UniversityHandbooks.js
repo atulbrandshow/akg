@@ -1,19 +1,61 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import * as pdfjsLib from "pdfjs-dist/build/pdf";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import FlipBookWrapper from "../../Components/FlipBookWrapper";
 
-// Setup pdf.js worker
-if (typeof window !== "undefined") {
-  pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
-}
+gsap.registerPlugin(ScrollTrigger);
+let pdfjsLib = null;
+
 
 export default function UniversityHandbooks() {
   const [flipbookVisible, setFlipbookVisible] = useState(false);
   const [pages, setPages] = useState([]);
   const [loading, setLoading] = useState(false);
   const bookRef = useRef(null);
+  const headerRef = useRef(null);
+  const cardsRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        headerRef.current,
+        { y: 60, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 75%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+
+      gsap.fromTo(
+        cardsRef.current.querySelectorAll(".handbook-card"),
+        { y: 80, opacity: 0, scale: 0.9 },
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 0.8,
+          stagger: 0.12,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: cardsRef.current,
+            start: "top 70%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    });
+
+    return () => ctx.revert();
+  }, []);
 
   // 🧾 All handbook data (every one will open as flipbook)
   const handbooksData = [
@@ -88,6 +130,12 @@ export default function UniversityHandbooks() {
       setFlipbookVisible(true);
       setLoading(true);
 
+      // Dynamically import pdfjs-dist
+      if (!pdfjsLib) {
+        pdfjsLib = await import("pdfjs-dist/legacy/build/pdf.mjs");
+        pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
+      }
+
       const loadingTask = pdfjsLib.getDocument(pdfUrl);
       const pdf = await loadingTask.promise;
       const numPages = pdf.numPages;
@@ -129,27 +177,38 @@ export default function UniversityHandbooks() {
   };
 
   return (
-    <div className="py-10">
-      <h2 className="text-4xl font-novaReg mb-6">University Handbooks</h2>
+    <section className="py-16 bg-gradient-to-b from-blue-50/30 via-white to-yellow-50/20 relative overflow-hidden">
+      <div className="absolute inset-0 opacity-10">
+        <img src="/image/akgec-logo.svg" alt="" className="absolute top-20 right-10 w-96 h-96 object-contain" />
+        <img src="/image/akgec-logo.svg" alt="" className="absolute bottom-20 left-10 w-80 h-80 object-contain" />
+      </div>
+      <div className="max-w-[1300px] mx-auto px-6 relative z-10">
+      <h2 ref={headerRef} className="text-3xl lg:text-4xl font-bold text-primary mb-12 text-center uppercase">University Handbooks</h2>
 
       {/* Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div ref={cardsRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {handbooksData.map(({ id, title, description, image, link }) => (
           <div
             key={id}
-            className="rounded-lg shadow-md p-3 flex flex-col justify-between hover:shadow-lg transition"
+            className="handbook-card relative bg-gradient-to-br from-white via-blue-50/30 to-yellow-50/40 rounded-3xl shadow-xl p-6 flex flex-col hover:shadow-2xl hover:scale-105 transition-all duration-500 border border-gray-200 hover:border-primary group overflow-hidden"
           >
-            <img src={image} alt={title} className="mx-auto w-32 rounded-lg" />
-            <h3 className="font-semibold mt-3">{title}</h3>
-            <p className="text-sm text-gray-600 mt-1">{description}</p>
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-blue-500/5 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="absolute -top-20 -right-20 w-40 h-40 bg-secondary/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
+            <div className="relative z-10 flex flex-col h-full">
+              <div className="bg-white rounded-2xl p-4 shadow-lg mb-4 group-hover:shadow-xl transition-shadow">
+                <img src={image} alt={title} className="mx-auto w-32 h-40 object-cover rounded-lg" />
+              </div>
+              <h3 className="font-bold text-lg text-gray-800 mb-2 group-hover:text-primary transition-colors">{title}</h3>
+              <p className="text-sm text-gray-600 mb-4 flex-grow leading-relaxed">{description}</p>
 
-            {/* All open Flipbook now */}
-            <button
-              onClick={() => loadPdf(link)}
-              className="mt-3 w-full bg-blue-900 text-white text-xs py-2 px-4 rounded-lg hover:bg-blue-700"
-            >
-              View (Flipbook)
-            </button>
+              {/* All open Flipbook now */}
+              <button
+                onClick={() => loadPdf(link)}
+                className="mt-auto w-full text-sm font-semibold py-3 px-4 rounded-xl bg-gradient-to-r from-blue-700 to-primary shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              >
+                View Flipbook
+              </button>
+            </div>
           </div>
         ))}
       </div>
@@ -205,7 +264,7 @@ export default function UniversityHandbooks() {
     </div>
   </div>
 )}
- 
-    </div>
+      </div>
+    </section>
   );
 }

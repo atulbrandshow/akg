@@ -289,10 +289,10 @@ const LeaderShip = () => {
             </div>
           </div>
 
-          <div className="leader-content-1 relative col-span-5 max-md:col-span-8 bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500">
+          <div className="leader-content-1 relative font-novaReg text-gray-800 col-span-5 max-md:col-span-8 bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500">
             <div className="h-full max-h-[500px] overflow-y-auto text-sm scrollbar-thin scrollbar-thumb-primary/30 scrollbar-track-gray-200 text-justify pr-4">
               <p className="leading-6 transform transition-all duration-300 hover:translate-x-2 mb-4">
-                He has held various key appointments including Chief Engineering
+                <span className="font-bold text-3xl">H</span>e has held various key appointments including Chief Engineering
                 Officer of an Operational Base, Director (Engg) at Air HQ and
                 Project Director at Centre for Airborne Systems. His vast
                 managerial, administrative, research and academic experience
@@ -359,9 +359,9 @@ const LeaderShip = () => {
         
         <div ref={secondSectionRef} className="grid grid-cols-8 gap-8 mb-20 max-md:border-t-2 max-md:border-t-gray-200 pt-5 max-md:flex max-md:flex-col-reverse">
           <div className="leader-content-2 relative col-span-5 max-md:col-span-8 bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500">
-            <div className="h-full max-h-[500px] overflow-y-auto text-sm scrollbar-thin scrollbar-thumb-primary/30 scrollbar-track-gray-200 text-justify pr-4">
+            <div className="h-full max-h-[500px] font-novaReg text-gray-800 overflow-y-auto text-sm scrollbar-thin scrollbar-thumb-primary/30 scrollbar-track-gray-200 text-justify pr-4">
               <p className="leading-6 transform transition-all duration-300 hover:translate-x-2 mb-4">
-                Graduating with honors in Electrical Engineering from Kurukshetra
+                <span className="font-bold text-3xl">G</span>raduating with honors in Electrical Engineering from Kurukshetra
                 University in 2001, Dr. Ahuja's journey continued with an M.Tech. in
                 Energy and Environmental Management from the Indian Institute of
                 Technology, Delhi, in 2008. His exceptional academic prowess was

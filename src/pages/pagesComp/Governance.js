@@ -1,307 +1,233 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { ChevronDown, ChevronUp } from "lucide-react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const gbody = [
-    {
-        "sr_no": 1,
-        "name": "Ankur Vishwakarma",
-        "designation": "The Chancellor",
-        "under_section": "1 (1) (a)",
-        "position": "Chairman"
-    },
-    {
-        "sr_no": 2,
-        "name": "Swati Jain",
-        "designation": "Vice-Chancellor",
-        "under_section": "1 (1) (b)",
-        "position": "Member"
-    },
-    {
-        "sr_no": 3,
-        "name": "Mahesh Sisodiya",
-        "designation": "Pro-Chancellor",
-        "under_section": "1 (1) (c)",
-        "position": "Member"
-    },
-    {
-        "sr_no": 4,
-        "name": "Lokesh Sharma",
-        "designation": "Eminent Educationist",
-        "under_section": "1 (1) (c)",
-        "position": "Member"
-    },
-    {
-        "sr_no": 5,
-        "name": "Ajay Singh",
-        "designation": "Eminent Educationist",
-        "under_section": "1 (1) (c)",
-        "position": "Member"
-    },
-    {
-        "sr_no": 6,
-        "name": "Radhika Joshi",
-        "designation": "Senior Vice President, Management & Technology Expert",
-        "under_section": "1 (1) (d)",
-        "position": "Member"
-    },
-    {
-        "sr_no": 7,
-        "name": "Prem Singh Upadhyay",
-        "designation": "Chief Advisor, AKG University, nominated by Hon’ble Chancellor",
-        "under_section": "--------",
-        "position": "Special Member"
-    },
-    {
-        "sr_no": 8,
-        "name": "Nitin Jain",
-        "designation": "Pro-Vice Chancellor",
-        "under_section": "--------",
-        "position": "Special Invitee"
-    },
-    {
-        "sr_no": 9,
-        "name": "Satyam Rajput",
-        "designation": "Finance Expert",
-        "under_section": "1 (1) (e)",
-        "position": "Member"
-    },
-    {
-        "sr_no": 10,
-        "name": "Hemant Chauhan",
-        "designation": "Department of Higher Education.",
-        "under_section": "1 (1) (f)",
-        "position": "Member"
-    },
-    {
-        "sr_no": 11,
-        "name": "Adarsh Sharma",
-        "designation": "Department of Higher Education.",
-        "under_section": "1 (1) (g)",
-        "position": "Member"
-    },
-    {
-        "sr_no": 12,
-        "name": "Prerna Prajapati",
-        "designation": "Registrar",
-        "under_section": "1 (1)",
-        "position": "Member Secretary"
-    }
+  {
+    "sr_no": 1,
+    "name": "Ankur Vishwakarma",
+    "designation": "The Chancellor",
+    "under_section": "1 (1) (a)",
+    "position": "Chairman"
+  },
+  {
+    "sr_no": 2,
+    "name": "Swati Jain",
+    "designation": "Vice-Chancellor",
+    "under_section": "1 (1) (b)",
+    "position": "Member"
+  },
+  {
+    "sr_no": 3,
+    "name": "Mahesh Sisodiya",
+    "designation": "Pro-Chancellor",
+    "under_section": "1 (1) (c)",
+    "position": "Member"
+  },
+  {
+    "sr_no": 4,
+    "name": "Lokesh Sharma",
+    "designation": "Eminent Educationist",
+    "under_section": "1 (1) (c)",
+    "position": "Member"
+  },
+  {
+    "sr_no": 5,
+    "name": "Ajay Singh",
+    "designation": "Eminent Educationist",
+    "under_section": "1 (1) (c)",
+    "position": "Member"
+  },
+  {
+    "sr_no": 6,
+    "name": "Radhika Joshi",
+    "designation": "Senior Vice President, Management & Technology Expert",
+    "under_section": "1 (1) (d)",
+    "position": "Member"
+  },
+  {
+    "sr_no": 7,
+    "name": "Prem Singh Upadhyay",
+    "designation": "Chief Advisor, AKG University, nominated by Hon'ble Chancellor",
+    "under_section": "--------",
+    "position": "Special Member"
+  },
+  {
+    "sr_no": 8,
+    "name": "Nitin Jain",
+    "designation": "Pro-Vice Chancellor",
+    "under_section": "--------",
+    "position": "Special Invitee"
+  },
+  {
+    "sr_no": 9,
+    "name": "Satyam Rajput",
+    "designation": "Finance Expert",
+    "under_section": "1 (1) (e)",
+    "position": "Member"
+  },
+  {
+    "sr_no": 10,
+    "name": "Hemant Chauhan",
+    "designation": "Department of Higher Education.",
+    "under_section": "1 (1) (f)",
+    "position": "Member"
+  },
+  {
+    "sr_no": 11,
+    "name": "Adarsh Sharma",
+    "designation": "Department of Higher Education.",
+    "under_section": "1 (1) (g)",
+    "position": "Member"
+  },
+  {
+    "sr_no": 12,
+    "name": "Prerna Prajapati",
+    "designation": "Registrar",
+    "under_section": "1 (1)",
+    "position": "Member Secretary"
+  }
 ];
 
 const Governance = () => {
-    const [openIndex, setOpenIndex] = useState(0);
+  const [openIndex, setOpenIndex] = useState(0);
+  const sectionRef = useRef(null);
+  const titleRef = useRef(null);
+  const descRef = useRef(null);
+  const accordionRefs = useRef([]);
 
-    const toggleContent = (index) => {
-        setOpenIndex(openIndex === index ? null : index);
-    };
+  const sections = [
+    { title: "Governing Body", contentKey: 0 },
+    { title: "Board Of Management", contentKey: 1 },
+    { title: "Academic Council", contentKey: 2 },
+    { title: "Underpinning Corporate Patronage", contentKey: 3 },
+  ];
 
-    return (
-        <>
-            <div>
-                <div>
-                    <h3 className="text-4xl font-novaReg mb-2.5 px-2 max-sm:text-3xl">Governance</h3>
-                    <p className="font-novaReg text-gray-700 mb-4 px-2 text-justify">
-                        The AKG University Act grants distinct powers and responsibilities to various governing bodies within the university. These entities play a vital role in shaping policies, upholding academic standards, and ensuring both the integrity of financial management and the responsible use of resources. They also provide strategic direction, oversee policy implementation, and intervene with corrective actions when required. The University's governance is supported by the following bodies:
-                    </p>
-                    <br />
-                    <div className="mb-6">
-                        <div className="border">
-                            <h2 className={`${openIndex === 0 ? 'bg-indigo-900 text-white' : ''}`}>
-                                <button className="flex justify-between py-4 px-5 font-novaReg w-full max-sm:text-sm" onClick={() => toggleContent(0)}>
-                                    Governing Body
-                                    {openIndex === 0 ? (
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-up">
-                                            <path d="m18 15-6-6-6 6" />
-                                        </svg>
-                                    ) : (
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down">
-                                            <path d="m6 9 6 6 6-6" />
-                                        </svg>
-                                    )}
-                                </button>
-                            </h2>
-                            {openIndex === 0 && (
-                                <div className="content py-4 px-5 max-[500px]:px-1">
-                                    <div className='block'>
-                                        <p className='text-sm font-novaReg mb-4 px-2'>The Governing Body of AKG University has undergone revisions for the 2022-2024 academic session due to changes in senior positions. The updated composition is as follows:</p>
-                                        <div className='overflow-x-auto'>
-                                            <table className="w-full">
-                                                <thead>
-                                                    <tr className='text-white'>
-                                                        <th className="px-2.5 py-1 text-[15px] bg-indigo-900 font-novaBold text-start rounded-tl-lg">Sr. No.</th>
-                                                        <th className="px-2.5 py-1 text-[15px] bg-indigo-900 font-novaBold text-start border-l">Name</th>
-                                                        <th className="px-2.5 py-1 text-[15px] bg-indigo-900 font-novaBold text-start border-l">Designation</th>
-                                                        <th className="px-2.5 py-1 text-[15px] bg-indigo-900 font-novaBold text-start border-l">Under Section</th>
-                                                        <th className="px-2.5 py-1 text-[15px] bg-indigo-900 font-novaBold text-start border-l rounded-tr-lg">Position</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {gbody.map((member) => (
-                                                        <tr className='text-white' key={member.sr_no}>
-                                                            <td className="border-b border-r border-gray-300 border-opacity-50 text-start text-sm font-novaReg bg-indigo-950 p-2.5">{member.sr_no}</td>
-                                                            <td className="border-b border-r border-gray-300 border-opacity-50 text-start text-sm font-novaReg bg-indigo-950 p-2.5">{member.name}</td>
-                                                            <td className="border-b border-r border-gray-300 border-opacity-50 text-start text-sm font-novaReg bg-indigo-950 p-2.5">{member.designation}</td>
-                                                            <td className="border-b border-r border-gray-300 border-opacity-50 text-start text-sm font-novaReg bg-indigo-950 p-2.5">{member.under_section}</td>
-                                                            <td className="border-b border-r border-gray-300 border-opacity-50 text-start text-sm font-novaReg bg-indigo-950 p-2.5">{member.position}</td>
-                                                        </tr>
-                                                    ))}
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
+  const toggleContent = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
 
-                        <div className="border">
-                            <h2 className={`${openIndex === 1 ? 'bg-indigo-900 text-white' : ''}`}>
-                                <button className="flex justify-between py-4 px-5 font-novaReg w-full max-sm:text-sm" onClick={() => toggleContent(1)}>
-                                    Board Of Management
-                                    {openIndex === 1 ? (
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-up ">
-                                            <path d="m18 15-6-6-6 6" />
-                                        </svg>
-                                    ) : (
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down">
-                                            <path d="m6 9 6 6 6-6" />
-                                        </svg>
-                                    )}
-                                </button>
-                            </h2>
-                            {openIndex === 1 && (
-                                <div className="content py-4 px-5 max-[500px]:px-1">
-                                    <div className='block'>
-                                        <p className='text-sm font-novaReg mb-4 px-2'>The Board of Management of AKG University has been reformed due to adjustments in senior leadership positions for the 2022-2024 academic session, as outlined below:</p>
-                                        <div className='overflow-x-auto'>
-                                            <table className="w-full ">
-                                                <thead>
-                                                    <tr className='text-white'>
-                                                        <th className="px-2.5 py-3 text-[15px] bg-indigo-900 font-novaBold text-start rounded-tl-lg">Sr. No.</th>
-                                                        <th className="px-2.5 py-3 text-[15px] bg-indigo-900 font-novaBold text-start border-l">Name</th>
-                                                        <th className="px-2.5 py-3 text-[15px] bg-indigo-900 font-novaBold text-start border-l">Designation</th>
-                                                        <th className="px-2.5 py-3 text-[15px] bg-indigo-900 font-novaBold text-start border-l">Under Section</th>
-                                                        <th className="px-2.5 py-3 text-[15px] bg-indigo-900 font-novaBold text-start border-l rounded-tr-lg">Position</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {gbody.map((member) => (
-                                                        <tr className='text-white' key={member.sr_no}>
-                                                            <td className="border-b border-r border-gray-300 border-opacity-50 text-start text-sm font-novaReg bg-indigo-950 p-2.5">{member.sr_no}</td>
-                                                            <td className="border-b border-r border-gray-300 border-opacity-50 text-start text-sm font-novaReg bg-indigo-950 p-2.5">{member.name}</td>
-                                                            <td className="border-b border-r border-gray-300 border-opacity-50 text-start text-sm font-novaReg bg-indigo-950 p-2.5">{member.designation}</td>
-                                                            <td className="border-b border-r border-gray-300 border-opacity-50 text-start text-sm font-novaReg bg-indigo-950 p-2.5">{member.under_section}</td>
-                                                            <td className="border-b border-r border-gray-300 border-opacity-50 text-start text-sm font-novaReg bg-indigo-950 p-2.5">{member.position}</td>
-                                                        </tr>
-                                                    ))}
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
 
-                        <div className="border">
-                            <h2 className={`${openIndex === 2 ? 'bg-indigo-900 text-white' : ''}`}>
-                                <button className="flex justify-between py-4 px-5 font-novaReg w-full max-sm:text-sm" onClick={() => toggleContent(2)}>
-                                    Academic Council
-                                    {openIndex === 2 ? (
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-up">
-                                            <path d="m18 15-6-6-6 6" />
-                                        </svg>
-                                    ) : (
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down">
-                                            <path d="m6 9 6 6 6-6" />
-                                        </svg>
-                                    )}
-                                </button>
-                            </h2>
-                            {openIndex === 2 && (
-                                <div className="content py-4 px-5 max-[500px]:px-1">
-                                    <div className='block'>
-                                        <p className='text-sm font-novaReg mb-4 px-2'>The Academic Council of AKG University has been newly formed in light of changes in senior leadership positions for the 2022-2024 academic session. The updated structure is provided below:</p>
-                                        <div className='overflow-x-auto'>
-                                            <table className="w-full ">
-                                                <thead>
-                                                    <tr className='text-white'>
-                                                        <th className="px-2.5 py-3 text-[15px] bg-indigo-900 font-novaBold text-start rounded-tl-lg">Sr. No.</th>
-                                                        <th className="px-2.5 py-3 text-[15px] bg-indigo-900 font-novaBold text-start border-l">Name</th>
-                                                        <th className="px-2.5 py-3 text-[15px] bg-indigo-900 font-novaBold text-start border-l">Designation</th>
-                                                        <th className="px-2.5 py-3 text-[15px] bg-indigo-900 font-novaBold text-start border-l">Under Section</th>
-                                                        <th className="px-2.5 py-3 text-[15px] bg-indigo-900 font-novaBold text-start border-l rounded-tr-lg">Position</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {gbody.map((member) => (
-                                                        <tr className='text-white' key={member.sr_no}>
-                                                            <td className="border-b border-r border-gray-300 border-opacity-50 text-start text-sm font-novaReg bg-indigo-950 p-2.5">{member.sr_no}</td>
-                                                            <td className="border-b border-r border-gray-300 border-opacity-50 text-start text-sm font-novaReg bg-indigo-950 p-2.5">{member.name}</td>
-                                                            <td className="border-b border-r border-gray-300 border-opacity-50 text-start text-sm font-novaReg bg-indigo-950 p-2.5">{member.designation}</td>
-                                                            <td className="border-b border-r border-gray-300 border-opacity-50 text-start text-sm font-novaReg bg-indigo-950 p-2.5">{member.under_section}</td>
-                                                            <td className="border-b border-r border-gray-300 border-opacity-50 text-start text-sm font-novaReg bg-indigo-950 p-2.5">{member.position}</td>
-                                                        </tr>
-                                                    ))}
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Initial hidden states
+      gsap.set(titleRef.current, { y: 60, opacity: 0 });
+      gsap.set(descRef.current, { y: 50, opacity: 0 });
+      gsap.set(accordionRefs.current, { y: 80, opacity: 0, scale: 0.95 });
 
-                        <div className="border">
-                            <h2 className={`border-n ${openIndex === 3 ? 'bg-indigo-900 text-white' : ''}`}>
-                                <button className="flex justify-between py-4 px-5 font-novaReg w-full max-sm:text-sm" onClick={() => toggleContent(3)}>
-                                    Underpinning Corporate Patronage
-                                    {openIndex === 3 ? (
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-up">
-                                            <path d="m18 15-6-6-6 6" />
-                                        </svg>
-                                    ) : (
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down">
-                                            <path d="m6 9 6 6 6-6" />
-                                        </svg>
-                                    )}
-                                </button>
-                            </h2>
-                            {openIndex === 3 && (
-                                <div className="content py-4 px-5 max-[500px]:px-1">
-                                    <div className='block'>
-                                        <p className='text-sm font-novaReg mb-4 px-2'>The Corporate Patronage of AKG University has been restructured in light of recent changes in senior leadership for the 2022-2024 academic session, as detailed below:</p>
-                                        <div className='overflow-x-auto'>
-                                            <table className="w-full ">
-                                                <thead>
-                                                    <tr className='text-white'>
-                                                        <th className="px-2.5 py-3 text-[15px] bg-indigo-900 font-novaBold text-start rounded-tl-lg">Sr. No.</th>
-                                                        <th className="px-2.5 py-3 text-[15px] bg-indigo-900 font-novaBold text-start border-l">Name</th>
-                                                        <th className="px-2.5 py-3 text-[15px] bg-indigo-900 font-novaBold text-start border-l">Designation</th>
-                                                        <th className="px-2.5 py-3 text-[15px] bg-indigo-900 font-novaBold text-start border-l">Under Section</th>
-                                                        <th className="px-2.5 py-3 text-[15px] bg-indigo-900 font-novaBold text-start border-l rounded-tr-lg">Position</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {gbody.map((member) => (
-                                                        <tr className='text-white' key={member.sr_no}>
-                                                            <td className="border-b border-r border-gray-300 border-opacity-50 text-start text-sm font-novaReg bg-indigo-950 p-2.5">{member.sr_no}</td>
-                                                            <td className="border-b border-r border-gray-300 border-opacity-50 text-start text-sm font-novaReg bg-indigo-950 p-2.5">{member.name}</td>
-                                                            <td className="border-b border-r border-gray-300 border-opacity-50 text-start text-sm font-novaReg bg-indigo-950 p-2.5">{member.designation}</td>
-                                                            <td className="border-b border-r border-gray-300 border-opacity-50 text-start text-sm font-novaReg bg-indigo-950 p-2.5">{member.under_section}</td>
-                                                            <td className="border-b border-r border-gray-300 border-opacity-50 text-start text-sm font-novaReg bg-indigo-950 p-2.5">{member.position}</td>
-                                                        </tr>
-                                                    ))}
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </>
-    );
+      // Scroll-triggered animations
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 85%",
+          toggleActions: "play none none reverse"
+        }
+      })
+      .to(titleRef.current, { 
+        y: 0, opacity: 1, duration: 1, ease: "power3.out" 
+      })
+      .to(descRef.current, { 
+        y: 0, opacity: 1, duration: 1, ease: "power2.out" 
+      }, "-=0.6")
+      .to(accordionRefs.current, { 
+        y: 0, opacity: 1, scale: 1, 
+        stagger: 0.15,
+        duration: 1.2, 
+        ease: "back.out(1.7)" 
+      }, "-=0.8");
+
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+      {/* Title - Animated */}
+      <h3 ref={titleRef} className="text-4xl font-semibold text-blue-900 mb-6 px-2 max-sm:text-3xl">
+        Governance
+      </h3>
+      
+      {/* Description - Animated */}
+      <p ref={descRef} className="text-gray-700 mb-8 px-2 text-justify max-w-4xl">
+        The AKG University Act grants distinct powers and responsibilities to various governing bodies within the university. These entities play a vital role in shaping policies, upholding academic standards, and ensuring both the integrity of financial management and the responsible use of resources. They also provide strategic direction, oversee policy implementation, and intervene with corrective actions when required. The University's governance is supported by the following bodies:
+      </p>
+
+      {/* Accordions - Animated */}
+      <div className="space-y-6">
+        {sections.map(({ title, contentKey }, i) => (
+          <div
+            key={i}
+            ref={(el) => (accordionRefs.current[i] = el)}
+            className={`border rounded-xl overflow-hidden shadow-md ${
+              openIndex === contentKey
+                ? "ring-4 ring-yellow-400 bg-blue-50"
+                : "bg-white"
+            } transition-all duration-300`}
+          >
+            <button
+              onClick={() => toggleContent(contentKey)}
+              className={`flex items-center justify-between w-full px-6 py-5 text-left font-semibold text-lg sm:text-xl ${
+                openIndex === contentKey ? "text-blue-900" : "text-blue-800"
+              } hover:bg-yellow-100 focus:outline-none focus-visible:ring-4 focus-visible:ring-yellow-400 focus-visible:ring-opacity-75 rounded-xl`}
+              aria-expanded={openIndex === contentKey}
+              aria-controls={`section-content-${contentKey}`}
+              id={`section-header-${contentKey}`}
+            >
+              {title}
+              {openIndex === contentKey ? (
+                <ChevronUp className="w-6 h-6 text-yellow-500" />
+              ) : (
+                <ChevronDown className="w-6 h-6 text-yellow-500" />
+              )}
+            </button>
+            
+            {openIndex === contentKey && (
+              <div
+                id={`section-content-${contentKey}`}
+                aria-labelledby={`section-header-${contentKey}`}
+                className="bg-white p-6 max-w-full overflow-x-auto"
+              >
+                <p className="mb-6 text-gray-700 text-sm sm:text-base font-normal px-2 max-w-4xl">
+                  The {title} of AKG University has been recently updated for the 2022-2024 academic session due to leadership changes.
+                </p>
+                <table className="w-full border-collapse min-w-[600px] sm:min-w-full text-left">
+                  <thead>
+                    <tr className="bg-blue-900 text-white text-sm sm:text-base font-semibold">
+                      <th className="py-3 px-4 rounded-tl-lg">Sr. No.</th>
+                      <th className="py-3 px-4 border-l border-blue-700">Name</th>
+                      <th className="py-3 px-4 border-l border-blue-700">Designation</th>
+                      <th className="py-3 px-4 border-l border-blue-700">Under Section</th>
+                      <th className="py-3 px-4 border-l border-blue-700 rounded-tr-lg">Position</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {gbody.map((member) => (
+                      <tr
+                        key={`${contentKey}-${member.sr_no}`}
+                        className="odd:bg-blue-50 even:bg-white border-b border-blue-100 text-gray-800 text-sm sm:text-base hover:bg-blue-100 transition-colors duration-300 hover:scale-[1.01] hover:-translate-y-0.5"
+                      >
+                        <td className="py-2 px-4">{member.sr_no}</td>
+                        <td className="py-2 px-4 border-l border-blue-100">{member.name}</td>
+                        <td className="py-2 px-4 border-l border-blue-100">{member.designation}</td>
+                        <td className="py-2 px-4 border-l border-blue-100">{member.under_section}</td>
+                        <td className="py-2 px-4 border-l border-blue-100">{member.position}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
 };
 
 export default Governance;

@@ -1,5 +1,6 @@
 "use client"
 
+import Breadcrumb from '@/Components/Breadcrumb';
 import { useState } from 'react';
 
 // AwardPopup Component
@@ -294,7 +295,7 @@ const technicalItems = [
 ];
 
 // Main Component
-export default function AwardsAndRankings() {
+export default function AwardsAndRankings({data}) {
     const [selectedAward, setSelectedAward] = useState(null);
 
     const handleAwardClick = (awardKey) => {
@@ -337,6 +338,9 @@ export default function AwardsAndRankings() {
                                 Ajay Kumar Garg Engineering College has been consistently recognized for its outstanding contributions to technical education, innovation, and industry collaboration through numerous prestigious awards and accolades.
                             </p>
                         </div>
+                    <section className='max-w-[1400px] mx-auto max-sm:px-2 py-8 text-white'>
+                                        {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}
+                                    </section>
                     </div>
                 </div>
             </section>

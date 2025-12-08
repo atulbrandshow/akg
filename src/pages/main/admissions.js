@@ -1,13 +1,14 @@
 import Header from '@/Components/Header';
 import Admissions from '../pagesComp/Admissions';
 import { useState } from 'react';
+import Breadcrumb from '@/Components/Breadcrumb';
 
 const Button = {
   name: "Apply Now",
   Link: "",
 };
 
-export default function Home() {
+export default function Home({data}) {
   const [selectedProgram, setSelectedProgram] = useState(null);
   const [showForm, setShowForm] = useState(false);
 
@@ -51,6 +52,9 @@ export default function Home() {
             buttonText="Apply Now"
             formKey="applyNow"
       />
+                <section className='max-w-[1400px] mx-auto px-5 max-sm:px-2 py-5'>
+                                                      {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}
+                                                  </section>
       
       <Admissions onApplyNow={handleApplyNow} />
     </>

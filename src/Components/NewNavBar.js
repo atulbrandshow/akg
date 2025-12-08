@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Bars2Icon } from "@heroicons/react/20/solid";
-import { About, Academics, Admissions, CampusLife, ResearchInnovation, Placements, Programs } from "../Json/MenuItem";
+import { About,Academics, Admissions, CampusLife, ResearchInnovation, Placements, Programs } from "../Json/MenuItem";
 import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";

@@ -4,33 +4,8 @@ import { useState, useEffect } from 'react';
 import Image from "next/image";
 import Link from 'next/link';
 import BannerSlider from '@/Components/BannerSlider'
+import Breadcrumb from '@/Components/Breadcrumb';
 
-const slides = [
-    {
-        title: "Student Services",
-        subHeading: "Promote a Healthy Lifestyle",
-        subtitle: "Fostering Physical Fitness and Well-being",
-        description: "We encourage students to embrace physical fitness by engaging in sports and recreational activities, enhancing overall health.",
-        buttonText: "Explore Fitness",
-        image: "/image/student-services/main-banner-1.jpg",
-    },
-    {
-        title: "Student Services",
-        subHeading: "Experience Exceptional Campus Living",
-        subtitle: "A Comfortable and Modern Residence",
-        description: "At AKGU, we provide state-of-the-art accommodations that prioritize comfort, ensuring a conducive environment for personal growth.",
-        buttonText: "Explore Accommodation",
-        image: "/image/student-services/main-banner-2.jpg",
-    },
-    {
-        title: "Student Services",
-        subHeading: "Celebrate Cultural Diversity",
-        subtitle: "Bringing Together a Global Community",
-        description: "AKGU takes pride in its culturally diverse student body, fostering an inclusive environment for learning and collaboration.",
-        buttonText: "Explore Diversity",
-        image: "/image/student-services/main-banner-3.jpg",
-    },
-]
 
 const studentService = [
     {
@@ -68,10 +43,10 @@ const StudentServices = () => {
     const handleModalClose = () => {
         setActiveModal(null);
     };
-
+    // console.log("bread".data)
     return (
         <>
-            <BannerSlider slides={slides} />
+            {/* <BannerSlider slides={slides} /> */}
             <div className='max-w-7xl mx-auto py-8'>
                 <h2 className='text-3xl max-sm:text-2xl font-novaSemi max-xl:px-4'>Exciting Student Journey at AKG University!</h2>
                 <p className='mt-2 text-base font-novaReg max-xl:px-4 max-sm:text-sm max-sm:leading-tight'>At AKGU, the university experience is about embracing independence and personal growth. Our campus is fully equipped with everything you need—comfortable accommodation, diverse entertainment, dining options, and excellent sports facilities. With students from various Indian states and union territories, as well as an increasing global presence, AKGU offers abundant opportunities for making lifelong friends, engaging in cultural exchange, and creating lasting memories.</p>
@@ -80,7 +55,7 @@ const StudentServices = () => {
                         <li className='flex items-center justify-center group'>
                             <Link href="/about/hostel" className='flex flex-col items-center gap-2'>
                                 <span>
-                                    <img src="/image/icons/accommodation.png" alt="accommodation" className='max-lg:w-20 max-sm:w-16 max-[400px]:w-14'/>
+                                    <img src="/image/icons/accommodation.png" alt="accommodation" className='max-lg:w-20 max-sm:w-16 max-[400px]:w-14' />
                                 </span>
                                 <strong className='font-novaBold text-gray-500 group-hover:text-[#c75050] max-sm:text-sm'>HOME AT AKGU
                                 </strong>
@@ -89,7 +64,7 @@ const StudentServices = () => {
                         <li className='flex items-center justify-center group'>
                             <Link href="" className='flex flex-col items-center gap-2'>
                                 <span>
-                                    <img src="/image/icons/student-welfare.png" alt="student-welfare" className='max-lg:w-20 max-sm:w-16 max-[400px]:w-14'/>
+                                    <img src="/image/icons/student-welfare.png" alt="student-welfare" className='max-lg:w-20 max-sm:w-16 max-[400px]:w-14' />
                                 </span>
                                 <strong className='font-novaBold text-gray-500 text-center group-hover:text-[#c75050] max-sm:text-sm'>STUDENT WELFARE SERVICES</strong>
                             </Link>
@@ -97,7 +72,7 @@ const StudentServices = () => {
                         <li className='flex items-center justify-center group'>
                             <Link href="" className='flex flex-col items-center gap-2'>
                                 <span>
-                                    <img src="/image/icons/sports.png" alt="sports" className='max-lg:w-20 max-sm:w-16 max-[400px]:w-14'/>
+                                    <img src="/image/icons/sports.png" alt="sports" className='max-lg:w-20 max-sm:w-16 max-[400px]:w-14' />
                                 </span>
                                 <strong className='font-novaBold text-gray-500 group-hover:text-[#c75050] max-sm:text-sm'>SPORTS</strong>
                             </Link>
@@ -105,7 +80,7 @@ const StudentServices = () => {
                         <li className='flex items-center justify-center group'>
                             <Link href="" className='flex flex-col items-center gap-2'>
                                 <span>
-                                    <img src="/image/icons/cultural.png" alt="cultural" className='max-lg:w-20 max-sm:w-16 max-[400px]:w-14'/>
+                                    <img src="/image/icons/cultural.png" alt="cultural" className='max-lg:w-20 max-sm:w-16 max-[400px]:w-14' />
                                 </span>
                                 <strong className='font-novaBold text-gray-500 group-hover:text-[#c75050] max-sm:text-sm'>CULTURAL</strong>
                             </Link>

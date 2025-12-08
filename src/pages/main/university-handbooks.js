@@ -1,6 +1,7 @@
 import Header from "@/Components/Header";
 import SideBar from "@/Components/SideBar";
 import UniversityHandbooks from "../pagesComp/UniversityHandbooks";
+import Breadcrumb from "@/Components/Breadcrumb";
 
 const Button = {
     name: "Apply Now",
@@ -17,11 +18,14 @@ const SideBarLink = [
     { name: "Institution Social Responsibility", link: "" }
 ]
 
-export const Home = () => {
+export const Home = ({data}) => {
     return (
         <div className="bg-gray-100">
             <Header title={"University Handbooks"} bgKey="BG-Building-8" Button={Button} gradient={"bg-gradient-to-r from-gray-800 to-zinc-900/40"} />
-            <section className="w-full max-w-[1400px] mx-auto grid grid-cols-12 py-20 max-sm:py-2 gap-10 px-2 max-sm:gap-0">
+                      <section className='max-w-[1400px] mx-auto px-5 max-sm:px-2 py-5'>
+                                                            {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}
+                                                        </section>
+            <section className="w-full max-w-[1400px] mx-auto grid grid-cols-12 py-10 max-sm:py-2 gap-10 px-2 max-sm:gap-0">
                 <div className="col-span-9 max-xl:col-span-8 max-lg:col-span-12">
                     <UniversityHandbooks />
                 </div>

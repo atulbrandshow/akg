@@ -1,8 +1,9 @@
 "use client";
 
+import Breadcrumb from "@/Components/Breadcrumb";
 import React, { useState } from "react";
 
-const Scholarship = () => {
+const Scholarship = ({data}) => {
     const [activeScholarship, setActiveScholarship] = useState(0);
 
     const scholarships = [
@@ -148,6 +149,9 @@ const Scholarship = () => {
                     </div>
                 </div>
             </div>
+                      <section className='max-w-[1400px] mx-auto px-5 max-sm:px-2 py-5'>
+                                                            {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}
+                                                        </section>
 
             {/* INTRO SECTION */}
             <div className="bg-BG17 h-[450px] w-full top-20 bg-no-repeat bg-cover">

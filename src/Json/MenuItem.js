@@ -98,6 +98,7 @@ export const About = {
     }
 }
 
+
 export const Academics = {
     name: 'Academics',
     links: '/',

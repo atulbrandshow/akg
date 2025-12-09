@@ -187,14 +187,14 @@ const Governance = () => {
       <div className="absolute bottom-0 left-0 w-48 h-48 bg-primary/10 rounded-full translate-y-24 -translate-x-24"></div>
       
       {/* AKG Logo Vector Background */}
-      <div className="absolute top-10 right-10 opacity-5">
+      <div className="absolute top-10 right-10 opacity-10">
         <img
           src="/image/akgec-logo.svg"
           alt="AKG Logo"
           className="w-40 h-40 object-contain"
         />
       </div>
-      <div className="absolute bottom-20 left-20 opacity-3">
+      <div className="absolute bottom-20 left-20 opacity-10">
         <img
           src="/image/akgec-logo.svg"
           alt="AKG Logo"
@@ -232,7 +232,7 @@ const Governance = () => {
               }`}
             >
               {/* Card Background Pattern */}
-              <div className="absolute top-2 right-2 w-8 h-8 opacity-5">
+              <div className="absolute top-2 right-2 w-8 h-8 opacity-10">
                 <img
                   src="/image/akgec-logo.svg"
                   alt="AKG Logo"
@@ -264,7 +264,7 @@ const Governance = () => {
                   className="bg-white p-6 max-w-full overflow-x-auto relative"
                 >
                   {/* Content Background Pattern */}
-                  <div className="absolute bottom-4 right-4 w-16 h-16 opacity-3">
+                  <div className="absolute bottom-4 right-4 w-16 h-16 opacity-10">
                     <img
                       src="/image/akgec-logo.svg"
                       alt="AKG Logo"
@@ -278,7 +278,7 @@ const Governance = () => {
                   
                   <div className="relative overflow-hidden rounded-xl shadow-lg">
                     {/* Table Background Pattern */}
-                    <div className="absolute top-2 left-2 w-12 h-12 opacity-5">
+                    <div className="absolute top-2 left-2 w-12 h-12 opacity-10">
                       <img
                         src="/image/akgec-logo.svg"
                         alt="AKG Logo"

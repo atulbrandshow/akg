@@ -103,7 +103,7 @@ const AboutSection = () => {
         </div>
         
         {/* Bottom left card overlay - Our Goals */}
-        <div className="absolute bottom-20 left-12 w-72 h-40 bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-gray-200/60 p-5 transform -rotate-2 hover:rotate-0 hover:scale-105 hover:-translate-y-4 z-10 hover:z-[100] transition-all duration-500 group">
+        <div className="absolute bottom-16 left-12 w-72 h-40 bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-gray-200/60 p-5 transform -rotate-2 hover:rotate-0 hover:scale-105 hover:-translate-y-4 z-10 hover:z-[100] transition-all duration-500 group">
           <div className="flex items-center gap-3 mb-3">
             <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
               <Target className="w-4 h-4 text-white" />

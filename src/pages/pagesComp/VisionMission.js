@@ -81,7 +81,7 @@ const AboutSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="relative min-h-screen bg-gray-100 py-20 overflow-hidden"
+      className="relative min-h-screen font-novaReg bg-gray-100 py-20 overflow-hidden"
     >
       {/* Layer 1: Enhanced Base Background */}
       <div className="absolute inset-0">
@@ -102,10 +102,10 @@ const AboutSection = () => {
           <div className="absolute top-2 right-2 w-3 h-3 bg-primary rounded-full animate-pulse"></div>
         </div>
         
-        {/* Bottom left card overlay */}
-        <div className="absolute bottom-20 left-12 w-72 h-40 bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-gray-200/60 p-5 transform -rotate-2 hover:rotate-0 transition-transform duration-500">
+        {/* Bottom left card overlay - Our Goals */}
+        <div className="absolute bottom-20 left-12 w-72 h-40 bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-gray-200/60 p-5 transform -rotate-2 hover:rotate-0 hover:scale-105 hover:-translate-y-4 z-10 hover:z-[100] transition-all duration-500 group">
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center shadow-lg">
+            <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
               <Target className="w-4 h-4 text-white" />
             </div>
             <div className="text-sm font-semibold text-gray-700">Our Goals</div>
@@ -150,8 +150,8 @@ const AboutSection = () => {
       <div className="absolute inset-0">
         <div className="absolute inset-0 opacity-[0.04]" style={{
           backgroundImage: `
-            linear-gradient(rgba(60, 86, 134, 0.3) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(60, 86, 134, 0.3) 1px, transparent 1px)
+            linear-gradient(rgba(60, 86, 134, 0.8) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(60, 86, 134, 0.8) 1px, transparent 1px)
           `,
           backgroundSize: '60px 60px'
         }}></div>
@@ -196,15 +196,23 @@ const AboutSection = () => {
           {/* Mission Card */}
           <div 
             ref={missionRef}
-            className="group relative bg-white/95 backdrop-blur-lg rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.03] overflow-hidden border border-white/20"
+            className="group relative bg-white/95 backdrop-blur-lg rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.05] hover:-translate-y-2 overflow-hidden border-2 border-primary/20 hover:border-primary/40 transform-gpu perspective-1000"
+            style={{
+              transform: 'rotateX(2deg) rotateY(-2deg)',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)'
+            }}
           >
             {/* Decorative corner elements */}
             <div className="absolute top-0 left-0 w-20 h-20 bg-gradient-to-br from-blue-500/20 to-transparent rounded-br-3xl"></div>
             <div className="absolute bottom-0 right-0 w-24 h-24 bg-gradient-to-tl from-yellow-500/20 to-transparent rounded-tl-3xl"></div>
             
-            {/* Top accent bar */}
+            {/* Enhanced border accent - all around */}
             <div className="absolute top-0 left-0 right-0 h-1 bg-primary"></div>
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary"></div>
+            <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-1 bg-primary"></div>
             <div className="absolute top-0 right-0 w-32 h-1 bg-secondary"></div>
+            <div className="absolute bottom-0 left-0 w-32 h-1 bg-secondary"></div>
             
             <div className="relative p-10">
               {/* Icon with enhanced styling */}
@@ -219,37 +227,77 @@ const AboutSection = () => {
 
               {/* Title with enhanced styling */}
               <h3 className="text-3xl font-bold text-gray-800 text-center mb-8 group-hover:text-primary transition-colors duration-300">
-                MISSION
+                <span className="text-5xl">M</span>ISSION
               </h3>
 
-              {/* Content with enhanced styling */}
-              <div className="space-y-6">
-                <div className="flex items-start gap-4 group/item hover:bg-blue-50/50 p-3 rounded-xl transition-all duration-300">
-                  <div className="w-3 h-3 bg-primary rounded-full mt-2 flex-shrink-0 group-hover/item:scale-125 transition-transform duration-300"></div>
-                  <p className="text-gray-700 leading-relaxed group-hover/item:text-gray-800 transition-colors duration-300">
-                    Deliver exceptional education across engineering, management, law, health sciences, liberal arts, and emerging areas.
-                  </p>
+              {/* Enhanced Content with Icons */}
+              <div className="space-y-5 font-novaReg">
+                <div className="group/item relative bg-gradient-to-r from-blue-50/30 to-transparent p-5 rounded-2xl hover:from-blue-100/50 hover:to-primary/10 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg border border-primary/10 hover:border-primary/30">
+                  <div className="flex items-start gap-4">
+                    <div className="relative">
+                      <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center shadow-lg group-hover/item:scale-110 group-hover/item:rotate-6 transition-all duration-300">
+                        <span className="text-white font-bold text-lg">📚</span>
+                      </div>
+                      <div className="absolute -top-1 -right-1 w-4 h-4 bg-secondary rounded-full opacity-0 group-hover/item:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-bold text-lg text-primary mb-2 group-hover/item:text-secondary transition-colors duration-300"><span className="font-bold text-2xl">D</span>eliver Excellence</h4>
+                      <p className="text-gray-700 leading-relaxed group-hover/item:text-gray-900 transition-colors duration-300">
+                        Exceptional education across engineering, management, law, health sciences, liberal arts, and emerging areas.
+                      </p>
+                    </div>
+                  </div>
                 </div>
                 
-                <div className="flex items-start gap-4 group/item hover:bg-blue-50/50 p-3 rounded-xl transition-all duration-300">
-                  <div className="w-3 h-3 bg-primary rounded-full mt-2 flex-shrink-0 group-hover/item:scale-125 transition-transform duration-300"></div>
-                  <p className="text-gray-700 leading-relaxed group-hover/item:text-gray-800 transition-colors duration-300">
-                    Foster industry engagement, research, entrepreneurship, and practical skills (skilling, internships, placements).
-                  </p>
+                <div className="group/item relative bg-gradient-to-r from-blue-50/30 to-transparent p-5 rounded-2xl hover:from-blue-100/50 hover:to-primary/10 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg border border-primary/10 hover:border-primary/30">
+                  <div className="flex items-start gap-4">
+                    <div className="relative">
+                      <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center shadow-lg group-hover/item:scale-110 group-hover/item:rotate-6 transition-all duration-300">
+                        <span className="text-white font-bold text-lg">🤝</span>
+                      </div>
+                      <div className="absolute -top-1 -right-1 w-4 h-4 bg-secondary rounded-full opacity-0 group-hover/item:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-bold text-lg text-primary mb-2 group-hover/item:text-secondary transition-colors duration-300"><span className="font-bold text-2xl">F</span>oster Engagement</h4>
+                      <p className="text-gray-700 leading-relaxed group-hover/item:text-gray-900 transition-colors duration-300">
+                        Industry engagement, research, entrepreneurship, and practical skills through internships and placements.
+                      </p>
+                    </div>
+                  </div>
                 </div>
                 
-                <div className="flex items-start gap-4 group/item hover:bg-blue-50/50 p-3 rounded-xl transition-all duration-300">
-                  <div className="w-3 h-3 bg-primary rounded-full mt-2 flex-shrink-0 group-hover/item:scale-125 transition-transform duration-300"></div>
-                  <p className="text-gray-700 leading-relaxed group-hover/item:text-gray-800 transition-colors duration-300">
-                    Prioritize student-centric, inclusive approaches for lifelong learning and societal impact.
-                  </p>
+                <div className="group/item relative bg-gradient-to-r from-blue-50/30 to-transparent p-5 rounded-2xl hover:from-blue-100/50 hover:to-primary/10 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg border border-primary/10 hover:border-primary/30">
+                  <div className="flex items-start gap-4">
+                    <div className="relative">
+                      <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center shadow-lg group-hover/item:scale-110 group-hover/item:rotate-6 transition-all duration-300">
+                        <span className="text-white font-bold text-lg">🎯</span>
+                      </div>
+                      <div className="absolute -top-1 -right-1 w-4 h-4 bg-secondary rounded-full opacity-0 group-hover/item:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-bold text-lg text-primary mb-2 group-hover/item:text-secondary transition-colors duration-300"><span className="font-bold text-2xl">P</span>rioritize Students</h4>
+                      <p className="text-gray-700 leading-relaxed group-hover/item:text-gray-900 transition-colors duration-300">
+                        Student-centric, inclusive approaches for lifelong learning and meaningful societal impact.
+                      </p>
+                    </div>
+                  </div>
                 </div>
                 
-                <div className="flex items-start gap-4 group/item hover:bg-blue-50/50 p-3 rounded-xl transition-all duration-300">
-                  <div className="w-3 h-3 bg-primary rounded-full mt-2 flex-shrink-0 group-hover/item:scale-125 transition-transform duration-300"></div>
-                  <p className="text-gray-700 leading-relaxed group-hover/item:text-gray-800 transition-colors duration-300">
-                    Champion global standards, diversity, and sustainable development.
-                  </p>
+                <div className="group/item relative bg-gradient-to-r from-blue-50/30 to-transparent p-5 rounded-2xl hover:from-blue-100/50 hover:to-primary/10 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg border border-primary/10 hover:border-primary/30">
+                  <div className="flex items-start gap-4">
+                    <div className="relative">
+                      <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center shadow-lg group-hover/item:scale-110 group-hover/item:rotate-6 transition-all duration-300">
+                        <span className="text-white font-bold text-lg">🌍</span>
+                      </div>
+                      <div className="absolute -top-1 -right-1 w-4 h-4 bg-secondary rounded-full opacity-0 group-hover/item:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-bold text-lg text-primary mb-2 group-hover/item:text-secondary transition-colors duration-300"><span className="font-bold text-2xl">C</span>hampion Standards</h4>
+                      <p className="text-gray-700 leading-relaxed group-hover/item:text-gray-900 transition-colors duration-300">
+                        Global standards, diversity, and sustainable development for a better tomorrow.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -258,15 +306,23 @@ const AboutSection = () => {
           {/* Vision Card */}
           <div 
             ref={visionRef}
-            className="group relative bg-white/95 backdrop-blur-lg rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.03] overflow-hidden border border-white/20"
+            className="group relative bg-white/95 backdrop-blur-lg rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.05] hover:-translate-y-2 overflow-hidden border-2 border-secondary/20 hover:border-secondary/40 transform-gpu perspective-1000"
+            style={{
+              transform: 'rotateX(2deg) rotateY(2deg)',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)'
+            }}
           >
             {/* Decorative corner elements */}
             <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-yellow-500/20 to-transparent rounded-bl-3xl"></div>
             <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-blue-500/20 to-transparent rounded-tr-3xl"></div>
             
-            {/* Top accent bar */}
+            {/* Enhanced border accent - all around */}
             <div className="absolute top-0 left-0 right-0 h-1 bg-secondary"></div>
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-secondary"></div>
+            <div className="absolute left-0 top-0 bottom-0 w-1 bg-secondary"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-1 bg-secondary"></div>
             <div className="absolute top-0 right-0 w-32 h-1 bg-primary"></div>
+            <div className="absolute bottom-0 left-0 w-32 h-1 bg-primary"></div>
             
             <div className="relative p-10">
               {/* Icon with enhanced styling */}
@@ -281,14 +337,14 @@ const AboutSection = () => {
 
               {/* Title with enhanced styling */}
               <h3 className="text-3xl font-bold text-gray-800 text-center mb-8 group-hover:text-secondary transition-colors duration-300">
-                VISION
+                <span className="text-5xl">V</span>ISION
               </h3>
 
               {/* Content with enhanced styling */}
               <div className="flex justify-center items-center min-h-[280px]">
                 <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-yellow-50/50 to-orange-50/50 group-hover:from-yellow-100/50 group-hover:to-orange-100/50 transition-all duration-300">
-                  <p className="text-gray-700 text-xl leading-relaxed group-hover:text-gray-800 transition-colors duration-300">
-                    To empower innovative leaders through transformative education, cutting-edge research, and ethical practices for a sustainable global future.
+                  <p className="text-gray-700 font-novaReg text-xl leading-relaxed group-hover:text-gray-800 transition-colors duration-300">
+                    <span className="font-bold text-2xl">T</span>o empower innovative leaders through transformative education, cutting-edge research, and ethical practices for a sustainable global future.
                   </p>
                 </div>
               </div>

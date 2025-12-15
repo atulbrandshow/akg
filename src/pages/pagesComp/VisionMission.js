@@ -3,270 +3,261 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {ChartLine} from "lucide-react";
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
-const VisionMissionSection = () => {
+export default function VisionMissionSection() {
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
-  const visionHexRef = useRef(null);
-  const missionHexRef = useRef(null);
-  const valuesHexRef = useRef(null);
-  const leftCardRef = useRef(null);
-  const rightCardRef = useRef(null);
+  const visionRef = useRef(null);
+  const missionRef = useRef(null);
+  const valuesRef = useRef(null);
+  const leftRef = useRef(null);
+  const rightRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 70%",
-          toggleActions: "play reverse play reverse",
-        },
-      });
-
-      tl.fromTo(
-        titleRef.current,
-        { y: -40, opacity: 0 },
-        { 
-          y: 0, 
-          opacity: 1, 
-          duration: 0.7, 
-          ease: "power2.out" 
-        },
-        0
-      )
-      .fromTo(
-        leftCardRef.current,
-        { x: -80, opacity: 0, rotateY: -20 },
-        { 
-          x: 0, 
-          opacity: 1, 
-          rotateY: 0,
-          duration: 0.8, 
-          ease: "power3.out" 
-        },
-        0.15
-      )
-      .fromTo(
-        rightCardRef.current,
-        { x: 80, opacity: 0, rotateY: 20 },
-        { 
-          x: 0, 
-          opacity: 1, 
-          rotateY: 0,
-          duration: 0.8, 
-          ease: "power3.out" 
-        },
-        0.15
-      )
-      .fromTo(
-        missionHexRef.current,
-        { 
-          scale: 0.3, 
-          opacity: 0, 
-          y: 60,
-          rotationZ: -30
-        },
-        { 
-          scale: 1, 
-          opacity: 1, 
-          y: 0,
-          rotationZ: 0,
-          duration: 1.2, 
-          ease: "elastic.out(1, 0.6)" 
-        },
-        0.2
-      )
-      .fromTo(
-        visionHexRef.current,
-        { 
-          scale: 0.4, 
-          opacity: 0, 
-          x: -60, 
-          y: -60,
-          rotationZ: 45
-        },
-        { 
-          scale: 1, 
-          opacity: 1, 
-          x: 0, 
-          y: 0,
-          rotationZ: 0,
-          duration: 1, 
-          ease: "back.out(1.7)" 
-        },
-        0.45
-      )
-      .fromTo(
-        valuesHexRef.current,
-        { 
-          scale: 0.4, 
-          opacity: 0, 
-          x: 60, 
-          y: -60,
-          rotationZ: -45
-        },
-        { 
-          scale: 1, 
-          opacity: 1, 
-          x: 0, 
-          y: 0,
-          rotationZ: 0,
-          duration: 1, 
-          ease: "back.out(1.7)" 
-        },
-        0.45
-      );
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 70%",
+          },
+        })
+        .from(titleRef.current, { y: -40, opacity: 0, duration: 0.6 })
+        .from(leftRef.current, { x: -60, opacity: 0, duration: 0.6 }, 0.2)
+        .from(rightRef.current, { x: 60, opacity: 0, duration: 0.6 }, 0.2)
+        .from([visionRef.current, valuesRef.current], {
+          scale: 0.6,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.15,
+        })
+        .from(missionRef.current, {
+          scale: 0.6,
+          opacity: 0,
+          duration: 0.8,
+          ease: "elastic.out(1,0.6)",
+        });
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
+  const hexStyle = {
+    clipPath:
+      "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
+  };
+
+  const logoRefs = useRef([]);
+
   return (
-    <section
-      ref={sectionRef}
-      className="relative min-h-screen bg-white py-20 overflow-hidden"
-    >
-      <div className="max-w-7xl mx-auto px-4">
+    <section ref={sectionRef} className="relative bg-gray-100 py-20 overflow-hidden">
+      {/* Layer 1: Enhanced Base Background */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-blue-50/30 to-gray-200"></div>
+        <div className="absolute inset-0 bg-gradient-to-tr from-yellow-50/20 via-transparent to-blue-50/20"></div>
+      </div>
+
+      {/* Layer 3: Logo Watermarks */}
+      <div className="absolute inset-0">
+        <div
+          ref={(el) => (logoRefs.current[0] = el)}
+          className="absolute top-20 right-20 w-32 h-32 opacity-[0.25] rotate-12"
+        >
+          <img
+            src="/image/akgec-logo.svg"
+            alt=""
+            className="w-full h-full object-contain"
+          />
+        </div>
+
+        <div
+          ref={(el) => (logoRefs.current[1] = el)}
+          className="absolute bottom-24 left-16 w-24 h-24 opacity-[0.22] -rotate-6"
+        >
+          <img
+            src="/image/akgec-logo.svg"
+            alt=""
+            className="w-full h-full object-contain"
+          />
+        </div>
+
+        <div
+          ref={(el) => (logoRefs.current[2] = el)}
+          className="absolute top-1/4 left-8 w-20 h-20 opacity-[0.20] rotate-45"
+        >
+          <img
+            src="/image/akgec-logo.svg"
+            alt=""
+            className="w-full h-full object-contain"
+          />
+        </div>
+
+        <div
+          ref={(el) => (logoRefs.current[3] = el)}
+          className="absolute bottom-1/3 right-12 w-28 h-28 opacity-[0.18] -rotate-12"
+        >
+          <img
+            src="/image/akgec-logo.svg"
+            alt=""
+            className="w-full h-full object-contain"
+          />
+        </div>
+
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 opacity-[0.12]">
+          <img
+            src="/image/akgec-logo.svg"
+            alt=""
+            className="w-full h-full object-contain"
+          />
+        </div>
+
+        <div className="absolute top-16 left-1/3 w-16 h-16 opacity-[0.15] rotate-30">
+          <img
+            src="/image/akgec-logo.svg"
+            alt=""
+            className="w-full h-full object-contain"
+          />
+        </div>
+      </div>
+
+      {/* Layer 4: Grid Pattern */}
+      <div className="absolute inset-0">
+        <div
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage: `
+            linear-gradient(rgba(60, 86, 134, 0.8) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(60, 86, 134, 0.8) 1px, transparent 1px)
+          `,
+            backgroundSize: "60px 60px",
+          }}
+        ></div>
+      </div>
+
+      {/* Layer 6: Geometric Patterns */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-radial from-red-500/18 via-red-500/10 to-transparent rounded-full"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-radial from-green-500/20 via-green-500/12 to-transparent rounded-full"></div>
+        <div className="absolute top-1/2 right-1/4 w-48 h-48 bg-gradient-radial from-red-500/12 via-red-500/6 to-transparent rounded-full"></div>
+        <div className="absolute top-3/4 left-1/4 w-40 h-40 bg-gradient-radial from-green-500/10 via-green-500/5 to-transparent rounded-full"></div>
+      </div>
+
+      {/* Layer 7: Diagonal Light Streaks */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-0 w-full h-full opacity-[0.08]">
+          <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500/30 to-transparent transform -rotate-12"></div>
+          <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-green-500/25 to-transparent transform rotate-6"></div>
+          <div className="absolute bottom-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500/20 to-transparent transform -rotate-3"></div>
+        </div>
+      </div>
+
+      {/* Layer 8: Subtle Overlay */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-white/20 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white/10 to-transparent"></div>
+        <div className="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-white/5 to-transparent"></div>
+        <div className="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-white/5 to-transparent"></div>
+      </div>
+
+      {/* Content */}
+      <div className="relative max-w-7xl mx-auto px-4">
         {/* Title */}
-        <div ref={titleRef} className="mb-20">
-          <div className="w-20 h-1 bg-red-500 mb-6"></div>
+        <div ref={titleRef} className="mb-24">
+          <div className="w-20 h-1 bg-red-500 mb-6" />
           <h2 className="text-5xl font-bold text-gray-700">
             VISION & <span className="text-red-500">MISSION STATEMENT</span>
           </h2>
         </div>
 
-        <div className="flex gap-12 items-center justify-between">
-          {/* Left Side - Mission Statement Card */}
-          <div className="w-1/5 flex-shrink-0">
-            <div ref={leftCardRef} className="bg-white border-2 border-gray-200 rounded-2xl p-8 shadow-lg">
-              <div className="flex items-center justify-center mb-6">
-                <div className="w-20 h-20 border-4 border-gray-300 rounded-full flex items-center justify-center">
-                  <svg className="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                </div>
+        <div className="flex items-center justify-between gap-12">
+          {/* Left Card */}
+          <div ref={leftRef} className="w-1/5">
+            <div className="bg-white border border-gray-100 rounded-xl p-8 text-center shadow-2xl hover:shadow-3xl transition-shadow">
+              <div className="w-24 h-24 border-4 border-gray-300 mx-auto mb-6 flex items-center justify-center rounded-lg">
+                <ChartLine className="w-8 h-8 text-gray-400" />
               </div>
-              <h3 className="text-xs font-bold text-gray-800 mb-4 tracking-widest text-center">MISSION STATEMENT</h3>
-              <p className="text-gray-600 text-xs leading-relaxed text-center">
-                A mission statement captures the essence of your organization and explains why you do what you do and why you exist in principle.
-              </p>
-            </div>
-          </div>
-
-          {/* Center - Hexagon Layout */}
-          <div className="w-3/5 flex-shrink-0 relative" style={{ height: '520px' }}>
-            <div className="absolute inset-0 flex items-center justify-center gap-4">
-              {/* Vision Hexagon - Left */}
-              <div 
-                ref={visionHexRef}
-                className="relative flex flex-col items-center"
-              >
-                <div className="mb-12">
-                  <div className="bg-white rounded-xl shadow-2xl px-5 py-2 flex items-center gap-3 border-2 border-gray-100">
-                    <div className="w-5 h-5 bg-red-500 rounded-full"></div>
-                    <span className="text-sm font-bold text-gray-800">76%</span>
-                  </div>
-                </div>
-                
-                <div 
-                  className="w-64 h-64 bg-red-500 flex items-center justify-center shadow-2xl cursor-pointer hover:shadow-3xl transition-all duration-300 hover:scale-105"
-                  style={{
-                    clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)'
-                  }}
-                >
-                  <div className="text-center text-white p-8">
-                    <h3 className="text-2xl font-bold mb-4 tracking-wide">VISION</h3>
-                    <p className="text-xs leading-relaxed">
-                      We believe that buying glasses should be easy and fun. He should leave you happy and beautiful with money in your pocket. We also believe that everyone has the right to see.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Mission Hexagon - Center */}
-              <div 
-                ref={missionHexRef}
-                className="relative flex flex-col items-center z-30 -mx-8"
-              >
-                <div className="mb-12">
-                  <div className="bg-white rounded-xl shadow-2xl px-5 py-2 flex items-center gap-3 border-2 border-gray-100">
-                    <div className="w-5 h-5 bg-amber-500 rounded-full"></div>
-                    <span className="text-sm font-bold text-gray-800">87%</span>
-                  </div>
-                </div>
-                
-                <div 
-                  className="w-64 h-64 bg-amber-500 flex items-center justify-center shadow-2xl cursor-pointer hover:shadow-3xl transition-all duration-300 hover:scale-105"
-                  style={{
-                    clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)'
-                  }}
-                >
-                  <div className="text-center text-white p-8">
-                    <h3 className="text-2xl font-bold mb-4 tracking-wide">MISSION</h3>
-                    <p className="text-xs leading-relaxed">
-                      Warby Parker was founded with a rebellious spirit and a lofty goal: to offer designer eyewear at a revolutionary price, while at the same time leading the way for socially conscious businesses.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Values Hexagon - Right */}
-              <div 
-                ref={valuesHexRef}
-                className="relative flex flex-col items-center"
-              >
-                <div className="mb-12">
-                  <div className="bg-white rounded-xl shadow-2xl px-5 py-2 flex items-center gap-3 border-2 border-gray-100">
-                    <div className="w-5 h-5 bg-green-500 rounded-full"></div>
-                    <span className="text-sm font-bold text-gray-800">89%</span>
-                  </div>
-                </div>
-                
-                <div 
-                  className="w-64 h-64 bg-green-500 flex items-center justify-center shadow-2xl cursor-pointer hover:shadow-3xl transition-all duration-300 hover:scale-105"
-                  style={{
-                    clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)'
-                  }}
-                >
-                  <div className="text-center text-white p-8">
-                    <h3 className="text-2xl font-bold mb-4 tracking-wide">VALUES</h3>
-                    <p className="text-xs leading-relaxed">
-                      Be an expert, a real professional. Be effective, take personal responsibility. Create and promote useful, quality innovative products.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Side - Statistics Card */}
-          <div className="w-1/5 flex-shrink-0">
-            <div ref={rightCardRef} className="bg-white border-2 border-gray-200 rounded-2xl p-8 shadow-lg text-center">
-              <div className="text-6xl font-bold text-green-600 mb-3">44.7%</div>
+              <h4 className="text-xs font-bold tracking-widest mb-3">
+                MISSION STATEMENT
+              </h4>
               <p className="text-xs text-gray-600 leading-relaxed">
-                We occupy 44.7% of the market for the production of exclusive glasses
+                A mission statement captures the essence of your organization and explains why you exist.
               </p>
             </div>
           </div>
-        </div>
 
-        {/* Bottom Branding */}
-        <div className="flex justify-between items-center mt-16 pt-8 border-t border-gray-200">
-          <div className="flex items-center gap-2">
-            <span className="text-gray-400 text-sm">POWERSLIDES</span>
-            <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
-              <span className="text-white text-xs font-bold">2</span>
+          {/* Center Hexagons */}
+          <div className="relative w-3/5 h-[480px]">
+            {/* Vision */}
+            <div ref={visionRef} className="absolute left-[5%] top-[5%] text-center">
+              <Badge color="red" value="76%" />
+              <Hex bg="bg-red-500" title="VISION" text="Buying glasses should be easy, fun, and affordable for everyone." />
+            </div>
+
+            {/* Mission */}
+            <div ref={missionRef} className="absolute left-1/2 top-[65%] transform] -translate-x-1/2 -translate-y-1/2 text-center z-10">
+              <Badge color="amber" value="87%" />
+              <Hex bg="bg-amber-500" title="MISSION" text="Offer designer eyewear at revolutionary prices while leading socially conscious business." />
+            </div>
+
+            {/* Values */}
+            <div ref={valuesRef} className="absolute right-[5%] top-[5%] text-center">
+              <Badge color="green" value="89%" />
+              <Hex bg="bg-green-500" title="VALUES" text="Be professional, responsible, innovative, and quality-driven." />
             </div>
           </div>
-          <div className="text-red-500 text-sm font-medium">
-            WWW.POWERSLIDES.COM
+
+          {/* Right Card */}
+          <div ref={rightRef} className="w-1/5">
+            <div className="bg-white border border-gray-100 rounded-xl p-8 text-center shadow-2xl hover:shadow-3xl transition-shadow">
+              <h3 className="text-6xl font-bold text-green-600 mb-3">44.7%</h3>
+              <p className="text-xs text-gray-600">
+                Market share in exclusive eyewear production
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
-};
+}
 
-export default VisionMissionSection;
+function Hex({ bg, title, text }) {
+  return (
+    <div
+      className={`w-56 h-56 ${bg} text-white flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer`}
+      style={{
+        clipPath:
+          "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
+        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.4), 0 10px 25px -5px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1)",
+        filter: "drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3))"
+      }}
+    >
+      <div className="p-6 text-center">
+        <h3 className="text-2xl font-bold mb-3 tracking-wide">{title}</h3>
+        <p className="text-xs leading-relaxed">{text}</p>
+      </div>
+    </div>
+  );
+}
+
+function Badge({ color, value }) {
+  const colors = {
+    red: "text-red-500",
+    amber: "text-amber-500",
+    green: "text-green-500",
+  };
+
+  return (
+    <div className="mb-6 flex justify-center">
+      <div className="bg-white px-4 py-2 rounded-lg shadow-lg border border-gray-100 flex items-center gap-2">
+        <span className={`w-3 h-3 rounded-full ${colors[color]} bg-current`} />
+        <span className="text-sm font-bold text-gray-800">{value}</span>
+      </div>
+    </div>
+  );
+}

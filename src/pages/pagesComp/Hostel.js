@@ -171,7 +171,7 @@ export default function HostelFacility() {
           className="w-48 h-48 object-contain"
         />
       </div>
-      <div className="absolute bottom-40 left-10 opacity-3">
+      <div className="absolute bottom-40 left-10 opacity-10">
         <img
           src="/image/akgec-logo.svg"
           alt="AKG Logo"
@@ -228,14 +228,13 @@ export default function HostelFacility() {
           </div>
         </div>
       </div>
-        {/* Facilities Section */}
-        <div className="max-w-7xl mx-auto py-20 px-6 relative">
+        <div className="max-w-7xl mx-auto my-10 p-6 relative">
           {/* Section Background Elements */}
           <div className="absolute top-0 left-0 w-32 h-32 bg-secondary/5 rounded-full -translate-x-16 -translate-y-16"></div>
           <div className="absolute bottom-0 right-0 w-40 h-40 bg-primary/5 rounded-full translate-x-20 translate-y-20"></div>
           
           {/* AKG Logo Vector Background */}
-          <div className="absolute top-10 right-10 opacity-3">
+          <div className="absolute top-10 right-10 opacity-10">
             <img
               src="/image/akgec-logo.svg"
               alt="AKG Logo"
@@ -243,26 +242,18 @@ export default function HostelFacility() {
             />
           </div>
           
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 ref={sectionTitleRef} className="text-4xl font-novaSemi mb-4 text-primary relative z-10">
-              Premium Hostel Amenities
-            </h2>
-            <div className="w-24 h-1 bg-secondary mx-auto mb-6 rounded-full"></div>
-            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-              Experience world-class facilities designed for your comfort, convenience, and academic success
-            </p>
-          </div>
-          
+          <h2 ref={sectionTitleRef} className="text-3xl font-novaSemi text-center mb-8 max-sm:text-2xl text-primary relative z-10">
+            Premium Hostel Amenities
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
             {facilities?.map((facility, index) => (
               <div
                 key={facility.id}
                 ref={(el) => (facilitiesRef.current[index] = el)}
-                className="group bg-white/90 backdrop-blur-sm flex flex-col text-center min-h-48 justify-center items-center p-8 hover:shadow-2xl hover:transform hover:scale-105 hover:-translate-y-3 transition-all duration-500 rounded-2xl relative overflow-hidden border border-gray-100 cursor-pointer"
+                className="flex bg-white flex-col text-center text-slate-700 shadow-lg shadow-gray-100 border border-gray-200 min-h-36 justify-center items-center p-4 hover:shadow-xl hover:transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 rounded-lg relative overflow-hidden group"
               >
                 {/* Card Background Pattern */}
-                <div className="absolute top-1 right-1 w-6 h-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                <div className="absolute top-1 right-1 w-6 h-6 opacity-10 group-hover:opacity-10 transition-opacity">
                   <img
                     src="/image/akgec-logo.svg"
                     alt="AKG Logo"
@@ -273,23 +264,14 @@ export default function HostelFacility() {
                 {/* Hover Glow Effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
                 
-                {/* Icon Container */}
-                <div className="relative z-10 mb-6 p-4 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-2xl group-hover:from-primary/20 group-hover:to-secondary/20 transition-all duration-300">
-                  <Image
-                    src={facility.icon}
-                    alt={facility.name}
-                    width={60}
-                    height={60}
-                    className="object-contain h-16 w-16 group-hover:scale-110 transition-transform duration-300"
-                  />
-                </div>
-                
-                <h3 className="text-lg font-novaSemi text-gray-800 group-hover:text-primary transition-colors duration-300 relative z-10 leading-tight">
-                  {facility.name}
-                </h3>
-                
-                {/* Decorative Element */}
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                <Image
+                  src={facility.icon}
+                  alt={facility.name}
+                  width={60}
+                  height={60}
+                  className="mb-4 object-contain h-12 w-12 relative z-10 group-hover:scale-110 transition-transform duration-300"
+                />
+                <p className="text-sm font-medium max-w-56 relative z-10 group-hover:text-primary transition-colors duration-300">{facility.name}</p>
               </div>
             ))}
           </div>

@@ -263,8 +263,8 @@ function Hex({ bg, title, text }) {
       }}
     >
       <div className="p-10 text-center">
-        <h3 className="text-2xl font-bold mb-6 tracking-wider group-hover:scale-105 transition-transform duration-300">{title}</h3>
-        <p className="text-sm leading-relaxed">{text}</p>
+        <h3 className="text-2xl font-bold mb-6 tracking-wider group-hover:scale-105 transition-transform duration-300 text-white drop-shadow-lg">{title}</h3>
+        <p className="text-sm leading-relaxed text-white/95 drop-shadow-md font-medium">{text}</p>
       </div>
     </div>
   );

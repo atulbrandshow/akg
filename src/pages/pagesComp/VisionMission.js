@@ -128,9 +128,9 @@ export default function VisionMission() {
                   <img 
                     src="/image/building/building1.webp" 
                     alt="AKG University Campus" 
-                    className="w-full h-full object-cover opacity-40 transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover opacity-60 transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/70 to-slate-900/20"></div>
                 </div>
                 
                 {/* Content */}

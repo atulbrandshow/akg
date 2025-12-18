@@ -80,14 +80,7 @@ export default function VisionMission() {
           opacity: 0.6;
         }
 
-        .strategy-card {
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .strategy-card:hover {
-          transform: translateY(-8px);
-          box-shadow: 0 20px 40px -5px rgba(15, 23, 42, 0.1);
-        }
+
 
         .icon-box {
           background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
@@ -126,12 +119,12 @@ export default function VisionMission() {
             
             {/* LEFT SPAN: VISION (Strategic Goal) */}
             <div className="col-span-5 flex flex-col">
-              <div ref={visionRef} className="strategy-card group relative h-full bg-slate-900 rounded-3xl overflow-hidden shadow-lg flex flex-col justify-end">
+              <div ref={visionRef} className="group relative h-full bg-slate-900 rounded-3xl overflow-hidden shadow-lg flex flex-col justify-end transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-xl cursor-pointer">
                 {/* Background Image with Overlay */}
                 <div className="absolute inset-0">
                   <img 
-                    src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80" 
-                    alt="Office Skyscrapper" 
+                    src="/image/building/building1.webp" 
+                    alt="AKG University Campus" 
                     className="w-full h-full object-cover opacity-40 transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent"></div>
@@ -154,7 +147,7 @@ export default function VisionMission() {
 
             {/* CENTER SPAN: MISSION (Execution) */}
             <div className="col-span-4 flex flex-col">
-              <div ref={missionRef} className="strategy-card bg-white border border-slate-100 rounded-3xl p-10 shadow-lg h-full flex flex-col justify-center relative overflow-hidden">
+              <div ref={missionRef} className="bg-white border border-slate-100 rounded-3xl p-10 shadow-lg h-full flex flex-col justify-center relative overflow-hidden transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-xl cursor-pointer">
                 <div className="absolute -right-10 -top-10 w-40 h-40 bg-blue-50 rounded-full opacity-50 z-0"></div>
                 
                 <div className="relative z-10">
@@ -194,40 +187,53 @@ export default function VisionMission() {
             <div className="col-span-3 flex flex-col gap-6">
               
               {/* Values List Card */}
-              <div ref={valuesRef} className="strategy-card bg-gradient-to-br from-blue-600 to-blue-700 rounded-3xl p-8 shadow-lg text-white flex-1 flex flex-col justify-center">
+              <div ref={valuesRef} className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-3xl p-8 shadow-lg text-white flex-1 flex flex-col justify-center transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-xl cursor-pointer">
                 <div className="flex items-center gap-3 mb-6">
                   <i className="fa-solid fa-gem text-yellow-400"></i>
-                  <h3 className="font-bold text-xl">VALUES</h3>
+                  <h3 className="font-bold text-xl">CORE VALUES</h3>
                 </div>
                 
-                <ul className="space-y-4">
-                  <li className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-blue-500/50 flex items-center justify-center text-xs mt-0.5">
-                      <i className="fa-solid fa-check text-white"></i>
+                <div className="space-y-5">
+                  <div className="flex items-start gap-4">
+                    <div className="w-6 h-6 rounded-full bg-yellow-400 flex items-center justify-center text-xs mt-1 flex-shrink-0">
+                      <i className="fa-solid fa-user-tie text-blue-900"></i>
                     </div>
-                    <span className="font-medium text-sm text-blue-50">Professional</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-blue-500/50 flex items-center justify-center text-xs mt-0.5">
-                      <i className="fa-solid fa-check text-white"></i>
+                    <div>
+                      <h4 className="font-semibold text-base text-white mb-1">Professional Excellence</h4>
+                      <p className="text-sm text-blue-100 leading-relaxed">Maintaining highest standards in education and research</p>
                     </div>
-                    <span className="font-medium text-sm text-blue-50">Responsible</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-blue-500/50 flex items-center justify-center text-xs mt-0.5">
-                      <i className="fa-solid fa-check text-white"></i>
+                  </div>
+                  
+                  <div className="flex items-start gap-4">
+                    <div className="w-6 h-6 rounded-full bg-yellow-400 flex items-center justify-center text-xs mt-1 flex-shrink-0">
+                      <i className="fa-solid fa-handshake text-blue-900"></i>
                     </div>
-                    <span className="font-medium text-sm text-blue-50">Innovative</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-blue-500/50 flex items-center justify-center text-xs mt-0.5">
-                      <i className="fa-solid fa-check text-white"></i>
+                    <div>
+                      <h4 className="font-semibold text-base text-white mb-1">Social Responsibility</h4>
+                      <p className="text-sm text-blue-100 leading-relaxed">Contributing meaningfully to society and community</p>
                     </div>
-                    <span className="font-medium text-sm text-blue-50">Quality Driven</span>
-                  </li>
-                </ul>
-
-
+                  </div>
+                  
+                  <div className="flex items-start gap-4">
+                    <div className="w-6 h-6 rounded-full bg-yellow-400 flex items-center justify-center text-xs mt-1 flex-shrink-0">
+                      <i className="fa-solid fa-lightbulb text-blue-900"></i>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-base text-white mb-1">Innovation & Research</h4>
+                      <p className="text-sm text-blue-100 leading-relaxed">Fostering creativity and cutting-edge research</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-4">
+                    <div className="w-6 h-6 rounded-full bg-yellow-400 flex items-center justify-center text-xs mt-1 flex-shrink-0">
+                      <i className="fa-solid fa-award text-blue-900"></i>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-base text-white mb-1">Quality Assurance</h4>
+                      <p className="text-sm text-blue-100 leading-relaxed">Ensuring excellence in all academic endeavors</p>
+                    </div>
+                  </div>
+                </div>
               </div>
 
             </div>

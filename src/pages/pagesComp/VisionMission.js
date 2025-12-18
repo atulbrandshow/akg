@@ -80,10 +80,13 @@ export default function VisionMission() {
           opacity: 0.6;
         }
 
-
-
         .icon-box {
           background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+        }
+
+        .card-hover:hover {
+          transform: translateY(-10px) !important;
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1) !important;
         }
       `}</style>
       
@@ -119,7 +122,7 @@ export default function VisionMission() {
             
             {/* LEFT SPAN: VISION (Strategic Goal) */}
             <div className="col-span-5 flex flex-col">
-              <div ref={visionRef} className="group relative h-full bg-slate-900 rounded-3xl overflow-hidden shadow-lg flex flex-col justify-end transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-xl cursor-pointer">
+              <div ref={visionRef} className="card-hover group relative h-full bg-slate-900 rounded-3xl overflow-hidden shadow-lg flex flex-col justify-end transition-all duration-300 ease-out cursor-pointer">
                 {/* Background Image with Overlay */}
                 <div className="absolute inset-0">
                   <img 
@@ -147,7 +150,7 @@ export default function VisionMission() {
 
             {/* CENTER SPAN: MISSION (Execution) */}
             <div className="col-span-4 flex flex-col">
-              <div ref={missionRef} className="bg-white border border-slate-100 rounded-3xl p-10 shadow-lg h-full flex flex-col justify-center relative overflow-hidden transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-xl cursor-pointer">
+              <div ref={missionRef} className="card-hover bg-white border border-slate-100 rounded-3xl p-10 shadow-lg h-full flex flex-col justify-center relative overflow-hidden transition-all duration-300 ease-out cursor-pointer">
                 <div className="absolute -right-10 -top-10 w-40 h-40 bg-blue-50 rounded-full opacity-50 z-0"></div>
                 
                 <div className="relative z-10">
@@ -187,7 +190,7 @@ export default function VisionMission() {
             <div className="col-span-3 flex flex-col gap-6">
               
               {/* Values List Card */}
-              <div ref={valuesRef} className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-3xl p-8 shadow-lg text-white flex-1 flex flex-col justify-center transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-xl cursor-pointer">
+              <div ref={valuesRef} className="card-hover bg-gradient-to-br from-blue-600 to-blue-700 rounded-3xl p-8 shadow-lg text-white flex-1 flex flex-col justify-center transition-all duration-300 ease-out cursor-pointer">
                 <div className="flex items-center gap-3 mb-6">
                   <i className="fa-solid fa-gem text-yellow-400"></i>
                   <h3 className="font-bold text-xl">CORE VALUES</h3>

@@ -90,39 +90,39 @@ export default function VisionMission() {
         }
       `}</style>
       
-      <div ref={sectionRef} className="flex justify-center w-full bg-slate-50 text-slate-800">
-        {/* Main Container: Fixed 1440px */}
-        <div className="bg-white min-h-[900px] shadow-2xl relative overflow-hidden flex flex-col">
+      <div ref={sectionRef} className="w-full bg-slate-50 text-slate-800">
+        {/* Main Container: Responsive */}
+        <div className="w-full bg-white min-h-[900px] shadow-2xl relative overflow-hidden flex flex-col">
           
           {/* Decorative Background Elements */}
           <div className="absolute top-0 left-0 w-full h-[600px] pattern-grid z-0 opacity-40"></div>
           <div className="bg-shape-blob w-[800px] h-[800px] -top-20 -right-40"></div>
           
           {/* Header Section */}
-          <header ref={headerRef} className="relative z-10 px-20 pt-16 pb-12 flex justify-between items-end">
+          <header ref={headerRef} className="relative z-10 px-4 sm:px-8 lg:px-20 pt-8 sm:pt-12 lg:pt-16 pb-8 sm:pb-10 lg:pb-12 flex flex-col lg:flex-row lg:justify-between lg:items-end gap-6">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-100 rounded-full mb-4">
                 <span className="w-2 h-2 rounded-full bg-yellow-400"></span>
                 <span className="text-xs font-semibold text-blue-600 uppercase tracking-wider">Mission Statement</span>
               </div>
-              <h1 className="font-bold text-5xl text-slate-900 leading-tight">
+              <h1 className="font-bold text-3xl sm:text-4xl lg:text-5xl text-slate-900 leading-tight">
                 VISION <span className="text-blue-600">&</span> MISSION<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-blue-600">STATEMENT</span>
               </h1>
               <div className="w-24 h-1.5 bg-yellow-400 mt-6 rounded-full"></div>
             </div>
             
-            <div className="text-right max-w-md">
-              <p className="text-slate-500 font-medium">A mission statement captures the essence of your organization and explains why you exist.</p>
+            <div className="text-left lg:text-right max-w-md">
+              <p className="text-slate-500 font-medium text-sm sm:text-base">A mission statement captures the essence of your organization and explains why you exist.</p>
             </div>
           </header>
 
           {/* Main Grid Content */}
-          <main className="relative z-10 px-20 pb-20 grid grid-cols-12 gap-8 items-stretch h-full flex-grow">
+          <main className="relative z-10 px-4 sm:px-8 lg:px-20 pb-12 sm:pb-16 lg:pb-20 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch h-full flex-grow">
             
             {/* LEFT SPAN: VISION (Strategic Goal) */}
-            <div className="col-span-5 flex flex-col">
-              <div ref={visionRef} className="card-hover group relative h-full bg-slate-900 rounded-3xl overflow-hidden shadow-lg flex flex-col justify-end transition-all duration-300 ease-out cursor-pointer">
+            <div className="lg:col-span-5 flex flex-col">
+              <div ref={visionRef} className="card-hover group relative h-full min-h-[400px] lg:min-h-[500px] bg-slate-900 rounded-3xl overflow-hidden shadow-lg flex flex-col justify-end transition-all duration-300 ease-out cursor-pointer">
                 {/* Background Image with Overlay */}
                 <div className="absolute inset-0">
                   <img 
@@ -134,12 +134,12 @@ export default function VisionMission() {
                 </div>
                 
                 {/* Content */}
-                <div className="relative p-10 z-10">
-                  <div className="w-14 h-14 bg-yellow-400 rounded-xl flex items-center justify-center mb-6 shadow-lg rotate-3 group-hover:rotate-0 transition-transform">
-                    <i className="fa-solid fa-eye text-slate-900 text-2xl"></i>
+                <div className="relative p-6 sm:p-8 lg:p-10 z-10">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 bg-yellow-400 rounded-xl flex items-center justify-center mb-4 sm:mb-6 shadow-lg rotate-3 group-hover:rotate-0 transition-transform">
+                    <i className="fa-solid fa-eye text-slate-900 text-xl sm:text-2xl"></i>
                   </div>
-                  <h2 className="font-bold text-3xl text-white mb-4">VISION</h2>
-                  <p className="text-slate-300 leading-relaxed text-lg mb-8">
+                  <h2 className="font-bold text-2xl sm:text-3xl text-white mb-3 sm:mb-4">VISION</h2>
+                  <p className="text-slate-300 leading-relaxed text-base sm:text-lg mb-6 sm:mb-8">
                     To empower innovative leaders through transformative education, cutting-edge research, and ethical practices for a sustainable global future.
                   </p>
                   
@@ -149,33 +149,33 @@ export default function VisionMission() {
             </div>
 
             {/* CENTER SPAN: MISSION (Execution) */}
-            <div className="col-span-4 flex flex-col">
-              <div ref={missionRef} className="card-hover bg-white border border-slate-100 rounded-3xl p-10 shadow-lg h-full flex flex-col justify-center relative overflow-hidden transition-all duration-300 ease-out cursor-pointer">
+            <div className="lg:col-span-4 flex flex-col">
+              <div ref={missionRef} className="card-hover bg-white border border-slate-100 rounded-3xl p-6 sm:p-8 lg:p-10 shadow-lg h-full min-h-[400px] lg:min-h-[500px] flex flex-col justify-center relative overflow-hidden transition-all duration-300 ease-out cursor-pointer">
                 <div className="absolute -right-10 -top-10 w-40 h-40 bg-blue-50 rounded-full opacity-50 z-0"></div>
                 
                 <div className="relative z-10">
-                  <div className="flex items-center justify-between mb-8">
-                    <div className="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
-                      <i className="fa-solid fa-rocket text-2xl"></i>
+                  <div className="flex items-center justify-between mb-6 sm:mb-8">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
+                      <i className="fa-solid fa-rocket text-xl sm:text-2xl"></i>
                     </div>
                     <span className="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full">Active</span>
                   </div>
 
-                  <h2 className="font-bold text-3xl text-slate-900 mb-4">MISSION</h2>
-                  <div className="text-slate-600 leading-relaxed mb-6 space-y-4">
-                    <p className="flex items-start gap-3">
+                  <h2 className="font-bold text-2xl sm:text-3xl text-slate-900 mb-3 sm:mb-4">MISSION</h2>
+                  <div className="text-slate-600 leading-relaxed mb-4 sm:mb-6 space-y-3 sm:space-y-4">
+                    <p className="flex items-start gap-3 text-sm sm:text-base">
                       <i className="fa-solid fa-check text-blue-600 mt-1 flex-shrink-0"></i>
                       <span>Deliver exceptional education across engineering, management, law, health sciences, liberal arts, and emerging areas.</span>
                     </p>
-                    <p className="flex items-start gap-3">
+                    <p className="flex items-start gap-3 text-sm sm:text-base">
                       <i className="fa-solid fa-check text-blue-600 mt-1 flex-shrink-0"></i>
                       <span>Foster industry engagement, research, entrepreneurship, and practical skills through internships and placements.</span>
                     </p>
-                    <p className="flex items-start gap-3">
+                    <p className="flex items-start gap-3 text-sm sm:text-base">
                       <i className="fa-solid fa-check text-blue-600 mt-1 flex-shrink-0"></i>
                       <span>Prioritize student-centric, inclusive approaches for lifelong learning and meaningful societal impact.</span>
                     </p>
-                    <p className="flex items-start gap-3">
+                    <p className="flex items-start gap-3 text-sm sm:text-base">
                       <i className="fa-solid fa-check text-blue-600 mt-1 flex-shrink-0"></i>
                       <span>Champion global standards, diversity, and sustainable development for a better tomorrow.</span>
                     </p>
@@ -187,13 +187,13 @@ export default function VisionMission() {
             </div>
 
             {/* RIGHT SPAN: VALUES & STATS (Stacked) */}
-            <div className="col-span-3 flex flex-col gap-6">
+            <div className="lg:col-span-3 flex flex-col gap-6">
               
               {/* Values List Card */}
-              <div ref={valuesRef} className="card-hover bg-gradient-to-br from-blue-600 to-blue-700 rounded-3xl p-8 shadow-lg text-white flex-1 flex flex-col justify-center transition-all duration-300 ease-out cursor-pointer">
-                <div className="flex items-center gap-3 mb-6">
-                  <i className="fa-solid fa-gem text-yellow-400"></i>
-                  <h3 className="font-bold text-xl">CORE VALUES</h3>
+              <div ref={valuesRef} className="card-hover bg-gradient-to-br from-blue-600 to-blue-700 rounded-3xl p-6 sm:p-8 shadow-lg text-white flex-1 min-h-[400px] lg:min-h-[500px] flex flex-col justify-center transition-all duration-300 ease-out cursor-pointer">
+                <div className="flex items-center gap-3 mb-4 sm:mb-6">
+                  <i className="fa-solid fa-gem text-yellow-400 text-lg sm:text-xl"></i>
+                  <h3 className="font-bold text-lg sm:text-xl">CORE VALUES</h3>
                 </div>
                 
                 <div className="space-y-5">

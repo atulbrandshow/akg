@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from "react";
-import { About, Academics, Admissions, CampusLife, ResearchInnovation, Placements, Programs } from "../Json/MenuItem";
+import { About, Academics, Admissions, CampusLife, ResearchInnovation, Placements, Programs, SkillsFoundation } from "../Json/MenuItem";
 import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import gsap from 'gsap';
@@ -644,6 +644,71 @@ export default function LatestNavbar() {
                       </div>
                       <div className={`w-52 pr-2 ${BigMenuToggle && "w-full"}`}>
                         <LinksList title="Sustainable Development Goals (SDG's)" links={ResearchInnovation.sublinks[`Sustainable Development Goals (SDG's)`]} setBigMenuToggle={setBigMenuToggle} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li className="relative group">
+              <div className="flex items-center gap-1">
+                <Link
+                  href="/skills-foundation"
+                  className={` relative focus:outline-none font-novaBold flex lg:pb-2 items-center xl:gap-1 tracking-wide xl:tracking-wider 2xl:tracking-widest`}
+                  onClick={() => setBigMenuToggle(false)}
+                >
+                  SKILLS FOUNDATION
+                </Link>
+                <button
+                  onClick={() => toggleMenu('skills-foundation')}
+                  className="lg:pb-2 focus:outline-none"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6" /></svg>
+                </button>
+              </div>
+              <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
+              <div
+                className={`${BigMenuToggle ? "relative w-full " : "absolute w-max"
+                  } ${openMenu === 'skills-foundation' && "absolute h-auto mt-0 w-full"} right-0 h-0 mt-2 mb-5 overflow-hidden lg:group-hover:h-auto lg:group-hover:mt-0 transition-all bg-white text-black rounded-lg shadow-lg `}
+              >
+                <div className="grid grid-cols-2">
+                  <div className="col-span-2 transition-all">
+                    <div className="flex p-5 group-hover:p-5 transition-all max-md:max-h-72 max-md:overflow-y-scroll max-md:flex-col">
+                      {Object.keys(SkillsFoundation.sublinks).map((key, index) => (
+                        <div key={index} className="w-52 pr-2">
+                          <LinksList title={key} links={SkillsFoundation.sublinks[key]} setBigMenuToggle={setBigMenuToggle} />
+                        </div>
+                      ))}
+                    </div>
+                    <div className="w-full relative max-md:hidden">
+                      <div
+                        className="absolute inset-0 bg-cover bg-center rounded-lg shadow-md"
+                        style={{
+                          backgroundImage: "url('/image/lab/User-Manual-AKGEC 5.webp')",
+                        }}
+                      >
+                        <div className="absolute inset-0 bg-black opacity-70 rounded-lg"></div>
+                      </div>
+                      <div className="relative bg-indigo-950">
+                        <div className="relative h-1/2 z-10 text-white">
+                          <h3 className="text-xl py-2 text-center font-novaLight">
+                            Empowering Skills
+                          </h3>
+                        </div>
+                        <div className="flex justify-evenly text-center">
+                          <div className="flex flex-col items-center text-white p-7">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-cpu"><rect width="16" height="16" x="4" y="4" rx="2" /><rect width="6" height="6" x="9" y="9" rx="1" /><path d="M15 2v2" /><path d="M15 20v2" /><path d="M2 15h2" /><path d="M2 9h2" /><path d="M20 15h2" /><path d="M20 9h2" /><path d="M9 2v2" /><path d="M9 20v2" /></svg>
+                            <span className="mt-2 text-xs text-white font-novaLight">
+                              Industrial Training
+                            </span>
+                          </div>
+                          <div className="flex flex-col items-center text-white p-7">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-cog"><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z" /><path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" /></svg>
+                            <span className="mt-2 text-xs text-white font-novaLight">
+                              Skill Development
+                            </span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>

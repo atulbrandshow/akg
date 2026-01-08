@@ -599,3 +599,38 @@ export const ResearchInnovation = {
         ]
     }
 }
+
+export const SkillsFoundation = {
+    name: 'Skills Foundation',
+    links: '/',
+    sublinks: {
+        "Who We Are": [
+            {
+                name: 'Overview',
+                url: '/skills-foundation'
+            },
+            {
+                name: 'Vision & Mission',
+                url: '/skills-foundation/vision-and-mission'
+            },
+            {
+                name: 'Industrial Partners & MoUs',
+                url: '/skills-foundation/mous'
+            },
+        ],
+        "Centres of Excellence": [
+            {
+                name: 'Industrial Training',
+                url: '/skills-foundation/industrial-training'
+            },
+            {
+                name: 'Skill Development',
+                url: '/skills-foundation/skill-development'
+            },
+            {
+                name: 'Consultancy',
+                url: '/skills-foundation/consultancy'
+            },
+        ]
+    }
+}

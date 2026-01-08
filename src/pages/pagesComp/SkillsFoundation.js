@@ -228,13 +228,6 @@ function ImageSlider({ slides }) {
           </button>
         ))}
       </div>
-
-      {/* Slide Counter */}
-      <div className="absolute top-5 md:top-6 right-5 md:right-6 z-20 px-4 py-2 bg-black/40 backdrop-blur-md border border-white/10 rounded-full">
-        <span className="text-sm md:text-base font-bold text-white">
-          {String(currentIndex + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
-        </span>
-      </div>
     </div>
   );
 }

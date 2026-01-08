@@ -7,6 +7,9 @@ const SideBarLink = [
     { name: "Industrial Training", link: "/skills-foundation/industrial-training" },
     { name: "Skill Development", link: "/skills-foundation/skill-development" },
     { name: "Consultancy", link: "/skills-foundation/consultancy" },
+    { name: "Major Projects", link: "/skills-foundation/major-projects" },
+    { name: "Proud Moments", link: "/skills-foundation/proud-moments" },
+    { name: "Centres of Excellence", link: "/skills-foundation/centres-of-excellence" },
 ]
 
 export const Home = () => {

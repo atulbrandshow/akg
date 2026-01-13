@@ -618,7 +618,7 @@ export const SkillsFoundation = {
                 url: '/skills-foundation/industry-oriented-research'
             },
             {
-                name: 'Industrial Partners & MoUs',
+                name: 'Industry Partners',
                 url: '/skills-foundation/mous'
             },
         ],

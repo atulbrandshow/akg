@@ -38,7 +38,6 @@ function ImageSlider({ slides }) {
   const [isAnimating, setIsAnimating] = useState(false);
   const slideRefs = useRef([]);
   const imageRefs = useRef([]);
-  const overlayRefs = useRef([]);
   const contentRefs = useRef([]);
 
   const changeSlide = (newIndex) => {
@@ -55,39 +54,27 @@ function ImageSlider({ slides }) {
     });
 
     // Animate out current slide
-    tl.to(overlayRefs.current[oldIndex], {
-      opacity: 1,
-      duration: 0.3,
+    tl.to(contentRefs.current[oldIndex], {
+      opacity: 0,
+      y: 20,
+      duration: 0.4,
       ease: 'power2.in',
     })
-    .to(contentRefs.current[oldIndex], {
-      opacity: 0,
-      y: 30,
-      duration: 0.3,
-      ease: 'power2.in',
-    }, 0)
     .to(slideRefs.current[oldIndex], {
       opacity: 0,
-      duration: 0.4,
+      duration: 0.6,
       ease: 'power2.inOut',
-    }, 0.2);
+    }, "-=0.2");
 
     // Animate in new slide
     tl.set(slideRefs.current[newIndex], { opacity: 1, zIndex: 10 })
     .fromTo(imageRefs.current[newIndex],
-      { scale: 1.15 },
+      { scale: 1.2 },
       {
         scale: 1,
-        duration: 1.4,
+        duration: 1.5,
         ease: 'power2.out',
-      }, 0.4)
-    .fromTo(overlayRefs.current[newIndex],
-      { opacity: 1 },
-      {
-        opacity: 0,
-        duration: 0.6,
-        ease: 'power2.out',
-      }, 0.5)
+      }, 0.2)
     .fromTo(contentRefs.current[newIndex],
       { opacity: 0, y: 40 },
       {
@@ -95,7 +82,7 @@ function ImageSlider({ slides }) {
         y: 0,
         duration: 0.8,
         ease: 'power3.out',
-      }, 0.7);
+      }, 0.6);
   };
 
   const nextSlide = () => {
@@ -107,37 +94,12 @@ function ImageSlider({ slides }) {
   };
 
   useEffect(() => {
-    // Initial entrance animation
-    const tl = gsap.timeline();
-    
-    tl.fromTo(imageRefs.current[0],
-      { scale: 1.2 },
-      {
-        scale: 1,
-        duration: 1.8,
-        ease: 'power3.out',
-      })
-    .fromTo(contentRefs.current[0],
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power3.out',
-      }, 0.8);
-
-    // Auto-advance
-    const interval = setInterval(() => {
-      if (!isAnimating) {
-        nextSlide();
-      }
-    }, 5500);
-
+    const interval = setInterval(nextSlide, 5000);
     return () => clearInterval(interval);
   }, [currentIndex, isAnimating]);
 
   return (
-    <div className="relative w-full h-full bg-gray-900">
+    <div className="relative w-full h-full rounded-[2rem] overflow-hidden shadow-2xl group/slider">
       {/* Slides */}
       {slides.map((slide, index) => (
         <div
@@ -150,7 +112,6 @@ function ImageSlider({ slides }) {
             pointerEvents: index === currentIndex ? 'auto' : 'none',
           }}
         >
-          {/* Image */}
           <img
             ref={(el) => (imageRefs.current[index] = el)}
             src={slide.image}
@@ -158,32 +119,17 @@ function ImageSlider({ slides }) {
             className="absolute inset-0 w-full h-full object-cover"
           />
           
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
           
-          {/* Transition Overlay */}
-          <div
-            ref={(el) => (overlayRefs.current[index] = el)}
-            className="absolute inset-0 bg-black opacity-0"
-          />
-          
-          {/* Content */}
           <div
             ref={(el) => (contentRefs.current[index] = el)}
-            className="absolute bottom-0 left-0 right-0 p-6 md:p-10 lg:p-12"
+            className="absolute bottom-0 left-0 right-0 p-8 md:p-12"
           >
-            <div className="max-w-3xl">
-              <div className="inline-block mb-4 px-4 py-1.5 bg-yellow-400 rounded-full">
-                <span className="text-xs md:text-sm font-bold text-gray-900 uppercase tracking-wider">
-                  Featured
-                </span>
-              </div>
-              
-              <h3 className="text-2xl md:text-3xl lg:text-3xl xl:text-3xl font-bold text-white mb-3 leading-tight">
+            <div className="max-w-2xl">
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 leading-tight">
                 {slide.title}
               </h3>
-              
-              <p className="text-base md:text-lg lg:text-lg text-gray-200 leading-relaxed">
+              <p className="text-base text-gray-200 leading-relaxed line-clamp-3">
                 {slide.description}
               </p>
             </div>
@@ -192,40 +138,33 @@ function ImageSlider({ slides }) {
       ))}
 
       {/* Navigation Controls */}
-      <button
-        onClick={prevSlide}
-        disabled={isAnimating}
-        className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center bg-white/10 hover:bg-white/20 backdrop-blur-lg border border-white/20 rounded-full transition-all duration-300 hover:scale-110 disabled:opacity-40 disabled:cursor-not-allowed"
-        aria-label="Previous"
-      >
-        <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white" />
-      </button>
+      <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between px-6 z-30 opacity-0 group-hover/slider:opacity-100 transition-opacity duration-300 pointer-events-none">
+        <button
+          onClick={prevSlide}
+          disabled={isAnimating}
+          className="w-12 h-12 flex items-center justify-center bg-white/20 hover:bg-white/40 backdrop-blur-md border border-white/30 rounded-full transition-all duration-300 pointer-events-auto"
+        >
+          <ChevronLeft className="w-6 h-6 text-white" />
+        </button>
+        <button
+          onClick={nextSlide}
+          disabled={isAnimating}
+          className="w-12 h-12 flex items-center justify-center bg-white/20 hover:bg-white/40 backdrop-blur-md border border-white/30 rounded-full transition-all duration-300 pointer-events-auto"
+        >
+          <ChevronRight className="w-6 h-6 text-white" />
+        </button>
+      </div>
 
-      <button
-        onClick={nextSlide}
-        disabled={isAnimating}
-        className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center bg-white/10 hover:bg-white/20 backdrop-blur-lg border border-white/20 rounded-full transition-all duration-300 hover:scale-110 disabled:opacity-40 disabled:cursor-not-allowed"
-        aria-label="Next"
-      >
-        <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white" />
-      </button>
-
-      {/* Progress Dots */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2.5">
+      {/* Indicators */}
+      <div className="absolute bottom-8 right-8 z-30 flex gap-2">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => changeSlide(index)}
-            disabled={isAnimating}
-            className="relative group disabled:cursor-not-allowed"
-            aria-label={`Slide ${index + 1}`}
-          >
-            <div className={`h-1.5 rounded-full transition-all duration-500 ${
-              index === currentIndex
-                ? 'w-10 bg-yellow-400 shadow-lg shadow-yellow-400/50'
-                : 'w-1.5 bg-white/50 group-hover:bg-white/80 group-hover:w-6'
-            }`} />
-          </button>
+            className={`h-1.5 rounded-full transition-all duration-500 ${
+              index === currentIndex ? 'w-8 bg-blue-500' : 'w-2 bg-white/50 hover:bg-white'
+            }`}
+          />
         ))}
       </div>
     </div>
@@ -234,122 +173,149 @@ function ImageSlider({ slides }) {
 
 export function SkillsFoundation() {
   const sectionRef = useRef(null);
-  const headerRef = useRef(null);
-  const contentLeftRef = useRef(null);
-  const sliderRightRef = useRef(null);
+  const overviewRef = useRef(null);
+  const sliderRef = useRef(null);
+  const shapesRef = useRef([]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Header animation
+      // Entrance animations with once: true to prevent re-triggering
       gsap.fromTo(
-        headerRef.current,
+        overviewRef.current,
         { opacity: 0, y: 50 },
         {
           opacity: 1,
           y: 0,
           duration: 1.2,
-          ease: 'power4.out',
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: sectionRef.current,
             start: 'top 80%',
+            once: true,
           },
         }
       );
 
-      // Content left animation
       gsap.fromTo(
-        contentLeftRef.current,
-        { opacity: 0, x: -60 },
+        sliderRef.current,
+        { opacity: 0, scale: 0.95, x: 50 },
         {
           opacity: 1,
+          scale: 1,
           x: 0,
-          duration: 1,
+          duration: 1.2,
           ease: 'power3.out',
           scrollTrigger: {
-            trigger: contentLeftRef.current,
-            start: 'top 70%',
+            trigger: sectionRef.current,
+            start: 'top 80%',
+            once: true,
           },
         }
       );
 
-      // Slider right animation
-      gsap.fromTo(
-        sliderRightRef.current,
-        { opacity: 0, x: 60 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 1,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: sliderRightRef.current,
-            start: 'top 70%',
-          },
-        }
-      );
+      // Background shapes animation
+      shapesRef.current.forEach((shape, i) => {
+        if (!shape) return;
+        
+        const isParticle = shape.classList.contains('particle');
+        
+        gsap.to(shape, {
+          y: isParticle ? "random(-200, 200)" : "random(-100, 100)",
+          x: isParticle ? "random(-150, 150)" : "random(-50, 50)",
+          rotation: isParticle ? "random(-180, 180)" : 0,
+          opacity: isParticle ? "random(0.1, 0.4)" : "random(0.05, 0.15)",
+          duration: isParticle ? "random(10, 20)" : "random(15, 25)",
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          delay: i * 0.1
+        });
+      });
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-blue-50/30" />
+    <section ref={sectionRef} className="relative min-h-screen bg-gradient-to-r from-slate-100 via-blue-100/70 to-blue-600/10 overflow-hidden py-10">
+      {/* Grid Pattern Background */}
+      <div className="absolute inset-0 opacity-[0.08] pointer-events-none" 
+        style={{ 
+          backgroundImage: `linear-gradient(to right, #64748b 1px, transparent 1px), linear-gradient(to bottom, #64748b 1px, transparent 1px)`,
+          backgroundSize: '40px 40px'
+        }} 
+      />
       
-      {/* Decorative Elements */}
-      <div className="absolute top-20 right-0 w-[600px] h-[600px] bg-blue-600/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-yellow-400/5 rounded-full blur-3xl" />
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Large Blurs */}
+        <div ref={el => shapesRef.current[0] = el} className="absolute top-[10%] left-[5%] w-64 h-64 bg-blue-400/20 rounded-full blur-3xl" />
+        <div ref={el => shapesRef.current[1] = el} className="absolute bottom-[20%] right-[10%] w-96 h-96 bg-indigo-400/20 rounded-full blur-3xl" />
+        <div ref={el => shapesRef.current[2] = el} className="absolute top-[40%] right-[5%] w-48 h-48 bg-blue-600/10 rounded-full blur-2xl" />
+        
+        {/* Floating Particles/Shapes */}
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={i}
+            ref={el => shapesRef.current[i + 3] = el}
+            className={`particle absolute w-4 h-4 rounded-full border border-blue-200/30 ${i % 2 === 0 ? 'bg-blue-100/20' : ''}`}
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+          />
+        ))}
+        
+        {/* Subtle Lines */}
+        <div className="absolute inset-0 opacity-[0.03] bg-[repeating-linear-gradient(45deg,transparent,transparent_100px,#3b82f6_100px,#3b82f6_101px)]" />
+      </div>
 
-      <div className="relative max-w-[1500px] mx-auto px-5 md:px-12 lg:px-20 py-20 md:py-28">
-        {/* Header Section */}
-        <div ref={headerRef} className="mb-20">
-          <div className="inline-flex items-center gap-3 mb-8">
-            <div className="w-16 h-0.5 bg-gradient-to-r from-blue-600 to-yellow-400" />
-            <span className="text-xs md:text-sm font-bold tracking-[0.3em] text-gray-500 uppercase">Overview</span>
-          </div>
+      <div className="relative max-w-7xl mx-auto px-6 md:px-12 lg:px-16 z-10">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           
-          <h1 className="text-5xl md:text-5xl lg:text-5xl xl:text-5xl font-bold leading-[1.05] mb-0">
-            <span className="block text-transparent bg-clip-text bg-gradient-to-br from-blue-600 via-blue-600 to-blue-700">
-              AKGU Skills Foundation
-            </span>
-            <span className="block text-gray-900 mt-2">(ASF)</span>
-          </h1>
-        </div>
-
-        {/* Main Grid */}
-        <div className="grid gap-10 lg:gap-20 items-start">
-          {/* Left Content */}
-          <div ref={contentLeftRef}>
-            <div className="space-y-7">
-              <p className="text-[17px] md:text-[19px] lg:text-[21px] leading-[1.75] text-gray-700">
-                <span className="font-semibold text-gray-900">AKGEC Skills Foundation</span>, an ISO <strong>9001:2015</strong>, ISO <strong>14001:2015</strong>, and ISO <strong>45001:2018</strong> certified and <span className="font-semibold text-blue-600">NABL accredited facility</span>, is a joint initiative of <span className="font-semibold text-gray-900">Ajay Kumar Garg Engineering College (AKGEC)</span> and the <span className="font-semibold text-gray-900">National Skill Development Corporation (NSDC)</span>.
-              </p>
+          {/* Overview Section - Unified and Cohesive */}
+          <div ref={overviewRef} className="space-y-10">
+            <div className="space-y-6">
+              <div className="inline-flex items-center gap-4">
+                <span className="h-[2px] w-12 bg-blue-600" />
+                <span className="text-sm font-black tracking-widest text-blue-600 uppercase">Foundation Overview</span>
+              </div>
               
-              <p className="text-[17px] md:text-[19px] lg:text-[21px] leading-[1.75] text-gray-700">
-                ASF offers courses at par with global didactic concepts, in line with the <span className="font-semibold text-blue-600">National Occupational Standards (NOS)</span> and <span className="font-semibold text-blue-600">Qualification Packs (QPs)</span>, to offer Skill Certificates in various industry sectors.
-              </p>
+              <h1 className="text-5xl md:text-6xl font-black text-slate-900 leading-tight tracking-tighter">
+                AKGU Skills <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Foundation</span>
+              </h1>
               
-              <p className="text-[17px] md:text-[19px] lg:text-[21px] leading-[1.75] text-gray-700">
-                ASF has state-of-the-art training, prototyping, testing and measurement facilities in the field of <span className="font-semibold text-blue-600">automation, robotics, drones, embedded systems & IoT</span>, all end manufacturing including <span className="font-semibold text-blue-600">welding, thermoplasma cutting, destructive & nondestructive testing, CNC machining, 3D printing etc</span>. These facilities are coordinated with active support from eminent industry partners to meet the demand of highly skilled manpower.
+              <p className="text-xl text-slate-500 font-bold uppercase tracking-wider">
+                Ajay Kumar Garg Skills Foundation (ASF)
               </p>
             </div>
-          </div>
 
-          {/* Right Slider */}
-          <div ref={sliderRightRef} className="lg:sticky lg:top-20">
-            <div className="relative group">
-              {/* Glow Effect */}
-              <div className="absolute -inset-4 bg-gradient-to-r from-blue-600/30 via-yellow-400/30 to-blue-600/30 rounded-[32px] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              
-              {/* Slider Container */}
-              <div className="relative rounded-3xl overflow-hidden shadow-[0_20px_80px_-20px_rgba(0,0,0,0.3)] ring-1 ring-black/5">
-                <div className="h-[400px] md:h-[500px] lg:h-[600px] xl:h-[700px]">
-                  <ImageSlider slides={sliderData} />
-                </div>
+            <div className="space-y-8">
+              <div className="p-8 bg-white/70 backdrop-blur-sm rounded-3xl border border-white shadow-xl shadow-slate-200/50 space-y-6">
+                <p className="text-lg md:text-xl text-slate-700 leading-relaxed font-medium">
+                  <span className="text-slate-900 font-black">AKGEC Skills Foundation</span> is an ISO <strong>9001:2015</strong>, <strong>14001:2015</strong>, and <strong>45001:2018</strong> certified and <span className="text-blue-600 font-bold">NABL accredited</span> facility. It is a prestigious joint initiative of <strong>AKGEC</strong> and the <strong>NSDC</strong>.
+                </p>
+                
+                <p className="text-lg text-slate-600 leading-relaxed">
+                  ASF offers courses aligned with global didactic concepts and <strong>National Occupational Standards (NOS)</strong>, providing recognized Skill Certificates across various industry sectors.
+                </p>
+
+                <p className="text-lg text-slate-600 leading-relaxed">
+                  With state-of-the-art facilities in <strong>automation, robotics, drones, and IoT</strong>, ASF coordinates with industry partners to meet the growing demand for highly skilled professionals in advanced manufacturing and technology.
+                </p>
               </div>
             </div>
+            
           </div>
+
+          {/* Slider Section - Enhanced Design */}
+          <div ref={sliderRef} className="relative aspect-[4/5] md:aspect-square lg:aspect-[4/5] max-w-xl mx-auto w-full">
+            <div className="absolute inset-0 bg-blue-600/5 rounded-[2.5rem] -rotate-3 scale-105" />
+            <div className="absolute inset-0 bg-indigo-600/5 rounded-[2.5rem] rotate-2 scale-105" />
+            <ImageSlider slides={sliderData} />
+          </div>
+
         </div>
       </div>
     </section>

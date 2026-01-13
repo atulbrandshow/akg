@@ -90,7 +90,7 @@ const ProudMoments = () => {
                         </div>
                     </div>
                 </div>
-                <div className="col-span-12 lg:col-span-3">
+                <div className="col-span-12 lg:col-span-3 sticky top-32 self-start h-max">
                     <SideBar title={"Skills Foundation"} LinkList={SideBarLink} />
                 </div>
             </section>

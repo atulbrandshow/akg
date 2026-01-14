@@ -1,166 +1,223 @@
-import { Settings, Cpu, Factory, Play, CircuitBoard, Zap, Car, Cable, Building2, Box, Ruler, Plane, ShieldCheck } from 'lucide-react';
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  GraduationCap,
+  ArrowRight,
+  Beaker,
+  Cpu,
+  Settings,
+  Zap,
+} from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const centers = [
-  { title: "KUKA Industrial Robotics Training Centre", icon: Cpu, color: "from-blue-600 to-indigo-600" },
-  { title: "FRONIUS Advance Welding Technology & Research Centre", icon: Zap, color: "from-cyan-500 to-blue-500" },
-  { title: "SIEMENS Advance Manufacturing Centre", icon: Factory, color: "from-teal-500 to-emerald-600" },
-  { title: "NI LabVIEW Academy", icon: Play, color: "from-emerald-500 to-green-600" },
-  { title: "BOSCH Rexroth Centre of Competence in Automation Technologies", icon: Cable, color: "from-green-500 to-lime-600" },
-  { title: "AIA Centre for Integrated Automation", icon: CircuitBoard, color: "from-lime-500 to-yellow-500" },
-  { title: "SIEMENS PLM Centre of Excellence", icon: Building2, color: "from-yellow-500 to-orange-500" },
-  { title: "MITSUBISHI Authorised Training Centre", icon: Settings, color: "from-orange-500 to-red-500" },
-  { title: "FAB LAB Centre of Digital Manufacturing", icon: Box, color: "from-red-500 to-pink-500" },
-  { title: "BOSCH Joint Certification Centre", icon: Car, color: "from-pink-500 to-rose-500" },
-  { title: "ZEISS Calibration & Testing Centre", icon: Ruler, color: "from-rose-500 to-purple-500" },
-  { title: "SIEMENS Centre of Excellence in Automation", icon: Settings, color: "from-purple-500 to-violet-500" },
-  { title: "JANATICS Industrial Pneumatic Knowledge Centre", icon: Zap, color: "from-violet-500 to-indigo-500" },
-  { title: "DGCA Certified Remote Pilot Training", icon: Plane, color: "from-indigo-500 to-blue-600" },
-  { title: "Drone Academy", icon: Plane, color: "from-blue-600 to-indigo-600" }
+const coes = [
+  {
+    title: "KUKA Industrial Robotics Training Centre",
+    icon: <Cpu size={24} />,
+    color: "from-blue-600 to-cyan-500",
+  },
+  {
+    title: "FRONIUS Advance Welding Technology & Research Centre",
+    icon: <Zap size={24} />,
+    color: "from-orange-600 to-yellow-500",
+  },
+  {
+    title: "SIEMENS Advance Manufacturing Centre",
+    icon: <Settings size={24} />,
+    color: "from-indigo-600 to-purple-500",
+  },
+  { 
+    title: "NI LabVIEW Academy", 
+    icon: <Beaker size={24} />,
+    color: "from-green-600 to-emerald-500",
+  },
+  {
+    title: "BOSCH Rexroth Centre of Competence in Automation Technologies",
+    icon: <Settings size={24} />,
+    color: "from-red-600 to-rose-500",
+  },
+  { 
+    title: "AIA Centre for Integrated Automation", 
+    icon: <Cpu size={24} />,
+    color: "from-indigo-900 to-blue-800",
+  },
+  { 
+    title: "SIEMENS PLM Centre of Excellence", 
+    icon: <Settings size={24} />,
+    color: "from-sky-600 to-blue-500",
+  },
+  { 
+    title: "MITSUBISHI Authorised Training Centre", 
+    icon: <Zap size={24} />,
+    color: "from-red-700 to-orange-600",
+  },
+  { 
+    title: "FAB LAB Centre of Digital Manufacturing", 
+    icon: <Cpu size={24} />,
+    color: "from-slate-700 to-slate-500",
+  },
+  { 
+    title: "BOSCH Joint Certification Centre", 
+    icon: <Settings size={24} />,
+    color: "from-red-500 to-pink-500",
+  },
+  { 
+    title: "ZEISS Calibration & Testing Centre", 
+    icon: <Beaker size={24} />,
+    color: "from-blue-800 to-indigo-700",
+  },
+  {
+    title: "SIEMENS Centre of Excellence in Automation",
+    icon: <Settings size={24} />,
+    color: "from-cyan-600 to-blue-600",
+  },
+  {
+    title: "JANATICS Industrial Pneumatic Knowledge Centre",
+    icon: <Zap size={24} />,
+    color: "from-blue-500 to-sky-400",
+  },
+  {
+    title: "DGCA Certified Remote Pilot Training Drone Academy",
+    icon: <Cpu size={24} />,
+    color: "from-indigo-800 to-purple-800",
+  },
 ];
 
-export default function IndustryOrientedResearchComp() {
+const IndustryOrientedResearchComp = () => {
   const containerRef = useRef(null);
-  const gearRef = useRef(null);
-  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const blob1Ref = useRef(null);
+  const blob2Ref = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animated gear rotation
-      gsap.to(gearRef.current, {
-        rotate: 360,
+      // Background Blob Animations
+      gsap.to(blob1Ref.current, {
+        x: "30%",
+        y: "20%",
+        duration: 15,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      });
+      gsap.to(blob2Ref.current, {
+        x: "-20%",
+        y: "-30%",
         duration: 20,
         repeat: -1,
-        ease: "none"
+        yoyo: true,
+        ease: "sine.inOut"
       });
+
+      // Entry Animations
+      gsap.fromTo(
+        ".content-header",
+        { y: 60, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: ".content-header",
+            start: "top 90%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+
+      gsap.fromTo(
+        ".coe-card-new",
+        { y: 80, opacity: 0, scale: 0.9 },
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 1,
+          stagger: 0.15,
+          ease: "back.out(1.2)",
+          scrollTrigger: {
+            trigger: ".grid-container-new",
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
     }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-[#f8fafc] py-24 px-4 relative overflow-hidden flex flex-col items-center">
-      {/* Dynamic Background */}
-      <div className="absolute inset-0 pointer-events-none opacity-40">
-        <div className="absolute inset-0" style={{ 
-          backgroundImage: 'radial-gradient(circle at 2px 2px, #cbd5e1 1px, transparent 0)', 
-          backgroundSize: '40px 40px' 
-        }}></div>
+    <div ref={containerRef} className="relative w-full rounded-xl overflow-hidden bg-white/40 backdrop-blur-md border border-white/60 shadow-2xl p-8 md:p-16">
+      {/* Layered Background with Grid and Blobs */}
+      <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div ref={blob1Ref} className="absolute top-0 right-0 w-96 h-96 bg-indigo-300/20 rounded-full blur-[100px]"></div>
+        <div ref={blob2Ref} className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[120px]"></div>
+        <div 
+          className="absolute inset-0 opacity-[0.1]" 
+          style={{ 
+            backgroundImage: `linear-gradient(#475569 1px, transparent 1px), linear-gradient(90deg, #475569 1px, transparent 1px)`,
+            backgroundSize: '30px 30px'
+          }}
+        ></div>
       </div>
 
-      <div className="max-w-7xl w-full relative z-10 text-center mb-16">
-        <div className="hub-header">
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 bg-blue-600 text-white rounded-full shadow-lg">
-            <ShieldCheck className="w-4 h-4" />
-            <span className="font-bold text-xs uppercase tracking-widest">Innovation Hub</span>
-          </div>
-          <h1 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight">
-            Industry Oriented <span className="text-blue-600">Research Centers</span>
-          </h1>
-          <p className="text-slate-500 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            Bridging the gap between academia and industry through cutting-edge technology.
-          </p>
+      <div className="content-header relative mb-20">
+        <div className="flex items-center gap-4 mb-6">
+          <div className="h-px w-12 bg-indigo-950"></div>
+          <span className="text-sm font-novaBold uppercase tracking-widest text-indigo-950">Technical Innovation</span>
         </div>
-      </div>
-
-      {/* Orbit Section */}
-      <div className="orbit-container relative w-full max-w-[1200px] aspect-square flex items-center justify-center scale-[0.7] md:scale-90 lg:scale-100">
         
-        {/* Connection Lines */}
-        <svg className="absolute inset-0 w-full h-full pointer-events-none">
-          {centers.map((_, i) => {
-            const angle = (i * (360 / centers.length)) * (Math.PI / 180);
-            const r = 40; 
-            const x2 = 50 + r * Math.cos(angle);
-            const y2 = 50 + r * Math.sin(angle);
-            return (
-              <line 
-                key={i}
-                x1="50%" y1="50%" 
-                x2={`${x2}%`} y2={`${y2}%`} 
-                stroke="#cbd5e1" 
-                strokeWidth="1.5"
-                strokeDasharray="5 5"
-                className={`transition-all duration-300 ${hoveredIndex === i ? 'stroke-blue-500 stroke-[2.5px] opacity-100' : 'opacity-40'}`}
-              />
-            );
-          })}
-        </svg>
-
-        {/* Center Hub (Restored Gear Style) */}
-        <div className="center-hub relative z-50">
-          <div className="absolute inset-0 w-48 h-48 md:w-64 md:h-64 -translate-x-4 md:-translate-x-4 -translate-y-4 md:-translate-y-4 bg-blue-400/20 rounded-full blur-3xl animate-pulse"></div>
-          
-          <div className="relative w-40 h-40 md:w-56 md:h-56 rounded-full bg-white border-[8px] border-[#1976D2] flex items-center justify-center shadow-2xl">
-            {/* Gear teeth */}
-            <div ref={gearRef} className="absolute w-48 md:w-64 h-48 md:h-64">
-              {[...Array(12)].map((_, i) => (
-                <div
-                  key={i}
-                  className="absolute w-6 h-4 bg-gradient-to-b from-[#1976D2] to-[#1565C0] rounded-sm shadow-md"
-                  style={{
-                    top: '50%',
-                    left: '50%',
-                    transform: `translate(-50%, -50%) rotate(${i * 30}deg) translateY(-${28 + 5}px)`,
-                  }}
-                />
-              ))}
-            </div>                                                    
-            
-            {/* AKG Logo */}
-            <div className="w-32 h-32 md:w-44 md:h-44 rounded-full bg-white flex items-center justify-center z-10 shadow-inner overflow-hidden p-6">
-              <img 
-                src="/image/akgec-logo.svg" 
-                alt="AKG Logo" 
-                className="w-full h-full object-contain"
-              />
-            </div>
-          </div>
+        <h2 className="text-5xl md:text-5xl font-novaBold text-indigo-950 mb-8 leading-tight">
+          Industry Oriented <span className="text-secondary">Research</span>
+        </h2>
+        
+        <p className="text-xl text-slate-600 font-novaReg leading-relaxed max-w-4xl">
+          Under the AKGU Skills Foundation (ASF) umbrella, we bridge the gap between academia and industry through cutting-edge research and innovation across 14 specialized domains.
+        </p>
+        
+        <div className="absolute top-0 right-0 opacity-[0.03] pointer-events-none">
+          <GraduationCap size={300} className="text-indigo-950" />
         </div>
+      </div>
 
-        {/* Orbiting Cards (Static - No rotation animation) */}
-        <div className="absolute inset-0 pointer-events-none">
-          {centers.map((center, i) => {
-            const angle = (i * (360 / centers.length));
-            const Icon = center.icon;
-            return (
-              <div 
-                key={i}
-                className="absolute w-[180px] md:w-[220px] pointer-events-auto"
-                style={{
-                  top: '50%',
-                  left: '50%',
-                  transform: `rotate(${angle}deg) translate(340px) rotate(-${angle}deg)`, 
-                  marginTop: '-40px',
-                  marginLeft: '-110px'
-                }}
-              >
-                <div 
-                  onMouseEnter={() => setHoveredIndex(i)}
-                  onMouseLeave={() => setHoveredIndex(null)}
-                  className={`group bg-white border-2 border-slate-100 p-3 rounded-2xl transition-all duration-300 cursor-pointer shadow-lg hover:shadow-2xl hover:border-blue-400 hover:-translate-y-1 flex items-center gap-3 ${
-                    hoveredIndex === i ? 'scale-110' : ''
-                  }`}
-                >
-                  <div className={`shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-to-br ${center.color} flex items-center justify-center text-white shadow-md transition-transform duration-300 group-hover:rotate-12`}>
-                    <Icon className="w-5 h-5 md:w-6 md:h-6" />
-                  </div>
-                  <div className="flex-1 min-w-0 text-left">
-                    <h3 className="text-slate-800 text-[10px] md:text-[11px] font-bold leading-tight line-clamp-2 uppercase tracking-tight transition-colors group-hover:text-blue-600">
-                      <span className="text-blue-500 mr-1">{i + 1}.</span> {center.title}
-                    </h3>
-                  </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 grid-container-new relative">
+        {coes.map((coe, index) => (
+          <div key={index} className="coe-card-new group cursor-pointer relative">
+            {/* Minimalist Industrial Node Design with 3D Elevation */}
+            <div className="relative h-full bg-white/80 backdrop-blur-sm border border-slate-200/50 p-6 rounded-2xl overflow-hidden shadow-lg shadow-indigo-100/30 transition-all duration-500 hover:bg-white hover:shadow-2xl hover:shadow-indigo-200/60 hover:-translate-y-3 group-hover:border-secondary/30">
+              
+              {/* Subtle 3D Depth Layer */}
+              <div className="absolute inset-x-0 bottom-0 h-1 bg-slate-100/50 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              
+              <div className="flex items-center justify-between mb-4">
+                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${coe.color} flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-500 ease-in-out`}>
+                  {coe.icon}
+                </div>
+                <div className="w-8 h-8 rounded-full border border-slate-100 flex items-center justify-center text-xs font-novaBold text-slate-300 group-hover:text-secondary group-hover:border-secondary/30 transition-all">
+                  {(index + 1).toString().padStart(2, '0')}
                 </div>
               </div>
-            );
-          })}
-        </div>
+              
+              <h3 className="text-base md:text-lg font-novaBold text-indigo-950 leading-tight mb-4 group-hover:text-secondary transition-colors duration-300">
+                {coe.title}
+              </h3>
+
+              <div className="flex items-center gap-2">
+                <div className="flex-grow h-[1px] bg-slate-100 group-hover:bg-secondary/20 transition-colors"></div>
+                <ArrowRight size={14} className="text-slate-300 group-hover:text-secondary group-hover:translate-x-1 transition-all" />
+              </div>
+
+              {/* Decorative accent */}
+              <div className={`absolute top-0 left-0 w-1 h-0 group-hover:h-full bg-gradient-to-b ${coe.color} transition-all duration-500`}></div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
-}
+};
 
+export default IndustryOrientedResearchComp;

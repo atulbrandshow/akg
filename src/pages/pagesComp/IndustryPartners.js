@@ -8,7 +8,7 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-export function IndustryPartners() {
+export default function IndustryPartners() {
   const container = useRef();
   const partners = [
     // Row 1

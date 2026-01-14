@@ -1,6 +1,6 @@
 import Header from "@/Components/Header";
 import SideBar from "@/Components/SideBar";
-import { IndustryPartners } from "../pagesComp/IndustryPartners";
+import IndustryPartners from "../pagesComp/IndustryPartners";
 
 const SideBarLink = [
   { name: "Overview", link: "/skills-foundation" },

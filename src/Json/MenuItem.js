@@ -619,20 +619,26 @@ export const SkillsFoundation = {
             },
             {
                 name: 'Industry Partners',
-                url: '/skills-foundation/mous'
+                url: '/skills-foundation/industry-partners'
+                // url: '/skills-foundation/mous'
             },
         ],
         "Centres of Excellence": [
             {
-                name: 'Industrial Training',
-                url: '/skills-foundation/industrial-training'
+                name: 'Our Recent Endeavors',
+                url: '/skills-foundation/our-recent-endeavors'
             },
             {
-                name: 'Skill Development',
-                url: '/skills-foundation/skill-development'
+                name: 'ASF Proud Moment',
+                url: '/skills-foundation/proud-moment'
+                // url: '/skills-foundation/skill-development'
             },
             {
-                name: 'Consultancy',
+                name: 'ASF MoUs',
+                url: '/skills-foundation/mous'
+            },
+            {
+                name: 'ASF Testimonial',
                 url: '/skills-foundation/consultancy'
             },
         ]

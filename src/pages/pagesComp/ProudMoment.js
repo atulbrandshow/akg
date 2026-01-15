@@ -1,16 +1,25 @@
-import { ArrowRight, Trophy, Star, Award, Zap, Target, Rocket, ChevronDown, ChevronUp } from "lucide-react";
-import React, { useRef, useState } from "react";
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
+import {
+  ArrowRight,
+  Trophy,
+  Star,
+  Award,
+  Zap,
+  Target,
+  Rocket,
+} from "lucide-react";
+import React, { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
 export default function App() {
   const container = useRef();
-  const projects = [
+
+ const projects = [
     {
       id: "01",
       title: "Distinguished Visit by Senior Experten Service (SES), Germany",
@@ -172,11 +181,10 @@ export default function App() {
       scrollTrigger: {
         trigger: ".moment-header",
         start: "top 80%",
-      }
+      },
     });
 
-    const cards = gsap.utils.toArray(".moment-card");
-    cards.forEach((card, i) => {
+    gsap.utils.toArray(".moment-card").forEach((card) => {
       gsap.from(card, {
         y: 60,
         opacity: 0,
@@ -185,27 +193,69 @@ export default function App() {
         scrollTrigger: {
           trigger: card,
           start: "top 90%",
-        }
+        },
       });
+    });
+
+    // 🔥 Animated grid movement
+    gsap.to(".grid-layer", {
+      backgroundPosition: "200px 200px",
+      duration: 40,
+      ease: "none",
+      repeat: -1,
+    });
+
+    // 🔥 Floating blobs
+    gsap.to(".blob-1", {
+      y: -80,
+      x: 60,
+      duration: 12,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+    });
+
+    gsap.to(".blob-2", {
+      y: 100,
+      x: -80,
+      duration: 16,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
     });
   }, { scope: container });
 
   return (
-    <div ref={container} className="min-h-screen bg-slate-50 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.03]" style={{
-        backgroundImage: `radial-gradient(#1e293b 1px, transparent 1px)`,
-        backgroundSize: '32px 32px'
-      }}></div>
-      
-      <div className="max-w-7xl mx-auto py-20 px-6 relative z-10">
+    <div
+      ref={container}
+      className="relative min-h-screen overflow-hidden bg-slate-50"
+    >
+      {/* 🔹 Layer 1 : Animated Grid */}
+      <div
+        className="absolute inset-0 grid-layer opacity-[0.04]"
+        style={{
+          backgroundImage:
+            "linear-gradient(#1e293b 1px, transparent 1px), linear-gradient(90deg, #1e293b 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
+        }}
+      />
+
+      {/* 🔹 Layer 2 : Gradient Blobs */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="blob-1 absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-blue-500/20 rounded-full blur-[120px]" />
+        <div className="blob-2 absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-indigo-500/20 rounded-full blur-[120px]" />
+      </div>
+
+      {/* 🔹 Layer 3 : Content Section (floating feel) */}
+      <div className="relative z-10 max-w-7xl mx-auto py-24 px-6">
         <div className="mb-20 text-center moment-header">
-          <h1 className="text-5xl font-black text-slate-900 mb-6 tracking-tight">
+          <h1 className="text-4xl font-black text-slate-900 mb-6 tracking-tight">
             PROUD <span className="text-blue-600">MOMENTS</span>
           </h1>
           <div className="w-24 h-2 bg-blue-600 mx-auto rounded-full mb-8"></div>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto font-medium">
-            Celebrating Excellence, Innovation, and Global Recognition at AKGEC Skills Foundation
+            Celebrating Excellence, Innovation, and Global Recognition at AKGEC
+            Skills Foundation
           </p>
         </div>
 
@@ -219,35 +269,27 @@ export default function App() {
   );
 }
 
-export function ProjectCard({ project }) {
+function ProjectCard({ project }) {
   return (
-    <div className="bg-white rounded-xl overflow-hidden shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 moment-card group border border-slate-100">
-      {/* Image Container */}
+    <div className="moment-card bg-white rounded-xl overflow-hidden shadow-xl shadow-slate-200/60 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border border-slate-100">
       <div className="relative h-64 overflow-hidden">
         <img
           src={project.image}
           alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-        
-        {/* ID Badge */}
-        <div className="absolute top-4 left-4 w-12 h-12 bg-white/90 backdrop-blur rounded-2xl flex items-center justify-center shadow-lg">
-          <span className="text-blue-600 font-black text-lg">{project.id}</span>
-        </div>
-
-        {/* Icon Badge */}
-        <div className="absolute top-4 right-4 w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center shadow-lg text-white">
-          {project.icon}
+        <div className="absolute top-4 left-4 w-12 h-12 bg-white/90 rounded-2xl flex items-center justify-center shadow-lg">
+          <span className="text-blue-600 font-black text-lg">
+            {project.id}
+          </span>
         </div>
       </div>
 
       <div className="p-8">
-        {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-4">
-          {project.tags.map((tag, index) => (
+          {project.tags.map((tag, i) => (
             <span
-              key={index}
+              key={i}
               className="px-3 py-1 text-[10px] font-bold text-blue-600 bg-blue-50 rounded-full uppercase tracking-widest"
             >
               {tag}
@@ -255,23 +297,19 @@ export function ProjectCard({ project }) {
           ))}
         </div>
 
-        {/* Title */}
-        <h2 className="text-xl font-bold text-slate-900 mb-4 leading-tight group-hover:text-blue-600 transition-colors line-clamp-2 h-14">
+        <h2 className="text-xl font-bold text-slate-900 mb-4 line-clamp-2">
           {project.title}
         </h2>
 
-        {/* Description */}
-        <p className="text-slate-600 text-sm leading-relaxed mb-8 line-clamp-3">
+        <p className="text-slate-600 text-sm mb-8 line-clamp-3">
           {project.description}
         </p>
 
-        {/* Action */}
         <a
-          href={project.link}
-          className="inline-flex items-center gap-3 text-blue-600 font-bold text-sm hover:gap-5 transition-all duration-300"
+          href="#"
+          className="inline-flex items-center gap-3 text-blue-600 font-bold text-sm hover:gap-5 transition-all"
         >
-          EXPLORE DETAILS
-          <ArrowRight className="w-5 h-5" />
+          EXPLORE DETAILS <ArrowRight className="w-5 h-5" />
         </a>
       </div>
     </div>

@@ -396,7 +396,7 @@ export const Admissions = {
             },
             {
                 name: 'Refund Policy',
-                url: '/admissions/refund-policy'
+                url: '/pdf/refund-policy.pdf'
             },
             // {
             //     name: 'Visit the Campus',
@@ -639,7 +639,7 @@ export const SkillsFoundation = {
             },
             {
                 name: 'ASF Testimonial',
-                url: '/skills-foundation/consultancy'
+                url: '/skills-foundation/testimonial'
             },
         ]
     }

@@ -155,7 +155,7 @@ const IndustryOrientedResearchComp = () => {
       <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
         <div ref={blob1Ref} className="absolute top-0 right-0 w-96 h-96 bg-indigo-300/20 rounded-full blur-[100px]"></div>
         <div ref={blob2Ref} className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[120px]"></div>
-        <div 
+        <div
           className="absolute inset-0 opacity-[0.1]" 
           style={{ 
             backgroundImage: `linear-gradient(#475569 1px, transparent 1px), linear-gradient(90deg, #475569 1px, transparent 1px)`,

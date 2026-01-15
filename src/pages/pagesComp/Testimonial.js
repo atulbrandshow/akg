@@ -110,18 +110,126 @@ const TestimonialCard = ({ testimonial, index }) => {
 
 const Testimonial = () => {
   return (
-    <section className="relative py-20 bg-[#f8fafc] overflow-hidden">
+    <section className="relative py-20 bg-gradient-to-br from-blue-10 via-indigo-50 to-purple-50 overflow-hidden">
       {/* Background Layers */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div 
-          className="absolute inset-0 opacity-[0.4]" 
-          style={{ 
-            backgroundImage: `radial-gradient(#e2e8f0 1px, transparent 1px)`, 
-            backgroundSize: '40px 40px' 
-          }} 
+      <div className="absolute inset-0 pointer-events-none z-0">
+        {/* Primary Animated Grid */}
+        <motion.div
+          animate={{ backgroundPosition: ["0px 0px", "80px 80px"] }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          className="absolute inset-0 opacity-[0.15]"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right,#3b82f6 1.5px,transparent 1.5px),linear-gradient(to bottom,#3b82f6 1.5px,transparent 1.5px)",
+            backgroundSize: "40px 40px",
+          }}
         />
-        <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-blue-100/30 blur-[120px]" />
-        <div className="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] rounded-full bg-indigo-100/30 blur-[120px]" />
+
+        {/* Secondary Grid */}
+        <motion.div
+          animate={{ backgroundPosition: ["0px 0px", "-70px -70px"] }}
+          transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
+          className="absolute inset-0 opacity-[0.08]"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right,#6366f1 1px,transparent 1px),linear-gradient(to bottom,#6366f1 1px,transparent 1px)",
+            backgroundSize: "70px 70px",
+          }}
+        />
+
+        {/* Dot Pattern */}
+        <motion.div
+          animate={{ backgroundPosition: ["0px 0px", "-200px 200px"] }}
+          transition={{ duration: 55, repeat: Infinity, ease: "linear" }}
+          className="absolute inset-0 opacity-[0.1]"
+          style={{
+            backgroundImage: "radial-gradient(#3b82f6 2px, transparent 2px)",
+            backgroundSize: "40px 40px",
+          }}
+        />
+
+        {/* Large Gradient Blobs */}
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            animate={{
+              x: [0, 100, 0],
+              y: [0, -100, 0],
+              scale: [1, 1.2, 1],
+              rotate: [0, 180, 360],
+            }}
+            transition={{
+              duration: 25 + i * 5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute rounded-full blur-[150px]"
+            style={{
+              width: 400 + i * 80,
+              height: 400 + i * 80,
+              background:
+                i % 3 === 0
+                  ? "rgba(59,130,246,0.25)"
+                  : i % 3 === 1
+                  ? "rgba(99,102,241,0.25)"
+                  : "rgba(168,85,247,0.25)",
+              top: `${5 + i * 15}%`,
+              left: `${8 + i * 12}%`,
+            }}
+          />
+        ))}
+
+        {/* Diagonal Lines */}
+        <motion.div
+          animate={{ backgroundPosition: ["0px 0px", "400px 0px"] }}
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+          className="absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(45deg,transparent,transparent 80px,#3b82f6 80px,#3b82f6 82px)",
+          }}
+        />
+
+        {/* Reverse Diagonal */}
+        <motion.div
+          animate={{ backgroundPosition: ["0px 0px", "-400px 0px"] }}
+          transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+          className="absolute inset-0 opacity-[0.05]"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(-45deg,transparent,transparent 70px,#6366f1 70px,#6366f1 72px)",
+          }}
+        />
+
+        {/* Circular Patterns */}
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+          className="absolute top-1/4 left-1/4 w-96 h-96 opacity-[0.08]"
+          style={{
+            backgroundImage:
+              "repeating-radial-gradient(circle at center, transparent 0, transparent 20px, #3b82f6 20px, #3b82f6 21px)",
+          }}
+        />
+
+        {/* Radial Overlays */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(59,130,246,0.15),transparent_40%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_60%,rgba(99,102,241,0.15),transparent_40%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_80%,rgba(168,85,247,0.12),transparent_40%)]" />
+
+        {/* Animated Waves */}
+        <motion.div
+          animate={{ x: [0, 100, 0] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-0 left-0 w-full h-full opacity-[0.04]"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(90deg, transparent, transparent 50px, #3b82f6 50px, #3b82f6 51px)",
+          }}
+        />
+
+        {/* Depth Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/30 to-white/70" />
       </div>
 
       <div className="container relative z-10 mx-auto px-6 max-w-[1400px]">

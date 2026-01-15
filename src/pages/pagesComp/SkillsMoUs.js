@@ -140,7 +140,7 @@ const SkillsMoUs = () => {
         />
 
         {/* Depth Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white" />
       </div>
 
       {/* ================= CONTENT ================= */}
@@ -158,10 +158,50 @@ const SkillsMoUs = () => {
           </span>
           <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6">
             Prestigious MoUs
-          </h2>
+          </h2> 
           <p className="max-w-3xl mx-auto text-slate-500 text-lg">
             Building strong academia–industry collaboration for future-ready education.
           </p>
+        </motion.div>
+
+        {/* MoU Images Grid */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="relative mb-20"
+        >
+          <div className="relative max-w-6xl mx-auto">
+            
+            <div className="relative grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 bg-gradient-to-br from-indigo-50/50 to-purple-50/50 rounded-xl backdrop-blur-sm">
+              {[1, 2, 3, 4, 5, 6].map((num, idx) => (
+                <motion.div
+                  key={num}
+                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  className="relative group"
+                >
+                  <div className="relative rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden aspect-square flex items-center justify-center">
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                      className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 opacity-0 group-hover:opacity-20 rounded-2xl"
+                    />
+                    
+                    <img
+                      src={`/image/mous-images/image${num}.${num <= 3 || num === 6 ? 'png' : 'jpg'}`}
+                      alt={`MoU Partner ${num}`}
+                      className="relative w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
+                    />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </motion.div>
 
         {/* Tabs */}

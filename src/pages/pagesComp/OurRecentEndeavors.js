@@ -88,7 +88,7 @@ const OurRecentEndeavors = () => {
             backgroundSize: '40px 40px'
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white z-[1]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white z-[1]"></div>
         
         {/* Decorative Animated Blobs */}
         <motion.div 

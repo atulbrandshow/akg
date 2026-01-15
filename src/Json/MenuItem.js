@@ -603,9 +603,9 @@ export const ResearchInnovation = {
 
 export const SkillsFoundation = {
     name: 'Skills Foundation',
-    links: '/',
+    links: '/skills-foundation',
     sublinks: {
-        "Who We Are": [
+        "Skills Foundation": [
             {
                 name: 'Overview',
                 url: '/skills-foundation'
@@ -615,32 +615,24 @@ export const SkillsFoundation = {
                 url: '/skills-foundation/vision-and-mission'
             },
             {
-                name: 'Industry Oriented Research',
-                url: '/skills-foundation/industry-oriented-research'
-            },
-            {
                 name: 'Industry Partners',
                 url: '/skills-foundation/industry-partners'
-                // url: '/skills-foundation/mous'
-            },
-        ],
-        "Centres of Excellence": [
-            {
-                name: 'Our Recent Endeavors',
-                url: '/skills-foundation/our-recent-endeavors'
             },
             {
-                name: 'ASF Proud Moment',
-                url: '/skills-foundation/proud-moment'
-                // url: '/skills-foundation/skill-development'
-            },
-            {
-                name: 'ASF MoUs',
+                name: 'MoUs',
                 url: '/skills-foundation/mous'
             },
             {
-                name: 'ASF Testimonial',
+                name: 'Testimonial',
                 url: '/skills-foundation/testimonial'
+            },
+            {
+                name: 'Major Projects',
+                url: '/skills-foundation/major-projects'
+            },
+            {
+                name: 'Centres of Excellence',
+                url: '/skills-foundation/centres-of-excellence'
             },
         ]
     }

@@ -32,13 +32,19 @@ export const Home = () => {
           gradient={"bg-gradient-to-r from-gray-900 to-gray-900/40"}
         />
 
-        <section className="w-full max-w-[1400px] mx-auto grid grid-cols-12 py-10 lg:py-20 gap-10 px-4 relative">
+        <section className="w-full max-w-[1550px] mx-auto grid grid-cols-12 py-10 lg:py-16 gap-8 px-4 relative">
           <div className="col-span-12 lg:col-span-9">
-            <IndustryOrientedResearchComp />
+            <div className="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden transition-all hover:shadow-md">
+              <IndustryOrientedResearchComp />
+            </div>
           </div>
 
-          <div className="col-span-12 lg:col-span-3 sticky top-32 self-start h-max">
-            <SideBar title={"Skills Foundation"} LinkList={SideBarLink} />
+          <div className="col-span-12 lg:col-span-3">
+            <div className="sticky top-32">
+              <div className="bg-white rounded-3xl shadow-lg shadow-slate-200/50 border border-slate-100 overflow-hidden">
+                <SideBar title={"Skills Foundation"} LinkList={SideBarLink} />
+              </div>
+            </div>
           </div>
         </section>
       </div>

@@ -150,16 +150,16 @@ const IndustryOrientedResearchComp = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative w-full rounded-xl overflow-hidden bg-white/40 backdrop-blur-md border border-white/60 shadow-2xl p-8 md:p-16">
+    <div ref={containerRef} className="relative w-full overflow-hidden p-6 md:p-12 lg:p-16">
       {/* Layered Background with Grid and Blobs */}
       <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
-        <div ref={blob1Ref} className="absolute top-0 right-0 w-96 h-96 bg-indigo-300/20 rounded-full blur-[100px]"></div>
-        <div ref={blob2Ref} className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[120px]"></div>
+        <div ref={blob1Ref} className="absolute top-0 right-0 w-96 h-96 bg-indigo-300/10 rounded-full blur-[100px]"></div>
+        <div ref={blob2Ref} className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[120px]"></div>
         <div
-          className="absolute inset-0 opacity-[0.1]" 
+          className="absolute inset-0 opacity-[0.05]" 
           style={{ 
             backgroundImage: `linear-gradient(#475569 1px, transparent 1px), linear-gradient(90deg, #475569 1px, transparent 1px)`,
-            backgroundSize: '30px 30px'
+            backgroundSize: '40px 40px'
           }}
         ></div>
       </div>

@@ -176,21 +176,25 @@ export default function NewNavBar() {
         </h3>
       )}
       <ul className={`space-y-1 lg:space-y-2 ${ulClassName}`}>
-        {links?.map((link, index) => (
+        {links?.map(
+          (link, index) => (
             console.log(link),
-          <li key={index} className="leading-none">
-            <Link
-              href={link?.url || "/"}
-              target={link?.target || "_self"}
-              className="hover:underline cursor-pointer text-left font-novaReg text-sm"
-              onClick={() => {
-                setBigMenuToggle(false); // Close the menu
-              }}
-            >
-              {link.name}
-            </Link>
-          </li>
-        ))}
+            (
+              <li key={index} className="leading-none">
+                <Link
+                  href={link?.url || "/"}
+                  target={link?.target || "_self"}
+                  className="hover:underline cursor-pointer text-left font-novaReg text-sm"
+                  onClick={() => {
+                    setBigMenuToggle(false); // Close the menu
+                  }}
+                >
+                  {link.name}
+                </Link>
+              </li>
+            )
+          )
+        )}
       </ul>
     </div>
   );

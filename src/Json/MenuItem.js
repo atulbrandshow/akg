@@ -396,7 +396,8 @@ export const Admissions = {
             },
             {
                 name: 'Refund Policy',
-                url: '/pdf/refund-policy.pdf'
+                url: '/pdf/refund-policy.pdf',
+                target: '_blank'
             },
             // {
             //     name: 'Visit the Campus',

@@ -181,6 +181,7 @@ export default function NewNavBar() {
           <li key={index} className="leading-none">
             <Link
               href={link?.url || "/"}
+              target={link?.target || "_self"}
               className="hover:underline cursor-pointer text-left font-novaReg text-sm"
               onClick={() => {
                 setBigMenuToggle(false); // Close the menu

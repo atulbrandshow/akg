@@ -110,8 +110,21 @@ const TestimonialCard = ({ testimonial, index }) => {
 
 const Testimonial = () => {
   return (
-    <section className="py-20 bg-[#f8fafc] overflow-hidden">
-      <div className="container mx-auto px-6 max-w-[1400px]">
+    <section className="relative py-20 bg-[#f8fafc] overflow-hidden">
+      {/* Background Layers */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div 
+          className="absolute inset-0 opacity-[0.4]" 
+          style={{ 
+            backgroundImage: `radial-gradient(#e2e8f0 1px, transparent 1px)`, 
+            backgroundSize: '40px 40px' 
+          }} 
+        />
+        <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-blue-100/30 blur-[120px]" />
+        <div className="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] rounded-full bg-indigo-100/30 blur-[120px]" />
+      </div>
+
+      <div className="container relative z-10 mx-auto px-6 max-w-[1400px]">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.span
             initial={{ opacity: 0, y: 20 }}

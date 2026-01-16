@@ -159,6 +159,63 @@ function ImageSlider({ slides }) {
   );
 }
 
+// Animated Section Blobs
+function SectionBlob1() {
+  const blobRef = useRef(null);
+  useEffect(() => {
+    if (blobRef.current) gsap.to(blobRef.current, { x: "20%", y: "15%", duration: 18, repeat: -1, yoyo: true, ease: "sine.inOut" });
+  }, []);
+  return <div ref={blobRef} className="absolute top-10 right-10 w-[500px] h-[500px] bg-blue-400/15 rounded-full blur-3xl pointer-events-none" />;
+}
+
+function SectionBlob2() {
+  const blobRef = useRef(null);
+  useEffect(() => {
+    if (blobRef.current) gsap.to(blobRef.current, { x: "-15%", y: "20%", duration: 22, repeat: -1, yoyo: true, ease: "sine.inOut" });
+  }, []);
+  return <div ref={blobRef} className="absolute bottom-10 left-10 w-[550px] h-[550px] bg-yellow-400/18 rounded-full blur-3xl pointer-events-none" />;
+}
+
+function SectionBlob3() {
+  const blobRef = useRef(null);
+  useEffect(() => {
+    if (blobRef.current) gsap.to(blobRef.current, { x: "25%", y: "-10%", duration: 20, repeat: -1, yoyo: true, ease: "sine.inOut" });
+  }, []);
+  return <div ref={blobRef} className="absolute top-20 right-20 w-[520px] h-[520px] bg-blue-500/12 rounded-full blur-3xl pointer-events-none" />;
+}
+
+function SectionBlob4() {
+  const blobRef = useRef(null);
+  useEffect(() => {
+    if (blobRef.current) gsap.to(blobRef.current, { x: "-20%", y: "-15%", duration: 19, repeat: -1, yoyo: true, ease: "sine.inOut" });
+  }, []);
+  return <div ref={blobRef} className="absolute top-10 left-10 w-[580px] h-[580px] bg-yellow-500/16 rounded-full blur-3xl pointer-events-none" />;
+}
+
+function SectionBlob5() {
+  const blobRef = useRef(null);
+  useEffect(() => {
+    if (blobRef.current) gsap.to(blobRef.current, { x: "18%", y: "22%", duration: 21, repeat: -1, yoyo: true, ease: "sine.inOut" });
+  }, []);
+  return <div ref={blobRef} className="absolute bottom-20 right-20 w-[480px] h-[480px] bg-blue-400/14 rounded-full blur-3xl pointer-events-none" />;
+}
+
+function SectionBlob6() {
+  const blobRef = useRef(null);
+  useEffect(() => {
+    if (blobRef.current) gsap.to(blobRef.current, { x: "-22%", y: "18%", duration: 23, repeat: -1, yoyo: true, ease: "sine.inOut" });
+  }, []);
+  return <div ref={blobRef} className="absolute top-10 left-10 w-[540px] h-[540px] bg-yellow-400/13 rounded-full blur-3xl pointer-events-none" />;
+}
+
+function SectionBlob7() {
+  const blobRef = useRef(null);
+  useEffect(() => {
+    if (blobRef.current) gsap.to(blobRef.current, { x: "15%", y: "-18%", duration: 20, repeat: -1, yoyo: true, ease: "sine.inOut" });
+  }, []);
+  return <div ref={blobRef} className="absolute bottom-10 right-1/3 w-[560px] h-[560px] bg-blue-500/15 rounded-full blur-3xl pointer-events-none" />;
+}
+
 function SkillsFoundationComp() {
   const sectionRef = useRef(null);
   const overviewRef = useRef(null);
@@ -191,51 +248,34 @@ function SkillsFoundationComp() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-yellow-50/20 overflow-hidden py-20">
-      {/* Layer 1: Base Grid Pattern */}
-      <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: `linear-gradient(to right, #3b82f6 1px, transparent 1px), linear-gradient(to bottom, #3b82f6 1px, transparent 1px)`, backgroundSize: '80px 80px' }} />
-      
-      {/* Layer 2: Diagonal Stripes */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: `repeating-linear-gradient(45deg, #eab308 0, #eab308 2px, transparent 2px, transparent 120px)` }} />
-      
-      {/* Layer 3: Radial Gradient Overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-100/40 via-transparent to-transparent pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-yellow-100/30 via-transparent to-transparent pointer-events-none" />
-      
-      {/* Layer 4: Large Gradient Orbs */}
+    <section ref={sectionRef} className="relative min-h-screen overflow-hidden py-20">
+      {/* Animated Floating Shapes */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div ref={el => shapesRef.current[0] = el} className="absolute top-[8%] left-[-5%] w-[650px] h-[650px] bg-gradient-to-br from-blue-400/20 to-blue-600/10 rounded-full blur-3xl" />
-        <div ref={el => shapesRef.current[1] = el} className="absolute bottom-[8%] right-[-10%] w-[750px] h-[750px] bg-gradient-to-tl from-yellow-400/25 to-amber-500/10 rounded-full blur-3xl" />
-        <div ref={el => shapesRef.current[2] = el} className="absolute top-[42%] right-[3%] w-[450px] h-[450px] bg-gradient-to-br from-blue-500/15 to-indigo-400/10 rounded-full blur-2xl" />
-        <div ref={el => shapesRef.current[3] = el} className="absolute bottom-[32%] left-[5%] w-[380px] h-[380px] bg-gradient-to-tr from-yellow-300/18 to-yellow-500/10 rounded-full blur-2xl" />
+        <div ref={el => shapesRef.current[0] = el} className="absolute top-[8%] left-[-5%] w-[500px] h-[500px] bg-gradient-to-br from-blue-500/8 to-indigo-500/5 rounded-full blur-3xl" />
+        <div ref={el => shapesRef.current[1] = el} className="absolute bottom-[8%] right-[-10%] w-[600px] h-[600px] bg-gradient-to-tl from-blue-400/8 to-cyan-400/5 rounded-full blur-3xl" />
+        <div ref={el => shapesRef.current[2] = el} className="absolute top-[42%] right-[3%] w-[400px] h-[400px] bg-gradient-to-br from-indigo-500/6 to-blue-400/4 rounded-full blur-2xl" />
+        <div ref={el => shapesRef.current[3] = el} className="absolute bottom-[32%] left-[5%] w-[350px] h-[350px] bg-gradient-to-tr from-blue-300/6 to-indigo-300/4 rounded-full blur-2xl" />
       </div>
       
-      {/* Layer 5: Geometric Shapes */}
+      {/* Geometric Shapes */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div ref={el => shapesRef.current[4] = el} className="absolute top-[16%] right-[10%] w-44 h-44 border-2 border-blue-300/25 rounded-3xl rotate-12" />
-        <div ref={el => shapesRef.current[5] = el} className="absolute bottom-[26%] left-[4%] w-36 h-36 border-2 border-yellow-300/30 rounded-full" />
-        <div ref={el => shapesRef.current[6] = el} className="absolute top-[58%] left-[16%] w-28 h-28 bg-blue-200/15 rounded-2xl -rotate-12" />
-        <div ref={el => shapesRef.current[7] = el} className="absolute top-[28%] right-[20%] w-32 h-32 border-2 border-yellow-300/25 rotate-45" />
+        <div ref={el => shapesRef.current[4] = el} className="absolute top-[16%] right-[10%] w-40 h-40 border border-blue-300/15 rounded-3xl rotate-12" />
+        <div ref={el => shapesRef.current[5] = el} className="absolute bottom-[26%] left-[4%] w-32 h-32 border border-indigo-300/15 rounded-full" />
+        <div ref={el => shapesRef.current[6] = el} className="absolute top-[58%] left-[16%] w-24 h-24 bg-blue-200/8 rounded-2xl -rotate-12" />
+        <div ref={el => shapesRef.current[7] = el} className="absolute top-[28%] right-[20%] w-28 h-28 border border-blue-300/15 rotate-45" />
       </div>
       
-      {/* Layer 6: Floating Particles */}
+      {/* Floating Particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(18)].map((_, i) => (
+        {[...Array(12)].map((_, i) => (
           <div key={i} ref={el => shapesRef.current[i + 8] = el} className={`particle absolute rounded-full ${
-            i % 5 === 0 ? 'w-2.5 h-2.5 bg-blue-400/30' : 
-            i % 5 === 1 ? 'w-3 h-3 border-2 border-blue-300/35' : 
-            i % 5 === 2 ? 'w-2 h-2 bg-yellow-400/35' : 
-            i % 5 === 3 ? 'w-2.5 h-2.5 border-2 border-yellow-400/30' :
-            'w-1.5 h-1.5 bg-blue-500/25'
+            i % 4 === 0 ? 'w-2 h-2 bg-blue-400/20' : 
+            i % 4 === 1 ? 'w-2.5 h-2.5 border border-blue-300/20' : 
+            i % 4 === 2 ? 'w-1.5 h-1.5 bg-indigo-400/20' : 
+            'w-2 h-2 border border-indigo-300/15'
           }`} style={{ left: `${Math.random() * 100}%`, top: `${Math.random() * 100}%` }} />
         ))}
       </div>
-      
-      {/* Layer 7: Radial Dots Pattern */}
-      <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: `radial-gradient(circle, #3b82f6 1.5px, transparent 1.5px)`, backgroundSize: '60px 60px' }} />
-      
-      {/* Layer 8: Wave Pattern */}
-      <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: `repeating-radial-gradient(circle at 50% 50%, transparent 0, transparent 40px, #eab308 40px, #eab308 42px)` }} />
       <div className="relative max-w-7xl mx-auto px-6 md:px-12 lg:px-16 z-10">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           <div ref={overviewRef} className="space-y-10">
@@ -267,11 +307,39 @@ function SkillsFoundationComp() {
 }
 
 export const Home = () => {
+  const bgRef = useRef(null);
+  const gridRef = useRef(null);
+  const blob1Ref = useRef(null);
+  const blob2Ref = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      if (gridRef.current) {
+        gsap.to(gridRef.current, { backgroundPosition: '100px 100px', duration: 20, repeat: -1, yoyo: true, ease: 'none' });
+      }
+      gsap.to(blob1Ref.current, { x: "30%", y: "20%", duration: 20, repeat: -1, yoyo: true, ease: "sine.inOut" });
+      gsap.to(blob2Ref.current, { x: "-25%", y: "-25%", duration: 25, repeat: -1, yoyo: true, ease: "sine.inOut" });
+    }, bgRef);
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <div className="bg-gradient-to-b from-slate-50 via-white to-slate-50 min-h-screen">
+    <div ref={bgRef} className="relative min-h-screen overflow-hidden">
+      {/* Animated Background Layers */}
+      <div className="fixed inset-0 -z-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-slate-50" />
+        
+        {/* Animated Grid */}
+        <div ref={gridRef} className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: `linear-gradient(#3b82f6 1px, transparent 1px), linear-gradient(90deg, #3b82f6 1px, transparent 1px)`, backgroundSize: '50px 50px', backgroundPosition: '0 0' }} />
+        
+        {/* Animated Blobs */}
+        <div ref={blob1Ref} className="absolute top-0 right-0 w-[700px] h-[700px] bg-blue-400/8 rounded-full blur-[120px]" />
+        <div ref={blob2Ref} className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-yellow-400/6 rounded-full blur-[130px]" />
+      </div>
+
       <Header title={"Skills Foundation"} bg="/image/lab/User-Manual-AKGEC 5.webp" gradient={"bg-gradient-to-r from-gray-900 to-gray-900/40"} />
       
-      <div className="w-full mx-auto py-8">
+      <div className="relative w-full mx-auto py-8">
         <div className="space-y-0">
           
           <div id="overview" className="scroll-mt-32">
@@ -280,32 +348,87 @@ export const Home = () => {
             </div>
           </div>
 
-          <div id="vision-mission" className="scroll-mt-32 md:py-16 px-4 md:px-8 max-w-[1440px] mx-auto">
-            <SkillsVisionMission />
+          {/* Vision Mission - Blue with side panel */}
+          <div id="vision-mission" className="scroll-mt-32 relative overflow-hidden">
+            <div className="absolute inset-0 bg-white pointer-events-none" />
+            <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-blue-500/15 via-blue-400/8 to-transparent pointer-events-none" />
+            <div className="absolute top-0 right-0 w-64 h-full bg-blue-500/5 pointer-events-none" />
+            <SectionBlob1 />
+            <div className="relative md:py-16 px-4 md:px-8 max-w-[1440px] mx-auto">
+              <SkillsVisionMission />
+            </div>
           </div>
 
-          <div id="industry-oriented-research" className="scroll-mt-32 py-8 md:py-12 px-4 md:px-8 max-w-[1440px] mx-auto">
-            <IndustryOrientedResearch />
+          {/* Industry Research - Yellow with side panel */}
+          <div id="industry-oriented-research" className="scroll-mt-32 relative overflow-hidden">
+            <div className="absolute inset-0 bg-white pointer-events-none" />
+            <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-yellow-500/15 via-yellow-400/8 to-transparent pointer-events-none" />
+            <div className="absolute top-0 left-0 w-64 h-full bg-yellow-500/5 pointer-events-none" />
+            <SectionBlob2 />
+            <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: `repeating-linear-gradient(45deg, #eab308 0, #eab308 1px, transparent 1px, transparent 100px)` }} />
+            <div className="relative py-8 md:py-12 px-4 md:px-8 max-w-[1440px] mx-auto">
+              <IndustryOrientedResearch />
+            </div>
           </div>
 
-          <div id="industry-partners" className="scroll-mt-32 py-12 md:py-16 px-4 md:px-8 max-w-[1440px] mx-auto">
-            <IndustryPartners />
+          {/* Industry Partners - Blue with side panel */}
+          <div id="industry-partners" className="scroll-mt-32 relative overflow-hidden">
+            <div className="absolute inset-0 bg-white pointer-events-none" />
+            <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-blue-600/15 via-blue-500/8 to-transparent pointer-events-none" />
+            <div className="absolute top-0 right-0 w-72 h-full bg-blue-600/5 pointer-events-none" />
+            <SectionBlob3 />
+            <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: `radial-gradient(circle, #3b82f6 1.5px, transparent 1.5px)`, backgroundSize: '60px 60px' }} />
+            <div className="relative py-12 md:py-16 px-4 md:px-8 max-w-[1440px] mx-auto">
+              <IndustryPartners />
+            </div>
           </div>
 
-          <div id="major-projects" className="scroll-mt-32 py-12 md:py-16 px-4 md:px-8 max-w-[1440px] mx-auto">
-            <MajorProjectsContent />
+          {/* Major Projects - Yellow with side panel */}
+          <div id="major-projects" className="scroll-mt-32 relative overflow-hidden">
+            <div className="absolute inset-0 bg-white pointer-events-none" />
+            <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-yellow-600/15 via-yellow-500/8 to-transparent pointer-events-none" />
+            <div className="absolute top-0 left-0 w-72 h-full bg-yellow-600/5 pointer-events-none" />
+            <SectionBlob4 />
+            <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: `linear-gradient(#eab308 1px, transparent 1px), linear-gradient(90deg, #eab308 1px, transparent 1px)`, backgroundSize: '80px 80px' }} />
+            <div className="relative py-12 md:py-16 px-4 md:px-8 max-w-[1440px] mx-auto">
+              <MajorProjectsContent />
+            </div>
           </div>
 
-          <div id="proud-moments" className="scroll-mt-32 py-12 md:py-16 max-w-[1440px] mx-auto">
-            <ProudMoment />
+          {/* Proud Moments - Blue with side panel */}
+          <div id="proud-moments" className="scroll-mt-32 relative overflow-hidden">
+            <div className="absolute inset-0 bg-white pointer-events-none" />
+            <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-blue-500/15 via-blue-400/8 to-transparent pointer-events-none" />
+            <div className="absolute top-0 right-0 w-64 h-full bg-blue-500/5 pointer-events-none" />
+            <SectionBlob5 />
+            <div className="absolute inset-0 opacity-[0.015] pointer-events-none" style={{ backgroundImage: `repeating-radial-gradient(circle at 50% 50%, transparent 0, transparent 50px, #3b82f6 50px, #3b82f6 51px)` }} />
+            <div className="relative py-12 md:py-16 max-w-[1440px] mx-auto">
+              <ProudMoment />
+            </div>
           </div>
 
-          <div id="mous" className="scroll-mt-32 py-12 md:py-16 max-w-[1440px] mx-auto">
-            <SkillsMoUs />
+          {/* MoUs - Yellow with side panel */}
+          <div id="mous" className="scroll-mt-32 relative overflow-hidden">
+            <div className="absolute inset-0 bg-white pointer-events-none" />
+            <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-yellow-500/15 via-yellow-400/8 to-transparent pointer-events-none" />
+            <div className="absolute top-0 left-0 w-64 h-full bg-yellow-500/5 pointer-events-none" />
+            <SectionBlob6 />
+            <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: `repeating-linear-gradient(-45deg, #eab308 0, #eab308 1px, transparent 1px, transparent 100px)` }} />
+            <div className="relative py-12 md:py-16 max-w-[1440px] mx-auto">
+              <SkillsMoUs />
+            </div>
           </div>
 
-          <div id="testimonial" className="scroll-mt-32 py-12 md:py-16 max-w-[1440px]">
-            <Testimonial />
+          {/* Testimonial - Blue with side panel */}
+          <div id="testimonial" className="scroll-mt-32 relative overflow-hidden">
+            <div className="absolute inset-0 bg-white pointer-events-none" />
+            <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-blue-600/15 via-blue-500/8 to-transparent pointer-events-none" />
+            <div className="absolute top-0 right-0 w-72 h-full bg-blue-600/5 pointer-events-none" />
+            <SectionBlob7 />
+            <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: `radial-gradient(circle, #3b82f6 1px, transparent 1px)`, backgroundSize: '50px 50px' }} />
+            <div className="relative py-12 md:py-16 max-w-[1440px]">
+              <Testimonial />
+            </div>
           </div>
         </div>
       </div>

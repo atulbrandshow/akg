@@ -284,11 +284,11 @@ function SkillsFoundationComp() {
                 <span className="h-[2px] w-12 bg-blue-600" />
                 <span className="text-sm font-black tracking-widest text-blue-600 uppercase">Foundation Overview</span>
               </div>
-              <h1 className="text-5xl md:text-6xl font-black text-slate-900 leading-tight tracking-tighter">AKGU Skills <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Foundation</span></h1>
+              <h1 className="text-5xl md:text-5xl font-black text-slate-900 leading-tight tracking-tighter">AKGU Skills <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Foundation</span></h1>
               <p className="text-xl text-slate-500 font-bold uppercase tracking-wider">Ajay Kumar Garg Skills Foundation (ASF)</p>
             </div>
             <div className="space-y-8">
-              <div className="p-8 bg-white/40 backdrop-blur-sm rounded-3xl space-y-6">
+              <div className=" bg-white/40 backdrop-blur-sm rounded-3xl space-y-6">
                 <p className="text-lg md:text-xl text-slate-700 leading-relaxed font-medium"><span className="text-slate-900 font-black">AKGEC Skills Foundation</span> is an ISO <strong>9001:2015</strong>, <strong>14001:2015</strong>, and <strong>45001:2018</strong> certified and <span className="text-blue-600 font-bold">NABL accredited</span> facility. It is a prestigious joint initiative of <strong>AKGEC</strong> and the <strong>NSDC</strong>.</p>
                 <p className="text-lg text-slate-600 leading-relaxed">ASF offers courses aligned with global didactic concepts and <strong>National Occupational Standards (NOS)</strong>, providing recognized Skill Certificates across various industry sectors.</p>
                 <p className="text-lg text-slate-600 leading-relaxed">With state-of-the-art facilities in <strong>automation, robotics, drones, and IoT</strong>, ASF coordinates with industry partners to meet the growing demand for highly skilled professionals in advanced manufacturing and technology.</p>
@@ -395,13 +395,14 @@ export const Home = () => {
             </div>
           </div>
 
-          {/* Proud Moments - Blue with side panel */}
+          {/* Proud Moments - Enhanced Blue Background */}
           <div id="proud-moments" className="scroll-mt-32 relative overflow-hidden">
-            <div className="absolute inset-0 bg-white pointer-events-none" />
-            <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-blue-500/15 via-blue-400/8 to-transparent pointer-events-none" />
-            <div className="absolute top-0 right-0 w-64 h-full bg-blue-500/5 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-50/30 pointer-events-none" />
+            <div className="absolute top-0 right-0 w-2/5 h-full bg-gradient-to-l from-blue-500/12 via-blue-400/6 to-transparent pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-2/5 h-full bg-gradient-to-r from-blue-400/8 via-blue-300/4 to-transparent pointer-events-none" />
             <SectionBlob5 />
-            <div className="absolute inset-0 opacity-[0.015] pointer-events-none" style={{ backgroundImage: `repeating-radial-gradient(circle at 50% 50%, transparent 0, transparent 50px, #3b82f6 50px, #3b82f6 51px)` }} />
+            <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: `radial-gradient(circle, #3b82f6 2px, transparent 2px)`, backgroundSize: '80px 80px' }} />
+            <div className="absolute inset-0 opacity-[0.015] pointer-events-none" style={{ backgroundImage: `linear-gradient(45deg, #3b82f6 1px, transparent 1px), linear-gradient(-45deg, #3b82f6 1px, transparent 1px)`, backgroundSize: '120px 120px' }} />
             <div className="relative py-12 md:py-16 max-w-[1440px] mx-auto">
               <ProudMoment />
             </div>

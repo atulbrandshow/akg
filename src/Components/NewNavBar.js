@@ -414,7 +414,7 @@ export default function NewNavBar() {
               onClick={() => toggleMenu("about")}
               className={` relative focus:outline-none font-novaBold flex lg:pb-2 items-center gap-1 tracking-widest`}
             >
-              ABOUT{" "}
+              About{" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="12"
@@ -561,7 +561,7 @@ export default function NewNavBar() {
               onClick={() => toggleMenu("programs")}
               className={` relative  focus:outline-none font-novaBold flex pb-2 items-center gap-1 tracking-widest`}
             >
-              PROGRAMS{" "}
+              Programs{" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="12"
@@ -689,7 +689,7 @@ export default function NewNavBar() {
               onClick={() => toggleMenu("academics")}
               className={` relative  focus:outline-none font-novaBold flex pb-2 items-center gap-1 tracking-widest`}
             >
-              ACADEMICS{" "}
+              Academics{" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="12"
@@ -849,7 +849,7 @@ export default function NewNavBar() {
               onClick={() => toggleMenu("admissions")}
               className={` relative  focus:outline-none font-novaBold flex pb-2 items-center gap-1 tracking-widest`}
             >
-              ADMISSIONS{" "}
+              Admissions{" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="12"
@@ -987,7 +987,7 @@ export default function NewNavBar() {
               onClick={() => toggleMenu("campus-life")}
               className={` relative  focus:outline-none font-novaBold flex pb-2 items-center gap-1 whitespace-nowrap tracking-widest`}
             >
-              CAMPUS LIFE{" "}
+              Campus Life{" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="12"
@@ -1137,7 +1137,7 @@ export default function NewNavBar() {
               onClick={() => toggleMenu("placements")}
               className={` relative  focus:outline-none font-novaBold flex pb-2 items-center gap-1 tracking-widest`}
             >
-              PLACEMENTS{" "}
+              Placements{" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="12"
@@ -1228,7 +1228,7 @@ export default function NewNavBar() {
               onClick={() => toggleMenu("research")}
               className={` relative  focus:outline-none font-novaBold flex pb-2 items-center gap-1 whitespace-nowrap tracking-widest`}
             >
-              RESEARCH & INNOVATION{" "}
+              Research & Innovation{" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="12"
@@ -1348,7 +1348,7 @@ export default function NewNavBar() {
                 className={` relative focus:outline-none font-novaBold flex pb-2 items-center gap-1 whitespace-nowrap tracking-widest`}
                 onClick={() => setBigMenuToggle(false)}
               >
-                SKILLS FOUNDATION
+                Skills FOUNDATION
               </Link>
             </div>
             <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />

@@ -27,200 +27,6 @@ export default function About() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Section 1 Professional Animations
-      const section1 = section1Ref.current;
-      const leftCard = section1?.querySelector(".left-card");
-      const rightCard = section1?.querySelector(".right-card");
-      const floatingElements = section1?.querySelectorAll(".floating-element");
-      const gradientOverlays = section1?.querySelectorAll(".gradient-overlay");
-
-      // Initial 3D setup - different rotationY for each card
-      gsap.set(leftCard, { opacity: 0, rotationY: 45, z: -200, scale: 0.8 });
-      gsap.set(rightCard, { opacity: 0, rotationY: -45, z: -200, scale: 0.8 });
-      gsap.set(floatingElements, { opacity: 0, scale: 0 });
-      gsap.set(gradientOverlays, { opacity: 0 });
-
-      // Background fade in
-      gsap.fromTo(
-        section1?.querySelector(".bg-overlay"),
-        { opacity: 0 },
-        { opacity: 0.6, duration: 1.5, ease: "power2.out" }
-      );
-
-      // Gradient overlays animation
-      gsap.to(gradientOverlays, {
-        opacity: 1,
-        duration: 2,
-        stagger: 0.3,
-        ease: "power2.out",
-      });
-
-      // Floating elements animation
-      gsap.to(floatingElements, {
-        opacity: 1,
-        scale: 1,
-        duration: 1,
-        stagger: 0.2,
-        delay: 0.5,
-        ease: "back.out(1.7)",
-      });
-
-      // Left card entrance - keep rotated
-      gsap.to(leftCard, {
-        opacity: 1,
-        rotationY: 45,
-        z: 0,
-        scale: 1,
-        duration: 1.2,
-        delay: 1,
-        ease: "power3.out",
-      });
-
-      // Right card entrance - keep rotated
-      gsap.to(rightCard, {
-        opacity: 1,
-        rotationY: -45,
-        z: 0,
-        scale: 1,
-        duration: 1.2,
-        delay: 1.3,
-        ease: "power3.out",
-      });
-
-      // Card content animations
-      gsap.fromTo(
-        leftCard?.querySelectorAll("h1, p, button"),
-        { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.2,
-          delay: 1.5,
-          ease: "power2.out",
-        }
-      );
-
-      gsap.fromTo(
-        rightCard?.querySelectorAll("h1, p"),
-        { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.2,
-          delay: 1.8,
-          ease: "power2.out",
-        }
-      );
-
-      // Initial straightening animation after page load
-      gsap.to(leftCard, {
-        rotationY: 0,
-        duration: 0.8,
-        delay: 2.5,
-        ease: "power2.out",
-      });
-
-      gsap.to(rightCard, {
-        rotationY: 0,
-        duration: 0.8,
-        delay: 2.5,
-        ease: "power2.out",
-      });
-
-      // ScrollTrigger to control card rotation based on active section
-      ScrollTrigger.create({
-        trigger: section1,
-        start: "top 50%",
-        end: "bottom 50%",
-        onEnter: () => {
-          gsap.to(leftCard, {
-            rotationY: 0,
-            duration: 0.8,
-            ease: "power2.out",
-          });
-          gsap.to(rightCard, {
-            rotationY: 0,
-            duration: 0.8,
-            ease: "power2.out",
-          });
-        },
-        onLeave: () => {
-          gsap.to(leftCard, {
-            rotationY: 45,
-            duration: 0.8,
-            ease: "power2.out",
-          });
-          gsap.to(rightCard, {
-            rotationY: -45,
-            duration: 0.8,
-            ease: "power2.out",
-          });
-        },
-        onEnterBack: () => {
-          gsap.to(leftCard, {
-            rotationY: 0,
-            duration: 0.8,
-            ease: "power2.out",
-          });
-          gsap.to(rightCard, {
-            rotationY: 0,
-            duration: 0.8,
-            ease: "power2.out",
-          });
-        },
-        onLeaveBack: () => {
-          gsap.to(leftCard, {
-            rotationY: 45,
-            duration: 0.8,
-            ease: "power2.out",
-          });
-          gsap.to(rightCard, {
-            rotationY: -45,
-            duration: 0.8,
-            ease: "power2.out",
-          });
-        },
-      });
-
-      // Subtle hover effects for cards
-      leftCard?.addEventListener("mouseenter", () => {
-        gsap.to(leftCard, {
-          scale: 1.02,
-          y: -10,
-          duration: 0.3,
-          ease: "power2.out",
-        });
-      });
-
-      leftCard?.addEventListener("mouseleave", () => {
-        gsap.to(leftCard, {
-          scale: 1,
-          y: 0,
-          duration: 0.3,
-          ease: "power2.out",
-        });
-      });
-
-      rightCard?.addEventListener("mouseenter", () => {
-        gsap.to(rightCard, {
-          scale: 1.02,
-          y: -10,
-          duration: 0.3,
-          ease: "power2.out",
-        });
-      });
-
-      rightCard?.addEventListener("mouseleave", () => {
-        gsap.to(rightCard, {
-          scale: 1,
-          y: 0,
-          duration: 0.3,
-          ease: "power2.out",
-        });
-      });
-
       // Section 3 animations
       gsap.fromTo(
         section3Ref.current.querySelector(".left-column"),
@@ -347,21 +153,21 @@ export default function About() {
           },
         }
       );
-      gsap.fromTo(
-        partnersRef.current.querySelector("a"),
-        { y: 100, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          delay: 0.5,
-          scrollTrigger: {
-            trigger: partnersRef.current,
-            start: "top 80%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
+      // gsap.fromTo(
+      //   partnersRef.current.querySelector("a"),
+      //   { y: 100, opacity: 0 },
+      //   {
+      //     y: 0,
+      //     opacity: 1,
+      //     duration: 0.8,
+      //     delay: 0.5,
+      //     scrollTrigger: {
+      //       trigger: partnersRef.current,
+      //       start: "top 80%",
+      //       toggleActions: "play none none reverse",
+      //     },
+      //   }
+      // );
     });
 
     return () => ctx.revert();
@@ -388,7 +194,7 @@ export default function About() {
         ></div>
 
         {/* Overlay with Opacity */}
-        <div className="bg-overlay absolute inset-0 bg-black"></div>
+        <div className="bg-overlay absolute inset-0 bg-black opacity-60"></div>
 
 
         {/* Gradient Overlays */}
@@ -397,11 +203,12 @@ export default function About() {
 
         {/* Content Container */}
         <div
-          className="pt-24 pb-5 sm:pt-32 sm:pb-10 lg:pt-52 lg:pb-16 relative max-w-7xl mx-auto flex items-center justify-between max-sm:justify-center h-full px-4 max-sm:px-0 max-lg:items-end max-xl:items-end gap-10"
+          className="pt-24 pb-5 sm:pt-32 sm:pb-10 lg:pt-52 lg:pb-16 relative max-w-7xl mx-auto flex items-center justify-center h-full px-4 max-sm:px-0 max-lg:items-end max-xl:items-end gap-10"
           style={{ perspective: "1000px" }}
         >
+          {/* Single centered card with overview content */}
           <div
-            className="left-card relative bg-white/95 backdrop-blur-sm shadow-2xl rounded-lg w-[90%] max-w-md h-[600px] flex flex-col items-center justify-center px-10 max-sm:px-6 border border-white/20 overflow-hidden cursor-pointer"
+            className="left-card relative bg-white/95 backdrop-blur-sm shadow-2xl rounded-lg w-[90%] max-w-4xl h-auto flex flex-col items-center justify-center px-10 py-12 max-sm:px-6 border border-white/20 overflow-hidden"
             style={{
               fontFamily: "Arial, sans-serif",
               transformStyle: "preserve-3d",
@@ -409,57 +216,30 @@ export default function About() {
           >
             {/* Card Shimmer Effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 transform -translate-x-full animate-shimmer"></div>
+            
             {/* Heading */}
-            <h1 className="text-3xl max-sm:text-2xl font-novaSemi uppercase tracking-wide text-center mb-4">
-              Top University{" "}
-              <span className="text-green-500">for Students</span>
-            </h1>
-
-            {/* Description */}
-            <p
-              className="text-gray-500 text-base sm:text-lg mb-6 text-center"
-              style={{ fontFamily: "font-novareg" }}
-            >
-              AKG University stands as a dynamic hub of innovation and academic
-              excellence, building on the distinguished legacy of Ajay Kumar
-              Garg Engineering College. Spread across a sprawling 40-acre campus
-              in Ghaziabad, Uttar Pradesh, the university offers cutting-edge
-              undergraduate, postgraduate, and doctoral programs in engineering,
-              technology, and management, supported by state-of-the-art
-              laboratories, automated libraries, and high-tech research centers.
-            </p>
-
-            {/* Button */}
-            <button className="bg-gradient-to-r from-[#d91f23] to-[#b91c1c] hover:from-blue-600 hover:to-blue-700 text-white font-bold text-sm py-3 px-8 rounded-full focus:outline-none shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-2xl">
-              READ MORE
-            </button>
-          </div>
-
-          {/* About AKG University Box */}
-          <div
-            className="right-card relative bg-white/95 backdrop-blur-sm shadow-2xl rounded-lg w-[90%] max-w-md h-[600px] p-8 flex flex-col items-center justify-center text-center max-lg:hidden border border-white/20 overflow-hidden"
-            style={{ transformStyle: "preserve-3d" }}
-          >
-            {/* Card Glow Effect */}
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-red-500 to-orange-500 rounded-lg blur opacity-0 hover:opacity-20 transition duration-500"></div>
-            <h1 className="text-4xl lg:text-3xl sm:text-2xl font-normal tracking-wide mb-6">
+            <h1 className="text-4xl max-sm:text-2xl font-novaBold text-center mb-8 text-gray-900">
               About AKG University
             </h1>
-            <p className="text-gray-500 text-lg font-novaReg">
-              AKG University is dedicated to nurturing future-ready leaders
-              through an interdisciplinary approach, practical learning, and
-              strong industry collaborations with top multinational
-              organizations. The campus features Wi-Fi-enabled hostels, top-tier
-              sports and recreation facilities, and a vibrant student life that
-              fosters creativity and holistic development.
-              <br />
-              With a commitment to outstanding placements and academic results,
-              AKG University boasts a remarkable record of alumni success and
-              industry recognition, while fostering ethical values and social
-              responsibility. Guided by visionary leadership and an accomplished
-              faculty, the university is shaping technologists, innovators, and
-              responsible citizens for global impact.
-            </p>
+
+            {/* Overview Content */}
+            <div className="text-gray-700 text-base sm:text-lg leading-relaxed space-y-6 font-novaReg text-justify">
+              <p>
+                AKG University is a centre of academic excellence and innovation, proudly built on the strong foundation and laurels of Ajay Kumar Garg Engineering College (AKGEC), which brings over three decades of rich history in technical education and academic distinction. The enduring AKGEC legacy of discipline, quality education, and consistent outcomes continues to shape the university's vision and values.
+              </p>
+              
+              <p>
+                Situated on a 40-acre green campus in Ghaziabad, Uttar Pradesh, AKG University offers industry-aligned undergraduate, postgraduate, and doctoral programmes in engineering, technology, and management. The university adopts an interdisciplinary approach to education, emphasizing practical learning and strong collaborations with leading multinational organizations.
+              </p>
+              
+              <p>
+                Supported by state-of-the-art laboratories, automated libraries, advanced research facilities, Centres of Excellence, and dedicated skill development centres, AKG University fosters innovation, employability, and entrepreneurship. The campus offers Wi-Fi-enabled hostels, top-tier sports and recreation facilities, and a vibrant student life that nurtures creativity, leadership, and holistic development.
+              </p>
+              
+              <p>
+                With a strong commitment to academic excellence, outstanding placements, and measurable outcomes, the university boasts a distinguished record of alumni success and industry recognition. Guided by visionary leadership and an accomplished faculty, AKG University is shaping future-ready technologists, innovators, and responsible global citizens grounded in ethical values and social responsibility.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -535,17 +315,13 @@ export default function About() {
           </div>
 
           {/* RIGHT SIDE — TEXT BOX */}
-          <div className="right-column w-full lg:w-[35%] bg-white shadow-lg rounded-lg p-6 text-center">
+          {/* <div className="right-column w-full lg:w-[35%] bg-white shadow-lg rounded-lg p-6 text-center">
             <h1 className="text-3xl font-semibold mb-4">AKG University</h1>
             <p className="text-gray-600 mb-5">
               Ajay Kumar Garg University (AKGU) is recognized and actively
               participates as a member of various professional associations.
             </p>
-
-            <button className="bg-red-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-red-600 transition">
-              READ MORE
-            </button>
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -581,14 +357,6 @@ export default function About() {
               ))}
             </ul>
           </div>
-
-          {/* View All Button */}
-          <a
-            href="#"
-            className="bg-red-500 text-white font-bold text-sm uppercase tracking-wider py-3 px-8 max-sm:text-xs rounded-lg inline-block mt-8 transition duration-200 ease-in-out hover:bg-sky-500"
-          >
-            View All
-          </a>
         </div>
       </section>
     </div>

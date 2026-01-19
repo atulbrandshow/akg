@@ -1,24 +1,68 @@
 export default function Objectives() {
-  const OBPoints = [
-    "Achieve top national and international accreditations (NAAC, NBA, NIRF, QS, etc.).",
-    "Create multidisciplinary programs in medical, pharmacy, engineering, management, law, liberal arts, and vocational training.",
-    "Establish robust placement, skilling, and industry-integration structures.",
-    "Continually upgrade infrastructure for sports (e.g., skiing, adventure activities), labs, hostels, and student wellness.",
-    "Foster research, patents, incubators, and international partnerships.",
+  const objectives = [
+    {
+      title: "Promote Excellence in Teaching, Learning, and Research",
+      description: "through rigorous academic programs, interdisciplinary studies, and innovation driven scholarship."
+    },
+    {
+      title: "Develop Skilled, Employable, and Ethically Grounded Graduates",
+      description: "equipped with professional competence, digital capabilities, leadership qualities, and human values."
+    },
+    {
+      title: "Foster Innovation, Entrepreneurship, and Industry Collaboration",
+      description: "by encouraging research translation, start-ups, incubation, and strong industry–academia partnerships."
+    },
+    {
+      title: "Provide Multidisciplinary and Flexible Education",
+      description: "in alignment with the National Education Policy (NEP) 2020, supporting choice-based, outcome-oriented, and lifelong learning."
+    },
+    {
+      title: "Advance Research, Knowledge Creation, and Societal Impact",
+      description: "to address national priorities, industrial needs, and global challenges."
+    },
+    {
+      title: "Promote Constitutional Values, National Integration, and Global Citizenship",
+      description: "by nurturing patriotism, inclusivity, secularism, and respect for diversity."
+    },
+    {
+      title: "Preserve and Promote Cultural, Ethical, and Indigenous knowledge Systems",
+      description: "while integrating global best practices and emerging disciplines."
+    }
   ];
 
   return (
     <section className="px-6 md:px-16 py-16 bg-gray-50">
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-        {OBPoints.map((point, index) => (
+      <div className="mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800">
+          Objectives
+        </h2>
+        <p className="text-lg text-gray-700 leading-relaxed max-w-4xl mx-auto text-center mb-12">
+          The objectives of AKG University shall be to
+        </p>
+      </div>
+
+      <div className="grid gap-6 mb-12">
+        {objectives.map((objective, index) => (
           <div
             key={index}
-            className="bg-white rounded-2xl p-6 border border-gray-100 shadow-md transition-all duration-500 hover:shadow-xl hover:text-white relative overflow-hidden group"
+            className="bg-white rounded-2xl p-6 border border-gray-100 shadow-md transition-all duration-500 hover:shadow-xl hover:-translate-y-2 hover:scale-105 relative overflow-hidden group"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-indigo-950 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
-            <p className="relative z-10 text-gray-700 group-hover:text-white leading-relaxed font-medium">
-              {point}
-            </p>
+            <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-indigo-950 transform translate-x-full group-hover:translate-x-0 transition-transform duration-700 ease-in-out rounded-2xl"></div>
+            <div className="relative z-10">
+              <div className="flex items-start gap-4">
+                <span className="flex-shrink-0 w-8 h-8 bg-indigo-950 text-white rounded-full flex items-center justify-center font-bold text-sm group-hover:bg-white group-hover:text-indigo-950 transition-all duration-300 group-hover:rotate-12 group-hover:scale-110">
+                  {index + 1}
+                </span>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-800 group-hover:text-white mb-2 transition-all duration-300">
+                    {objective.title}
+                  </h3>
+                  <p className="text-gray-700 group-hover:text-white leading-relaxed transition-all duration-300">
+                    {objective.description}
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         ))}
       </div>

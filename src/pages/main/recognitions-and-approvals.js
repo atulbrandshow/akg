@@ -325,9 +325,9 @@ const RecognitionApprovals = () => {
 
               {/* Contact Section */}
               <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden mb-12">
-                <div className="grid grid-cols-1 lg:grid-cols-7 gap-6 lg:gap-8 p-8 lg:p-12">
+                {/* <div className="grid grid-cols-1 lg:grid-cols-7 gap-6 lg:gap-8 p-8 lg:p-12"> */}
                   {/* Image */}
-                  <div className="col-span-1 lg:col-span-3 row-span-1">
+                  {/* <div className="col-span-1 lg:col-span-3 row-span-1">
                     <div className="relative group">
                       <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-transparent rounded-xl -z-10 opacity-0 group-hover:opacity-100 transition-opacity" />
                       <img
@@ -336,10 +336,10 @@ const RecognitionApprovals = () => {
                         className="w-full h-48 lg:h-64 rounded-xl object-cover shadow-md hover:shadow-lg transition-shadow group-hover:scale-[1.02] duration-300"
                       />
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* Contact Info */}
-                  <div className="col-span-1 lg:col-span-4 lg:col-start-4">
+                  {/* <div className="col-span-1 lg:col-span-4 lg:col-start-4">
                     <h4 className="text-2xl lg:text-3xl font-bold text-slate-900 mb-6">
                       Get in Touch
                     </h4>
@@ -449,8 +449,8 @@ const RecognitionApprovals = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
+                  </div> */}
+                {/* </div> */}
               </div>
             </div>
           </div>

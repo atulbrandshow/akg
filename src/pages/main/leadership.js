@@ -28,7 +28,7 @@ export const Home = ({ data }) => {
           <div className="col-span-9 max-xl:col-span-8 max-lg:col-span-12">
             <LeaderShip />
           </div>
-          <div className="col-span-3 max-xl:col-span-4 max-lg:col-span-12">
+          <div className="col-span-3 max-xl:col-span-4 max-lg:col-span-12 sticky top-32 self-start h-max">
             <SideBar title={"About Us"} LinkList={SideBarLink} />
           </div>
         </section>

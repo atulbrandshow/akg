@@ -11,15 +11,27 @@ gsap.registerPlugin(ScrollTrigger);
 const AwardPopup = ({ award, onClose }) => {
   if (!award) return null;
 
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
-      <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-xl">
+    <div 
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50 p-4"
+      onClick={handleBackdropClick}
+    >
+      <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-xl relative">
         <div className="p-6">
           <div className="flex justify-between items-start mb-4">
-            <h3 className="text-2xl font-bold text-gray-800">{award.title}</h3>
+            <h3 className="text-2xl font-bold text-gray-800 pr-8">{award.title}</h3>
             <button
-              onClick={onClose}
-              className="text-gray-500 hover:text-gray-700 transition"
+              onClick={(e) => {
+                e.stopPropagation();
+                onClose();
+              }}
+              className="text-gray-500 hover:text-gray-700 transition-colors duration-200 p-2 hover:bg-gray-100 rounded-full flex-shrink-0"
               aria-label="Close popup"
             >
               <svg
@@ -56,8 +68,11 @@ const AwardPopup = ({ award, onClose }) => {
           </div>
           <div className="mt-6 flex justify-end">
             <button
-              onClick={onClose}
-              className="px-6 py-2 bg-secondary text-white rounded-md hover:bg-secondary-dark transition"
+              onClick={(e) => {
+                e.stopPropagation();
+                onClose();
+              }}
+              className="px-6 py-2 bg-secondary text-white rounded-md hover:bg-secondary-dark transition-colors duration-200"
             >
               Close
             </button>
@@ -399,6 +414,20 @@ export default function AwardsAndRankings({ data }) {
     setSelectedAward(null);
   };
 
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (selectedAward) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    // Cleanup function to restore scroll when component unmounts
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedAward]);
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
@@ -473,15 +502,15 @@ export default function AwardsAndRankings({ data }) {
                 </svg>
               ))}
             </div>
-            <div className="w-full lg:w-6/12 mx-auto lg:mx-0 text-center lg:text-left">
-              <h2 className="hero-title text-[32px] lg:text-[42px] uppercase font-novaReg font-bold text-white leading-tight">
+            <div className="w-full text-center lg:text-left">
+              <h2 className="hero-title text-2xl sm:text-3xl md:text-4xl lg:text-[42px] uppercase font-novaReg font-bold text-white leading-tight">
                 <span className="text-secondary">Prestigious Awards</span>
                 <br />
                 and Recognitions
                 <br />
                 for Academic Excellence
               </h2>
-              <p className="hero-text w-full lg:w-9/12 text-lg font-novaBold mt-5 text-white mx-auto lg:mx-0">
+              <p className="hero-text w-full text-base sm:text-lg font-novaBold mt-5 text-white mx-auto lg:mx-0">
                 Ajay Kumar Garg Engineering College has been consistently
                 recognized for its outstanding contributions to technical
                 education, innovation, and industry collaboration through

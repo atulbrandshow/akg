@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Bars2Icon } from "@heroicons/react/20/solid";
 import {
   About,
@@ -19,8 +19,6 @@ import gsap from "gsap";
 import { easeIn } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
 import Image from "next/image";
 import { Phone } from "lucide-react";
 
@@ -125,6 +123,7 @@ export default function NewNavBar() {
   const [activeTab, setActiveTab] = useState(
     "School of Computer Science Engineering & Technology"
   );
+  const menuRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -154,8 +153,29 @@ export default function NewNavBar() {
     };
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        if (BigMenuToggle) {
+          setBigMenuToggle(false);
+        }
+        if (openMenu) {
+          setOpenMenu(null);
+        }
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [BigMenuToggle, openMenu]);
+
   const toggleMenu = (menu) => {
     if (isBelowLg) {
+      setOpenMenu((prevMenu) => (prevMenu === menu ? null : menu));
+    } else {
       setOpenMenu((prevMenu) => (prevMenu === menu ? null : menu));
     }
   };
@@ -176,25 +196,21 @@ export default function NewNavBar() {
         </h3>
       )}
       <ul className={`space-y-1 lg:space-y-2 ${ulClassName}`}>
-        {links?.map(
-          (link, index) => (
-            console.log(link),
-            (
-              <li key={index} className="leading-none">
-                <Link
-                  href={link?.url || "/"}
-                  target={link?.target || "_self"}
-                  className="hover:underline cursor-pointer text-left font-novaReg text-sm"
-                  onClick={() => {
-                    setBigMenuToggle(false); // Close the menu
-                  }}
-                >
-                  {link.name}
-                </Link>
-              </li>
-            )
-          )
-        )}
+        {links?.map((link, index) => (
+          <li key={index} className="leading-none">
+            <Link
+              href={link?.url || "/"}
+              target={link?.target || "_self"}
+              className="hover:underline cursor-pointer text-left font-novaReg text-sm"
+              onClick={() => {
+                setBigMenuToggle(false);
+                setOpenMenu(null);
+              }}
+            >
+              {link.name}
+            </Link>
+          </li>
+        ))}
       </ul>
     </div>
   );
@@ -378,6 +394,7 @@ export default function NewNavBar() {
       </div>
       <div className="mt-3 px-3">
         <ul
+          ref={menuRef}
           className={`${
             BigMenuToggle
               ? "fixed w-full h-full left-0 top-0 py-20 overflow-y-auto backdrop-blur-lg"
@@ -435,8 +452,8 @@ export default function NewNavBar() {
               className={`${
                 BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-max"
               } ${
-                openMenu === "about" && "absolute h-auto mt-0 w-full"
-              } left-0 h-0 mt-5 overflow-hidden lg:group-hover:h-auto lg:group-hover:mt-0 transition-all bg-white text-black rounded-lg shadow-lg `}
+                openMenu === "about" ? "h-auto mt-0" : "h-0 mt-5 overflow-hidden"
+              } left-0 transition-all bg-white text-black rounded-lg shadow-lg`}
             >
               <div className="grid grid-cols-3">
                 <div className="col-span-2 max-md:col-span-3 p-5 transition-all">
@@ -584,9 +601,8 @@ export default function NewNavBar() {
                   ? "relative w-full bg-white/40"
                   : "absolute w-[1100px]"
               } ${
-                openMenu === "programs" && "absolute h-auto mt-0 w-full"
-              } left-0 h-0 mt-5 overflow-hidden lg:group-hover:h-auto lg:group-hover:mt-0 transition-all bg-white
-                                    text-black rounded-lg shadow-lg`}
+                openMenu === "programs" ? "h-auto mt-0" : "h-0 mt-5 overflow-hidden"
+              } left-0 transition-all bg-white text-black rounded-lg shadow-lg`}
             >
               <div className="grid grid-cols-12">
                 <div className="col-span-9 max-lg:col-span-12 p-0 transition-all">
@@ -710,9 +726,8 @@ export default function NewNavBar() {
               className={`${
                 BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-max"
               } ${
-                openMenu === "academics" && "absolute h-auto mt-0 w-full"
-              } -left-52 max-lg:left-0 h-0  mt-5 overflow-hidden lg:group-hover:h-auto lg:group-hover:mt-0 transition-all bg-white
-                                    text-black rounded-lg shadow-lg `}
+                openMenu === "academics" ? "h-auto mt-0" : "h-0 mt-5 overflow-hidden"
+              } -left-52 max-lg:left-0 transition-all bg-white text-black rounded-lg shadow-lg`}
             >
               <div className="grid grid-cols-12">
                 <div className="col-span-8 max-md:col-span-12 p-5 transition-all">
@@ -870,9 +885,8 @@ export default function NewNavBar() {
               className={`${
                 BigMenuToggle ? "relative w-full bg-white/40" : "absolute"
               } ${
-                openMenu === "admissions" && "absolute h-auto mt-0 w-full"
-              } left-0 h-0 mt-5 overflow-hidden lg:group-hover:h-auto lg:group-hover:mt-0 transition-all bg-white
-                                    text-black rounded-lg shadow-lg `}
+                openMenu === "admissions" ? "h-auto mt-0" : "h-0 mt-5 overflow-hidden"
+              } left-0 transition-all bg-white text-black rounded-lg shadow-lg`}
             >
               <div className="flex p-5 w-max transition-all max-md:max-h-72 max-md:overflow-y-scroll max-md:flex-col max-md:gap-5 max-md:w-full">
                 <div className="w-52">
@@ -1008,9 +1022,8 @@ export default function NewNavBar() {
               className={`${
                 BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-max"
               } ${
-                openMenu === "campus-life" && "absolute h-auto mt-0 w-full"
-              } left-0 h-0 mt-5 overflow-hidden lg:group-hover:h-auto lg:group-hover:mt-0 transition-all bg-white
-                                    text-black rounded-lg shadow-lg `}
+                openMenu === "campus-life" ? "h-auto mt-0" : "h-0 mt-5 overflow-hidden"
+              } left-0 transition-all bg-white text-black rounded-lg shadow-lg`}
             >
               <div className="grid grid-cols-2">
                 <div className="col-span-2 transition-all">
@@ -1160,9 +1173,8 @@ export default function NewNavBar() {
                   ? "relative w-full bg-white/40"
                   : "absolute w-[650px]"
               } ${
-                openMenu === "placements" && "absolute h-auto mt-0 w-full"
-              } right-0 h-0 mt-5 overflow-hidden lg:group-hover:h-auto lg:group-hover:mt-0 transition-all bg-white
-                                    text-black rounded-lg shadow-lg `}
+                openMenu === "placements" ? "h-auto mt-0" : "h-0 mt-5 overflow-hidden"
+              } right-0 transition-all bg-white text-black rounded-lg shadow-lg`}
             >
               <div className="grid grid-cols-9">
                 <div className="col-span-5 w-max p-5 transition-all max-md:col-span-2 max-md:max-h-72 max-md:overflow-y-scroll max-md:flex-col">
@@ -1251,9 +1263,8 @@ export default function NewNavBar() {
                   ? "relative w-full bg-white/40"
                   : "absolute w-[1050px]"
               } ${
-                openMenu === "research" && "absolute h-auto mt-0 w-full"
-              } right-0 h-0 mt-5 overflow-hidden lg:group-hover:h-auto lg:group-hover:mt-0 transition-all bg-white
-                                    text-black rounded-lg shadow-lg`}
+                openMenu === "research" ? "h-auto mt-0" : "h-0 mt-5 overflow-hidden"
+              } right-0 transition-all bg-white text-black rounded-lg shadow-lg`}
             >
               <div className="grid grid-cols-6">
                 <div className="col-span-2 max-md:hidden">
@@ -1348,7 +1359,7 @@ export default function NewNavBar() {
                 className={` relative focus:outline-none font-novaBold flex pb-2 items-center gap-1 whitespace-nowrap tracking-widest`}
                 onClick={() => setBigMenuToggle(false)}
               >
-                Skills FOUNDATION
+                Skills Foundation
               </Link>
             </div>
             <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />

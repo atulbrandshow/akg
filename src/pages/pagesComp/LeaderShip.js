@@ -8,6 +8,7 @@ const LeaderShip = () => {
   const containerRef = useRef(null);
   const firstSectionRef = useRef(null);
   const secondSectionRef = useRef(null);
+  const thirdSectionRef = useRef(null);
   const titleRef = useRef(null);
   const logoRefs = useRef([]);
 
@@ -258,7 +259,7 @@ const LeaderShip = () => {
           <div className="w-24 h-1 bg-secondary mx-auto rounded-full"></div>
         </div>
 
-        <div ref={firstSectionRef} className="grid grid-cols-8 gap-8 mb-20 max-sm:mb-10">
+        {/* <div ref={firstSectionRef} className="grid grid-cols-8 gap-8 mb-20 max-sm:mb-10">
           <div className="leader-image-1 col-span-3 max-md:col-span-8">
             <div className="relative overflow-hidden rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 group">
               <img
@@ -355,9 +356,9 @@ const LeaderShip = () => {
               </blockquote>
             </div>
           </div>
-        </div>
+        </div> */}
         
-        <div ref={secondSectionRef} className="grid grid-cols-8 gap-8 mb-20 max-md:border-t-2 max-md:border-t-gray-200 pt-5 max-md:flex max-md:flex-col-reverse">
+        {/* <div ref={secondSectionRef} className="grid grid-cols-8 gap-8 mb-20 max-md:border-t-2 max-md:border-t-gray-200 pt-5 max-md:flex max-md:flex-col-reverse">
           <div className="leader-content-2 relative col-span-5 max-md:col-span-8 bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500">
             <div className="h-full max-h-[500px] font-novaReg text-gray-800 overflow-y-auto text-sm scrollbar-thin scrollbar-thumb-primary/30 scrollbar-track-gray-200 text-justify pr-4">
               <p className="leading-6 transform transition-all duration-300 hover:translate-x-2 mb-4">
@@ -424,6 +425,53 @@ const LeaderShip = () => {
                 illustrious career spanning over 22 years in academia and
                 industry.
               </cite>
+            </div>
+          </div>
+        </div> */}
+        
+        <div ref={thirdSectionRef} className="grid grid-cols-8 gap-8 mb-20 max-sm:mb-10">
+          <div className="leader-image-3 col-span-3 max-md:col-span-8">
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 group">
+              <img
+                src="/image/leadership/director-2.png"
+                alt="vice-chancellor"
+                className="w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent pt-16 p-6">
+                <b className="font-bold text-xl text-white">
+                  Dr. Amita Dev
+                </b>
+                <small className="block text-white/90 text-sm mt-1">
+                  Vice Chancellor, AKGU
+                </small>
+              </div>
+            </div>
+            <div className="leader-quote-3 w-full pt-4 bg-white/80 backdrop-blur-sm rounded-xl p-4 mt-4 shadow-lg">
+              <span className="font-bold text-5xl block font-serif italic text-secondary">
+                "
+              </span>
+              <cite className="-mt-4 block text-sm leading-6 text-gray-700 text-justify">
+                Prof. Amita Dev is a distinguished Academician, Engineer, and Visionary leader with over 40 years of rich experience in Academia, Research, Industry, and Higher Education Administration.
+              </cite>
+            </div>
+          </div>
+          <div className="leader-content-3 relative font-novaReg text-gray-800 col-span-5 max-md:col-span-8 bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500">
+            <div className="h-full max-h-[500px] overflow-y-auto text-sm scrollbar-thin scrollbar-thumb-primary/30 scrollbar-track-gray-200 text-justify pr-4">
+              <p className="leading-6 transform transition-all duration-300 hover:translate-x-2 mb-4">
+                <span className="font-bold text-3xl">P</span>rof. Amita Dev is a distinguished Academician, Engineer, and Visionary leader with over 40 years of rich experience in Academia, Research, Industry, and Higher Education Administration. She is an Engineer with a Ph.D. in Computer Engineering.
+              </p>
+              <p className="leading-6 transform transition-all duration-300 hover:translate-x-2 mb-4">
+                She has held prestigious leadership roles including Vice Chancellor of Indira Gandhi Delhi Technical University for Women (IGDTUW) and Delhi Skill and Entrepreneurship University (DSEU), as well as Pro Vice Chancellor, Principal, and Head of Department at premier institutions. She is widely recognized for her excellence in Institutional Development, Policy Formulation, Research Leadership, and Innovation-Driven growth in Technical Education and Entrepreneurship.
+              </p>
+              <p className="leading-6 transform transition-all duration-300 hover:translate-x-2 mb-4">
+                Her research expertise spans Artificial Intelligence, Deep Neural Networks, Natural Language Processing. She has authored over 140 research publications, holds an impressive portfolio of 31 patents (20 granted), and has successfully led several Nationally funded projects exceeding ₹34 Crores from agencies such as DST, MeitY, AICTE, UKRI, and CFSL etc.
+              </p>
+              <p className="leading-6 transform transition-all duration-300 hover:translate-x-2 mb-4">
+                A sought-after speaker, mentor, and motivator, Prof. Dev has delivered thought-provoking lectures and keynote addresses at numerous national and international forums. Her outstanding contributions have been recognized with multiple National and International awards, including the AICTE Young Teacher Career Award, Best Engineering Teacher Award by ISTE, Lifetime Achievement Award by DMA, "Ambassador For Peace" by Universal Peace Federation, Shrimati Sushma Swaraj "STREE SHAKTI SAMMAN" Institution of Happiness Award by Hon'ble Minister of Women & Child Development, Vittiya Saksharta Abhiyan Award by Hon'ble Minister of Education and many more.
+              </p>
+              <blockquote className="border-l-4 border-primary pl-6 italic bg-primary/5 p-4 rounded-r-xl transform transition-all duration-300 hover:shadow-lg hover:bg-primary/10">
+                Prof. Amita Dev continues to inspire as a trailblazer in research, innovation, and academic leadership, with a vision to harness technology for education, empowerment, and societal progress.
+              </blockquote>
             </div>
           </div>
         </div>

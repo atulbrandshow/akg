@@ -28,10 +28,10 @@ export const About = {
             //     name: 'Management',
             //     url: '/about/management'
             // },
-            {
-                name: 'Core Value',
-                url: '/about/core-values'
-            },
+            // {
+            //     name: 'Core Value',
+            //     url: '/about/core-values'
+            // },
             {
                 name: 'Objectives',
                 url: '/about/objectives'

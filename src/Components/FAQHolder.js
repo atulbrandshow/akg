@@ -16,7 +16,7 @@ const FAQHolder = ({ data }) => {
         <div className="max-w-7xl mx-auto py-8 text-gray-700">
             <h1 className="text-[42px] text-center font-novaReg max-lg:text-4xl max-md:text-3xl max-sm:px-4 text-gray-700">
                 Frequently {" "}
-                <span className="font-novaSemi bg-text-gradient bg-clip-text text-transparent animate-gradient">
+                <span className="font-novaSemi text-brand-blue">
                     Asked
                 </span>
                 {" "}Questions
@@ -27,7 +27,7 @@ const FAQHolder = ({ data }) => {
                         className={`flex justify-between gap-2 items-center p-4 rounded-lg ${openIndex === index && 'rounded-t-lg rounded-b-none'} cursor-pointer bg-gray-200 text-black`}
                         onClick={() => toggleDropdown(index)}>
                         <span className="ml-2 font-novaSemi text-lg max-md:text-base max-sm:text-sm">{dropdown.question}</span>
-                        <span className={`font-novaBold text-3xl max-sm:text-xl text-blue-600`}>
+                        <span className={`font-novaBold text-3xl max-sm:text-xl text-brand-blue`}>
                             {openIndex === index ? <Minus strokeWidth={2.5} className='max-sm:w-5 max-sm:h-5' /> : <Plus strokeWidth={2.5} className='max-sm:w-5 max-sm:h-5' />}
                         </span>
                     </div>

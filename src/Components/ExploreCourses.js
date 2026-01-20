@@ -43,7 +43,7 @@ export default function ExploreCourses({ data }) {
         <section className="bg-primary py-10 sm:py-16 md:py-20">
             <div className="break2:max-w-[1320px] break3:max-w-[1140px] break4:max-w-[960px] mx-auto px-4 sm:px-6 lg:px-8 text-white">
                 <h2 className="text-[42px] max-lg:text-4xl max-md:text-3xl font-novaLight text-center tracking-tight">
-                    {first} {" "} <span className='font-novaSemi bg-gradient-to-r from-red-300 to-teal-500 bg-clip-text text-transparent animate-gradient'>{last} </span>
+                    {first} {" "} <span className='font-novaSemi text-brand-yellow'>{last} </span>
                 </h2>
                 <p className="mt-4 sm:mt-5 text-base sm:text-lg md:text-xl lg:text-[22px] leading-snug text-gray-200 mx-auto max-w-xl sm:max-w-2xl md:max-w-3xl lg:max-w-screen-lg font-novaLight text-center">
                     {d?.Courses_Desc}

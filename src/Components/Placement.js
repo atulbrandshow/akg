@@ -66,10 +66,10 @@ export default function Placement() {
   }
 
   return (
-    <div className="w-full h-full bg-gradient-to-r from-purple-200 to-cyan-200 text-white py-20 px-3 sm:p-8 overflow-hidden">
-      <h1 className="text-[42px] text-center font-novaBold max-lg:text-4xl max-md:text-3xl text-gray-800">
+    <div className="w-full h-full bg-brand-blue text-white py-20 px-3 sm:p-8 overflow-hidden">
+      <h1 className="text-[42px] text-center font-novaBold max-lg:text-4xl max-md:text-3xl text-white">
         Placement{" "}
-        <span className="font-novaSemi bg-text-gradient bg-clip-text text-transparent animate-gradient">
+        <span className="font-novaSemi text-brand-yellow animate-pulse">
           Glimpses
         </span>
       </h1>

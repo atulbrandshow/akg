@@ -38,10 +38,10 @@ const placementHighlights = [
 
 const HighlightPlacement = () => {
     return (
-        <section className="bg-[#249ee1] py-16">
+        <section className="bg-brand-blue py-16">
             <div className="max-w-[1400px] mx-auto px-3 flex flex-col justify-center p-5 md:p-10 lg:p-16 text-white">
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-novaLight text-center mb-5">
-                    <span className="font-novaSemi bg-gradient-to-r from-teal-300 to-green-400 bg-clip-text text-transparent">PLACEMENT</span> HIGHLIGHTS 2023-24
+                    <span className="font-novaSemi text-brand-yellow">PLACEMENT</span> HIGHLIGHTS 2023-24
                 </h2>
 
                 <div className="grid grid-cols-2 md:grid-cols-4 my-6 text-center">
@@ -63,7 +63,7 @@ const HighlightPlacement = () => {
                     ))}
                 </div>
                 <div className="flex justify-center space-x-4 mt-5 max-lg:justify-center">
-                    <Button text={"APPLY TODAY"} className="bg-secondary text-white text-sm font-novaBold px-6 py-2 rounded-md hover:bg-[#3c5686] transition-transform duration-500 scale-y-105" />
+                    <Button text={"APPLY TODAY"} className="bg-brand-yellow text-brand-blue text-sm font-novaBold px-6 py-2 rounded-md hover:pl-8 transition-transform duration-500 scale-y-105" />
                 </div>
             </div>
         </section>

@@ -32,7 +32,7 @@ export default function NewsEvents({ data }) {
 
                 <div className="bg-[#ebebeb] h-[70%] w-full absolute top-0 left-0 -z-10"></div>
                 <h2 className="text-5xl max-lg:text-4xl max-md:text-3xl font-novaLight text-center text-gray-700">
-                    {first} {" "} <span className='font-novaSemi bg-text-gradient bg-clip-text text-transparent animate-gradient'>{last}</span>
+                    {first} {" "} <span className='font-novaSemi text-brand-blue'>{last}</span>
                 </h2>
                 <p className="mt-5 text-2xl max-lg:xl max-md:text-lg font-novaLight text-center max-w-screen-lg max-sm:px-2 mx-auto text-gray-700">
                     {d?.Spotlight_Desc}
@@ -56,7 +56,7 @@ export default function NewsEvents({ data }) {
                                     </p>
                                     <a
                                         href={posts[0].link}
-                                        className="text-base bg-gradient-to-r from-blue-600 to-rose-600 bg-clip-text text-transparent font-novaBold mt-10 inline-block"
+                                        className="text-base text-brand-blue font-novaBold mt-10 inline-block"
                                     >
                                         Read More ►
                                     </a>
@@ -89,7 +89,7 @@ export default function NewsEvents({ data }) {
                                                 </p>
                                                 <a
                                                     href={post.link}
-                                                    className="text-sm font-bold mt-10 bg-gradient-to-r from-blue-600 to-rose-600 bg-clip-text text-transparent inline-block"
+                                                    className="text-sm font-bold mt-10 text-brand-blue inline-block"
                                                 >
                                                     Read More ►
                                                 </a>

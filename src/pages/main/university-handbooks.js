@@ -24,7 +24,7 @@ export const Home = ({ data }) => {
         title={"University Handbooks"}
         bgKey="BG-Building-8"
         Button={Button}
-        gradient={"bg-gradient-to-r from-gray-800 to-zinc-900/40"}
+        gradient={"bg-gradient-to-r from-gray-900 to-transparent"}
       />
       <section className="max-w-[1400px] mx-auto px-5 max-sm:px-2 py-5">
         {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}

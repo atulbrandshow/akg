@@ -106,7 +106,7 @@ const SideBarLink = [
 const OurLeadingRecruiters = () => {
     return (
         <>
-            <Header title={"Our Leading Recruiter"} subHeading={"Partnering with the best to shape bright futures! 🤝✨"} bg="/image/building/building5.webp" gradient={"bg-gradient-to-r from-zinc-900 to-gray-900/40"} />
+            <Header title={"Our Leading Recruiter"} subHeading={"Partnering with the best to shape bright futures! 🤝✨"} bg="/image/building/building5.webp" gradient={"bg-gradient-to-r from-gray-900 to-transparent"} />
             <section className="max-w-[1400px] mx-auto px-3 pt-20 max-md:pt-10">
                 <div className="mb-6">
                     <div className="">

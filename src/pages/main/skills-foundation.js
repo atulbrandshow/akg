@@ -19,7 +19,7 @@ export const Home = () => {
         <Header
           title={"Skills Foundation"}
           bg="/image/lab/User-Manual-AKGEC 5.webp"
-          gradient={"bg-gradient-to-r from-gray-900 to-gray-900/40"}
+          gradient={"bg-gradient-to-r from-gray-900 to-transparent"}
         />
         <section className="w-full max-w-[1400px] mx-auto grid grid-cols-12 py-10 lg:py-20 gap-10 px-4">
           <div className="col-span-12 lg:col-span-9">

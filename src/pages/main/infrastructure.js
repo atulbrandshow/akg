@@ -33,7 +33,7 @@ const Home = () => {
           buttonType={"link"}
           buttonText="Apply Now"
           buttonLink="/"
-          gradient={"bg-gradient-to-r from-black to-slate-900/"}
+          gradient={"bg-gradient-to-r from-gray-900 to-transparent"}
           height="h-[600px]"
         />
         <section className="w-full max-w-[1400px] mx-auto grid grid-cols-12 py-16 gap-8 px-4 max-lg:py-10 max-md:py-8 max-sm:py-6 max-sm:px-2 max-sm:gap-0">

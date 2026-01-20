@@ -19,7 +19,7 @@ export const Home = ({ data }) => {
         <Header
           title={"Hostel Facility"}
           bgKey="BG-Building-10"
-          gradient={"bg-gradient-to-r from-black to-white/"}
+          gradient={"bg-gradient-to-r from-gray-900 to-transparent"}
         />
         <section className="max-w-[1400px] mx-auto px-5 max-sm:px-2 py-5">
           {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}

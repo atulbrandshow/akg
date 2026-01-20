@@ -75,8 +75,8 @@ function NewsListPage({ data }) {
 
   return (
     <div className="bg-gray-50">
-      <Header title="News & Updates" gradient={"bg-gradient-to-r from-gray-800 to-transparent"} bgUrl={data?.banner_img} custom={true} subHeading="Stay updated with the latest campus news, achievements, events, and more from across our vibrant university community."
- />
+      <Header title="News & Updates" gradient={"bg-gradient-to-r from-gray-900 to-transparent"} bgUrl={data?.banner_img} custom={true} subHeading="Stay updated with the latest campus news, achievements, events, and more from across our vibrant university community."
+      />
       <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-10">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <Breadcrumb data={data?.breadCrumb} />

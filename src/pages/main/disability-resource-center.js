@@ -21,7 +21,7 @@ const Home = () => {
     return (
         <>
             <div className="">
-                <Header title={"Disability Resource Center"} Button={Button} gradient={"bg-gradient-to-r from-blue-900 to-blue-900/40"} />
+                <Header title={"Disability Resource Center"} Button={Button} gradient={"bg-gradient-to-r from-gray-900 to-transparent"} />
                 <section className="w-full max-w-[1400px] mx-auto grid grid-cols-12 py-20 max-sm:py-2 gap-10 px-2 max-sm:gap-0">
                     <div className="col-span-9 max-xl:col-span-8 max-lg:col-span-12">
                         <DisabilityResource />

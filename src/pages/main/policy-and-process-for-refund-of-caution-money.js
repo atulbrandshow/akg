@@ -32,13 +32,13 @@ const Home = () => {
     return (
         <>
             <div className="bg-gray-100">
-                <Header 
+                <Header
                     title={"Policy And Process For Refund Of Caution Money"}
                     bgKey="BG7"
-                    buttonType={"link"} 
+                    buttonType={"link"}
                     buttonText="Apply Now"
                     buttonLink="/"
-                    gradient={"bg-gradient-to-r from-black to-white/"} 
+                    gradient={"bg-gradient-to-r from-gray-900 to-transparent"}
                 />
                 <div className="w-full max-w-[1400px] pl-2 mt-20 mx-auto ">
                     <Breadcrumb data={BreadCrumb} />

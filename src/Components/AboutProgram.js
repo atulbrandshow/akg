@@ -59,7 +59,7 @@ const AboutProgram = ({ data }) => {
             <div className="order-2 md:order-1">
               <h1 className="text-[42px]  font-novaBold max-lg:text-4xl max-md:text-3xl text-gray-800">
                 {first}{" "}
-                <span className="font-novaSemi bg-text-gradient bg-clip-text text-transparent animate-gradient">
+                <span className="font-novaSemi text-brand-blue">
                   {middle}{" "}
                 </span>
                 {last}
@@ -90,7 +90,7 @@ const AboutProgram = ({ data }) => {
             {aboutData?.map((item, index) => (
               <div
                 key={index}
-                className=" flex items-center justify-center flex-col rounded-tr-3xl py-4 bg-gradient-to-r from-blue-500 to-indigo-600 shadow-md"
+                className=" flex items-center justify-center flex-col rounded-tr-3xl py-4 bg-brand-blue shadow-md"
               >
                 <div className="mb-2">{item.icon}</div>
                 <h3 className="text-gray-100 font-novaSemi text-sm mb-1">

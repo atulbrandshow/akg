@@ -66,7 +66,7 @@ export default function CampusSlider({ data }) {
             <div className="">
                 <div className='max-w-6xl mx-auto relative z-10 max-lg:px-2 px-24 flex flex-col gap-6 mb-10 max-sm:mb-2'>
                     <h2 className="max-w-4xl mx-auto text-5xl max-lg:text-4xl max-md:text-3xl max-sm:text-2xl font-novaLight text-center tracking-tight text-gray-900">
-                        {first} {" "} <span className='font-novaSemi bg-text-gradient bg-clip-text text-transparent animate-gradient'>{middle} {" "}</span> {last}
+                        {first} {" "} <span className='font-novaSemi text-brand-blue'>{middle} {" "}</span> {last}
                     </h2>
                     <p className="mt-2 mb-6 mx-auto text-2xl max-lg:text-xl max-sm:text-base text-gray-600 text-center font-novaLight">
                         {d?.Students_Faculty_Desc}
@@ -100,7 +100,7 @@ export default function CampusSlider({ data }) {
                             </div>
                             <div className='col-span-1 max-lg:col-span-3'>
                                 <div className="flex justify-start space-x-4 z-10 ">
-                                    <Button text={"REGISTER"} className="bg-btn-gradient animate-gradient tracking-wider text-white text-sm font-novaBold px-5 py-3 max-[400px]:text-xs rounded-xl hover:bg-[#3c5686]" />
+                                    <Button text={"REGISTER"} className="bg-brand-yellow tracking-wider text-brand-blue text-sm font-novaBold px-5 py-3 max-[400px]:text-xs rounded-xl hover:pl-8" />
                                     <Button text={"VIEW PLACEMENTS"} className="border border-white text-white text-sm font-novaBold px-5 py-3 rounded-xl max-[400px]:text-xs hover:bg-white hover:text-black" />
                                 </div>
                             </div>

@@ -24,7 +24,7 @@ export const Home = () => {
             <div className="bg-gray-200">
                 <div className="bg-PaperBackground ">
                     <div className="bg-white/80">
-                        <Header title={"Residential Facilities"} bgKey="BG7" position="center" gradient={"bg-gradient-to-r from-black to-white/"} height="h-[600px]"/>
+                        <Header title={"Residential Facilities"} bgKey="BG7" position="center" gradient={"bg-gradient-to-r from-gray-900 to-transparent"} height="h-[600px]" />
                         <section className="w-full max-w-[1400px] mx-auto grid grid-cols-12 py-20 gap-8 px-4 max-sm:py-6 max-sm:px-2 max-sm:gap-0">
                             <div className="col-span-9 max-xl:col-span-8 max-lg:col-span-12">
                                 <ResidentialFacilities />

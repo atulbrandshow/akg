@@ -61,14 +61,14 @@ export default function IndustryPartnerSlider() {
     <section className='py-10 bg-gray-100'>
       <div className="max-w-7xl mx-auto pt-6 overflow-hidden shadow-lg bg-white">
         <div className="">
-        <h1 className="text-[42px] text-center font-novaReg max-lg:text-4xl max-md:text-3xl max-sm:px-4 text-gray-700">
-        Industry{" "}
-              <span className="font-novaSemi bg-text-gradient bg-clip-text text-transparent animate-gradient">
+          <h1 className="text-[42px] text-center font-novaReg max-lg:text-4xl max-md:text-3xl max-sm:px-4 text-gray-700">
+            Industry{" "}
+            <span className="font-novaSemi text-brand-blue">
               Tie-Ups
-              </span>
-            </h1>
+            </span>
+          </h1>
           <p className="text-center text-gray-600 mb-12 max-w-4xl mx-auto px-3 max-sm:text-sm mt-3">
-          At AKG University, immersive industry engagement empowers students with the critical skills and practical insights needed to thrive in today’s dynamic and competitive professional landscape.
+            At AKG University, immersive industry engagement empowers students with the critical skills and practical insights needed to thrive in today’s dynamic and competitive professional landscape.
           </p>
 
           <div className="relative px-4">
@@ -95,7 +95,7 @@ export default function IndustryPartnerSlider() {
 
           <div className="bg-blue-600 text-white p-6 sm:p-10 text-sm sm:text-base text-center">
             <p>
-            The AKG Centre of Excellence for AI stands as a testament to the university’s dedication to pioneering research and innovation in deep learning. With five expert faculty members from the CSE Department spearheading AI-focused training, the institution is shaping future-ready professionals in emerging technologies.
+              The AKG Centre of Excellence for AI stands as a testament to the university’s dedication to pioneering research and innovation in deep learning. With five expert faculty members from the CSE Department spearheading AI-focused training, the institution is shaping future-ready professionals in emerging technologies.
             </p>
           </div>
         </div>

@@ -238,11 +238,11 @@ export default function Form({ setIsModalOpen }) {
     <div onClick={handleBackdropClick} className="fixed inset-0 flex items-center justify-center h-full pb-4 md:pt-20 backdrop-blur-md bg-black/60 z-[999999] px-2">
       <div ref={modalRef} className="relative bg-white rounded-lg shadow-lg max-w-md w-full overflow-hidden mt-10">
         <div className="bg-gray-100 flex flex-col justify-center items-center px-8 py-6 max-sm:py-6">
-          <h2 className="text-sm bg-gradient-to-r from-blue-600 to-rose-600 bg-clip-text text-transparent font-novaBold tracking-wider text-center">
+          <h2 className="text-sm text-brand-blue font-novaBold tracking-wider text-center">
             APPLY TODAY FOR
           </h2>
           <h1 className="mt-3 font-novaBold text-center text-xl max-sm:text-base">AKG UNIVERSITY PROGRAMS</h1>
-          <p className="bg-gradient-to-r from-blue-500 to-purple-600 text-white text-center font-novaBold mb-6 max-sm:mb-0 text-xs w-max py-2 px-4 max-sm:px-2 max-sm:py-1.5 rounded-lg mt-2">
+          <p className="bg-brand-blue text-white text-center font-novaBold mb-6 max-sm:mb-0 text-xs w-max py-2 px-4 max-sm:px-2 max-sm:py-1.5 rounded-lg mt-2">
             Registration End Date (Phase-II) - 30 Aug 2024
           </p>
         </div>
@@ -426,7 +426,7 @@ export default function Form({ setIsModalOpen }) {
               text={isSubmitting ? "SUBMITTING..." : "REGISTER NOW"}
               type="submit"
               disabled={isSubmitting}
-              className="bg-gradient-to-r from-blue-500 to-purple-600 text-white font-novaBold py-4 px-12 max-sm:px-6 max-sm:py-3 text-xs rounded-md"
+              className="bg-brand-yellow text-brand-blue font-novaBold py-4 px-12 max-sm:px-6 max-sm:py-3 text-xs rounded-md"
             />
             <Link href="#" className="text-xs max-[350px]:text-[11px] text-right font-novaBold text-gray-600 underline">
               ALREADY REGISTERED

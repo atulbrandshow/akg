@@ -21,13 +21,13 @@ export const Home = () => {
   return (
     <>
       <div className="bg-gray-100">
-        <Header title={"Teaching Practices"} buttonType={"link"} 
-          bgKey="BG9" 
+        <Header title={"Teaching Practices"} buttonType={"link"}
+          bgKey="BG9"
           position="center"
           buttonText="Apply Now"
-          buttonLink="/" 
-          gradient={"bg-gradient-to-r from-black to-white/"}
-        /> 
+          buttonLink="/"
+          gradient={"bg-gradient-to-r from-gray-900 to-transparent"}
+        />
         <section className="w-full max-w-[1400px] mx-auto grid grid-cols-12 py-20 max-sm:py-5 gap-10 px-2 max-sm:gap-0">
           <div className="col-span-9 max-xl:col-span-8 max-lg:col-span-12">
             <div className="container mx-auto">
@@ -36,7 +36,7 @@ export const Home = () => {
                   Optimal Knowledge Acquisition at AKG University
                 </h2>
                 <p className="mb-5 mt-2.5 max-2xl:text-[15px] font-novaReg leading-6 max-2xl:leading-5">
-                   At AKG University, students cultivate the ability to perceive and comprehend the world around them. The learning experience at AKG emphasizes the development of conceptual frameworks, embracing outcomes, retaining practical knowledge, and mastering methods and systems. Students engage in analyzing and discussing ideas while also fostering behaviors suited to various contexts.
+                  At AKG University, students cultivate the ability to perceive and comprehend the world around them. The learning experience at AKG emphasizes the development of conceptual frameworks, embracing outcomes, retaining practical knowledge, and mastering methods and systems. Students engage in analyzing and discussing ideas while also fostering behaviors suited to various contexts.
                 </p>
               </div>
               <div className="px-3 max-sm:px-0">
@@ -58,7 +58,7 @@ export const Home = () => {
             </div>
           </div>
           <div className="col-span-3 max-xl:col-span-4 max-lg:col-span-12">
-          <Calendar currentSemester={currentSemester} setCurrentSemester={setCurrentSemester} />
+            <Calendar currentSemester={currentSemester} setCurrentSemester={setCurrentSemester} />
             <SideBar title={"About Us"} LinkList={SideBarLink} />
           </div>
         </section>

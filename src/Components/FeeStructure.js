@@ -23,7 +23,7 @@ export default function FeeStructure({ data }) {
             <div>
                 <h1 className="text-[42px] text-center font-novaReg max-lg:text-4xl max-md:text-3xl max-sm:px-4 text-gray-700">
                     {first}{" "}
-                    <span className="font-novaSemi bg-text-gradient bg-clip-text text-transparent animate-gradient">
+                    <span className="font-novaSemi text-brand-blue">
                         {middle}{" "}{last}
                     </span>
                 </h1>
@@ -34,7 +34,7 @@ export default function FeeStructure({ data }) {
                     <button
                         onClick={() => setActiveTab('fees')}
                         className={`px-6 py-3 text-lg max-sm:text-base font-novaSemi rounded-full transition-all duration-300 w-full sm:w-auto ${activeTab === 'fees'
-                            ? 'bg-blue-600 text-white shadow-lg scale-105'
+                            ? 'bg-brand-blue text-white shadow-lg scale-105'
                             : 'bg-gray-100 text-gray-600 hover:bg-gray-200 border border-gray-300'
                             }`}
                     >
@@ -43,7 +43,7 @@ export default function FeeStructure({ data }) {
                     <button
                         onClick={() => setActiveTab('scholarship')}
                         className={`px-6 py-3 text-lg max-sm:text-base font-novaSemi rounded-full transition-all duration-300 w-full sm:w-auto ${activeTab === 'scholarship'
-                            ? 'bg-blue-600 text-white shadow-lg scale-105'
+                            ? 'bg-brand-blue text-white shadow-lg scale-105'
                             : 'bg-gray-100 text-gray-600 hover:bg-gray-200 border border-gray-300'
                             }`}
                     >
@@ -63,7 +63,7 @@ export default function FeeStructure({ data }) {
                             <p className="text-center text-gray-500">No fee data available</p>
                         )}
                     </div>
-                    <Link href="/admissions/course-fee" className="mt-4 text-blue-600 hover:text-blue-800 font-medium flex justify-center items-center gap-2 mx-auto">
+                    <Link href="/admissions/course-fee" className="mt-4 text-brand-blue hover:text-blue-800 font-medium flex justify-center items-center gap-2 mx-auto">
                         View full Fee Structure
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
@@ -83,7 +83,7 @@ export default function FeeStructure({ data }) {
                             <p className="text-center text-gray-500">No scholarship data available</p>
                         )}
                     </div>
-                    <Link href="/admissions/scholarship" className="mt-4 text-blue-600 hover:text-blue-800 font-medium flex justify-center items-center gap-2 mx-auto">
+                    <Link href="/admissions/scholarship" className="mt-4 text-brand-blue hover:text-blue-800 font-medium flex justify-center items-center gap-2 mx-auto">
                         View full Scholarship
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />

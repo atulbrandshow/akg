@@ -34,7 +34,7 @@ export default function LabsShowcase({ data }) {
   }
 
   return (d?.Lab_Title || d?.Lab_Description || labsData.length > 0) && (
-    <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-r from-cyan-200 to-indigo-100">
+    <section className="py-12 sm:py-16 lg:py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <motion.div
@@ -46,7 +46,7 @@ export default function LabsShowcase({ data }) {
         >
           <h1 className="text-3xl sm:text-4xl lg:text-[42px] text-center font-novaReg text-gray-700 px-2 sm:px-0">
             {first}{" "}
-            <span className="font-novaSemi bg-text-gradient bg-clip-text text-transparent animate-gradient">
+            <span className="font-novaSemi text-brand-blue">
               {middle}{" "}
             </span>
             {last}
@@ -81,7 +81,7 @@ export default function LabsShowcase({ data }) {
                   </div>
                 )}
                 <div
-                  className={`absolute inset-0 bg-gradient-to-tr ${lab.gradient}`}
+                  className={`absolute inset-0 bg-brand-blue/10`}
                 ></div>
                 <span
                   className={`absolute top-3 left-3 sm:top-4 sm:left-4 bg-${lab.color}-100 text-${lab.color}-800 text-xs font-novaSemi px-2 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-sm`}
@@ -118,7 +118,7 @@ export default function LabsShowcase({ data }) {
                 </div>
 
                 <button
-                  className={`mt-4 sm:mt-6 bg-${lab.color}-600 text-white py-1.5 sm:py-2 px-3 sm:px-4 rounded-lg font-novaSemi hover:bg-${lab.color}-700 shadow-md hover:shadow-lg transition-all duration-300 text-sm sm:text-base`}
+                  className={`mt-4 sm:mt-6 bg-brand-blue text-white py-1.5 sm:py-2 px-3 sm:px-4 rounded-lg font-novaSemi hover:gap-2 shadow-md hover:shadow-lg transition-all duration-300 text-sm sm:text-base`}
                 >
                   View More Details
                 </button>

@@ -16,7 +16,7 @@ export default function HowToApply() {
         "Register for your desired program at AKG University by providing basic details such as Name, Email ID, Mobile No., State, Gender, and Password. Your Email ID will serve as your Username, and you will set your own password during registration.",
       subText:
         "Once registered, you'll receive a confirmation message on your registered email and mobile number. Use your Username and Password to log into your AKG University account.",
-      color: "from-blue-600 to-indigo-700",
+      color: "text-brand-blue",
       bgColor: "bg-blue-50",
       borderColor: "border-blue-200",
     },
@@ -27,9 +27,9 @@ export default function HowToApply() {
       icon: <FileText className="w-6 h-6" />,
       description:
         "After completing your registration, log into your AKG University account and select your desired program. Fill out the admission form and provide the required documents. Complete your application and submit it for review.",
-      color: "from-purple-600 to-violet-700",
-      bgColor: "bg-purple-50",
-      borderColor: "border-purple-200",
+      color: "text-brand-blue",
+      bgColor: "bg-blue-50",
+      borderColor: "border-blue-200",
     },
     {
       number: 3,
@@ -37,9 +37,9 @@ export default function HowToApply() {
       icon: <Award className="w-6 h-6" />,
       description:
         "Upon successful review of your application and documents, you will receive your admission confirmation. Based on the eligibility and merit, you may also be eligible for scholarships offered by AKG University.",
-      color: "from-emerald-600 to-teal-700",
-      bgColor: "bg-emerald-50",
-      borderColor: "border-emerald-200",
+      color: "text-brand-blue",
+      bgColor: "bg-blue-50",
+      borderColor: "border-blue-200",
     },
   ]
 
@@ -82,13 +82,13 @@ export default function HowToApply() {
           <div ref={componentRef} className="space-y-8">
             {/* Header */}
             <div className="text-center lg:text-left">
-              <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 text-sm font-novaSemi mb-4">
+              <div className="inline-flex items-center px-4 py-2 rounded-full bg-brand-blue/10 text-brand-blue text-sm font-novaSemi mb-4">
                 <GraduationCap className="w-4 h-4 mr-2" />
                 Application Process
               </div>
               <h2 className="text-4xl lg:text-5xl font-novaBold text-gray-900 mb-4">
                 How to{" "}
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="text-brand-blue">
                   Apply?
                 </span>
               </h2>
@@ -102,7 +102,7 @@ export default function HowToApply() {
               {/* Progress Line */}
               <div className="absolute top-8 left-8 right-8 h-0.5 bg-gray-200 hidden md:block" />
               <div
-                className="absolute top-8 left-8 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-1000 ease-in-out hidden md:block"
+                className="absolute top-8 left-8 h-0.5 bg-brand-blue transition-all duration-1000 ease-in-out hidden md:block"
                 style={{ width: `${((currentStep - 1) / 2) * 100}%`, maxWidth: "calc(100% - 6rem)" }}
               />
 
@@ -117,9 +117,9 @@ export default function HowToApply() {
                     <div className="flex items-center md:flex-col">
                       <div
                         className={`h-12 w-12 md:w-16 md:h-16 rounded-2xl flex items-center justify-center transition-all duration-300 shadow-lg ${step.number === currentStep
-                          ? `bg-gradient-to-br ${step.color} text-white shadow-xl`
+                          ? `bg-brand-blue text-white shadow-xl`
                           : step.number < currentStep
-                            ? "bg-gradient-to-br from-green-500 to-emerald-600 text-white"
+                            ? "bg-brand-yellow text-brand-blue"
                             : "bg-white border-2 border-gray-200 text-gray-400"
                           }`}
                       >
@@ -161,7 +161,7 @@ export default function HowToApply() {
                     <div className="flex flex-col items-start">
                       <div className="flex items-center gap-2">
                         <div
-                          className={`w-12 h-12 rounded-xl bg-gradient-to-br ${step.color} flex items-center justify-center text-white shadow-lg`}
+                          className={`w-12 h-12 rounded-xl bg-brand-blue flex items-center justify-center text-white shadow-lg`}
                         >
                           {step.icon}
                         </div>
@@ -189,20 +189,20 @@ export default function HowToApply() {
         <div className="lg:col-span-5">
           <div className="relative">
             {/* Background Decoration */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-800 rounded-3xl transform rotate-3 opacity-10"></div>
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-indigo-600 to-blue-800 rounded-3xl transform -rotate-3 opacity-10"></div>
+            <div className="absolute inset-0 bg-brand-blue/5 rounded-3xl transform rotate-3"></div>
+            <div className="absolute inset-0 bg-brand-yellow/5 rounded-3xl transform -rotate-3"></div>
 
             {/* Main Content */}
             <div className="relative bg-white rounded-3xl p-8 lg:p-10 shadow-2xl border border-gray-100">
               <div className="text-center lg:text-left">
-                <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-orange-100 to-red-100 text-orange-800 text-sm font-novaSemi mb-6">
+                <div className="inline-flex items-center px-4 py-2 rounded-full bg-brand-yellow/10 text-brand-blue text-sm font-novaSemi mb-6">
                   <Award className="w-4 h-4 mr-2" />
                   Start Your Journey
                 </div>
 
                 <h2 className="text-3xl lg:text-4xl font-novaBold text-gray-900 mb-6 leading-tight">
                   Ready to Master Your
-                  <span className="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">
+                  <span className="text-brand-blue">
                     {" "}
                     Professional Field?
                   </span>
@@ -216,18 +216,18 @@ export default function HowToApply() {
 
                 {/* Stats */}
                 <div className="grid grid-cols-2 gap-4 mb-8">
-                  <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-100">
-                    <div className="text-2xl font-novaBold text-blue-600">165.4M</div>
+                  <div className="text-center p-4 bg-blue-50 rounded-xl border border-blue-100">
+                    <div className="text-2xl font-novaBold text-brand-blue">165.4M</div>
                     <div className="text-sm text-gray-600 font-novaReg">Expected Employment</div>
                   </div>
-                  <div className="text-center p-4 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl border border-green-100">
-                    <div className="text-2xl font-novaBold text-green-600">11.9M</div>
+                  <div className="text-center p-4 bg-yellow-50 rounded-xl border border-yellow-100">
+                    <div className="text-2xl font-novaBold text-brand-blue">11.9M</div>
                     <div className="text-sm text-gray-600 font-novaReg">New Jobs by 2030</div>
                   </div>
                 </div>
 
-                <button className="group relative w-full lg:w-auto inline-flex items-center justify-center px-8 py-4 text-lg font-novaBold text-white bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 rounded-2xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-700 via-purple-700 to-indigo-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <button className="group relative w-full lg:w-auto inline-flex items-center justify-center px-8 py-4 text-lg font-novaBold text-brand-blue bg-brand-yellow rounded-2xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+                  <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <span className="relative flex items-center space-x-2">
                     <span>Apply Today</span>
                     <MoveRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />

@@ -10,11 +10,11 @@ export default function EligibilityCriteriaUnique({ data }) {
     const { first, middle, last } = splitTitle(d?.Admission_Criteria_Title);
 
     return (d?.Eligibility_Criteria_Description || d?.Selection_Process_Description) && (
-        <div className="bg-gradient-to-br from-purple-200 to-blue-100 py-12">
+        <div className="bg-gray-50 py-12">
             <div className="max-w-6xl mx-auto">
                 <h1 className="text-[42px] text-center font-novaReg max-lg:text-4xl max-md:text-3xl max-sm:px-4 text-gray-700">
                     {first}{" "}
-                    <span className="font-novaSemi bg-text-gradient bg-clip-text text-transparent animate-gradient">
+                    <span className="font-novaSemi text-brand-blue">
                         {middle}{" "}
                     </span>
                     {last}
@@ -24,14 +24,14 @@ export default function EligibilityCriteriaUnique({ data }) {
                     <div className="mt-5 bg-white rounded-3xl shadow-2xl overflow-hidden">
                         <div className="flex flex-col md:flex-row">
                             {/* Navigation Sidebar */}
-                            <nav className="md:w-1/3 bg-gradient-to-b from-blue-600 to-indigo-700 text-white p-6">
+                            <nav className="md:w-1/3 bg-brand-blue text-white p-6">
                                 <div className="space-y-4">
                                     {d?.Eligibility_Criteria_Description && (
                                         <button
                                             onClick={() => setActiveTab("eligibility")}
                                             className={`w-full text-left py-3 px-4 rounded-lg transition-all duration-300 ${activeTab === "eligibility"
                                                 ? "bg-white text-indigo-700 shadow-lg"
-                                                : "hover:bg-white/10 border border-gray-400"
+                                                : "hover:bg-white/10 border border-white/20"
                                                 }`}
                                         >
                                             <span className="text-xl max-sm:text-base font-semibold capitalize">
@@ -44,7 +44,7 @@ export default function EligibilityCriteriaUnique({ data }) {
                                             onClick={() => setActiveTab("selection")}
                                             className={`w-full text-left py-3 px-4 rounded-lg transition-all duration-300 ${activeTab === "selection"
                                                 ? "bg-white text-indigo-700 shadow-lg"
-                                                : "hover:bg-white/10 border border-gray-400"
+                                                : "hover:bg-white/10 border border-white/20"
                                                 }`}
                                         >
                                             <span className="text-xl max-sm:text-base font-semibold capitalize">
@@ -70,7 +70,7 @@ export default function EligibilityCriteriaUnique({ data }) {
                                                     Eligibility Criteria
                                                 </h2>
                                                 <div className="space-y-6">
-                                                    <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 shadow-lg">
+                                                    <div className="bg-blue-50 rounded-xl p-6 shadow-lg">
                                                         <div
                                                             className="max-w-none text-lg font-novaSemi text-gray-800 mb-3"
                                                             dangerouslySetInnerHTML={{
@@ -88,7 +88,7 @@ export default function EligibilityCriteriaUnique({ data }) {
                                                 <h2 className="text-3xl max-sm:text-2xl font-novaSemi text-gray-800 mb-4">
                                                     Selection Process
                                                 </h2>
-                                                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 shadow-lg">
+                                                <div className="bg-blue-50 rounded-xl p-6 shadow-lg">
                                                     <div
                                                         className="max-w-none text-lg font-novaSemi text-gray-800 mb-3"
                                                         dangerouslySetInnerHTML={{

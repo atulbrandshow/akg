@@ -122,7 +122,8 @@ export default function About() {
       <Header
         title={"Overview"}
         gradient={"bg-gradient-to-r from-gray-900 to-transparent"}
-        bgKey="BG-Building-2"
+        custom={true}
+        bgUrl="/image/about/over-view.webp"
         height="!py-14 sm:!py-20 xl:!py-24"
       />
 
@@ -198,7 +199,7 @@ export default function About() {
 
         {/* Content Area */}
         {/* Content Area */}
-        <div className="relative z-10 w-full flex flex-col items-center justify-center px-6 lg:px-20 py-10 gap-10">
+        <div className="relative z-10 w-full flex flex-col items-center justify-center px-2  py-10 gap-10">
           <h2 className="text-4xl font-novaBold text-white mb-10 text-center">Our Associations</h2>
           <div className="w-full">
             <Swiper

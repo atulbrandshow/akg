@@ -389,6 +389,7 @@ export default function NewNavBar() {
           </div>
         </div>
       </div>
+      <hr className="mt-2"/>
       <div className="mt-3 px-3">
         <ul
           ref={menuRef}

@@ -78,6 +78,7 @@ export default function Header({
   bgKey = "BG3",
   bgUrl,
   custom = false,
+  titleColor = "text-white",
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const bg = custom ? bgUrl : bgImages[bgKey] || "/image/header-image.jpg";
@@ -103,15 +104,15 @@ export default function Header({
         )}
       </div>
 
-      <div className="relative mx-auto max-w-[1400px] px-6 pb-0 pt-20 w-full">
+      <div className="relative mx-auto max-w-[1400px] px-6 pb-0 pt-32 w-full">
         <div className="lg:mx-0">
-          <h2 className="text-3xl max-w-lg font-novaReg tracking-tight text-white sm:text-[40px]">
+          <h2 className={`text-3xl max-w-lg font-novaReg tracking-tight ${titleColor} sm:text-[40px]`}>
             {title}
           </h2>
           <p className="mt-2 text-white font-novaReg max-w-xl text-lg lg:text-xl">
             {subHeading}
           </p>
-          <div className="mt-8">
+          <div className="mt-4">
             <button
               onClick={() => setIsModalOpen(true)}
               className="rounded-md uppercase bg-brand-yellow px-5 py-3 max-sm:py-2 max-sm:text-sm text-base font-novaBold tracking-wider text-brand-blue hover:pl-8 shadow-sm duration-500"

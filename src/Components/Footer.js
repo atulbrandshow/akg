@@ -131,7 +131,7 @@ export default function Footer() {
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
                     {navigation?.map((section, index) => (
                         <div key={index} className="w-full mb-6">
-                            <h3 className="font-novaSemi mb-4 text-white">{section.name}</h3>
+                            <h3 className="font-novaSemi mb-4 text-brand-yellow">{section.name}</h3>
                             <ul className='space-y-3'>
                                 {section.links?.map((link, index) => (
                                     <li key={index} className="mb-2 text-sm font-novaSemi">
@@ -144,7 +144,7 @@ export default function Footer() {
                         </div>
                     ))}
                     <div>
-                        <h3 className="text-base font-novaSemi text-white mb-4">Get in Touch</h3>
+                        <h3 className="text-base font-novaSemi text-brand-yellow mb-4">Get in Touch</h3>
                         <p className="text-sm font-novaSemi">Ajay Kumar Garg University</p>
                         <p className="mb-1 text-sm font-novaSemi">27th Km Milestone,Delhi-Meerut Expressway, P.O. Adhyatmik Nagar,Ghaziabad - 201015</p>
                         <p className="mb-2 text-sm font-novaSemi text-white"><strong>Student Helpline No:</strong></p>

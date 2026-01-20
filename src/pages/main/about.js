@@ -10,6 +10,9 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import Header from "@/Components/Header";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+import 'swiper/swiper-bundle.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,65 +30,7 @@ export default function About() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Section 3 animations
-      gsap.fromTo(
-        section3Ref.current.querySelector(".left-column"),
-        { x: -200, opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 0.8,
-          scrollTrigger: {
-            trigger: section3Ref.current,
-            start: "top 80%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-      gsap.fromTo(
-        section3Ref.current.querySelector(".right-column"),
-        { x: 200, opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 0.8,
-          scrollTrigger: {
-            trigger: section3Ref.current,
-            start: "top 80%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-
-      // Animate logos emerging from AKG logo center
-      const companyLogos = gsap.utils.toArray(".company-logo");
-
-      companyLogos.forEach((logo, i) => {
-        const angle = (i / logos.length) * 2 * Math.PI;
-        const radius = 240;
-        const targetX = radius * Math.cos(angle);
-        const targetY = radius * Math.sin(angle);
-
-        gsap.fromTo(
-          logo,
-          { x: 0, y: 0, scale: 0, opacity: 0, rotation: 360 },
-          {
-            x: targetX,
-            y: targetY,
-            scale: 1,
-            opacity: 1,
-            rotation: 0,
-            duration: 1,
-            delay: i * 0.12,
-            ease: "elastic.out(1, 0.6)",
-            scrollTrigger: {
-              trigger: section3Ref.current,
-              start: "top 60%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
-      });
+      // Section 3 animations removed as layout changed to slider
 
       // Partners section animations - with toggle actions
       gsap.fromTo(
@@ -187,12 +132,7 @@ export default function About() {
         className="relative w-full py-16"
       >
         {/* Background Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: "url('/image/building/building2.webp')",
-          }}
-        ></div>
+        <div className="absolute inset-0 bg-brand-blue bg-BG5 bg-cover bg-center opacity-10"></div>
 
         {/* Dark Overlay for contrast */}
         {/* <div className="absolute inset-0 bg-black/60"></div> */}
@@ -237,12 +177,12 @@ export default function About() {
       </section>
 
       {/* Fixed Background Section */}
-      <section className="bg-[url('/image/building/building5.webp')] bg-no-repeat bg-center bg-cover bg-fixed min-h-[600px]"></section>
+      {/* <section className="bg-[url('/image/building/building5.webp')] bg-no-repeat bg-center bg-cover bg-fixed min-h-[600px]"></section> */}
 
       {/* Section 3 */}
       <section
         ref={section3Ref}
-        className="relative w-full min-h-screen"
+        className="relative w-full h-[50vh]"
         style={{ overflow: "hidden" }}
       >
         {/* Background Image */}
@@ -257,63 +197,38 @@ export default function About() {
         <div className="absolute inset-0 bg-black opacity-60"></div>
 
         {/* Content Area */}
-        <div className="relative z-10 flex flex-col-reverse lg:flex-row lg:items-center lg:justify-between w-full min-h-screen px-6 lg:px-20 py-10 gap-10">
-          {/* Left Box - Logos */}
-          {/* LEFT SIDE — ROTATION AREA */}
-          <div className="left-column w-full lg:w-[50%] flex flex-col items-center justify-center">
-            {/* Animation Container */}
-            <div className="hidden lg:flex relative items-center justify-center h-[600px] w-[600px]">
-              {/* Center Logo */}
-              <div
-                className="absolute bg-white rounded-full flex items-center justify-center shadow-xl overflow-hidden"
-                style={{ width: "160px", height: "160px", zIndex: 20 }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse"></div>
-                <img
-                  src="/image/AKG_LOGO.PNG"
-                  className="w-36 h-36 object-contain relative z-10"
-                />
-              </div>
-
-              {/* Company Logos */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                {logos?.map((logo, index) => (
-                  <div
-                    key={index}
-                    className="company-logo absolute bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-2xl cursor-pointer"
-                    style={{ width: "110px", height: "110px" }}
-                  >
-                    <img src={logo} className="w-20 h-20 object-contain" />
+        {/* Content Area */}
+        <div className="relative z-10 w-full flex flex-col items-center justify-center px-6 lg:px-20 py-10 gap-10">
+          <h2 className="text-4xl font-novaBold text-white mb-10 text-center">Our Associations</h2>
+          <div className="w-full">
+            <Swiper
+              modules={[Autoplay]}
+              spaceBetween={30}
+              slidesPerView={5}
+              loop={true}
+              autoplay={{
+                delay: 0,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: false,
+              }}
+              speed={3000}
+              breakpoints={{
+                320: { slidesPerView: 2, spaceBetween: 20 },
+                640: { slidesPerView: 3, spaceBetween: 30 },
+                768: { slidesPerView: 4, spaceBetween: 40 },
+                1024: { slidesPerView: 5, spaceBetween: 50 },
+              }}
+              className="w-full"
+            >
+              {logos.map((logo, index) => (
+                <SwiperSlide key={index} className="flex items-center justify-center">
+                  <div className="bg-white rounded-full w-40 h-40 flex items-center justify-center shadow-lg mx-auto transition-transform hover:scale-110">
+                    <img src={logo} alt={`Logo ${index + 1}`} className="w-24 h-24 object-contain" />
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Grid Layout (Visible on Smaller Screens) */}
-            <div className="grid mt-10 grid-cols-3 gap-5 sm:grid-cols-4 md:grid-cols-5 lg:hidden">
-              {logos?.map((logo, index) => (
-                <div
-                  key={index}
-                  className="w-24 h-24 sm:w-20 sm:h-20 bg-white rounded-full flex items-center justify-center"
-                >
-                  <img
-                    src={logo}
-                    alt={`Logo ${index + 1}`}
-                    className="w-16 h-16 sm:w-14 sm:h-14 object-contain"
-                  />
-                </div>
+                </SwiperSlide>
               ))}
-            </div>
+            </Swiper>
           </div>
-
-          {/* RIGHT SIDE — TEXT BOX */}
-          {/* <div className="right-column w-full lg:w-[35%] bg-white shadow-lg rounded-lg p-6 text-center">
-            <h1 className="text-3xl font-semibold mb-4">AKG University</h1>
-            <p className="text-gray-600 mb-5">
-              Ajay Kumar Garg University (AKGU) is recognized and actively
-              participates as a member of various professional associations.
-            </p>
-          </div> */}
         </div>
       </section>
 

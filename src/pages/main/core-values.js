@@ -12,7 +12,7 @@ export const Home = () => {
     const bgElements = bgRef.current.querySelectorAll('.bg-animate');
     const pulseElements = bgRef.current.querySelectorAll('.pulse-animate');
     const scaleElements = bgRef.current.querySelectorAll('.scale-animate');
-    
+
     // Initial setup
     gsap.set(bgElements, {
       opacity: 0.3,
@@ -74,7 +74,7 @@ export const Home = () => {
             backgroundSize: '50px 50px'
           }}></div>
         </div>
-        
+
         {/* Animated Background Elements */}
         <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
           {/* Blue Squares */}
@@ -82,13 +82,13 @@ export const Home = () => {
           <div className="bg-animate absolute top-40 right-40 w-12 h-12 border-3 border-blue-600 opacity-25 rotate-45"></div>
           <div className="bg-animate absolute bottom-60 left-24 w-20 h-20 border-3 border-blue-400 opacity-35 -rotate-12"></div>
           <div className="bg-animate absolute top-1/3 left-1/4 w-8 h-8 border-2 border-blue-300 opacity-40 rotate-30"></div>
-          
+
           {/* Yellow Diamonds */}
           <div className="bg-animate absolute top-32 right-24 w-14 h-14 border-3 border-yellow-500 opacity-30 rotate-45"></div>
           <div className="bg-animate absolute bottom-40 right-48 w-18 h-18 border-3 border-yellow-600 opacity-25 rotate-45"></div>
           <div className="bg-animate absolute top-2/3 left-16 w-10 h-10 border-2 border-yellow-400 opacity-35 rotate-45"></div>
           <div className="bg-animate absolute top-1/4 right-1/3 w-6 h-6 border-2 border-yellow-300 opacity-45 rotate-45"></div>
-          
+
           {/* Blue & Yellow Circles */}
           <div className="bg-animate absolute top-24 left-1/2 w-24 h-24 border-3 border-blue-300 rounded-full opacity-20"></div>
           <div className="bg-animate absolute bottom-32 left-2/3 w-16 h-16 border-2 border-yellow-300 rounded-full opacity-30"></div>
@@ -96,24 +96,24 @@ export const Home = () => {
           <div className="bg-animate absolute bottom-20 left-1/3 w-20 h-20 border-3 border-yellow-500 rounded-full opacity-25"></div>
           <div className="bg-animate absolute top-16 right-1/4 w-8 h-8 border-2 border-blue-400 rounded-full opacity-40"></div>
           <div className="bg-animate absolute bottom-1/4 right-16 w-14 h-14 border-2 border-yellow-400 rounded-full opacity-30"></div>
-          
+
           {/* Pulse Elements */}
           <div className="pulse-animate absolute top-1/4 left-1/2 w-18 h-18 border-2 border-blue-600 opacity-25 rotate-12"></div>
           <div className="pulse-animate absolute bottom-1/3 right-1/4 w-10 h-10 border-2 border-yellow-600 rounded-full opacity-30"></div>
           <div className="pulse-animate absolute top-3/4 left-1/4 w-12 h-12 border-2 border-blue-300 rotate-45 opacity-35"></div>
           <div className="pulse-animate absolute top-1/6 right-1/3 w-6 h-6 border-2 border-yellow-500 rounded-full opacity-40"></div>
-          
+
           {/* Scale Elements */}
           <div className="scale-animate absolute top-1/3 right-1/6 w-16 h-16 border-2 border-blue-400 rotate-30 opacity-25"></div>
           <div className="scale-animate absolute bottom-1/6 left-1/6 w-14 h-14 border-2 border-yellow-400 rotate-45 opacity-30"></div>
           <div className="scale-animate absolute top-5/6 right-1/2 w-8 h-8 border-2 border-blue-500 rounded-full opacity-35"></div>
           <div className="scale-animate absolute bottom-1/2 left-3/4 w-10 h-10 border-2 border-yellow-300 rotate-60 opacity-40"></div>
-          
+
           {/* Additional Triangles */}
           <div className="bg-animate absolute top-1/5 left-1/5 w-0 h-0 border-l-8 border-r-8 border-b-12 border-l-transparent border-r-transparent border-b-blue-400 opacity-30"></div>
           <div className="pulse-animate absolute bottom-1/5 right-1/5 w-0 h-0 border-l-6 border-r-6 border-b-10 border-l-transparent border-r-transparent border-b-yellow-500 opacity-35"></div>
           <div className="scale-animate absolute top-2/3 left-3/4 w-0 h-0 border-l-10 border-r-10 border-b-14 border-l-transparent border-r-transparent border-b-blue-500 opacity-25"></div>
-          
+
           {/* Floating Dots */}
           <div className="bg-animate absolute top-10 left-10 w-4 h-4 bg-blue-300 rounded-full opacity-20"></div>
           <div className="pulse-animate absolute top-20 right-20 w-6 h-6 bg-yellow-400 opacity-25"></div>
@@ -122,7 +122,7 @@ export const Home = () => {
           <div className="pulse-animate absolute top-1/2 left-10 w-7 h-7 bg-blue-500 opacity-20"></div>
           <div className="scale-animate absolute top-10 right-1/2 w-4 h-4 bg-yellow-500 rotate-30 opacity-25"></div>
         </div>
-        
+
         <Header
           title={"Core Values"}
           bgKey="BG-Building-5"

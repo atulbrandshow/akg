@@ -16,12 +16,12 @@ const BreadCrumb = [
 
 
 const SideBarLink = [
-  {name: "Our Identity" , link : "/overview"},
-  {name: "Leadership" , link : ""},
-  {name: "Governance" , link : ""},
-  {name: "Recognition and Approvals" , link : ""},
-  {name: "Awards and Rankings" , link : ""},
-  {name: "Institution Social Responsibility" , link : ""}
+  { name: "Our Identity", link: "/overview" },
+  { name: "Leadership", link: "" },
+  { name: "Governance", link: "" },
+  { name: "Recognition and Approvals", link: "" },
+  { name: "Awards and Rankings", link: "" },
+  { name: "Institution Social Responsibility", link: "" }
 ]
 
 export default function Home() {
@@ -39,7 +39,7 @@ export default function Home() {
             <CampusVirtualTour />
           </div>
           <div className="sm:w-1/4 ">
-              <SideBar title={"About Us"} LinkList={SideBarLink} />            
+            <SideBar title={"About Us"} LinkList={SideBarLink} />
           </div>
         </div>
       </div>

@@ -59,7 +59,7 @@ export default function About() {
 
       // Animate logos emerging from AKG logo center
       const companyLogos = gsap.utils.toArray(".company-logo");
-      
+
       companyLogos.forEach((logo, i) => {
         const angle = (i / logos.length) * 2 * Math.PI;
         const radius = 240;
@@ -137,8 +137,8 @@ export default function About() {
             Math.floor(i / 5) % 3 === 0
               ? -200
               : Math.floor(i / 5) % 3 === 1
-              ? 200
-              : -200,
+                ? 200
+                : -200,
           opacity: 0,
         },
         {
@@ -178,12 +178,13 @@ export default function About() {
         title={"Overview"}
         gradient={"bg-gradient-to-r from-gray-900 to-transparent"}
         bgKey="BG-Building-2"
+        height="!py-14 sm:!py-20 xl:!py-24"
       />
 
-      {/* Section 1 */}
+      {/* Section 1 - Modern & Simple Redesign */}
       <section
         ref={section1Ref}
-        className="relative w-full h-full overflow-hidden"
+        className="relative w-full py-16"
       >
         {/* Background Image */}
         <div
@@ -193,52 +194,43 @@ export default function About() {
           }}
         ></div>
 
-        {/* Overlay with Opacity */}
-        <div className="bg-overlay absolute inset-0 bg-black opacity-60"></div>
+        {/* Dark Overlay for contrast */}
+        {/* <div className="absolute inset-0 bg-black/60"></div> */}
 
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="bg-white rounded-3xl shadow-xl overflow-hidden border-t-4 border-brand-blue">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
+              {/* Image Side (Optional visual anchor or just gradient sidebar) */}
+              <div className="hidden lg:block lg:col-span-1 bg-brand-blue inset-0"></div>
 
-        {/* Gradient Overlays */}
-        <div className="gradient-overlay absolute inset-0 bg-gradient-to-r from-blue-900/10 via-transparent to-purple-900/10"></div>
-        <div className="gradient-overlay absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20"></div>
+              {/* Content Side */}
+              <div className="lg:col-span-11 p-8 sm:p-12 lg:p-10">
+                <div className="max-w-5xl">
+                  <h1 className="text-4xl sm:text-5xl font-novaBold tracking-tight mb-8">
+                    <span className="text-brand-blue">
+                      About AKG University
+                    </span>
+                  </h1>
 
-        {/* Content Container */}
-        <div
-          className="pt-24 pb-5 sm:pt-32 sm:pb-10 lg:pt-52 lg:pb-16 relative max-w-7xl mx-auto flex items-center justify-center h-full px-4 max-sm:px-0 max-lg:items-end max-xl:items-end gap-10"
-          style={{ perspective: "1000px" }}
-        >
-          {/* Single centered card with overview content */}
-          <div
-            className="left-card relative bg-white/95 backdrop-blur-sm shadow-2xl rounded-lg w-[90%] max-w-4xl h-auto flex flex-col items-center justify-center px-10 py-12 max-sm:px-6 border border-white/20 overflow-hidden"
-            style={{
-              fontFamily: "Arial, sans-serif",
-              transformStyle: "preserve-3d",
-            }}
-          >
-            {/* Card Shimmer Effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 transform -translate-x-full animate-shimmer"></div>
-            
-            {/* Heading */}
-            <h1 className="text-4xl max-sm:text-2xl font-novaBold text-center mb-8 text-gray-900">
-              About AKG University
-            </h1>
+                  <div className="space-y-6 text-lg sm:text-xl text-gray-800 leading-relaxed font-novaReg text-justify">
+                    <p>
+                      <span className="font-semibold text-brand-blue">AKG University</span> is a centre of academic excellence and innovation, proudly built on the strong foundation and laurels of <span className="font-semibold text-brand-blue">Ajay Kumar Garg Engineering College (AKGEC)</span>, which brings over three decades of rich history in technical education and academic distinction. The enduring AKGEC legacy of discipline, quality education, and consistent outcomes continues to shape the university's vision and values.
+                    </p>
 
-            {/* Overview Content */}
-            <div className="text-gray-700 text-base sm:text-lg leading-relaxed space-y-6 font-novaReg text-justify">
-              <p>
-                AKG University is a centre of academic excellence and innovation, proudly built on the strong foundation and laurels of Ajay Kumar Garg Engineering College (AKGEC), which brings over three decades of rich history in technical education and academic distinction. The enduring AKGEC legacy of discipline, quality education, and consistent outcomes continues to shape the university's vision and values.
-              </p>
-              
-              <p>
-                Situated on a 40-acre green campus in Ghaziabad, Uttar Pradesh, AKG University offers industry-aligned undergraduate, postgraduate, and doctoral programmes in engineering, technology, and management. The university adopts an interdisciplinary approach to education, emphasizing practical learning and strong collaborations with leading multinational organizations.
-              </p>
-              
-              <p>
-                Supported by state-of-the-art laboratories, automated libraries, advanced research facilities, Centres of Excellence, and dedicated skill development centres, AKG University fosters innovation, employability, and entrepreneurship. The campus offers Wi-Fi-enabled hostels, top-tier sports and recreation facilities, and a vibrant student life that nurtures creativity, leadership, and holistic development.
-              </p>
-              
-              <p>
-                With a strong commitment to academic excellence, outstanding placements, and measurable outcomes, the university boasts a distinguished record of alumni success and industry recognition. Guided by visionary leadership and an accomplished faculty, AKG University is shaping future-ready technologists, innovators, and responsible global citizens grounded in ethical values and social responsibility.
-              </p>
+                    <p>
+                      Situated on a 40-acre green campus in Ghaziabad, Uttar Pradesh, AKG University offers industry-aligned undergraduate, postgraduate, and doctoral programmes in engineering, technology, and management. The university adopts an interdisciplinary approach to education, emphasizing practical learning and strong collaborations with leading multinational organizations.
+                    </p>
+
+                    <p>
+                      Supported by state-of-the-art laboratories, automated libraries, advanced research facilities, Centres of Excellence, and dedicated skill development centres, AKG University fosters innovation, employability, and entrepreneurship. The campus offers Wi-Fi-enabled hostels, top-tier sports and recreation facilities, and a vibrant student life that nurtures creativity, leadership, and holistic development.
+                    </p>
+
+                    <p>
+                      With a strong commitment to academic excellence, outstanding placements, and measurable outcomes, the university boasts a distinguished record of alumni success and industry recognition. Guided by visionary leadership and an accomplished faculty, AKG University is shaping future-ready technologists, innovators, and responsible global citizens grounded in ethical values and social responsibility.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -326,7 +318,7 @@ export default function About() {
       </section>
 
       {/* Last Section - Top Hiring Partners */}
-      <section ref={partnersRef} className="relative w-full py-20 bg-[#f9fafb]">
+      <section ref={partnersRef} className="relative w-full py-20 bg-[#f9fafb] overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           {/* Heading */}
           <h2 className="text-4xl max-sm:text-2xl font-semibold mb-4 leading-tight text-black">

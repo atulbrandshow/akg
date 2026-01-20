@@ -85,7 +85,7 @@ export default function Header({
 
   return (
     <div
-      className={`relative isolate xl:overflow-hidden py-24 sm:py-32 xl:py-48 max-[400px]:py-12 ${height}`}
+      className={`relative isolate overflow-hidden flex flex-col justify-end pt-24 pb-12 sm:pt-32 xl:pt-48 max-[400px]:py-12 ${height}`}
     >
       <div className="absolute inset-0 -z-10 h-full w-full">
         <img
@@ -95,17 +95,16 @@ export default function Header({
         />
         {gradient && (
           <div
-            className={`absolute inset-0 ${
-              typeof gradient === "string"
-                ? gradient
-                : "bg-gradient-to-r from-black/70 to-transparent"
-            }`}
+            className={`absolute inset-0 ${typeof gradient === "string"
+              ? gradient
+              : "bg-black/60"
+              }`}
           ></div>
         )}
       </div>
 
-      <div className="relative mx-auto max-w-[1400px] px-6 py-20">
-        <div className="mx-auto lg:mx-0">
+      <div className="relative mx-auto max-w-[1400px] px-6 pb-0 pt-20 w-full">
+        <div className="lg:mx-0">
           <h2 className="text-3xl max-w-lg font-novaReg tracking-tight text-white sm:text-[40px]">
             {title}
           </h2>
@@ -115,7 +114,7 @@ export default function Header({
           <div className="mt-8">
             <button
               onClick={() => setIsModalOpen(true)}
-              className="rounded-md uppercase bg-btn-gradient animate-gradient px-5 py-3 max-sm:py-2 max-sm:text-sm text-base font-novaBold tracking-wider text-white hover:pl-8 shadow-sm duration-500"
+              className="rounded-md uppercase bg-brand-yellow px-5 py-3 max-sm:py-2 max-sm:text-sm text-base font-novaBold tracking-wider text-brand-blue hover:pl-8 shadow-sm duration-500"
             >
               Apply Now ➜
             </button>

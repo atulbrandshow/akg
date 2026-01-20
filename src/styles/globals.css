@@ -114,19 +114,19 @@
 }
 
 .bg-primary {
-  background-color: #3c5686;
+  background-color: #002147;
 }
 
 .text-primary {
-  color: #3c5686;
+  color: #002147;
 }
 
 .bg-secondary {
-  background-color: #fecc00;
+  background-color: #FFC526;
 }
 
 .text-secondary {
-  color: #fecc00;
+  color: #FFC526;
 }
 
 .custom-scrollbar::-webkit-scrollbar {

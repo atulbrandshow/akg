@@ -126,12 +126,12 @@ const navigation2 = [
 
 export default function Footer() {
     return (
-        <footer className="bg-gradient-to-t from-blue-900 to-teal-700 text-white py-20">
+        <footer className="bg-brand-blue text-white py-20">
             <div className="mx-auto max-w-[1400px] max-[1400px]:max-w-7xl max-[1300px]:max-w-6xl max-[1160px]:max-w-5xl px-4">
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
                     {navigation?.map((section, index) => (
                         <div key={index} className="w-full mb-6">
-                            <h3 className="font-novaSemi mb-4 text-[#62cdd7]">{section.name}</h3>
+                            <h3 className="font-novaSemi mb-4 text-white">{section.name}</h3>
                             <ul className='space-y-3'>
                                 {section.links?.map((link, index) => (
                                     <li key={index} className="mb-2 text-sm font-novaSemi">
@@ -144,14 +144,14 @@ export default function Footer() {
                         </div>
                     ))}
                     <div>
-                        <h3 className="text-base font-novaSemi text-[#62cdd7] mb-4">Get in Touch</h3>
+                        <h3 className="text-base font-novaSemi text-white mb-4">Get in Touch</h3>
                         <p className="text-sm font-novaSemi">Ajay Kumar Garg University</p>
                         <p className="mb-1 text-sm font-novaSemi">27th Km Milestone,Delhi-Meerut Expressway, P.O. Adhyatmik Nagar,Ghaziabad - 201015</p>
-                        <p className="mb-2 text-sm font-novaSemi text-[#62cdd7]"><strong>Student Helpline No:</strong></p>
+                        <p className="mb-2 text-sm font-novaSemi text-white"><strong>Student Helpline No:</strong></p>
                         <p className="mb-2 text-sm font-novaSemi">7290034978</p>
-                        <p className="mb-2 text-sm font-novaSemi text-[#62cdd7]"><strong>Toll Free:</strong></p>
+                        <p className="mb-2 text-sm font-novaSemi text-white"><strong>Toll Free:</strong></p>
                         <p className="mb-2 text-sm font-novaSemi">8744052891-93</p>
-                        <p className="text-sm font-novaSemi text-[#62cdd7]"><strong>Email:</strong></p>
+                        <p className="text-sm font-novaSemi text-white"><strong>Email:</strong></p>
                         <p><a href="#" className="text-sm hover:underline font-novaSemi">info@akgec.ac.in</a></p>
                     </div>
                 </div>

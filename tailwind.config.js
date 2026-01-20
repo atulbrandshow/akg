@@ -9,17 +9,21 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        'brand-blue': '#002147',
+        'brand-yellow': '#FFC526',
+      },
       content: {
         'link': 'url("/image/rank-side-star.webp")',
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        'btn-gradient': 'linear-gradient(to right, #1163fb, #9c3aed)',
+        'btn-gradient': 'linear-gradient(to right, #3C567B, #FFC526)',
         "offwhite-gradient": 'linear-gradient(90deg, rgb(242, 244, 248) 70%, rgba(242, 244, 248, .1))',
         "edgeGradient": 'linear-gradient(to right, #00949a, #f7cc23, #000)',
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-        'text-gradient': 'linear-gradient(to right, #dc2626, #1d4ed8)',
+        'text-gradient': 'linear-gradient(to right, #3C567B, #FFC526)',
         'custom-image': "url('/image/slider-home/asfdasda.jpg')",
         'About': "url('/image/lab/User-Manual-AKGEC 5.webp')",
         'Academics': "url('/image/lab/User-Manual-AKGEC 6.webp')",

@@ -4,7 +4,7 @@ import LeaderShip from "../pagesComp/LeaderShip";
 import Breadcrumb from "@/Components/Breadcrumb";
 
 const SideBarLink = [
-  { name: "Our Identity", link: "/overview" },
+  { name: "Our Legacy", link: "/overview" },
   { name: "Leadership", link: "" },
   { name: "Governance", link: "" },
   { name: "Recognition and Approvals", link: "" },

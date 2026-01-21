@@ -8,7 +8,7 @@ const Button = {
 };
 
 const SideBarLink = [
-  { name: "Our Identity", link: "about/our-identity" },
+  { name: "Our Legacy", link: "about/our-identity" },
   { name: "Leadership", link: "about/leadership" },
   { name: "Governance", link: "about/governance" },
   { name: "Recognition and Approvals", link: "about/recognitions-and-approvals" },
@@ -27,7 +27,7 @@ export const Home = () => {
         height="!py-14 sm:!py-20 xl:!py-24"
 
       />
-      <section className="w-full max-w-[1400px] mx-auto grid grid-cols-12 py-20 max-sm:py-5 gap-10 px-5 max-sm:px-2 max-sm:gap-0">
+      <section className="w-full max-w-[1400px] mx-auto grid grid-cols-12 py-5 max-sm:py-5 gap-5 px-5 max-sm:px-2 max-sm:gap-0">
         <div className="col-span-9 max-xl:col-span-8 max-lg:col-span-12">
           <OurIdentity />
         </div>

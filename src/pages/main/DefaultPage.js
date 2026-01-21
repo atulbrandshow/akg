@@ -1,9 +1,17 @@
+// 1. Add the dynamic import from next/dynamic
+import dynamic from 'next/dynamic';
+
 import Breadcrumb from '@/Components/Breadcrumb';
-import Description from '@/Components/Description'
+import Description from '@/Components/Description';
 import Header from '@/Components/Header';
-import Holder from '@/Components/Holder';
 import SideBar from '@/Components/SideBar';
-import React from 'react'
+import React from 'react';
+
+// 2. Change the Holder import to be dynamic and disable SSR
+const Holder = dynamic(() => import('@/Components/Holder'), {
+  ssr: false, // This prevents the build error by only loading Holder in the browser
+});
+
 const SideBarLink = [
     { name: "Our Identity", link: "/overview" },
     { name: "Leadership", link: "" },
@@ -22,6 +30,7 @@ function Default({ data }) {
                     {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}
                     {data?.description && <Description text={data?.description} />}
 
+                    {/* The code below remains exactly the same, but now uses the dynamic Holder */}
                     {data?.extraComponentData && (
                         <div className="space-y-8">
                             {Array.from({ length: 5 }, (_, i) => i + 1).map(

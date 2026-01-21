@@ -97,7 +97,7 @@ const OurIdentity = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen bg-gray-100 py-20 overflow-hidden"
+      className="relative min-h-screen bg-gray-100 py-10 overflow-hidden"
     >
       {/* Layer 1: Enhanced Base Background */}
       <div className="absolute inset-0">
@@ -229,7 +229,7 @@ const OurIdentity = () => {
         {/* Section Title */}
         <div ref={titleRef} className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-primary">
-            Our Identity
+            Our Legacy
           </h2>
           <div className="w-24 h-1 bg-secondary mx-auto rounded-full"></div>
         </div>

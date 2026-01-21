@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { CheckSquare } from "lucide-react";
 import {
   programFeatures,
   recruitmentPartners,
@@ -132,11 +133,13 @@ export default function About() {
         ref={section1Ref}
         className="relative w-full py-16"
       >
-        {/* Background Image */}
-        <div className="absolute inset-0 bg-brand-blue bg-BG5 bg-cover bg-center opacity-10"></div>
-
-        {/* Dark Overlay for contrast */}
-        {/* <div className="absolute inset-0 bg-black/60"></div> */}
+        {/* Background Grid Pattern */}
+        <div className="absolute inset-0 bg-white"
+          style={{
+            backgroundImage: `radial-gradient(rgba(0, 33, 71, 0.2) 2px, transparent 2px)`,
+            backgroundSize: '24px 24px'
+          }}>
+        </div>
 
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <div className="bg-white rounded-3xl shadow-xl overflow-hidden border-t-4 border-brand-blue">
@@ -154,21 +157,33 @@ export default function About() {
                   </h1>
 
                   <div className="space-y-6 text-lg sm:text-xl text-gray-800 leading-relaxed font-novaReg text-justify">
-                    <p>
-                      <span className="font-semibold text-brand-blue">AKG University</span> is a centre of academic excellence and innovation, proudly built on the strong foundation and laurels of <span className="font-semibold text-brand-blue">Ajay Kumar Garg Engineering College (AKGEC)</span>, which brings over three decades of rich history in technical education and academic distinction. The enduring AKGEC legacy of discipline, quality education, and consistent outcomes continues to shape the university's vision and values.
-                    </p>
+                    <div className="flex gap-4 items-start">
+                      <CheckSquare className="w-6 h-6 text-brand-blue shrink-0 mt-1" />
+                      <p>
+                        <span className="font-semibold text-brand-blue">AKG University</span> is a centre of academic excellence and innovation, proudly built on the strong foundation and laurels of <span className="font-semibold text-brand-blue">Ajay Kumar Garg Engineering College (AKGEC)</span>, which brings over three decades of rich history in technical education and academic distinction. The enduring AKGEC legacy of discipline, quality education, and consistent outcomes continues to shape the university's vision and values.
+                      </p>
+                    </div>
 
-                    <p>
-                      Situated on a 40-acre green campus in Ghaziabad, Uttar Pradesh, AKG University offers industry-aligned undergraduate, postgraduate, and doctoral programmes in engineering, technology, and management. The university adopts an interdisciplinary approach to education, emphasizing practical learning and strong collaborations with leading multinational organizations.
-                    </p>
+                    <div className="flex gap-4 items-start">
+                      <CheckSquare className="w-6 h-6 text-brand-blue shrink-0 mt-1" />
+                      <p>
+                        Situated on a 40-acre green campus in Ghaziabad, Uttar Pradesh, AKG University offers industry-aligned undergraduate, postgraduate, and doctoral programmes in engineering, technology, and management. The university adopts an interdisciplinary approach to education, emphasizing practical learning and strong collaborations with leading multinational organizations.
+                      </p>
+                    </div>
 
-                    <p>
-                      Supported by state-of-the-art laboratories, automated libraries, advanced research facilities, Centres of Excellence, and dedicated skill development centres, AKG University fosters innovation, employability, and entrepreneurship. The campus offers Wi-Fi-enabled hostels, top-tier sports and recreation facilities, and a vibrant student life that nurtures creativity, leadership, and holistic development.
-                    </p>
+                    <div className="flex gap-4 items-start">
+                      <CheckSquare className="w-6 h-6 text-brand-blue shrink-0 mt-1" />
+                      <p>
+                        Supported by state-of-the-art laboratories, automated libraries, advanced research facilities, Centres of Excellence, and dedicated skill development centres, AKG University fosters innovation, employability, and entrepreneurship. The campus offers Wi-Fi-enabled hostels, top-tier sports and recreation facilities, and a vibrant student life that nurtures creativity, leadership, and holistic development.
+                      </p>
+                    </div>
 
-                    <p>
-                      With a strong commitment to academic excellence, outstanding placements, and measurable outcomes, the university boasts a distinguished record of alumni success and industry recognition. Guided by visionary leadership and an accomplished faculty, AKG University is shaping future-ready technologists, innovators, and responsible global citizens grounded in ethical values and social responsibility.
-                    </p>
+                    <div className="flex gap-4 items-start">
+                      <CheckSquare className="w-6 h-6 text-brand-blue shrink-0 mt-1" />
+                      <p>
+                        With a strong commitment to academic excellence, outstanding placements, and measurable outcomes, the university boasts a distinguished record of alumni success and industry recognition. Guided by visionary leadership and an accomplished faculty, AKG University is shaping future-ready technologists, innovators, and responsible global citizens grounded in ethical values and social responsibility.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -133,19 +133,22 @@ export default function About() {
         ref={section1Ref}
         className="relative w-full py-16"
       >
-        {/* Background Grid Pattern */}
-        <div className="absolute inset-0 bg-white"
-          style={{
-            backgroundImage: `radial-gradient(rgba(0, 33, 71, 0.2) 2px, transparent 2px)`,
-            backgroundSize: '24px 24px'
-          }}>
-        </div>
+        {/* Background Image */}
+        <div className="absolute inset-0 bg-brand-blue bg-BG5 bg-cover bg-center opacity-10"></div>
+
+        {/* Dark Overlay for contrast */}
+        {/* <div className="absolute inset-0 bg-black/60"></div> */}
 
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <div className="bg-white rounded-3xl shadow-xl overflow-hidden border-t-4 border-brand-blue">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
               {/* Image Side (Optional visual anchor or just gradient sidebar) */}
-              <div className="hidden lg:block lg:col-span-1 bg-brand-blue inset-0"></div>
+              <div className="hidden lg:block lg:col-span-1 bg-brand-blue inset-0 relative overflow-hidden">
+                <div className="absolute inset-0" style={{
+                  backgroundImage: `radial-gradient(rgba(255, 255, 255, 0.5) 1px, transparent 1px)`,
+                  backgroundSize: '16px 16px'
+                }}></div>
+              </div>
 
               {/* Content Side */}
               <div className="lg:col-span-11 p-8 sm:p-12 lg:p-10">

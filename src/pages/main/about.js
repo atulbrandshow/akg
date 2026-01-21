@@ -143,11 +143,28 @@ export default function About() {
           <div className="bg-white rounded-3xl shadow-xl overflow-hidden border-t-4 border-brand-blue">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
               {/* Image Side (Optional visual anchor or just gradient sidebar) */}
-              <div className="hidden lg:block lg:col-span-1 bg-brand-blue inset-0 relative overflow-hidden">
-                <div className="absolute inset-0" style={{
-                  backgroundImage: `radial-gradient(rgba(255, 255, 255, 0.5) 1px, transparent 1px)`,
-                  backgroundSize: '16px 16px'
-                }}></div>
+              <div className="hidden lg:block lg:col-span-1 bg-brand-blue relative overflow-hidden">
+                {/* Rich Gradient Background */}
+                <div className="absolute inset-0 bg-gradient-to-b from-brand-blue to-blue-900"></div>
+
+                {/* Spotlight / Glow Effect */}
+                <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-white/10 to-transparent"></div>
+
+                {/* Content: Vertical Layout (Logo + Text) */}
+                <div className="absolute inset-0 flex flex-col items-center justify-start py-12">
+                  <div className="w-16 h-16 relative mb-8 opacity-90">
+                    <img src="/image/akgec-logo.svg" alt="AKGEC Logo" className="w-full h-full object-contain filter invert brightness-0" />
+                  </div>
+
+                  <div className="text-white font-novaBold text-4xl tracking-widest leading-relaxed flex flex-col items-center gap-4 opacity-80 select-none">
+                    <span>A</span>
+                    <span>K</span>
+                    <span>G</span>
+                  </div>
+                </div>
+
+                {/* Decorative Accent Line */}
+                <div className="absolute top-0 right-0 w-1 h-full bg-white/10 backdrop-blur-sm"></div>
               </div>
 
               {/* Content Side */}

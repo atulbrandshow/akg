@@ -31,7 +31,7 @@ const SkillsVisionMission = () => {
 
   useEffect(() => {
     cardsRef.current.forEach((card, i) => {
-      gsap.fromTo(card, 
+      gsap.fromTo(card,
         { y: 80, opacity: 0 },
         {
           y: 0,
@@ -54,7 +54,7 @@ const SkillsVisionMission = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-blue-50/30 to-gray-200"></div>
         <div className="absolute inset-0 bg-gradient-to-tr from-yellow-50/20 via-transparent to-blue-50/20"></div>
       </div>
-      
+
       {/* Layer 2: SVG Wave Patterns */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 w-full h-64 opacity-[0.15]">
@@ -68,7 +68,7 @@ const SkillsVisionMission = () => {
             </defs>
           </svg>
         </div>
-        
+
         <div className="absolute bottom-0 right-0 w-full h-48 opacity-[0.12]">
           <svg viewBox="0 0 1200 200" className="w-full h-full">
             <path d="M1200,100 C900,150 600,50 300,120 C150,160 50,80 0,100 L0,200 L1200,200 Z" fill="url(#gradient2)" />
@@ -81,33 +81,33 @@ const SkillsVisionMission = () => {
           </svg>
         </div>
       </div>
-      
+
       {/* Layer 3: Logo Watermarks */}
       <div className="absolute inset-0">
         <div className="absolute top-20 right-20 w-32 h-32 opacity-[0.20] rotate-12">
           <img src="/image/akgec-logo.svg" alt="" className="w-full h-full object-contain" />
         </div>
-        
+
         <div className="absolute bottom-24 left-16 w-24 h-24 opacity-[0.18] -rotate-6">
           <img src="/image/akgec-logo.svg" alt="" className="w-full h-full object-contain" />
         </div>
-        
+
         <div className="absolute top-1/4 left-8 w-20 h-20 opacity-[0.15] rotate-45">
           <img src="/image/akgec-logo.svg" alt="" className="w-full h-full object-contain" />
         </div>
-        
+
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 opacity-[0.08]">
           <img src="/image/akgec-logo.svg" alt="" className="w-full h-full object-contain" />
         </div>
       </div>
-      
+
       {/* Layer 4: Geometric Patterns */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-radial from-primary/15 via-primary/8 to-transparent rounded-full"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-radial from-secondary/18 via-secondary/10 to-transparent rounded-full"></div>
         <div className="absolute top-1/2 right-1/4 w-48 h-48 bg-gradient-radial from-primary/10 via-primary/5 to-transparent rounded-full"></div>
       </div>
-      
+
       {/* Layer 5: Subtle Overlay */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-white/20 to-transparent"></div>
@@ -115,66 +115,65 @@ const SkillsVisionMission = () => {
       </div>
 
       <main className="relative z-10 container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {/* Vision Card */}
-          <div ref={el => cardsRef.current[0] = el} className="bg-white rounded-lg shadow-md overflow-hidden">
-            <div className="h-1 bg-cyan-400"></div>
-            <div className="p-8">
-              <div className="flex justify-center mb-4">
-                <div className="w-16 h-16 rounded-full bg-cyan-50 flex items-center justify-center">
-                  <Lightbulb className="w-8 h-8 text-cyan-400" strokeWidth={2} />
-                </div>
+        <div className="space-y-16 max-w-6xl mx-auto">
+          {/* Vision Section */}
+          <div ref={el => cardsRef.current[0] = el} className="bg-white rounded-2xl shadow-xl overflow-hidden border-t-2 border-l-2 border-cyan-500">
+            <div className="grid grid-cols-1 md:grid-cols-2 min-h-[400px]">
+              {/* Vision Image/Icon Side */}
+              <div className="bg-cyan-50 flex items-center justify-center p-12 relative overflow-hidden group">
+                <div className="absolute inset-0 bg-cyan-100/50 transform rotate-12 scale-150 transition-transform duration-700 group-hover:rotate-45"></div>
+                <Lightbulb className="w-32 h-32 text-cyan-500 relative z-10 drop-shadow-lg transform transition-transform duration-500 group-hover:scale-110" strokeWidth={1.5} />
               </div>
-              <h2 className="text-center text-xl text-gray-800 mb-6">VISION</h2>
-              <div className="text-sm text-gray-700 text-center px-4">
-                <p>{VISION_CONTENT}</p>
+
+              {/* Vision Content Side */}
+              <div className="p-12 flex flex-col justify-center">
+                <div className="flex items-center gap-4 mb-6">
+                  <span className="w-12 h-1 bg-cyan-500 rounded-full"></span>
+                  <h2 className="text-3xl font-bold text-gray-800">OUR VISION</h2>
+                </div>
+                <p className="text-lg text-gray-700 leading-relaxed font-medium">
+                  <span className="text-4xl text-cyan-600 font-bold leading-none">T</span>
+                  {VISION_CONTENT.slice(1)}
+                </p>
               </div>
             </div>
           </div>
 
-          {/* Mission Card */}
-          <div ref={el => cardsRef.current[1] = el} className="bg-white rounded-lg shadow-md overflow-hidden">
-            <div className="h-1 bg-red-500"></div>
-            <div className="p-8">
-              <div className="flex justify-center mb-4">
-                <div className="w-16 h-16 rounded-full bg-red-50 flex items-center justify-center">
-                  <Target className="w-8 h-8 text-red-500" strokeWidth={2} />
+          {/* Mission Section */}
+          <div ref={el => cardsRef.current[1] = el} className="bg-white rounded-2xl shadow-xl overflow-hidden border-t-2 border-l-2 border-red-500">
+            <div className="grid grid-cols-1 md:grid-cols-2 min-h-[400px]">
+              {/* Mission Content Side */}
+              <div className="p-12 flex flex-col justify-center order-2 md:order-1">
+                <div className="flex items-center gap-4 mb-6">
+                  <span className="w-12 h-1 bg-red-500 rounded-full"></span>
+                  <h2 className="text-3xl font-bold text-gray-800">OUR MISSION</h2>
                 </div>
+                <ul className="space-y-4 text-gray-700">
+                  {MISSION_POINTS.map((point, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <span className={`w-2 h-2 rounded-full bg-red-500 shrink-0 ${point.startsWith("Deliver") ? 'mt-4' : 'mt-2'}`}></span>
+                      <span className="text-lg leading-relaxed">
+                        {point.startsWith("Deliver") ? (
+                          <>
+                            <span className="text-4xl text-red-600 font-bold leading-none">D</span>
+                            {point.slice(1)}
+                          </>
+                        ) : (
+                          point
+                        )}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <h2 className="text-center text-xl text-gray-800 mb-6">MISSION</h2>
-              <ul className="space-y-4 text-sm text-gray-700">
-                {MISSION_POINTS.map((point, i) => (
-                  <li key={i} className="flex">
-                    <span className="mr-2">•</span>
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
+
+              {/* Mission Image/Icon Side */}
+              <div className="bg-red-50 flex items-center justify-center p-12 relative overflow-hidden group order-1 md:order-2">
+                <div className="absolute inset-0 bg-red-100/50 transform -rotate-12 scale-150 transition-transform duration-700 group-hover:-rotate-45"></div>
+                <Target className="w-32 h-32 text-red-500 relative z-10 drop-shadow-lg transform transition-transform duration-500 group-hover:scale-110" strokeWidth={1.5} />
+              </div>
             </div>
           </div>
-
-          {/* Core Values Card */}
-          {/* <div ref={el => cardsRef.current[2] = el} className="bg-white rounded-lg shadow-md overflow-hidden">
-            <div className="h-1 bg-yellow-500"></div>
-            <div className="p-8">
-              <div className="flex justify-center mb-4">
-                <div className="w-16 h-16 rounded-full bg-yellow-50 flex items-center justify-center">
-                  <Scale className="w-8 h-8 text-yellow-500" strokeWidth={2} />
-                </div>
-              </div>
-              <h2 className="text-center text-xl text-gray-800 mb-6">CORE VALUES</h2>
-              <ul className="space-y-4 text-sm text-gray-700">
-                {CORE_VALUES.map((value, i) => (
-                  <li key={i} className="flex">
-                    <span className="mr-2">•</span>
-                    <div>
-                      <span className="font-semibold">{value.title}:</span> {value.desc}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div> */}
         </div>
       </main>
 
@@ -192,7 +191,7 @@ const SkillsVisionMission = () => {
               The Core Values of the University are as follows:
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-sm:gap-2">
             <div ref={el => cardsRef.current[2] = el} className="bg-HumanDignity bg-[#3b210c] text-white p-10 max-sm:p-2 flex items-center gap-5 bg-center bg-cover bg-blend-overlay min-h-52 max-sm:min-h-48 cursor-pointer transition-shadow duration-300 hover:shadow-2xl">
               <img

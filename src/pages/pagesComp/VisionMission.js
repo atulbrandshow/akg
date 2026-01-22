@@ -117,22 +117,22 @@ const SkillsVisionMission = () => {
       <main className="relative z-10 container mx-auto px-4">
         <div className="space-y-16 max-w-6xl mx-auto">
           {/* Vision Section */}
-          <div ref={el => cardsRef.current[0] = el} className="bg-white rounded-2xl shadow-xl overflow-hidden border-t-2 border-l-2 border-cyan-500">
+          <div ref={el => cardsRef.current[0] = el} className="bg-white rounded-2xl shadow-xl overflow-hidden border-t-2 border-l-2 border-brand-blue">
             <div className="grid grid-cols-1 md:grid-cols-2 min-h-[400px]">
               {/* Vision Image/Icon Side */}
-              <div className="bg-cyan-50 flex items-center justify-center p-12 relative overflow-hidden group">
-                <div className="absolute inset-0 bg-cyan-100/50 transform rotate-12 scale-150 transition-transform duration-700 group-hover:rotate-45"></div>
-                <Lightbulb className="w-32 h-32 text-cyan-500 relative z-10 drop-shadow-lg transform transition-transform duration-500 group-hover:scale-110" strokeWidth={1.5} />
+              <div className="bg-brand-blue/5 flex items-center justify-center p-12 relative overflow-hidden group">
+                <div className="absolute inset-0 bg-brand-blue/10 transform rotate-12 scale-150 transition-transform duration-700 group-hover:rotate-45"></div>
+                <Lightbulb className="w-32 h-32 text-brand-blue relative z-10 drop-shadow-lg transform transition-transform duration-500 group-hover:scale-110" strokeWidth={1.5} />
               </div>
 
               {/* Vision Content Side */}
               <div className="p-12 flex flex-col justify-center">
                 <div className="flex items-center gap-4 mb-6">
-                  <span className="w-12 h-1 bg-cyan-500 rounded-full"></span>
-                  <h2 className="text-3xl font-bold text-gray-800">OUR VISION</h2>
+                  <span className="w-12 h-1 bg-brand-blue rounded-full"></span>
+                  <h2 className="text-3xl font-bold text-gray-800">VISION</h2>
                 </div>
                 <p className="text-lg text-gray-700 leading-relaxed font-medium">
-                  <span className="text-4xl text-cyan-600 font-bold leading-none">T</span>
+                  <span className="text-4xl text-brand-blue font-bold leading-none">T</span>
                   {VISION_CONTENT.slice(1)}
                 </p>
               </div>
@@ -140,27 +140,21 @@ const SkillsVisionMission = () => {
           </div>
 
           {/* Mission Section */}
-          <div ref={el => cardsRef.current[1] = el} className="bg-white rounded-2xl shadow-xl overflow-hidden border-t-2 border-l-2 border-red-500">
+          <div ref={el => cardsRef.current[1] = el} className="bg-white rounded-2xl shadow-xl overflow-hidden border-t-2 border-l-2 border-brand-yellow">
             <div className="grid grid-cols-1 md:grid-cols-2 min-h-[400px]">
               {/* Mission Content Side */}
               <div className="p-12 flex flex-col justify-center order-2 md:order-1">
                 <div className="flex items-center gap-4 mb-6">
-                  <span className="w-12 h-1 bg-red-500 rounded-full"></span>
+                  <span className="w-12 h-1 bg-brand-yellow rounded-full"></span>
                   <h2 className="text-3xl font-bold text-gray-800">OUR MISSION</h2>
                 </div>
                 <ul className="space-y-4 text-gray-700">
                   {MISSION_POINTS.map((point, i) => (
                     <li key={i} className="flex items-start gap-3">
-                      <span className={`w-2 h-2 rounded-full bg-red-500 shrink-0 ${point.startsWith("Deliver") ? 'mt-4' : 'mt-2'}`}></span>
+                      <span className="w-2 h-2 rounded-full bg-brand-yellow shrink-0 mt-4"></span>
                       <span className="text-lg leading-relaxed">
-                        {point.startsWith("Deliver") ? (
-                          <>
-                            <span className="text-4xl text-red-600 font-bold leading-none">D</span>
-                            {point.slice(1)}
-                          </>
-                        ) : (
-                          point
-                        )}
+                        <span className="text-4xl text-brand-yellow font-bold leading-none">{point.charAt(0)}</span>
+                        {point.slice(1)}
                       </span>
                     </li>
                   ))}
@@ -168,9 +162,9 @@ const SkillsVisionMission = () => {
               </div>
 
               {/* Mission Image/Icon Side */}
-              <div className="bg-red-50 flex items-center justify-center p-12 relative overflow-hidden group order-1 md:order-2">
-                <div className="absolute inset-0 bg-red-100/50 transform -rotate-12 scale-150 transition-transform duration-700 group-hover:-rotate-45"></div>
-                <Target className="w-32 h-32 text-red-500 relative z-10 drop-shadow-lg transform transition-transform duration-500 group-hover:scale-110" strokeWidth={1.5} />
+              <div className="bg-brand-yellow/10 flex items-center justify-center p-12 relative overflow-hidden group order-1 md:order-2">
+                <div className="absolute inset-0 bg-brand-yellow/20 transform -rotate-12 scale-150 transition-transform duration-700 group-hover:-rotate-45"></div>
+                <Target className="w-32 h-32 text-brand-yellow relative z-10 drop-shadow-lg transform transition-transform duration-500 group-hover:scale-110" strokeWidth={1.5} />
               </div>
             </div>
           </div>

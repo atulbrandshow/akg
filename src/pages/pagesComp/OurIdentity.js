@@ -282,8 +282,9 @@ const OurIdentity = () => {
             {/* Achievement Cards */}
             <div
               ref={(el) => (cardsRef.current[0] = el)}
-              className="group relative bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-l-4 border-primary"
+              className="group relative bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-l-4 border-brand-blue overflow-hidden"
             >
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue to-brand-yellow"></div>
               <div className="flex items-center gap-4 mb-4">
                 <div className="p-3 bg-primary rounded-lg group-hover:scale-110 transition-transform duration-300">
                   <Award className="w-6 h-6 text-white" />
@@ -299,8 +300,9 @@ const OurIdentity = () => {
 
             <div
               ref={(el) => (cardsRef.current[1] = el)}
-              className="group relative bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-l-4 border-secondary"
+              className="group relative bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-l-4 border-brand-yellow overflow-hidden"
             >
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-yellow to-brand-blue"></div>
               <div className="flex items-center gap-4 mb-4">
                 <div className="p-3 bg-secondary rounded-lg group-hover:scale-110 transition-transform duration-300">
                   <Users className="w-6 h-6 text-gray-800" />
@@ -317,8 +319,9 @@ const OurIdentity = () => {
 
             <div
               ref={(el) => (cardsRef.current[2] = el)}
-              className="group relative bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-l-4 border-primary"
+              className="group relative bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-l-4 border-brand-blue overflow-hidden"
             >
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue to-brand-yellow"></div>
               <div className="flex items-center gap-4 mb-4">
                 <div className="p-3 bg-primary rounded-lg group-hover:scale-110 transition-transform duration-300">
                   <Globe className="w-6 h-6 text-white" />
@@ -335,8 +338,9 @@ const OurIdentity = () => {
 
             <div
               ref={(el) => (cardsRef.current[3] = el)}
-              className="group relative bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-l-4 border-secondary"
+              className="group relative bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-l-4 border-brand-yellow overflow-hidden"
             >
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-yellow to-brand-blue"></div>
               <div className="flex items-center gap-4 mb-4">
                 <div className="p-3 bg-secondary rounded-lg group-hover:scale-110 transition-transform duration-300">
                   <Target className="w-6 h-6 text-gray-800" />

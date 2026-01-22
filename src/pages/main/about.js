@@ -151,15 +151,25 @@ export default function About() {
                 <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-white/10 to-transparent"></div>
 
                 {/* Content: Vertical Layout (Logo + Text) */}
-                <div className="absolute inset-0 flex flex-col items-center justify-start py-12">
-                  <div className="w-16 h-16 relative mb-8 opacity-90">
-                    <img src="/image/akgec-logo.svg" alt="AKGEC Logo" className="w-full h-full object-contain filter invert brightness-0" />
-                  </div>
+                <div className="absolute inset-0 flex flex-col items-center justify-start gap-4">
 
-                  <div className="text-white font-novaBold text-4xl tracking-widest leading-relaxed flex flex-col items-center gap-4 opacity-80 select-none">
+
+                  <div className="text-white font-slick text-4xl tracking-widest leading-relaxed flex flex-col items-center  opacity-80 select-none">
                     <span>A</span>
                     <span>K</span>
                     <span>G</span>
+                  </div>
+                  <div className="text-white font-slick text-3xl tracking-widest leading-relaxed flex flex-col items-center  opacity-80 select-none">
+                    <span>U</span>
+                    <span>N</span>
+                    <span>I</span>
+                    <span>V</span>
+                    <span>E</span>
+                    <span>R</span>
+                    <span>S</span>
+                    <span>I</span>
+                    <span>T</span>
+                    <span>Y</span>
                   </div>
                 </div>
 

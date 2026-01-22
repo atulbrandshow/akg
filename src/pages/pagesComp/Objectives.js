@@ -45,19 +45,19 @@ export default function Objectives() {
         {objectives.map((objective, index) => (
           <div
             key={index}
-            className="bg-white rounded-2xl p-6 border border-gray-100 shadow-md transition-all duration-500 hover:shadow-xl hover:-translate-y-2 hover:scale-105 relative overflow-hidden group"
+            className="bg-white rounded-2xl p-6 border border-gray-100 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 relative overflow-hidden group"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-indigo-950 transform translate-x-full group-hover:translate-x-0 transition-transform duration-700 ease-in-out rounded-2xl"></div>
+            <div className="absolute inset-0 bg-yellow-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
             <div className="relative z-10">
               <div className="flex items-start gap-4">
-                <span className="flex-shrink-0 w-8 h-8 bg-indigo-950 text-white rounded-full flex items-center justify-center font-bold text-sm group-hover:bg-white group-hover:text-indigo-950 transition-all duration-300 group-hover:rotate-12 group-hover:scale-110">
+                <span className="flex-shrink-0 w-8 h-8 bg-indigo-950 text-white rounded-full flex items-center justify-center font-bold text-sm group-hover:bg-white group-hover:text-indigo-950 transition-all duration-300">
                   {index + 1}
                 </span>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-800 group-hover:text-white mb-2 transition-all duration-300">
+                  <h3 className="text-lg font-semibold text-gray-800 group-hover:text-gray-800 mb-2 transition-all duration-300">
                     {objective.title}
                   </h3>
-                  <p className="text-gray-700 group-hover:text-white leading-relaxed transition-all duration-300">
+                  <p className="text-gray-700 group-hover:text-gray-700 leading-relaxed transition-all duration-300">
                     {objective.description}
                   </p>
                 </div>

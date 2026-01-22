@@ -18,14 +18,16 @@ const AwardPopup = ({ award, onClose }) => {
   };
 
   return (
-    <div 
+    <div
       className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50 p-4"
       onClick={handleBackdropClick}
     >
       <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-xl relative">
         <div className="p-6">
           <div className="flex justify-between items-start mb-4">
-            <h3 className="text-2xl font-bold text-gray-800 pr-8">{award.title}</h3>
+            <h3 className="text-2xl font-bold text-gray-800 pr-8">
+              {award.title}
+            </h3>
             <button
               onClick={(e) => {
                 e.stopPropagation();
@@ -417,14 +419,14 @@ export default function AwardsAndRankings({ data }) {
   // Prevent body scroll when modal is open
   useEffect(() => {
     if (selectedAward) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
 
     // Cleanup function to restore scroll when component unmounts
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [selectedAward]);
 
@@ -444,7 +446,7 @@ export default function AwardsAndRankings({ data }) {
             start: "top 75%",
             toggleActions: "play reverse play reverse",
           },
-        }
+        },
       );
 
       [section1Ref, section2Ref, section3Ref, section4Ref, section5Ref].forEach(
@@ -464,10 +466,10 @@ export default function AwardsAndRankings({ data }) {
                   start: "top 75%",
                   toggleActions: "play none none reverse",
                 },
-              }
+              },
             );
           }
-        }
+        },
       );
     });
     return () => ctx.revert();
@@ -477,57 +479,60 @@ export default function AwardsAndRankings({ data }) {
     <>
       <section
         ref={heroRef}
-        className="bg-BG-Building-6 h-[90vh] w-full bg-cover bg-center mb-10 bg-no-repeat relative overflow-hidden"
+        className="bg-BG-Building-6 h-[90vh] w-full bg-cover mb-10 bg-center bg-no-repeat relative"
       >
         <div className="absolute w-full h-full z-0 bg-gradient-to-b from-black/80 via-black/70 to-black/60" />
         <div className="absolute inset-0 z-0 opacity-5">
-          <img src="/image/akgec-logo.svg" alt="" className="w-full h-full object-contain" />
+          <img
+            src="/image/akgec-logo.svg"
+            alt=""
+            className="w-full h-full object-contain"
+          />
         </div>
         <div className="max-w-[1380px] mx-auto px-3 relative z-20 py-28 pb-48">
           <div className="pt-36 w-full">
-            <div className="relative rounded-3xl p-8 lg:p-12 shadow-2xl z-30 overflow-hidden">
-              <div className="absolute inset-0 bg-primary opacity-80 backdrop-blur-sm rounded-3xl"></div>
+            <div className="relative rounded-t-3xl p-8 lg:p-12 shadow-2xl z-30 overflow-hidden">
+              <div className="absolute inset-0 bg-primary opacity-80 backdrop-blur-sm rounded-t-3xl"></div>
               <div className="relative z-10">
-            <div className="hero-star flex gap-2 w-full items-center mb-4 justify-center lg:justify-start">
-              {[...Array(5)].map((_, index) => (
-                <svg
-                  key={index}
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 576 512"
-                  width="20"
-                  height="20"
-                  fill="orange"
-                >
-                  <path d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                </svg>
-              ))}
-            </div>
-            <div className="w-full text-center lg:text-left">
-              <h2 className="hero-title text-2xl sm:text-3xl md:text-4xl lg:text-[42px] uppercase font-novaReg font-bold text-white leading-tight">
-                <span className="text-secondary">Prestigious Awards</span>
-                <br />
-                and Recognitions
-                <br />
-                for Academic Excellence
-              </h2>
-              <p className="hero-text w-full text-base sm:text-lg font-novaBold mt-5 text-white mx-auto lg:mx-0">
-                Ajay Kumar Garg Engineering College has been consistently
-                recognized for its outstanding contributions to technical
-                education, innovation, and industry collaboration through
-                numerous prestigious awards and accolades.
-              </p>
-            </div>
-            <section className="max-w-[1400px] mx-auto max-sm:px-2 py-8 text-white">
-              {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}
-            </section>
+                <div className="hero-star flex gap-2 w-full items-center mb-4 justify-center lg:justify-start">
+                  {[...Array(5)].map((_, index) => (
+                    <svg
+                      key={index}
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 576 512"
+                      width="20"
+                      height="20"
+                      fill="orange"
+                    >
+                      <path d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                    </svg>
+                  ))}
+                </div>
+                <div className="w-full text-center lg:text-left">
+                  <h2 className="hero-title text-2xl sm:text-3xl md:text-4xl lg:text-[42px] uppercase font-novaReg font-bold text-white leading-tight">
+                    <span className="text-secondary">Prestigious Awards</span>
+                    <br />
+                    and Recognitions
+                    <br />
+                    for Academic Excellence
+                  </h2>
+                  <p className="hero-text w-full text-base sm:text-lg font-novaBold mt-5 text-white mx-auto lg:mx-0">
+                    Ajay Kumar Garg Engineering College has been consistently
+                    recognized for its outstanding contributions to technical
+                    education, innovation, and industry collaboration through
+                    numerous prestigious awards and accolades.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-
+      <section className="max-w-[1400px] mx-auto max-sm:px-2 px-10 py-8">
+        {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}
+      </section>
       {/* Awards Sections */}
-      <section className="-mt-32 bg-gradient-to-b from-gray-50 via-white to-blue-50/30 relative overflow-hidden">
+      <section className="bg-gradient-to-b from-gray-50 via-white to-blue-50/30 relative overflow-hidden">
         <div className="absolute inset-0 opacity-15">
           <img
             src="/image/akgec-logo.svg"
@@ -546,7 +551,7 @@ export default function AwardsAndRankings({ data }) {
               {/* Innovation & Robotics Awards */}
               <div ref={section1Ref}>
                 <div className="flex items-center w-full">
-                  <h3 className="section-title text-3xl font-novaBold text-white items-center text-center w-full mb-6 uppercase bg-gradient-to-r from-primary to-blue-700 py-4 rounded-t-2xl shadow-lg">
+                  <h3 className="section-title text-3xl font-novaBold text-primary items-center text-center w-full mb-6 uppercase bg-gradient-to-r from-primary to-blue-700 py-4 rounded-t-2xl shadow-lg">
                     Innovation & Robotics Awards
                   </h3>
                 </div>
@@ -621,7 +626,7 @@ export default function AwardsAndRankings({ data }) {
                 <RankingSlider
                   items={[
                     ...innovationItems.filter((item) =>
-                      ["nafems2018"].includes(item.key)
+                      ["nafems2018"].includes(item.key),
                     ),
                     ...technicalItems,
                   ]
@@ -646,7 +651,7 @@ export default function AwardsAndRankings({ data }) {
                   items={[
                     ...academicItems,
                     ...technicalItems.filter((item) =>
-                      ["labview2016", "labview2014"].includes(item.key)
+                      ["labview2016", "labview2014"].includes(item.key),
                     ),
                   ]
                     .slice(0, 2)

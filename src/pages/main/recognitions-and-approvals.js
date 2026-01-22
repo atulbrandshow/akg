@@ -2,10 +2,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Breadcrumb from "@/Components/Breadcrumb";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const RecognitionApprovals = () => {
+const RecognitionApprovals = ({ data }) => {
   const [selectedRecognition, setSelectedRecognition] = useState("naac");
   const headerRef = useRef(null);
   const naacRef = useRef(null);
@@ -166,6 +167,10 @@ const RecognitionApprovals = () => {
           </div>
         </div>
       </div>
+      
+      <section className="max-w-[1400px] mx-auto px-5 max-sm:px-2 py-5">
+        {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}
+      </section>
       
       {/* <div className="h-20 bg-gradient-to-b from-gray-900 to-white"></div> */}
       

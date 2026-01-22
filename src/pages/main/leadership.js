@@ -1,7 +1,6 @@
 import Header from "@/Components/Header";
 import SideBar from "@/Components/SideBar";
 import LeaderShip from "../pagesComp/LeaderShip";
-import Breadcrumb from "@/Components/Breadcrumb";
 
 const SideBarLink = [
   { name: "Our Legacy", link: "/overview" },
@@ -22,9 +21,6 @@ export const Home = ({ data }) => {
           bgKey="BG-Building-4"
           gradient={"bg-gradient-to-r from-gray-900 to-transparent"}
         />
-        <section className="max-w-[1400px] mx-auto px-5 max-sm:px-2 py-5">
-          {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}
-        </section>
         <section className="w-full max-w-[1400px] max-lg:max-w-3xl max-md:max-w-xl max-sm:max-w-md mx-auto grid grid-cols-12  max-sm:py-2 gap-10 px-2 max-sm:gap-0">
           <div className="col-span-9 max-xl:col-span-8 max-lg:col-span-12">
             <LeaderShip />

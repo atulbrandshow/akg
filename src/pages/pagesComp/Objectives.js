@@ -45,12 +45,12 @@ export default function Objectives() {
         {objectives.map((objective, index) => (
           <div
             key={index}
-            className="bg-white rounded-2xl p-6 border border-gray-100 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 relative overflow-hidden group"
+            className="bg-gray-50 rounded-2xl p-6 border border-gray-200 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 relative overflow-hidden group"
           >
-            <div className="absolute inset-0 bg-yellow-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+            <div className="absolute inset-0 bg-brand-blue opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-2xl"></div>
             <div className="relative z-10">
               <div className="flex items-start gap-4">
-                <span className="flex-shrink-0 w-8 h-8 bg-indigo-950 text-white rounded-full flex items-center justify-center font-bold text-sm group-hover:bg-white group-hover:text-indigo-950 transition-all duration-300">
+                <span className="flex-shrink-0 w-8 h-8 bg-brand-blue text-white rounded-full flex items-center justify-center font-bold text-sm group-hover:bg-brand-yellow group-hover:text-brand-blue transition-all duration-300">
                   {index + 1}
                 </span>
                 <div>

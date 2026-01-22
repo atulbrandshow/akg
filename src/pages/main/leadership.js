@@ -13,6 +13,7 @@ const SideBarLink = [
 ];
 
 export const Home = ({ data }) => {
+  console.log("breadcrumb data:", data);
   return (
     <>
       <div className="bg-gray-100">

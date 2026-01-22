@@ -1,6 +1,7 @@
 import Header from "@/Components/Header";
 import SideBar from "@/Components/SideBar";
 import OurIdentity from "../pagesComp/OurIdentity";
+import Breadcrumb from "@/Components/Breadcrumb";
 
 const Button = {
   name: "Apply Now",
@@ -11,12 +12,18 @@ const SideBarLink = [
   { name: "Our Legacy", link: "about/our-identity" },
   { name: "Leadership", link: "about/leadership" },
   { name: "Governance", link: "about/governance" },
-  { name: "Recognition and Approvals", link: "about/recognitions-and-approvals" },
+  {
+    name: "Recognition and Approvals",
+    link: "about/recognitions-and-approvals",
+  },
   { name: "Awards and Rankings", link: "about/awards-and-rankings" },
-  { name: "Institution Social Responsibility", link: "about/institution-social-responsibility" },
+  {
+    name: "Institution Social Responsibility",
+    link: "about/institution-social-responsibility",
+  },
 ];
 
-export const Home = () => {
+export const Home = ({ data }) => {
   return (
     <div className="bg-gray-100">
       <Header
@@ -25,8 +32,10 @@ export const Home = () => {
         bgKey="BG-Building-2"
         gradient={"bg-gradient-to-r from-gray-900 to-transparent"}
         height="!py-14 sm:!py-20 xl:!py-24"
-
       />
+      <section className="max-w-[1400px] mx-auto px-5 max-sm:px-2 py-5">
+        {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}
+      </section>
       <section className="w-full max-w-[1400px] mx-auto grid grid-cols-12 py-5 max-sm:py-5 gap-5 px-5 max-sm:px-2 max-sm:gap-0">
         <div className="col-span-9 max-xl:col-span-8 max-lg:col-span-12">
           <OurIdentity />
@@ -40,4 +49,3 @@ export const Home = () => {
 };
 
 export default Home;
-

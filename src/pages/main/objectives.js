@@ -1,6 +1,7 @@
 import Header from "@/Components/Header";
 import SideBar from "@/Components/SideBar";
 import Objectives from "../pagesComp/Objectives";
+import Breadcrumb from "@/Components/Breadcrumb";
 
 const SideBarLink = [
   { name: "Our Identity", link: "/overview" },
@@ -11,7 +12,8 @@ const SideBarLink = [
   { name: "Institution Social Responsibility", link: "" },
 ];
 
-export const Home = () => {
+export const Home = ({data}) => {
+  console.log("breadcrumb data:", data);
   return (
     <>
       <div className="bg-gray-100">
@@ -20,6 +22,9 @@ export const Home = () => {
           gradient={"bg-gradient-to-r from-gray-900 to-transparent"}
           bgKey="BG-Building-1"
         />
+        <section className="max-w-[1400px] mx-auto px-5 max-sm:px-2 py-5">
+          {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}
+        </section>
         <section className="w-full max-w-[1400px] mx-auto grid grid-cols-12 py-20 max-sm:py-5 gap-10 px-5 max-sm:px-2 max-sm:gap-0">
           <div className="col-span-12 max-xl:col-span-8 max-lg:col-span-12">
             <Objectives />

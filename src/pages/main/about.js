@@ -11,13 +11,14 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import Header from "@/Components/Header";
+import Breadcrumb from "@/Components/Breadcrumb";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/swiper-bundle.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function About() {
+export default function About({ data }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const partnersRef = useRef(null);
@@ -127,6 +128,10 @@ export default function About() {
         bgUrl="/image/about/over-view.webp"
         height="!py-14 sm:!py-20 xl:!py-24"
       />
+      
+      <section className="max-w-[1400px] mx-auto px-5 max-sm:px-2 py-5">
+        {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}
+      </section>
 
       {/* Section 1 - Modern & Simple Redesign */}
       <section
@@ -188,36 +193,28 @@ export default function About() {
 
                   <div className="space-y-6 text-lg sm:text-xl text-gray-800 leading-relaxed font-novaReg text-justify">
                     <div className="flex gap-4 items-start">
-                      <div className="w-8 h-8 rounded-full bg-brand-blue/10 flex items-center justify-center shrink-0 mt-1 shadow-sm">
-                        <Gem className="w-4 h-4 text-brand-blue" />
-                      </div>
+                      <div className="w-2 h-2 rounded-full bg-brand-blue shrink-0 mt-3"></div>
                       <p>
                         <span className="font-semibold text-brand-blue">AKG University</span> is a centre of academic excellence and innovation, proudly built on the strong foundation and laurels of <span className="font-semibold text-brand-blue">Ajay Kumar Garg Engineering College (AKGEC)</span>, which brings over three decades of rich history in technical education and academic distinction. The enduring AKGEC legacy of discipline, quality education, and consistent outcomes continues to shape the university's vision and values.
                       </p>
                     </div>
 
                     <div className="flex gap-4 items-start">
-                      <div className="w-8 h-8 rounded-full bg-brand-blue/10 flex items-center justify-center shrink-0 mt-1 shadow-sm">
-                        <Gem className="w-4 h-4 text-brand-blue" />
-                      </div>
+                      <div className="w-2 h-2 rounded-full bg-brand-blue shrink-0 mt-3"></div>
                       <p>
                         Situated on a 40-acre green campus in Ghaziabad, Uttar Pradesh, AKG University offers industry-aligned undergraduate, postgraduate, and doctoral programmes in engineering, technology, and management. The university adopts an interdisciplinary approach to education, emphasizing practical learning and strong collaborations with leading multinational organizations.
                       </p>
                     </div>
 
                     <div className="flex gap-4 items-start">
-                      <div className="w-8 h-8 rounded-full bg-brand-blue/10 flex items-center justify-center shrink-0 mt-1 shadow-sm">
-                        <Gem className="w-4 h-4 text-brand-blue" />
-                      </div>
+                      <div className="w-2 h-2 rounded-full bg-brand-blue shrink-0 mt-3"></div>
                       <p>
                         Supported by state-of-the-art laboratories, automated libraries, advanced research facilities, Centres of Excellence, and dedicated skill development centres, AKG University fosters innovation, employability, and entrepreneurship. The campus offers Wi-Fi-enabled hostels, top-tier sports and recreation facilities, and a vibrant student life that nurtures creativity, leadership, and holistic development.
                       </p>
                     </div>
 
                     <div className="flex gap-4 items-start">
-                      <div className="w-8 h-8 rounded-full bg-brand-blue/10 flex items-center justify-center shrink-0 mt-1 shadow-sm">
-                        <Gem className="w-4 h-4 text-brand-blue" />
-                      </div>
+                      <div className="w-2 h-2 rounded-full bg-brand-blue shrink-0 mt-3"></div>
                       <p>
                         With a strong commitment to academic excellence, outstanding placements, and measurable outcomes, the university boasts a distinguished record of alumni success and industry recognition. Guided by visionary leadership and an accomplished faculty, AKG University is shaping future-ready technologists, innovators, and responsible global citizens grounded in ethical values and social responsibility.
                       </p>

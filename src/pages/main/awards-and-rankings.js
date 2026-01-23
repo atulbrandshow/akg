@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Header from "@/Components/Header";
 import { motion, AnimatePresence } from "framer-motion";
-import { Award, Trophy, Medal, Star, ArrowRight, ExternalLink, Calendar, X } from "lucide-react";
+import { Award, Trophy, Medal, Star, ArrowRight, ExternalLink, Calendar, X, ChevronLeft, ChevronRight } from "lucide-react";
 
 // --- MOCK DATA ---
 const awardsData = [
@@ -123,9 +123,27 @@ const awardsData = [
 
 export default function AwardsSplitScreen() {
   const [activeTab, setActiveTab] = useState(awardsData[0]);
-  const [currentA8Image, setCurrentA8Image] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [fullScreenImage, setFullScreenImage] = useState("");
+  const [fullScreenImages, setFullScreenImages] = useState([]);
+  const [fullScreenIndex, setFullScreenIndex] = useState(0);
+
+  // Auto-slide for non-fullscreen images
+  React.useEffect(() => {
+    if (!isFullScreen && activeTab.images && activeTab.images.length > 1) {
+      const interval = setInterval(() => {
+        setCurrentImageIndex(prev => 
+          prev === activeTab.images.length - 1 ? 0 : prev + 1
+        );
+      }, 3000);
+      return () => clearInterval(interval);
+    }
+  }, [activeTab.images, isFullScreen]);
+
+  // Reset image index when switching awards
+  React.useEffect(() => {
+    setCurrentImageIndex(0);
+  }, [activeTab.id]);
 
   // Disable body scroll when modal is open
   React.useEffect(() => {
@@ -138,6 +156,28 @@ export default function AwardsSplitScreen() {
       document.body.style.overflow = 'unset';
     };
   }, [isFullScreen]);
+
+  // Keyboard navigation for fullscreen
+  React.useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (!isFullScreen) return;
+      
+      if (e.key === 'Escape') {
+        setIsFullScreen(false);
+      } else if (e.key === 'ArrowLeft' && fullScreenImages.length > 1) {
+        setFullScreenIndex(prev => 
+          prev === 0 ? fullScreenImages.length - 1 : prev - 1
+        );
+      } else if (e.key === 'ArrowRight' && fullScreenImages.length > 1) {
+        setFullScreenIndex(prev => 
+          prev === fullScreenImages.length - 1 ? 0 : prev + 1
+        );
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [isFullScreen, fullScreenImages.length]);
 
   // Placeholder helper
   const getImgSrc = (src) =>
@@ -248,20 +288,27 @@ export default function AwardsSplitScreen() {
                 {/* Image Container */}
                 <div className="flex-1 p-6 md:p-12 flex items-center justify-center">
                   <div className="relative max-h-full max-w-full shadow-2xl rounded-lg overflow-hidden border-4 border-white">
-                    {activeTab.id === 'a8' ? (
-                      <div className="relative">
-                        <img
-                          src={activeTab.images[currentA8Image]}
-                          alt={`${activeTab.title} - Image ${currentA8Image + 1}`}
+                    {activeTab.images ? (
+                      <div className="relative overflow-hidden">
+                        <motion.img
+                          key={currentImageIndex}
+                          initial={{ opacity: 0, x: 50 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -50 }}
+                          transition={{ duration: 0.5, ease: "easeInOut" }}
+                          src={getImgSrc(activeTab.images[currentImageIndex])}
+                          alt={`${activeTab.title} - Image ${currentImageIndex + 1}`}
                           className="max-h-[60vh] object-contain w-auto mx-auto"
                         />
+                        
+                        {/* Dots Indicator */}
                         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
                           {activeTab.images.map((_, index) => (
                             <button
                               key={index}
-                              onClick={() => setCurrentA8Image(index)}
+                              onClick={() => setCurrentImageIndex(index)}
                               className={`w-3 h-3 rounded-full transition-all ${
-                                currentA8Image === index ? 'bg-brand-yellow' : 'bg-white/50'
+                                currentImageIndex === index ? 'bg-brand-yellow' : 'bg-white/50'
                               }`}
                             />
                           ))}
@@ -278,8 +325,8 @@ export default function AwardsSplitScreen() {
                     {/* Zoom Hint Overlay */}
                     <div 
                       onClick={() => {
-                        const imgSrc = activeTab.id === 'a8' ? activeTab.images[currentA8Image] : activeTab.image;
-                        setFullScreenImage(imgSrc);
+                        setFullScreenImages(activeTab.images || [activeTab.image]);
+                        setFullScreenIndex(activeTab.images ? currentImageIndex : 0);
                         setIsFullScreen(true);
                       }}
                       className="absolute inset-0 bg-brand-blue/80 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer group"
@@ -317,22 +364,69 @@ export default function AwardsSplitScreen() {
       {/* Full Screen Modal */}
       {isFullScreen && (
         <div 
-          className="fixed inset-0 bg-black/90 z-[9999] flex items-center justify-center p-8"
+          className="fixed inset-0 bg-black/90 z-[9999] flex items-center justify-center p-8 cursor-pointer"
           onClick={() => setIsFullScreen(false)}
         >
           <button
             onClick={() => setIsFullScreen(false)}
-            className="absolute top-4 right-4 text-white hover:text-brand-yellow transition-colors z-10"
+            className="absolute top-4 right-4 text-white hover:text-brand-yellow transition-colors z-10 cursor-pointer"
           >
             <X className="w-8 h-8" />
           </button>
-          <div className="w-full h-full flex items-center justify-center">
-            <img
-              src={fullScreenImage}
+          
+          <div className="w-full h-full flex items-center justify-center cursor-default group" onClick={(e) => e.stopPropagation()}>
+            <motion.img
+              key={fullScreenIndex}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              src={getImgSrc(fullScreenImages[fullScreenIndex])}
               alt="Full size view"
-              className="max-w-full max-h-full w-auto h-auto object-contain"
-              onClick={(e) => e.stopPropagation()}
+              className="max-w-full max-h-full w-auto h-auto object-contain cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
+                if (fullScreenImages.length > 1) {
+                  setFullScreenIndex(prev => 
+                    prev === fullScreenImages.length - 1 ? 0 : prev + 1
+                  );
+                }
+              }}
             />
+            
+            {/* Navigation for multiple images */}
+            {fullScreenImages.length > 1 && (
+              <>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setFullScreenIndex(prev => 
+                      prev === 0 ? fullScreenImages.length - 1 : prev - 1
+                    );
+                  }}
+                  className="absolute left-8 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-200 cursor-pointer opacity-0 group-hover:opacity-100"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setFullScreenIndex(prev => 
+                      prev === fullScreenImages.length - 1 ? 0 : prev + 1
+                    );
+                  }}
+                  className="absolute right-8 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-200 cursor-pointer opacity-0 group-hover:opacity-100"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+                
+                {/* Image counter */}
+                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-black/50 text-white px-4 py-2 rounded-full">
+                  <span className="text-sm font-novaReg">
+                    {fullScreenIndex + 1} of {fullScreenImages.length}
+                  </span>
+                </div>
+              </>
+            )}
           </div>
         </div>
       )}

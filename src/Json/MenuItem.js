@@ -230,10 +230,6 @@ export const Programs = {
           url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-information-technology",
         },
         {
-          name: "-",
-          url: "#",
-        },
-        {
           name: "BCA",
           url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/bachelor-of-computer-application",
         },

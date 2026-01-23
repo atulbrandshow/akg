@@ -211,7 +211,7 @@ export const Programs = {
   sublinks: {
     "School of Computer Science Engineering & Technology": {
       title: "School of Computer Science",
-      link: "#",
+      link: "/school-of-computer-science-engineering-and-technology",
       "Graduate Program": [
         {
           name: "B.Tech in Computer Science Engineering",
@@ -262,7 +262,7 @@ export const Programs = {
     },
     "School of Engineering & Technology": {
       title: "School of Engineering & Technology",
-      link: "#",
+      link: "/school-of-engineering-and-technology",
       "Graduate Program": [
         {
           name: "B.Tech in Electronics and Communication Engineering",
@@ -309,16 +309,16 @@ export const Programs = {
           },
         ],
         "Doctorate Graduate Program": [
-          // {
-          //     name: 'M.Tech',
-          //     url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-electronics-and-communication-engineering'
-          // }
+          {
+              name: 'PHD',
+              url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/phd'
+          }
         ],
       },
     },
     "School of Computing": {
       title: "School of Computing",
-      link: "#",
+      link: "department-of-computer-science-engineering",
       Program: {
         "Graduate Program": [
           {
@@ -338,7 +338,7 @@ export const Programs = {
     },
     "School of Management": {
       title: "School of Management",
-      link: "#",
+      link: "/school-of-business-studies",
       Program: {
         "Graduate Program": [
           {

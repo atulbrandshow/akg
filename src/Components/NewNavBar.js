@@ -180,6 +180,51 @@ export default function NewNavBar() {
     }
   };
 
+  const [hoveredItem, setHoveredItem] = useState(null);
+
+  // Prevent body scroll when dropdown is open
+  useEffect(() => {
+    if (hoveredItem) {
+      document.body.style.overflow = 'hidden';
+      // Add fadeIn animation class to document
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out;
+        }
+        .scrollbar-thin::-webkit-scrollbar {
+          width: 0px;
+        }
+        .scrollbar-thumb-brand-blue\/20::-webkit-scrollbar-thumb {
+          background-color: transparent;
+        }
+        .scrollbar-track-gray-100::-webkit-scrollbar-track {
+          background-color: transparent;
+        }
+        .scrollbar-hidden {
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+        .scrollbar-hidden::-webkit-scrollbar {
+          display: none;
+        }
+      `;
+      document.head.appendChild(style);
+      return () => {
+        document.head.removeChild(style);
+      };
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [hoveredItem]);
+
   const LinksList = ({
     title,
     links,
@@ -195,20 +240,66 @@ export default function NewNavBar() {
           {title}
         </h3>
       )}
-      <ul className={`space-y-1 lg:space-y-2 ${ulClassName}`}>
+      <ul className={`space-y-2 lg:space-y-3 ${ulClassName}`}>
         {links?.map((link, index) => (
-          <li key={index} className="leading-none">
-            <Link
-              href={link?.url || "/"}
-              target={link?.target || "_self"}
-              className="hover:underline cursor-pointer text-left font-novaReg text-sm"
-              onClick={() => {
-                setBigMenuToggle(false);
-                setOpenMenu(null);
-              }}
-            >
-              {link.name}
-            </Link>
+          <li 
+            key={index} 
+            className="leading-none"
+            onMouseEnter={() => link.Specializations && setHoveredItem(`${title}-${index}`)}
+            onMouseLeave={() => setHoveredItem(null)}
+          >
+            <div className="">
+              <Link
+                href={link?.url || "/"}
+                target={link?.target || "_self"}
+                className="hover:underline cursor-pointer text-left font-novaReg text-sm flex items-center justify-between group"
+                onClick={() => {
+                  setBigMenuToggle(false);
+                  setOpenMenu(null);
+                }}
+              >
+                <span className="text-gray-700 hover:text-brand-blue transition-colors">{link.name}</span>
+                {/* {link.Specializations && (
+                  <svg 
+                    className="w-4 h-4 text-gray-400 group-hover:text-brand-blue transition-all duration-200" 
+                    fill="currentColor" 
+                    viewBox="0 0 20 20"
+                  >
+                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                )} */}
+              </Link>
+              
+              {/* Professional Accordion Style Specializations */}
+              {link.Specializations && hoveredItem === `${title}-${index}` && (
+                <div className="mt-2 ml-4 border-l-2 border-brand-blue/40 pl-4 animate-fadeIn transition-all duration-300 ease-out">
+                  <div className="mb-2">
+                    <span className="text-xs font-novaBold text-brand-blue uppercase tracking-wide opacity-80">Specializations:</span>
+                  </div>
+                  <div className="max-h-48 overflow-y-auto scrollbar-hidden">
+                    <ul className="space-y-1.5 pr-2">
+                      {link.Specializations.map((spec, specIndex) => (
+                        <li key={specIndex} className="transform transition-all duration-200 hover:translate-x-1">
+                          <Link 
+                            href="#" 
+                            className="text-sm text-gray-600 font-novaReg hover:text-brand-blue cursor-pointer block py-1.5 px-2 rounded-md hover:bg-blue-50/50 hover:underline transition-all duration-200 group"
+                            onClick={() => {
+                              setBigMenuToggle(false);
+                              setOpenMenu(null);
+                            }}
+                          >
+                            <div className="flex items-center gap-2">
+                              <div className="w-1 h-1 bg-brand-blue/60 rounded-full group-hover:bg-brand-blue transition-colors"></div>
+                              <span>{spec}</span>
+                            </div>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              )}
+            </div>
           </li>
         ))}
       </ul>
@@ -599,7 +690,7 @@ export default function NewNavBar() {
             >
               <div className="grid grid-cols-12">
                 <div className="col-span-9 max-lg:col-span-12 p-0 transition-all">
-                  <div className=" w-full h-32 sm:h-16 flex justify-center items-center">
+                  <div className=" w-full h-16 flex justify-center items-center">
                     {Object.keys(Programs.sublinks)?.map((key, index) => (
                       <button
                         onClick={() => {
@@ -609,7 +700,7 @@ export default function NewNavBar() {
                         className={`h-full w-full border-r border-r-gray-200 text-sm font-novaLight ${key === activeTab ? "bg-gray-300/50" : "bg-white"
                           }`}
                       >
-                        {key}
+                        {Programs.sublinks[key]?.title || key}
                       </button>
                     ))}
                   </div>
@@ -629,7 +720,7 @@ export default function NewNavBar() {
                     </div>
                   )}
                   
-                  <div className="flex max-lg:flex-col p-2">
+                  <div className="grid grid-cols-3 gap-4 p-4">
                     {Object.keys(Programs.sublinks[activeTab])?.map(
                       (key, index) => {
                         if (key === "Graduate Program") {

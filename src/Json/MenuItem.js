@@ -216,6 +216,7 @@ export const Programs = {
         {
           name: "B.Tech in Computer Science Engineering",
           url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-computer-science-and-engineering",
+          Specializations: ['Artificial Intelligence', 'Data Science', 'Information Technology', 'Cyber Security', 'Cloud Technology', 'AI & Machine Learning', 'Blockchain'],
         },
         {
           name: "B.Tech in Data Science",
@@ -229,10 +230,11 @@ export const Programs = {
           name: "B.Tech in Information Technology",
           url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-information-technology",
         },
-        {
-          name: "-",
-          url: "#",
-        },
+        // {
+        //   name: "-",
+        //   url: "#",
+        //   Specializations: ['Artificial Intelligence', 'Data Science', 'Information Technology', 'Cyber Security', 'Cloud Technology', 'AI & Machine Learning', 'Blockchain'],
+        // },
         {
           name: "BCA",
           url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/bachelor-of-computer-application",
@@ -243,6 +245,7 @@ export const Programs = {
           {
             name: "M.Tech in Computer Science Engineering",
             url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-computer-science-engineering",
+            Specializations: ['Artificial Intelligence', 'Data Science', 'Information Technology', 'Cyber Security', 'Cloud Technology', 'AI & Machine Learning', 'Blockchain'],
           },
           {
             name: "Master of Computer Applications (MCA)",
@@ -264,18 +267,22 @@ export const Programs = {
         {
           name: "B.Tech in Electronics and Communication Engineering",
           url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-electronics-and-communication-engineering",
+          Specializations: ["VLSI Design", "IoT", "5G/6G Technology", "Artificial Intelligence"],
         },
         {
           name: "B.Tech in Electrical & Electronics Engineering",
           url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-electrical-electronics-engineering",
+          Specializations: ["Electric Vehicle", "Artificial Intelligence"],
         },
         {
           name: "B.Tech in Mechanical Engineering",
           url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-mechanical-engineering",
+          Specializations: ["Mechatronics", "Robotics", "Artificial Intelligence", "Additive Manufacturing"],
         },
         {
           name: "B.Tech in Civil Engineering",
           url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-civil-engineering",
+          Specializations: ["Environment Engineering", "Structural Engineering"],
         },
       ],
       Program: {
@@ -283,18 +290,22 @@ export const Programs = {
           {
             name: "M.Tech in Electronics and Communication Engineering",
             url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-electronics-and-communication-engineering",
+            Specializations: ["VLSI Design", "IoT", "5G/6G Technology", "Artificial Intelligence"],
           },
           {
             name: "M.Tech in Electrical & Electronics Engineering",
             url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-electrical-electronics-engineering",
+            Specializations: ["Electric Vehicle", "Artificial Intelligence"],
           },
           {
             name: "M.Tech in Mechanical Engineering",
             url: "/school-of-engineering-and-technology/mtech-in-mechanical-engineering",
+            Specializations: ["Mechatronics", "Robotics", "Artificial Intelligence", "Additive Manufacturing"],
           },
           {
             name: "M.Tech in Civil Engineering",
             url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-civil-engineering",
+            Specializations: ["Environment Engineering", "Structural Engineering"],
           },
         ],
         "Doctorate Graduate Program": [
@@ -313,12 +324,14 @@ export const Programs = {
           {
             name: "BCA",
             url: "#",
+            Specializations: ["AI-ML", "Data Science", "Cyber Security", "Artificial Intelligence"],
           },
         ],
         "Post Graduate Program": [
           {
             name: "MCA",
             url: "#",
+            Specializations: ["AI-ML", "Data Science", "Cyber Security", "Artificial Intelligence"],
           },
         ],
       },
@@ -331,12 +344,14 @@ export const Programs = {
           {
             name: "BBA",
             url: "#",
+            Specializations: ["Artificial Intelligence", "Generative AI & Business Intelligence", "Data Science", "Digital Marketing", "HR", "Finance", "International Trades"],
           },
         ],
         "Post Graduate Program": [
           {
             name: "MBA",
             url: "#",
+            Specializations: ["Artificial Intelligence", "Generative AI & Business Intelligence", "Data Science", "Digital Marketing", "HR", "Finance", "International Trades"],
           },
         ],
       },

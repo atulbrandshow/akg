@@ -19,14 +19,14 @@ const RecognitionApprovals = ({ data }) => {
       id: "naac",
       title: "NAAC Accreditation",
       description: "A++ Grade (Highest grade in Uttar Pradesh)",
-      imgSrc: "/image/NaaC.webp",
+      imgSrc: "/image/recognitions-and-approvals/NAAC.png",
     },
     {
       id: "nba",
       title: "NBA Accreditation",
       description:
         "Five B.Tech. branches in CSE, ECE, EN, IT & ME are accredited for the period of three year w.e.f. academic year 2022-23 To 2024-25.",
-      imgSrc: "/image/nba.jpg",
+      imgSrc: "/image/recognitions-and-approvals/nba.png",
     },
     {
       id: "aicte",
@@ -34,22 +34,33 @@ const RecognitionApprovals = ({ data }) => {
       description:
         "Engineering and Technology Programs approved for Academic Year 2025–26",
       imgSrc: "/image/recognitions-and-approvals/AICTE.png",
+      pdfSrc: "/pdf/recognitions-and-approvals/Z_AICTE-APPROVAL-LETTER_Year-2025-26.pdf",
     },
-    // {
-    //     id: "aktu",
-    //     title: "AKTU Affiliation",
-    //     description: "Affiliation letter by AKTU for the academic year 2024-25 to 2026-27 granted vide AKTU letter no. AKTU/RO/AS/2024/3319 dated 26-July-2024 addressed to the Director, Ajay Kumar Garg Engineering College.",
-    //     imgSrc: "/image/recognitions-and-approvals/AKTU.png",
-    // },
+    {
+      id: "aktu",
+      title: "AKTU Approval",
+      description:
+        "Engineering and Technology Programs approved for Academic Year 2025–26",
+      imgSrc: "/image/recognitions-and-approvals/AKTU.png",
+      pdfSrc: "/pdf/recognitions-and-approvals/Z_AKTU-APPROVAL-LETTER_2024-25-to-2026-27.pdf",
+    },
+    {
+      id: "Accreditation",
+      title: "Accreditation of Measurement",
+      description:
+        "Accreditation of Measurement and Metrology Centre by National Accreditation Board for Testing and Calibration Laboratories (NABL) These accreditations and approvals reflect our supreme standing in technical and professional education.",
+      imgSrc: "/image/recognitions-and-approvals/placeholder.png",
+    },
   ];
 
   const handleRecognitionClick = (recognition) => {
     setSelectedRecognition(recognition.id);
   };
 
-  const selectedDescription = recognitionsData.find(
-    (item) => item.id === selectedRecognition
-  ).description;
+  const selectedRecognitionData = recognitionsData.find(
+    (item) => item.id === selectedRecognition,
+  );
+  const selectedDescription = selectedRecognitionData?.description;
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -69,12 +80,14 @@ const RecognitionApprovals = ({ data }) => {
             end: "bottom 30%",
             toggleActions: "play reverse play reverse",
           },
-        }
+        },
       );
 
       // NAAC section animation
       gsap.fromTo(
-        naacRef.current.querySelectorAll(".naac-badge, .naac-text, .naac-buttons"),
+        naacRef.current.querySelectorAll(
+          ".naac-badge, .naac-text, .naac-buttons",
+        ),
         { y: 80, opacity: 0 },
         {
           y: 0,
@@ -87,7 +100,7 @@ const RecognitionApprovals = ({ data }) => {
             start: "top 70%",
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
 
       // Sidebar cards animation
@@ -105,7 +118,7 @@ const RecognitionApprovals = ({ data }) => {
             start: "top 75%",
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
 
       // Main content animation
@@ -123,7 +136,7 @@ const RecognitionApprovals = ({ data }) => {
             start: "top 75%",
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
 
       // CTA animation
@@ -140,7 +153,7 @@ const RecognitionApprovals = ({ data }) => {
             start: "top 80%",
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
     });
 
@@ -149,13 +162,18 @@ const RecognitionApprovals = ({ data }) => {
 
   return (
     <>
-      <div ref={headerRef} className="relative bg-BG44 w-full h-[800px] bg-center bg-cover bg-no-repeat">
+      <div
+        ref={headerRef}
+        className="relative bg-BG44 w-full h-[800px] bg-center bg-cover bg-no-repeat"
+      >
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40" />
         <div className="relative max-w-[1400px] mx-auto h-full px-6 flex items-center">
           <div className="text-white space-y-6 max-w-2xl">
             <div className="badge inline-block px-6 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-4">
-              <span className="text-sm font-semibold tracking-wider uppercase">Statutory Recognition</span>
+              <span className="text-sm font-semibold tracking-wider uppercase">
+                Statutory Recognition
+              </span>
             </div>
             <h2 className="text-5xl lg:text-6xl font-novaBold leading-tight">
               Approvals by <br />
@@ -167,14 +185,13 @@ const RecognitionApprovals = ({ data }) => {
           </div>
         </div>
       </div>
-      
-      <section className="max-w-[1400px] mx-auto px-5 max-sm:px-2 py-5">
-        {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}
-      </section>
-      
+
       {/* <div className="h-20 bg-gradient-to-b from-gray-900 to-white"></div> */}
-      
-      <div ref={naacRef} className="relative h-[450px] bg-BG17 sm:h-[500px] lg:h-[550px] xl:h-[600px] w-full bg-no-repeat bg-cover bg-center overflow-hidden group">
+
+      <div
+        ref={naacRef}
+        className="relative h-[450px] bg-BG17 sm:h-[500px] lg:h-[550px] xl:h-[600px] w-full bg-no-repeat bg-cover bg-center overflow-hidden group"
+      >
         {/* Fixed: Stronger overlay for text visibility */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/70 backdrop-blur-md" />
 
@@ -270,28 +287,36 @@ const RecognitionApprovals = ({ data }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 xl:gap-12 items-start">
             {/* Sidebar - Recognition Cards */}
-            <div className="xl:col-span-4 order-2 xl:order-1">
+            <div className="xl:col-span-5 order-2 xl:order-1">
               <div ref={sidebarRef} className="space-y-4">
                 {recognitionsData.map((item) => (
                   <button
                     key={item.id}
                     onClick={() => handleRecognitionClick(item)}
                     className={`
-            group relative w-full p-6 md:p-8 rounded-2xl border-2 transition-all duration-500 cursor-pointer overflow-hidden hover:shadow-lg
-            ${
-              selectedRecognition === item.id
-                ? "border-blue-500 bg-blue-50 shadow-md ring-2 ring-blue-200/50 scale-[1.02]"
-                : "border-gray-200 hover:border-blue-300 hover:bg-blue-50/50"
-            }
-          `}
+                        group relative w-full p-6 md:p-8 rounded-2xl border-2 transition-all duration-500 cursor-pointer overflow-hidden hover:shadow-lg
+                         ${
+                      selectedRecognition === item.id
+                      ? "border-blue-500 bg-blue-50 shadow-md ring-2 ring-blue-200/50 scale-[1.02]"
+                      : "border-gray-200 hover:border-blue-300 hover:bg-blue-50/50"
+                    }
+                  `}
                   >
                     <div className="flex items-start gap-4 relative z-10">
                       <div className="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-xl overflow-hidden shadow-md ring-1 ring-gray-200/50 group-hover:ring-blue-300/70 transition-all bg-white group-hover:shadow-lg">
-                        <img
-                          src={item.imgSrc}
-                          alt={item.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
+                        {item.imgSrc && !item.imgSrc.includes("placeholder") ? (
+                          <img
+                            src={item.imgSrc}
+                            alt={item.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                            <span className="text-white font-bold text-xl md:text-2xl">
+                              {item.title.charAt(0)}
+                            </span>
+                          </div>
+                        )}
                       </div>
                       <div className="flex-1 min-w-0 pt-1">
                         <h4 className="font-semibold text-base md:text-lg text-slate-900 group-hover:text-blue-700 mb-2 leading-tight">
@@ -311,28 +336,62 @@ const RecognitionApprovals = ({ data }) => {
             </div>
 
             {/* Main Content */}
-            <div ref={contentRef} className="xl:col-span-8 order-1 xl:order-2">
+            <div ref={contentRef} className="xl:col-span-7 order-1 xl:order-2 sticky top-36">
               {/* Selected Recognition Details */}
-              <div className="bg-white rounded-2xl p-8 lg:p-12 shadow-sm border border-gray-200/50 mb-12 hover:shadow-md transition-shadow">
-                <h3 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-slate-900 mb-6 leading-tight">
-                  {
-                    recognitionsData.find(
-                      (item) => item.id === selectedRecognition
-                    )?.title
-                  }
+              <div className="bg-white rounded-2xl p-6 lg:p-8 shadow-sm border border-gray-200/50 mb-8 hover:shadow-md transition-shadow">
+                <h3 className="text-xl lg:text-2xl xl:text-3xl font-bold text-slate-900 mb-4 leading-tight">
+                  {selectedRecognitionData?.title}
                 </h3>
-                <div className="bg-gradient-to-r from-blue-50 to-slate-50 p-6 lg:p-8 rounded-xl border-l-4 border-blue-500 mb-8">
-                  <p className="text-lg lg:text-xl text-slate-700 leading-relaxed">
+                <div className="bg-gradient-to-r from-blue-50 to-slate-50 p-4 lg:p-6 rounded-xl border-l-4 border-blue-500 mb-6">
+                  <p className="text-base lg:text-lg text-slate-700 leading-relaxed">
                     {selectedDescription}
                   </p>
                 </div>
+
+                {/* Image Display */}
+                {selectedRecognitionData?.imgSrc && !selectedRecognitionData.imgSrc.includes("placeholder") && (
+                  <div className="mb-6">
+                    <div className="relative group">
+                      <img
+                        src={selectedRecognitionData.imgSrc}
+                        alt={selectedRecognitionData.title}
+                        className="w-full max-w-md mx-auto h-48 object-contain rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-200 bg-white p-4"
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {/* PDF Download Button */}
+                {selectedRecognitionData?.pdfSrc && (
+                  <div className="flex justify-center">
+                    <a
+                      href={selectedRecognitionData.pdfSrc}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-3 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+                    >
+                      <svg
+                        className="w-5 h-5"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      Download PDF
+                    </a>
+                  </div>
+                )}
               </div>
 
               {/* Contact Section */}
               <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden mb-12">
                 {/* <div className="grid grid-cols-1 lg:grid-cols-7 gap-6 lg:gap-8 p-8 lg:p-12"> */}
-                  {/* Image */}
-                  {/* <div className="col-span-1 lg:col-span-3 row-span-1">
+                {/* Image */}
+                {/* <div className="col-span-1 lg:col-span-3 row-span-1">
                     <div className="relative group">
                       <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-transparent rounded-xl -z-10 opacity-0 group-hover:opacity-100 transition-opacity" />
                       <img
@@ -343,8 +402,8 @@ const RecognitionApprovals = ({ data }) => {
                     </div>
                   </div> */}
 
-                  {/* Contact Info */}
-                  {/* <div className="col-span-1 lg:col-span-4 lg:col-start-4">
+                {/* Contact Info */}
+                {/* <div className="col-span-1 lg:col-span-4 lg:col-start-4">
                     <h4 className="text-2xl lg:text-3xl font-bold text-slate-900 mb-6">
                       Get in Touch
                     </h4>
@@ -463,7 +522,10 @@ const RecognitionApprovals = ({ data }) => {
           {/* Final CTA (YELLOW + BLUE + WHITE) */}
           <div className="text-center my-20 py-16 px-6">
             <div className="max-w-4xl mx-auto">
-              <div ref={ctaRef} className="group relative bg-white border-4 border-blue-100 shadow-xl rounded-3xl p-12 lg:p-16 backdrop-blur-md hover:shadow-2xl hover:shadow-blue-200/50 transition-all duration-500 hover:-translate-y-2 mx-auto max-w-5xl">
+              <div
+                ref={ctaRef}
+                className="group relative bg-white border-4 border-blue-100 shadow-xl rounded-3xl p-12 lg:p-16 backdrop-blur-md hover:shadow-2xl hover:shadow-blue-200/50 transition-all duration-500 hover:-translate-y-2 mx-auto max-w-5xl"
+              >
                 {/* Subtle gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 via-transparent to-yellow-50/50 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 

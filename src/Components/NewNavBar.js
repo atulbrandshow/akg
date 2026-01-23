@@ -613,6 +613,22 @@ export default function NewNavBar() {
                       </button>
                     ))}
                   </div>
+                  {/* School Title Link as Heading */}
+                  {Programs.sublinks[activeTab]?.title && Programs.sublinks[activeTab]?.link && (
+                    <div className="w-full px-2 py-3 border-b border-gray-200">
+                      <Link
+                        href={Programs.sublinks[activeTab].link}
+                        className="font-novaBold text-lg text-brand-blue hover:underline cursor-pointer"
+                        onClick={() => {
+                          setBigMenuToggle(false);
+                          setOpenMenu(null);
+                        }}
+                      >
+                        {Programs.sublinks[activeTab].title}
+                      </Link>
+                    </div>
+                  )}
+                  
                   <div className="flex max-lg:flex-col p-2">
                     {Object.keys(Programs.sublinks[activeTab])?.map(
                       (key, index) => {
@@ -640,6 +656,11 @@ export default function NewNavBar() {
                             );
                           });
                         }
+                        // Skip title and link keys as they're handled above
+                        if (key === "title" || key === "link") {
+                          return null;
+                        }
+                        return null;
                       }
                     )}
                   </div>

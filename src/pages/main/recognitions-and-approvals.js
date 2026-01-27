@@ -38,14 +38,6 @@ const RecognitionApprovals = ({ data }) => {
       pdfSrc: "/pdf/recognitions-and-approvals/Z_AICTE-APPROVAL-LETTER_Year-2025-26.pdf",
     },
     {
-      id: "aktu",
-      title: "AKTU Approval",
-      description:
-        "Engineering and Technology Programs approved for Academic Year 2025–26",
-      imgSrc: "/image/recognitions-and-approvals/AKTU.png",
-      pdfSrc: "/pdf/recognitions-and-approvals/Z_AKTU-APPROVAL-LETTER_2024-25-to-2026-27.pdf",
-    },
-    {
       id: "Accreditation",
       title: "Accreditation of Measurement",
       description:
@@ -104,38 +96,39 @@ const RecognitionApprovals = ({ data }) => {
         },
       );
 
-      // Sidebar cards animation
+      // Floating Blobs Animation
+      gsap.to(".blob-1", {
+        y: -30,
+        x: 20,
+        duration: 4,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      });
+
+      gsap.to(".blob-2", {
+        y: 30,
+        x: -20,
+        duration: 5,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        delay: 1
+      });
+
+      // Tab cards animation (Staggered entrance)
       gsap.fromTo(
         sidebarRef.current.children,
-        { x: -100, opacity: 0 },
+        { y: 50, opacity: 0 },
         {
-          x: 0,
+          y: 0,
           opacity: 1,
           duration: 0.6,
-          stagger: 0.15,
-          ease: "power2.out",
+          stagger: 0.1,
+          ease: "back.out(1.2)",
           scrollTrigger: {
             trigger: sidebarRef.current,
-            start: "top 75%",
-            toggleActions: "play none none reverse",
-          },
-        },
-      );
-
-      // Main content animation
-      gsap.fromTo(
-        contentRef.current.children,
-        { x: 100, opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.2,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: contentRef.current,
-            start: "top 75%",
-            toggleActions: "play none none reverse",
+            start: "top 85%",
           },
         },
       );
@@ -143,11 +136,11 @@ const RecognitionApprovals = ({ data }) => {
       // CTA animation
       gsap.fromTo(
         ctaRef.current,
-        { scale: 0.8, opacity: 0 },
+        { scale: 0.9, opacity: 0 },
         {
           scale: 1,
           opacity: 1,
-          duration: 1,
+          duration: 0.8,
           ease: "back.out(1.5)",
           scrollTrigger: {
             trigger: ctaRef.current,
@@ -160,6 +153,16 @@ const RecognitionApprovals = ({ data }) => {
 
     return () => ctx.revert();
   }, []);
+
+  // Animate content change
+  useEffect(() => {
+    if (contentRef.current) {
+      gsap.fromTo(contentRef.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }
+      );
+    }
+  }, [selectedRecognition]);
 
   return (
     <>
@@ -197,8 +200,8 @@ const RecognitionApprovals = ({ data }) => {
         <div className="absolute inset-0 opacity-50 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
 
         {/* Abstract Glows */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-blue/30 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-yellow/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2"></div>
+        <div className="blob-1 absolute top-0 right-0 w-[500px] h-[500px] bg-brand-blue/30 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
+        <div className="blob-2 absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-yellow/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2"></div>
 
         {/* Content Container */}
         <div className="relative z-20 max-w-7xl mx-auto px-6 w-full text-center">
@@ -227,12 +230,12 @@ const RecognitionApprovals = ({ data }) => {
 
             {/* Buttons */}
             <div className="naac-buttons flex flex-wrap justify-center gap-4 md:gap-6">
-              <button className="group px-8 py-3 bg-brand-yellow text-brand-blue font-novaBold rounded-xl hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg shadow-brand-yellow/20 flex items-center gap-2">
+              <button className="group px-8 py-3 bg-brand-yellow text-brand-blue font-novaBold rounded-xl hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg shadow-brand-yellow/20 flex items-center justify-center gap-2">
                 <span>View Certificate</span>
                 <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
               </button>
 
-              <button className="px-8 py-3 bg-transparent text-white border border-white/30 font-novaBold rounded-xl hover:bg-white/10 hover:border-white transition-all duration-300 backdrop-blur-sm">
+              <button className="px-8 py-3 bg-transparent text-white border border-white/30 font-novaBold rounded-xl hover:bg-white/10 hover:border-white transition-all duration-300 backdrop-blur-sm flex items-center justify-center">
                 Our Achievements
               </button>
             </div>
@@ -265,7 +268,7 @@ const RecognitionApprovals = ({ data }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col gap-8 md:gap-12">
             {/* Horizontal Tabs - Recognition Cards */}
-            <div className="w-full order-1">
+            <div className="w-full order-1 ">
               <div ref={sidebarRef} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                 {recognitionsData.map((item) => (
                   <button

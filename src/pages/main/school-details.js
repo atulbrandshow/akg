@@ -202,6 +202,24 @@ const SchoolDetails = ({ data }) => {
 
   console.log(courses);
 
+
+  const programs = [
+    "B.Tech in Computer Science and Engineering (Artificial Intelligence)",
+    "B.Tech in Computer Science and Engineering (Data Science)",
+    "B.Tech in Computer Science and Engineering (Information Technology)",
+    "B.Tech in Computer Science and Engineering (Cyber Security)",
+    "B.Tech in Computer Science and Engineering (Cloud Technology)",
+    "B.Tech in Computer Science and Engineering (AI & Machine Learning)",
+    "B.Tech in Computer Science and Engineering (Blockchain)",
+    "M.Tech in Computer Science and Engineering (Artificial Intelligence)",
+    "M.Tech in Computer Science and Engineering (Data Science)",
+    "M.Tech in Computer Science and Engineering (Information Technology)",
+    "M.Tech in Computer Science and Engineering (Cyber Security)",
+    "M.Tech in Computer Science and Engineering (Cloud Technology)",
+    "M.Tech in Computer Science and Engineering (AI & Machine Learning)",
+    "M.Tech in Computer Science and Engineering (Blockchain)"
+  ];
+
   return (
     <>
       <SchoolHeader data={d} banner="bg-BG17" heading={d?.Hero_Title} desc={d?.Hero_Desc} />
@@ -226,7 +244,6 @@ const SchoolDetails = ({ data }) => {
               <h2 className="text-2xl font-novaBold mb-2 max-lg:text-xl max-md:text-lg">{d?.Objective_Title}</h2>
               <div className='font-novaReg' dangerouslySetInnerHTML={{ __html: objectiveHtml }} />
             </div>
-
           </div>
           <div className="bg-white drop-shadow-lg border text-black rounded-3xl overflow-hidden pb-5">
             <div className='h-16 flex items-center pl-5 bg-indigo-950'>
@@ -239,6 +256,147 @@ const SchoolDetails = ({ data }) => {
           </div>
         </div>
       </section>
+
+
+      <section className="max-w-[1400px] mx-auto px-5 max-sm:px-2 pb-16">
+        <div className="relative bg-slate-50 rounded-[3rem] p-8 md:p-16 overflow-hidden border border-slate-200">
+
+          {/* Technical Grid Background */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(#3b82f61a_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
+
+          <div className="relative z-10">
+            <div className="text-center mb-16">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-white border-2 border-slate-900 text-slate-900 font-novaBold text-xs tracking-widest uppercase mb-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)]">
+                Future Ready Curriculum
+              </span>
+              <h2 className="text-4xl md:text-5xl font-novaBold text-slate-900 mb-6 tracking-tight">
+                Specialized Programs
+              </h2>
+              <p className="text-slate-600 font-novaReg max-w-2xl mx-auto text-lg leading-relaxed">
+                Engineering specializations crafted for the next generation of innovators.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {programs.map((item, idx) => {
+                const isMTech = item.includes("M.Tech");
+                const degree = isMTech ? "M.Tech" : "B.Tech";
+                const match = item.match(/\((.*?)\)/);
+                const specialization = match ? match[1] : item.split('Engineering')[1]?.trim();
+                const accentColor = isMTech ? 'group-hover:shadow-[6px_6px_0px_0px_#9333ea]' : 'group-hover:shadow-[6px_6px_0px_0px_#2563eb]';
+                const borderColor = isMTech ? 'group-hover:border-purple-600' : 'group-hover:border-blue-600';
+
+                return (
+                  <div
+                    key={idx}
+                    className={`group relative bg-white border-2 border-slate-200 rounded-xl p-6 transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 ${accentColor} ${borderColor} cursor-pointer`}
+                  >
+                    <div className="flex justify-between items-start mb-4">
+                      <span className={`inline-flex items-center justify-center w-12 h-12 rounded-lg border-2 ${isMTech ? 'bg-purple-50 border-purple-200 text-purple-600' : 'bg-blue-50 border-blue-200 text-blue-600'} group-hover:scale-110 transition-transform duration-200`}>
+                        {isMTech ? <Atom size={24} strokeWidth={2} /> : <Cpu size={24} strokeWidth={2} />}
+                      </span>
+                      <span className={`px-2 py-1 rounded text-[10px] font-novaBold uppercase tracking-wider border ${isMTech ? 'bg-purple-100/50 border-purple-200 text-purple-800' : 'bg-blue-100/50 border-blue-200 text-blue-800'}`}>
+                        {degree}
+                      </span>
+                    </div>
+
+                    <div className="relative z-10">
+                      <h3 className="text-lg font-novaBold text-slate-900 mb-2 group-hover:text-black transition-colors">
+                        {specialization}
+                      </h3>
+
+                      <p className="text-slate-500 text-xs font-novaReg line-clamp-2 leading-relaxed border-t border-slate-100 pt-3 mt-3 group-hover:border-slate-200">
+                        {item}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      {/* <section className="max-w-[1400px] mx-auto px-5 max-sm:px-2 pb-16">
+        <div className="relative bg-slate-900 rounded-[2.5rem] p-8 md:p-16 overflow-hidden shadow-2xl">
+          
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2"></div>
+          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-indigo-600/20 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2"></div>
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
+
+          <div className="relative z-10">
+            <div className="text-center mb-16">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300 font-novaSemi text-sm tracking-wider uppercase mb-4">
+                Future Ready Curriculum
+              </span>
+              <h2 className="text-4xl md:text-5xl font-novaBold text-white mb-6">
+                Specialized Programs
+              </h2>
+              <p className="text-gray-400 font-novaReg max-w-2xl mx-auto text-lg">
+                Advanced specializations tailored to meet the demands of the evolving tech landscape.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                "B.Tech in Computer Science and Engineering (Artificial Intelligence)",
+                "B.Tech in Computer Science and Engineering (Data Science)",
+                "B.Tech in Computer Science and Engineering (Information Technology)",
+                "B.Tech in Computer Science and Engineering (Cyber Security )",
+                "B.Tech in Computer Science and Engineering (Cloud Technology )",
+                "B.Tech in Computer Science and Engineering (AI & Machine Learning )",
+                "B.Tech in Computer Science and Engineering (Blockchain)",
+                "M.Tech in Computer Science and Engineering (Artificial Intelligence)",
+                "M.Tech in Computer Science and Engineering (Data Science)",
+                "M.Tech in Computer Science and Engineering (Information Technology)",
+                "M.Tech in Computer Science and Engineering (Cyber Security )",
+                "M.Tech in Computer Science and Engineering (Cloud Technology )",
+                "M.Tech in Computer Science and Engineering (AI & Machine Learning )",
+                "M.Tech in Computer Science and Engineering (Blockchain)"
+              ].map((item, idx) => {
+                const isMTech = item.includes("M.Tech");
+                const degree = isMTech ? "M.Tech" : "B.Tech";
+              
+                const match = item.match(/\((.*?)\)/);
+                const specialization = match ? match[1] : item.replace("B.Tech in Computer Science and Engineering", "").replace("M.Tech in Computer Science and Engineering", "").trim();
+
+                return (
+                  <div
+                    key={idx}
+                    className="group relative bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-900/50"
+                  >
+                    <div className={`absolute top-0 right-0 p-4 opacity-50 group-hover:opacity-100 transition-opacity duration-300 ${isMTech ? 'text-purple-400' : 'text-cyan-400'}`}>
+                      {isMTech ? <Atom size={40} strokeWidth={1} /> : <Cpu size={40} strokeWidth={1} />}
+                    </div>
+
+                    <div className="relative z-10">
+                      <span className={`inline-block px-3 py-1 rounded-lg text-xs font-novaBold uppercase tracking-wider mb-4 ${isMTech
+                          ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
+                          : 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'
+                        }`}>
+                        {degree} Program
+                      </span>
+
+                      <h3 className="text-xl font-novaBold text-white mb-2 group-hover:text-blue-200 transition-colors">
+                        {specialization}
+                      </h3>
+
+                      <div className="w-full h-px bg-white/10 my-4 group-hover:bg-white/20 transition-colors" />
+
+                      <p className="text-gray-400 text-sm font-novaReg line-clamp-2">
+                        {item}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section> */}
+
       <LargeHighlightBannerSlider
         banners={largeHighlightBanner}
       />

@@ -129,9 +129,9 @@ export default function About({ data }) {
         height="!py-14 sm:!py-20 xl:!py-24"
       />
       
-      <section className="max-w-[1400px] mx-auto px-5 max-sm:px-2 py-5">
+      {/* <section className="max-w-[1400px] mx-auto px-5 max-sm:px-2 py-5">
         {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}
-      </section>
+      </section> */}
 
       {/* Section 1 - Modern & Simple Redesign */}
       <section

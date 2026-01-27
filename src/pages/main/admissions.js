@@ -74,9 +74,9 @@ export default function Home({ data }) {
         buttonText="Apply Now"
         formKey="applyNow"
       />
-      <section className="max-w-[1400px] mx-auto px-5 max-sm:px-2 py-5">
+      {/* <section className="max-w-[1400px] mx-auto px-5 max-sm:px-2 py-5">
         {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}
-      </section>
+      </section> */}
 
       <Admissions onApplyNow={handleApplyNow} />
     </>

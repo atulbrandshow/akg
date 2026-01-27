@@ -168,9 +168,9 @@ export const Home = ({ data }) => {
                 <div className="absolute -top-2 -left-2 w-8 h-8 bg-secondary/20 rounded-full"></div>
                 <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-primary/20 rounded-full"></div>
                 
-                <div className="relative z-10">
+                {/* <div className="relative z-10">
                   {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}
-                </div>
+                </div> */}
               </div>
             </section>
 

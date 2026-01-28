@@ -256,13 +256,13 @@ const RecognitionApprovals = ({ data }) => {
           <div className="flex flex-col gap-8 md:gap-12">
             {/* Horizontal Tabs - Recognition Cards */}
             <div className="w-full order-1 ">
-              <div ref={sidebarRef} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              <div ref={sidebarRef} className="flex flex-wrap justify-center gap-4">
                 {recognitionsData.map((item) => (
                   <button
                     key={item.id}
                     onClick={() => handleRecognitionClick(item)}
                     className={`
-                        group relative w-full p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer overflow-hidden hover:shadow-lg flex flex-col items-center text-center h-full
+                        group relative w-[calc(50%-0.5rem)] md:w-52 lg:w-56 p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer overflow-hidden hover:shadow-lg flex flex-col items-center text-center h-full
                          ${selectedRecognition === item.id
                         ? "border-blue-500 bg-blue-50 shadow-md ring-2 ring-blue-200/50 scale-[1.02]"
                         : "border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 bg-white"

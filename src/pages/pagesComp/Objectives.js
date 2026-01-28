@@ -106,7 +106,7 @@ const TiltCard = ({ item, index }) => {
           rotateY,
           transformStyle: "preserve-3d",
         }}
-        className="relative h-full bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl border border-gray-100 transition-shadow duration-300 flex flex-col group cursor-pointer"
+        className="relative h-full bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl border border-gray-100 border-l-4 border-t-4 border-l-brand-blue border-t-brand-yellow transition-shadow duration-300 flex flex-col group cursor-pointer"
       >
         {/* Shine Effect */}
         <motion.div
@@ -136,24 +136,24 @@ const TiltCard = ({ item, index }) => {
         </div>
 
         <div style={{ transform: "translateZ(20px)" }} className="flex-1">
-          <h3 className="text-xl font-novaBold text-gray-900 mb-2 group-hover:text-brand-blue transition-colors">
+          <h3 className="text-2xl font-novaBold text-gray-900 mb-2 group-hover:text-brand-blue transition-colors">
             {item.title}
           </h3>
-          <p className="text-xs font-novaSemi text-brand-yellow uppercase tracking-wider mb-4">
+          <p className="text-lg font-novaSemi text-brand-yellow uppercase tracking-wider mb-4">
             {item.subtitle}
           </p>
-          <p className="text-gray-600 font-novaReg text-sm leading-relaxed">
+          <p className="text-gray-600 font-novaReg text-lg leading-relaxed">
             {item.description}
           </p>
         </div>
 
-        <motion.div
+        {/* <motion.div
           style={{ transform: "translateZ(10px)" }}
           className="mt-6 pt-4 border-t border-gray-50 flex items-center text-brand-blue text-sm font-novaSemi opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         >
           <span>Learn more</span>
           <div className="ml-2 w-4 h-[1px] bg-brand-blue"></div>
-        </motion.div>
+        </motion.div> */}
 
         {/* Gradient Border Bottom */}
         <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-brand-blue via-brand-yellow to-brand-blue transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-b-2xl"></div>
@@ -164,7 +164,7 @@ const TiltCard = ({ item, index }) => {
 
 export default function Objectives() {
   return (
-    <section className="relative py-10 overflow-hidden bg-slate-50">
+    <section className="relative py-5 overflow-hidden bg-slate-50">
       {/* Dynamic Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
@@ -177,7 +177,7 @@ export default function Objectives() {
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-10"
         >
           <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-brand-blue/20 text-brand-blue text-xs font-novaBold uppercase tracking-widest mb-4 shadow-sm">
             <Sparkles className="w-3 h-3" />
@@ -186,9 +186,9 @@ export default function Objectives() {
           <h2 className="text-4xl md:text-5xl font-novaBold text-gray-900 mb-6">
             Our Key <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-yellow">Objectives</span>
           </h2>
-          <p className="text-lg text-gray-600 font-novaReg max-w-2xl mx-auto">
+          {/* <p className="text-lg text-gray-600 font-novaReg max-w-2xl mx-auto">
             The objectives of AKG University shall be to :
-          </p>
+          </p> */}
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-16">

@@ -184,7 +184,7 @@ const RecognitionApprovals = ({ data }) => {
               <span className="text-yellow-400">Statutory Bodies</span>
             </h2>
             <p className="text-xl text-gray-200 max-w-xl leading-relaxed">
-              Recognized and approved by India's premier regulatory authorities
+              Inspired by the remarkable legacy of Ajay Kumar Garg Engineering College, AKG University advances a tradition of technical education, academic distinction and impactful industry alliances through numerous prestigious recognitions, approvals and accolades.
             </p>
           </div>
         </div>
@@ -227,19 +227,6 @@ const RecognitionApprovals = ({ data }) => {
             <p className="naac-text text-lg md:text-xl text-gray-300 font-novaReg leading-relaxed max-w-2xl mb-10 drop-shadow-md">
               AKG University is recognized by the <span className="text-brand-yellow font-bold">UGC</span> and holds the prestigious <span className="text-white font-bold">NAAC A++</span> accreditation, marking it as a leader in engineering education in Uttar Pradesh.
             </p>
-
-            {/* Buttons */}
-            <div className="naac-buttons flex flex-wrap justify-center gap-4 md:gap-6">
-              <button className="group px-8 py-3 bg-brand-yellow text-brand-blue font-novaBold rounded-xl hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg shadow-brand-yellow/20 flex items-center justify-center gap-2">
-                <span>View Certificate</span>
-                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-              </button>
-
-              <button className="px-8 py-3 bg-transparent text-white border border-white/30 font-novaBold rounded-xl hover:bg-white/10 hover:border-white transition-all duration-300 backdrop-blur-sm flex items-center justify-center">
-                Our Achievements
-              </button>
-            </div>
-
           </div>
         </div>
 

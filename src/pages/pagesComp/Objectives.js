@@ -187,7 +187,7 @@ export default function Objectives() {
             Our Key <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-yellow">Objectives</span>
           </h2>
           <p className="text-lg text-gray-600 font-novaReg max-w-2xl mx-auto">
-            Charting the path to educational excellence through innovation, research, and holistic development.
+            The objectives of AKG University shall be to :
           </p>
         </motion.div>
 
@@ -195,30 +195,6 @@ export default function Objectives() {
           {objectives.map((item, index) => (
             <TiltCard key={index} item={item} index={index} />
           ))}
-
-          {/* Call to Action Card */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.6 }}
-            className="h-full min-h-[300px] flex flex-col justify-center items-center bg-brand-blue rounded-2xl p-8 text-center relative overflow-hidden group"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-brand-blue to-gray-900 z-0"></div>
-            <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] z-0"></div>
-
-            <div className="relative z-10">
-              <h3 className="text-2xl font-novaBold text-white mb-4">
-                Join Our Mission
-              </h3>
-              <p className="text-gray-300 font-novaReg mb-8 text-sm leading-relaxed">
-                Be part of a community dedicated to shaping the future through knowledge and innovation.
-              </p>
-              <button className="px-8 py-3 bg-brand-yellow text-brand-blue font-novaBold rounded-xl hover:bg-white hover:scale-105 transition-all duration-300 shadow-xl shadow-brand-yellow/20">
-                Explore More
-              </button>
-            </div>
-          </motion.div>
         </div>
 
         <motion.div

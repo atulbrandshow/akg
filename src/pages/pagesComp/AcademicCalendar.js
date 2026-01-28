@@ -3,37 +3,37 @@ const AcademicCalendar = ({calendarData, currentSemester}) => {
     const notes = calendarData?.filter(entry => entry.type === "note");
     return (
         <div className="container mx-auto">
-            <h1 className="text-[40px] max-2xl:text-3xl max-md:text-2xl leading-none font-novaReg mb-2.5 ">
+            <h1 className="text-4xl max-md:text-2xl font-novaBold text-brand-blue mb-4 leading-tight">
                 {currentSemester === 'even' ? 'Even Semester' : 'Odd Semester'}
             </h1>
-            <div className="mb-6 mt-4 rounded-lg">
-                <table className="min-w-full my-4 bg-white rounded-lg">
-                    <thead className="bg-blue-800 text-white h-[44px] rounded-t-lg text-xs font-novaBold lg:text-base lg:font-novaReg">
+            <div className="mb-6 mt-4 rounded-lg overflow-hidden shadow-sm">
+                <table className="min-w-full my-4 bg-white">
+                    <thead className="bg-brand-blue text-white h-[48px] font-novaSemi uppercase text-sm lg:text-base">
                         <tr className="border-b">
-                            <th className="px-4 py-2 text-left border-r border-white border-opacity-10 rounded-tl-lg">
+                            <th className="px-4 py-2 text-left border-r border-white border-opacity-10">
                                 Date
                             </th>
                             <th className="px-4 py-2 border-r border-white border-opacity-10 text-left">
                                 Day
                             </th>
-                            <th className="px-4 py-2 text-left rounded-tr-lg">
+                            <th className="px-4 py-2 text-left">
                                 Activity
                             </th>
                         </tr>
                     </thead>
-                    <tbody className="border-t-2 rounded-lg text-xs lg:text-sm font-novaSemi">
+                    <tbody className="font-novaReg text-sm sm:text-base text-gray-800">
                         {calendarData?.map((entry, index) => (
                             <tr
                                 key={index}
-                                className={`bg-indigo-950 text-white ${index === calendarData.length - 1 ? 'rounded-bl-lg rounded-br-lg' : ''}`}
+                                className={`${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-blue-50 transition-colors`}
                             >
-                                <td className={`p-4  max-sm:p-3 border-b border-white border-opacity-20 ${index === calendarData.length - 1 ? 'rounded-bl-lg' : ''}`}>
+                                <td className={`p-4 max-sm:p-3 border-b border-gray-200`}>
                                     {entry.StartDate || entry.Date}
                                 </td>
-                                <td className="p-4 text-center max-sm:p-3 border-b border-l border-white border-opacity-20">
+                                <td className="p-4 text-center max-sm:p-3 border-b border-l border-gray-200">
                                     {entry.Days ? entry.Days.split('-')[0] : entry.Day}
                                 </td>
-                                <td className={`p-4 max-sm:p-3 border-b border-l border-white border-opacity-20 ${index === calendarData.length - 1 ? 'rounded-br-lg' : ''}`}>
+                                <td className={`p-4 max-sm:p-3 border-b border-l border-gray-200`}>
                                     {entry.Activity} {entry.EndDate ? `-till ${entry.EndDate}` : ''}
                                 </td>
                             </tr>
@@ -48,7 +48,7 @@ const AcademicCalendar = ({calendarData, currentSemester}) => {
                                 Disclaimer:
                             </span>
                         </div>
-                        <p className="font-novaSemi text-sm leading-relaxed mt-2 whitespace-pre-line">
+                        <p className="font-novaSemi text-base leading-relaxed mt-2 whitespace-pre-line">
                             {notes[0].description
                                 .replace(/^(Note|Disclaimer):/i, "")
                                 .trim()}

@@ -35,13 +35,42 @@ const RecognitionApprovals = ({ data }) => {
       description:
         "Engineering and Technology Programs approved for Academic Year 2025–26",
       imgSrc: "/image/recognitions-and-approvals/AICTE.png",
-      pdfSrc: "/pdf/recognitions-and-approvals/Z_AICTE-APPROVAL-LETTER_Year-2025-26.pdf",
+      pdfSrc:
+        "/pdf/recognitions-and-approvals/Z_AICTE-APPROVAL-LETTER_Year-2025-26.pdf",
     },
     {
       id: "Accreditation",
       title: "Accreditation of Measurement",
-      description:
-        "Accreditation of Measurement and Metrology Centre by National Accreditation Board for Testing and Calibration Laboratories (NABL) These accreditations and approvals reflect our supreme standing in technical and professional education.",
+      description: (
+        <>
+          <strong>
+            Accreditation of Measurement and Metrology Centre by National
+            Accreditation Board for Testing and Calibration Laboratories
+            (NABL){" "}
+          </strong>{" "}
+          Ajay Kumar Garg Engineering College, in its endeavor to impart
+          engineering education commensurate with the requirements of
+          Industries, have established a world class Measurement & Metrology
+          Centre in collaboration with Zeiss. It is equipped with 3D Coordinate
+          Measuring Machine (CMM), Surface Roughness Testing, Contour
+          Measurement and 3D Scanning setup, along with the regular measuring
+          instruments and accessories. The facility has now been accredited by
+          National Accreditation Board for Testing and Calibration Laboratories
+          (NABL) as per ISO / IEC 17025:2017 standard, complying with “General
+          Requirements for the Competence of Testing & Calibration
+          Laboratories.”The centre is now authorized to provide Internationally
+          valid dimension testing / calibration results as per the scope
+          approved by NABL. With this recognition, the measurement and metrology
+          centre at AKGEC joins one of the very few elite laboratories set up by
+          an Engineering Institute,to be accredited by NABL in the country. The
+          centre now looks forward to offering the services in Dimension
+          Metrology to the nearby Industries and Research Organizations.
+          <strong>
+            These accreditations and approvals reflect our supreme standing in
+            technical and professional education.
+          </strong>
+        </>
+      ),
       imgSrc: "/image/recognitions-and-approvals/placeholder.png",
     },
   ];
@@ -103,7 +132,7 @@ const RecognitionApprovals = ({ data }) => {
         duration: 4,
         repeat: -1,
         yoyo: true,
-        ease: "sine.inOut"
+        ease: "sine.inOut",
       });
 
       gsap.to(".blob-2", {
@@ -113,7 +142,7 @@ const RecognitionApprovals = ({ data }) => {
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut",
-        delay: 1
+        delay: 1,
       });
 
       // Tab cards animation (Staggered entrance)
@@ -157,9 +186,10 @@ const RecognitionApprovals = ({ data }) => {
   // Animate content change
   useEffect(() => {
     if (contentRef.current) {
-      gsap.fromTo(contentRef.current,
+      gsap.fromTo(
+        contentRef.current,
         { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }
+        { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" },
       );
     }
   }, [selectedRecognition]);
@@ -184,7 +214,11 @@ const RecognitionApprovals = ({ data }) => {
               <span className="text-yellow-400">Statutory Bodies</span>
             </h2>
             <p className="text-xl text-gray-200 max-w-xl leading-relaxed">
-              Inspired by the remarkable legacy of Ajay Kumar Garg Engineering College, AKG University advances a tradition of technical education, academic distinction and impactful industry alliances through numerous prestigious recognitions, approvals and accolades.
+              Inspired by the remarkable legacy of Ajay Kumar Garg Engineering
+              College, AKG University advances a tradition of technical
+              education, academic distinction and impactful industry alliances
+              through numerous prestigious recognitions, approvals and
+              accolades.
             </p>
           </div>
         </div>
@@ -206,7 +240,6 @@ const RecognitionApprovals = ({ data }) => {
         {/* Content Container */}
         <div className="relative z-20 max-w-7xl mx-auto px-6 w-full text-center">
           <div className="max-w-4xl mx-auto flex flex-col items-center">
-
             {/* Elegant Badge */}
             <div className="naac-badge mb-8 inline-flex items-center gap-3 px-6 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-lg cursor-default hover:bg-white/20 transition-all duration-300">
               <span className="w-2 h-2 rounded-full bg-brand-yellow animate-pulse"></span>
@@ -225,7 +258,12 @@ const RecognitionApprovals = ({ data }) => {
 
             {/* Description */}
             <p className="naac-text text-lg md:text-xl text-gray-300 font-novaReg leading-relaxed max-w-2xl mb-10 drop-shadow-md">
-              AKG University is recognized by the <span className="text-brand-yellow font-bold">UGC</span> and holds the prestigious <span className="text-white font-bold">NAAC A++</span> accreditation, marking it as a leader in engineering education in Uttar Pradesh.
+              AKG University is recognized by the{" "}
+              <span className="text-brand-yellow font-bold">UGC</span> and holds
+              the prestigious{" "}
+              <span className="text-white font-bold">NAAC A++</span>{" "}
+              accreditation, marking it as a leader in engineering education in
+              Uttar Pradesh.
             </p>
           </div>
         </div>
@@ -256,17 +294,21 @@ const RecognitionApprovals = ({ data }) => {
           <div className="flex flex-col gap-8 md:gap-12">
             {/* Horizontal Tabs - Recognition Cards */}
             <div className="w-full order-1 ">
-              <div ref={sidebarRef} className="flex flex-wrap justify-center gap-4">
+              <div
+                ref={sidebarRef}
+                className="flex flex-wrap justify-center gap-4"
+              >
                 {recognitionsData.map((item) => (
                   <button
                     key={item.id}
                     onClick={() => handleRecognitionClick(item)}
                     className={`
                         group relative w-[calc(50%-0.5rem)] md:w-52 lg:w-56 p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer overflow-hidden hover:shadow-lg flex flex-col items-center text-center h-full
-                         ${selectedRecognition === item.id
-                        ? "border-blue-500 bg-blue-50 shadow-md ring-2 ring-blue-200/50 scale-[1.02]"
-                        : "border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 bg-white"
-                      }
+                         ${
+                           selectedRecognition === item.id
+                             ? "border-blue-500 bg-blue-50 shadow-md ring-2 ring-blue-200/50 scale-[1.02]"
+                             : "border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 bg-white"
+                         }
                   `}
                   >
                     <div className="relative z-10 flex flex-col items-center gap-3">
@@ -313,17 +355,18 @@ const RecognitionApprovals = ({ data }) => {
                 </div>
 
                 {/* Image Display */}
-                {selectedRecognitionData?.imgSrc && !selectedRecognitionData.imgSrc.includes("placeholder") && (
-                  <div className="mb-6">
-                    <div className="relative group">
-                      <img
-                        src={selectedRecognitionData.imgSrc}
-                        alt={selectedRecognitionData.title}
-                        className="w-full max-w-md mx-auto h-48 object-contain rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-200 bg-white p-4"
-                      />
+                {selectedRecognitionData?.imgSrc &&
+                  !selectedRecognitionData.imgSrc.includes("placeholder") && (
+                    <div className="mb-6">
+                      <div className="relative group">
+                        <img
+                          src={selectedRecognitionData.imgSrc}
+                          alt={selectedRecognitionData.title}
+                          className="w-full max-w-md mx-auto h-48 object-contain rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-200 bg-white p-4"
+                        />
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
 
                 {/* PDF Download Button */}
                 {selectedRecognitionData?.pdfSrc && (
@@ -364,7 +407,8 @@ const RecognitionApprovals = ({ data }) => {
                   Institutional Excellence
                 </h2>
                 <p className="text-gray-300 text-lg mb-8 leading-relaxed">
-                  Our supreme standing in technical and professional education is validated by India's most prestigious statutory bodies.
+                  Our supreme standing in technical and professional education
+                  is validated by India's most prestigious statutory bodies.
                 </p>
                 <div className="flex flex-wrap justify-center gap-6">
                   <div className="flex items-center gap-2 text-white/80">

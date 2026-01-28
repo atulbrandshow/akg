@@ -99,43 +99,42 @@ const UniversityBrochure = () => {
       <div className="max-w-[1300px] mx-auto px-6 relative z-10">
         <h2
           ref={headerRef}
-          className="text-3xl lg:text-4xl font-bold text-primary mb-12 text-center uppercase"
+          className="text-4xl font-novaBold text-brand-blue mb-12 text-center uppercase"
         >
           University Brochure
         </h2>
         <ul ref={listRef} className="list-none w-full max-w-4xl mx-auto">
           {brochures.map((brochure, index) => (
             <li key={index} className="brochure-item mb-6">
-              <div className="relative bg-gradient-to-br from-white via-blue-50/30 to-yellow-50/40 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-200 hover:border-primary group overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-blue-500/5 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="absolute -top-20 -right-20 w-40 h-40 bg-secondary/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
+              <div className="relative bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-500 border border-gray-100 hover:border-brand-blue group overflow-hidden">
+                <div className="absolute inset-0 bg-brand-blue/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="relative z-10">
-                  <a
+                  <button
                     onClick={() => toggleBrochure(index)}
-                    className="flex justify-between items-center w-full px-6 py-5 cursor-pointer"
+                    className="flex justify-between items-center w-full px-8 py-6 cursor-pointer"
                   >
                     <span
-                      className={`font-bold text-lg transition-colors ${
+                      className={`font-novaSemi text-2xl transition-colors ${
                         openIndices.includes(index)
-                          ? "text-primary"
-                          : "text-gray-800 group-hover:text-primary"
+                          ? "text-brand-blue"
+                          : "text-gray-800 group-hover:text-brand-blue"
                       }`}
                     >
                       {brochure.title}
                     </span>
                     {openIndices.includes(index) ? (
-                      <ChevronUp className="w-6 h-6 text-primary" />
+                      <ChevronUp className="w-6 h-6 text-brand-blue" />
                     ) : (
-                      <ChevronDown className="w-6 h-6 text-gray-600 group-hover:text-primary transition-colors" />
+                      <ChevronDown className="w-6 h-6 text-gray-400 group-hover:text-brand-blue transition-colors" />
                     )}
-                  </a>
+                  </button>
                   {openIndices.includes(index) && (
-                    <div className="px-6 pb-5 bg-white/10 rounded-b-2xl">
+                    <div className="px-8 pb-6 bg-white">
                       <a
                         href={brochure.link}
-                        className="inline-flex items-center bg-gradient-to-r from-blue-600 to-blue-700 text-white text-sm font-semibold py-2 px-4 rounded-lg shadow-lg hover:brightness-110 transition-all duration-300"
+                        className="inline-flex items-center bg-brand-blue text-white text-base font-novaSemi py-3 px-6 rounded-lg shadow-lg hover:bg-blue-800 transition-all duration-300"
                       >
-                        <FileText className="w-4 h-4 mr-2" />
+                        <FileText className="w-5 h-5 mr-2" />
                         Download {brochure.title}
                       </a>
                     </div>

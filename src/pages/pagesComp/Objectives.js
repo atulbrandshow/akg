@@ -16,43 +16,43 @@ const objectives = [
     icon: <Award className="w-8 h-8" />,
     title: "Promote Excellence",
     subtitle: "in Teaching, Learning, & Research",
-    description: "Rigorous academic programs, interdisciplinary studies, and innovation-driven scholarship defining our core."
+    description: "Promote Excellence in Teaching, Learning, and Research through rigorous academic programs, interdisciplinary studies, and innovation driven scholarship."
   },
   {
     icon: <Users className="w-8 h-8" />,
     title: "Develop Graduates",
     subtitle: "Skilled, Employable, & Ethical",
-    description: "Equipped with professional competence, digital capabilities, leadership qualities, and human values."
+    description: "Develop Skilled, Employable, and Ethically Grounded Graduates equipped with professional competence, digital capabilities, leadership qualities, and human values."
   },
   {
     icon: <Lightbulb className="w-8 h-8" />,
     title: "Foster Innovation",
     subtitle: "Entrepreneurship & Collaboration",
-    description: "Encouraging research translation, start-ups, incubation, and strong industry–academia partnerships."
+    description: "Foster Innovation, Entrepreneurship, and Industry Collaboration by encouraging research translation, start-ups, incubation, and strong industry–academia partnerships."
   },
   {
     icon: <BookOpen className="w-8 h-8" />,
     title: "Flexible Education",
     subtitle: "Multidisciplinary & NEP Aligned",
-    description: "Supporting choice-based, outcome-oriented, and lifelong learning consistent with national policies."
+    description: "Provide Multidisciplinary and Flexible Education in alignment with the National Education Policy (NEP) 2020, supporting choice-based, outcome-oriented, and lifelong learning."
   },
   {
     icon: <Globe2 className="w-8 h-8" />,
     title: "Advance Knowledge",
-    subtitle: "Global Impact & Research",
-    description: "Addressing national priorities, industrial needs, and global challenges through impactful research."
+    subtitle: "Knowledge Creation & Impact",
+    description: "Advance Research, Knowledge Creation, and Societal Impact to address national priorities, industrial needs, and global challenges."
   },
   {
     icon: <Scale className="w-8 h-8" />,
-    title: "Promote Values",
-    subtitle: "Constitutional & Global",
-    description: "Nurturing patriotism, inclusivity, secularism, and respect for diversity and national integration."
+    title: "Global Citizenship",
+    subtitle: "Values & National Integration",
+    description: "Promote Constitutional Values, National Integration, and Global Citizenship by nurturing patriotism, inclusivity, secularism, and respect for diversity."
   },
   {
     icon: <HeartHandshake className="w-8 h-8" />,
-    title: "Preserve Culture",
+    title: "Preserve Heritage",
     subtitle: "Ethical & Indigenous Systems",
-    description: "Integrating global best practices with indigenous knowledge for holistic and grounded development."
+    description: "Preserve and Promote Cultural, Ethical, and Indigenous knowledge Systems while integrating global best practices and emerging disciplines."
   }
 ];
 

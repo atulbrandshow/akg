@@ -19,11 +19,11 @@ const MISSION_POINTS = [
 const VISION_CONTENT = "To empower students, the future innovative leaders through transformative education, Cutting-edge research, and ethical practices for a sustainable global future.";
 
 const CORE_VALUES = [
-  { title: "Teamwork", desc: "Energizing our efforts through teamwork will yield greater result." },
-  { title: "Innovation", desc: "We are Committed to the continuous improvement of program, tools and creative solutions for achieving organizational growth." },
-  { title: "Speed", desc: "Responsiveness in all our actions, ability to execute and implement strategies." },
-  { title: "Collaboration", desc: "Our Success is dependent on that of our collaboration with our industry partners, to achieve shared goals." },
-  { title: "Excellence", desc: "Measuring performance and meeting expectations is the surest path to excellence." },
+  { title: "Transparency & Uniformity", desc: "Clear, unbiased policies and processes in all operations." },
+  { title: "Excellence", desc: "Striving for high standards in academics and systems." },
+  { title: "Ethical Conduct", desc: "Uncompromised honesty and moral responsibility." },
+  { title: "Discipline", desc: "Strong emphasis on disciplined behavior and learning." },
+  { title: "Holistic Development", desc: "Focus on developing competent professionals and responsible citizens." },
 ];
 
 const SkillsVisionMission = () => {
@@ -190,17 +190,16 @@ const SkillsVisionMission = () => {
             <div ref={el => cardsRef.current[2] = el} className="bg-HumanDignity bg-[#3b210c] text-white p-10 max-sm:p-2 flex items-center gap-5 bg-center bg-cover bg-blend-overlay min-h-52 max-sm:min-h-48 cursor-pointer transition-shadow duration-300 hover:shadow-2xl">
               <img
                 src="/image/core-value/carrer-icon-1.webp"
-                alt="excellence-icon"
+                alt="transparency-icon"
                 className="align-middle overflow-clip mr-4 max-sm:w-16"
               />
               <div>
                 <h4 className="text-2xl max-sm:text-xl font-semi-bold mb-3">
-                  Excellence
+                  Transparency & Uniformity
                 </h4>
                 <ul className="max-lg:text-sm font-novaReg list-disc ml-5">
                   <li>
-                    Unwavering commitment to quality in teaching, research, and
-                    campus life.
+                    Clear, unbiased policies and processes in all operations.
                   </li>
                 </ul>
               </div>
@@ -209,15 +208,15 @@ const SkillsVisionMission = () => {
             <div ref={el => cardsRef.current[3] = el} className="bg-[#6a7414] text-white p-10 max-sm:p-2 flex items-center gap-5 min-h-52 max-sm:min-h-48 cursor-pointer transition-shadow duration-300 hover:shadow-2xl">
               <img
                 src="/image/core-value/carrer-icon-2.webp"
-                alt="integrity-icon"
+                alt="excellence-icon"
                 className="align-middle overflow-clip mr-4 max-sm:w-16"
               />
               <div>
                 <h4 className="text-2xl max-sm:text-xl font-semi-bold mb-3">
-                  Integrity
+                  Excellence
                 </h4>
                 <ul className="max-lg:text-sm font-novaReg list-disc ml-5">
-                  <li>Transparency, ethics, and fairness in all dealings.</li>
+                  <li>Striving for high standards in academics and systems.</li>
                 </ul>
               </div>
             </div>
@@ -225,17 +224,16 @@ const SkillsVisionMission = () => {
             <div ref={el => cardsRef.current[4] = el} className="bg-[#c75622] text-white p-10 max-sm:p-2 flex items-center gap-5 min-h-52 max-sm:min-h-48 cursor-pointer transition-shadow duration-300 hover:shadow-2xl">
               <img
                 src="/image/core-value/carrer-icon-3.webp"
-                alt="inclusivity-icon"
+                alt="ethical-conduct-icon"
                 className="align-middle overflow-clip mr-4 max-sm:w-16"
               />
               <div>
                 <h4 className="text-2xl max-sm:text-xl font-semi-bold mb-3">
-                  Inclusivity
+                  Ethical Conduct
                 </h4>
                 <ul className="max-lg:text-sm font-novaReg list-disc ml-5">
                   <li>
-                    Cultivate a diverse, welcoming environment for students and
-                    staff.
+                    Uncompromised honesty and moral responsibility.
                   </li>
                 </ul>
               </div>
@@ -244,53 +242,35 @@ const SkillsVisionMission = () => {
             <div ref={el => cardsRef.current[5] = el} className="bg-Giving bg-[#251470] text-white p-10 max-sm:p-2 bg-center bg-cover bg-blend-overlay flex items-center gap-5 min-h-52 max-sm:min-h-48 cursor-pointer transition-shadow duration-300 hover:shadow-2xl">
               <img
                 src="/image/core-value/carrer-icon-4.webp"
-                alt="innovation-icon"
+                alt="discipline-icon"
                 className="align-middle overflow-clip mr-4 max-sm:w-16"
               />
               <div>
                 <h4 className="text-2xl max-sm:text-xl font-semi-bold mb-3">
-                  Innovation
+                  Discipline
                 </h4>
                 <ul className="max-lg:text-sm font-novaReg list-disc ml-5">
                   <li>
-                    Encourage creative thinking, discovery, and continuous
-                    improvement.
+                    Strong emphasis on disciplined behavior and learning.
                   </li>
                 </ul>
               </div>
             </div>
 
-            <div ref={el => cardsRef.current[6] = el} className="bg-IndustryFocus bg-[#0b4d4d] text-white p-10 max-sm:p-2 bg-center bg-cover bg-blend-overlay flex items-center gap-5 min-h-52 max-sm:min-h-48 cursor-pointer transition-shadow duration-300 hover:shadow-2xl">
+            <div ref={el => cardsRef.current[6] = el} className="bg-IndustryFocus bg-[#0b4d4d] text-white p-10 max-sm:p-2 bg-center bg-cover bg-blend-overlay flex items-center gap-5 min-h-52 max-sm:min-h-48 cursor-pointer transition-shadow duration-300 hover:shadow-2xl md:col-span-2">
               <img
                 src="/image/core-value/carrer-icon-5.webp"
-                alt="industry-icon"
+                alt="holistic-development-icon"
                 className="align-middle overflow-clip mr-4 max-sm:w-16"
               />
               <div>
                 <h4 className="text-2xl max-sm:text-xl font-semi-bold mb-3">
-                  Industry Focus
+                  Holistic Development
                 </h4>
                 <ul className="max-lg:text-sm font-novaReg list-disc ml-5">
                   <li>
-                    Active collaboration with business, healthcare, legal, and
-                    technology partners.
+                    Focus on developing competent professionals and responsible citizens.
                   </li>
-                </ul>
-              </div>
-            </div>
-
-            <div ref={el => cardsRef.current[7] = el} className="bg-[#5e2a84] text-white p-10 max-sm:p-2 flex items-center gap-5 min-h-52 max-sm:min-h-48 cursor-pointer transition-shadow duration-300 hover:shadow-2xl">
-              <img
-                src="/image/core-value/carrer-icon-6.webp"
-                alt="social-responsibility-icon"
-                className="align-middle overflow-clip mr-4 max-sm:w-16"
-              />
-              <div>
-                <h4 className="text-2xl max-sm:text-xl font-semi-bold mb-3">
-                  Social Responsibility
-                </h4>
-                <ul className="max-lg:text-sm font-novaReg list-disc ml-5">
-                  <li>Dedication to community service and development.</li>
                 </ul>
               </div>
             </div>

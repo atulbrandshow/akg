@@ -79,51 +79,52 @@ const ProgrammeCurriculum = () => {
 
     return (
         <div className="container mx-auto mb-5">
-            <div className="flex gap-3 flex-wrap max-sm:text-sm my-6">
+            <h1 className="text-4xl font-novaBold text-brand-blue mb-6">Programme Curriculum</h1>
+            <div className="flex gap-3 flex-wrap text-base max-sm:text-sm my-6">
                 <button
                     onClick={() => setSelectedYear("2021-22")}
-                    className={`px-4 py-2 ${selectedYear === "2021-22" ? 'bg-indigo-950 text-white rounded-md' : 'bg-white text-black border border-gray-300 rounded-md'}`}
+                    className={`px-6 py-2.5 font-novaSemi transition-all ${selectedYear === "2021-22" ? 'bg-brand-blue text-white rounded-md shadow-md' : 'bg-white text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50'}`}
                 >
-                    Programme Curriculum 2021-22
+                    Curriculum 2021-22
                 </button>
                 <button
                     onClick={() => setSelectedYear("2020-21")}
-                    className={`px-4 py-2 ${selectedYear === "2020-21" ? 'bg-indigo-950 text-white rounded-md' : 'bg-white text-black border border-gray-300 rounded-md'}`}
+                    className={`px-6 py-2.5 font-novaSemi transition-all ${selectedYear === "2020-21" ? 'bg-brand-blue text-white rounded-md shadow-md' : 'bg-white text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50'}`}
                 >
-                    Programme Curriculum 2020-21
+                    Curriculum 2020-21
                 </button>
                 <button
                     onClick={() => setSelectedYear("2019-20")}
-                    className={`px-4 py-2 ${selectedYear === "2019-20" ? 'bg-indigo-950 text-white rounded-md' : 'bg-white text-black border border-gray-300 rounded-md'}`}
+                    className={`px-6 py-2.5 font-novaSemi transition-all ${selectedYear === "2019-20" ? 'bg-brand-blue text-white rounded-md shadow-md' : 'bg-white text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50'}`}
                 >
-                    Programme Curriculum 2019-20
+                    Curriculum 2019-20
                 </button>
             </div>
 
-            <div className="overflow-x-auto">
-                <table className="w-full border-collapse">
+            <div className="overflow-hidden rounded-xl border border-gray-200 shadow-sm">
+                <table className="w-full border-collapse bg-white">
                     <thead>
-                        <tr className="bg-gray-100">
+                        <tr className="bg-brand-blue">
                             {columns.map((col) => (
-                                <th key={col} className="border p-2 max-[350px]:p-1 text-left max-[350px]:text-center bg-indigo-950 text-white font-novaReg max-sm:text-sm capitalize">
+                                <th key={col} className="p-4 text-left text-white font-novaSemi text-base uppercase tracking-wider">
                                     {col === 'curriculu' ? 'Curriculum' : col.replace(/([A-Z])/g, ' $1')}
                                 </th>
                             ))}
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="text-gray-700 font-novaReg text-base sm:text-lg">
                         {programmesData[selectedYear].map((programme, index) => (
-                            <tr key={index} className="hover:bg-gray-50">
+                            <tr key={index} className={`${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-blue-50 transition-colors`}>
                                 {columns.map((col) => (
-                                    <td key={col} className="border font-novaReg max-[350px]:text-sm p-2 max-[350px]:p-1">
+                                    <td key={col} className="p-4 border-b border-gray-200">
                                         {col === 'curriculu' ? (
                                             <a
                                                 href={programme['curriculu']}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="text-blue-600 hover:underline"
+                                                className="text-blue-600 font-novaSemi hover:underline flex items-center gap-1"
                                             >
-                                                View
+                                                View PDF
                                             </a>
                                         ) : (
                                             programme[col]

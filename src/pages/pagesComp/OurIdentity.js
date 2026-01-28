@@ -32,7 +32,7 @@ const OurIdentity = () => {
             start: "top 80%",
             toggleActions: "play reverse play reverse",
           },
-        }
+        },
       );
 
       // Left column animation
@@ -49,7 +49,7 @@ const OurIdentity = () => {
             start: "top 75%",
             toggleActions: "play reverse play reverse",
           },
-        }
+        },
       );
 
       // Right column cards stagger animation
@@ -68,7 +68,7 @@ const OurIdentity = () => {
             start: "top 75%",
             toggleActions: "play reverse play reverse",
           },
-        }
+        },
       );
 
       // Logo watermarks animation
@@ -87,7 +87,7 @@ const OurIdentity = () => {
             start: "top 60%",
             toggleActions: "play reverse play reverse",
           },
-        }
+        },
       );
     }, sectionRef);
 
@@ -312,8 +312,8 @@ const OurIdentity = () => {
                 </h3>
               </div>
               <p className="text-gray-600">
-                Diverse programs across engineering, management, law, and health
-                sciences.
+                Diverse programs across engineering, computer applications and
+                management.
               </p>
             </div>
 

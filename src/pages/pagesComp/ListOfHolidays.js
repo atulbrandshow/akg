@@ -24,43 +24,43 @@ const ListOfHolidays = ({ holidays = [], activeTab, itemsPerPage = 10 }) => {
 
     return (
         <div className="container mx-auto">
-            <h1 className="text-[42px] max-lg:text-3xl max-sm:text-2xl max-sm:font-novaSemi font-novaReg mb-2.5 leading-none">
+            <h1 className="text-4xl max-lg:text-3xl max-md:text-2xl font-novaBold text-brand-blue mb-4 leading-tight">
                 List of {activeTab === "gazetted" ? "Gazetted" : "Restricted"} Holidays
             </h1>
             <div className="mb-6">
-                <table className="min-w-full my-4 bg-white rounded-lg">
-                    <thead className="bg-indigo-950 text-white h-[44px] rounded-t-lg font-novaReg uppercase text-xs lg:text-sm">
+                <table className="min-w-full my-4 bg-white rounded-lg overflow-hidden shadow-sm">
+                    <thead className="bg-brand-blue text-white h-[48px] font-novaSemi uppercase text-sm lg:text-base">
                         <tr className="border-b">
-                            <th className="px-4 max-[350px]:px-2 py-2 text-left border-r border-white border-opacity-10 rounded-tl-lg">
+                            <th className="px-4 max-[350px]:px-2 py-2 text-left border-r border-white border-opacity-10">
                                 S.No.
                             </th>
                             <th className="px-4 max-[350px]:px-2 py-2 border-r border-white border-opacity-10 text-left">
                                 Festival
                             </th>
-                            <th className="px-4 max-[350px]:px-2 py-2 text-left">
+                            <th className="px-4 max-[350px]:px-2 py-2 text-left border-r border-white border-opacity-10">
                                 Date
                             </th>
-                            <th className="px-4 max-[350px]:px-2 py-2 border-l border-white border-opacity-10 text-left rounded-tr-lg">
+                            <th className="px-4 max-[350px]:px-2 py-2 text-left">
                                 Day
                             </th>
                         </tr>
                     </thead>
-                    <tbody className="border-t-2 rounded-lg font-novaSemi text-xs sm:text-sm sm:font-novaReg">
-                        {currentEntries?.map((entry) => (
+                    <tbody className="font-novaReg text-sm sm:text-base text-gray-800">
+                        {currentEntries?.map((entry, index) => (
                             <tr
                                 key={entry.SNo}
-                                className={`bg-indigo-950 text-white`}
+                                className={`${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-blue-50 transition-colors`}
                             >
-                                <td className="py-4 px-4 max-[350px]:px-2 border-b border-white border-opacity-20">
+                                <td className="py-4 px-4 max-[350px]:px-2 border-b border-gray-200 text-center">
                                     {entry.SNo}
                                 </td>
-                                <td className="py-4 px-4 max-[350px]:px-2 border-b border-l border-white border-opacity-20">
+                                <td className="py-4 px-4 max-[350px]:px-2 border-b border-l border-gray-200">
                                     {entry.Festival}
                                 </td>
-                                <td className="py-4 px-4 max-[350px]:px-2 border-b border-l border-white border-opacity-20">
+                                <td className="py-4 px-4 max-[350px]:px-2 border-b border-l border-gray-200">
                                     {entry.Date}
                                 </td>
-                                <td className="py-4 text-center px-4 max-[350px]:px-2 border-b border-l border-white border-opacity-20">
+                                <td className="py-4 text-center px-4 max-[350px]:px-2 border-b border-l border-gray-200">
                                     {entry.Day}
                                 </td>
                             </tr>
@@ -68,13 +68,13 @@ const ListOfHolidays = ({ holidays = [], activeTab, itemsPerPage = 10 }) => {
                     </tbody>
                 </table>
 
-                <div className="flex justify-between max-sm:flex-col">
-                    <div className="text-sm mb-2.5 mr-5 pt-3 text-gray-700">
+                <div className="flex justify-between max-sm:flex-col text-base">
+                    <div className="text-base mb-2.5 mr-5 pt-3 text-gray-700">
                         Showing {indexOfFirstEntry + 1} to {Math.min(indexOfLastEntry, totalEntries)} of {totalEntries} entries
                     </div>
-                    <div className="text-sm w-fit bg-blue-950 rounded-lg flex items-center">
+                    <div className="text-base w-fit bg-brand-blue rounded-lg flex items-center">
                         <button
-                            className={`text-white px-4 py-2.5 rounded ${currentPage === 1 ? 'bg-blue-950 cursor-not-allowed' : ''}`}
+                            className={`text-white px-4 py-2.5 rounded ${currentPage === 1 ? 'bg-brand-blue cursor-not-allowed' : ''}`}
                             disabled={currentPage === 1}
                             onClick={() => handlePageChange(currentPage - 1)}
                         >
@@ -83,14 +83,14 @@ const ListOfHolidays = ({ holidays = [], activeTab, itemsPerPage = 10 }) => {
                         {[...Array(totalPages)]?.map((_, pageIndex) => (
                             <button
                                 key={pageIndex + 1}
-                                className={`text-white px-4 py-2.5 rounded ${currentPage === pageIndex + 1 ? 'bg-primary' : ''}`}
+                                className={`text-white px-4 py-2.5 rounded ${currentPage === pageIndex + 1 ? 'bg-[#3C567B]' : ''}`}
                                 onClick={() => handlePageChange(pageIndex + 1)}
                             >
                                 {pageIndex + 1}
                             </button>
                         ))}
                         <button
-                            className={`text-white px-3 py-2 rounded ${currentPage === totalPages ? 'bg-blue-950 cursor-not-allowed' : ''}`}
+                            className={`text-white px-3 py-2 rounded ${currentPage === totalPages ? 'bg-brand-blue cursor-not-allowed' : ''}`}
                             disabled={currentPage === totalPages}
                             onClick={() => handlePageChange(currentPage + 1)}
                         >

@@ -218,7 +218,7 @@ const RecognitionApprovals = ({ data }) => {
             {/* Main Title - NAAC A++ */}
             <div className="naac-text mb-8 relative">
               <h1 className="text-6xl md:text-8xl font-novaBold text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400 drop-shadow-2xl">
-                NAAC A++
+                NAAC <span className="text-brand-yellow font-bold">A++</span>
               </h1>
               <div className="absolute -inset-1 blur-2xl bg-brand-yellow/20 rounded-full opacity-50 -z-10"></div>
             </div>
@@ -302,7 +302,7 @@ const RecognitionApprovals = ({ data }) => {
             {/* Main Content */}
             <div ref={contentRef} className="w-full order-2">
               {/* Selected Recognition Details */}
-              <div className="bg-white rounded-2xl p-6 lg:p-8 shadow-sm border border-gray-200/50 mb-8 hover:shadow-md transition-shadow">
+              <div className="bg-white rounded-2xl p-6 lg:p-8 shadow-sm  mb-8 hover:shadow-md transition-shadow border-l-4 border-t-4 border-blue-500">
                 <h3 className="text-xl lg:text-2xl xl:text-3xl font-bold text-slate-900 mb-4 leading-tight text-center">
                   {selectedRecognitionData?.title}
                 </h3>

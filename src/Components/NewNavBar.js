@@ -561,7 +561,7 @@ export default function NewNavBar() {
                     <div className="flex flex-col items-center p-5">
                       <p className="flex flex-col">
                         <span className="text-center font-normal text-xl font-novaLight text-white">
-                          AKG University
+                          AKG University 
                         </span>
                         <span className="text-center font-novaBold text-3xl text-secondary leading-none">
                           of Excellence

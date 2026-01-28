@@ -218,27 +218,27 @@ export const Programs = {
           url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-computer-science-and-engineering",
           Specializations: ['Artificial Intelligence', 'Data Science', 'Information Technology', 'Cyber Security', 'Cloud Technology', 'AI & Machine Learning', 'Blockchain'],
         },
-        {
-          name: "B.Tech in Data Science",
-          url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-data-science",
-        },
-        {
-          name: "B.Tech in Artificial Intelligence & Machine Learning",
-          url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-artificial-intelligence-machine-learning",
-        },
-        {
-          name: "B.Tech in Information Technology",
-          url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-information-technology",
-        },
+        // {
+        //   name: "B.Tech in Data Science",
+        //   url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-data-science",
+        // },
+        // {
+        //   name: "B.Tech in Artificial Intelligence & Machine Learning",
+        //   url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-artificial-intelligence-machine-learning",
+        // },
+        // {
+        //   name: "B.Tech in Information Technology",
+        //   url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-information-technology",
+        // },
         // {
         //   name: "-",
         //   url: "#",
         //   Specializations: ['Artificial Intelligence', 'Data Science', 'Information Technology', 'Cyber Security', 'Cloud Technology', 'AI & Machine Learning', 'Blockchain'],
         // },
-        {
-          name: "BCA",
-          url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/bachelor-of-computer-application",
-        },
+        // {
+        //   name: "BCA",
+        //   url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/bachelor-of-computer-application",
+        // },
       ],
       Program: {
         "Post Graduate Program": [
@@ -247,10 +247,10 @@ export const Programs = {
             url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-computer-science-engineering",
             Specializations: ['Artificial Intelligence', 'Data Science', 'Information Technology', 'Cyber Security', 'Cloud Technology', 'AI & Machine Learning', 'Blockchain'],
           },
-          {
-            name: "Master of Computer Applications (MCA)",
-            url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/master-of-computer-applications",
-          },
+          // {
+          //   name: "Master of Computer Applications (MCA)",
+          //   url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/master-of-computer-applications",
+          // },
         ],
         "Doctorate Graduate Program": [
           {
@@ -334,6 +334,12 @@ export const Programs = {
             Specializations: ["AI-ML", "Data Science", "Cyber Security", "Artificial Intelligence"],
           },
         ],
+        "Doctorate Graduate Program": [
+          {
+            name: "Ph.D in Computer Science and Engineering",
+            url: "/school-of-computer-science-engineering-and-technology/phd-computer-science-and-engineering",
+          },
+        ],
       },
     },
     "School of Management": {
@@ -352,6 +358,12 @@ export const Programs = {
             name: "MBA",
             url: "#",
             Specializations: ["Artificial Intelligence", "Generative AI & Business Intelligence", "Data Science", "Digital Marketing", "HR", "Finance", "International Trades"],
+          },
+        ],
+        "Doctorate Graduate Program": [
+          {
+            name: "Ph.D in Computer Science and Engineering",
+            url: "/school-of-computer-science-engineering-and-technology/phd-computer-science-and-engineering",
           },
         ],
       },

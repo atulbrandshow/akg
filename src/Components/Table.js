@@ -39,7 +39,7 @@ const Table = ({ tableHeadings, heading, paragraph, data }) => {
     return (
         <div className="container mx-auto">
             <h1 className="text-[42px] font-novaReg leading-none mb-4">{heading}</h1>
-            <p className="mb-6 text-sm leading-5">{paragraph}</p>
+            <p className="mb-6 text-md leading-5">{paragraph}</p>
 
             <div className="flex justify-start max-sm:flex-col">
                 <div className="text-sm mb-2 mr-5">

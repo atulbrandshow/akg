@@ -296,11 +296,10 @@ const SchoolDetails = ({ data }) => {
                       <span className={`inline-flex items-center justify-center w-12 h-12 rounded-lg border-2 ${isMTech ? 'bg-purple-50 border-purple-200 text-purple-600' : 'bg-blue-50 border-blue-200 text-blue-600'} group-hover:scale-110 transition-transform duration-200`}>
                         {isMTech ? <Atom size={24} strokeWidth={2} /> : <Cpu size={24} strokeWidth={2} />}
                       </span>
-                      <span className={`px-2 py-1 rounded text-[10px] font-novaBold uppercase tracking-wider border ${isMTech ? 'bg-purple-100/50 border-purple-200 text-purple-800' : 'bg-blue-100/50 border-blue-200 text-blue-800'}`}>
+                      {/* <span className={`px-2 py-1 rounded text-[10px] font-novaBold uppercase tracking-wider border ${isMTech ? 'bg-purple-100/50 border-purple-200 text-purple-800' : 'bg-blue-100/50 border-blue-200 text-blue-800'}`}>
                         {degree}
-                      </span>
+                      </span> */}
                     </div>
-
                     <div className="relative z-10">
                       <h3 className="text-lg font-novaBold text-slate-900 mb-2 group-hover:text-black transition-colors">
                         {specialization}

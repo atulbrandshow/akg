@@ -22,7 +22,7 @@ const SpecializationDetails = ({data}) => {
       />
 
       <main className="max-w-[1400px] mx-auto px-6 py-12">
-        <Breadcrumb data={breadcrumbData} />
+        {/* <Breadcrumb data={breadcrumbData} /> */}
 
         {/* 1.1 Overview */}
         <section className="mt-12">

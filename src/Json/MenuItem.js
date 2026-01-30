@@ -216,7 +216,15 @@ export const Programs = {
         {
           name: "B.Tech in Computer Science Engineering",
           url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-computer-science-and-engineering",
-          Specializations: ['Artificial Intelligence', 'Data Science', 'Information Technology', 'Cyber Security', 'Cloud Technology', 'AI & Machine Learning', 'Blockchain'],
+          Specializations: [
+            { name: 'Artificial Intelligence', url: '/school-of-computer-science-engineering-and-technology/btechcseinartificial-intelligence' },
+            { name: 'Data Science', url: '/specialization-details?spec=data-science' },
+            { name: 'Information Technology', url: '/specialization-details?spec=information-technology' },
+            { name: 'Cyber Security', url: '/specialization-details?spec=cyber-security' },
+            { name: 'Cloud Technology', url: '/specialization-details?spec=cloud-technology' },
+            { name: 'AI & Machine Learning', url: '/specialization-details?spec=ai-machine-learning' },
+            { name: 'Blockchain', url: '/specialization-details?spec=blockchain' }
+          ],
         },
         // {
         //   name: "B.Tech in Data Science",
@@ -245,7 +253,15 @@ export const Programs = {
           {
             name: "M.Tech in Computer Science Engineering",
             url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-computer-science-engineering",
-            Specializations: ['Artificial Intelligence', 'Data Science', 'Information Technology', 'Cyber Security', 'Cloud Technology', 'AI & Machine Learning', 'Blockchain'],
+            Specializations: [
+            { name: 'Artificial Intelligence', url: '/school-of-computer-science-engineering-and-technology/btechcseinartificial-intelligence' },
+            { name: 'Data Science', url: '/specialization-details?spec=data-science' },
+            { name: 'Information Technology', url: '/specialization-details?spec=information-technology' },
+            { name: 'Cyber Security', url: '/specialization-details?spec=cyber-security' },
+            { name: 'Cloud Technology', url: '/specialization-details?spec=cloud-technology' },
+            { name: 'AI & Machine Learning', url: '/specialization-details?spec=ai-machine-learning' },
+            { name: 'Blockchain', url: '/specialization-details?spec=blockchain' }
+          ],
           },
           // {
           //   name: "Master of Computer Applications (MCA)",
@@ -267,22 +283,38 @@ export const Programs = {
         {
           name: "B.Tech in Electronics and Communication Engineering",
           url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-electronics-and-communication-engineering",
-          Specializations: ["VLSI Design", "IoT", "5G/6G Technology", "Artificial Intelligence"],
+          Specializations: [,
+            { name: "VLSI Design", url: "/specialization-details?spec=vlsi-design" },
+            { name: "IoT", url: "/specialization-details?spec=iot" },
+            { name: "5G/6G Technology", url: "/specialization-details?spec=5g-6g-technology" },
+            { name: "Artificial Intelligence", url: "/specialization-details?spec=artificial-intelligence" }
+          ],
         },
         {
           name: "B.Tech in Electrical & Electronics Engineering",
           url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-electrical-electronics-engineering",
-          Specializations: ["Electric Vehicle", "Artificial Intelligence"],
+          Specializations: [
+            { name: "Electric Vehicle", url: "/specialization-details?spec=electric-vehicle" },
+            { name: "Artificial Intelligence", url: "/specialization-details?spec=artificial-intelligence" }
+          ],
         },
         {
           name: "B.Tech in Mechanical Engineering",
           url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-mechanical-engineering",
-          Specializations: ["Mechatronics", "Robotics", "Artificial Intelligence", "Additive Manufacturing"],
+          Specializations: [
+            { name: "Mechatronics", url: "/specialization-details?spec=mechatronics" },
+            { name: "Robotics", url: "/specialization-details?spec=robotics" },
+            { name: "Artificial Intelligence", url: "/specialization-details?spec=artificial-intelligence" },
+            { name: "Additive Manufacturing", url: "/specialization-details?spec=additive-manufacturing" }
+          ],
         },
         {
           name: "B.Tech in Civil Engineering",
           url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-civil-engineering",
-          Specializations: ["Environment Engineering", "Structural Engineering"],
+          Specializations: [
+            { name: "Environment Engineering", url: "/specialization-details?spec=environment-engineering" },
+            { name: "Structural Engineering", url: "/specialization-details?spec=structural-engineering" }
+          ],
         },
       ],
       Program: {
@@ -290,22 +322,38 @@ export const Programs = {
           {
             name: "M.Tech in Electronics and Communication Engineering",
             url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-electronics-and-communication-engineering",
-            Specializations: ["VLSI Design", "IoT", "5G/6G Technology", "Artificial Intelligence"],
+            Specializations: [
+              { name: "VLSI Design", url: "/specialization-details?spec=vlsi-design" },
+              { name: "IoT", url: "/specialization-details?spec=iot" },
+              { name: "5G/6G Technology", url: "/specialization-details?spec=5g-6g-technology" },
+              { name: "Artificial Intelligence", url: "/specialization-details?spec=artificial-intelligence" }
+            ],
           },
           {
             name: "M.Tech in Electrical & Electronics Engineering",
             url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-electrical-electronics-engineering",
-            Specializations: ["Electric Vehicle", "Artificial Intelligence"],
+            Specializations: [
+              { name: "Electric Vehicle", url: "/specialization-details?spec=electric-vehicle" },
+              { name: "Artificial Intelligence", url: "/specialization-details?spec=artificial-intelligence" }
+            ],
           },
           {
             name: "M.Tech in Mechanical Engineering",
             url: "/school-of-engineering-and-technology/mtech-in-mechanical-engineering",
-            Specializations: ["Mechatronics", "Robotics", "Artificial Intelligence", "Additive Manufacturing"],
+            Specializations: [
+              { name: "Mechatronics", url: "/specialization-details?spec=mechatronics" },
+              { name: "Robotics", url: "/specialization-details?spec=robotics" },
+              { name: "Artificial Intelligence", url: "/specialization-details?spec=artificial-intelligence" },
+              { name: "Additive Manufacturing", url: "/specialization-details?spec=additive-manufacturing" }
+            ],
           },
           {
             name: "M.Tech in Civil Engineering",
             url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-civil-engineering",
-            Specializations: ["Environment Engineering", "Structural Engineering"],
+            Specializations: [
+              { name: "Environment Engineering", url: "/specialization-details?spec=environment-engineering" },
+              { name: "Structural Engineering", url: "/specialization-details?spec=structural-engineering" }
+            ],
           },
         ],
         "Doctorate Graduate Program": [
@@ -324,14 +372,24 @@ export const Programs = {
           {
             name: "BCA",
             url: "#",
-            Specializations: ["AI-ML", "Data Science", "Cyber Security", "Artificial Intelligence"],
+            Specializations: [
+              { name: "AI-ML", url: "/specialization-details?spec=ai-ml" },
+              { name: "Data Science", url: "/specialization-details?spec=data-science" },
+              { name: "Cyber Security", url: "/specialization-details?spec=cyber-security" },
+              { name: "Artificial Intelligence", url: "/specialization-details?spec=artificial-intelligence" }
+            ],
           },
         ],
         "Post Graduate Program": [
           {
             name: "MCA",
             url: "#",
-            Specializations: ["AI-ML", "Data Science", "Cyber Security", "Artificial Intelligence"],
+            Specializations: [
+              { name: "AI-ML", url: "/specialization-details?spec=ai-ml" },
+              { name: "Data Science", url: "/specialization-details?spec=data-science" },
+              { name: "Cyber Security", url: "/specialization-details?spec=cyber-security" },
+              { name: "Artificial Intelligence", url: "/specialization-details?spec=artificial-intelligence" }
+            ],
           },
         ],
         "Doctorate Graduate Program": [
@@ -350,14 +408,30 @@ export const Programs = {
           {
             name: "BBA",
             url: "#",
-            Specializations: ["Artificial Intelligence", "Generative AI & Business Intelligence", "Data Science", "Digital Marketing", "HR", "Finance", "International Trades"],
+            Specializations: [
+              { name: "Artificial Intelligence", url: "/specialization-details?spec=artificial-intelligence" },
+              { name: "Generative AI & Business Intelligence", url: "/specialization-details" },
+              { name: "Data Science", url: "/specialization-details?spec=data-science" },
+              { name: "Digital Marketing", url: "/specialization-details" },
+              { name: "HR", url: "/specialization-details" },
+              { name: "Finance", url: "/specialization-details" },
+              { name: "International Trades", url: "/specialization-details" }
+            ],
           },
         ],
         "Post Graduate Program": [
           {
             name: "MBA",
             url: "#",
-            Specializations: ["Artificial Intelligence", "Generative AI & Business Intelligence", "Data Science", "Digital Marketing", "HR", "Finance", "International Trades"],
+            Specializations: [
+              { name: "Artificial Intelligence", url: "/specialization-details?spec=artificial-intelligence" },
+              { name: "Generative AI & Business Intelligence", url: "/specialization-details" },
+              { name: "Data Science", url: "/specialization-details?spec=data-science" },
+              { name: "Digital Marketing", url: "/specialization-details" },
+              { name: "HR", url: "/specialization-details" },
+              { name: "Finance", url: "/specialization-details" },
+              { name: "International Trades", url: "/specialization-details" }
+            ],
           },
         ],
         "Doctorate Graduate Program": [

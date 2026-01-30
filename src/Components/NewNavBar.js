@@ -281,7 +281,7 @@ export default function NewNavBar() {
                       {link.Specializations.map((spec, specIndex) => (
                         <li key={specIndex} className="transform transition-all duration-200 hover:translate-x-1">
                           <Link 
-                            href="#" 
+                            href={typeof spec === 'object' ? spec.url : "/specialization-details"} 
                             className="text-sm text-gray-600 font-novaReg hover:text-brand-blue cursor-pointer block py-1.5 px-2 rounded-md hover:bg-blue-50/50 hover:underline transition-all duration-200 group"
                             onClick={() => {
                               setBigMenuToggle(false);
@@ -290,7 +290,7 @@ export default function NewNavBar() {
                           >
                             <div className="flex items-center gap-2">
                               <div className="w-1 h-1 bg-brand-blue/60 rounded-full group-hover:bg-brand-blue transition-colors"></div>
-                              <span>{spec}</span>
+                              <span>{typeof spec === 'object' ? spec.name : spec}</span>
                             </div>
                           </Link>
                         </li>
@@ -723,6 +723,7 @@ export default function NewNavBar() {
                   <div className="grid grid-cols-3 gap-4 p-4">
                     {Object.keys(Programs.sublinks[activeTab])?.map(
                       (key, index) => {
+                        console.log("Rendering key:", Programs.sublinks[activeTab][key]);
                         if (key === "Graduate Program") {
                           return (
                             <LinksList

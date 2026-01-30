@@ -103,7 +103,7 @@ const SchoolDetails = ({ data }) => {
     }
   }, [data?.stream]);
 
-  const d = data?.pageData;
+  const d = data?.pageData || data?.pageDataOpened;
 
   const overviewHtml = d?.Overview_Description_
     ? DOMPurify.sanitize(d?.Overview_Description_?.replace(/classname/gi, 'class'))
@@ -116,6 +116,18 @@ const SchoolDetails = ({ data }) => {
   const highlightHtml = d?.Highlight_Desc
     ? DOMPurify.sanitize(d?.Highlight_Desc?.replace(/classname/gi, 'class'))
     : '';
+
+  const stSections = [];
+  for (let i = 1; i <= 20; i++) {
+    const title = d?.[`ST_${i}`];
+    const desc = d?.[`SD_${i}`];
+    if (title || desc) {
+      stSections.push({
+        title,
+        desc: desc ? DOMPurify.sanitize(desc.replace(/classname/gi, 'class')) : '',
+      });
+    }
+  }
 
   const icons = [Laptop, Cpu, Cog, Building, PlugZap, Biohazard, Atom, Beaker, FlaskConical, Hammer];
   const colors = [
@@ -279,11 +291,12 @@ const SchoolDetails = ({ data }) => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {programs.map((item, idx) => {
-                const isMTech = item.includes("M.Tech");
+              {stSections.map((item, idx) => {
+                console.log(item);
+                const isMTech = item.title?.includes("M.Tech");
                 const degree = isMTech ? "M.Tech" : "B.Tech";
-                const match = item.match(/\((.*?)\)/);
-                const specialization = match ? match[1] : item.split('Engineering')[1]?.trim();
+                const match = item.title?.match(/\((.*?)\)/);
+                const specialization = match ? match[1] : item.title?.split('Engineering')[1]?.trim() || item.title;
                 const accentColor = isMTech ? 'group-hover:shadow-[6px_6px_0px_0px_#9333ea]' : 'group-hover:shadow-[6px_6px_0px_0px_#2563eb]';
                 const borderColor = isMTech ? 'group-hover:border-purple-600' : 'group-hover:border-blue-600';
 
@@ -296,18 +309,13 @@ const SchoolDetails = ({ data }) => {
                       <span className={`inline-flex items-center justify-center w-12 h-12 rounded-lg border-2 ${isMTech ? 'bg-purple-50 border-purple-200 text-purple-600' : 'bg-blue-50 border-blue-200 text-blue-600'} group-hover:scale-110 transition-transform duration-200`}>
                         {isMTech ? <Atom size={24} strokeWidth={2} /> : <Cpu size={24} strokeWidth={2} />}
                       </span>
-                      {/* <span className={`px-2 py-1 rounded text-[10px] font-novaBold uppercase tracking-wider border ${isMTech ? 'bg-purple-100/50 border-purple-200 text-purple-800' : 'bg-blue-100/50 border-blue-200 text-blue-800'}`}>
-                        {degree}
-                      </span> */}
                     </div>
                     <div className="relative z-10">
                       <h3 className="text-lg font-novaBold text-slate-900 mb-2 group-hover:text-black transition-colors">
                         {specialization}
                       </h3>
 
-                      <p className="text-slate-500 text-xs font-novaReg line-clamp-2 leading-relaxed border-t border-slate-100 pt-3 mt-3 group-hover:border-slate-200">
-                        {item}
-                      </p>
+                      <div className="text-slate-500 text-xs font-novaReg line-clamp-2 leading-relaxed border-t border-slate-100 pt-3 mt-3 group-hover:border-slate-200" dangerouslySetInnerHTML={{ __html: item.desc || item.title }} />
                     </div>
                   </div>
                 );

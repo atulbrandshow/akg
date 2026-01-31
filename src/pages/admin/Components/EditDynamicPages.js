@@ -717,10 +717,10 @@ function EditDynamicPages({ type, componentType }) {
       return
     }
 
-    if (!streamId) {
-      toast.warning("Please select stream");
-      return;
-    }
+    // if (!streamId) {
+    //   toast.warning("Please select stream");
+    //   return;
+    // }
 
     const payload = {
       ...formData,

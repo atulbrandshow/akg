@@ -3,7 +3,14 @@
 import React from "react";
 import Header from "@/Components/Header";
 import Breadcrumb from "@/Components/Breadcrumb";
-import { Cpu, IndianRupee, Globe, GraduationCap, Send, Briefcase } from "lucide-react";
+import {
+  Cpu,
+  IndianRupee,
+  Globe,
+  GraduationCap,
+  Send,
+  Briefcase,
+} from "lucide-react";
 
 const SpecializationDetails = ({ data }) => {
   const pageData = data?.pageData || data;
@@ -13,6 +20,7 @@ const SpecializationDetails = ({ data }) => {
     return Object.keys(pageData || {})
       .filter((key) => key.startsWith(prefix))
       .sort((a, b) => {
+        console.log("a, b:", a, b);
         const numA = parseInt(a.split("_")[1]);
         const numB = parseInt(b.split("_")[1]);
         return numA - numB;
@@ -28,7 +36,9 @@ const SpecializationDetails = ({ data }) => {
   return (
     <div className="bg-gray-50 min-h-screen">
       <Header
-        title={pageData?.["Hero-Title"] || "B.Tech (CSE) - Artificial Intelligence"}
+        title={
+          pageData?.["Hero-Title"] || "B.Tech (CSE) - Artificial Intelligence"
+        }
         bgKey="BG1"
       />
 
@@ -41,15 +51,21 @@ const SpecializationDetails = ({ data }) => {
                 <Cpu className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h2 className="text-3xl font-novaBold text-gray-900">Program Overview</h2>
+                <h2 className="text-3xl font-novaBold text-gray-900">
+                  Program Overview
+                </h2>
                 {pageData?.["Overview-Title"] && (
-                  <h3 className="text-xl font-novaSemi text-blue-700 mt-1">{pageData["Overview-Title"]}</h3>
+                  <h3 className="text-xl font-novaSemi text-blue-700 mt-1">
+                    {pageData["Overview-Title"]}
+                  </h3>
                 )}
               </div>
             </div>
             <div className="space-y-6 text-gray-700 leading-relaxed font-novaReg text-justify">
               {pageData?.["Overview-Des"] ? (
-                <div dangerouslySetInnerHTML={{ __html: pageData["Overview-Des"] }} />
+                <div
+                  dangerouslySetInnerHTML={{ __html: pageData["Overview-Des"] }}
+                />
               ) : (
                 <p>Data not available.</p>
               )}
@@ -64,10 +80,13 @@ const SpecializationDetails = ({ data }) => {
               <div className="p-3 bg-indigo-600 rounded-xl">
                 <IndianRupee className="w-6 h-6 text-white" />
               </div>
-              <h2 className="text-2xl font-novaBold text-gray-900">Fee Structure</h2>
+              <h2 className="text-2xl font-novaBold text-gray-900">
+                Fee Structure
+              </h2>
             </div>
             <p className="text-gray-600 mb-6 font-novaReg text-sm">
-              {pageData?.["Fee-Structure-Title"] || "Framed in accordance with UGC fee transparency norms."}
+              {pageData?.["Fee-Structure-Title"] ||
+                "Framed in accordance with UGC fee transparency norms."}
             </p>
 
             <div className="space-y-6">
@@ -79,16 +98,23 @@ const SpecializationDetails = ({ data }) => {
                   <table className="w-full text-left font-novaReg">
                     <thead className="bg-gray-50 border-b border-gray-200">
                       <tr>
-                        <th className="px-4 py-2 text-sm font-novaSemi">Year</th>
-                        <th className="px-4 py-2 text-sm font-novaSemi">Fee (INR)</th>
+                        <th className="px-4 py-2 text-sm font-novaSemi">
+                          Year
+                        </th>
+                        <th className="px-4 py-2 text-sm font-novaSemi">
+                          Fee (INR)
+                        </th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
                       {feeYears.map((year) => (
                         <tr key={year}>
-                          <td className="px-4 py-2 text-sm">{year.replace("_", " ")}</td>
+                          <td className="px-4 py-2 text-sm">
+                            {year.replace("_", " ")}
+                          </td>
                           <td className="px-4 py-2 text-sm font-novaSemi">
-                            {pageData?.[`FNS_${year}`] || "Will be notified on website"}
+                            {pageData?.[`FNS_${year}`] ||
+                              "Will be notified on website"}
                           </td>
                         </tr>
                       ))}
@@ -105,16 +131,23 @@ const SpecializationDetails = ({ data }) => {
                   <table className="w-full text-left font-novaReg">
                     <thead className="bg-gray-50 border-b border-gray-200">
                       <tr>
-                        <th className="px-4 py-2 text-sm font-novaSemi">Year</th>
-                        <th className="px-4 py-2 text-sm font-novaSemi">Fee Status</th>
+                        <th className="px-4 py-2 text-sm font-novaSemi">
+                          Year
+                        </th>
+                        <th className="px-4 py-2 text-sm font-novaSemi">
+                          Fee Status
+                        </th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
                       {feeYears.map((year) => (
                         <tr key={year}>
-                          <td className="px-4 py-2 text-sm">{year.replace("_", " ")}</td>
+                          <td className="px-4 py-2 text-sm">
+                            {year.replace("_", " ")}
+                          </td>
                           <td className="px-4 py-2 text-sm font-novaSemi">
-                            {pageData?.[`FFS_${year}`] || "Will be notified on website"}
+                            {pageData?.[`FFS_${year}`] ||
+                              "Will be notified on website"}
                           </td>
                         </tr>
                       ))}
@@ -131,15 +164,20 @@ const SpecializationDetails = ({ data }) => {
               <div className="p-3 bg-blue-600 rounded-xl">
                 <GraduationCap className="w-6 h-6 text-white" />
               </div>
-              <h2 className="text-2xl font-novaBold text-gray-900">Eligibility Criteria</h2>
+              <h2 className="text-2xl font-novaBold text-gray-900">
+                Eligibility Criteria
+              </h2>
             </div>
 
             <div className="space-y-6">
               <div className="p-5 bg-blue-50 rounded-2xl border border-blue-100">
-                <h3 className="font-novaSemi text-blue-900 mb-2">Indian / National Students</h3>
+                <h3 className="font-novaSemi text-blue-900 mb-2">
+                  Indian / National Students
+                </h3>
                 <ul className="list-disc list-inside space-y-2 text-sm text-gray-700 font-novaReg">
                   {insList.length > 0 ? (
-                    insList.map((item, idx) => <li key={idx}>{item}</li>)
+                    (console.log("insList", insList),
+                    insList.map((item, idx) => <li key={idx}>{item}</li>))
                   ) : (
                     <li>Data not available.</li>
                   )}
@@ -147,7 +185,9 @@ const SpecializationDetails = ({ data }) => {
               </div>
 
               <div className="p-5 bg-indigo-50 rounded-2xl border border-indigo-100">
-                <h3 className="font-novaSemi text-indigo-900 mb-2">International / Foreign Students</h3>
+                <h3 className="font-novaSemi text-indigo-900 mb-2">
+                  International / Foreign Students
+                </h3>
                 <ul className="list-disc list-inside space-y-2 text-sm text-gray-700 font-novaReg">
                   {ifsList.length > 0 ? (
                     ifsList.map((item, idx) => <li key={idx}>{item}</li>)
@@ -190,9 +230,13 @@ const SpecializationDetails = ({ data }) => {
                 <Briefcase className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h2 className="text-3xl font-novaBold text-gray-900">Career Path</h2>
+                <h2 className="text-3xl font-novaBold text-gray-900">
+                  Career Path
+                </h2>
                 {pageData?.["CP-Title"] && (
-                  <h3 className="text-xl font-novaSemi text-blue-700 mt-1">{pageData["CP-Title"]}</h3>
+                  <h3 className="text-xl font-novaSemi text-blue-700 mt-1">
+                    {pageData["CP-Title"]}
+                  </h3>
                 )}
               </div>
             </div>

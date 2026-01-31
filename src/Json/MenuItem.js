@@ -217,13 +217,13 @@ export const Programs = {
           name: "B.Tech in Computer Science Engineering",
           url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-computer-science-and-engineering",
           Specializations: [
-            { name: 'Artificial Intelligence', url: '/school-of-computer-science-engineering-and-technology/btechcseinartificial-intelligence' },
-            { name: 'Data Science', url: '/specialization-details?spec=data-science' },
-            { name: 'Information Technology', url: '/specialization-details?spec=information-technology' },
-            { name: 'Cyber Security', url: '/specialization-details?spec=cyber-security' },
-            { name: 'Cloud Technology', url: '/specialization-details?spec=cloud-technology' },
-            { name: 'AI & Machine Learning', url: '/specialization-details?spec=ai-machine-learning' },
-            { name: 'Blockchain', url: '/specialization-details?spec=blockchain' }
+            { name: 'Artificial Intelligence', url: '/school-of-computer-science-engineering-and-technology/btech-cse-in-artificial-intelligence' },
+            { name: 'Data Science', url: '/school-of-computer-science-engineering-and-technology/btech-cse-in-data-science' },
+            { name: 'Information Technology', url: '/school-of-computer-science-engineering-and-technology/btech-cse-in-information-technology' },
+            { name: 'Cyber Security', url: '/school-of-computer-science-engineering-and-technology/btech-cse-in-cyber-security' },
+            { name: 'Cloud Technology', url: '/school-of-computer-science-engineering-and-technology/btech-cse-in-cloud-technology' },
+            { name: 'AI & Machine Learning', url: '/school-of-computer-science-engineering-and-technology/btech-cse-in-artificial-intelligence-and-machine-learning' },
+            { name: 'Blockchain', url: '/school-of-computer-science-engineering-and-technology/btech-cse-in-blockchain' }
           ],
         },
         // {
@@ -254,13 +254,13 @@ export const Programs = {
             name: "M.Tech in Computer Science Engineering",
             url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-computer-science-engineering",
             Specializations: [
-            { name: 'Artificial Intelligence', url: '/school-of-computer-science-engineering-and-technology/btechcseinartificial-intelligence' },
-            { name: 'Data Science', url: '/specialization-details?spec=data-science' },
-            { name: 'Information Technology', url: '/specialization-details?spec=information-technology' },
-            { name: 'Cyber Security', url: '/specialization-details?spec=cyber-security' },
-            { name: 'Cloud Technology', url: '/specialization-details?spec=cloud-technology' },
-            { name: 'AI & Machine Learning', url: '/specialization-details?spec=ai-machine-learning' },
-            { name: 'Blockchain', url: '/specialization-details?spec=blockchain' }
+            { name: 'Artificial Intelligence', url: '/school-of-computer-science-engineering-and-technology/mtech-cse-in-artificial-intelligence' },
+            { name: 'Data Science', url: '/school-of-computer-science-engineering-and-technology/mtech-cse-in-data-science' },
+            { name: 'Information Technology', url: '/school-of-computer-science-engineering-and-technology/mtech-cse-in-information-technology' },
+            { name: 'Cyber Security', url: '/school-of-computer-science-engineering-and-technology/mtech-cse-in-cyber-security' },
+            { name: 'Cloud Technology', url: '/school-of-computer-science-engineering-and-technology/mtech-cse-in-cloud-technology' },
+            { name: 'AI & Machine Learning', url: '/school-of-computer-science-engineering-and-technology/mtech-cse-artificial-intelligence-machine-learning' },
+            { name: 'Blockchain', url: '/school-of-computer-science-engineering-and-technology/mtech-cse-blockchain' }
           ],
           },
           // {

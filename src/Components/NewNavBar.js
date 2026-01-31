@@ -723,7 +723,7 @@ export default function NewNavBar() {
                   <div className="grid grid-cols-3 gap-4 p-4">
                     {Object.keys(Programs.sublinks[activeTab])?.map(
                       (key, index) => {
-                        console.log("Rendering key:", Programs.sublinks[activeTab][key]);
+                        // console.log("Rendering key:", Programs.sublinks[activeTab][key]);
                         if (key === "Graduate Program") {
                           return (
                             <LinksList

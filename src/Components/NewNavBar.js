@@ -162,6 +162,7 @@ export default function NewNavBar() {
         if (openMenu) {
           setOpenMenu(null);
         }
+        setHoveredItem(null);
       }
     };
 
@@ -256,6 +257,7 @@ export default function NewNavBar() {
                 onClick={() => {
                   setBigMenuToggle(false);
                   setOpenMenu(null);
+                  setHoveredItem(null);
                 }}
               >
                 <span className="text-gray-700 hover:text-brand-blue transition-colors">{link.name}</span>
@@ -286,6 +288,7 @@ export default function NewNavBar() {
                             onClick={() => {
                               setBigMenuToggle(false);
                               setOpenMenu(null);
+                              setHoveredItem(null);
                             }}
                           >
                             <div className="flex items-center gap-2">

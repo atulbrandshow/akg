@@ -287,7 +287,7 @@ export const Programs = {
             { name: "VLSI Design", url: "/school-of-engineering-and-technology/btech-ece-in-vlsi-design" },
             { name: "IoT", url: "/school-of-computer-science-engineering-and-technology/btech-cse-in-data-science" },
             { name: "5G/6G Technology", url: "/school-of-engineering-and-technology/btech-ece-in-5g-and-6g-technology" },
-            { name: "Artificial Intelligence", url: "/specialization-details?spec=artificial-intelligence" }
+            { name: "Artificial Intelligence", url: "/school-of-engineering-and-technology/btech-ece-in-artificial-intelligence" }
           ],
         },
         {

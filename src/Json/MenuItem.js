@@ -284,9 +284,9 @@ export const Programs = {
           name: "B.Tech in Electronics and Communication Engineering",
           url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-electronics-and-communication-engineering",
           Specializations: [,
-            { name: "VLSI Design", url: "/specialization-details?spec=vlsi-design" },
-            { name: "IoT", url: "/specialization-details?spec=iot" },
-            { name: "5G/6G Technology", url: "/specialization-details?spec=5g-6g-technology" },
+            { name: "VLSI Design", url: "/school-of-engineering-and-technology/btech-ece-in-vlsi-design" },
+            { name: "IoT", url: "/school-of-computer-science-engineering-and-technology/btech-cse-in-data-science" },
+            { name: "5G/6G Technology", url: "/school-of-engineering-and-technology/btech-ece-in-5g-and-6g-technology" },
             { name: "Artificial Intelligence", url: "/specialization-details?spec=artificial-intelligence" }
           ],
         },

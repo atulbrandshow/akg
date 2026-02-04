@@ -7,6 +7,7 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 
 function NewsListPage({ data }) {
+  console.log(data)
   const [newsData, setNewsData] = useState([])
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("all")

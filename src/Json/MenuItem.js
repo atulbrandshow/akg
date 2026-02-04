@@ -294,8 +294,8 @@ export const Programs = {
           name: "B.Tech in Electrical & Electronics Engineering",
           url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-electrical-electronics-engineering",
           Specializations: [
-            { name: "Electric Vehicle", url: "/specialization-details?spec=electric-vehicle" },
-            { name: "Artificial Intelligence", url: "/specialization-details?spec=artificial-intelligence" }
+            { name: "Electric Vehicle", url: "/school-of-engineering-and-technology/btech-electrical-engineering-electric-vehicle" },
+            { name: "Artificial Intelligence", url: "/school-of-engineering-and-technology/B-tech-electrical-engineering-artificial-intelligence" }
           ],
         },
         {

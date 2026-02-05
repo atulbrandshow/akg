@@ -304,8 +304,8 @@ export const Programs = {
           Specializations: [
             { name: "Mechatronics", url: "/specialization-details?spec=mechatronics" },
             { name: "Robotics", url: "/specialization-details?spec=robotics" },
-            { name: "Artificial Intelligence", url: "/specialization-details?spec=artificial-intelligence" },
-            { name: "Additive Manufacturing", url: "/specialization-details?spec=additive-manufacturing" }
+            { name: "Artificial Intelligence", url: "/school-of-engineering-and-technology/btech-mechanical-engineering-artificial-intelligence" },
+            { name: "Additive Manufacturing", url: "/school-of-engineering-and-technology/btech-mechanical-engineering-additive-manufacturing" }
           ],
         },
         {

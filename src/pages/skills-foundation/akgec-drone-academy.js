@@ -51,49 +51,49 @@ const droneData = {
                 title: "Advanced Drone Pilot Simulation & Skill Development Center",
                 description: "The academy uses the RealFlight Evolution Drone Flight Simulator, equipped with the Spektrum InterLink DX controller for an authentic, real-world flying feel. With access to 300+ aircraft models and 75+ simulated flying sites, trainees can practice diverse scenarios, refine maneuvers, and build strong operational confidence before actual field flying.",
                 icon: Gamepad2,
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/drone-academy/infrastructure/remote-pilot-simulation-proficiency-center.webp"
             },
             {
                 id: "2",
                 title: "Small-Class Rotorcraft Drone Fleet",
                 description: "A versatile fleet of four small-class rotorcraft drones supports a wide range of applications, including training, mapping, surveillance, and agricultural spraying. Key models include: Asteria Aerospace A200 XT (multipurpose with obstacle detection), Crystal Ball Model V (mapping & surveillance with parachute recovery), and IoTech Agribot A6 (DGCA-certified agricultural spraying drone).",
                 icon: Plane,
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/drone-academy/infrastructure/small-class-rotorcraft-drone-fleet.webp"
             },
             {
                 id: "3",
                 title: "Pix4 Dmapper Educational Perpetual License – Photogrammetry Classroom",
                 description: "AKGEC Drone Academy operates a dedicated photogrammetry classroom equipped with Pix4Dmapper Educational Perpetual Licenses, enabling students to learn industry-standard drone mapping workflows. The facility supports end-to-end processing for traditional UAV surveying, 3D modeling, orthomosaic generation, and advanced geospatial analysis.",
                 icon: Map,
-                image: "/image/SkillFoundationImage/skill-foundation3.png"
+                image: "/image/skill-foundation/drone-academy/infrastructure/pix4dmapper-photogrammetry-classroom.webp"
             },
             {
                 id: "4",
                 title: "DGCA-Approved Flying Grounds",
                 description: "AKGEC Drone Academy maintains two DGCA-approved flying grounds, fully compliant with prescribed regulations for Small-Class Rotorcraft training. Each ground spans 80 × 80 meters and is equipped with a standard windsock, ensuring safe, controlled, and environment-aware flight operations during training and mission-based exercises.",
                 icon: Flag,
-                image: "/image/SkillFoundationImage/skill-foundation4.jpeg"
+                image: "/image/skill-foundation/drone-academy/infrastructure/dgca-approved-flying-grounds.webp"
             },
             {
                 id: "5",
                 title: "Advanced UAV Flight Training & Operations Hub",
                 description: "AKGEC Drone Academy features a state-of-the-art, first-of-its-kind Drone Flying Station in the region, purpose-built to elevate training, safety, and operational efficiency. The facility includes a dedicated viewing area for supervised monitoring, along with drone hangars and integrated charging points.",
                 icon: Cpu,
-                image: "/image/SkillFoundationImage/skill-foundation5.png"
+                image: "/image/skill-foundation/drone-academy/infrastructure/state-of-the-art-drone-flying-station.webp"
             },
             {
                 id: "6",
                 title: "Integrated Drone Servicing & Power Systems Center",
                 description: "AKGEC Drone Academy operates a fully Integrated Drone Maintenance & Power Systems Facility dedicated to comprehensive UAV servicing, diagnostics, and operational readiness. The lab supports routine maintenance, component-level repairs, battery health monitoring, and safe charging operations—managed by two certified Drone Service Engineers.",
                 icon: Tool,
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/drone-academy/infrastructure/integrated-drone-maintenance-power-systems-facility.webp"
             },
             {
                 id: "7",
                 title: "Smartboard-Enabled Drone Training Classroom",
                 description: "AKGEC Drone Academy provides a dedicated training classroom equipped with an interactive Smartboard, enabling dynamic theory sessions, real-time demonstrations, and multimedia-based learning. The setup enhances concept clarity, supports simulator integration, and ensures an engaging, modern classroom experience for all trainees.",
                 icon: BookOpen,
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/drone-academy/infrastructure/smartboard-enabled-drone-training-classroom.webp"
             }
         ]
     },
@@ -104,49 +104,49 @@ const droneData = {
                 id: "1",
                 title: "Introductory UAV Technology Workshop for AKGEC Faculty Members",
                 description: "A one-day faculty workshop on 30th September 2023 was conducted to introduce AKGEC faculty members to drone technology, operations, and applications, providing hands-on experience and foundational insights into UAV systems.",
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/drone-academy/events/introductory-drone-workshop-faculty.webp"
             },
             {
                 id: "2",
                 title: "Three-Day Introductory Drone Workshop for AKGEC Students",
                 description: "A three-day students workshop was held from 16th to 18th April 2024, introducing AKGEC students to drone technology, flight operations, and practical UAV applications. The program combined hands-on flying sessions, simulator training, and interactive learning to provide a comprehensive foundational experience.",
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/drone-academy/events/three-day-introductory-drone-workshop-students.webp"
             },
             {
                 id: "3",
                 title: "National Drone Symposium | Sponsored by AKTU, Lucknow & Drone Federation of India",
                 description: "The AKGEC Drone Academy CoE organized a one-day National Drone Symposium on 6th September 2024, sponsored by AKTU, Lucknow and the Drone Federation of India. The event brought together industry professionals, research scholars, and students for expert panel discussions on emerging UAV technologies, followed by an engaging drone flying demonstration showcasing practical applications.",
-                image: "/image/SkillFoundationImage/skill-foundation3.png"
+                image: "/image/skill-foundation/drone-academy/events/national-drone-symposium.webp"
             },
             {
                 id: "4",
                 title: "Specialized Training Program for CDO, Ghaziabad",
                 description: "AKGEC Drone Academy CoE conducted a specialized Remote Pilot Certification Training Program for Mr. Abhinav Gopal, IAS, Chief Development Officer (CDO), Ghaziabad, from 12th to 22nd November 2025. The customized program included focused sessions on drone regulations, mission planning, GIS-based applications, and supervised on-field flying exercises.",
-                image: "/image/SkillFoundationImage/skill-foundation4.jpeg"
+                image: "/image/skill-foundation/drone-academy/events/specialized-training-program-cdo-ghaziabad.webp"
             },
             {
                 id: "5",
                 title: "Remote Pilot Certification Training for Rotary Club Participants",
                 description: "AKGEC Drone Academy CoE, under its MoU with the Rotary Club, conducted a Remote Pilot Certification Training Program for the first batch of Agriculture Science students from Madhya Pradesh. The week-long program offered hands-on exposure to modern drone technology, blending theory with supervised flying sessions as per DGCA norms.",
-                image: "/image/SkillFoundationImage/skill-foundation5.png"
+                image: "/image/skill-foundation/drone-academy/events/remote-pilot-certification-rotary-club.webp"
             },
             {
                 id: "6",
                 title: "Faculty Development Program: DGCA-Authorized Remote Pilot Training",
                 description: "AKGEC Drone Academy CoE conducted a DGCA-authorized Remote Pilot Certification Training Program for professors from Jamia Millia Islamia, New Delhi. Held from 10–17 February 2025, the program enhanced faculty expertise in UAV technology through DGCA-compliant ground classes and structured flight training.",
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/drone-academy/events/specialized-drone-technology-training-educators.webp"
             },
             {
                 id: "7",
                 title: "Corporate DGCA-Authorized Remote Pilot Certification Program",
                 description: "AKGEC Drone Academy delivered a focused DGCA-authorized Remote Pilot Certification Program for professionals from Ghaziabad Precision Product Pvt. Ltd., Ghaziabad, held from 4th to 8th August 2025. The program emphasized real-world industrial applications, operational safety, and full compliance with DGCA guidelines.",
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/drone-academy/events/corporate-dgca-authorized-remote-pilot-certification.webp"
             },
             {
                 id: "8",
                 title: "Student Training Program for B.Tech. Students",
                 description: "AKGEC Drone Academy CoE conducted two DGCA-approved Remote Pilot Certificate Training Programs for AKGEC B.Tech. students from various engineering disciplines—first from 7th to 16th December 2024 and the second from 6th to 15th November 2025. These programs offered end-to-end learning.",
-                image: "/image/SkillFoundationImage/skill-foundation3.png"
+                image: "/image/skill-foundation/drone-academy/events/student-training-program-btech-students.webp"
             }
         ]
     },
@@ -155,11 +155,11 @@ const droneData = {
         items: [
             {
                 text: "Team AKG Engineering College’s Drone Club secured the First Prize at “The Airborne Archers” competition held at RKGIT, Ghaziabad. The team demonstrated exceptional innovation and flying skills, earning a cash award of ₹25,000. This achievement highlights AKGEC’s growing strength in drone technology and student-led innovation.",
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/drone-academy/awards/akgec-drone-club.webp"
             },
             {
                 text: "AKGEC Drone Academy signed a Memorandum of Understanding (MoU) with Rotary District 3011 on 6th September 2024 to train 200 candidates for the DGCA-approved Remote Pilot Certificate. This collaboration reinforces AKGEC’s commitment to developing a skilled drone workforce and contributing to India’s rapidly expanding UAV ecosystem and capacity-building initiatives.",
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/drone-academy/awards/mou-rotary-district-3011.webp"
             }
         ]
     },
@@ -167,11 +167,11 @@ const droneData = {
         title: "Programs Offered",
         description: "The Centre offers the following regular training programs for enthusiastic drone professionals and engineering students of all disciplines. On successful completion of training, participants are assessed for their learning & skills and awarded with a certificate from AKGEC Drone Academy authorized by DGCA.",
         items: [
-            "DGCA Certified Remote Pilot Training Program (8 Days)",
-            "DGCA certified Program for Agriculture Drone Spraying with RPC (10 Days)",
-            "Advanced Training Program for Agriculture Spraying for DGCA-Certified RPC Holders (2 Days)",
-            "Professional Training Program for Drone Technician Training (5 Days)",
-            "Intensive Flying Program for Instructors aspirants (4 Days)"
+            { text: "DGCA Certified Remote Pilot Training Program (8 Days)", pdf: "/image/skill-foundation/drone-academy/programs-offered/dgca-remote-pilot-training-program-small.pdf" },
+            { text: "DGCA certified Program for Agriculture Drone Spraying with RPC (10 Days)", pdf: "/image/skill-foundation/drone-academy/programs-offered/dgca-agriculture-drone-spraying-rpc.pdf" },
+            { text: "Advanced Training Program for Agriculture Spraying for DGCA-Certified RPC Holders (2 Days)", pdf: "/image/skill-foundation/drone-academy/programs-offered/advanced-training-agriculture-spraying.pdf" },
+            { text: "Professional Training Program for Drone Technician Training (5 Days)", pdf: "/image/skill-foundation/drone-academy/programs-offered/professional-training-drone-technician.pdf" },
+            { text: "Intensive Flying Program for Instructors aspirants (4 Days)", pdf: "/image/skill-foundation/drone-academy/programs-offered/intensive-flying-program-instructor-aspirants.pdf" }
         ]
     },
     upcoming: {
@@ -185,14 +185,16 @@ const droneData = {
                 duration: "5 Days",
                 fee: "₹ 3,000",
                 coordinator: "Mr. Abhishek Tiwari",
-                contact: "drone.academy@akgec.ac.in / +91-7737742021"
+                contact: "drone.academy@akgec.ac.in / +91-7737742021",
+                pdf: "/image/skill-foundation/drone-academy/upcoming-programs/wtp-basic-drone-technology.pdf"
             },
             {
                 title: "DGCA approved Remote Pilot Certificate",
                 duration: "8 Days",
                 fee: "₹ 25,000",
                 coordinator: "Mr. Abhishek Tiwari",
-                contact: "drone.academy@akgec.ac.in / +91-7737742021"
+                contact: "drone.academy@akgec.ac.in / +91-7737742021",
+                pdf: "/image/skill-foundation/drone-academy/upcoming-programs/wtp-dgca-remote-pilot-training-program.pdf"
             }
         ]
     },
@@ -410,12 +412,22 @@ const SkillFoundationDetails = () => {
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
                             {droneData.programs.items.map((program, idx) => (
-                                <div key={idx} className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-colors">
+                                <div key={idx} className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-colors flex flex-col h-full">
                                     <div className="flex items-center gap-3 mb-2">
                                         <BookOpen className="text-brand-yellow" size={20} />
                                         <h4 className="font-novaBold text-lg">Program {idx + 1}</h4>
                                     </div>
-                                    <p className="text-blue-50 font-novaReg">{program}</p>
+                                    <p className="text-blue-50 font-novaReg mb-4 flex-grow">{program.text}</p>
+                                    {program.pdf && (
+                                        <a
+                                            href={program.pdf}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center text-sm font-semibold text-brand-yellow hover:text-white transition-colors mt-auto group/link"
+                                        >
+                                            View Brochure <ArrowRight size={16} className="ml-1 transform group-hover/link:translate-x-1 transition-transform" />
+                                        </a>
+                                    )}
                                 </div>
                             ))}
                         </div>
@@ -437,6 +449,7 @@ const SkillFoundationDetails = () => {
                                         <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Fee (INR)</th>
                                         <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Coordinator</th>
                                         <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Contact</th>
+                                        <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Brochure</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-200">
@@ -447,6 +460,20 @@ const SkillFoundationDetails = () => {
                                             <td className="py-4 px-6 text-gray-600">{row.fee}</td>
                                             <td className="py-4 px-6 text-gray-600">{row.coordinator}</td>
                                             <td className="py-4 px-6 text-gray-600 text-sm">{row.contact}</td>
+                                            <td className="py-4 px-6">
+                                                {row.pdf ? (
+                                                    <a
+                                                        href={row.pdf}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="inline-flex items-center px-3 py-1 bg-brand-blue/10 text-brand-blue rounded-full text-xs font-bold hover:bg-brand-blue hover:text-white transition-colors"
+                                                    >
+                                                        Download <ArrowRight size={12} className="ml-1" />
+                                                    </a>
+                                                ) : (
+                                                    <span className="text-gray-400 text-xs italic">N/A</span>
+                                                )}
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>

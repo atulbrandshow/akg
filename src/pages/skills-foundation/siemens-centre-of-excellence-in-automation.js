@@ -49,63 +49,63 @@ const siemensData = {
                 title: "Programmable Logic Controller (PLC)",
                 description: "AKGEC’s SIEMENS PLC, HMI, SCADA, and DCS Laboratory is designed to offer immersive, application-oriented training in advanced automation technologies. The lab houses industry-grade SIEMENS hardware and software, allowing learners to work directly with real-time control systems, build automation logic, and visualize data on HMI and SCADA platforms. This dedicated facility empowers students with practical expertise, preparing them to meet the evolving needs of the automation and industrial sectors.",
                 icon: Cpu,
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/siemens/infrastructure/plc-automation-lab.webp"
             },
             {
                 id: "2",
                 title: "Distributed Control System (DCS)",
                 description: "A Siemens Distributed Control System (DCS)—exemplified by the SIMATIC PCS 7 platform—is a high-performance automation solution designed for complex, large-scale industrial processes. The DCS system cabinet typically includes a rack-mounted industrial PC, S7-400 PLC, ET-200SP and ET-200M interface modules, a Scalance-managed 24V DC busbar, SMPS, relays, MCBs, a 750 VA transformer, and terminal blocks—engineered for efficient, continuous, and stable operation.",
                 icon: Server,
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/siemens/infrastructure/dcs-system-cabinet.webp"
             },
             {
                 id: "3",
                 title: "SINAMICS G120 AC Drives",
                 description: "Siemens SINAMICS drives deliver precise, efficient motor speed and torque control for diverse industrial applications. The SINAMICS G120 is a versatile, modular AC drive used in pumps, fans, HVAC, compressors, conveyors, and general machinery. It offers energy-efficient operation, smooth control, built-in safety (STO), and easy integration. With its modular design and wide power range (0.55–250 kW), it suits both light and heavy-duty applications.",
                 icon: Zap,
-                image: "/image/SkillFoundationImage/skill-foundation3.png"
+                image: "/image/skill-foundation/siemens/infrastructure/sinamics-g120-drive.webp"
             },
             {
                 id: "4",
                 title: "SINAMICS 6AR80 DC Drives",
                 description: "The Siemens SINAMICS 6RA80 is a high-performance DC drive designed for precise, stable speed and torque control across wide load ranges. Its 4-quadrant operation ensures efficient motoring and braking in both directions with low-ripple torque, even at low speeds. The drive integrates seamlessly with automation systems. Ideal applications include rolling mills, wire drawing, extruders, presses, cranes, hoists, and elevators.",
                 icon: Activity,
-                image: "/image/SkillFoundationImage/skill-foundation4.jpeg"
+                image: "/image/skill-foundation/siemens/infrastructure/sinamics-dc-drive.webp"
             },
             {
                 id: "5",
                 title: "SimoCode",
                 description: "SIMOCODE offers advanced motor protection and monitoring with features like overload detection, diagnostics, remote access, and configurable settings, enhancing efficiency and safety across industrial motor applications. It supports multiple communication protocols, enabling seamless integration with PLCs or control systems. The system also logs operational data, offering predictive-maintenance insights and improving plant reliability with much less wiring than traditional relay-based motor starters.",
                 icon: Shield,
-                image: "/image/SkillFoundationImage/skill-foundation5.png"
+                image: "/image/skill-foundation/siemens/infrastructure/simocode-pro.webp"
             },
             {
                 id: "6",
                 title: "Type 2 Coordination Kit & Timer and Relay Kit",
                 description: "The Type 2 Coordination Kit demonstrates selective fault isolation, device coordination, and safe operation of low-voltage switchgear. The Timer & Relay Kit enables practical learning of sequential control, time-delay operations, interlocking, and relay-based automation logic.",
                 icon: Timer,
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/siemens/infrastructure/type-2-coordination-kit.webp"
             },
             {
                 id: "7",
                 title: "Type 2 Star-Delta & Soft Starter Kit",
                 description: "The Star-Delta Starter Kit demonstrates reduced-voltage starting of three-phase induction motors, highlighting current reduction and smooth acceleration. The Soft Starter Kit enables gradual motor ramp-up and ramp-down, protecting mechanical and electrical components while improving energy efficiency.",
                 icon: Zap,
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/siemens/infrastructure/plc-lab-overview.webp"
             },
             {
                 id: "8",
                 title: "Circuit Breaker",
                 description: "The Siemens Switchgear & Circuit Breaker Lab is equipped with practical training kits. The WT air circuit breakers demonstrate compact low-voltage protection for distribution panels, while the WL air circuit breakers teach high-capacity, long-life switching for industrial loads. The VT/3VA MCCB kits provide hands-on experience with molded-case breakers for overload, short-circuit protection, and selective coordination. Students gain practical skills in installation, operation, testing, and troubleshooting, learning safe switching practices, breaker selection, and real-world industrial power system protection.",
                 icon: ToggleLeft,
-                image: "/image/SkillFoundationImage/skill-foundation3.png"
+                image: "/image/skill-foundation/siemens/infrastructure/dcs-system-overview.webp"
             },
             {
                 id: "9",
                 title: "Process Instrumentation Lab",
                 description: "The Siemens Process Instrumentation Laboratory is equipped with a wide range of instruments, including pressure, temperature, flow, and level transmitters, control valves, signal conditioners, recorders, and calibration devices. This Lab supports experiments in process control loops, PID tuning, and instrumentation troubleshooting, providing practical exposure to real-world industrial process monitoring and control systems.",
                 icon: Gauge,
-                image: "/image/SkillFoundationImage/skill-foundation4.jpeg"
+                image: "/image/skill-foundation/siemens/infrastructure/process-instrumentation-lab.webp"
             }
         ]
     },
@@ -116,67 +116,67 @@ const siemensData = {
                 id: "1",
                 title: "Workshop on ‘Basics of PLC and Drives’ for M.Tech Students",
                 description: "AKGEC-SIEMENS CoE successfully organized a four-day workshop on ‘Basics of PLC and Drives’ for M.Tech students of the EN and ECE branches. The program provided students with in-depth understanding, hands-on training, and practical exposure to modern automation systems.",
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/siemens/events/workshop-basics-plc-drives.webp"
             },
             {
                 id: "2",
                 title: "Workshop on ‘LOGO PLC and Automation Technologies’",
                 description: "AKGEC-SIEMENS CoE successfully conducted a one-day workshop on ‘LOGO PLC and Automation Technologies’ for 2nd-year Electrical Engineering students, equipping them with essential skills in industrial automation and control systems.",
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/siemens/events/workshop-logo-plc.webp"
             },
             {
                 id: "3",
                 title: "Workshop for Subharti University Students",
                 description: "Students from Subharti University, Meerut had the opportunity to participate in a one-day workshop organized by AKGEC-SIEMENS. The session focused on practical exposure to automation technologies and PLC systems, allowing students to engage directly with real-world applications. Through demonstrations and interactive learning, participants enhanced their technical skills and gained valuable insights into the latest trends in engineering.",
-                image: "/image/SkillFoundationImage/skill-foundation3.png"
+                image: "/image/skill-foundation/siemens/events/workshop-subharti-university.webp"
             },
             {
                 id: "4",
                 title: "Workshop for Mechatronics Students of ITM SLS, Baroda",
                 description: "AKGEC successfully conducted a workshop program for the Mechatronics students of ITM SLS, Baroda. The workshop offered an in-depth understanding of advanced mechatronics systems, combining theoretical knowledge with hands-on sessions. Students gained practical experience with industry-relevant tools and technologies, bridging the gap between classroom learning and real-world applications.",
-                image: "/image/SkillFoundationImage/skill-foundation4.jpeg"
+                image: "/image/skill-foundation/siemens/events/workshop-itm-sls-baroda.webp"
             },
             {
                 id: "5",
                 title: "Orientation and Training for SoSE Delhi Students",
                 description: "AKGEC conducted an orientation and training program for 34 Grade 11 students from SoSE Lajpat Nagar and SoSE Narela, Delhi. The program provided students with an introduction to emerging engineering concepts and practical exposure to foundational technologies, fostering early interest in STEM and preparing them for future academic pursuits.",
-                image: "/image/SkillFoundationImage/skill-foundation5.png"
+                image: "/image/skill-foundation/siemens/events/orientation-sose-delhi.webp"
             },
             {
                 id: "6",
                 title: "ASDC Training of Trainers (ToT) Program",
                 description: "With support from the Automotive Skills Development Council (ASDC), AKGEC conducted a comprehensive Training of Trainers (ToT) program for SRPs specializing in Mechatronics and Electrical domains. The initiative aimed to strengthen industry-relevant skills, enabling trainers to effectively mentor students and professionals in cutting-edge engineering and automation technologies.",
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/siemens/events/asdc-tot-program.webp"
             },
             {
                 id: "7",
                 title: "Internship Program for Grade XI Students of SoSE (DBSE)",
                 description: "AKGEC successfully conducted an 80-hour internship program for Grade XI students of SoSE (DBSE). The program offered in-depth exposure to foundational engineering concepts and practical applications, helping students build essential technical skills and a strong understanding of STEM principles.",
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/siemens/events/internship-sose-dbse.webp"
             },
             {
                 id: "8",
                 title: "PMKVY 4.0 Training for Industrial Automation Specialists",
                 description: "AKGEC, under PMKVY 4.0, organized a comprehensive training program for Industrial Automation Specialists. The program focused on equipping professionals with the latest industry-relevant skills, practical exposure to automation systems, and technical knowledge necessary to succeed in modern industrial environments.",
-                image: "/image/SkillFoundationImage/skill-foundation3.png"
+                image: "/image/skill-foundation/siemens/events/pmkvy-4-0-training.webp"
             },
             {
                 id: "9",
                 title: "Induction Training Program for Hindalco Industries Ltd.",
                 description: "AKGEC organized an induction training program for Hindalco Industries Ltd., Pune, providing participants with intensive hands-on experience in Robotics, Automation, Welding, Machining, and Quality Inspection. The training helped trainees build strong technical foundations and gain exposure to real-world industrial practices.",
-                image: "/image/SkillFoundationImage/skill-foundation4.jpeg"
+                image: "/image/skill-foundation/siemens/events/induction-training-hindalco.webp"
             },
             {
                 id: "10",
                 title: "PLC Training Program for SFC Solution, Sahibabad",
                 description: "AKGEC delivered an intensive PLC training program for SFC Solution, Sahibabad, focusing on developing strong practical skills in PLC and Drive systems. The training covered essential automation modules, including PLC architecture, ladder logic programming, drive configuration, and real-time system diagnostics. With a strong emphasis on practical exposure and industry-oriented learning, participants gained valuable experience in handling automation equipment and implementing effective control strategies, preparing them to excel in today’s advanced manufacturing environments.",
-                image: "/image/SkillFoundationImage/skill-foundation5.png"
+                image: "/image/skill-foundation/siemens/events/plc-training-sfc-solution.webp"
             },
             {
                 id: "11",
                 title: "DGR Candidate Training Program on Industrial Automation",
                 description: "AKGEC organized a specialized DGR Candidate Training Program on Industrial Automation, aimed at empowering defence personnel with advanced technical skills for post-service careers. The program offered immersive training in PLC systems, industrial drives, control circuits, and automation tools. Practical sessions, real-time simulations, and expert-led workshops helped participants build strong competencies in modern manufacturing technologies.",
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/siemens/events/dgr-candidate-training.webp"
             }
         ]
     },
@@ -188,13 +188,13 @@ const siemensData = {
         title: "Programs Offered",
         description: "The Centre offers the following training programs for industry professionals and engineering students of all disciplines. On successful completion of training, participants are assessed for their learning & skills and awarded with a globally recognized joint certification from AKGEC & SIEMENS.",
         items: [
-            "Industrial Automation - Foundation (40 hrs.)",
-            "Industrial Automation - Intermediate/ Advance (80 hrs.)",
-            "Industrial Drives - Foundation (40 hrs.)",
-            "Industrial Drives - Advance (80 hrs.)",
-            "Training Program on SIMOCODE - Foundation level (40 hrs.)",
-            "Training Program on Low Voltage Switchgear - Foundation level (40 hrs.)",
-            "Training Program on Process Instrumentation - Foundation level (40 hrs.)"
+            { text: "Industrial Automation - Foundation (40 hrs.)", pdf: "/image/skill-foundation/siemens/programs-offered/industrial-automation-basic-level.pdf" },
+            { text: "Industrial Automation - Intermediate/ Advance (80 hrs.)", pdf: "/image/skill-foundation/siemens/programs-offered/industrial-automation-intermediate-level.pdf" },
+            { text: "Industrial Drives - Foundation (40 hrs.)", pdf: "/image/skill-foundation/siemens/programs-offered/industrial-ac-dc-drives-basic-level.pdf" },
+            { text: "Industrial Drives - Advance (80 hrs.)", pdf: "/image/skill-foundation/siemens/programs-offered/industrial-ac-drives-plc-communication-intermediate.pdf" },
+            { text: "Training Program on SIMOCODE - Foundation level (40 hrs.)", pdf: null },
+            { text: "Training Program on Low Voltage Switchgear - Foundation level (40 hrs.)", pdf: "/image/skill-foundation/siemens/programs-offered/industrial-power-control-protection-systems.pdf" },
+            { text: "Training Program on Process Instrumentation - Foundation level (40 hrs.)", pdf: "/image/skill-foundation/siemens/programs-offered/industrial-process-instrumentation-basic.pdf" }
         ]
     },
     upcoming: {
@@ -208,7 +208,8 @@ const siemensData = {
                 duration: "80 Hours",
                 fee: "₹ 7,000",
                 coordinator: "Ms. Preeti Singh",
-                contact: "siemens@akgec.ac.in / +91-9718663712"
+                contact: "siemens@akgec.ac.in / +91-9718663712",
+                pdf: "/image/skill-foundation/siemens/upcoming-programs/upcoming-winter-training-program.pdf"
             }
         ]
     },
@@ -429,12 +430,22 @@ const SkillFoundationDetails = () => {
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
                             {siemensData.programs.items.map((program, idx) => (
-                                <div key={idx} className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-colors">
+                                <div key={idx} className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-colors flex flex-col h-full">
                                     <div className="flex items-center gap-3 mb-2">
                                         <BookOpen className="text-brand-yellow" size={20} />
                                         <h4 className="font-novaBold text-lg">Program {idx + 1}</h4>
                                     </div>
-                                    <p className="text-blue-50 font-novaReg">{program}</p>
+                                    <p className="text-blue-50 font-novaReg mb-4 flex-grow">{program.text}</p>
+                                    {program.pdf && (
+                                        <a
+                                            href={program.pdf}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center text-sm font-semibold text-brand-yellow hover:text-white transition-colors mt-auto group/link"
+                                        >
+                                            View Brochure <ArrowRight size={16} className="ml-1 transform group-hover/link:translate-x-1 transition-transform" />
+                                        </a>
+                                    )}
                                 </div>
                             ))}
                         </div>
@@ -459,6 +470,7 @@ const SkillFoundationDetails = () => {
                                             <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Fee (INR)</th>
                                             <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Coordinator</th>
                                             <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Contact</th>
+                                            <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Brochure</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-gray-200">
@@ -469,6 +481,20 @@ const SkillFoundationDetails = () => {
                                                 <td className="py-4 px-6 text-gray-600">{row.fee}</td>
                                                 <td className="py-4 px-6 text-gray-600">{row.coordinator}</td>
                                                 <td className="py-4 px-6 text-gray-600 text-sm">{row.contact}</td>
+                                                <td className="py-4 px-6">
+                                                    {row.pdf ? (
+                                                        <a
+                                                            href={row.pdf}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="inline-flex items-center px-3 py-1 bg-brand-blue/10 text-brand-blue rounded-full text-xs font-bold hover:bg-brand-blue hover:text-white transition-colors"
+                                                        >
+                                                            Download <ArrowRight size={12} className="ml-1" />
+                                                        </a>
+                                                    ) : (
+                                                        <span className="text-gray-400 text-xs italic">N/A</span>
+                                                    )}
+                                                </td>
                                             </tr>
                                         ))}
                                     </tbody>

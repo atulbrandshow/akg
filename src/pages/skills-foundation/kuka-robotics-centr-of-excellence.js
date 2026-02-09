@@ -42,117 +42,117 @@ const kukaData = {
                 title: "Robotic Milling Application",
                 description: "The Robotic Milling Cell at AKGEC uses the KUKA KR 120, a high-payload robot capable of handling heavy tools such as HSD spindles with exceptional reach and rigidity. This setup enables precision machining of molds, patterns, and complex surfaces. The robot’s flexibility supports routing, trimming, contouring, engraving, and prototype machining across high density thermacol, composites, and foam, offering capabilities beyond fixed-axis CNC systems.",
                 icon: Settings,
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/kuka-robotics/infrastructure/robotic-milling-application.webp"
             },
             {
                 id: "2",
                 title: "Robotic Spot Welding",
                 description: "Spot welding is executed using the KUKA KR 180 equipped with a C-Type DENYO make welding gun and automatic tool changer (ATC) ensuring consistent pressure and current delivery for high-strength sheet-metal joining. The robot offers long reach, superior repeatability, and safe automatic sequencing for multi-point welding. Capable applications include automotive panel fabrication, resistance weld trials, cycle-time optimization, fixture-based assembly, and industrial welding training with repeatable results.",
                 icon: Zap,
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/kuka-robotics/infrastructure/robotic-spot-welding.webp"
             },
             {
                 id: "3",
                 title: "Robotic Time Twin Welding",
                 description: "The Time Twin Welding application operates on the KUKA KR 30, integrating synchronized dual-wire technology for high deposition rates and reduced heat input. The robot’s speed, accuracy, and controlled path motion make it ideal for large-scale fabrication. Engineered for breakthrough performance, this system excels in continuous seam welding and high-strength multi-pass joints, powering the fabrication of ship sections and heavy industrial structures with unmatched speed.",
                 icon: Activity,
-                image: "/image/SkillFoundationImage/skill-foundation3.png"
+                image: "/image/skill-foundation/kuka-robotics/infrastructure/robotic-time-twin-welding.webp"
             },
             {
                 id: "4",
                 title: "Robotic MIG Welding",
                 description: "The KUKA KR 5 Arc elevates robotic MIG welding at AKGEC with unmatched finesse, delivering ultra-smooth arc control and microscopic path accuracy. Paired with the Fronius TPSi, it achieves consistently superior weld quality on industrial steels and specialty materials. This advanced cell enables high-complexity joints, automated production sequences, intelligent path refinement, ergonomic posture calibration, and professional-grade training tailored for future-ready manufacturing ecosystems.",
                 icon: Flame,
-                image: "/image/SkillFoundationImage/skill-foundation4.jpeg"
+                image: "/image/skill-foundation/kuka-robotics/infrastructure/robotic-mig-welding.webp"
             },
             {
                 id: "5",
                 title: "Robotic Cold Metal Transfer Welding",
                 description: "The KUKA KR 16, seamlessly integrated with the state-of-the-art Fronius CMT power source, delivers an exceptionally controlled, ultra-low-heat metal transfer process ideal for thin sheets and challenging dissimilar joints. Its superior repeatability enables precision directed energy deposition of advanced alloys, including aluminum, stainless steel, mild steel, Inconel, and duplex SS. This capability empowers the fabrication of complex, large-size metal structures at a fraction of traditional metal 3D-printing costs, driving breakthrough innovation in aerospace, automotive, and high-performance manufacturing.",
                 icon: Snowflake,
-                image: "/image/SkillFoundationImage/skill-foundation5.png"
+                image: "/image/skill-foundation/kuka-robotics/infrastructure/robotic-cmt-welding.webp"
             },
             {
                 id: "6",
                 title: "Robotic Laser Welding & Cutting",
                 description: "The KUKA KR 30 HA, paired with an IPG Photonics fiber laser, delivers an elite, high-accuracy platform for both laser 3D cutting and laser welding. Its exceptional precision and path repeatability enable ultra-clean contour cutting, deep-penetration welds, and intricate geometries with minimal heat distortion. This advanced hybrid setup supports automotive, aerospace, and high-value fabrication—empowering rapid prototyping, complex metal processing, and production-grade laser manufacturing with unmatched quality and consistency.",
                 icon: Crosshair,
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/kuka-robotics/infrastructure/robotic-laser-welding-cutting.webp"
             },
             {
                 id: "7",
                 title: "Robotic 3D Printing Application",
                 description: "The KUKA KR 120 powers large-format robotic 3D printing using high-flow extruders capable of processing polymer granules directly as raw material, ensuring exceptional cost efficiency and production scalability. Its long reach and high payload enable precise deposition of complex geometries, architectural forms, and industrial prototypes. Granule-based extrusion significantly reduces material cost and broadens material flexibility, making this system ideal for functional components, molds, furniture-grade designs, and advanced engineering structures.",
                 icon: Printer,
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/kuka-robotics/infrastructure/robotic-3d-printing.webp"
             },
             {
                 id: "8",
                 title: "Robotic Ultrasonic Welding",
                 description: "The KUKA KR 10 powers high-precision ultrasonic welding, enabling rapid, clean, and distortion-free joining of thermoplastic components. Its agility and repeatability ensure consistent weld quality for intricate assemblies and complex geometries. Widely used in the automotive sector, this system efficiently welds interior trims, lighting housings, instrument panel components, and other precision plastic parts. The setup supports micro-assembly, airtight sealing, and high-volume production with exceptional reliability.",
                 icon: Radio,
-                image: "/image/SkillFoundationImage/skill-foundation3.png"
+                image: "/image/skill-foundation/kuka-robotics/infrastructure/robotic-ultrasonic-welding.webp"
             },
             {
                 id: "9",
                 title: "Robotic Vision Application",
                 description: "Robotic vision-based automation is enabled using the KUKA KR 6, integrating cameras and sensors for intelligent detection and guidance. The robot performs part identification, orientation correction, quality inspection, and adaptive pick-and-place with real-time decision-making. Capabilities include defect inspection, bin-picking, automated sorting, position tracking, and smart manufacturing workflows with minimal human intervention.",
                 icon: Eye,
-                image: "/image/SkillFoundationImage/skill-foundation4.jpeg"
+                image: "/image/skill-foundation/kuka-robotics/infrastructure/robotic-vision-application.webp"
             },
             {
                 id: "10",
                 title: "Robotic Material Handling Applications",
                 description: "Material handling at AKGEC uses the KUKA KR 6 and Agilus robots, providing fast, precise, and safe transfer of components using grippers and vacuum systems. Their compact design allows operation in confined spaces while maintaining repeatability. Work possible includes palletizing, machine loading, stacking, carton movement, assembly support, and continuous automated handling for high-speed industrial environments.",
                 icon: Package,
-                image: "/image/SkillFoundationImage/skill-foundation5.png"
+                image: "/image/skill-foundation/kuka-robotics/infrastructure/robotic-material-handling.webp"
             },
             {
                 id: "11",
                 title: "Robotic Deburring Application",
                 description: "The KUKA KR 6 delivers exceptional precision and consistency in robotic deburring, enabling automated removal of sharp edges, burrs, and surface imperfections from metal, plastic, and composite components. With its high-speed motion, repeatability, and compliant tooling, the robot ensures uniform finishing even on complex contours. This system supports the automotive, aerospace, and tooling industries by enhancing surface quality, improving safety, reducing manual effort, and ensuring production-ready components with superior accuracy.",
                 icon: Scissors,
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/kuka-robotics/infrastructure/robotic-deburring-application.webp"
             }
         ]
     },
     events: {
         title: "Glimpse of the Events/Workshops",
         items: [
-            { id: "1", title: 'Corporate Workshop on "Welding Automation through Industrial Robots"', description: "The Industrial Robotics CoE conducted a One-Day Corporate Workshop on \"Welding Automation through Industrial Robots\" on 21st February 2025. With 23 delegates from 17 industries, the session covered robotic welding fundamentals, advancements, practical demonstrations, and industry case studies highlighting next-generation welding technologies.", image: "/image/SkillFoundationImage/skill-foundation1.jpeg" },
-            { id: "2", title: "AKGEC Drives Innovation Through Robotics Workshops", description: "During the 2024–25 session, AKGEC empowered innovators by conducting 15+ hands-on workshops on Industrial Robotics for student entrepreneurs and startup teams. The sessions enabled participants to explore automation technologies, robotic programming, and real-world applications.", image: "/image/SkillFoundationImage/skill-foundation2.jpeg" },
-            { id: "3", title: "AKGEC Delivers Industrial Induction Training to Hindalco", description: "AKGEC conducted induction training for Hindalco Industries Ltd., Pune, from 4th to 28th December 2023, strengthening practical competencies across Robotics, Automation, Welding, Machining, and Quality Inspection.", image: "/image/SkillFoundationImage/skill-foundation3.png" },
-            { id: "4", title: "IIT Delhi VLFM Delegates Gain Hands-On Experience", description: "Participants from IIT Delhi’s Visionary Leaders for Manufacturing (VLFM) program visited the AKGEC–KUKA Industrial Robotics Training Center for immersive, hands-on learning. They explored real-world automation applications and industrial robot programming.", image: "/image/SkillFoundationImage/skill-foundation4.jpeg" },
-            { id: "5", title: "SERB Delegates Receive Advanced Research Training", description: "Participants from the Science and Engineering Research Board (SERB) engaged in advanced hands-on training at AKGEC, gaining exposure to cutting-edge tools and applied research methodologies.", image: "/image/SkillFoundationImage/skill-foundation5.png" },
-            { id: "6", title: "Empowering Indian Railways Through Advanced Skills", description: "AKGEC conducted \"Empowering Indian Railways Through Advanced Skills & Smart Manufacturing,\" a capacity-building program rooted in the Design Thinking approach. Participants explored real railway challenges through ideation and protyping.", image: "/image/SkillFoundationImage/skill-foundation1.jpeg" },
-            { id: "7", title: "In-Plant Industrial Robotics Training for Modern Coach Factory", description: "AKGEC delivered advanced in-plant training on Industrial Robot Programming and Operations to the Indian Railways Modern Coach Factory, Raebareli. Conducted directly on live production lines, the program enabled participants to gain hands-on experience with automation systems.", image: "/image/SkillFoundationImage/skill-foundation2.jpeg" },
-            { id: "8", title: "AKGEC Partners with IRIMEE Jamalpur for Railway Officer Upskilling", description: "AKGEC collaborated with the Indian Railways Institute of Mechanical and Electrical Engineering (IRIMEE), Jamalpur, Bihar, to deliver specialised skill development in Automation Technologies. A five-day training program was conducted from 10–14 February 2020.", image: "/image/SkillFoundationImage/skill-foundation3.png" },
-            { id: "9", title: "Hands-On Robotics Learning for IGDTUW M.Tech Students", description: "The KUKA Robotics CoE at AKGEC hosted practical robotics classes for M.Tech (Automation & Robotics) students from IGDTUW. The sessions provided real-time exposure to industrial robots, programming practices, and automation applications.", image: "/image/SkillFoundationImage/skill-foundation4.jpeg" },
-            { id: "10", title: "Industry delegates participated in AKGEC–KUKA’s Workshop", description: "Industry delegates participated in a Two-Day Workshop on Robot Operation & Applications hosted at the AKGEC–KUKA Industrial Robotics Training Center. The program provided technical insight into robot-based manufacturing, covering benefits and operational challenges.", image: "/image/SkillFoundationImage/skill-foundation5.png" },
-            { id: "11", title: "AKGEC empowered ISB Chandigarh participants", description: "AKGEC empowered participants from ISB Chandigarh through an Advanced Workshop on Automation and Robotics, offering immersive exposure to industry-grade technologies and hands-on learning.", image: "/image/SkillFoundationImage/skill-foundation1.jpeg" }
+            { id: "1", title: 'Corporate Workshop on "Welding Automation through Industrial Robots"', description: "The Industrial Robotics CoE conducted a One-Day Corporate Workshop on \"Welding Automation through Industrial Robots\" on 21st February 2025. With 23 delegates from 17 industries, the session covered robotic welding fundamentals, advancements, practical demonstrations, and industry case studies highlighting next-generation welding technologies.", image: "/image/skill-foundation/kuka-robotics/events/corporate-workshop-welding-automation.webp" },
+            { id: "2", title: "AKGEC Drives Innovation Through Robotics Workshops", description: "During the 2024–25 session, AKGEC empowered innovators by conducting 15+ hands-on workshops on Industrial Robotics for student entrepreneurs and startup teams. The sessions enabled participants to explore automation technologies, robotic programming, and real-world applications.", image: "/image/skill-foundation/kuka-robotics/events/akgec-drives-innovation-robotics.webp" },
+            { id: "3", title: "AKGEC Delivers Industrial Induction Training to Hindalco", description: "AKGEC conducted induction training for Hindalco Industries Ltd., Pune, from 4th to 28th December 2023, strengthening practical competencies across Robotics, Automation, Welding, Machining, and Quality Inspection.", image: "/image/skill-foundation/kuka-robotics/events/akgec-hindalco-induction-training.webp" },
+            { id: "4", title: "IIT Delhi VLFM Delegates Gain Hands-On Experience", description: "Participants from IIT Delhi’s Visionary Leaders for Manufacturing (VLFM) program visited the AKGEC–KUKA Industrial Robotics Training Center for immersive, hands-on learning. They explored real-world automation applications and industrial robot programming.", image: "/image/skill-foundation/kuka-robotics/events/iit-delhi-vlfm-delegates.webp" },
+            { id: "5", title: "SERB Delegates Receive Advanced Research Training", description: "Participants from the Science and Engineering Research Board (SERB) engaged in advanced hands-on training at AKGEC, gaining exposure to cutting-edge tools and applied research methodologies.", image: "/image/skill-foundation/kuka-robotics/events/serb-delegates-research-training.webp" },
+            { id: "6", title: "Empowering Indian Railways Through Advanced Skills", description: "AKGEC conducted \"Empowering Indian Railways Through Advanced Skills & Smart Manufacturing,\" a capacity-building program rooted in the Design Thinking approach. Participants explored real railway challenges through ideation and protyping.", image: "/image/skill-foundation/kuka-robotics/events/empowering-indian-railways.webp" },
+            { id: "7", title: "In-Plant Industrial Robotics Training for Modern Coach Factory", description: "AKGEC delivered advanced in-plant training on Industrial Robot Programming and Operations to the Indian Railways Modern Coach Factory, Raebareli. Conducted directly on live production lines, the program enabled participants to gain hands-on experience with automation systems.", image: "/image/skill-foundation/kuka-robotics/events/in-plant-training-modern-coach-factory.webp" },
+            { id: "8", title: "AKGEC Partners with IRIMEE Jamalpur for Railway Officer Upskilling", description: "AKGEC collaborated with the Indian Railways Institute of Mechanical and Electrical Engineering (IRIMEE), Jamalpur, Bihar, to deliver specialised skill development in Automation Technologies. A five-day training program was conducted from 10–14 February 2020.", image: "/image/skill-foundation/kuka-robotics/events/akgec-irimee-railway-upskilling.webp" },
+            { id: "9", title: "Hands-On Robotics Learning for IGDTUW M.Tech Students", description: "The KUKA Robotics CoE at AKGEC hosted practical robotics classes for M.Tech (Automation & Robotics) students from IGDTUW. The sessions provided real-time exposure to industrial robots, programming practices, and automation applications.", image: "/image/skill-foundation/kuka-robotics/events/igdtuw-mtech-students-robotics.webp" },
+            { id: "10", title: "Industry delegates participated in AKGEC–KUKA’s Workshop", description: "Industry delegates participated in a Two-Day Workshop on Robot Operation & Applications hosted at the AKGEC–KUKA Industrial Robotics Training Center. The program provided technical insight into robot-based manufacturing, covering benefits and operational challenges.", image: "/image/skill-foundation/kuka-robotics/events/industry-delegates-workshop.webp" },
+            { id: "11", title: "AKGEC empowered ISB Chandigarh participants", description: "AKGEC empowered participants from ISB Chandigarh through an Advanced Workshop on Automation and Robotics, offering immersive exposure to industry-grade technologies and hands-on learning.", image: "/image/skill-foundation/kuka-robotics/events/isb-chandigarh-workshop.webp" }
         ]
     },
     awards: {
         title: "Awards & Recognition",
         items: [
-            { text: "AKGEC Students proudly represented the institution in the final round of FANUC India’s 1st Edition Robotics Olympiad 2025.", image: "/image/SkillFoundationImage/skill-foundation1.jpeg" },
-            { text: "AKGEC students won the India Skills 2024 Medallion Award in Robot Systems Integration, reflecting excellence in advanced automation.", image: "/image/SkillFoundationImage/skill-foundation2.jpeg" },
-            { text: "Best Robo Setup Award 2019 by All India Council for Robotics & Automation (AICRA)", image: "/image/SkillFoundationImage/skill-foundation3.png" },
-            { text: "Best Robotic Education Award 2018 by All India Council for Robotics & Automation (AICRA)", image: "/image/SkillFoundationImage/skill-foundation4.jpeg" },
-            { text: "AKGEC was honored with the Award for Best Vocational Robotics Educational Centre by AICRA, affirming its national leadership in skill-based robotics education.", image: "/image/SkillFoundationImage/skill-foundation5.png" },
-            { text: "Achieved top honors at the World Robot Olympiad 2018", image: "/image/SkillFoundationImage/skill-foundation1.jpeg" }
+            { text: "AKGEC Students proudly represented the institution in the final round of FANUC India’s 1st Edition Robotics Olympiad 2025.", image: "/image/skill-foundation/kuka-robotics/awards/fanuc-robotics-olympiad-2025.webp" },
+            { text: "AKGEC students won the India Skills 2024 Medallion Award in Robot Systems Integration, reflecting excellence in advanced automation.", image: "/image/skill-foundation/kuka-robotics/awards/india-skills-2024-medallion.webp" },
+            { text: "Best Robo Setup Award 2019 by All India Council for Robotics & Automation (AICRA)", image: "/image/skill-foundation/kuka-robotics/awards/best-robo-setup-award-2019.webp" },
+            { text: "Best Robotic Education Award 2018 by All India Council for Robotics & Automation (AICRA)", image: "/image/skill-foundation/kuka-robotics/awards/best-robotic-education-award-2018.webp" },
+            { text: "AKGEC was honored with the Award for Best Vocational Robotics Educational Centre by AICRA, affirming its national leadership in skill-based robotics education.", image: "/image/skill-foundation/kuka-robotics/awards/best-vocational-robotics-centre-aicra.webp" },
+            { text: "Achieved top honors at the World Robot Olympiad 2018", image: "/image/skill-foundation/kuka-robotics/awards/world-robot-olympiad-2018.webp" }
         ]
     },
     programs: {
         title: "Programs Offered",
         description: "The Centre offers the following training programs for industry professionals and engineering students of all disciplines. On successful completion, participants are awarded a globally recognized joint certification from AKGEC & KUKA.",
         items: [
-            "Industrial Robot Programming—Basic Level (80 Hrs)",
-            "Industrial Robot Programming—Advanced Level (80 Hrs)",
-            "Industrial Robot Programming—Expert Level (80 Hrs)",
-            "Robotic Application Programming—Arc Welding Technology (40 Hrs)",
-            "Robotic Application Programming—Spot Welding Technology (40 Hrs)",
-            "Robotic Application Programming—Milling (40 Hrs)"
+            { text: "Industrial Robot Programming—Basic Level (80 Hrs)", pdf: "/image/skill-foundation/kuka-robotics/programs-offered/industrial-robot-programming-basic.pdf" },
+            { text: "Industrial Robot Programming—Advanced Level (80 Hrs)", pdf: "/image/skill-foundation/kuka-robotics/programs-offered/industrial-robot-programming-advanced.pdf" },
+            { text: "Industrial Robot Programming—Expert Level (80 Hrs)", pdf: "/image/skill-foundation/kuka-robotics/programs-offered/industrial-robot-programming-expert.pdf" },
+            { text: "Robotic Application Programming—Arc Welding Technology (40 Hrs)", pdf: "/image/skill-foundation/kuka-robotics/programs-offered/robotic-arc-welding.pdf" },
+            { text: "Robotic Application Programming—Spot Welding Technology (40 Hrs)", pdf: "/image/skill-foundation/kuka-robotics/programs-offered/robotic-spot-welding.pdf" },
+            { text: "Robotic Application Programming—Milling (40 Hrs)", pdf: "/image/skill-foundation/kuka-robotics/programs-offered/robotic-milling.pdf" }
         ]
     },
     upcoming: {
@@ -166,14 +166,16 @@ const kukaData = {
                 duration: "80 Hours",
                 fee: "₹ 13,000",
                 coordinator: "Dr. Manoj Kumar Yadav",
-                contact: "irtc@akgec.ac.in / +91-9953064510"
+                contact: "irtc@akgec.ac.in / +91-9953064510",
+                pdf: "/image/skill-foundation/kuka-robotics/upcoming-programs/wtp-robot-programming-basic.pdf"
             },
             {
                 title: "Industrial Robot Programming - Advanced Level",
                 duration: "80 Hours",
                 fee: "₹ 19,500",
                 coordinator: "Ms. Gaganpreet Kaur",
-                contact: "irtc@akgec.ac.in / +91-9711043008"
+                contact: "irtc@akgec.ac.in / +91-9711043008",
+                pdf: "/image/skill-foundation/kuka-robotics/upcoming-programs/wtp-robot-programming-advanced.pdf"
             }
         ]
     },
@@ -390,12 +392,22 @@ const SkillFoundationDetails = () => {
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {kukaData.programs.items.map((program, idx) => (
-                                <div key={idx} className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-colors">
+                                <div key={idx} className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-colors flex flex-col">
                                     <div className="flex items-center gap-3 mb-2">
                                         <BookOpen className="text-brand-yellow" size={20} />
                                         <h4 className="font-novaBold text-lg">Program {idx + 1}</h4>
                                     </div>
-                                    <p className="text-blue-50 font-novaReg">{program}</p>
+                                    <p className="text-blue-50 font-novaReg flex-1 mb-4">{program.text}</p>
+                                    {program.pdf && (
+                                        <a
+                                            href={program.pdf}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center text-sm font-semibold text-brand-yellow hover:text-white transition-colors mt-auto group/link"
+                                        >
+                                            View Brochure <ArrowRight size={16} className="ml-1 transform group-hover/link:translate-x-1 transition-transform" />
+                                        </a>
+                                    )}
                                 </div>
                             ))}
                         </div>
@@ -417,6 +429,7 @@ const SkillFoundationDetails = () => {
                                         <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Fee (INR)</th>
                                         <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Coordinator</th>
                                         <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Contact</th>
+                                        <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Brochure</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-200">
@@ -427,6 +440,20 @@ const SkillFoundationDetails = () => {
                                             <td className="py-4 px-6 text-gray-600">{row.fee}</td>
                                             <td className="py-4 px-6 text-gray-600">{row.coordinator}</td>
                                             <td className="py-4 px-6 text-gray-600 text-sm">{row.contact}</td>
+                                            <td className="py-4 px-6">
+                                                {row.pdf ? (
+                                                    <a
+                                                        href={row.pdf}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="inline-flex items-center px-3 py-1 bg-brand-blue/10 text-brand-blue rounded-full text-xs font-bold hover:bg-brand-blue hover:text-white transition-colors"
+                                                    >
+                                                        Download <ArrowRight size={12} className="ml-1" />
+                                                    </a>
+                                                ) : (
+                                                    <span className="text-gray-400 text-xs italic">N/A</span>
+                                                )}
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>

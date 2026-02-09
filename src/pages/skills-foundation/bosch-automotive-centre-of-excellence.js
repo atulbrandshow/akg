@@ -129,31 +129,31 @@ const boschData = {
                 id: "1",
                 title: "Engineering Solutions for Healthcare Mobility – Talk by Prof. Wolf Burger",
                 description: "Prof. Wolf Burger, SES Expert from Germany, delivered an insightful session for SAE students of AKGEC on designing Electric Bike Ambulances for developing nations on 11th November 2025. He shared practical engineering approaches, global case studies, and innovative design ideas aimed at improving emergency mobility in resource-limited regions.",
-                image: "/image/skill-foundation/bosch-jcc/glimpse-of-event-ws/engineering-solutions-for-healthcare-mobility-talk-by-prof-wolf-burger.webp"
+                image: "/image/skill-foundation/bosch-jcc/events/engineering-solutions-healthcare-mobility-wolf-burger.webp"
             },
             {
                 id: "2",
                 title: "AKGEC Signs Strategic MoU with JustAuto India Pvt. Ltd.",
                 description: "On 29 October 2025, AKGEC signed a Strategic MoU with Just Auto India Pvt. Ltd. to launch industry-aligned training programs in Automobile and Electric Vehicle (EV) technologies. Through this collaboration, both institutions will offer co-branded courses in Car Mechanic, Car Electrician, and EV 2/3/4-Wheeler Service, supported by world-class training facilities, joint certification, internships, and placement opportunities. The event was graced by senior dignitaries from AKGEC, Just Auto, and ASDC, marking a significant step toward developing a skilled, EV-ready workforce for the future of mobility.",
-                image: "/image/skill-foundation/bosch-jcc/glimpse-of-event-ws/akgec-signs-strategic-mou-with-justauto-india-pvt-ltd.webp"
+                image: "/image/skill-foundation/bosch-jcc/events/akgec-signs-mou-justauto-india.webp"
             },
             {
                 id: "3",
                 title: "AACAR 10.0 – Race Car Vehicle Design Workshop",
                 description: "A 2-day hands-on workshop, “AACAR 10.0,” was conducted for Mechanical, Electrical, and Electronics students across Delhi NCR held on 6th & 7th September 2025, focusing on core principles of race car vehicle design. Over 175 students participated, gaining practical exposure to performance engineering, system integration, and real-world motorsport design techniques.",
-                image: "/image/skill-foundation/bosch-jcc/glimpse-of-event-ws/aacar-10-race-car-vehicle-design-workshop.webp"
+                image: "/image/skill-foundation/bosch-jcc/events/aacar-10-race-car-design-workshop.webp"
             },
             {
                 id: "4",
                 title: "Automotive Skill Development Council (ASDC) Expert Group Meeting",
                 description: "The Automotive Skill Development Council (ASDC) Expert Group Meeting on 10th June’ 2025 brought together leading industry professionals from major automotive companies to discuss the future roadmap of the automobile sector and its after-sales services. The session focused on emerging technologies, skill requirements, and industry expectations, reinforcing the collective commitment to building a more advanced and service-ready automotive ecosystem.",
-                image: "/image/skill-foundation/bosch-jcc/glimpse-of-event-ws/automotive-skill-development-council-asdc-expert-group-meeting.webp"
+                image: "/image/skill-foundation/bosch-jcc/events/asdc-expert-group-meeting.webp"
             },
             {
                 id: "5",
                 title: "AKGEC Hosts Finale of National Automobile Olympiad 2023",
                 description: "AKGEC proudly hosted the finale of the National Automobile Olympiad 2023, jointly organized by ASDC and CBSE. The event brought together young automotive talent to learn, explore, and compete in practical skill-based challenges. Inspiring sessions and interactive engagements encouraged innovation, curiosity, and hands-on learning. The Olympiad reinforces AKGEC’s commitment to nurturing future-ready engineers and strengthening India’s skill ecosystem.",
-                image: "/image/skill-foundation/bosch-jcc/glimpse-of-event-ws/akgec-hosts-finale-of-national-automobile-olympiad-2023.webp"
+                image: "/image/skill-foundation/bosch-jcc/events/akgec-hosts-national-automobile-olympiad-2023.webp"
             }
         ]
     },
@@ -165,10 +165,10 @@ const boschData = {
         title: "Programs Offered",
         description: "The Centre offers the following training programs for industry professionals and engineering students of all disciplines. On successful completion of training, participants are assessed for their learning & skills and awarded with a globally recognized joint certification from AKGEC & BOSCH.",
         items: [
-            { text: "Industrial Training Program on Automotive Technicians — (160 Hrs)", pdf: "/pdf/skill-foundation/bosch-jcc/industrial-training-program-on-automotive-technicians.pdf" },
-            { text: "Industrial Training Program on Race Car Vehicle Design— (160 Hrs)", pdf: "/pdf/skill-foundation/bosch-jcc/industrial-training-program-on-race-car-vehicle-design.pdf" },
-            { text: "Short Term Training Program on Automotive Technology— (40 Hrs)", pdf: "/pdf/skill-foundation/bosch-jcc/short-term-training-program-on-automotive-technology.pdf" },
-            { text: "Winter Training Program on Automotive Technology— (80 Hrs)", pdf: "/pdf/skill-foundation/bosch-jcc/winter-training-program-on-automotive-technology.pdf" }
+            { text: "Industrial Training Program on Automotive Technicians — (160 Hrs)", pdf: "/image/skill-foundation/bosch-jcc/programs-offered/industrial-training-program-automotive-technicians.pdf" },
+            { text: "Industrial Training Program on Race Car Vehicle Design— (160 Hrs)", pdf: "/image/skill-foundation/bosch-jcc/programs-offered/industrial-training-program-race-car-design.pdf" },
+            { text: "Short Term Training Program on Automotive Technology— (40 Hrs)", pdf: "/image/skill-foundation/bosch-jcc/programs-offered/short-term-training-program-automotive-technology.pdf" },
+            { text: "Winter Training Program on Automotive Technology— (80 Hrs)", pdf: "/image/skill-foundation/bosch-jcc/programs-offered/winter-training-program-automotive-technology.pdf" }
         ]
     },
     upcoming: {
@@ -183,7 +183,7 @@ const boschData = {
                 fee: "₹ 7,000",
                 coordinator: "Mr Vikram Singh",
                 contact: "boschjcc@akgec.ac.in/ +91-88518057766",
-                pdf: "/pdf/skill-foundation/bosch-jcc/upcoming-winter-training-program-on-automotive-technology.pdf"
+                pdf: "/image/skill-foundation/bosch-jcc/upcoming-programs/winter-training-program-automotive-technology.pdf"
             },
             {
                 title: "Industrial Training Program (ITP) for Diploma/ ITI - Automotive Technician",
@@ -191,7 +191,7 @@ const boschData = {
                 fee: "₹ 5,000",
                 coordinator: "Mr. J S Sirohi",
                 contact: "boschjcc@akgec.ac.in/ +91-9999972391",
-                pdf: "/pdf/skill-foundation/bosch-jcc/upcoming-industrial-training-program-on-automotive-technicians.pdf"
+                pdf: "/image/skill-foundation/bosch-jcc/upcoming-programs/industrial-training-program-automotive-technicians.pdf"
             }
         ]
     },

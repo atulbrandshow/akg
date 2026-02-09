@@ -41,21 +41,21 @@ const aiaData = {
                 title: "P&F Industrial Sensorics",
                 description: "Pepperl & Fuchs, a global leader in industrial sensors, provides high-precision inductive, capacitive, photoelectric, ultrasonic, and intrinsically safe devices used across manufacturing and automation. In collaboration with the company, AKG Engineering College has set up advanced sensor labs featuring RFID, vision, photoelectric, ultrasonic, proximity, and ASI interface trainer kits, enabling hands-on training in modern industrial automation technologies.",
                 icon: Settings,
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/automation-industrial/infrastructure/pf-industrial-sensorics.webp"
             },
             {
                 id: "2",
                 title: "SMC Gripping Technology",
                 description: "The SMC Gripping Technology kit provides practical training in automation and robotics using both pneumatic and motor-based grippers. An SMPS supplies 24V DC power to the PLC, which controls all gripping operations. The setup includes two dedicated benches and features 16 types of grippers, including 2-finger, 3-finger, and 4-finger variants. This enables learners to understand diverse gripping mechanisms and their real industrial applications.",
                 icon: Zap,
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/automation-industrial/infrastructure/smc-gripping-technology.webp"
             },
             {
                 id: "3",
                 title: "Motion and Control",
                 description: "This section consists of Integration Stand I, Integration Stand II, Motion Control, Control & Visualization, Electro-Pneumatic, and MAPS, and is designed to provide a clear understanding of integrated automation systems. It demonstrates the master–slave configuration, where a master controller coordinates and controls multiple slave units, helping learners understand real-time communication, synchronization, and coordinated control in modern industrial automation.",
                 icon: Activity,
-                image: "/image/SkillFoundationImage/skill-foundation3.png"
+                image: "/image/skill-foundation/automation-industrial/infrastructure/motion-and-control.webp"
             }
         ]
     },
@@ -71,9 +71,9 @@ const aiaData = {
         title: "Programs Offered",
         description: "The Centre offers the following training programs for industry professionals and engineering students of all disciplines. On successful completion of training, participants are assessed for their learning & skills and awarded with a globally recognized joint certification from AKGEC & AIA.",
         items: [
-            "UG1: Undergraduate Course on Integrated Automation Level 1 (40 Hrs)",
-            "UG2: Undergraduate Course on Integrated Automation Level 2 (80 Hrs)",
-            "Course on Integrated Automation: For Industry Professional (40 Hrs)"
+            { text: "UG1: Undergraduate Course on Integrated Automation Level 1 (40 Hrs)", pdf: "/image/skill-foundation/automation-industrial/programs-offered/aia-undergraduate-level-1.pdf" },
+            { text: "UG2: Undergraduate Course on Integrated Automation Level 2 (80 Hrs)", pdf: "/image/skill-foundation/automation-industrial/programs-offered/aia-undergraduate-level-2.pdf" },
+            { text: "Course on Integrated Automation: For Industry Professional (40 Hrs)", pdf: "/image/skill-foundation/automation-industrial/programs-offered/aia-corporate-course.pdf" }
         ]
     },
     upcoming: {
@@ -87,7 +87,8 @@ const aiaData = {
                 duration: "80 Hours",
                 fee: "₹ 7,000",
                 coordinator: "Ms. Preeti Singh",
-                contact: "siemens@akgec.ac.in/91-9718663712"
+                contact: "siemens@akgec.ac.in/91-9718663712",
+                pdf: "/image/skill-foundation/automation-industrial/upcoming-programs/winter-training-program-industrial-automation.pdf"
             }
         ]
     },
@@ -311,12 +312,22 @@ const SkillFoundationDetails = () => {
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {aiaData.programs.items.map((program, idx) => (
-                                <div key={idx} className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-colors">
+                                <div key={idx} className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-colors flex flex-col">
                                     <div className="flex items-center gap-3 mb-2">
                                         <BookOpen className="text-brand-yellow" size={20} />
                                         <h4 className="font-novaBold text-lg">Program {idx + 1}</h4>
                                     </div>
-                                    <p className="text-blue-50 font-novaReg">{program}</p>
+                                    <p className="text-blue-50 font-novaReg flex-1 mb-4">{program.text}</p>
+                                    {program.pdf && (
+                                        <a
+                                            href={program.pdf}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center text-sm font-semibold text-brand-yellow hover:text-white transition-colors mt-auto group/link"
+                                        >
+                                            View Brochure <ArrowRight size={16} className="ml-1 transform group-hover/link:translate-x-1 transition-transform" />
+                                        </a>
+                                    )}
                                 </div>
                             ))}
                         </div>
@@ -338,6 +349,7 @@ const SkillFoundationDetails = () => {
                                         <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Fee (INR)</th>
                                         <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Coordinator</th>
                                         <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Contact</th>
+                                        <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Brochure</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-200">
@@ -348,6 +360,20 @@ const SkillFoundationDetails = () => {
                                             <td className="py-4 px-6 text-gray-600">{row.fee}</td>
                                             <td className="py-4 px-6 text-gray-600">{row.coordinator}</td>
                                             <td className="py-4 px-6 text-gray-600 text-sm">{row.contact}</td>
+                                            <td className="py-4 px-6">
+                                                {row.pdf ? (
+                                                    <a
+                                                        href={row.pdf}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="inline-flex items-center px-3 py-1 bg-brand-blue/10 text-brand-blue rounded-full text-xs font-bold hover:bg-brand-blue hover:text-white transition-colors"
+                                                    >
+                                                        Download <ArrowRight size={12} className="ml-1" />
+                                                    </a>
+                                                ) : (
+                                                    <span className="text-gray-400 text-xs italic">N/A</span>
+                                                )}
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>

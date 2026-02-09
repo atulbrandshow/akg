@@ -44,35 +44,35 @@ const mitsubishiData = {
                 title: "Programmable Logic controllers (PLC’s)",
                 description: "Mitsubishi PLCs are reliable, high-speed controllers used to automate machines and industrial processes. They support multiple programming languages and offer strong networking with scalable system designs. FX3G suits small to medium applications, while the Q Series supports large and complex automation. The iQ-R Series provides advanced performance for smart factories with SCADA and robotics integration.",
                 icon: Cpu,
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/mitsubishi-authorised/infrastructure/programmable-logic-controllers-plcs.webp"
             },
             {
                 id: "2",
                 title: "FA Learning Setup",
                 description: "The Factory Automation (FA) Learning Set uses a Mitsubishi iQR PLC with DI/DO and AI/AO modules, RD77 motion module, and HMI for real-time monitoring and control. It includes a SERVO with X-Y plotter and an A800 inverter with induction motor for applications like speed control, position control, trajectory control, and integrated industrial automation.",
                 icon: Activity,
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/mitsubishi-authorised/infrastructure/fa-learning-setup.webp"
             },
             {
                 id: "3",
                 title: "Low Voltage Switchgear (LVS) Kit",
                 description: "The Mitsubishi LVS Kit is a practical setup for learning motor control and electrical measurements. It includes single-phase and three-phase induction motors with forward, reverse, braking, and jog operations. The kit supports temperature and RPM measurement, along with a smart meter using RS-232 for communication. It is widely used for hands-on training in motor control, protection, and industrial automation systems.",
                 icon: Zap,
-                image: "/image/SkillFoundationImage/skill-foundation3.png"
+                image: "/image/skill-foundation/mitsubishi-authorised/infrastructure/low-voltage-switchgear-lvs-kit.webp"
             },
             {
                 id: "4",
                 title: "MELFA Industrial Robotic Arm",
                 description: "The MELFA RV-B2F-Q is a compact six-axis industrial robot with 2 kg payload for pick-and-place tasks. It offers high-speed, precise, and repeatable motion for material handling and assembly in automated lines. Its compact design enables easy integration with Q Series PLCs for coordinated and reliable automation. The setup includes a controller, safety unit, vision system, and robotic gripper for advanced vision-guided operations.",
                 icon: Bot,
-                image: "/image/SkillFoundationImage/skill-foundation4.jpeg"
+                image: "/image/skill-foundation/mitsubishi-authorised/infrastructure/melfa-robot-rv-2fb-q.webp"
             },
             {
                 id: "5",
                 title: "Mitsubishi SCADA System",
                 description: "Mitsubishi Electric Supervisory Control And Data Acquisition (SCADA) software for real-time monitoring, control, and data acquisition of industrial systems. It provides graphical visualization, alarm management, data logging, and report generation. The software connects with PLCs, HMIs, and industrial devices for centralized and remote process control. It is widely used in manufacturing, power, water treatment, and Industry 4.0 automation applications.",
                 icon: Monitor,
-                image: "/image/SkillFoundationImage/skill-foundation5.png"
+                image: "/image/skill-foundation/mitsubishi-authorised/infrastructure/mitsubishi-atc-main.webp"
             }
         ]
     },
@@ -83,31 +83,31 @@ const mitsubishiData = {
                 id: "1",
                 title: "AKGEC Defence Upskilling Programs under DGR and IASC-SSC",
                 description: "AKGEC successfully conducted multiple Defence Personnel Training Programs under DGR (Ministry of Defence) in collaboration with IASC-SSC. These programs trained 28 participants in 2023, 42 participants in 2024, and 77 participants in 2025 across Industrial/Building Automation Technologies. The initiative supports skill enhancement and smooth transition of defence personnel into industry roles.",
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/mitsubishi-authorised/events/defence-upskilling-programs.webp"
             },
             {
                 id: "2",
                 title: "Empowering SMEs Through Automation: PLC & Drives Workshop at AKGEC",
                 description: "AKGEC successfully hosted a two-day workshop on PLC and Drive Technologies for SMEs, organized by MEI. The program provided hands-on exposure to industrial automation, enabling participants to understand real-world control systems and drive applications. This initiative reinforces AKGEC’s commitment to supporting technological advancement and skill development for small and medium enterprises.",
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/mitsubishi-authorised/events/defence-upskilling-programs.webp"
             }
         ]
     },
     awards: {
         title: "Awards & Recognition",
         items: [
-            { text: "Gold Cup Winner of Mitsubishi Electric Cup 2016-17 and team visited to Mitsubishi Manufacturing facility at Japan (Nagoya Plant and Tokyo Office)", image: "/image/SkillFoundationImage/skill-foundation1.jpeg" }
+            { text: "Gold Cup Winner of Mitsubishi Electric Cup 2016-17 and team visited to Mitsubishi Manufacturing facility at Japan (Nagoya Plant and Tokyo Office)", image: "/image/skill-foundation/mitsubishi-authorised/awards/mitsubishi-electric-cup-award.webp" }
         ]
     },
     programs: {
         title: "Programs Offered",
         description: "The Centre offers the following training programs for industry professionals and engineering students of all disciplines. On successful completion of training, participants are assessed for their learning & skills and awarded with a globally recognized joint certification from AKGEC & Mitsubishi Electric India.",
         items: [
-            "Factory Automation - Foundation (40 hrs.)",
-            "Factory Automation - Intermediate (80 hrs.)",
-            "Factory Automation - Advance (80 hrs.)",
-            "Industrial Panel Wiring - Foundation (40 hrs.)",
-            "Factory Automation - Corporate (40 hrs.)"
+            { text: "Factory Automation - Foundation (40 hrs.)", pdf: "/image/skill-foundation/mitsubishi-authorised/programs-offered/factory-automation-foundation.pdf" },
+            { text: "Factory Automation - Intermediate (80 hrs.)", pdf: "/image/skill-foundation/mitsubishi-authorised/programs-offered/factory-automation-intermediate.pdf" },
+            { text: "Factory Automation - Advance (80 hrs.)", pdf: "/image/skill-foundation/mitsubishi-authorised/programs-offered/factory-automation-advance.pdf" },
+            { text: "Industrial Panel Wiring - Foundation (40 hrs.)", pdf: "/image/skill-foundation/mitsubishi-authorised/programs-offered/industrial-panel-wiring-foundation.pdf" },
+            { text: "Factory Automation - Corporate (40 hrs.)", pdf: "/image/skill-foundation/mitsubishi-authorised/programs-offered/factory-automation-corporate.pdf" }
         ]
     },
     upcoming: {
@@ -121,7 +121,8 @@ const mitsubishiData = {
                 duration: "80 Hours",
                 fee: "₹ 7,000",
                 coordinator: "Ms. Preeti Singh",
-                contact: "siemens@akgec.ac.in / +91-9718663712"
+                contact: "siemens@akgec.ac.in / +91-9718663712",
+                pdf: "/image/skill-foundation/mitsubishi-authorised/upcoming-programs/winter-training-program.pdf"
             }
         ]
     },
@@ -342,12 +343,22 @@ const SkillFoundationDetails = () => {
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
                             {mitsubishiData.programs.items.map((program, idx) => (
-                                <div key={idx} className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-colors">
+                                <div key={idx} className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-colors flex flex-col h-full">
                                     <div className="flex items-center gap-3 mb-2">
                                         <BookOpen className="text-brand-yellow" size={20} />
                                         <h4 className="font-novaBold text-lg">Program {idx + 1}</h4>
                                     </div>
-                                    <p className="text-blue-50 font-novaReg">{program}</p>
+                                    <p className="text-blue-50 font-novaReg mb-4 flex-grow">{program.text}</p>
+                                    {program.pdf && (
+                                        <a
+                                            href={program.pdf}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center text-sm font-semibold text-brand-yellow hover:text-white transition-colors mt-auto group/link"
+                                        >
+                                            View Brochure <ArrowRight size={16} className="ml-1 transform group-hover/link:translate-x-1 transition-transform" />
+                                        </a>
+                                    )}
                                 </div>
                             ))}
                         </div>
@@ -372,6 +383,7 @@ const SkillFoundationDetails = () => {
                                             <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Fee (INR)</th>
                                             <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Coordinator</th>
                                             <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Contact</th>
+                                            <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Brochure</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-gray-200">
@@ -382,6 +394,20 @@ const SkillFoundationDetails = () => {
                                                 <td className="py-4 px-6 text-gray-600">{row.fee}</td>
                                                 <td className="py-4 px-6 text-gray-600">{row.coordinator}</td>
                                                 <td className="py-4 px-6 text-gray-600 text-sm">{row.contact}</td>
+                                                <td className="py-4 px-6">
+                                                    {row.pdf ? (
+                                                        <a
+                                                            href={row.pdf}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="inline-flex items-center px-3 py-1 bg-brand-blue/10 text-brand-blue rounded-full text-xs font-bold hover:bg-brand-blue hover:text-white transition-colors"
+                                                        >
+                                                            Download <ArrowRight size={12} className="ml-1" />
+                                                        </a>
+                                                    ) : (
+                                                        <span className="text-gray-400 text-xs italic">N/A</span>
+                                                    )}
+                                                </td>
                                             </tr>
                                         ))}
                                     </tbody>

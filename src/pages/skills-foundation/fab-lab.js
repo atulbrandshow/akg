@@ -24,7 +24,8 @@ import {
     Clock,
     Phone,
     Mail,
-    MapPin
+    MapPin,
+    ExternalLink
 } from "lucide-react";
 
 // Data Structure
@@ -42,157 +43,157 @@ const fabLabData = {
                 title: "Laser Cutting & Engraving System",
                 description: "A Laser Cutting & Engraving System is a precision machine that uses a focused laser beam to cut, mark, and engrave a wide range of materials such as wood, acrylic, leather, paper, and certain metals. It delivers high-speed, high-accuracy performance, allowing users to produce intricate designs, detailed engravings, and clean cuts with minimal post-processing. Equipped with advanced motion control, adjustable laser power, and digital file compatibility, the system supports both vector cutting and raster engraving. Depending on the application, CO₂, fiber, or diode laser sources can be used to achieve optimal results. These systems are widely used in manufacturing, prototyping, signage, education, and creative industries for producing precise and repeatable outputs.",
                 icon: Scissors,
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/fab-lab/infrastructure/laser-cutting-engraving-system.webp"
             },
             {
                 id: "2",
                 title: "CNC Milling",
                 description: "CNC Milling is a computer-controlled machining process that uses rotating cutting tools to precisely remove material from metal, plastic, or composite workpieces. The machine follows programmed toolpaths to create complex shapes, contours, and features with high accuracy and repeatability. Equipped with multi-axis control, high-speed spindles, and advanced CAM integration, CNC mills can perform operations such as drilling, pocketing, contouring, and surface finishing. This technology is widely used in industries like aerospace, automotive, tooling, and product manufacturing due to its ability to produce tight-tolerance components. CNC milling ensures consistent quality, efficient production, and scalability for both prototyping and mass manufacturing.",
                 icon: Settings,
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/fab-lab/infrastructure/cnc-milling.webp"
             },
             {
                 id: "3",
                 title: "CNC Wood Router",
                 description: "A CNC Wood Router is a computer-controlled cutting machine designed to accurately carve, shape, and engrave wood, MDF, plywood, and other soft materials. Using programmed toolpaths, it performs intricate cutting, profiling, pocketing, and 3D carving with high precision and repeatability. Equipped with a high-speed spindle, rigid frame, and advanced motion control, the router enables smooth, detailed, and consistent machining. It is widely used in furniture manufacturing, signage, cabinetry, interior décor, and custom woodworking for producing complex designs efficiently. CNC wood routers significantly improve productivity, reduce manual labor, and ensure uniform quality across repeated parts.",
                 icon: Crosshair,
-                image: "/image/SkillFoundationImage/skill-foundation3.png"
+                image: "/image/skill-foundation/fab-lab/infrastructure/cnc-wood-router.webp"
             },
             {
                 id: "4",
                 title: "Lathe Machine",
                 description: "A Lathe Machine is a precision machining tool used to shape materials such as metal, wood, or plastic by rotating the workpiece against a cutting tool. It performs essential operations like turning, facing, threading, boring, knurling, and taper cutting with high accuracy and control. Built with a robust bed, spindle system, carriage, and tailstock, a lathe ensures stable rotation and smooth tool movement for consistent machining results. Lathes are widely used in manufacturing, workshops, maintenance, and production environments to create cylindrical components and precision shafts. Their versatility, reliability, and ability to work with a wide range of materials make them a fundamental tool in machining and fabrication industries.",
                 icon: Settings,
-                image: "/image/SkillFoundationImage/skill-foundation4.jpeg"
+                image: "/image/skill-foundation/fab-lab/infrastructure/lathe-machine.webp"
             },
             {
                 id: "5",
                 title: "Additive Manufacturing (3D Printing)",
                 description: "The Additive Manufacturing (3D Printing) facility at AKGEC FABLAB provides a robust setup for producing high-precision prototypes and functional parts. With a range of FDM, SLA, and PolyJet printers, the lab supports engineering design, product development, and research needs. Users can create complex geometries, multi-material components, and detailed models with high accuracy. The facility offers end-to-end support—from digital modeling to final prints—enabling rapid iteration, quick validation, and seamless conversion of ideas into test-ready prototypes.",
                 icon: Printer,
-                image: "/image/SkillFoundationImage/skill-foundation5.png"
+                image: "/image/skill-foundation/fab-lab/infrastructure/additive-manufacturing-3d-printing.webp"
             },
             {
                 id: "6",
                 title: "Stratasys F370",
                 description: "The Stratasys F370 is a professional-grade FDM 3D printer engineered for high accuracy, reliability, and efficient prototyping. It features a fully enclosed heated chamber, automated calibration, and support for engineering materials such as ABS-M30, ASA, TPU 92A, and PC-ABS. With its user-friendly touchscreen interface and GrabCAD Print software, the F370 streamlines the workflow from CAD to finished part. Its robust build and consistent performance make it ideal for functional prototypes, manufacturing tools, and low-volume production. The F370 ensures dimensionally stable, high-quality prints, making it a trusted solution for engineering, manufacturing, and product development environments.",
                 icon: Printer,
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/fab-lab/infrastructure/stratasys-f370.webp"
             },
             {
                 id: "7",
                 title: "Stratasys J55 Polyjet Printer",
                 description: "The Stratasys J55 is a compact, office-friendly PolyJet 3D printer designed to deliver ultra-realistic, full-color prototypes with exceptional detail and surface quality. It supports multi-material printing with over 500,000 color combinations, enabling designers to create final-product–like models for CMF (Color, Material, Finish) exploration. Its unique rotating build platform ensures uniform print quality, quiet operation, and efficient material usage. The J55 works seamlessly with Stratasys materials such as Vero, Vivid, and Elastico, allowing the creation of transparent, flexible, and textured parts. Ideal for product design, packaging, education, and concept modeling, the J55 dramatically accelerates the design-to-prototype workflow.",
                 icon: Printer,
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/fab-lab/infrastructure/stratasys-j55-polyjet-printer.webp"
             },
             {
                 id: "8",
                 title: "Bambu Lab X1 Carbon",
                 description: "The Bambu Lab X1 Carbon is a high-performance CoreXY 3D printer engineered for speed, precision, and advanced multi-material printing. Its carbon-fiber–reinforced frame, AI-assisted monitoring, and lidar-based first-layer inspection ensure consistent, high-quality prints. With a hardened steel hotend and all-metal components, it supports demanding engineering materials such as PETG-CF, PA-CF, and PC. The X1 Carbon’s vibration compensation and closed-loop motor control enable ultra-fast printing without sacrificing detail. When paired with the AMS, it offers seamless multi-color and multi-material workflows, making it ideal for professional prototyping and functional part production.",
                 icon: Printer,
-                image: "/image/SkillFoundationImage/skill-foundation3.png"
+                image: "/image/skill-foundation/fab-lab/infrastructure/bambu-lab-x1-carbon.webp"
             },
             {
                 id: "9",
                 title: "Snapmaker A150/A350",
                 description: "The Snapmaker A150/A350 are modular 3-in-1 fabrication systems that combine 3D printing, laser engraving/cutting, and CNC carving in a single, compact machine. Built with a durable all-metal frame and precision linear modules, they deliver accurate and repeatable performance across all three functions. The interchangeable toolheads allow users to switch seamlessly between fabrication modes, making the system ideal for makers, educators, and small workshops. The A150 offers a smaller footprint for limited spaces, while the A350 provides a significantly larger workspace for bigger projects. Paired with Snapmaker Luban software, the system enables streamlined workflows and creative versatility for a wide range of digital fabrication tasks.",
                 icon: Settings,
-                image: "/image/SkillFoundationImage/skill-foundation4.jpeg"
+                image: "/image/skill-foundation/fab-lab/infrastructure/snapmaker-a150-a350.webp"
             },
             {
                 id: "10",
                 title: "MakerBot Z18",
                 description: "The MakerBot Replicator Z18 is a large-format FDM 3D printer designed for producing tall, full-scale prototypes and functional parts with exceptional consistency. Its enclosed heated chamber minimizes warping and ensures strong layer adhesion, even for large prints. With a massive 18-inch build height, the Z18 enables designers and engineers to create oversized models in a single run, reducing assembly time. It integrates seamlessly with MakerBot Print and Cloud software for easy workflow management and remote monitoring. Built for reliability and ease of use, the Z18 is ideal for product development, education, architecture, and industrial prototyping.",
                 icon: Printer,
-                image: "/image/SkillFoundationImage/skill-foundation5.png"
+                image: "/image/skill-foundation/fab-lab/infrastructure/makerbot-z18.webp"
             },
             {
                 id: "11",
                 title: "Ultimaker 3D Printer",
                 description: "Ultimaker 3D Printers are professional-grade FDM systems known for their precision, reliability, and ease of use across a wide range of applications. With advanced dual-extrusion technology, they enable multi-material and soluble-support printing for creating detailed, functional prototypes and end-use parts. Their open-material ecosystem allows compatibility with engineering filaments such as nylon, CPE, TPU, and composites. Features like active bed leveling, touchscreen controls, and seamless Cura software integration streamline the printing workflow. Trusted by engineers, educators, and designers, Ultimaker printers deliver consistent, high-quality results for both prototyping and production environments.",
                 icon: Printer,
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/fab-lab/infrastructure/ultimaker-3d-printer.webp"
             },
             {
                 id: "12",
                 title: "FormLab 3B+",
                 description: "The Formlabs Form 3B+ is a high-performance SLA 3D printer engineered for medical, dental, and engineering-grade applications requiring exceptional precision. Powered by Low Force Stereolithography (LFS), it delivers smooth surfaces, accurate geometries, and consistent part quality. The advanced Light Processing Unit (LPU) ensures uniform curing and improved reliability across biocompatible and engineering resins. With automated resin handling, intelligent sensors, and fast print speeds, the Form 3B+ streamlines production workflows. Ideal for dental models, surgical guides, medical devices, and detailed prototypes, it offers professional-grade results in a compact, user-friendly system. ",
                 icon: Printer,
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/fab-lab/infrastructure/formlab-3b-plus.webp"
             },
             {
                 id: "13",
                 title: "AAKAR 3D Printer",
                 description: "AAKAR is a patented, low-cost, single-extruder 3D printer designed for reliable, high-precision prototyping and in-house production. Built with a sturdy mechanical frame and an optimized extrusion system, it delivers smooth, consistent prints across a variety of materials. Its affordability combined with dependable performance makes it ideal for schools, startups, labs, and small manufacturing units seeking an efficient in-house fabrication solution. AAKAR offers excellent dimensional accuracy, stable layer adhesion, and clean surface quality, ensuring professional-grade results. With a user-friendly interface and easy calibration, it supports both beginners and advanced users, making rapid prototyping accessible and economical.",
                 icon: Printer,
-                image: "/image/SkillFoundationImage/skill-foundation3.png"
+                image: "/image/skill-foundation/fab-lab/infrastructure/aakar-3d-printer.webp"
             },
             {
                 id: "14",
                 title: "Electronics Systems Design",
                 description: "The Electronics System Design facility at AKGEC FABLAB provides a robust ecosystem for electronics prototyping and IoT development. It is equipped with a diverse range of industry-standard microcontroller platforms, single-board computers, essential sensors, and professional test instruments. The lab also supports complete circuit design and PCB fabrication, enabling end-to-end development of electronic projects—from concept to fully built hardware.",
                 icon: Zap,
-                image: "/image/SkillFoundationImage/skill-foundation4.jpeg"
+                image: "/image/skill-foundation/fab-lab/infrastructure/electronics-systems-design.webp"
             },
             {
                 id: "15",
                 title: "PCB Designing and Manufacturing",
                 description: "PCB Designing and Manufacturing together transform an electronic concept into a fully functional circuit board. The design phase includes schematic development, footprint creation, multilayer routing, and DFM validation using professional open-source tools like KiCad. For rapid product prototyping, PCB fabrication is supported through both chemical etching and CNC milling, using machines such as the Modela MDX-50 and Roland SRM-20. This integrated facility enables the quick development of high-quality prototype PCBs, allowing teams to validate and test their products efficiently.",
                 icon: Settings,
-                image: "/image/SkillFoundationImage/skill-foundation5.png"
+                image: "/image/skill-foundation/fab-lab/infrastructure/pcb-designing-manufacturing.webp"
             },
             {
                 id: "16",
                 title: "Electronic Circuit Design",
                 description: "AKGEC FABLAB is equipped with professional-grade soldering stations, hot-air rework systems, and an SMT reflow oven to support high-precision electronics prototyping and assembly. These advanced tools provide independent temperature control, rapid heat-up, and stable airflow for reliable SMD/SMT soldering, desoldering, and reflow processes. Together, they enable the production of high-quality electronic assemblies for academic, research, and product development applications.",
                 icon: Zap,
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/fab-lab/infrastructure/electronic-circuit-design.webp"
             },
             {
                 id: "17",
                 title: "IoT Development Boards",
                 description: "At AKGEC FABLAB, advanced IoT development boards like the NVIDIA Jetson Nano, BeagleBone Black, and Raspberry Pi 4/5 power rapid creation of intelligent connected systems. Jetson Nano enables GPU-accelerated AI for robotics and edge vision, while BeagleBone Black offers industrial-grade real-time control for automation. Raspberry Pi adds high-speed processing and robust connectivity for versatile IoT applications. Together, these platforms support fast prototyping, seamless sensor integration, and deployment of smart, data-driven IoT solutions.",
                 icon: Radio,
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/fab-lab/infrastructure/iot-development-boards.webp"
             },
             {
                 id: "18",
                 title: "Embedded System Boards",
                 description: "Embedded System Boards like Raspberry Pi Pico, STM32, ESP32, and Arduino offer a strong platform for developing advanced electronics and IoT solutions. The Pico delivers fast dual-core performance, STM32 provides high processing power for complex designs, and ESP32 integrates Wi-Fi/Bluetooth for connected applications. Arduino adds simplicity and broad community support for quick prototyping. Together, these boards enable the creation of reliable, scalable, and feature-rich embedded systems.",
                 icon: Activity,
-                image: "/image/SkillFoundationImage/skill-foundation3.png"
+                image: "/image/skill-foundation/fab-lab/infrastructure/embedded-system-boards.webp"
             }
         ]
     },
     events: {
         title: "Workshop / Events",
         items: [
-            { id: "1", title: "AICTE – Basic IDEA Lab Faculty Development Program", description: "Ajay Kumar Garg Engineering College (AKGEC), Ghaziabad conducted a five-day AICTE-sponsored Basic IDEA Lab FDP from 21–25 April 2025 to train IDEA Lab coordinators and faculty from across India. The program combined expert lectures and hands-on sessions in 3D Printing, Product Design, CNC Machining, Embedded Systems, IoT, Design Thinking, and IPR, emphasizing learning-by-doing and prototype development in alignment with NEP 2020, and strengthening the IDEA Lab innovation ecosystem.", image: "/image/SkillFoundationImage/skill-foundation1.jpeg" },
-            { id: "2", title: "AICTE-MIC-DoSEL-CBSE- One Day Design Thinking & Innovation Workshop", description: "Ajay Kumar Garg Engineering College (AKGEC), Ghaziabad has been selected as the Nodal Centre for Uttar Pradesh by AICTE, MIC, and CBSE to conduct a One-Day Design Thinking & Innovation Workshop on 27 September 2025. The workshop will engage around 100 CBSE Principals and Teachers, featuring eminent dignitaries and expert speakers from AICTE, MIC, IIT Bombay, and leading institutions, and aims to promote innovation-led problem solving and experiential learning in alignment with national educational initiatives.", image: "/image/SkillFoundationImage/skill-foundation2.jpeg" },
-            { id: "3", title: "Additive Manufacturing Symposium 2025", description: "The National Symposium on Additive Manufacturing (NSAM 2025) is a prestigious one-day national-level event scheduled on 26 March 2025 at Ajay Kumar Garg Engineering College (AKGEC), Ghaziabad. Organized by the Center of Excellence for Additive Manufacturing (CoE-AM) in collaboration with the Innovation Hub–AKTU, and sponsored by Dr. A.P.J. Abdul Kalam Technical University (AKTU), the symposium focuses on emerging trends, applications, and future directions of Additive Manufacturing (AM). NSAM 2025 will bring together industry leaders, academicians, government representatives, and innovators to deliberate on the transformative role of AM across key sectors, including Drones & Aerospace, Healthcare, and Automotive. The symposium will also feature live hands-on demonstrations of polymer and metal 3D printing technologies, offering participants valuable practical insights. The National Centre for Additive Manufacturing (NCAM) serves as the Knowledge Partner, while the Additive Manufacturing Society of India (AMSI) is the Strategic Partner for the event.", image: "/image/SkillFoundationImage/skill-foundation3.png" },
+            { id: "1", title: "AICTE – Basic IDEA Lab Faculty Development Program", description: "Ajay Kumar Garg Engineering College (AKGEC), Ghaziabad conducted a five-day AICTE-sponsored Basic IDEA Lab FDP from 21–25 April 2025 to train IDEA Lab coordinators and faculty from across India. The program combined expert lectures and hands-on sessions in 3D Printing, Product Design, CNC Machining, Embedded Systems, IoT, Design Thinking, and IPR, emphasizing learning-by-doing and prototype development in alignment with NEP 2020, and strengthening the IDEA Lab innovation ecosystem.", image: "/image/skill-foundation/fab-lab/events/aicte-basic-idea-lab-fdp.webp" },
+            { id: "2", title: "AICTE-MIC-DoSEL-CBSE- One Day Design Thinking & Innovation Workshop", description: "Ajay Kumar Garg Engineering College (AKGEC), Ghaziabad has been selected as the Nodal Centre for Uttar Pradesh by AICTE, MIC, and CBSE to conduct a One-Day Design Thinking & Innovation Workshop on 27 September 2025. The workshop will engage around 100 CBSE Principals and Teachers, featuring eminent dignitaries and expert speakers from AICTE, MIC, IIT Bombay, and leading institutions, and aims to promote innovation-led problem solving and experiential learning in alignment with national educational initiatives.", image: "/image/skill-foundation/fab-lab/events/aicte-mic-dosel-cbse-workshop.webp" },
+            { id: "3", title: "Additive Manufacturing Symposium 2025", description: "The National Symposium on Additive Manufacturing (NSAM 2025) is a prestigious one-day national-level event scheduled on 26 March 2025 at Ajay Kumar Garg Engineering College (AKGEC), Ghaziabad. Organized by the Center of Excellence for Additive Manufacturing (CoE-AM) in collaboration with the Innovation Hub–AKTU, and sponsored by Dr. A.P.J. Abdul Kalam Technical University (AKTU), the symposium focuses on emerging trends, applications, and future directions of Additive Manufacturing (AM). NSAM 2025 will bring together industry leaders, academicians, government representatives, and innovators to deliberate on the transformative role of AM across key sectors, including Drones & Aerospace, Healthcare, and Automotive. The symposium will also feature live hands-on demonstrations of polymer and metal 3D printing technologies, offering participants valuable practical insights. The National Centre for Additive Manufacturing (NCAM) serves as the Knowledge Partner, while the Additive Manufacturing Society of India (AMSI) is the Strategic Partner for the event.", image: "/image/skill-foundation/fab-lab/events/additive-manufacturing-symposium-2025.webp" },
             { id: "4", title: "FDP & Chief Mentor Conclave for AICTE IDEA LAB", description: "Ajay Kumar Garg Engineering College (AKGEC), Ghaziabad, was nominated by AICTE to organize a five-day Faculty Development Program (FDP) on AICTE IDEA Lab, followed by a One-Day Chief Mentor Conclave, under the AICTE Training and Learning (ATAL) Academy. Conducted from 2nd to 7th May 2022, the program aimed to train IDEA Lab coordinators from AICTE-selected institutions through hands-on exposure to key IDEA Lab equipment and technologies. The FDP brought together faculty members from newly established IDEA Labs across multiple states, fostering collaboration, knowledge sharing, and best practices for effective IDEA Lab implementation. The Chief Mentor Conclave provided a unique platform for institutional heads and mentors to interact, network, and gain first-hand insights into the objectives and operational framework of the AICTE IDEA Lab Scheme, strengthening the national innovation and experiential learning ecosystem", image: "/image/SkillFoundationImage/skill-foundation4.jpeg" },
-            { id: "5", title: "Super FABLAB Bhutan Training Bootcamp", description: "Ajay Kumar Garg Engineering College (AKGEC), Ghaziabad conducted an international training bootcamp for delegates from the Jigme Namgyel Wangchuck Super Fab Lab, Bhutan from 16–20 January 2023, focusing on Advanced Embedded Systems & IoT, Industrial Automation, PLC & SCADA, Robotics, and Reverse Engineering. The hands-on program promoted practical skill development, global knowledge exchange, and international collaboration, reinforcing AKGEC’s role as a center for advanced technical training.", image: "/image/SkillFoundationImage/skill-foundation5.png" }
+            { id: "5", title: "Super FABLAB Bhutan Training Bootcamp", description: "Ajay Kumar Garg Engineering College (AKGEC), Ghaziabad conducted an international training bootcamp for delegates from the Jigme Namgyel Wangchuck Super Fab Lab, Bhutan from 16–20 January 2023, focusing on Advanced Embedded Systems & IoT, Industrial Automation, PLC & SCADA, Robotics, and Reverse Engineering. The hands-on program promoted practical skill development, global knowledge exchange, and international collaboration, reinforcing AKGEC’s role as a center for advanced technical training.", image: "/image/skill-foundation/fab-lab/events/super-fablab-bhutan-bootcamp.webp" }
         ]
     },
     awards: {
         title: "Awards",
         items: [
-            { text: "IndiaSkills 2021. We are delighted to announce that Mr. Dhruv Verma, a fourth-year B.Tech Mechanical Engineering student at Ajay Kumar Garg Engineering College, has won the Silver Medal in the IndiaSkills 2021 National Competition in the Additive Manufacturing skill category. Dhruv earned this prestigious recognition for his outstanding performance and successful completion of challenging projects during the competition. IndiaSkills and WorldSkills India are initiatives of the National Skill Development Corporation (NSDC) under the Ministry of Skill Development & Entrepreneurship (MSDE), Government of India. WorldSkills Competitions—often referred to as the “Olympics of Skills”—represent the global benchmark of vocational excellence, bringing together talented participants from around the world.", image: "/image/SkillFoundationImage/skill-foundation1.jpeg" }
+            { text: "IndiaSkills 2021. We are delighted to announce that Mr. Dhruv Verma, a fourth-year B.Tech Mechanical Engineering student at Ajay Kumar Garg Engineering College, has won the Silver Medal in the IndiaSkills 2021 National Competition in the Additive Manufacturing skill category. Dhruv earned this prestigious recognition for his outstanding performance and successful completion of challenging projects during the competition. IndiaSkills and WorldSkills India are initiatives of the National Skill Development Corporation (NSDC) under the Ministry of Skill Development & Entrepreneurship (MSDE), Government of India. WorldSkills Competitions—often referred to as the “Olympics of Skills”—represent the global benchmark of vocational excellence, bringing together talented participants from around the world.", image: "/image/skill-foundation/fab-lab/awards/indiaskills-2021.webp" }
         ]
     },
     programs: {
         title: "Programs Offered",
         description: "The Centre offers the following training programs for industry professionals and engineering students of all disciplines. On successful completion of training, participants are assessed for their learning & skills and awarded with a globally recognised joint certification from AKGEC & FAB LAB.",
         items: [
-            "Short Term Training Program - Internet Of Things (40 Hrs)",
-            "Short Term Training Program - Embedded System (40 Hrs)",
-            "Short Term Training Program - 3D Printing (40 Hrs)",
-            "Innovation Bootcamp - School Students (80 Hrs)",
-            "Innovation Bootcamp - Engineering Students (80 Hrs)",
-            "Industrial Training Program - Internet of Things (80 Hrs)",
-            "Industrial Training Program - Embedded System (80 Hrs)",
-            "Industrial Training Program - 3D Printing (80 Hrs)"
+            { text: "Short Term Training Program - Internet Of Things (40 Hrs)", pdf: "/image/skill-foundation/fab-lab/programs-offered/sttp-iot.pdf" },
+            { text: "Short Term Training Program - Embedded System (40 Hrs)", pdf: "" },
+            { text: "Short Term Training Program - 3D Printing (40 Hrs)", pdf: "/image/skill-foundation/fab-lab/programs-offered/sttp-3d-printing.pdf" },
+            { text: "Innovation Bootcamp - School Students (80 Hrs)", pdf: "/image/skill-foundation/fab-lab/programs-offered/bootcamp-school.pdf" },
+            { text: "Innovation Bootcamp - Engineering Students (80 Hrs)", pdf: "/image/skill-foundation/fab-lab/programs-offered/bootcamp-engineer.pdf" },
+            { text: "Industrial Training Program - Internet of Things (80 Hrs)", pdf: "/image/skill-foundation/fab-lab/programs-offered/itp-iot.pdf" },
+            { text: "Industrial Training Program - Embedded System (80 Hrs)", pdf: "" },
+            { text: "Industrial Training Program - 3D Printing (80 Hrs)", pdf: "/image/skill-foundation/fab-lab/programs-offered/itp-3d-printing.pdf" }
         ]
     },
     upcoming: {
@@ -206,14 +207,16 @@ const fabLabData = {
                 duration: "40 Hrs",
                 fee: "₹ 7,000",
                 coordinator: "Mr. Himanshu Tripathi",
-                contact: "tripathihimanshu@akgec.ac.in / +91 9873812070"
+                contact: "tripathihimanshu@akgec.ac.in / +91 9873812070",
+                pdf: "/image/skill-foundation/fab-lab/upcoming-programs/winter-training-iot.pdf"
             },
             {
                 title: "Winter Training Program - 3D Printing",
                 duration: "40 Hrs",
                 fee: "₹ 7,000",
                 coordinator: "Mr. Himanshu Tripathi",
-                contact: "tripathihimanshu@akgec.ac.in / +91 9873812070"
+                contact: "tripathihimanshu@akgec.ac.in / +91 9873812070",
+                pdf: "/image/skill-foundation/fab-lab/upcoming-programs/winter-training-3d-printing.pdf"
             }
         ]
     },
@@ -430,12 +433,24 @@ const SkillFoundationDetails = () => {
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {fabLabData.programs.items.map((program, idx) => (
-                                <div key={idx} className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-colors">
-                                    <div className="flex items-center gap-3 mb-2">
-                                        <BookOpen className="text-brand-yellow" size={20} />
-                                        <h4 className="font-novaBold text-lg">Program {idx + 1}</h4>
+                                <div key={idx} className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-colors flex flex-col justify-between">
+                                    <div>
+                                        <div className="flex items-center gap-3 mb-2">
+                                            <BookOpen className="text-brand-yellow" size={20} />
+                                            <h4 className="font-novaBold text-lg text-white">Program {idx + 1}</h4>
+                                        </div>
+                                        <p className="text-blue-50 font-novaReg mb-4">{program.text}</p>
                                     </div>
-                                    <p className="text-blue-50 font-novaReg">{program}</p>
+                                    {program.pdf && (
+                                        <a
+                                            href={program.pdf}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center text-sm font-semibold text-brand-yellow hover:text-white transition-colors mt-auto"
+                                        >
+                                            Download Brochure <ArrowRight size={16} className="ml-1" />
+                                        </a>
+                                    )}
                                 </div>
                             ))}
                         </div>
@@ -462,7 +477,16 @@ const SkillFoundationDetails = () => {
                                 <tbody className="divide-y divide-gray-200">
                                     {fabLabData.upcoming.table.map((row, idx) => (
                                         <tr key={idx} className="hover:bg-gray-50 transition-colors">
-                                            <td className="py-4 px-6 text-gray-800 font-medium">{row.title}</td>
+                                            <td className="py-4 px-6 text-gray-800 font-medium">
+                                                {row.pdf ? (
+                                                    <a href={row.pdf} target="_blank" rel="noopener noreferrer" className="hover:text-brand-blue hover:underline flex items-center gap-2 group">
+                                                        {row.title}
+                                                        <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                                                    </a>
+                                                ) : (
+                                                    row.title
+                                                )}
+                                            </td>
                                             <td className="py-4 px-6 text-gray-600">{row.duration}</td>
                                             <td className="py-4 px-6 text-gray-600">{row.fee}</td>
                                             <td className="py-4 px-6 text-gray-600">{row.coordinator}</td>

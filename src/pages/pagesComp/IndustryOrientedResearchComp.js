@@ -17,13 +17,13 @@ const coes = [
     title: "KUKA Industrial Robotics Training Centre",
     icon: <Cpu size={24} />,
     color: "from-blue-600 to-cyan-500",
-    url: "/kuka-robotics-centre-of-excellence",
+    url: "/skill-foundation/kuka-robotics-centre-of-excellence",
   },
   {
     title: "FRONIUS Advance Welding Technology & Research Centre",
     icon: <Zap size={24} />,
     color: "from-orange-600 to-yellow-500",
-    url: "/kuka-robotics-centre-of-excellence",
+    url: "/akgec-fronius-advance-welding-technology-research-centre",
   },
   {
     title: "SIEMENS Advance Manufacturing Centre",

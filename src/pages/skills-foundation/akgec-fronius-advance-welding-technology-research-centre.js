@@ -42,155 +42,155 @@ const froniusData = {
                 title: "Trans Steel Gas Metal Arc Welding",
                 description: "TransSteel GMAW welding systems feature a fully digital power source that ensures reproducible welds. Using Steel Transfer Technology, they provide expert-designed characteristics for precise ignition and stable burn-off. With up to 30% higher deposition rates, TransSteel is ideal for cost-effective welding of thick steel. Its dual-circuit cooling, adjustable contact tip, high wire-feed speed, and optimized system design enable an impressive deposition rate of 13.5 kg/h.",
                 icon: Settings,
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/akgec-fronius/infrastructure/trans-steel-gmaw-welding.webp"
             },
             {
                 id: "2",
                 title: "AccuPocket Shielded Metal Arc Welding (SMAW) Portable System",
                 description: "AccuPocket welding machines are battery-operated systems with an intelligent charger, enabling truly mobile welding without mains power. A full charge supports up to six 3.25 mm or eighteen 2.5 mm electrodes. With a 2 kVA generator, it delivers full welding performance. It handles all electrode types up to 3.25 mm on carbon steel, stainless steel and aluminium, enhanced by AccuBoost technology for superior arc control.",
                 icon: Zap,
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/akgec-fronius/infrastructure/accupocket-smaw-system.webp"
             },
             {
                 id: "3",
                 title: "Shielded Metal Arc Welding (SMAW)",
                 description: "TransPocket SMAW power sources are lightweight, robust and shockproof, delivering highly stable arcs even with voltage fluctuations. They support all electrode types, including cellulosic for vertical-down welding, with optimized ignition settings, Hot-Start for rutile/cellulosic and Soft-Start for basic electrodes. Offering constant arc performance and high reliability, they suit plant engineering, structural steelwork, construction, pipelines, mechanical engineering and shipbuilding applications.",
                 icon: Activity,
-                image: "/image/SkillFoundationImage/skill-foundation3.png"
+                image: "/image/skill-foundation/akgec-fronius/infrastructure/transpocket-smaw-machine.webp"
             },
             {
                 id: "4",
                 title: "Synergic Pulse-based Gas Metal Arc Welding Inverter System",
                 description: "The TransPuls Synergic Pulsed GMAW system is a fully digitized 320 A multi-process power source for MIG/MAG, TIG and SMAW, suitable for manual or robotic use. Its digital inverter ensures energy efficiency and self-diagnostics. Adaptive Arc Control, smooth starting features, pulse waveforms and a comprehensive alloy database ensure superior arc quality, while Syncropulse delivers TIG-like beads. Synergic mode auto-optimizes welding parameters.",
                 icon: Flame,
-                image: "/image/SkillFoundationImage/skill-foundation4.jpeg"
+                image: "/image/skill-foundation/akgec-fronius/infrastructure/transpuls-synergic-gmaw.webp"
             },
             {
                 id: "5",
                 title: "Synergic Pulse-Based Intelligent Gas Metal Arc Welding Inverter System",
                 description: "The TPS/i is a fully digitized, modular GMAW system with high-speed data processing for exceptionally stable arcs, faster control loops and superior welding precision. Supporting CV, Pulse, LSC and PMC processes, it offers advanced arc-stabilizing features for higher weld quality, speed and minimal spatter. With extensive communication capabilities, it delivers maximum efficiency, reliability and profitability for modern automated production.",
                 icon: Snowflake,
-                image: "/image/SkillFoundationImage/skill-foundation5.png"
+                image: "/image/skill-foundation/akgec-fronius/infrastructure/transpuls-synergic-intelligent-gmaw.webp"
             },
             {
                 id: "6",
                 title: "DC Inverter-based Gas Tungsten Arc Welding System",
                 description: "TransTIG GTAW systems are lightweight, robust and fully digitized, delivering a quiet, highly stable TIG arc with excellent energy efficiency. Features like low open-circuit power, automatic cooling cut-out and automatic cap shaping reduce power use, wear and labour time. With long service life and high versatility, they excel in chemical plants, pipelines, fabrication, maintenance and even robotic or manual welding applications.",
                 icon: Crosshair,
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/akgec-fronius/infrastructure/transtig-gtaw-system.webp"
             },
             {
                 id: "7",
                 title: "AC Inverter-based Gas Tungsten Arc Welding (GTAW) System for Aluminium Welding",
                 description: "MagicWave series of GTAW systems are fully digitized and most efficient TIG AC welding machines having extremely low open-circuit power. It is equipped with “Active Wave technology” for peace and quiet operation with a much quieter arc. The integrated digital signal processor always computes in real time – the waveform that will permit the highest possible arc stability with the lowest possible noise emissions levels. These machines are very suitable for aluminium and its alloys, but also for low and high alloy steels and non-ferrous metals. Also, it is possible to make variable adjustments to the AC waveform, giving the welder reliable weld-pool control even at high amperages.",
                 icon: Printer,
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/akgec-fronius/infrastructure/magicwave-gtaw-system.webp"
             },
             {
                 id: "8",
                 title: "Inverter based Gas Tungsten Arc Welding with digitally controlled Cold Wire Metal Transfer System",
                 description: "The MagicWave GTAW (CWT) system combines a digital MagicWave power source with a cold-wire feeding unit that automates filler metal delivery in TIG welding. This ensures repeatable parameters, higher travel speeds and zero filler-rod stub loss while keeping wire clean in a sealed cabinet. Suitable for manual or automated use, it boosts productivity, reduces downtime and delivers consistently high-quality welds with a dual-groove drive for multiple wire sizes.",
                 icon: Radio,
-                image: "/image/SkillFoundationImage/skill-foundation3.png"
+                image: "/image/skill-foundation/akgec-fronius/infrastructure/magicwave-gtaw-cwt-system.webp"
             },
             {
                 id: "9",
                 title: "Pug Cutting System",
                 description: "The Pug Cutting System is a semiautomatic, track-mounted portable thermal cutter known for its flexibility, ease of use and reliable performance. Equipped with a Messer oxy-fuel torch, flashback arrestor and a single-phase motor with 200–1000 mm/min speed control, it delivers smooth straight or bevel cuts on mild steel and aluminium from 3–100 mm. Its robust build ensures high efficiency, strength and low maintenance.",
                 icon: Eye,
-                image: "/image/SkillFoundationImage/skill-foundation4.jpeg"
+                image: "/image/skill-foundation/akgec-fronius/infrastructure/pug-cutting-system.webp"
             },
             {
                 id: "10",
                 title: "Smart Blade CNC Plasma Cutting System",
                 description: "Smart Blade is a compact, powerful Messer gantry-type CNC plasma cutting system with a Hypertherm power source and downdraft fume-extraction bed. It cuts MS and SS precisely at high speeds, with 12 m/min positioning to minimize idle time. Slag trays ease cleaning, while Global Control ensures simple three-step operation. Collision detection, magnetic torch holding and arc-voltage height control enhance safety, nozzle life and cut quality.",
                 icon: Package,
-                image: "/image/SkillFoundationImage/skill-foundation5.png"
+                image: "/image/skill-foundation/akgec-fronius/infrastructure/smart-blade-cnc-plasma-cutting.webp"
             },
             {
                 id: "11",
                 title: "Deburring Machine",
                 description: "Deburring removes burrs and surface imperfections formed during metal cutting. The deburring machine features a dual-disc motor mounted on a mechanized arm for easy maneuvering. Its vacuum-based table securely grips flat metal pieces cut by a plasma machine, ensuring quick mounting, stable operation and efficient finishing of components.",
                 icon: Scissors,
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/akgec-fronius/infrastructure/deburring-machine.webp"
             },
             {
                 id: "12",
                 title: "Ultrasonic Testing Machine",
                 description: "The Krautkramer USM 36 combines a modern operating platform with GE’s proven, robust flaw-detection hardware. Designed as a reliable everyday NDT tool, it offers features like screenshot reporting and A-scan video recording for analysis and inspection validation. Suitable for welds, corrosion, castings, forgings and special materials, it serves industries from power and petrochemical to automotive, metals and aerospace.",
                 icon: Settings,
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/akgec-fronius/infrastructure/ultrasonic-testing-machine.webp"
             },
             {
                 id: "13",
                 title: "Eddy Current Testing Machine",
                 description: "This eddy current inspection system offers an excellent signal-to-noise ratio and a high-resolution display. With customizable workflows and onboard Wi-Fi, inspectors can share screens, communicate, and troubleshoot instantly. It supports single, dual, and dynamic gain modes for crack detection and coating measurement and is built for harsh environments with a superior IP rating.",
                 icon: Zap,
-                image: "/image/SkillFoundationImage/skill-foundation3.png"
+                image: "/image/skill-foundation/akgec-fronius/infrastructure/eddy-current-testing-machine.webp"
             },
             {
                 id: "14",
                 title: "Magnetizing Machine",
                 description: "Magnetic Particle Inspection (MPI) is an NDT method for detecting surface and near-surface defects in ferromagnetic materials using wet or dry magnetic particles. Magnaflux MPI equipment is fast, reliable and durable, with AC, half-wave DC or full-wave DC outputs. Its yokes and power packs suit various industrial needs and part sizes.",
                 icon: Activity,
-                image: "/image/SkillFoundationImage/skill-foundation4.jpeg"
+                image: "/image/skill-foundation/akgec-fronius/infrastructure/magnetizing-machine.webp"
             },
             {
                 id: "15",
                 title: "Bench Grinding Station",
                 description: "The Grinding Station has refurbished a 20×8×8.5 ft ship container with aluminium flooring, PPGI PUF wall panels, UPVC glass doors and windows, custom workstations, ventilation ducts, exhaust systems and electrical fittings. It includes LED lighting, awning, tool boards, foldable tables, rolling shutters, fans, toughened glass partitions, GI sheet tops and rain-protection canopies for student project work.",
                 icon: Flame,
-                image: "/image/SkillFoundationImage/skill-foundation5.png"
+                image: "/image/skill-foundation/akgec-fronius/infrastructure/bench-grinding-station.webp"
             },
             {
                 id: "16",
                 title: "Virtual Welding Simulation System",
                 description: "The Virtual Welding System simulates real welding conditions, allowing trainees to build skills safely and cost-effectively. With advanced sensors and real-time feedback, it supports custom courses, tailored assignments, skill assessment, and progress tracking. A playback feature helps learners review mistakes, and the system enables SMAW and GMAW training across all positions and joint configurations.",
                 icon: Snowflake,
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/akgec-fronius/infrastructure/virtual-welding-simulation-system.webp"
             }
         ]
     },
     events: {
         title: "Glimpse of the Events/Workshops",
         items: [
-            { id: "1", title: "Welder Qualification Test in Association With Alstom Czech", description: "AKGEC Skills Foundation conducted a Welder Qualification Test Program on 10–11 October 2025 at AWTRC in collaboration with Randstad India Pvt. Ltd. and ALSTOM, Czech Republic. A total of 76 participants were tested using the GMAW process, with evaluations through visual inspection and fracture testing. Experts from ALSTOM and Randstad assessed the tests, enabling successful candidates to work in the Czech Republic.", image: "/image/SkillFoundationImage/skill-foundation1.jpeg" },
-            { id: "2", title: "Training of Welders from Spheros Motherson, Greater Noida", description: "AKGEC-Fronius AWTRC organized a two-day training program for Spheros Motherson Thermal System Ltd. at the Advanced Welding Technology & Research Centre on 30 June 2025 & 01 July 2025. The program included classroom-based theory sessions and hands-on practical training covering SMAW, GMAW, GTAW, brazing, and identification and rectification of welding defects, providing participants with comprehensive knowledge and practical skills in advanced welding techniques.", image: "/image/SkillFoundationImage/skill-foundation2.jpeg" },
-            { id: "3", title: "Women Welding Fraternity Competition - 2025 (WWFc-2025)", description: "The Women Welding Fraternity Competition 2025, organized by Fronius India with leading institutes including AKGEC, promoted women’s participation in welding. AKGEC hosted the North Zone event with 24 participants from industry and academia. Ten candidates qualified for the national final at CVRGU, Bhubaneswar.", image: "/image/SkillFoundationImage/skill-foundation3.png" },
-            { id: "4", title: "Corporate Workshop on Oxy-fuel Cutting & Safety for Messer Cutting System", description: "AKGEC Skills Foundation, in collaboration with Messer Cutting Systems India Pvt. Ltd., successfully conducted an Industry Training Program on Oxy-fuel Cutting & Safety led by international expert Mr. Peter Rohlssen on 15 July 2025. A total of 68 professionals from leading industries participated. The program featured live oxy-fuel demos, advanced safety training, facility showcasing, networking sessions, and a round-table seminar with full multimedia support.", image: "/image/SkillFoundationImage/skill-foundation4.jpeg" },
-            { id: "5", title: "Training Program for Maruti Suzuki India Pvt. Ltd. on Brazing Technology", description: "AKGEC Skills Foundation, in association with IMTMA, successfully conducted a two-day Brazing Technology training for 20 engineers from Maruti Suzuki India Pvt. Ltd. on 16–17 December 2024 at AWTRC. The program included hands-on sessions, theory classes, and demonstrations on copper and aluminium brazing, advanced techniques, joint design, safety measures, and quality inspection, enhancing participants’ skills for automotive applications.", image: "/image/SkillFoundationImage/skill-foundation5.png" },
-            { id: "6", title: "Training Program for Maruti Suzuki India Pvt. Ltd. on Welding Technology", description: "AKGEC Skills Foundation, in association with IMTMA, successfully conducted a two-day Welding Technology training for 20 engineers from Maruti Suzuki India Pvt. Ltd. on 12–13 December 2024 at AWTRC. The program covered MIG, TIG, spot, and resistance welding, welding symbols, blueprint reading, troubleshooting, quality inspection, and advanced technologies including adaptive welding, robotics, laser beam, electron beam, and hybrid welding processes for automotive applications.", image: "/image/SkillFoundationImage/skill-foundation1.jpeg" },
-            { id: "7", title: "Skill Development Program in Welding Domain under DDUGKY Scheme", description: "AKGEC Skills Foundation, Ghaziabad successfully trained 68 candidates in the welding domain under the DDU-GKY scheme, empowering youth with industry-relevant skills and hands-on expertise. The program focused on advanced welding techniques, safety practices, and employability enhancement, enabling participants to secure better career opportunities and contribute effectively to the manufacturing and industrial sectors.", image: "/image/SkillFoundationImage/skill-foundation2.jpeg" },
-            { id: "8", title: "Welding Competency Program in association with Fronius India Pvt Ltd, under FACT Scheme", description: "From 15 March to 13 April 2023, Fronius India, in association with AKGEC Skills Foundation, sponsored a 160-hour Advanced Arc Welding training program to prepare trainees as Welding Technicians. The course strengthened understanding of arc-welding parameters and synergic digital power sources, enabling high-quality welds on steel, stainless steel, and aluminium while ensuring strict safety standards.", image: "/image/SkillFoundationImage/skill-foundation3.png" },
-            { id: "9", title: "Welding and Cutting Workshop for Air Liquide India Pvt. Ltd.", description: "AKGEC-Fronius AWTRC organized a Welding & Cutting Workshop for 25 Air Liquide personnel from 22–24 August 2023. The program included two days of classroom sessions and one day of GMAW practical demonstrations, along with training in safety and good welding practices. Experts from Air Liquide and ALTEC attended the valedictory session. Participants learned welding fundamentals, gas equipment, cutting, troubleshooting, and post-weld practices.", image: "/image/SkillFoundationImage/skill-foundation4.jpeg" },
-            { id: "10", title: "ToT Program for Instructors from Government ITI under DTTE, Govt. of NCT of Delhi on Advance Welding Technology", description: "AKGEC Skills Foundation conducted a fully residential Training of Trainers (ToT) program for Government ITI instructors from 31 July–4 August 2023. Eleven participants trained in Advanced Welding Technology and eight in IT. The welding ToT included hands-on SMAW, GMAW, and GTAW training, safety practices, expert lectures, and demos on robotic welding, CNC plasma, NDT, and linear welding carriage.", image: "/image/SkillFoundationImage/skill-foundation5.png" },
-            { id: "11", title: "Training of Welding Technician from Nepal", description: "AKGEC-Fronius AWTRC organized a Welder’s Competency Development Program for 8 technicians from Nepal from 10–25 July 2023, mobilized by Hetauda Academy. Participants received hands-on training in SMAW, GMAW, and FCAW across multiple welding positions, along with safety practices. The Indian Institute of Welding assessed them in GMAW and FCAW (3G & 5G), and all candidates successfully passed.", image: "/image/SkillFoundationImage/skill-foundation1.jpeg" },
-            { id: "12", title: "Training of Trainer (ToT) in association with CGSC", description: "AKGEC FRONIUS AWTRC, in association with CGSC, hosted the Train the Trainer (ToT) program from 4–6 October 2023 for nine Welding and Machining job roles. Eighteen participants attended. CGSC supported facility, hospitality, and consumable costs. AWTRC provided classrooms, practical labs, trainers, and optional residential facilities. The program was successfully organized with full support and coordination.", image: "/image/SkillFoundationImage/skill-foundation2.jpeg" },
-            { id: "13", title: "Training program for Amritsar Railway Workshop", description: "A Residential Training Program for Northern Railway Mechanical Workshop, Amritsar is being conducted at AKGEC-Fronius AWTRC from 6th to 10th June 2022 for eight railway employees. The program includes advanced welding training in collaboration with Fronius India and Oxyweld Engineers", image: "/image/SkillFoundationImage/skill-foundation3.png" },
-            { id: "14", title: "World Skills India 2021 Boot Camp and Final Competition", description: "IndiaSkills 2021 Finals in Welding Technology, organized by NSDC, were hosted by AKGEC Skills Foundation, Ghaziabad, from 6–10 January 2022. A four-day boot camp prepared contestants in Welding. In Welding, 13 participants from 10 states completed tasks using SMAW, GMAW, and GTAW, evaluated on weld quality and test results after fabricating various assemblies.", image: "/image/SkillFoundationImage/skill-foundation4.jpeg" },
-            { id: "15", title: "Industrial Welding Training Program for welders of U.S. Embassy, New Delhi", description: "Successfully completed 2 Weeks Industrial Welding Training Program for welders of the U.S. Embassy, New Delhi. The program was conducted by AKGEC-Fronius Advance Welding Technology & Research Centre in association with M/s Enviro Solutions, authorized training partners of the Indian Institute of Welding from 9th –23rd August 2021.", image: "/image/SkillFoundationImage/skill-foundation5.png" }
+            { id: "1", title: "Welder Qualification Test in Association With Alstom Czech", description: "AKGEC Skills Foundation conducted a Welder Qualification Test Program on 10–11 October 2025 at AWTRC in collaboration with Randstad India Pvt. Ltd. and ALSTOM, Czech Republic. A total of 76 participants were tested using the GMAW process, with evaluations through visual inspection and fracture testing. Experts from ALSTOM and Randstad assessed the tests, enabling successful candidates to work in the Czech Republic.", image: "/image/skill-foundation/akgec-fronius/events/welder-qualification-test-alstom.webp" },
+            { id: "2", title: "Training of Welders from Spheros Motherson, Greater Noida", description: "AKGEC-Fronius AWTRC organized a two-day training program for Spheros Motherson Thermal System Ltd. at the Advanced Welding Technology & Research Centre on 30 June 2025 & 01 July 2025. The program included classroom-based theory sessions and hands-on practical training covering SMAW, GMAW, GTAW, brazing, and identification and rectification of welding defects, providing participants with comprehensive knowledge and practical skills in advanced welding techniques.", image: "/image/skill-foundation/akgec-fronius/events/training-welders-spheros-motherson.webp" },
+            { id: "3", title: "Women Welding Fraternity Competition - 2025 (WWFc-2025)", description: "The Women Welding Fraternity Competition 2025, organized by Fronius India with leading institutes including AKGEC, promoted women’s participation in welding. AKGEC hosted the North Zone event with 24 participants from industry and academia. Ten candidates qualified for the national final at CVRGU, Bhubaneswar.", image: "/image/skill-foundation/akgec-fronius/events/women-welding-fraternity-competition.webp" },
+            { id: "4", title: "Corporate Workshop on Oxy-fuel Cutting & Safety for Messer Cutting System", description: "AKGEC Skills Foundation, in collaboration with Messer Cutting Systems India Pvt. Ltd., successfully conducted an Industry Training Program on Oxy-fuel Cutting & Safety led by international expert Mr. Peter Rohlssen on 15 July 2025. A total of 68 professionals from leading industries participated. The program featured live oxy-fuel demos, advanced safety training, facility showcasing, networking sessions, and a round-table seminar with full multimedia support.", image: "/image/skill-foundation/akgec-fronius/events/workshop-oxy-fuel-cutting-messer.webp" },
+            { id: "5", title: "Training Program for Maruti Suzuki India Pvt. Ltd. on Brazing Technology", description: "AKGEC Skills Foundation, in association with IMTMA, successfully conducted a two-day Brazing Technology training for 20 engineers from Maruti Suzuki India Pvt. Ltd. on 16–17 December 2024 at AWTRC. The program included hands-on sessions, theory classes, and demonstrations on copper and aluminium brazing, advanced techniques, joint design, safety measures, and quality inspection, enhancing participants’ skills for automotive applications.", image: "/image/skill-foundation/akgec-fronius/events/training-maruti-suzuki-brazing.webp" },
+            { id: "6", title: "Training Program for Maruti Suzuki India Pvt. Ltd. on Welding Technology", description: "AKGEC Skills Foundation, in association with IMTMA, successfully conducted a two-day Welding Technology training for 20 engineers from Maruti Suzuki India Pvt. Ltd. on 12–13 December 2024 at AWTRC. The program covered MIG, TIG, spot, and resistance welding, welding symbols, blueprint reading, troubleshooting, quality inspection, and advanced technologies including adaptive welding, robotics, laser beam, electron beam, and hybrid welding processes for automotive applications.", image: "/image/skill-foundation/akgec-fronius/events/training-maruti-suzuki-welding.webp" },
+            { id: "7", title: "Skill Development Program in Welding Domain under DDUGKY Scheme", description: "AKGEC Skills Foundation, Ghaziabad successfully trained 68 candidates in the welding domain under the DDU-GKY scheme, empowering youth with industry-relevant skills and hands-on expertise. The program focused on advanced welding techniques, safety practices, and employability enhancement, enabling participants to secure better career opportunities and contribute effectively to the manufacturing and industrial sectors.", image: "/image/skill-foundation/akgec-fronius/events/skill-development-ddugky.webp" },
+            { id: "8", title: "Welding Competency Program in association with Fronius India Pvt Ltd, under FACT Scheme", description: "From 15 March to 13 April 2023, Fronius India, in association with AKGEC Skills Foundation, sponsored a 160-hour Advanced Arc Welding training program to prepare trainees as Welding Technicians. The course strengthened understanding of arc-welding parameters and synergic digital power sources, enabling high-quality welds on steel, stainless steel, and aluminium while ensuring strict safety standards.", image: "/image/skill-foundation/akgec-fronius/events/welding-competency-program-fronius.webp" },
+            { id: "9", title: "Welding and Cutting Workshop for Air Liquide India Pvt. Ltd.", description: "AKGEC-Fronius AWTRC organized a Welding & Cutting Workshop for 25 Air Liquide personnel from 22–24 August 2023. The program included two days of classroom sessions and one day of GMAW practical demonstrations, along with training in safety and good welding practices. Experts from Air Liquide and ALTEC attended the valedictory session. Participants learned welding fundamentals, gas equipment, cutting, troubleshooting, and post-weld practices.", image: "/image/skill-foundation/akgec-fronius/events/welding-cutting-workshop-air-liquide.webp" },
+            { id: "10", title: "ToT Program for Instructors from Government ITI under DTTE, Govt. of NCT of Delhi on Advance Welding Technology", description: "AKGEC Skills Foundation conducted a fully residential Training of Trainers (ToT) program for Government ITI instructors from 31 July–4 August 2023. Eleven participants trained in Advanced Welding Technology and eight in IT. The welding ToT included hands-on SMAW, GMAW, and GTAW training, safety practices, expert lectures, and demos on robotic welding, CNC plasma, NDT, and linear welding carriage.", image: "/image/skill-foundation/akgec-fronius/events/tot-program-govt-iti-instructors.webp" },
+            { id: "11", title: "Training of Welding Technician from Nepal", description: "AKGEC-Fronius AWTRC organized a Welder’s Competency Development Program for 8 technicians from Nepal from 10–25 July 2023, mobilized by Hetauda Academy. Participants received hands-on training in SMAW, GMAW, and FCAW across multiple welding positions, along with safety practices. The Indian Institute of Welding assessed them in GMAW and FCAW (3G & 5G), and all candidates successfully passed.", image: "/image/skill-foundation/akgec-fronius/events/training-welding-technician-nepal.webp" },
+            { id: "12", title: "Training of Trainer (ToT) in association with CGSC", description: "AKGEC FRONIUS AWTRC, in association with CGSC, hosted the Train the Trainer (ToT) program from 4–6 October 2023 for nine Welding and Machining job roles. Eighteen participants attended. CGSC supported facility, hospitality, and consumable costs. AWTRC provided classrooms, practical labs, trainers, and optional residential facilities. The program was successfully organized with full support and coordination.", image: "/image/skill-foundation/akgec-fronius/events/tot-association-cgsc.webp" },
+            { id: "13", title: "Training program for Amritsar Railway Workshop", description: "A Residential Training Program for Northern Railway Mechanical Workshop, Amritsar is being conducted at AKGEC-Fronius AWTRC from 6th to 10th June 2022 for eight railway employees. The program includes advanced welding training in collaboration with Fronius India and Oxyweld Engineers", image: "/image/skill-foundation/akgec-fronius/events/training-amritsar-railway-workshop.webp" },
+            { id: "14", title: "World Skills India 2021 Boot Camp and Final Competition", description: "IndiaSkills 2021 Finals in Welding Technology, organized by NSDC, were hosted by AKGEC Skills Foundation, Ghaziabad, from 6–10 January 2022. A four-day boot camp prepared contestants in Welding. In Welding, 13 participants from 10 states completed tasks using SMAW, GMAW, and GTAW, evaluated on weld quality and test results after fabricating various assemblies.", image: "/image/skill-foundation/akgec-fronius/events/world-skills-india-2021.webp" },
+            { id: "15", title: "Industrial Welding Training Program for welders of U.S. Embassy, New Delhi", description: "Successfully completed 2 Weeks Industrial Welding Training Program for welders of the U.S. Embassy, New Delhi. The program was conducted by AKGEC-Fronius Advance Welding Technology & Research Centre in association with M/s Enviro Solutions, authorized training partners of the Indian Institute of Welding from 9th –23rd August 2021.", image: "/image/skill-foundation/akgec-fronius/events/training-welders-us-embassy.webp" }
         ]
     },
     awards: {
         title: "Awards & Recognition",
         items: [
-            { text: "Best Welder Competition for Northern Region 2025 hosted by AWTRC. AKGEC-Fronius AWTRC hosted the National Skill Competition – Best of the Best Welders 2025 on 12–13 September, in collaboration with IIW-India and sponsored by Voestalpine Böhler. 64 welders competed in structural and pipe welding categories, judged by the IIW jury. Winners will advance to the National Finals in Chennai, showcasing talent from leading organizations and promoting excellence in welding.", image: "/image/SkillFoundationImage/skill-foundation1.jpeg" },
-            { text: "Fabrication of Rakshita– Bike Ambulance for DRDO INMAS. AKGEC-Fronius AWTRC supported DRDO INMAS in the Rakshita Bike Ambulance project by preparing and submitting Technology Transfer documents for absorption certification. Rakshita, developed for CRPF, provides immediate medical aid to injured personnel in remote and urban areas using a modified Royal Enfield Classic 350cc, equipped with first-aid kits, oxygen, splints, and monitoring equipment for rapid response within the critical “golden hour.”", image: "/image/SkillFoundationImage/skill-foundation2.jpeg" },
-            { text: "Fabrication of Bullock Driven Tractor for Rural Technology Action Group (RUTAG) IIT Delhi. AKGEC-Fronius AWTRC, in collaboration with RUTAG, IIT Delhi, fabricated a modified Bullock Driven Tractor (BDT) to enhance traditional agricultural practices. Designed for efficiency and multi-tasking, the BDT performs ploughing, harrowing, sowing, planting, and harvesting. Features include a steel rope and winch mechanism for attachments, ergonomic car seats, easy maneuverability, lightweight construction, and user-friendly operation for rural farmers.", image: "/image/SkillFoundationImage/skill-foundation3.png" }
+            { text: "Best Welder Competition for Northern Region 2025 hosted by AWTRC. AKGEC-Fronius AWTRC hosted the National Skill Competition – Best of the Best Welders 2025 on 12–13 September, in collaboration with IIW-India and sponsored by Voestalpine Böhler. 64 welders competed in structural and pipe welding categories, judged by the IIW jury. Winners will advance to the National Finals in Chennai, showcasing talent from leading organizations and promoting excellence in welding.", image: "/image/skill-foundation/akgec-fronius/awards/best-welder-competition-2025.webp" },
+            { text: "Fabrication of Rakshita– Bike Ambulance for DRDO INMAS. AKGEC-Fronius AWTRC supported DRDO INMAS in the Rakshita Bike Ambulance project by preparing and submitting Technology Transfer documents for absorption certification. Rakshita, developed for CRPF, provides immediate medical aid to injured personnel in remote and urban areas using a modified Royal Enfield Classic 350cc, equipped with first-aid kits, oxygen, splints, and monitoring equipment for rapid response within the critical “golden hour.”", image: "/image/skill-foundation/akgec-fronius/awards/fabrication-rakshita-bike-ambulance.webp" },
+            { text: "Fabrication of Bullock Driven Tractor for Rural Technology Action Group (RUTAG) IIT Delhi. AKGEC-Fronius AWTRC, in collaboration with RUTAG, IIT Delhi, fabricated a modified Bullock Driven Tractor (BDT) to enhance traditional agricultural practices. Designed for efficiency and multi-tasking, the BDT performs ploughing, harrowing, sowing, planting, and harvesting. Features include a steel rope and winch mechanism for attachments, ergonomic car seats, easy maneuverability, lightweight construction, and user-friendly operation for rural farmers.", image: "/image/skill-foundation/akgec-fronius/awards/fabrication-bullock-driven-tractor.webp" }
         ]
     },
     programs: {
         title: "Programs Offered",
         description: "The Centre offers the following training programs for industry professionals and engineering students of all disciplines. On successful completion of training, participants are assessed for their learning & skills and awarded with a globally recognized joint certification from AKGEC Skills Foundation & Fronius.",
         items: [
-            "Welder’s Competency Program - Basic",
-            "Welder’s Competency Program - Advance",
-            "Industrial Welding Training - Basic",
-            "Industrial Welding Training - Advance",
-            "Onsite Training Program in Welding Technology",
-            "Industrial Training Program on Welding & Inspection Technology- Technician",
-            "Industrial Training Program on Welding & Inspection Technology- Engineers",
-            "Industrial Internship Program on Welding & Fabrication Technology"
+            { text: "Welder’s Competency Program - Basic", pdf: "/image/skill-foundation/akgec-fronius/programs-offered/fronius-awtrc-brochure.pdf" },
+            { text: "Welder’s Competency Program - Advance", pdf: "/image/skill-foundation/akgec-fronius/programs-offered/fronius-awtrc-brochure.pdf" },
+            { text: "Industrial Welding Training - Basic", pdf: "/image/skill-foundation/akgec-fronius/programs-offered/fronius-awtrc-brochure.pdf" },
+            { text: "Industrial Welding Training - Advance", pdf: "/image/skill-foundation/akgec-fronius/programs-offered/fronius-awtrc-brochure.pdf" },
+            { text: "Onsite Training Program in Welding Technology", pdf: "/image/skill-foundation/akgec-fronius/programs-offered/fronius-awtrc-brochure.pdf" },
+            { text: "Industrial Training Program on Welding & Inspection Technology- Technician", pdf: "/image/skill-foundation/akgec-fronius/programs-offered/fronius-awtrc-brochure.pdf" },
+            { text: "Industrial Training Program on Welding & Inspection Technology- Engineers", pdf: "/image/skill-foundation/akgec-fronius/programs-offered/fronius-awtrc-brochure.pdf" },
+            { text: "Industrial Internship Program on Welding & Fabrication Technology", pdf: "/image/skill-foundation/akgec-fronius/programs-offered/fronius-awtrc-brochure.pdf" }
         ]
     },
     upcoming: {
@@ -204,7 +204,8 @@ const froniusData = {
                 duration: "120 Hours",
                 fee: "₹ 6,000",
                 coordinator: "Mr. Abhishek Gupta",
-                contact: "awtrc@akgec.ac.in / +91-8968651422"
+                contact: "awtrc@akgec.ac.in / +91-8968651422",
+                pdf: "/image/skill-foundation/akgec-fronius/programs-offered/fronius-awtrc-brochure.pdf"
             }
         ]
     },
@@ -421,12 +422,22 @@ const SkillFoundationDetails = () => {
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {froniusData.programs.items.map((program, idx) => (
-                                <div key={idx} className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-colors">
+                                <div key={idx} className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-colors flex flex-col">
                                     <div className="flex items-center gap-3 mb-2">
                                         <BookOpen className="text-brand-yellow" size={20} />
                                         <h4 className="font-novaBold text-lg">Program {idx + 1}</h4>
                                     </div>
-                                    <p className="text-blue-50 font-novaReg">{program}</p>
+                                    <p className="text-blue-50 font-novaReg flex-1 mb-4">{program.text}</p>
+                                    {program.pdf && (
+                                        <a
+                                            href={program.pdf}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center text-sm font-semibold text-brand-yellow hover:text-white transition-colors mt-auto group/link"
+                                        >
+                                            View Brochure <ArrowRight size={16} className="ml-1 transform group-hover/link:translate-x-1 transition-transform" />
+                                        </a>
+                                    )}
                                 </div>
                             ))}
                         </div>
@@ -448,6 +459,7 @@ const SkillFoundationDetails = () => {
                                         <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Fee (INR)</th>
                                         <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Coordinator</th>
                                         <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Contact</th>
+                                        <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Brochure</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-200">
@@ -458,6 +470,20 @@ const SkillFoundationDetails = () => {
                                             <td className="py-4 px-6 text-gray-600">{row.fee}</td>
                                             <td className="py-4 px-6 text-gray-600">{row.coordinator}</td>
                                             <td className="py-4 px-6 text-gray-600 text-sm">{row.contact}</td>
+                                            <td className="py-4 px-6">
+                                                {row.pdf ? (
+                                                    <a
+                                                        href={row.pdf}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="inline-flex items-center px-3 py-1 bg-brand-blue/10 text-brand-blue rounded-full text-xs font-bold hover:bg-brand-blue hover:text-white transition-colors"
+                                                    >
+                                                        Download <ArrowRight size={12} className="ml-1" />
+                                                    </a>
+                                                ) : (
+                                                    <span className="text-gray-400 text-xs italic">N/A</span>
+                                                )}
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>

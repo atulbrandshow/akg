@@ -42,99 +42,99 @@ const niLabViewData = {
                 title: "myDAQ",
                 description: "The NI myDAQ is a portable data acquisition device designed for hands-on experimentation in circuits, measurement, and instrumentation using LabVIEW. At AKGEC NI LabVIEW Academy, myDAQ is used to interface sensors and test control logic in real time. Students connect touch sensors and monitor signals through LabVIEW VIs, which interpret input events as elevator floor commands, execute predefined control routines, and update the system display. This setup enables practical learning in data acquisition, sensor interfacing, and control logic implementation in a safe and real-time environment.",
                 icon: Settings,
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/ni-lab-view-academy/infrastructure/mydaq.webp"
             },
             {
                 id: "2",
                 title: "myRIO",
                 description: "The NI myRIO is a real-time embedded controller with onboard FPGA and multi-channel I/O, ideal for rapid prototyping and automation studies. At the LabVIEW Academy, myRIO is used for mobility assistance and robotics demonstrations, where students connect a joystick to acquire position signals, process data on the FPGA, and map directional commands to motor actions. This configuration enables implementation of embedded control logic, signal filtering, and real-time actuation, helping students build practical expertise in robotics and system integration.",
                 icon: Zap,
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/ni-lab-view-academy/infrastructure/myrio.webp"
             },
             {
                 id: "3",
                 title: "Analog Discovery 2",
                 description: "Analog Discovery 2 is a multi-instrument device combining an oscilloscope, waveform generator, logic analyzer, and power tools for compact electronics testing. Students at AKGEC use it to validate circuit behavior by generating test signals, observing amplifier response, checking distortions, and measuring output characteristics directly in LabVIEW. This setup allows rapid breadboard testing, real-time signal visualization, and comparative analysis between theoretical designs and practical performance.",
                 icon: Activity,
-                image: "/image/SkillFoundationImage/skill-foundation3.png"
+                image: "/image/skill-foundation/ni-lab-view-academy/infrastructure/analog-discovery-2.webp"
             },
             {
                 id: "4",
                 title: "NI USRP",
                 description: "USRP is a software-defined radio platform used for prototyping and testing wireless communication systems. It enables acquisition, modulation, transmission, and reception of signals for applications such as telemetry, digital communication, and real-time analysis of wireless links through LabVIEW.",
                 icon: Radio,
-                image: "/image/SkillFoundationImage/skill-foundation4.jpeg"
+                image: "/image/skill-foundation/ni-lab-view-academy/infrastructure/ni-usrp.webp"
             },
             {
                 id: "5",
                 title: "CompactDAQ",
                 description: "NI CompactDAQ is a modular data acquisition platform that supports a wide range of sensor and signal-conditioning modules for precise industrial measurements. It is used to build a predictive maintenance setup for an induction motor, where vibration and temperature sensors are interfaced to acquire real-time data in LabVIEW. The system analyzes trends and machine condition parameters to detect imbalance, bearing faults, and overheating through continuous monitoring and alert indicators.",
                 icon: Settings,
-                image: "/image/SkillFoundationImage/skill-foundation5.png"
+                image: "/image/skill-foundation/ni-lab-view-academy/infrastructure/compactdaq.webp"
             },
             {
                 id: "6",
                 title: "CompactRIO",
                 description: "The NI CompactRIO is an industrial-grade embedded control and monitoring platform that combines a real-time processor, reconfigurable FPGA, and modular I/O for high-performance automation and measurement applications. Integrated with LabVIEW, it enables deterministic control, rapid prototyping, and deployment of advanced industrial systems in real-world environments.",
                 icon: Settings,
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/ni-lab-view-academy/infrastructure/compactrio.webp"
             },
             {
                 id: "7",
                 title: "Virtual Bench",
                 description: "The NI VirtualBench is an all-in-one PC-based instrument combining an oscilloscope, function generator, digital I/O, DMM, and power supply into a single compact device. Used with LabVIEW or its desktop app, it enables streamlined circuit testing, signal generation, and measurement without multiple standalone instruments.",
                 icon: Activity,
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/ni-lab-view-academy/infrastructure/virtual-bench.webp"
             },
             {
                 id: "8",
                 title: "PXI",
                 description: "The NI PXI-1078 is an 8-slot PXI chassis that provides the backbone for modular instrumentation and automated test systems. It supports multiple PXI modules (DAQ, signal conditioning, RF, digital I/O, etc.), offering synchronized timing and high reliability — ideal for building flexible, scalable test benches with LabVIEW.",
                 icon: Settings,
-                image: "/image/SkillFoundationImage/skill-foundation3.png"
+                image: "/image/skill-foundation/ni-lab-view-academy/infrastructure/pxi.webp"
             },
             {
                 id: "9",
                 title: "ELVIS II",
                 description: "The NI ELVIS II is an integrated engineering education platform that combines instruments such as an oscilloscope, DMM, function generator, power supplies, and prototyping area into a single workstation. With direct LabVIEW integration, it enables hands-on learning of circuits, measurements, control, and embedded system concepts in a classroom or lab environment.",
                 icon: Zap,
-                image: "/image/SkillFoundationImage/skill-foundation4.jpeg"
+                image: "/image/skill-foundation/ni-lab-view-academy/infrastructure/elvis-ii.webp"
             },
             {
                 id: "10",
                 title: "NI Robotic Kit",
                 description: "The NI Robotic Kit enables hands-on development of autonomous and semi-autonomous robotic systems using LabVIEW. Equipped with sensors, drive modules, and controller interfaces, it supports experiments in motion control, path planning, sensor fusion, and embedded real-time decision making for education and research.",
                 icon: Settings,
-                image: "/image/SkillFoundationImage/skill-foundation5.png"
+                image: "/image/skill-foundation/ni-lab-view-academy/infrastructure/ni-robotic-kit.webp"
             }
         ]
     },
     events: {
         title: "Glimpse of the Events/Workshops",
         items: [
-            { id: "1", title: 'Faculty Development Program - Empowering Engineering Education through LabVIEW', description: "A 5-Days Faculty Development Program (FDP) on LabVIEW Essentials for Test, Measurement & Control was conducted to enhance faculty expertise in graphical system design and modern engineering practices. The sessions covered core LabVIEW concepts, instrumentation techniques, and practical test-automation demonstrations. The FDP empowered faculty to integrate LabVIEW into their teaching and actively encourage students to adopt it for projects, research, and career advancement.", image: "/image/SkillFoundationImage/skill-foundation1.jpeg" },
-            { id: "2", title: "Staff Development Program on LabVIEW", description: "AKGEC NI LabVIEW Academy organized a 5-days Staff Development Program on LabVIEW Essentials for Test, Measurement & Control, introducing virtual instrumentation and LabVIEW’s industrial and research applications. The program also highlighted job opportunities for LabVIEW programmers, with 16 staff participants from EN, ECE, CSE, IT, and AS&H departments. The event concluded successfully with positive feedback from all attendees.", image: "/image/SkillFoundationImage/skill-foundation2.jpeg" },
-            { id: "3", title: "Training Program - Building Proficiency in Graphical Programming", description: "Training programs on LabVIEW Core I & II were conducted to build strong foundational and intermediate skills in graphical programming, data acquisition, and application development. Participants learned essential LabVIEW structures, debugging methods, modular programming practices, and DAQ integration through hands-on exercises. The programs equipped learners to confidently develop real-world LabVIEW applications and advance toward certification and project work.", image: "/image/SkillFoundationImage/skill-foundation3.png" },
-            { id: "4", title: "Corporate Training Program - Micromatic Engineers", description: "AKGEC NI LabVIEW Academy conducted a 3-day LabVIEW Training Program for engineers from Micromatic Grinding Technologies, focusing on core LabVIEW concepts, real-time data acquisition, and hardware integration for industry applications. Participants found the training highly beneficial in enhancing their ability to design and troubleshoot LabVIEW-based test and measurement solutions.", image: "/image/SkillFoundationImage/skill-foundation4.jpeg" },
-            { id: "5", title: "IIT Delhi Workshop Series", description: "AKGEC NI LabVIEW Academy conducted a series of hands-on workshops at IIT Delhi on various LabVIEW topics, including LabVIEW Basics, IoT with LabVIEW, Robocode, Data Analysis, and more. These sessions helped participants explore the wide range of LabVIEW applications through practical exercises and guided demonstrations. The initiative was undertaken to extend the Academy’s reach to students from other institutions and inspire them to pursue LabVIEW-driven learning and project work.", image: "/image/SkillFoundationImage/skill-foundation5.png" },
-            { id: "6", title: "Train the Trainer Program on USRP", description: "A 2-Day Train the Trainer Program on USRP was conducted to strengthen faculty proficiency in software-defined radio and wireless communication concepts using LabVIEW. The sessions covered RF fundamentals, modulation techniques, real-time signal processing, and hands-on experimentation with USRP hardware. This program enabled trainers to confidently guide students in SDR-based projects and advanced communication system learning.", image: "/image/SkillFoundationImage/skill-foundation1.jpeg" },
-            { id: "7", title: "Global Certifications Support", description: "The Academy provides structured preparatory classes to support learners aiming for NI’s global LabVIEW certifications, including CLAD and CLD. We also host these certification exams on campus for the convenience of students and professionals. This helps participants confidently pursue industry-recognized LabVIEW credentials to strengthen their career prospects.", image: "/image/SkillFoundationImage/skill-foundation2.jpeg" }
+            { id: "1", title: 'Faculty Development Program - Empowering Engineering Education through LabVIEW', description: "A 5-Days Faculty Development Program (FDP) on LabVIEW Essentials for Test, Measurement & Control was conducted to enhance faculty expertise in graphical system design and modern engineering practices. The sessions covered core LabVIEW concepts, instrumentation techniques, and practical test-automation demonstrations. The FDP empowered faculty to integrate LabVIEW into their teaching and actively encourage students to adopt it for projects, research, and career advancement.", image: "/image/skill-foundation/ni-lab-view-academy/events/faculty-development-program.webp" },
+            { id: "2", title: "Staff Development Program on LabVIEW", description: "AKGEC NI LabVIEW Academy organized a 5-days Staff Development Program on LabVIEW Essentials for Test, Measurement & Control, introducing virtual instrumentation and LabVIEW’s industrial and research applications. The program also highlighted job opportunities for LabVIEW programmers, with 16 staff participants from EN, ECE, CSE, IT, and AS&H departments. The event concluded successfully with positive feedback from all attendees.", image: "/image/skill-foundation/ni-lab-view-academy/events/staff-development-program.webp" },
+            { id: "3", title: "Training Program - Building Proficiency in Graphical Programming", description: "Training programs on LabVIEW Core I & II were conducted to build strong foundational and intermediate skills in graphical programming, data acquisition, and application development. Participants learned essential LabVIEW structures, debugging methods, modular programming practices, and DAQ integration through hands-on exercises. The programs equipped learners to confidently develop real-world LabVIEW applications and advance toward certification and project work.", image: "/image/skill-foundation/ni-lab-view-academy/events/training-program.webp" },
+            { id: "4", title: "Corporate Training Program - Micromatic Engineers", description: "AKGEC NI LabVIEW Academy conducted a 3-day LabVIEW Training Program for engineers from Micromatic Grinding Technologies, focusing on core LabVIEW concepts, real-time data acquisition, and hardware integration for industry applications. Participants found the training highly beneficial in enhancing their ability to design and troubleshoot LabVIEW-based test and measurement solutions.", image: "/image/skill-foundation/ni-lab-view-academy/events/corporate-training-micromatic.webp" },
+            { id: "5", title: "IIT Delhi Workshop Series", description: "AKGEC NI LabVIEW Academy conducted a series of hands-on workshops at IIT Delhi on various LabVIEW topics, including LabVIEW Basics, IoT with LabVIEW, Robocode, Data Analysis, and more. These sessions helped participants explore the wide range of LabVIEW applications through practical exercises and guided demonstrations. The initiative was undertaken to extend the Academy’s reach to students from other institutions and inspire them to pursue LabVIEW-driven learning and project work.", image: "/image/skill-foundation/ni-lab-view-academy/events/iit-delhi-workshop.webp" },
+            { id: "6", title: "Train the Trainer Program on USRP", description: "A 2-Day Train the Trainer Program on USRP was conducted to strengthen faculty proficiency in software-defined radio and wireless communication concepts using LabVIEW. The sessions covered RF fundamentals, modulation techniques, real-time signal processing, and hands-on experimentation with USRP hardware. This program enabled trainers to confidently guide students in SDR-based projects and advanced communication system learning.", image: "/image/skill-foundation/ni-lab-view-academy/events/train-the-trainer-usrp.webp" },
+            { id: "7", title: "Global Certifications Support", description: "The Academy provides structured preparatory classes to support learners aiming for NI’s global LabVIEW certifications, including CLAD and CLD. We also host these certification exams on campus for the convenience of students and professionals. This helps participants confidently pursue industry-recognized LabVIEW credentials to strengthen their career prospects.", image: "/image/skill-foundation/ni-lab-view-academy/events/global-certifications-support.webp" }
         ]
     },
     awards: {
         title: "Awards & Recognition",
         items: [
-            { text: "Winner of NI System Design Contest 2025: Team Udbhav from AKGEC secured First Prize at the Emerson–NI System Design Contest 2025 at IIT Madras Research Park, winning for their innovative project “Bhoomitra – Smart In-House Waste Segregation & Vermicompost Monitor.”", image: "/image/SkillFoundationImage/skill-foundation1.jpeg" },
-            { text: "NI Conclave 2024: Emerging NI Academy in North India. The AKGEC Skills Foundation's NI LabVIEW Academy won the \"NI LabVIEW Academy: School of Excellence\" award for India at the VVDN-NI Academic Conclave 2024.", image: "/image/SkillFoundationImage/skill-foundation2.jpeg" }
+            { text: "Winner of NI System Design Contest 2025: Team Udbhav from AKGEC secured First Prize at the Emerson–NI System Design Contest 2025 at IIT Madras Research Park, winning for their innovative project “Bhoomitra – Smart In-House Waste Segregation & Vermicompost Monitor.”", image: "/image/skill-foundation/ni-lab-view-academy/awards/ni-contest-2025.webp" },
+            { text: "NI Conclave 2024: Emerging NI Academy in North India. The AKGEC Skills Foundation's NI LabVIEW Academy won the \"NI LabVIEW Academy: School of Excellence\" award for India at the VVDN-NI Academic Conclave 2024.", image: "/image/skill-foundation/ni-lab-view-academy/awards/ni-conclave-2024.webp" }
         ]
     },
     programs: {
         title: "Programs Offered",
         description: "The Centre offers the following training programs for industry professionals and engineering students of all disciplines. On successful completion, participants are assessed for their learning & skills and awarded with a globally recognised joint certification from AKGEC & NI.",
         items: [
-            "Short-Term Training Program - LabVIEW Core 1 and Core 2",
-            "Training Program Core 3",
-            "Industrial Training Program"
+            { text: "Short-Term Training Program - LabVIEW Core 1 and Core 2", pdf: "/image/skill-foundation/ni-lab-view-academy/programs-offered/labview-core-1-and-2.pdf" },
+            { text: "Training Program Core 3", pdf: "/image/skill-foundation/ni-lab-view-academy/programs-offered/labview-core-3.pdf" },
+            { text: "Industrial Training Program", pdf: "/image/skill-foundation/ni-lab-view-academy/programs-offered/industrial-training-program.pdf" }
         ]
     },
     upcoming: {
@@ -148,7 +148,8 @@ const niLabViewData = {
                 duration: "40 Hours",
                 fee: "₹ 7000",
                 coordinator: "Dr. Suvarna Mujumar",
-                contact: "nilabview@akgec.ac.in / +91-9650552846"
+                contact: "nilabview@akgec.ac.in / +91-9650552846",
+                pdf: "/image/skill-foundation/ni-lab-view-academy/upcoming-programs/winter-training-program-industrial-iot.pdf"
             },
             {
                 title: "Industrial IoT with LabVIEW",
@@ -379,12 +380,22 @@ const SkillFoundationDetails = () => {
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {niLabViewData.programs.items.map((program, idx) => (
-                                <div key={idx} className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-colors">
+                                <div key={idx} className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-colors flex flex-col">
                                     <div className="flex items-center gap-3 mb-2">
                                         <BookOpen className="text-brand-yellow" size={20} />
                                         <h4 className="font-novaBold text-lg">Program {idx + 1}</h4>
                                     </div>
-                                    <p className="text-blue-50 font-novaReg">{program}</p>
+                                    <p className="text-blue-50 font-novaReg flex-1 mb-4">{program.text}</p>
+                                    {program.pdf && (
+                                        <a
+                                            href={program.pdf}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center text-sm font-semibold text-brand-yellow hover:text-white transition-colors mt-auto group/link"
+                                        >
+                                            View Brochure <ArrowRight size={16} className="ml-1 transform group-hover/link:translate-x-1 transition-transform" />
+                                        </a>
+                                    )}
                                 </div>
                             ))}
                         </div>
@@ -406,6 +417,7 @@ const SkillFoundationDetails = () => {
                                         <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Fee (INR)</th>
                                         <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Coordinator</th>
                                         <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Contact</th>
+                                        <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Brochure</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-200">
@@ -416,6 +428,20 @@ const SkillFoundationDetails = () => {
                                             <td className="py-4 px-6 text-gray-600">{row.fee}</td>
                                             <td className="py-4 px-6 text-gray-600">{row.coordinator}</td>
                                             <td className="py-4 px-6 text-gray-600 text-sm">{row.contact}</td>
+                                            <td className="py-4 px-6">
+                                                {row.pdf ? (
+                                                    <a
+                                                        href={row.pdf}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="inline-flex items-center px-3 py-1 bg-brand-blue/10 text-brand-blue rounded-full text-xs font-bold hover:bg-brand-blue hover:text-white transition-colors"
+                                                    >
+                                                        Download <ArrowRight size={12} className="ml-1" />
+                                                    </a>
+                                                ) : (
+                                                    <span className="text-gray-400 text-xs italic">N/A</span>
+                                                )}
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>

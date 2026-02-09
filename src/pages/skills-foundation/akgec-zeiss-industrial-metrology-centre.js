@@ -46,49 +46,49 @@ const zeissData = {
                 title: "Coordinate Measuring Machine (CMM)",
                 description: "ZEISS CMM Contura G2 used for precise 3D measurement of complex geometric components. The Coordinate Measuring Machine (CMM) together with Zeiss Calypso software is a quality control device used in manufacturing sectors to measure the physical, geometric characteristics of an object precisely within the accuracy of 1.8 µm. It works by moving a probe along three principal axes (X, Y, and Z) in a 3D Cartesian coordinate system.",
                 icon: Crosshair,
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/akg-zeiss/infrastructure/coordinate-measuring-machine-cmm.webp"
             },
             {
                 id: "2",
                 title: "Surface Roughness Tester",
                 description: "A roughness tester ZEISS SURFCOM FLEX equipped is a precision instrument used in manufacturing and quality control to quantify the texture of a material's surface. It typically uses a stylus that traces the surface, recording the microscopic peaks and valleys (irregularities) using Acctee software to calculate parameters like average roughness Ra, Rz and Rmax with accuracy of 0.3 µm.",
                 icon: Activity,
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/akg-zeiss/infrastructure/surface-roughness-tester.webp"
             },
             {
                 id: "3",
                 title: "Contour Measuring Machine",
                 description: "ZEISS Contour Measuring Machine SURFCOM NEX is used to measure the 2D form and geometry (contours) of manufactured parts. It uses a fine stylus or probe to mechanically trace the surface profile, recording X and Z coordinates with high accuracy of 1.0 µm. The collected data is then compared to a nominal design using Acctee software to analyze features like angles, radii, and champers, ensuring components meet strict quality and tolerance requirements.",
                 icon: TrendingUp,
-                image: "/image/SkillFoundationImage/skill-foundation3.png"
+                image: "/image/skill-foundation/akg-zeiss/infrastructure/contour-measuring-machine.webp"
             },
             {
                 id: "4",
                 title: "Reverse Engineering Setup",
                 description: "ZEISS COMET L3D & ARTEC EVA-M used for Reverse Engineering - scanning a physical object to Create a 3D CAD Model. These devices capture the three-dimensional shape of a physical object, collecting millions of data points (a point cloud). It uses technologies like lasers or structured light to create an accurate digital 3D model for applications such as quality inspection and reverse engineering.",
                 icon: Scan,
-                image: "/image/SkillFoundationImage/skill-foundation4.jpeg"
+                image: "/image/skill-foundation/akg-zeiss/infrastructure/reverse-engineering-setup.webp"
             },
             {
                 id: "5",
                 title: "Vision Measuring Systems",
                 description: "BANBROS VMM Optical systems for non-contact measurement of delicate or small parts with high-resolution camera and optics to capture and analyze magnified images of a part. Specialized software uses automatic edge detection to precisely measure 2D and 3D features, making it ideal for fast, accurate inspection of delicate or small components.",
                 icon: Eye,
-                image: "/image/SkillFoundationImage/skill-foundation5.png"
+                image: "/image/skill-foundation/akg-zeiss/infrastructure/vision-measuring-systems.webp"
             },
             {
                 id: "6",
                 title: "Universal Length Measuring Machine",
                 description: "ULMM (OCTAGON LMM SILVER), a high-precision instrument used primarily in calibration laboratories to accurately measure and calibrate the dimensions of gauges like plug and ring gauges and precision components using the software ULM Inspect. Following the Abbe principle for accuracy, it measures both internal and external dimensions with exceptionally low uncertainty.",
                 icon: Ruler,
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/akg-zeiss/infrastructure/universal-length-measuring-machine.webp"
             },
             {
                 id: "7",
                 title: "Basic Measurement Instruments",
                 description: "Besides all the precision instruments, basic measuring instruments & gauges such as Vernier Calipers, Micrometers, Angle Gauges, Slip Gauges, height gauge etc. are available in the centre which are used to calibrate or test different types of instruments and components.",
                 icon: Tool,
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/akg-zeiss/infrastructure/basic-measurement-instruments.webp"
             }
         ]
     },
@@ -99,19 +99,19 @@ const zeissData = {
                 id: "1",
                 title: "Training Program on “Metrology & Quality Control in Manufacturing”",
                 description: "Final year B.Tech students at AKGEC successfully completed a comprehensive 40-hour training program on “Metrology & Quality Control in Manufacturing.” Designed to bridge the gap between academic theory and industrial application, the course provided hands-on experience with precision instruments like CMM, VMM, ULMM, micrometers, slip gauges, and dial indicators. This initiative significantly enhanced students' technical expertise and readiness for modern quality assurance roles.",
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/akg-zeiss/events/training-program-metrology-quality-control.webp"
             },
             {
                 id: "2",
                 title: "Corporate Training on “Metrology & Uncertainty of Measurement”",
                 description: "The Calibration Centre organized a specialized Corporate Training on “Advanced Metrology & Measurement Uncertainty.” The session saw active participation from distinguished organizations, including Ramco Steel, India Steel, Deno India, and DU. Focusing on ISO/IEC 17025 standards and precision calibration, the program upskilled delegates in minimizing measurement errors, enhancing their capability to ensure strict quality assurance and reliability in their respective industries.",
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/akg-zeiss/events/corporate-training-metrology-uncertainty.webp"
             },
             {
                 id: "3",
                 title: "Workshop for the students of Sarvoday Pvt. ITI. Organised by Zeiss Calibration CoE",
                 description: "The Calibration Centre conducted a specialized One-Day Workshop for the students of Sarvoday Pvt. ITI. Designed to enhance technical competency, the session covered the fundamentals of Metrology and Calibration, offering hands-on training with precision instruments such as Vernier Calipers, Micrometers, and Dial Indicators. The initiative focused on bridging the gap between classroom theory and industrial application, preparing the future workforce for critical roles in quality control and measurement.",
-                image: "/image/SkillFoundationImage/skill-foundation3.png"
+                image: "/image/skill-foundation/akg-zeiss/events/workshop-sarvoday-pvt-iti.webp"
             }
         ]
     },
@@ -128,8 +128,8 @@ const zeissData = {
         title: "Programs Offered",
         description: "The Centre offers the following training programs for industry professionals and engineering students of all disciplines. On successful completion of training, participants are assessed for their learning & skills and awarded with a globally recognized joint certification from AKGEC & CARL ZEISS.",
         items: [
-            "Training Program on “Metrology & Quality Control in Manufacturing” - (40 Hrs)",
-            "Professional Training Program on “CMM & Dimensional Metrology”-  (40 Hrs)"
+            { text: "Training Program on “Metrology & Quality Control in Manufacturing” - (40 Hrs)", brochure: "/image/skill-foundation/akg-zeiss/programs-offered/training-program-metrology-quality-control.docx" },
+            { text: "Professional Training Program on “CMM & Dimensional Metrology”-  (40 Hrs)", brochure: "/image/skill-foundation/akg-zeiss/programs-offered/professional-training-cmm-dimensional-metrology.docx" }
         ]
     },
     upcoming: {
@@ -143,14 +143,16 @@ const zeissData = {
                 duration: "40 Hours",
                 fee: "₹ 6,000",
                 coordinator: "Dr. Namrata Gangil",
-                contact: "asfctc@akgec.ac.in / +91-95409 35533"
+                contact: "asfctc@akgec.ac.in / +91-95409 35533",
+                brochure: "/image/skill-foundation/akg-zeiss/upcoming-programs/winter-training-metrology-quality-control.docx"
             },
             {
                 title: "Winter Training Program on CMM & Dimensional Metrology",
                 duration: "40 Hours",
                 fee: "₹ 6,000",
                 coordinator: "Dr. Namrata Gangil",
-                contact: "asfctc@akgec.ac.in / +91-95409 35533"
+                contact: "asfctc@akgec.ac.in / +91-95409 35533",
+                brochure: "/image/skill-foundation/akg-zeiss/upcoming-programs/winter-training-cmm-dimensional-metrology.docx"
             }
         ]
     },
@@ -367,12 +369,21 @@ const SkillFoundationDetails = () => {
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
                             {zeissData.programs.items.map((program, idx) => (
-                                <div key={idx} className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-colors">
+                                <div key={idx} className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-colors flex flex-col h-full">
                                     <div className="flex items-center gap-3 mb-2">
                                         <BookOpen className="text-brand-yellow" size={20} />
                                         <h4 className="font-novaBold text-lg">Program {idx + 1}</h4>
                                     </div>
-                                    <p className="text-blue-50 font-novaReg">{program}</p>
+                                    <p className="text-blue-50 font-novaReg mb-4 flex-grow">{program.text}</p>
+                                    {program.brochure && (
+                                        <a
+                                            href={program.brochure}
+                                            download
+                                            className="inline-flex items-center text-sm font-semibold text-brand-yellow hover:text-white transition-colors mt-auto group/link"
+                                        >
+                                            View Brochure <ArrowRight size={16} className="ml-1 transform group-hover/link:translate-x-1 transition-transform" />
+                                        </a>
+                                    )}
                                 </div>
                             ))}
                         </div>
@@ -394,6 +405,7 @@ const SkillFoundationDetails = () => {
                                         <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Fee (INR)</th>
                                         <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Coordinator</th>
                                         <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Contact</th>
+                                        <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Brochure</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-200">
@@ -404,6 +416,19 @@ const SkillFoundationDetails = () => {
                                             <td className="py-4 px-6 text-gray-600">{row.fee}</td>
                                             <td className="py-4 px-6 text-gray-600">{row.coordinator}</td>
                                             <td className="py-4 px-6 text-gray-600 text-sm">{row.contact}</td>
+                                            <td className="py-4 px-6">
+                                                {row.brochure ? (
+                                                    <a
+                                                        href={row.brochure}
+                                                        download
+                                                        className="inline-flex items-center px-3 py-1 bg-brand-blue/10 text-brand-blue rounded-full text-xs font-bold hover:bg-brand-blue hover:text-white transition-colors"
+                                                    >
+                                                        Download <ArrowRight size={12} className="ml-1" />
+                                                    </a>
+                                                ) : (
+                                                    <span className="text-gray-400 text-xs italic">N/A</span>
+                                                )}
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>

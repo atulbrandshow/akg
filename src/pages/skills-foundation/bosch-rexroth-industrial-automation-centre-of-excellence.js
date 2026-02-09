@@ -42,82 +42,82 @@ const boschData = {
                 title: "Pneumatic Training System",
                 description: "BOSCH Rexroth modular, state-of-the-art Pneumatic Training System is developed using standard components from the Bosch Rexroth industrial product range. This system enables comprehensive learning of fundamental Pneumatic and Electro-pneumatic principles through a structured, hands-on approach. Equipped with both hardware and software modules, it allows beginners as well as experienced users to perform practical exercises, gradually building specialized technical expertise in pneumatic control and automation.",
                 icon: Settings,
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/ceat/infrastructure/pneumatic-training-system.webp"
             },
             {
                 id: "2",
                 title: "Hydraulic Training System",
                 description: "BOSCH Rexroth Hydraulic Training System is a modular, advanced learning platform designed using high-performance industrial components from the Bosch Rexroth product line. This system enables comprehensive understanding of Basic Hydraulics, Electro-hydraulics, Proportional Hydraulics, and Mobile Hydraulics through practical, hands-on experimentation. With its integrated hardware, control modules, and simulation support, the system allows learners at all levels to progressively develop deep technical competence in hydraulic circuits, system behavior, troubleshooting, and real-world industrial applications.",
                 icon: Zap,
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/ceat/infrastructure/hydraulic-training-system.webp"
             },
             {
                 id: "3",
                 title: "Sensorics Training System",
                 description: "BOSCH Rexroth Sensorics Training System, equipped with Pepperl & Fuchs industrial-grade sensors, enables learners to perform practical exercises and develop specialized knowledge of sensor characteristics and behavior. This versatile trainer can be integrated into broader automation setups, offering hands-on exposure to the sensors and transducers commonly used in industry. Starting from basic applications, features, and parameters, the system guides users through various sensor types and their real-world applications, building a strong foundation in industrial sensing technologies.",
                 icon: Activity,
-                image: "/image/SkillFoundationImage/skill-foundation3.png"
+                image: "/image/skill-foundation/ceat/infrastructure/sensorics-training-system.webp"
             },
             {
                 id: "4",
                 title: "PLC Training System",
                 description: "The BOSCH Rexroth L20/L25 PLC Training System offers flexible, hands-on learning in logic control, continuous control, and integrated automation. It is widely used to teach PLC-based control of industrial sensorics, pneumatics, and hydraulics. The setup also supports robotics communication and master–slave configurations with suitable interfaces. Learners practice PLC fundamentals, relay logic, and programming in LD, FBD, SFC, and CFC. Overall, it prepares trainees for real industrial environments with strong skills in PLC programming, system integration, and safety.",
                 icon: Settings,
-                image: "/image/SkillFoundationImage/skill-foundation4.jpeg"
+                image: "/image/skill-foundation/ceat/infrastructure/plc-training-system.webp"
             },
             {
                 id: "5",
                 title: "Mechatronics Training System",
                 description: "BOSCH Rexroth Mechatronics Training System combines Sensorics, Pneumatics, and PLC technologies in a modular, easy-to-learn platform. All actuator and sensor signals communicate with the PLC via Profibus DP for efficient control. Trainees can start with basic modules and gradually move to the full system. It builds strong skills in PLC programming, circuit analysis, commissioning, troubleshooting, and safety. The three coordinated stations—magazine, processing, and storage—simulate real automated handling and assembly operations.",
                 icon: Settings,
-                image: "/image/SkillFoundationImage/skill-foundation5.png"
+                image: "/image/skill-foundation/ceat/infrastructure/mechatronics-training-system.webp"
             },
             {
                 id: "6",
                 title: "Motion Controller",
                 description: "A Motion Controller ensures precise, controlled movement of machine tools by following defined motion profiles and correcting deviations through closed-loop feedback. The Bosch Rexroth 2-Axis Motion Controller teaches both open-loop and closed-loop servo drive principles. Trainees learn to configure, operate, and analyze servo drive performance in real time. It provides practical understanding of motion control, system response, and stability. The setup also builds essential skills in troubleshooting and maintenance of servo systems.",
                 icon: Activity,
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/ceat/infrastructure/motion-controller.webp"
             },
             {
                 id: "7",
                 title: "CNC Simulator",
                 description: "Bosch Rexroth CNC Simulator allows users to model and test machining processes on a standard PC without affecting real production. It provides a virtual environment for developing, optimizing, and transferring CNC programs, with ready-made lathe and milling scenarios. The simulator realistically replicates operations like milling, turning, grinding, cutting, and more. It helps operators, instructors, and students understand CNC programming and machine behavior without needing a physical machine tool.",
                 icon: Settings,
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/ceat/infrastructure/cnc-simulator.webp"
             },
             {
                 id: "8",
                 title: "Industrial Internet of Things (IIoT 4.0) Training System",
                 description: "The Industrial Internet of Things (IIoT), or Industry 4.0, connects smart machines, automation, and data analytics to improve factory performance. The BOSCH Rexroth IIoT 4.0 Training Kit offers a practical platform to experience these technologies in real time. With wireless and Ethernet connectivity, users can remotely access PLC functions, control drives, and monitor encoder feedback. This setup helps learners understand industrial connectivity, live data acquisition, and smart automation for modern manufacturing.",
                 icon: Settings,
-                image: "/image/SkillFoundationImage/skill-foundation3.png"
+                image: "/image/skill-foundation/ceat/infrastructure/iiot-training-system.webp"
             },
             {
                 id: "9",
                 title: "Automation Studio",
                 description: "Automation Studio is a powerful software tool for designing and simulating pneumatic, hydraulic, electrical, and PLC circuits in a virtual environment. It enables real-time simulation, troubleshooting, and visualization of system behavior without the need for physical hardware. The platform helps learners develop practical skills in fluid power, electrical automation, and system diagnostics. Its extensive libraries and user-friendly interface support strong foundations in circuit design and documentation.",
                 icon: Zap,
-                image: "/image/SkillFoundationImage/skill-foundation4.jpeg"
+                image: "/image/skill-foundation/ceat/infrastructure/automation-studio.webp"
             },
             {
                 id: "10",
                 title: "Variable Frequency Drive (VFD) Training System",
                 description: "Bosch Rexroth VFD Training System offers practical learning in AC motor speed and torque control using modern drive technology. Trainees learn how varying frequency and voltage regulate motor performance, along with key functions like start/stop control, acceleration, braking, and parameter setup. The system allows real-time observation of motor behavior and drive diagnostics. It builds essential skills for safe operation, energy-efficient motor control, and industrial automation applications.",
                 icon: Settings,
-                image: "/image/SkillFoundationImage/skill-foundation5.png"
+                image: "/image/skill-foundation/ceat/infrastructure/vfd-training-system.webp"
             }
         ]
     },
     events: {
         title: "Glimpse of the Events/Workshops",
         items: [
-            { id: "1", title: 'BOSCH Rexroth–CoE Conducts Basic Mechanical Workshop for Windmöller & Hölscher (W&H) Engineers', description: "BOSCH-Rexroth Industrial Automation CoE conducted an eight-day Basic Mechanical Workshop Training for engineers of W&H, aimed at enhancing their practical skills in mechanical assembly, maintenance, and troubleshooting, held from 27 August 2024. Three service engineers (one from the mechatronics stream and two from the mechanical stream) participated in the training program.", image: "/image/SkillFoundationImage/skill-foundation1.jpeg" },
-            { id: "2", title: "Two-Day PLC Training Program for SFC Solutions, Sahibabad (SFC  ( Full Form) Solutions Employees Complete Advanced PLC Training at AKGEC)", description: "A two-day PLC training program for employees of SFC Solutions, Sahibabad was successfully conducted on 22–23 August 2024 at the CEAT and Siemens Centres of Excellence, AKGEC, in joint collaboration with IMTMA. Nine participants attended the program, where they gained hands-on training in PLC fundamentals, hardware architecture, ladder logic programming, I/O interfacing, troubleshooting techniques, and basic industrial automation applications.", image: "/image/SkillFoundationImage/skill-foundation2.jpeg" },
-            { id: "3", title: "Empowering the Future Workforce: BOSCH-Rexroth CoE Conducts 45+ Industrial Automation Workshops", description: "BOSCH-Rexroth Industrial Automation CoE conducted more than 45 hands-on workshops on industrial automation technologies to bridge the gap between theoretical knowledge and industrial practice. The workshops offered extensive practical exposure to PLCs, industrial sensors, drives, hydraulics, pneumatics, robotics, and integrated automation systems. Strong emphasis was placed on experiential learning, real-time fault diagnosis, and application-based training. These initiatives significantly enhanced students’ technical competence, problem-solving abilities, confidence, and overall industry readiness.", image: "/image/SkillFoundationImage/skill-foundation3.png" },
-            { id: "4", title: "Professional Training Programs under Pradhan Mantri Kaushal Vikas Yojana (PMKVY) 4.0 by BOSCH-Rexroth CoE", description: "BOSCH-Rexroth Industrial Automation CoE conducted professional training programs under the PMKVY 4.0 scheme, including Industrial Automation Specialist and PLC Programmer & Troubleshooter courses, aimed at enhancing workforce competency and improving industry employability.", image: "/image/SkillFoundationImage/skill-foundation4.jpeg" },
-            { id: "5", title: "DGR Candidate Training Programs at AKGEC", description: "AKGEC conducted DGR Candidate Training programs in Industrial Automation Specialist and Building Automation Specialist courses to support skill development and enhance the employability of retiring defence personnel. AKGEC successfully conducted DGR Candidate Training Programs in Industrial Automation Specialist and Building Automation Specialist courses, aimed at equipping retiring defence personnel with industry-relevant technical skills, facilitating smooth career transition, and enhancing their employability in automation-driven sectors.", image: "/image/SkillFoundationImage/skill-foundation5.png" },
-            { id: "6", title: "Industry-Focused Induction Training Program for Hindalco Engineers at AKGEC", description: "AKGEC conducted a comprehensive induction training program for engineers of Hindalco Industries Ltd., Pune, with a focus on strengthening practical and industry-relevant skills. The training covered key domains including Robotics and Industrial Automation, Welding technologies, Machining processes, and Quality Inspection techniques. The program emphasized hands-on learning, exposure to modern industrial equipment, and best manufacturing practices to enhance participants’ technical competency and workplace readiness.", image: "/image/SkillFoundationImage/skill-foundation1.jpeg" }
+            { id: "1", title: 'BOSCH Rexroth–CoE Conducts Basic Mechanical Workshop for Windmöller & Hölscher (W&H) Engineers', description: "BOSCH-Rexroth Industrial Automation CoE conducted an eight-day Basic Mechanical Workshop Training for engineers of W&H, aimed at enhancing their practical skills in mechanical assembly, maintenance, and troubleshooting, held from 27 August 2024. Three service engineers (one from the mechatronics stream and two from the mechanical stream) participated in the training program.", image: "/image/skill-foundation/ceat/events/mechanical-workshop-wh-engineers.webp" },
+            { id: "2", title: "Two-Day PLC Training Program for SFC Solutions, Sahibabad (SFC  ( Full Form) Solutions Employees Complete Advanced PLC Training at AKGEC)", description: "A two-day PLC training program for employees of SFC Solutions, Sahibabad was successfully conducted on 22–23 August 2024 at the CEAT and Siemens Centres of Excellence, AKGEC, in joint collaboration with IMTMA. Nine participants attended the program, where they gained hands-on training in PLC fundamentals, hardware architecture, ladder logic programming, I/O interfacing, troubleshooting techniques, and basic industrial automation applications.", image: "/image/skill-foundation/ceat/events/plc-training-sfc-solutions.webp" },
+            { id: "3", title: "Empowering the Future Workforce: BOSCH-Rexroth CoE Conducts 45+ Industrial Automation Workshops", description: "BOSCH-Rexroth Industrial Automation CoE conducted more than 45 hands-on workshops on industrial automation technologies to bridge the gap between theoretical knowledge and industrial practice. The workshops offered extensive practical exposure to PLCs, industrial sensors, drives, hydraulics, pneumatics, robotics, and integrated automation systems. Strong emphasis was placed on experiential learning, real-time fault diagnosis, and application-based training. These initiatives significantly enhanced students’ technical competence, problem-solving abilities, confidence, and overall industry readiness.", image: "/image/skill-foundation/ceat/events/hands-on-industrial-automation-workshops.webp" },
+            { id: "4", title: "Professional Training Programs under Pradhan Mantri Kaushal Vikas Yojana (PMKVY) 4.0 by BOSCH-Rexroth CoE", description: "BOSCH-Rexroth Industrial Automation CoE conducted professional training programs under the PMKVY 4.0 scheme, including Industrial Automation Specialist and PLC Programmer & Troubleshooter courses, aimed at enhancing workforce competency and improving industry employability.", image: "/image/skill-foundation/ceat/events/pmkvy-training-programs.webp" },
+            { id: "5", title: "DGR Candidate Training Programs at AKGEC", description: "AKGEC conducted DGR Candidate Training programs in Industrial Automation Specialist and Building Automation Specialist courses to support skill development and enhance the employability of retiring defence personnel. AKGEC successfully conducted DGR Candidate Training Programs in Industrial Automation Specialist and Building Automation Specialist courses, aimed at equipping retiring defence personnel with industry-relevant technical skills, facilitating smooth career transition, and enhancing their employability in automation-driven sectors.", image: "/image/skill-foundation/ceat/events/dgr-candidate-training-programs.webp" },
+            { id: "6", title: "Industry-Focused Induction Training Program for Hindalco Engineers at AKGEC", description: "AKGEC conducted a comprehensive induction training program for engineers of Hindalco Industries Ltd., Pune, with a focus on strengthening practical and industry-relevant skills. The training covered key domains including Robotics and Industrial Automation, Welding technologies, Machining processes, and Quality Inspection techniques. The program emphasized hands-on learning, exposure to modern industrial equipment, and best manufacturing practices to enhance participants’ technical competency and workplace readiness.", image: "/image/skill-foundation/ceat/events/induction-training-hindalco.webp" }
         ]
     },
     awards: {
@@ -128,9 +128,9 @@ const boschData = {
         title: "Programs Offered",
         description: "The Centre offers the following training programs for industry professionals and engineering students of all disciplines. On successful completion, participants are assessed for their learning & skills and awarded with a globally recognized joint certification from BOSCH-Rexroth & AKGEC.",
         items: [
-            "Industrial Automation Technologies—Basic Level (40 Hrs)",
-            "Industrial Automation Technologies—Intermediate  Level (80 Hrs)",
-            "Industrial Automation Technologies—Advance Level (120 Hrs)"
+            { text: "Industrial Automation Technologies—Basic Level (40 Hrs)", pdf: "/image/skill-foundation/ceat/programs-offered/bosch-rexroth-programs-brochure.pdf" },
+            { text: "Industrial Automation Technologies—Intermediate  Level (80 Hrs)", pdf: "/image/skill-foundation/ceat/programs-offered/bosch-rexroth-programs-brochure.pdf" },
+            { text: "Industrial Automation Technologies—Advance Level (120 Hrs)", pdf: "/image/skill-foundation/ceat/programs-offered/bosch-rexroth-programs-brochure.pdf" }
         ]
     },
     upcoming: {
@@ -144,7 +144,8 @@ const boschData = {
                 duration: "40 Hours",
                 fee: "₹ 7,000",
                 coordinator: "Dr. Alok Vardhan",
-                contact: "ceat@akgec.ac.in/ +91-9458582870"
+                contact: "ceat@akgec.ac.in/ +91-9458582870",
+                pdf: "/image/skill-foundation/ceat/upcoming-programs/winter-training-program-industrial-automation.pdf"
             }
         ]
     },
@@ -361,12 +362,22 @@ const SkillFoundationDetails = () => {
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {boschData.programs.items.map((program, idx) => (
-                                <div key={idx} className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-colors">
+                                <div key={idx} className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-colors flex flex-col h-full">
                                     <div className="flex items-center gap-3 mb-2">
                                         <BookOpen className="text-brand-yellow" size={20} />
                                         <h4 className="font-novaBold text-lg">Program {idx + 1}</h4>
                                     </div>
-                                    <p className="text-blue-50 font-novaReg">{program}</p>
+                                    <p className="text-blue-50 font-novaReg mb-4 flex-grow">{program.text}</p>
+                                    {program.pdf && (
+                                        <a
+                                            href={program.pdf}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center text-sm font-semibold text-brand-yellow hover:text-white transition-colors mt-auto group/link"
+                                        >
+                                            View Brochure <ArrowRight size={16} className="ml-1 transform group-hover/link:translate-x-1 transition-transform" />
+                                        </a>
+                                    )}
                                 </div>
                             ))}
                         </div>
@@ -388,6 +399,7 @@ const SkillFoundationDetails = () => {
                                         <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Fee (INR)</th>
                                         <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Coordinator</th>
                                         <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Contact</th>
+                                        <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Brochure</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-200">
@@ -398,6 +410,20 @@ const SkillFoundationDetails = () => {
                                             <td className="py-4 px-6 text-gray-600">{row.fee}</td>
                                             <td className="py-4 px-6 text-gray-600">{row.coordinator}</td>
                                             <td className="py-4 px-6 text-gray-600 text-sm">{row.contact}</td>
+                                            <td className="py-4 px-6">
+                                                {row.pdf ? (
+                                                    <a
+                                                        href={row.pdf}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="inline-flex items-center px-3 py-1 bg-brand-blue/10 text-brand-blue rounded-full text-xs font-bold hover:bg-brand-blue hover:text-white transition-colors"
+                                                    >
+                                                        Download <ArrowRight size={12} className="ml-1" />
+                                                    </a>
+                                                ) : (
+                                                    <span className="text-gray-400 text-xs italic">N/A</span>
+                                                )}
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>

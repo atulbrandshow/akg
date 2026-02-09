@@ -42,14 +42,14 @@ const janaticsData = {
                 title: "Pneumatic Training System",
                 description: "The Janatics modular Pneumatic Training System, built using industrial-grade components, offers structured hands-on learning in pneumatic and electro-pneumatic principles. With integrated hardware and software, it enables both beginners and advanced users to perform practical exercises and develop strong expertise in pneumatic control and industrial automation.",
                 icon: Settings,
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/janatics-ipkc/infrastructure/pneumatic-training-system.webp"
             },
             {
                 id: "2",
                 title: "Feeder Station (DIY)",
                 description: "The DIY kit helps students understand and assemble complete mechatronic systems using pneumatic, sensor, electrical, mechanical, and PLC components. By building functional automation setups on their own, learners replicate real industrial scenarios while enhancing creativity, problem-solving and entrepreneurial skills.",
                 icon: Settings,
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/janatics-ipkc/infrastructure/feeder-station-diy.webp"
             }
         ]
     },
@@ -60,22 +60,22 @@ const janaticsData = {
                 id: "1",
                 title: "Two-Day Workshop on “Driving Innovation through Insight into Automation Technologies”",
                 description: "This workshop, held on 4–5 September 2025 at AKGEC-Janatics IPKC, was jointly organized with Janatics Global Solutions Pvt. Ltd. It aimed to provide students with a deep understanding of modern automation technologies and their practical applications. 35 students from AKGEC participated, gaining hands-on experience with advanced automation systems, fostering innovation, and enhancing their technical skills in industrial automation.",
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/janatics-ipkc/events/workshop-on-automation-technologies.webp"
             }
         ]
     },
     awards: {
         title: "Awards and Recognition",
         items: [
-            { text: "Janatics Automation Skill Challenge (JASC) 2025 North Zone Finals: Two teams from AKGEC were selected from the North Zone, with Team Enginerds advancing to the National Finals.", image: "/image/SkillFoundationImage/skill-foundation1.jpeg" },
-            { text: "Team Enginerds from AKGEC Wins Two Special Awards at JASC 2025 National Finals: Best Prototype and Best CAD Design, reflecting their innovation, technical expertise, and AKGEC’s focus on practical engineering education.", image: "/image/SkillFoundationImage/skill-foundation2.jpeg" }
+            { text: "Janatics Automation Skill Challenge (JASC) 2025 North Zone Finals: Two teams from AKGEC were selected from the North Zone, with Team Enginerds advancing to the National Finals.", image: "/image/skill-foundation/janatics-ipkc/awards/jasc-2025-north-zone-finals.webp" },
+            { text: "Team Enginerds from AKGEC Wins Two Special Awards at JASC 2025 National Finals: Best Prototype and Best CAD Design, reflecting their innovation, technical expertise, and AKGEC’s focus on practical engineering education.", image: "/image/skill-foundation/janatics-ipkc/awards/jasc-2025-national-finals.webp" }
         ]
     },
     programs: {
         title: "Programs Offered",
         description: "The Centre offers the following training programs for industry professionals and engineering students of all disciplines. On successful completion of training, participants are assessed for their learning & skills and awarded with a globally recognized joint certification from AKGEC & JANATICS.",
         items: [
-            "Industrial Pneumatics - Basic (40 hrs.)"
+            { text: "Industrial Pneumatics - Basic (40 hrs.)", pdf: "/image/skill-foundation/janatics-ipkc/program-offered/janatics-industrial-pneumatics-basic.pdf" }
         ]
     },
     upcoming: {
@@ -303,12 +303,22 @@ const SkillFoundationDetails = () => {
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
                             {janaticsData.programs.items.map((program, idx) => (
-                                <div key={idx} className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-colors">
+                                <div key={idx} className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-colors flex flex-col h-full">
                                     <div className="flex items-center gap-3 mb-2">
                                         <BookOpen className="text-brand-yellow" size={20} />
                                         <h4 className="font-novaBold text-lg">Program {idx + 1}</h4>
                                     </div>
-                                    <p className="text-blue-50 font-novaReg">{program}</p>
+                                    <p className="text-blue-50 font-novaReg mb-4 flex-grow">{program.text}</p>
+                                    {program.pdf && (
+                                        <a
+                                            href={program.pdf}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center text-sm font-semibold text-brand-yellow hover:text-white transition-colors mt-auto group/link"
+                                        >
+                                            View Brochure <ArrowRight size={16} className="ml-1 transform group-hover/link:translate-x-1 transition-transform" />
+                                        </a>
+                                    )}
                                 </div>
                             ))}
                         </div>

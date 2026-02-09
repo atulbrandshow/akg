@@ -42,56 +42,56 @@ const amcData = {
                 title: "CNC Vertical Machining Centre (4-Axis – ACE MCV-400)",
                 description: "This high-precision 4-axis machining centre is designed for complex milling, contouring, drilling, and finishing operations. Its rigid structure and advanced CNC control ensure excellent dimensional accuracy and repeatability. Ideal for machining intricate industrial parts, it supports multi-surface machining in a single setup, enhancing productivity and quality.",
                 icon: Settings,
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/amc/infrastructure/cnc-vertical-machining-centre-4-axis-ace-mcv-400.webp"
             },
             {
                 id: "2",
                 title: "CNC Turning Centre (Slant Bed – LT-16)",
                 description: "A robust slant-bed CNC lathe capable of high-accuracy turning, threading, grooving, and facing operations. It features an advanced tool turret and supports integration with robotic loading/unloading systems for automation. The rigid bed design minimizes vibrations, ensuring superior surface finish and consistent machining performance.",
                 icon: Activity,
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/amc/infrastructure/cnc-turning-centre-slant-bed-lt-16.webp"
             },
             {
                 id: "3",
                 title: "CNC Lathe – TUTOR Model",
                 description: "This compact CNC lathe is ideal for educational and industrial training applications, providing hands-on experience in precision turning. Despite its small size, it delivers high accuracy, stable performance, and ease of programming for beginners. It is widely used for producing shafts, bushings, pins, and other cylindrical components.",
                 icon: Radio,
-                image: "/image/SkillFoundationImage/skill-foundation3.png"
+                image: "/image/skill-foundation/amc/infrastructure/cnc-lathe-tutor-model.webp"
             },
             {
                 id: "4",
                 title: "CNC Drill–Tap SparkE Machining Centre",
                 description: "A high-speed machining system designed specifically for rapid drilling, tapping, and thread-forming operations. It ensures excellent repeatability, making it suitable for mass production of threaded components. The machine’s fast tool response and spindle speed significantly reduce cycle time while maintaining accuracy.",
                 icon: Zap,
-                image: "/image/SkillFoundationImage/skill-foundation4.jpeg"
+                image: "/image/skill-foundation/amc/infrastructure/cnc-drill-tap-sparke-machining-centre.webp"
             },
             {
                 id: "5",
                 title: "Cylindrical Grinding Machine",
                 description: "A precision hydraulic grinding machine used for external, internal, and face grinding of small to medium-sized components. It offers fine control over feed and speed, achieving micron-level surface finishes. Ideal for shafts, rollers, pins, and other precision parts requiring high roundness and dimensional accuracy.",
                 icon: Crosshair,
-                image: "/image/SkillFoundationImage/skill-foundation5.png"
+                image: "/image/skill-foundation/amc/infrastructure/cylindrical-grinding-machine.webp"
             },
             {
                 id: "6",
                 title: "Robotic Milling System – 7 Axis",
                 description: "This advanced 7-axis robotic machining system enables complex-shape milling, trimming, polishing, and finishing tasks not possible on conventional machines. Its extended reach and multi-axis flexibility allow processing of large or irregular components with high accuracy. It supports applications across automotive, aerospace, tooling, and prototyping domains.",
                 icon: Bot,
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/amc/infrastructure/robotic-milling-system-7-axis.webp"
             },
             {
                 id: "7",
                 title: "CNC Electric Tapping Machine",
                 description: "A high-precision CNC-controlled tapping system designed specifically for fast, accurate internal threading operations. It allows programmable depth control, consistent thread quality, and smooth operation even for small-diameter taps. The machine enhances productivity in mass-threading applications and ensures repeatability with minimal operator effort. Its compact, rigid structure makes it ideal for both training and industrial production environments.",
                 icon: Settings,
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/amc/infrastructure/cnc-electric-tapping-machine.webp"
             }
         ]
     },
     events: {
         title: "Glimpse of the Events/Workshops",
         items: [
-            { id: "1", title: "Induction Training for Hindalco Industries Ltd.", description: "AKGEC conducted a comprehensive induction training program for Hindalco Industries Ltd., Pune, focusing on strengthening participants’ practical skills in CNC programming. The program covered hands-on practice on industrial CNC machines, tool selection, and part programming fundamentals. Participants were trained to interpret drawings, develop accurate programs, and execute machining operations confidently. This initiative helped enhance their shop-floor readiness and overall technical competence.", image: "/image/SkillFoundationImage/skill-foundation1.jpeg" }
+            { id: "1", title: "Induction Training for Hindalco Industries Ltd.", description: "AKGEC conducted a comprehensive induction training program for Hindalco Industries Ltd., Pune, focusing on strengthening participants’ practical skills in CNC programming. The program covered hands-on practice on industrial CNC machines, tool selection, and part programming fundamentals. Participants were trained to interpret drawings, develop accurate programs, and execute machining operations confidently. This initiative helped enhance their shop-floor readiness and overall technical competence.", image: "/image/skill-foundation/amc/workshop-events/induction-training-for-hindalco-industries-ltd.webp" }
         ]
     },
     awards: {

@@ -42,35 +42,35 @@ const plmData = {
                 title: "SOLID EDGE",
                 description: "Solid Edge is a portfolio of affordable, easy-to-use software tools that address all aspects of the product development process, 3D design, simulation, manufacturing, design management and more, thanks to a growing ecosystem of apps. Solid Edge combines the speed and simplicity of direct modeling with the flexibility and control of parametric design, made possible with synchronous technology. At the SIEMENS PLM COE, Solid Edge is used to create detailed engineering models, analyze part behavior, and manage design workflows through an intuitive and efficient interface. The computational tool uses synchronous technology to accelerate design, make revision faster, and enable better reuse. With 3d Cad, Simulation, and Data Management, Solid Edge helps companies design better.",
                 icon: Settings,
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/plm/infrastructure/siemens-solid-edge.webp"
             },
             {
                 id: "2",
                 title: "NX-CAD/CAM/CAE",
                 description: "Siemens NX is an industry-leading integrated CAD/CAM/CAE platform used for advanced design, simulation, and manufacturing. The award-winning NX software helps designers and manufacturers deliver better products faster using powerful, integrated CAD and CAM solutions that realize the full value of the digital twin. At the SIEMENS PLM COE, NX enables students to model complex components, validate engineering behavior, and generate toolpaths for real-time manufacturing scenarios. Learners design 3D parts, perform simulations to assess stresses and performance, and create CNC-ready programs within a unified digital environment. This hands-on workflow helps students understand the complete product development cycle, from conceptual design to virtual testing and final machining, leveraging the full value of the digital twin for accurate and efficient engineering outcomes.",
                 icon: Activity,
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/plm/infrastructure/siemens-nx-cad-cam.webp"
             },
             {
                 id: "3",
                 title: "FEMAP",
                 description: "FEMAP is an advanced engineering simulation environment used to create high-fidelity finite element analysis (FEA) models for complex components and systems. At the SIEMENS PLM COE, FEMAP is utilized to build precise geometric meshes, apply realistic loading conditions, and evaluate structural responses under various operational scenarios. Users generate finite element models, ranging from beam and shell representations to tetrahedral or hexahedral meshes, and analyze them using industry-standard FE solvers. This setup enables learners to practice model preparation, boundary condition definition, result interpretation, and design validation, helping them develop strong competencies in simulation-driven engineering and virtual product evaluation.",
                 icon: Zap,
-                image: "/image/SkillFoundationImage/skill-foundation3.png"
+                image: "/image/skill-foundation/plm/infrastructure/siemens-femap.webp"
             },
             {
                 id: "4",
                 title: "TEAMCENTRE",
                 description: "Teamcenter is a comprehensive PLM platform that integrates people, processes, and product data across the entire engineering and manufacturing workflow. At the SIEMENS PLM COE, Teamcenter is used to manage design information, coordinate multi-disciplinary engineering tasks, and maintain complete digital continuity through the product lifecycle. Students work with digital twins of products and processes, enabling them to visualize assemblies, track revisions, and resolve design issues before physical prototypes are built. This environment develops strong capabilities in data management, collaboration, configuration control, and lifecycle governance, preparing learners to operate efficiently within modern digital manufacturing ecosystems.",
                 icon: Package,
-                image: "/image/SkillFoundationImage/skill-foundation4.jpeg"
+                image: "/image/skill-foundation/plm/infrastructure/siemens-teamcenter.webp"
             },
             {
                 id: "5",
                 title: "TECNOMATIX ROBCAD",
                 description: "Tecnomatix Robcad software enables the design, simulation, optimization, analysis and off-line programming of multi-device robotic and automated manufacturing processes in the context of product and production resources. At the SIEMENS PLM COE, ROBCAD enables users to model multi-robot workcells, define robot motions, and evaluate cycle times in a virtual environment before implementation on the shop floor. Learners simulate complex tasks such as material handling, welding, painting, and assembly while assessing reachability, collision risks, and process efficiency. This hands-on virtual workflow helps students understand robotic kinematics, path planning, cell layout optimization, and offline programming, providing essential skills for modern automated manufacturing systems.",
                 icon: Bot,
-                image: "/image/SkillFoundationImage/skill-foundation5.png"
+                image: "/image/skill-foundation/plm/infrastructure/siemens-robcad.webp"
             }
         ]
     },
@@ -81,13 +81,13 @@ const plmData = {
                 id: "1",
                 title: "MOU with SIEMENS",
                 description: "North India’s first Center of Competence in Product Lifecycle Management (PLM) was established at AKGEC through a strategic MoU with SIEMENS India Group. This collaborative initiative aims to bridge the gap between academia and industry by providing state-of-the-art training, research support, and technical exposure in digital design, simulation, and manufacturing. The PLM Centre is dedicated to supporting the needs of manufacturing industries, young engineers, and students by equipping them with industry-relevant skills, advanced tools, and hands-on experience in Siemens PLM technologies.",
-                image: "/image/SkillFoundationImage/skill-foundation1.jpeg"
+                image: "/image/skill-foundation/plm/events-and-workshops/mou-with-siemens.webp"
             },
             {
                 id: "2",
                 title: "India Skills Track–2 Competition",
                 description: "The SIEMENS PLM COE hosted the India Skills Track–2 Competition in the M-CAD (Mechanical Computer-Aided Design) category on March 5th, 2024. The event brought together skilled participants from various institutions to showcase their proficiency in advanced CAD modeling, design methodology, and problem-solving using industry-standard tools. The competition was conducted within the state-of-the-art PLM CoE infrastructure, enabling participants to work on complex 3D modeling challenges under real-world constraints. The event provided students with an opportunity to demonstrate precision, creativity, and technical competence in mechanical design, while also gaining exposure to national-level skill benchmarks. The program helped cultivate competitive spirit, promoted industry-relevant CAD skills, and strengthened AKGEC’s role in fostering excellence in skill development and digital engineering.",
-                image: "/image/SkillFoundationImage/skill-foundation2.jpeg"
+                image: "/image/skill-foundation/plm/events-and-workshops/india-skills-track-2-competition.webp"
             }
         ]
     },
@@ -99,9 +99,9 @@ const plmData = {
         title: "Programs Offered",
         description: "The Centre offers specialized training programs tailored to meet industry expectations and to promote research-driven learning across all engineering disciplines.",
         items: [
-            "Short Term Training Program on Product Design & Development for B.Tech — (40 Hrs)",
-            "Industrial Training Program on Digital Manufacturing (ITP) — (160 Hrs)",
-            "Winter Training Program on SIEMENS NX-CAD/CAM/CAE (WTP) — (80 Hrs)"
+            { text: "Short Term Training Program on Product Design & Development for B.Tech — (40 Hrs)" },
+            { text: "Industrial Training Program on Digital Manufacturing (ITP) — (160 Hrs)" },
+            { text: "Winter Training Program on SIEMENS NX-CAD/CAM/CAE (WTP) — (80 Hrs)", pdf: "/image/skill-foundation/plm/programs-offered/wtp-siemens-plm-nx.pdf" }
         ]
     },
     upcoming: {
@@ -115,7 +115,8 @@ const plmData = {
                 duration: "80 Hours",
                 fee: "₹ 7000",
                 coordinator: "Dr. Anuj Kumar",
-                contact: "plm@akgec.ac.in / +91-9540376072"
+                contact: "plm@akgec.ac.in / +91-9540376072",
+                pdf: "/image/skill-foundation/plm/upcoming-programs/wtp-siemens-plm-nx.pdf"
             }
         ]
     },
@@ -336,12 +337,22 @@ const SkillFoundationDetails = () => {
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {plmData.programs.items.map((program, idx) => (
-                                <div key={idx} className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-colors">
+                                <div key={idx} className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-colors flex flex-col h-full">
                                     <div className="flex items-center gap-3 mb-2">
                                         <BookOpen className="text-brand-yellow" size={20} />
                                         <h4 className="font-novaBold text-lg">Program {idx + 1}</h4>
                                     </div>
-                                    <p className="text-blue-50 font-novaReg">{program}</p>
+                                    <p className="text-blue-50 font-novaReg mb-4 flex-grow">{program.text}</p>
+                                    {program.pdf && (
+                                        <a
+                                            href={program.pdf}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center text-sm font-semibold text-brand-yellow hover:text-white transition-colors mt-auto group/link"
+                                        >
+                                            View Brochure <ArrowRight size={16} className="ml-1 transform group-hover/link:translate-x-1 transition-transform" />
+                                        </a>
+                                    )}
                                 </div>
                             ))}
                         </div>
@@ -363,6 +374,7 @@ const SkillFoundationDetails = () => {
                                         <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Fee (INR)</th>
                                         <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Coordinator</th>
                                         <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Contact</th>
+                                        <th className="py-4 px-6 text-left text-sm font-bold text-gray-600 uppercase tracking-wider">Brochure</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-200">
@@ -373,6 +385,18 @@ const SkillFoundationDetails = () => {
                                             <td className="py-4 px-6 text-gray-600">{row.fee}</td>
                                             <td className="py-4 px-6 text-gray-600">{row.coordinator}</td>
                                             <td className="py-4 px-6 text-gray-600 text-sm">{row.contact}</td>
+                                            <td className="py-4 px-6">
+                                                {row.pdf && (
+                                                    <a
+                                                        href={row.pdf}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="inline-flex items-center px-3 py-1.5 rounded-lg bg-brand-blue/10 text-brand-blue hover:bg-brand-blue hover:text-white text-xs font-semibold transition-all duration-300"
+                                                    >
+                                                        Download <ArrowRight size={12} className="ml-1" />
+                                                    </a>
+                                                )}
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>

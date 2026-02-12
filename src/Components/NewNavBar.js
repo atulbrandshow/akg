@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { Bars2Icon } from "@heroicons/react/20/solid";
 import {
   About,
@@ -14,6 +14,7 @@ import {
 } from "../Json/MenuItem";
 import Form from "./Form";
 import Link from "next/link";
+import { API_NODE_URL } from "@/configs/config";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { easeIn } from "framer-motion";
@@ -109,13 +110,34 @@ const socialLinks = [
   },
 ];
 
-const notifications = [
-  "Admissions Open: PGDM and MBA Programs 2024-2025",
-  "Upcoming Workshop: Leadership and Soft Skills Training - Aug 2024",
-];
+// Notifications are now fetched from the database inside the component
 
 export default function NewNavBar() {
   const router = useRouter();
+  const [notifications, setNotifications] = useState([]);
+
+  // Fetch notifications/announcements from the database
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      try {
+        const response = await fetch(`${API_NODE_URL}announcement/all`, {
+          method: "GET",
+          credentials: "include",
+        });
+        const data = await response.json();
+        if (data.status && data.data) {
+          // Filter only active announcements and extract their titles
+          const activeNotifications = data.data
+            .filter((item) => item.status !== false)
+            .map((item) => item.title || item.name || item.message);
+          setNotifications(activeNotifications);
+        }
+      } catch (err) {
+        console.error("Failed to fetch notifications:", err);
+      }
+    };
+    fetchNotifications();
+  }, []);
   const [openMenu, setOpenMenu] = useState(null);
   const [isBelowLg, setIsBelowLg] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -243,8 +265,8 @@ export default function NewNavBar() {
       )}
       <ul className={`space-y-2 lg:space-y-3 ${ulClassName}`}>
         {links?.map((link, index) => (
-          <li 
-            key={index} 
+          <li
+            key={index}
             className="leading-none"
             onMouseEnter={() => link.Specializations && setHoveredItem(`${title}-${index}`)}
             onMouseLeave={() => setHoveredItem(null)}
@@ -271,7 +293,7 @@ export default function NewNavBar() {
                   </svg>
                 )} */}
               </Link>
-              
+
               {/* Professional Accordion Style Specializations */}
               {link.Specializations && hoveredItem === `${title}-${index}` && (
                 <div className="mt-2 ml-4 border-l-2 border-brand-blue/40 pl-4 animate-fadeIn transition-all duration-300 ease-out">
@@ -282,8 +304,8 @@ export default function NewNavBar() {
                     <ul className="space-y-1.5 pr-2">
                       {link.Specializations.map((spec, specIndex) => (
                         <li key={specIndex} className="transform transition-all duration-200 hover:translate-x-1">
-                          <Link 
-                            href={typeof spec === 'object' ? spec.url : "/specialization-details"} 
+                          <Link
+                            href={typeof spec === 'object' ? spec.url : "/specialization-details"}
                             className="text-sm text-gray-600 font-novaReg hover:text-brand-blue cursor-pointer block py-1.5 px-2 rounded-md hover:bg-blue-50/50 hover:underline transition-all duration-200 group"
                             onClick={() => {
                               setBigMenuToggle(false);
@@ -324,24 +346,26 @@ export default function NewNavBar() {
           } justify-end items-center px-3 border-b border-gray-400/30`}
       >
         <div className="notification w-full">
-          <Swiper
-            modules={[Pagination, Autoplay]}
-            spaceBetween={50}
-            slidesPerView={1}
-            autoplay={{ delay: 3000, disableOnInteraction: false }}
-            loop={true}
-            className="w-full"
-          >
-            {notifications.map((notification, index) => (
-              <SwiperSlide key={index}>
-                <p
-                  className={`text-center text-white font-novaReg cursor-pointer text-xs`}
-                >
-                  {notification}
-                </p>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          {notifications.length > 0 && (
+            <Swiper
+              modules={[Pagination, Autoplay]}
+              spaceBetween={50}
+              slidesPerView={1}
+              autoplay={{ delay: 3000, disableOnInteraction: false }}
+              loop={notifications.length >= 2}
+              className="w-full"
+            >
+              {notifications.map((notification, index) => (
+                <SwiperSlide key={index}>
+                  <p
+                    className={`text-center text-white font-novaReg cursor-pointer text-xs`}
+                  >
+                    {notification}
+                  </p>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          )}
         </div>
         <div className="flex gap-10">
           {socialLinks?.map((item, index) => (
@@ -483,7 +507,7 @@ export default function NewNavBar() {
           </div>
         </div>
       </div>
-      <hr className="mt-2"/>
+      <hr className="mt-2" />
       <div className="mt-3 px-3">
         <ul
           ref={menuRef}
@@ -503,7 +527,7 @@ export default function NewNavBar() {
                   spaceBetween={50}
                   slidesPerView={1}
                   autoplay={{ delay: 3000, disableOnInteraction: false }}
-                  loop={true}
+                  loop={notifications.length >= 2}
                   className="w-full"
                 >
                   {notifications.map((notification, index) => (
@@ -564,7 +588,7 @@ export default function NewNavBar() {
                     <div className="flex flex-col items-center p-5">
                       <p className="flex flex-col">
                         <span className="text-center font-normal text-xl font-novaLight text-white">
-                          AKG University 
+                          AKG University
                         </span>
                         <span className="text-center font-novaBold text-3xl text-secondary leading-none">
                           of Excellence
@@ -722,7 +746,7 @@ export default function NewNavBar() {
                       </Link>
                     </div>
                   )}
-                  
+
                   <div className="grid grid-cols-3 gap-4 p-4">
                     {Object.keys(Programs.sublinks[activeTab])?.map(
                       (key, index) => {

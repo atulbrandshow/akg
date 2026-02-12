@@ -31,7 +31,13 @@ const SpecializationDetails = ({ data }) => {
   const insList = getSequentialData("INS_");
   const ifsList = getSequentialData("IFS_");
 
-  const feeYears = ["1st_Year", "2nd_Year", "3rd_Year", "4th_Year"];
+  const feeYears = [
+    ...new Set(
+      Object.keys(pageData || {})
+        .filter((key) => key.startsWith("FNS_") || key.startsWith("FFS_"))
+        .map((key) => key.replace(/^(FNS_|FFS_)/, ""))
+    ),
+  ];
 
   return (
     <div className="bg-gray-50 min-h-screen">
@@ -84,10 +90,11 @@ const SpecializationDetails = ({ data }) => {
                 Fee Structure
               </h2>
             </div>
-            <p className="text-gray-600 mb-6 font-novaReg text-sm">
-              {pageData?.["Fee-Structure-Title"] ||
-                "Framed in accordance with UGC fee transparency norms."}
-            </p>
+            {pageData?.["Fee-Structure-Title"] && (
+              <p className="text-gray-600 mb-6 font-novaReg text-sm">
+                {pageData["Fee-Structure-Title"]}
+              </p>
+            )}
 
             <div className="space-y-6">
               <div>
@@ -113,8 +120,7 @@ const SpecializationDetails = ({ data }) => {
                             {year.replace("_", " ")}
                           </td>
                           <td className="px-4 py-2 text-sm font-novaSemi">
-                            {pageData?.[`FNS_${year}`] ||
-                              "Will be notified on website"}
+                            {pageData?.[`FNS_${year}`] || ""}
                           </td>
                         </tr>
                       ))}
@@ -146,8 +152,7 @@ const SpecializationDetails = ({ data }) => {
                             {year.replace("_", " ")}
                           </td>
                           <td className="px-4 py-2 text-sm font-novaSemi">
-                            {pageData?.[`FFS_${year}`] ||
-                              "Will be notified on website"}
+                            {pageData?.[`FFS_${year}`] || ""}
                           </td>
                         </tr>
                       ))}
@@ -177,7 +182,7 @@ const SpecializationDetails = ({ data }) => {
                 <ul className="list-disc list-inside space-y-2 text-sm text-gray-700 font-novaReg">
                   {insList.length > 0 ? (
                     (console.log("insList", insList),
-                    insList.map((item, idx) => <li key={idx}>{item}</li>))
+                      insList.map((item, idx) => <li key={idx}>{item}</li>))
                   ) : (
                     <li>Data not available.</li>
                   )}

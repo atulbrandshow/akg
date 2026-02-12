@@ -95,7 +95,7 @@ const coes = [
     title: "DGCA Certified Remote Pilot Training Drone Academy",
     icon: <Cpu size={24} />,
     color: "from-indigo-800 to-purple-800",
-    url: "/kuka-robotics-centre-of-excellence",
+    url: "/skills-foundation/akgec-drone-academy",
   },
 ];
 

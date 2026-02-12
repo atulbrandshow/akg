@@ -425,13 +425,13 @@ export const Programs = {
             name: "MBA",
             url: "#",
             Specializations: [
-              { name: "Artificial Intelligence", url: "/specialization-details?spec=artificial-intelligence" },
-              { name: "Generative AI & Business Intelligence", url: "/specialization-details" },
-              { name: "Data Science", url: "/specialization-details?spec=data-science" },
-              { name: "Digital Marketing", url: "/specialization-details" },
-              { name: "HR", url: "/specialization-details" },
-              { name: "Finance", url: "/specialization-details" },
-              { name: "International Trades", url: "/specialization-details" }
+              { name: "Artificial Intelligence", url: "/school-of-business-studies/mba-artificial-intelligence" },
+              { name: "Generative AI & Business Intelligence", url: "/school-of-business-studies/mba-generative-ai-business-intelligence" },
+              { name: "Data Science", url: "/school-of-business-studies/mba-data-science" },
+              { name: "Digital Marketing", url: "/school-of-business-studies/mba-digital-marketing" },
+              { name: "HR", url: "/school-of-business-studies/mba-human-resource-management" },
+              { name: "Finance", url: "/school-of-business-studies/about-the-program-mba-finance" },
+              { name: "International Trades", url: "/school-of-business-studies/mba-international-trades" }
             ],
           },
         ],

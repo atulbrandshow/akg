@@ -41,20 +41,20 @@ const sliderData = [
 ];
 
 const coes = [
-  { title: "KUKA Industrial Robotics Training Centre", icon: <Cpu size={24} />, color: "from-blue-600 to-cyan-500", url: "/kuka-robotics-centre-of-excellence", },
-  { title: "FRONIUS Advance Welding Technology & Research Centre", icon: <Zap size={24} />, color: "from-orange-600 to-yellow-500", url: "/kuka-robotics-centre-of-excellence", },
-  { title: "SIEMENS Advance Manufacturing Centre", icon: <Settings size={24} />, color: "from-indigo-600 to-purple-500", url: "/kuka-robotics-centre-of-excellence", },
-  { title: "NI LabVIEW Academy", icon: <Beaker size={24} />, color: "from-green-600 to-emerald-500", url: "/kuka-robotics-centre-of-excellence", },
-  { title: "BOSCH Rexroth Centre of Competence in Automation Technologies", icon: <Settings size={24} />, color: "from-red-600 to-rose-500", url: "/kuka-robotics-centre-of-excellence", },
-  { title: "AIA Centre for Integrated Automation", icon: <Cpu size={24} />, color: "from-indigo-900 to-blue-800", url: "/kuka-robotics-centre-of-excellence", },
-  { title: "SIEMENS PLM Centre of Excellence", icon: <Settings size={24} />, color: "from-sky-600 to-blue-500", url: "/kuka-robotics-centre-of-excellence", },
-  { title: "MITSUBISHI Authorised Training Centre", icon: <Zap size={24} />, color: "from-red-700 to-orange-600", url: "/kuka-robotics-centre-of-excellence", },
-  { title: "FAB LAB Centre of Digital Manufacturing", icon: <Cpu size={24} />, color: "from-slate-700 to-slate-500", url: "/kuka-robotics-centre-of-excellence", },
-  { title: "BOSCH Joint Certification Centre", icon: <Settings size={24} />, color: "from-red-500 to-pink-500", url: "/kuka-robotics-centre-of-excellence", },
-  { title: "ZEISS Calibration & Testing Centre", icon: <Beaker size={24} />, color: "from-blue-800 to-indigo-700", url: "/kuka-robotics-centre-of-excellence", },
-  { title: "SIEMENS Centre of Excellence in Automation", icon: <Settings size={24} />, color: "from-cyan-600 to-blue-600", url: "/kuka-robotics-centre-of-excellence", },
-  { title: "JANATICS Industrial Pneumatic Knowledge Centre", icon: <Zap size={24} />, color: "from-blue-500 to-sky-400", url: "/kuka-robotics-centre-of-excellence", },
-  { title: "DGCA Certified Remote Pilot Training Drone Academy", icon: <Cpu size={24} />, color: "from-indigo-800 to-purple-800", url: "/kuka-robotics-centre-of-excellence", },
+  { title: "KUKA Industrial Robotics Training Centre", icon: <Cpu size={24} />, color: "from-blue-600 to-cyan-500", url: "/skills-foundation/kuka-robotics-centr-of-excellence", },
+  { title: "FRONIUS Advance Welding Technology & Research Centre", icon: <Zap size={24} />, color: "from-orange-600 to-yellow-500", url: "/skills-foundation/akgec-fronius-advance-welding-technology-research-centre", },
+  { title: "SIEMENS Advance Manufacturing Centre", icon: <Settings size={24} />, color: "from-indigo-600 to-purple-500", url: "/skills-foundation/siemens-centre-of-excellence-in-automation", },
+  { title: "NI LabVIEW Academy", icon: <Beaker size={24} />, color: "from-green-600 to-emerald-500", url: "/skills-foundation/ni-lab-view-academy", },
+  { title: "BOSCH Rexroth Centre of Competence in Automation Technologies", icon: <Settings size={24} />, color: "from-red-600 to-rose-500", url: "/skills-foundation/bosch-rexroth-industrial-automation-centre-of-excellence", },
+  { title: "AIA Centre for Integrated Automation", icon: <Cpu size={24} />, color: "from-indigo-900 to-blue-800", url: "/skills-foundation/automation-industrial-association-centre-for-integrated-automation-aia-cia", },
+  { title: "SIEMENS PLM Centre of Excellence", icon: <Settings size={24} />, color: "from-sky-600 to-blue-500", url: "/skills-foundation/siemens-product-lifecycle-management-plm-coe", },
+  { title: "MITSUBISHI Authorised Training Centre", icon: <Zap size={24} />, color: "from-red-700 to-orange-600", url: "/skills-foundation/mitsubishi-authorised-training-centre-atc-in-factory-automation", },
+  { title: "FAB LAB Centre of Digital Manufacturing", icon: <Cpu size={24} />, color: "from-slate-700 to-slate-500", url: "/skills-foundation/fab-lab", },
+  { title: "BOSCH Joint Certification Centre", icon: <Settings size={24} />, color: "from-red-500 to-pink-500", url: "/skills-foundation/bosch-automotive-centre-of-excellence", },
+  { title: "ZEISS Calibration & Testing Centre", icon: <Beaker size={24} />, color: "from-blue-800 to-indigo-700", url: "/skills-foundation/akgec-zeiss-industrial-metrology-centre" },
+  { title: "SIEMENS Centre of Excellence in Automation", icon: <Settings size={24} />, color: "from-cyan-600 to-blue-600", url: "/skills-foundation/advanced-manufacturing-centre-amc", },
+  { title: "JANATICS Industrial Pneumatic Knowledge Centre", icon: <Zap size={24} />, color: "from-blue-500 to-sky-400", url: "/skills-foundation/janatics-industrial-pneumatics-knowledge-centre-ipkc", },
+  { title: "DGCA Certified Remote Pilot Training Drone Academy", icon: <Cpu size={24} />, color: "from-indigo-800 to-purple-800", url: "/skills-foundation/akgec-drone-academy", },
 ];
 
 const projects = [

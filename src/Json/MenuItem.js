@@ -324,10 +324,10 @@ export const Programs = {
             name: "M.Tech in Electronics and Communication Engineering",
             url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-electronics-and-communication-engineering",
             Specializations: [
-              { name: "VLSI Design", url: "/specialization-details?spec=vlsi-design" },
-              { name: "IoT", url: "/specialization-details?spec=iot" },
-              { name: "5G/6G Technology", url: "/specialization-details?spec=5g-6g-technology" },
-              { name: "Artificial Intelligence", url: "/specialization-details?spec=artificial-intelligence" }
+              { name: "VLSI Design", url: "/school-of-engineering-and-technology/mtech-ece-vlsi-design" },
+              { name: "IoT", url: "/school-of-engineering-and-technology/mtech-ece-internet-of-things-iot" },
+              { name: "5G/6G Technology", url: "/school-of-engineering-and-technology/mtech-ece-5g-6g-technology" },
+              { name: "Artificial Intelligence", url: "/school-of-engineering-and-technology/mtech-ece-artificial-intelligence" }
             ],
           },
           {
@@ -410,13 +410,13 @@ export const Programs = {
             name: "BBA",
             url: "#",
             Specializations: [
-              { name: "Artificial Intelligence", url: "/specialization-details?spec=artificial-intelligence" },
-              { name: "Generative AI & Business Intelligence", url: "/specialization-details" },
-              { name: "Data Science", url: "/specialization-details?spec=data-science" },
-              { name: "Digital Marketing", url: "/specialization-details" },
-              { name: "HR", url: "/specialization-details" },
-              { name: "Finance", url: "/specialization-details" },
-              { name: "International Trades", url: "/specialization-details" }
+              { name: "Artificial Intelligence", url: "/school-of-business-studies/bba-artificial-intelligence" },
+              { name: "Generative AI & Business Intelligence", url: "/school-of-business-studies/bba-generative-ai-business-intelligence" },
+              { name: "Data Science", url: "/school-of-business-studies/bba-data-science" },
+              { name: "Digital Marketing", url: "/school-of-business-studies/bba-digital-marketing" },
+              { name: "HR", url: "/school-of-business-studies/bba-human-resource-management" },
+              { name: "Finance", url: "/school-of-business-studies/bba-finance" },
+              { name: "International Trades", url: "/school-of-business-studies/bba-international-trades" }
             ],
           },
         ],

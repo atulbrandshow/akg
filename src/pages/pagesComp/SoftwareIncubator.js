@@ -224,7 +224,19 @@ const SoftwareIncubator = () => {
           {/* Team Section */}
           <section className="max-w-6xl mx-auto px-4 py-12">
             {/* Faculty Coordinator */}
-            <div className="mb-16">
+            <div className="mb-16 grid md:grid-cols-2">
+              <div className="max-w-sm mx-auto text-center">
+                <div className="relative w-48 h-48 mx-auto mb-4">
+                  <Image
+                    src="/image/rd/software-incubator/aditya_sdc.jpg"
+                    alt="Faculty Coordinator"
+                    fill
+                    className="object-cover rounded-lg"
+                  />
+                </div>
+                <p className="text-gray-600 mb-2">Faculty Coordinator</p>
+                <h2 className="text-xl font-semibold">Dr. Aditya Pratap Singh</h2>
+              </div>
               <div className="max-w-sm mx-auto text-center">
                 <div className="relative w-48 h-48 mx-auto mb-4">
                   <Image
@@ -243,19 +255,19 @@ const SoftwareIncubator = () => {
             <div className="grid md:grid-cols-3 gap-8">
               {[
                 {
-                  name: "Himanshu Sachan",
+                  name: "Sanika Goyal",
                   role: "Student Coordinator",
-                  image: "/image/rd/software-incubator/Himanshu_SDC.jpg"
+                  image: "/image/rd/software-incubator/sanika_sdc.jpg"
                 },
                 {
-                  name: "Garima Pandey",
+                  name: "Vaidic Dwivedi",
                   role: "Student Coordinator",
-                  image: "/image/rd/software-incubator/Garima_SDC.jpg"
+                  image: "/image/rd/software-incubator/vaidic_sdc.jpg"
                 },
                 {
-                  name: "Naman Srivastava",
+                  name: "Suhail Ahmad",
                   role: "Student Coordinator",
-                  image: "/image/rd/software-incubator/Naman_SDC.jpg"
+                  image: "/image/rd/software-incubator/suhail_sdc.jpg"
                 }
               ].map((coordinator, index) => (
                 <div key={index} className="text-center">

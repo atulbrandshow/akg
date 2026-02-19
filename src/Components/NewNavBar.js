@@ -1477,11 +1477,12 @@ export default function NewNavBar() {
           <li className="relative group">
             <div className="flex items-center gap-1">
               <Link
-                href="/skills-foundation"
+                href="https://akgec.almaconnect.com/"
                 className={` relative focus:outline-none font-novaBold flex pb-2 items-center gap-1 whitespace-nowrap tracking-widest`}
                 onClick={() => setBigMenuToggle(false)}
+                target="_blank"
               >
-                Skills Foundation
+                Alumni
               </Link>
             </div>
             <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />

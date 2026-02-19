@@ -719,7 +719,7 @@ export const ResearchInnovation = {
       },
       {
         name: "Centres of Excellence",
-        url: "/research/centres-of-excellence",
+        url: "/skills-foundation",
       },
       {
         name: "Visiting Scholars",
@@ -750,14 +750,14 @@ export const ResearchInnovation = {
 };
 
 export const SkillsFoundation = {
-  name: "Skills Foundation",
+  name: "Alumni",
   links: "/skills-foundation",
   sublinks: {
     "Skills Foundation": [
-      {
-        name: "Overview",
-        url: "/skills-foundation",
-      },
+      // {
+      //   name: "Overview",
+      //   url: "/skills-foundation",
+      // },
       {
         name: "Vision & Mission",
         url: "/skills-foundation/vision-and-mission",

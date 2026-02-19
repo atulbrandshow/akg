@@ -46,7 +46,7 @@ const researchCenters = [
     },
     {
         name: "GOOGLE DEVELOPER STUDENTS CLUB",
-        // image: "/image/rd/google.jpg",
+        image: "/image/rd/google.jpg",
         link: "#",
     },
     {

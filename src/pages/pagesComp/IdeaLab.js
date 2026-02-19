@@ -205,9 +205,9 @@ const IdeaLab = () => {
 
                     {/* Faculty Coordinators Section */}
                     <div className="mb-8 rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
-                        <h2 className="mb-8 text-center text-2xl font-bold tracking-tight">
+                        {/* <h2 className="mb-8 text-center text-2xl font-bold tracking-tight">
                             FACULTY COORDINATORS
-                        </h2>
+                        </h2> */}
                         <div className="grid gap-8 md:grid-cols-2">
                             {/* Head IDEA LAB */}
                             <div className="flex flex-col items-center text-center">
@@ -238,6 +238,117 @@ const IdeaLab = () => {
                             </div>
                         </div>
                     </div>
+
+
+                    <div className="mb-8 rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+                        <h2 className="mb-8 text-center text-2xl font-bold tracking-tight">
+                            FACULTY COORDINATORS
+                        </h2>
+                        <div className="grid gap-8 md:grid-cols-3">
+                            {/* Head IDEA LAB */}
+                            <div className="flex flex-col items-center text-center">
+                                <div className="relative mb-4 h-64 w-64 overflow-hidden rounded-lg">
+                                    <Image
+                                        src="/image/rd/Nitin_Idea.jpg"
+                                        alt="Dr. Nitin Sharma"
+                                        fill
+                                        className="object-cover"
+                                    />
+                                </div>
+                                <h3 className="mb-2 text-xl font-semibold">Incubation Manager</h3>
+                                <p className="text-gray-600">Dr. Nitin Sharma</p>
+                            </div>
+
+                            {/* Associate Dean */}
+                            <div className="flex flex-col items-center text-center">
+                                <div className="relative mb-4 h-64 w-64 overflow-hidden rounded-lg">
+                                    <Image
+                                        src="/image/rd/Pankaj_Idea.jpg"
+                                        alt="Dr. Pankaj Goel"
+                                        fill
+                                        className="object-cover"
+                                    />
+                                </div>
+                                <h3 className="mb-2 text-xl font-semibold">IIC Coordinator</h3>
+                                <p className="text-gray-600">Dr. Pankaj Goel</p>
+                            </div>
+
+                            <div className="flex flex-col items-center text-center">
+                                <div className="relative mb-4 h-64 w-64 overflow-hidden rounded-lg">
+                                    <Image
+                                        src="/image/rd/Vishal_Idea.jpg"
+                                        alt="Mr. Vishal Choudhary"
+                                        fill
+                                        className="object-cover"
+                                    />
+                                </div>
+                                <h3 className="mb-2 text-xl font-semibold">IPR Cell Coordinator</h3>
+                                <p className="text-gray-600">Mr. Vishal Choudhary</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    {/* student Coordinators */}
+                    <div className="mb-8 rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+                        <h2 className="mb-8 text-center text-2xl font-bold tracking-tight">
+                            STUDENT COORDINATORS
+                        </h2>
+                        <div className="grid gap-8 md:grid-cols-4">
+                            {/* Head IDEA LAB */}
+                            <div className="flex flex-col items-center text-center">
+                                <div className="relative mb-4 h-64 w-64 overflow-hidden rounded-lg">
+                                    <Image
+                                        src="/image/rd/Kumar_Idea.jpg"
+                                        alt="Kumar Namah"
+                                        fill
+                                        className="object-cover"
+                                    />
+                                </div>
+                                <h3 className="mb-2 text-xl font-semibold">4th year, CSIT</h3>
+                                <p className="text-gray-600">Kumar Namah</p>
+                            </div>
+                            <div className="flex flex-col items-center text-center">
+                                <div className="relative mb-4 h-64 w-64 overflow-hidden rounded-lg">
+                                    <Image
+                                        src="/image/rd/Prithvi_Idea.jpg"
+                                        alt="Prithvi Raj Chauhan"
+                                        fill
+                                        className="object-cover"
+                                    />
+                                </div>
+                                <h3 className="mb-2 text-xl font-semibold">3rd Year, ECE</h3>
+                                <p className="text-gray-600">Prithvi Raj Chauhan</p>
+                            </div>
+                            {/* Associate Dean */}
+                            <div className="flex flex-col items-center text-center">
+                                <div className="relative mb-4 h-64 w-64 overflow-hidden rounded-lg">
+                                    <Image
+                                        src="/image/rd/Palak_Idea.jpg"
+                                        alt="Palak Thapliyal"
+                                        fill
+                                        className="object-cover"
+                                    />
+                                </div>
+                                <h3 className="mb-2 text-xl font-semibold">3rd Year, CSIT</h3>
+                                <p className="text-gray-600">Palak Thapliyal</p>
+                            </div>
+
+                            <div className="flex flex-col items-center text-center">
+                                <div className="relative mb-4 h-64 w-64 overflow-hidden rounded-lg">
+                                    <Image
+                                        src="/image/rd/Manas_Idea.jpg"
+                                        alt="Manas Srivastava"
+                                        fill
+                                        className="object-cover"
+                                    />
+                                </div>
+                                <h3 className="mb-2 text-xl font-semibold">3rd Year, CSE</h3>
+                                <p className="text-gray-600">Manas Srivastava</p>
+                            </div>
+                        </div>
+                    </div>
+
                     <div className="shadow-[rgba(13,_38,_76,_0.19)_0px_0px_10px] rounded-lg">
                         <div className="w-full text-black">
                             {results.map((result, index) => (

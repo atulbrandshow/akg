@@ -257,17 +257,17 @@ const SoftwareIncubator = () => {
                 {
                   name: "Sanika Goyal",
                   role: "Student Coordinator",
-                  image: "/image/rd/software-incubator/sanika_sdc.jpg"
+                  image: "/image/rd/software-incubator/Sanika_SDC.jpg"
                 },
                 {
                   name: "Vaidic Dwivedi",
                   role: "Student Coordinator",
-                  image: "/image/rd/software-incubator/vaidic_sdc.jpg"
+                  image: "/image/rd/software-incubator/Vaidic_SDC.jpg"
                 },
                 {
                   name: "Suhail Ahmad",
                   role: "Student Coordinator",
-                  image: "/image/rd/software-incubator/suhail_sdc.jpg"
+                  image: "/image/rd/software-incubator/Suhail_SDC.jpg"
                 }
               ].map((coordinator, index) => (
                 <div key={index} className="text-center">

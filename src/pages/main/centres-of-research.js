@@ -12,7 +12,7 @@ const researchCenters = [
     {
         name: "AKGEC IDEA LAB",
         image: "/image/rd/IDEA_LAB.png",
-        // link: "/akgec-idea-lab",
+        link: "/akgec-idea-lab",
     },
     {
         name: "CLOUD COMPUTING CELL",

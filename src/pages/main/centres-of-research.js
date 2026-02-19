@@ -12,41 +12,41 @@ const researchCenters = [
     {
         name: "AKGEC IDEA LAB",
         image: "/image/rd/IDEA_LAB.png",
-        link: "/akgec-idea-lab",
+        // link: "/akgec-idea-lab",
     },
     {
         name: "CLOUD COMPUTING CELL",
         image: "/image/rd/cloud.png",
-        link: "/cloud-computing-cell",
+        // link: "/cloud-computing-cell",
     },
     {
         name: "RESEARCH AND INDUSTRIAL CONSULTANCY CENTRE",
         image: "/image/rd/consultancy.png",
-        link: "/research-and-industrial-consultancy-centre",
+        // link: "/research-and-industrial-consultancy-centre",
     },
     {
         name: "BIG DATA CENTER OF EXCELLENCE",
         image: "/image/rd/excellence.png",
-        link: "/big-data-centre-of-excellence",
+        // link: "/big-data-centre-of-excellence",
     },
     {
         name: "OPEN SOURCE SOFTWARE RESEARCH AND DEVELOPMENT (OSSR&DC)",
         image: "/image/rd/source.png",
-        link: "/open-source-software-rd-center",
+        // link: "/open-source-software-rd-center",
     },
     {
         name: "BLOCKCHAIN RESEARCH LAB",
         image: "/image/rd/blockchain.jpeg",
-        link: "/blockchain-research-lab",
+        // link: "/blockchain-research-lab",
     },
     {
         name: "CENTRE OF METAVERSE",
         image: "/image/rd/Metaverse.jpg",
-        link: "/centre-of-metaverse",
+        // link: "/centre-of-metaverse",
     },
     {
         name: "GOOGLE DEVELOPER STUDENTS CLUB",
-        image: "/image/rd/google.jpg",
+        // image: "/image/rd/google.jpg",
         link: "#",
     },
     {

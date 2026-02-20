@@ -8,6 +8,119 @@ import Link from "next/link";
 
 const results = [
   {
+    title: "TechBuzz",
+    desc: (
+      <>
+        <>
+          The Cloud Computing Cell successfully organized an engaging and insightful event, “TechBuzz," which featured Rohit Negi, a renowned YouTuber, tech enthusiast, and industry expert. Rohit Negi is the founder of Coing Army and runs a popular YouTube channel with over 187K subscribers, where he shares valuable insights on technology, career growth, and industry trends. He made headlines in 2021 when he secured the highest package in India from Uber, amounting to ₹2.05 crore, with a base package of ₹96 lakh. The event aimed to inspire students and budding technologists by providing them with first-hand industry knowledge and career guidance. The session witnessed an overwhelming response, with more than 120 attendees eager to gain insights from Rohit Negi’s experiences and expertise.
+        </>
+        <p className="mt-4">Rohit Negi, widely known for his informative content on technology and career growth, captivated the audience with his personal journey in the tech industry. He shared valuable insights into his early struggles, breakthrough moments, and the lessons he learned along the way. He spoke about the rapid advancements in technology, emphasizing the importance of continuous learning and adaptability to stay ahead in the field.</p>
+        <p className="mt-4">During the interactive session, he addressed some of the most pressing questions from the audience, covering topics such as career opportunities in cloud computing, software development, content creation, and emerging technologies. He provided practical advice on navigating the ever-changing tech landscape, emphasizing the need for passion, perseverance, and self-learning.</p>
+        <p className="mt-4">Additionally, he shared tips on building a personal brand, leveraging online platforms for skill development, and networking effectively within the industry. His words resonated with aspiring engineers, motivating them to embrace challenges, stay curious, and pursue their dreams with determination.</p>
+        <p className="mt-4">The event concluded on a high note, leaving participants motivated and better equipped to take charge of their careers. The Cloud Computing Cell looks forward to organizing more such impactful events to continue inspiring students and fostering a strong tech community within the college.</p>
+      </>
+    ),
+    slides: [
+      { title: 'TechBuzz', img: "/image/rd/cloud-computing-cell/TechBuzz_1.jpg" },
+      { title: 'TechBuzz', img: "/image/rd/cloud-computing-cell/TechBuzz_2.jpg" },
+      { title: 'TechBuzz', img: "/image/rd/cloud-computing-cell/TechBuzz_3.jpg" },
+    ]
+  },
+  {
+    title: "Nimbus",
+    desc: (
+      <>
+        <>
+          The Cloud Computing Cell successfully conducted “NIMBUS," a hands-on introductory workshop covering Git & GitHub, Cloud Computing, Python Programming, Docker, and Machine Learning on May 24th and 25th 2024 in the Main Seminar Hall. The workshop was open to 1st-year and 2nd-year students of the college, with a registration fee of ₹150. The response was overwhelming, with 100% attendance on both days.
+        </>
+        <p className="mt-4">The workshop commenced on May 24th 2024 at 10 AM with an inspiring address by Dr. Veena Bharti, who guided the students toward a promising future in the field of technology. The sessions were held from 10 AM to 4 PM on both days, ensuring an immersive learning experience.</p>
+        <h3 className="font-bold mt-4">Workshop Breakdown:
+
+        </h3>
+        <ul className="list-disc list-inside">
+          <li> Day 1:</li>
+          <p>The members of the Cloud Computing Cell introduced participants to Git & GitHub, followed by an insightful session on Cloud Computing. The fundamentals of Python programming were also covered, with hands-on exercises to reinforce learning.
+          </p>
+          <li> Day 2:</li>
+          <p>All queries and doubts related to Python were addressed, ensuring conceptual clarity. The participants were then introduced to Docker, where its applications and real-world use cases were demonstrated in detail.
+            <p className="mt-2">
+              The workshop concluded with a mega quiz, featuring questions based on the topics covered over both days. The top performers of the quiz were given a direct interview opportunity for recruitment into the Cloud Computing Cell in the upcoming semester.
+            </p>
+
+          </p>
+        </ul>
+        <p className="mt-4">With an enthusiastic turnout and an engaging learning environment, NIMBUS proved to be a resounding success. The Cloud Computing Cell looks forward to organizing more such impactful and skill-enhancing workshops in the future.</p>
+      </>
+    ),
+    slides: [
+      { title: 'Nimbus', img: "/image/rd/cloud-computing-cell/Nimbus_1.jpg" },
+      { title: 'Nimbus', img: "/image/rd/cloud-computing-cell/Nimbus_2.jpg" },
+      { title: 'Nimbus', img: "/image/rd/cloud-computing-cell/Nimbus_3.jpg" },
+    ]
+  },
+  {
+    title: "SPOCC 24",
+    desc: (
+      <>
+        <>
+          The Cloud Computing Cell successfully conducted “SPOCC’24," its annual recruitment drive to onboard talented second-year students into the society. The recruitment process was designed to identify and select the best candidates through a structured evaluation.
+        </>
+        <h3 className="font-bold mt-4">Recruitment Process:
+
+        </h3>
+        <ul className="list-disc list-inside">
+          <li> Phase 1 – Coding & Common Test Round:</li>
+          <p>The first phase consisted of a coding and aptitude test, which was conducted in the college labs from 4:30 PM to 6:30 PM. Several students participated in this rigorous assessment, showcasing their problem-solving and technical skills. Based on their performance, the top 90 candidates were shortlisted for the next stage.
+          </p>
+          <li> Phase 2 – Technical Interview:</li>
+          <p>The shortlisted candidates proceeded to the interview round, where they were evaluated on their technical expertise, problem-solving abilities, and passion for technology. The interviews focused on various domains, including Web Development, Cloud Computing, and Machine Learning.
+            <p className="mt-2">
+              After a rigorous selection process, 35 students were chosen as trainees for the Cloud Computing Cell. Out of these, 15 exceptional candidates were selected as permanent members of the society, joining the core team to contribute to future projects, workshops, and initiatives.
+            </p>
+
+          </p>
+        </ul>
+        <p className="mt-4">With SPOCC’24 successfully identifying and recruiting the brightest tech enthusiasts, the Cloud Computing Cell is excited to mentor and work alongside the next generation of innovators.</p>
+      </>
+    ),
+    // slides: [
+    //   { title: 'DevClash', img: "/image/rd/cloud-computing-cell/Dev_1.jpg" },
+    //   { title: 'DevClash', img: "/image/rd/cloud-computing-cell/Dev_2.jpg" },
+    //   { title: 'DevClash', img: "/image/rd/cloud-computing-cell/Dev_3.jpg" },
+    // ]
+  },
+  {
+    title: "DevClash",
+    desc: (
+      <>
+        <>
+          The Cloud Computing Cell, the technical society under the IT Department of Ajay Kumar Garg Engineering College, successfully organized “DevClash," an event designed exclusively for 2nd-year students to showcase their front-end development skills in both web and app development.
+        </>
+        <h3 className="font-bold mt-4">Event Structure:
+
+        </h3>
+        <ul className="list-disc list-inside">
+          <li> Round 1 – Elimination Round:</li>
+          <p>The competition began with an aptitude test consisting of 30 questions, evaluating the participants’ logical reasoning, problem-solving, and fundamental development knowledge. Based on their performance, the top 7 teams from each domain (Web and App Development) advanced to the next round. Each team comprised two members.
+
+          </p>
+          <li> Round 2 – Ideation Round:</li>
+          <p>In the final round, the shortlisted teams were provided with pre-designed web and app UI mockups. Their task was to replicate the given design through coding, demonstrating their proficiency in front-end development, attention to detail, and implementation skills.
+            <br />
+            The event concluded with top-performing teams from both domains being awarded prize money in recognition of their exceptional development skills.
+
+          </p>
+        </ul>
+        <p className="mt-4">With DevClash providing a competitive yet learning-driven environment, the Cloud Computing Cell continues its mission of nurturing talent and fostering technical excellence among students.</p>
+      </>
+    ),
+    slides: [
+      { title: 'DevClash', img: "/image/rd/cloud-computing-cell/Dev_1.jpg" },
+      { title: 'DevClash', img: "/image/rd/cloud-computing-cell/Dev_2.jpg" },
+      { title: 'DevClash', img: "/image/rd/cloud-computing-cell/Dev_3.jpg" },
+    ]
+  },
+  {
     title: "Workshop on “React-ion” 2023",
     desc: (
       <>
@@ -252,6 +365,81 @@ const CloudComputing = () => {
                 height={400}
                 className="w-full h-auto object-cover rounded-lg"
               />
+            </div>
+          </div>
+
+          {/* Faculty Incubator */}
+
+          <div className="mb-8 rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+            <h2 className="mb-8 text-center text-2xl font-bold tracking-tight">
+              FACULTY COORDINATORS
+            </h2>
+            <div className="grid gap-8 md:grid-cols-2">
+              {/* Head IDEA LAB */}
+              <div className="flex flex-col items-center text-center">
+                <div className="relative mb-4 h-64 w-64 overflow-hidden rounded-lg">
+                  <Image
+                    src="/image/rd/cloud-computing-cell/Santosh_CC.png"
+                    alt="Mr. Santosh Kumar Mishra"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <h3 className="mb-2 text-xl font-semibold">Assistant Professor. IT Dept</h3>
+                <p className="text-gray-600">Mr. Santosh Kumar Mishra</p>
+              </div>
+
+              {/* Associate Dean */}
+              <div className="flex flex-col items-center text-center">
+                <div className="relative mb-4 h-64 w-64 overflow-hidden rounded-lg">
+                  <Image
+                    src="/image/rd/cloud-computing-cell/Shikha_CC.jpg"
+                    alt="Ms. Shikha Agarwal"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <h3 className="mb-2 text-xl font-semibold">Assistant Professor. IT Dept</h3>
+                <p className="text-gray-600">Ms. Shikha Agarwal</p>
+              </div>
+            </div>
+          </div>
+
+
+{/* Student Incubator */}
+
+          <div className="mb-8 rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+            <h2 className="mb-8 text-center text-2xl font-bold tracking-tight">
+              STUDENT COORDINATORS
+            </h2>
+            <div className="grid gap-8 md:grid-cols-2">
+              {/* Head IDEA LAB */}
+              <div className="flex flex-col items-center text-center">
+                <div className="relative mb-4 h-64 w-64 overflow-hidden rounded-lg">
+                  <Image
+                    src="/image/rd/cloud-computing-cell/Raghav_CC.jpg"
+                    alt="Raghav Agarwal"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <h3 className="mb-2 text-xl font-semibold">CSE</h3>
+                <p className="text-gray-600">Raghav Agarwal</p>
+              </div>
+
+              {/* Associate Dean */}
+              <div className="flex flex-col items-center text-center">
+                <div className="relative mb-4 h-64 w-64 overflow-hidden rounded-lg">
+                  <Image
+                    src="/image/rd/cloud-computing-cell/Priti_CC.jpg"
+                    alt="Priti Kapoor"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <h3 className="mb-2 text-xl font-semibold">CS</h3>
+                <p className="text-gray-600">Priti Kapoor</p>
+              </div>
             </div>
           </div>
 

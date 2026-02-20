@@ -17,7 +17,7 @@ const researchCenters = [
     {
         name: "CLOUD COMPUTING CELL",
         image: "/image/rd/cloud.png",
-        // link: "/cloud-computing-cell",
+        link: "/cloud-computing-cell",
     },
     {
         name: "RESEARCH AND INDUSTRIAL CONSULTANCY CENTRE",

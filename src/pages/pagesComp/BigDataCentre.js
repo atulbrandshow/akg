@@ -251,6 +251,99 @@ const BigDataCentre = () => {
               </p>
             </div>
           </div>
+
+
+
+          {/* Faculty Incubator */}
+
+          <div className="mb-8 rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+            <h2 className="mb-8 text-center text-2xl font-bold tracking-tight">
+              FACULTY COORDINATORS
+            </h2>
+            <div className="grid gap-8 md:grid-cols-2">
+              {/* Head IDEA LAB */}
+              <div className="flex flex-col items-center text-center">
+                <div className="relative mb-4 h-64 w-64 overflow-hidden rounded-lg">
+                  <Image
+                    src="/image/rd/big-data/BDCoe_Amit.jpg"
+                    alt="Mr. Amit Kumar"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <h3 className="mb-2 text-xl font-semibold">Head Faculty Co-Ordinator</h3>
+                <p className="text-gray-600">Mr. Amit Kumar</p>
+              </div>
+
+              {/* Associate Dean */}
+              <div className="flex flex-col items-center text-center">
+                <div className="relative mb-4 h-64 w-64 overflow-hidden rounded-lg">
+                  <Image
+                    src="/image/rd/big-data/BDCoe_Rupak.jpg"
+                    alt="Mr. Rupak Kumar"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <h3 className="mb-2 text-xl font-semibold">Faculty Co-Ordinator</h3>
+                <p className="text-gray-600">Mr. Rupak Kumar</p>
+              </div>
+            </div>
+          </div>
+
+
+
+          {/* Studennt Coordinators */}
+
+          <div className="mb-8 rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+            <h2 className="mb-8 text-center text-2xl font-bold tracking-tight">
+              STUDENT COORDINATORS
+            </h2>
+            <div className="grid gap-8 md:grid-cols-3">
+              {/* Head IDEA LAB */}
+              <div className="flex flex-col items-center text-center">
+                <div className="relative mb-4 h-64 w-64 overflow-hidden rounded-lg">
+                  <Image
+                    src="/image/rd/big-data/BDCoe_Apurv.jpg"
+                    alt="Apurv B Raj"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <h3 className="mb-2 text-xl font-semibold">Head Student Coordinator</h3>
+                <p className="text-gray-600">Apurv B Raj</p>
+              </div>
+               <div className="flex flex-col items-center text-center">
+                <div className="relative mb-4 h-64 w-64 overflow-hidden rounded-lg">
+                  <Image
+                    src="/image/rd/big-data/BDCoe_Ananya.jpg"
+                    alt="Ananya Dixit"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <h3 className="mb-2 text-xl font-semibold">Student Coordinator</h3>
+                <p className="text-gray-600">Ananya Dixit</p>
+              </div>
+
+              {/* Associate Dean */}
+              <div className="flex flex-col items-center text-center">
+                <div className="relative mb-4 h-64 w-64 overflow-hidden rounded-lg">
+                  <Image
+                    src="/image/rd/big-data/BDCoe_Mohit.jpg"
+                    alt="Mohit Singh"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <h3 className="mb-2 text-xl font-semibold">Student Coordinator</h3>
+                <p className="text-gray-600">Mohit Singh</p>
+              </div>
+            </div>
+          </div>
+
+
+
           <div className="mb-8">
             <h2 className="text-2xl font-semibold text-center mb-4">Year wise Sessional Reports</h2>
             <div className="flex flex-wrap justify-center gap-4">

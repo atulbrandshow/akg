@@ -27,7 +27,7 @@ const researchCenters = [
     {
         name: "BIG DATA CENTER OF EXCELLENCE",
         image: "/image/rd/excellence.png",
-        // link: "/big-data-centre-of-excellence",
+        link: "/big-data-centre-of-excellence",
     },
     {
         name: "OPEN SOURCE SOFTWARE RESEARCH AND DEVELOPMENT (OSSR&DC)",

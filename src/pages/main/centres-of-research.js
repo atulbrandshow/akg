@@ -22,7 +22,7 @@ const researchCenters = [
     {
         name: "RESEARCH AND INDUSTRIAL CONSULTANCY CENTRE",
         image: "/image/rd/consultancy.png",
-        // link: "/research-and-industrial-consultancy-centre",
+        link: "/research-and-industrial-consultancy-centre",
     },
     {
         name: "BIG DATA CENTER OF EXCELLENCE",

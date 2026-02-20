@@ -4,7 +4,9 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const CoreValue = () => {
   const containerRef = useRef(null);
@@ -15,7 +17,7 @@ const CoreValue = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Initial animation on scroll
-      gsap.fromTo(titleRef.current, 
+      gsap.fromTo(titleRef.current,
         { y: 80, opacity: 0, scale: 0.8 },
         {
           y: 0,
@@ -162,7 +164,7 @@ const CoreValue = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-blue-50/30 to-gray-200"></div>
         <div className="absolute inset-0 bg-gradient-to-tr from-yellow-50/20 via-transparent to-blue-50/20"></div>
       </div>
-      
+
       {/* Layer 2: SVG Wave Patterns */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 w-full h-64 opacity-[0.15]">
@@ -176,7 +178,7 @@ const CoreValue = () => {
             </defs>
           </svg>
         </div>
-        
+
         <div className="absolute bottom-0 right-0 w-full h-48 opacity-[0.12]">
           <svg viewBox="0 0 1200 200" className="w-full h-full">
             <path d="M1200,100 C900,150 600,50 300,120 C150,160 50,80 0,100 L0,200 L1200,200 Z" fill="url(#gradient2)" />
@@ -189,39 +191,39 @@ const CoreValue = () => {
           </svg>
         </div>
       </div>
-      
+
       {/* Layer 3: Logo Watermarks */}
       <div className="absolute inset-0">
         <div className="absolute top-20 right-20 w-32 h-32 opacity-[0.20] rotate-12">
           <img src="/image/akgec-logo.svg" alt="" className="w-full h-full object-contain" />
         </div>
-        
+
         <div className="absolute bottom-24 left-16 w-24 h-24 opacity-[0.18] -rotate-6">
           <img src="/image/akgec-logo.svg" alt="" className="w-full h-full object-contain" />
         </div>
-        
+
         <div className="absolute top-1/4 left-8 w-20 h-20 opacity-[0.15] rotate-45">
           <img src="/image/akgec-logo.svg" alt="" className="w-full h-full object-contain" />
         </div>
-        
+
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 opacity-[0.08]">
           <img src="/image/akgec-logo.svg" alt="" className="w-full h-full object-contain" />
         </div>
       </div>
-      
+
       {/* Layer 4: Geometric Patterns */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-radial from-primary/15 via-primary/8 to-transparent rounded-full"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-radial from-secondary/18 via-secondary/10 to-transparent rounded-full"></div>
         <div className="absolute top-1/2 right-1/4 w-48 h-48 bg-gradient-radial from-primary/10 via-primary/5 to-transparent rounded-full"></div>
       </div>
-      
+
       {/* Layer 5: Subtle Overlay */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-white/20 to-transparent"></div>
         <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white/10 to-transparent"></div>
       </div>
-      
+
       {/* Content Container */}
       <div className="relative z-10 max-w-7xl mx-auto px-4">
         {/* Section Title */}
@@ -234,7 +236,7 @@ const CoreValue = () => {
             The Core Values of the University are as follows:
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-sm:gap-2">
           <div ref={el => cardsRef.current[0] = el} className="bg-HumanDignity bg-[#3b210c] text-white p-10 max-sm:p-2 flex items-center gap-5 bg-center bg-cover bg-blend-overlay min-h-52 max-sm:min-h-48 cursor-pointer transition-shadow duration-300 hover:shadow-2xl">
             <img

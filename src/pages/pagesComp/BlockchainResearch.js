@@ -321,7 +321,7 @@ const BlockchainResearch = () => {
                 </div>
 
                 {/* UI/UX Designing */}
-                <div className="text-center space-y-4 lg:col-start-2">
+                <div className="text-center space-y-4 lg:col-end-2">
                   <div className="w-16 h-16 mx-auto text-[#3B82F6]">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <circle cx="12" cy="12" r="10" />

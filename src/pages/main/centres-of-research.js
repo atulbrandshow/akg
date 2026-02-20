@@ -37,7 +37,7 @@ const researchCenters = [
     {
         name: "BLOCKCHAIN RESEARCH LAB",
         image: "/image/rd/blockchain.jpeg",
-        // link: "/blockchain-research-lab",
+        link: "/blockchain-research-lab",
     },
     {
         name: "CENTRE OF METAVERSE",

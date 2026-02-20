@@ -97,7 +97,7 @@ const OpenSourceSoftware = () => {
             </div>
             <div className="relative h-[300px] md:h-auto">
               <Image
-                src="/image/rd/open-source/open-source.jpg"
+                src="/image/rd/open-source/OSS_1.jpg"
                 alt="Group photo of the research center members"
                 fill
                 className="object-cover rounded-lg"

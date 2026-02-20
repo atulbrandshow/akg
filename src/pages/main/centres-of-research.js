@@ -32,7 +32,7 @@ const researchCenters = [
     {
         name: "OPEN SOURCE SOFTWARE RESEARCH AND DEVELOPMENT (OSSR&DC)",
         image: "/image/rd/source.png",
-        // link: "/open-source-software-rd-center",
+        link: "/open-source-software-rd-center",
     },
     {
         name: "BLOCKCHAIN RESEARCH LAB",

@@ -1,6 +1,127 @@
 import Image from "next/image";
+import { useState } from "react";
+import { ChevronDown, ChevronUp } from "lucide-react";
+import CubeSlider from "@/Components/CubeSlider";
+
+const results = [
+  {
+    title: "METAHUNT - Recruitment Drive",
+    desc: (
+      <>
+      <ul style={{listStyleType: "disc"}} className="ml-4">
+        <li>Date: September 22, 2024</li>
+        <li>Rounds: Concept Submission → Prototype Development → Final Presentations</li>
+        <li>Objective: Identify top AR/VR developers & 3D designers for the Centre of Metaverse</li>
+        <li>Outcome: Selection of the most promising individuals for future projects</li>
+      </ul>
+      <p className="mt-4">METAHUNT was a highly competitive recruitment event designed to identify the most talented AR/VR developers and 3D designers among AKGEC students. The event comprised multiple rounds, starting with concept submissions, followed by prototype development, and concluding with final presentations evaluated by expert mentors. Participants showcased their skills in immersive technology development, and the most promising individuals were selected to join the Centre of Metaverse. The event provided a platform for aspiring technologists to demonstrate their creativity and problem-solving abilities.</p>
+      </>
+    ),
+    // slides: [
+    //   { title: 'Blockchain', img: "/image/rd/blockchain/Blockchain_1.jpg" },
+    //   { title: 'Blockchain', img: "/image/rd/blockchain/Blockchain_2.jpg" },
+    //   { title: 'Blockchain', img: "/image/rd/blockchain/Blockchain_3.jpg" },
+    //   { title: 'Blockchain', img: "/image/rd/blockchain/Blockchain_4.jpg" },
+    //   { title: 'Blockchain', img: "/image/rd/blockchain/Blockchain_5.jpg" },
+    //   { title: 'Blockchain', img: "/image/rd/blockchain/Blockchain_6.jpg" },
+    //   { title: 'Blockchain', img: "/image/rd/blockchain/Blockchain_7.jpg" },
+    // ]
+  },
+  {
+    title: "ORION - AR Hunt Competition",
+    desc: (
+      <>
+      <ul style={{listStyleType: "disc"}} className="ml-4">
+        <li>Date: December 8, 2024</li>
+        <li>Speaker: Chhavi Garg (Immersive Tech Expert)</li>
+        <li>Event Segments: Expert Session → AR Hunt Competition → Awards Ceremony</li>
+        <li>Prize Pool: ₹3,000 for top performers</li>
+      </ul>
+        The day team BRL meets to commemorate our founders PRAKHAR AGARWAL, SHAKTI JAISWAL & SHUBH SINGHAL who have bequeathed resources to its development. It’s been a long way since establishment, and we are enthused to see the place BRL has achieved so far through manifesting both compassion and hard work together. <br /> <br />
+        <div className="grid grid-cols-3 gap-3">
+          <div className="col-span-1">
+            <img src="/image/rd/blockchain/brl7.png" alt="Blockchain" />
+          </div>
+          <div className="col-span-2">
+            <img src="/image/rd/blockchain/brl8.png" alt="Blockchain" />
+          </div>
+        </div>
+      </>
+    ),
+  },
+  {
+    title: "RELOAD",
+    desc: (
+      <>
+        Blockchain Research Lab conducts a recruitment drive to recruit second year students. The event takes place in two parts – a test followed by a personal interview round with a motive of putting the participants’ analytical and logical skills to test.
+      </>
+    ),
+    slides: [
+      { title: 'Blockchain', img: "/image/rd/blockchain/brl9.png" },
+      { title: 'Blockchain', img: "/image/rd/blockchain/brl10.png" },
+      { title: 'Blockchain', img: "/image/rd/blockchain/brl11.png" },
+    ]
+  },
+  {
+    title: "HASHEZ",
+    desc: (
+      <div className="grid grid-cols-2 gap-5">
+        <p>Blockchain Research Lab in collaboration with DLT LABS organises an interactive online workshop “Hashez" every year. This inter college session covers basics of Blockchain technology and Smart Contracts to advance with hands-on experience on DL Unify by industry experts. A verified certificate and exciting prizes are awarded to the winners and participants.</p>
+        <img src="/image/rd/blockchain/brl12.png" alt="Blockchain" />
+      </div>
+    ),
+  },
+  {
+    title: "BLOCKVERSE",
+    desc: (
+      <>
+        It is the team's most exciting event which is usually conducted for first & second year students. It comprises two phases: first one being the project building round followed by a rejuvenating treasure hunt game, CryptHunt, where the participants had to brainstorm over the hints and solve the riddles within the specified time limit. Exciting cash prizes, goodies and certificates are awarded to the winners. <br />
+        <div className="grid grid-cols-2 gap-3">
+          <img src="/image/rd/blockchain/brl13.png" alt="Blockchain" />
+          <img src="/image/rd/blockchain/brl14.png" alt="Blockchain" />
+        </div>
+      </>
+    ),
+  },
+  {
+    title: "TECHNIVAL",
+    desc: (
+      <>
+        It is a multi-branch unique event that incorporates two stages: TECHNOPIAD, a technical Olympiad to brainstorm over critical engineering and computational problems followed by BIDBUZZ, a fun-filled yet enthralling auction experience poured with problem-solving where teams battle while individuals learned. <br />
+        <div className="grid grid-cols-2 gap-3">
+          <img src="/image/rd/blockchain/brl15.png" alt="Blockchain" />
+          <img src="/image/rd/blockchain/brl16.png" alt="Blockchain" />
+        </div>
+      </>
+    ),
+  },
+  {
+    title: "EXCLUSIVE INTERACTIVE SESSIONS",
+    desc: (
+      <>
+        The society organises regular webinars for the students to interact with entrepreneurs and tech masters. One among them was a most awaited session with the founder of GeeksForGeeks by Sandeep Jain Sir. It was an enlightening conclave, wherein Sir shared his experiences as an engineering student and took all the participants on the ride of his entrepreneurial journey in establishing GeeksforGeeks. He also addressed numerous queries of the inquisitive students.
+        <div className="grid grid-cols-2 gap-3">
+          <img src="/image/rd/blockchain/brl17.png" alt="Blockchain" />
+          <img src="/image/rd/blockchain/brl18.png" alt="Blockchain" />
+        </div>
+      </>
+    ),
+  },
+];
+
 
 const CentreOfMetaverse = () => {
+  const [openIndices, setOpenIndices] = useState([]);
+
+  const toggleDomain = (index) => {
+    setOpenIndices((prev) => {
+      if (prev.includes(index)) {
+        return []
+      } else {
+        return [index];
+      }
+    });
+  };
 
   return (
     <>
@@ -169,7 +290,7 @@ const CentreOfMetaverse = () => {
         </div>
         <div className="max-w-7xl mx-auto px-4 py-8">
           <h1 className="text-center text-2xl font-semibold mb-12">FACULTY COORDINATORS:</h1>
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
             <div className="flex flex-col items-center">
               <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-xs flex flex-col justify-center items-center">
                 <Image
@@ -197,6 +318,21 @@ const CentreOfMetaverse = () => {
                 <div className="text-center">
                   <h2 className="text-xl font-medium mb-2">(Faculty Coordinator)</h2>
                   <p className="text-gray-600">Mr. Pancham Singh</p>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-xs flex flex-col justify-center items-center">
+                <Image
+                  src="/image/rd/metaverse/Pankaj_Metaverse.jpg"
+                  alt="Faculty head"
+                  width={400}
+                  height={300}
+                  className="h-72 object-cover object-top mb-4 rounded-lg"
+                />
+                <div className="text-center">
+                  <h2 className="text-xl font-medium mb-2">(Faculty Coordinator)</h2>
+                  <p className="text-gray-600">Mr. Pankaj Singh</p>
                 </div>
               </div>
             </div>
@@ -231,6 +367,36 @@ const CentreOfMetaverse = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        <h2 className="text-2xl text-center py-10 font-novaSemi">ACTIVITIES AND EVENTS</h2>
+        <div className="max-w-7xl mx-auto shadow-[rgba(13,_38,_76,_0.19)_0px_0px_10px] rounded-lg">
+          <div className="w-full text-black">
+            {results.map((result, index) => (
+              <div key={index} className="border-b border-gray-300">
+                <a
+                  onClick={() => toggleDomain(index)}
+                  className={`flex justify-between items-center w-full px-5 ${openIndices.includes(index) ? 'text-white bg-indigo-950' : 'text-black'} py-6 cursor-pointer rounded-lg transition-colors duration-200 hover:bg-indigo-900 hover:text-white`}
+                >
+                  <span className={`font-semibold`}>
+                    {result.title}
+                  </span>
+                  {openIndices.includes(index) ? (
+                    <ChevronUp className="w-6 h-6" />
+                  ) : (
+                    <ChevronDown className="w-6 h-6" />
+                  )}
+                </a>
+                {openIndices.includes(index) && (
+                  <div className="pl-5 flex justify-around items-start py-10 bg-gray-200">
+                    <p className={`font-novaReg mb-4 ${result.slides && "max-w-3xl"}`}>{result.desc}</p>
+                    {/* You can render images as needed */}
+                    {result.slides && <CubeSlider slides={result.slides} />}
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </section>

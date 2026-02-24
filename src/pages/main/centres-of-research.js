@@ -42,7 +42,7 @@ const researchCenters = [
     {
         name: "CENTRE OF METAVERSE",
         image: "/image/rd/Metaverse.jpg",
-        // link: "/centre-of-metaverse",
+        link: "/centre-of-metaverse",
     },
     {
         name: "GOOGLE DEVELOPER STUDENTS CLUB",

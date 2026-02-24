@@ -47,17 +47,17 @@ const researchCenters = [
     {
         name: "GOOGLE DEVELOPER STUDENTS CLUB",
         image: "/image/rd/google.jpg",
-        link: "#",
+        link: "/google-developer-students-club",
     },
     {
         name: "MACHINE LEARNING CENTRE OF EXCELLENCE",
         image: "/image/rd/machine.jpg",
-        link: "#",
+        link: "/machine-learning-centre-of-excellence",
     },
     {
         name: "PROGRAMMING CLUB",
         image: "/image/rd/programing-club.jpg",
-        link: "#",
+        link: "/programming-club",
     },
 ];
 

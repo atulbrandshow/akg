@@ -79,7 +79,7 @@ const ProgrammingClub = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-lg border border-gray-100">
                     <Image
-                        src="/image/rd/programing-club.jpg"
+                        src="/image/rd/programming-club/PC25_1.jpg"
                         alt="Programming Club Group Photo 1"
                         fill
                         className="object-cover"
@@ -87,7 +87,7 @@ const ProgrammingClub = () => {
                 </div>
                 <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-lg border border-gray-100">
                     <Image
-                        src="/image/rd/open-source/open-source.jpg" // Using an available high-quality group photo as a second match
+                        src="/image/rd/programming-club/PC25_2.jpg" // Using an available high-quality group photo as a second match
                         alt="Programming Club Group Photo 2"
                         fill
                         className="object-cover"

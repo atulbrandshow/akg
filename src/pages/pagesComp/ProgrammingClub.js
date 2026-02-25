@@ -7,13 +7,13 @@ const ProgrammingClub = () => {
     const eventsByYear = [
         {
             year: "2024-25",
-            events: [{ name: "Code Crunch", date: "09 December, 2024", report: "#" }],
+            events: [{ name: "Code Crunch", date: "09 December, 2024", report: "/pdf/rd/programming-club/code-crunch-contest.pdf", target: "_blank" }],
         },
         {
             year: "2023-24",
             events: [
-                { name: "#include 3.0", date: "16-17 April 2024", report: "#" },
-                { name: "Code Crunch", date: "13 December, 2023", report: "#" },
+                { name: "#include 3.0", date: "16-17 April 2024", report: "/pdf/rd/programming-club/workshop-on-cp-and-dsa.pdf", target: "_blank" },
+                { name: "Code Crunch", date: "13 December, 2023", report: "/pdf/rd/programming-club/coding-contest-codecrunch.pdf", target: "_blank" },
             ],
         },
         {
@@ -115,7 +115,7 @@ const ProgrammingClub = () => {
                                             <td className="px-6 py-4 text-sm font-medium text-gray-700">{event.name}</td>
                                             <td className="px-6 py-4 text-sm whitespace-nowrap">{event.date}</td>
                                             <td className="px-6 py-4 text-sm">
-                                                <a href={event.report} className="text-blue-600 hover:text-blue-800 font-medium">
+                                                <a href={event.report} target={event.target || "_blank"} rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 font-medium">
                                                     View
                                                 </a>
                                             </td>

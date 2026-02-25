@@ -12,7 +12,7 @@ const facultyCoordinators = [
     {
         role: "FACULTY CO-ORDINATOR",
         name: "Mr. Birendra Kumar",
-        img: "/image/rd/Kumar_Idea.jpg", // Using Kumar_Idea.jpg as a match for Birendra Kumar
+        img: "/image/rd/Birendra_IT.jpg", // Using Kumar_Idea.jpg as a match for Birendra Kumar
     },
 ];
 
@@ -20,22 +20,22 @@ const studentCoordinators = [
     {
         role: "ORGANIZER",
         name: "Shreya Pal",
-        img: "/image/rd/Idea_Lab_Logo.jpg", // Placeholder - exact not found
+        img: "/image/rd/Shreya_google.jpg", // Placeholder - exact not found
     },
     {
         role: "CO-ORGANIZER",
         name: "Ananya Jain",
-        img: "/image/rd/big-data/BDCoe_Ananya.jpg", // Found in search
+        img: "/image/rd/ananya_google.jpg", // Found in search
     },
     {
         role: "CO-ORGANIZER",
         name: "Sankalp Jha",
-        img: "/image/rd/Idea_Lab_Logo.jpg", // Placeholder - exact not found
+        img: "/image/rd/sankalp_google.jpg", // Placeholder - exact not found
     },
     {
         role: "CO-ORGANIZER",
         name: "Abhishek Kumar",
-        img: "/image/testimonials/Abhishek_mishra.jpg", // Found in search
+        img: "/image/rd/abshishek_google.jpg", // Found in search
     },
 ];
 
@@ -43,20 +43,72 @@ const activities = [
     {
         title: "Build with AI",
         session: "Session 2024 – 2025(ODD)",
-        img: "/image/rd/google.jpg", // Using google.jpg as a placeholder for the poster
+        img: "/image/rd/programming-club/GoogleAI.jpg", // Using google.jpg as a placeholder for the poster
         isOpen: true,
     },
     {
         title: "Tech Winter Break",
-        session: "",
+        session: "Session 2024 – 2025(ODD)",
+        img: "/image/rd/programming-club/GoogleTech.jpg", // Using google.jpg as a placeholder for the poster
         isOpen: false,
     },
     {
         title: "Google Solution Challenge 2025",
-        session: "",
+        session: "Session 2024 – 2025(ODD)",
+        img: "/image/rd/programming-club/GoogleChallenge.jpg", // Using google.jpg as a placeholder for the poster
+        isOpen: false,
+    },
+
+];
+
+const activities2 = [
+    {
+        title: "ML Study Jams",
+        session: "Session 2023 – 2024(EVEN)",
+        img: "/image/rd/programming-club/GoogleJams.jpg", // Using google.jpg as a placeholder for the poster
+        isOpen: false,
+    },
+    {
+        title: "Web Weave",
+        session: "Session 2023 – 2024(EVEN)",
+        img: "/image/rd/programming-club/GoogleWeave.jpg", // Using google.jpg as a placeholder for the poster
+        isOpen: false,
+    },
+    {
+        title: "Tensor Flow Power Up",
+        session: "Session 2024 – 2025(ODD)",
+        img: "/image/rd/programming-club/GoogleTensorFlow.jpg", // Using google.jpg as a placeholder for the poster
         isOpen: false,
     },
 ];
+
+const activities3 = [
+    {
+        title: "Google Solution Challenge 2023",
+        session: "Session 2023 – 2024(EVEN)",
+        img: "/image/rd/programming-club/GoogleSol.jpg", // Using google.jpg as a placeholder for the poster
+        isOpen: false,
+    },
+    {
+        title: "Flutter Forward Extended",
+        session: "Session 2023 – 2024(EVEN)",
+        img: "/image/rd/programming-club/GoogleFlutter.jpg", // Using google.jpg as a placeholder for the poster
+        isOpen: false,
+    },
+    {
+        title: "GDSC WoW",
+        session: "Session 2024 – 2025(ODD)",
+        img: "/image/rd/programming-club/GoogleGDSC.jpg", // Using google.jpg as a placeholder for the poster
+        isOpen: false,
+    },
+    {
+        title: "Week of Learning",
+        session: "Session 2024 – 2025(ODD)",
+        img: "/image/rd/programming-club/GoogleWeek.jpg", // Using google.jpg as a placeholder for the poster
+        isOpen: false,
+    },
+];
+
 
 const GoogleDeveloperStudentsClub = () => {
     const [openIndex, setOpenIndex] = useState(0);
@@ -74,12 +126,12 @@ const GoogleDeveloperStudentsClub = () => {
                     {facultyCoordinators.map((coord, index) => (
                         <div key={index} className="flex justify-center">
                             <div className="bg-white shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-lg p-6 w-full max-w-sm flex flex-col items-center border border-gray-100">
-                                <div className="w-full h-80 relative mb-6 overflow-hidden rounded-lg">
+                                <div className="w-64 h-64 relative mb-6 overflow-hidden rounded-lg">
                                     <Image
                                         src={coord.img}
                                         alt={coord.name}
                                         fill
-                                        className="object-cover object-top"
+                                        className="object-fit object-top"
                                     />
                                 </div>
                                 <div className="text-center space-y-2">
@@ -99,12 +151,12 @@ const GoogleDeveloperStudentsClub = () => {
                     {studentCoordinators.map((coord, index) => (
                         <div key={index} className="flex justify-center">
                             <div className="bg-white shadow-[0_8px_30px_rgb(0,0,0,0.08)] rounded-lg p-5 w-full max-w-xs flex flex-col items-center border border-gray-50">
-                                <div className="w-full h-56 relative mb-5 overflow-hidden rounded-lg">
+                                <div className="w-64 h-64 relative mb-5 overflow-hidden rounded-lg">
                                     <Image
                                         src={coord.img}
                                         alt={coord.name}
                                         fill
-                                        className="object-cover object-top"
+                                        className="object-fit object-top"
                                     />
                                 </div>
                                 <div className="text-center space-y-1">
@@ -140,12 +192,12 @@ const GoogleDeveloperStudentsClub = () => {
                             </button>
                             {openIndex === index && (
                                 <div className="p-8 bg-gray-50 flex justify-center">
-                                    <div className="relative w-full max-w-lg aspect-square shadow-2xl rounded-lg overflow-hidden border-8 border-white">
+                                    <div className="relative w-52 h-52 max-w-lg aspect-square shadow-2xl rounded-lg overflow-hidden border-2 border-white">
                                         <Image
                                             src={activity.img || "/image/rd/google.jpg"}
                                             alt={activity.title}
                                             fill
-                                            className="object-cover"
+                                            className="object-fit"
                                         />
                                     </div>
                                 </div>
@@ -158,11 +210,11 @@ const GoogleDeveloperStudentsClub = () => {
             <div className="space-y-8">
                 <div className="space-y-2">
                     {/* <h2 className="text-2xl font-bold text-gray-800 tracking-tight">Recent Activities</h2> */}
-                    <p className="text-gray-600 font-medium">Session 2024 – 2025(ODD)</p>
+                    <p className="text-gray-600 font-medium">Session 2023 – 2024(EVEN)</p>
                 </div>
 
                 <div className="space-y-4">
-                    {activities.map((activity, index) => (
+                    {activities2.map((activity, index) => (
                         <div key={index} className="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
                             <button
                                 onClick={() => toggleAccordion(index)}
@@ -177,12 +229,12 @@ const GoogleDeveloperStudentsClub = () => {
                             </button>
                             {openIndex === index && (
                                 <div className="p-8 bg-gray-50 flex justify-center">
-                                    <div className="relative w-full max-w-lg aspect-square shadow-2xl rounded-lg overflow-hidden border-8 border-white">
+                                    <div className="relative w-52 h-52 max-w-lg aspect-square shadow-2xl rounded-lg overflow-hidden border-2 border-white">
                                         <Image
                                             src={activity.img || "/image/rd/google.jpg"}
                                             alt={activity.title}
                                             fill
-                                            className="object-cover"
+                                            className="object-fit"
                                         />
                                     </div>
                                 </div>
@@ -195,11 +247,11 @@ const GoogleDeveloperStudentsClub = () => {
             <div className="space-y-8">
                 <div className="space-y-2">
                     {/* <h2 className="text-2xl font-bold text-gray-800 tracking-tight">Recent Activities</h2> */}
-                    <p className="text-gray-600 font-medium">Session 2024 – 2025(ODD)</p>
+                    <p className="text-gray-600 font-medium">Session 2023 – 2024(ODD)</p>
                 </div>
 
                 <div className="space-y-4">
-                    {activities.map((activity, index) => (
+                    {activities3.map((activity, index) => (
                         <div key={index} className="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
                             <button
                                 onClick={() => toggleAccordion(index)}
@@ -214,12 +266,12 @@ const GoogleDeveloperStudentsClub = () => {
                             </button>
                             {openIndex === index && (
                                 <div className="p-8 bg-gray-50 flex justify-center">
-                                    <div className="relative w-full max-w-lg aspect-square shadow-2xl rounded-lg overflow-hidden border-8 border-white">
+                                    <div className="relative w-52 h-52 max-w-lg aspect-square shadow-2xl rounded-lg overflow-hidden border-2 border-white">
                                         <Image
                                             src={activity.img || "/image/rd/google.jpg"}
                                             alt={activity.title}
                                             fill
-                                            className="object-cover"
+                                            className="object-fit"
                                         />
                                     </div>
                                 </div>

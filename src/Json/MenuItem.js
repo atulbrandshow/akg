@@ -313,8 +313,8 @@ export const Programs = {
           name: "B.Tech in Civil Engineering",
           url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-civil-engineering",
           Specializations: [
-            { name: "Environment Engineering", url: "/specialization-details?spec=environment-engineering" },
-            { name: "Structural Engineering", url: "/specialization-details?spec=structural-engineering" }
+            { name: "Environment Engineering", url: "/school-of-engineering-and-technology/environmental-engineering" },
+            { name: "Structural Engineering", url: "/school-of-engineering-and-technology/btech-civil-engineering-structural-engineering" }
           ],
         },
       ],

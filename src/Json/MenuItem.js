@@ -342,8 +342,8 @@ export const Programs = {
             name: "M.Tech in Electrical & Electronics Engineering",
             url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-electrical-electronics-engineering",
             Specializations: [
-              { name: "Electric Vehicle", url: "/specialization-details?spec=electric-vehicle" },
-              { name: "Artificial Intelligence", url: "/specialization-details?spec=artificial-intelligence" }
+              { name: "Electric Vehicle", url: "/school-of-engineering-and-technology/mtech-eee-electric-vehicle" },
+              { name: "Artificial Intelligence", url: "/school-of-engineering-and-technology/mtech-eee-artificial-intelligence" }
             ],
           },
           {
@@ -382,10 +382,10 @@ export const Programs = {
             name: "BCA",
             url: "#",
             Specializations: [
-              { name: "AI-ML", url: "/specialization-details?spec=ai-ml" },
-              { name: "Data Science", url: "/specialization-details?spec=data-science" },
-              { name: "Cyber Security", url: "/specialization-details?spec=cyber-security" },
-              { name: "Artificial Intelligence", url: "/specialization-details?spec=artificial-intelligence" }
+              { name: "AI-ML", url: "/department-of-computer-science-engineering/bca-ai-ml" },
+              { name: "Data Science", url: "/department-of-computer-science-engineering/bca-data-science" },
+              { name: "Cyber Security", url: "/department-of-computer-science-engineering/bca-cyber-security" },
+              { name: "Artificial Intelligence", url: "/department-of-computer-science-engineering/bca-artificial-intelligence" }
             ],
           },
         ],

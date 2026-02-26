@@ -23,17 +23,20 @@ const MachineLearningCoE = () => {
         {
             date: "27-28 April 2024",
             name: "Beyond The Binary",
-            report: "#",
+            report: "/pdf/rd/machine-learning-center-of-excellence/beyond-the-binary.pdf",
+            target: "_blank",
         },
         {
             date: "10 April 2024",
             name: 'Workshop on "Cloud AWS"',
-            report: "#",
+            report: "/pdf/rd/machine-learning-center-of-excellence/workshop-on-cloud-aws.pdf",
+            target: "_blank",
         },
         {
             date: "27 September, 2023",
             name: 'Workshop on "Unleashing the Power of AI: Trends and Applications"',
-            report: "#",
+            report: "/pdf/rd/machine-learning-center-of-excellence/workshop-on-unleashing-the-power-ai.pdf",
+            target: "_blank",
         },
     ];
 

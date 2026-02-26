@@ -1406,27 +1406,27 @@ export default function NewNavBar() {
                       <div className="relative z-10 p-6 text-white">
                         <div className="grid grid-cols-2 gap-4 mt-3">
                           <div className="bg-indigo-950 w-36 px-10 py-4 rounded-md flex flex-col items-center text-center">
-                            <h3 className="text-3xl font-novaBold">19K+</h3>
+                            {/* <h3 className="text-3xl font-novaBold">19K+</h3> */}
                             <p className="text-xs font-novaLight">
-                              Students Graduated
+                              Research Excellence
                             </p>
                           </div>
                           <div className="bg-indigo-950 w-36 px-5 py-4 rounded-md flex flex-col items-center text-center">
-                            <h3 className="text-3xl font-novaBold">8</h3>
+                            {/* <h3 className="text-3xl font-novaBold">8</h3> */}
                             <p className="text-xs font-novaLight">
-                              Departmental Research Groups
+                             Innovation & Entrepreneurship
                             </p>
                           </div>
                           <div className="bg-indigo-950 w-36 px-5 py-4 rounded-md flex flex-col items-center text-center">
-                            <h3 className="text-3xl font-novaBold">213</h3>
+                            {/* <h3 className="text-3xl font-novaBold">213</h3> */}
                             <p className="text-xs font-novaLight">
-                              Students in Univ. Merit List
+                              Industry Collaboration
                             </p>
                           </div>
                           <div className="bg-indigo-950 w-36 px-5 py-4 rounded-md flex flex-col items-center text-center">
-                            <h3 className="text-3xl font-novaBold">2000+</h3>
+                            {/* <h3 className="text-3xl font-novaBold">2000+</h3> */}
                             <p className="text-xs font-novaLight">
-                              Students Placed (2021-22)
+                              Interdisciplinary & Collaborative Research
                             </p>
                           </div>
                         </div>
@@ -1458,7 +1458,7 @@ export default function NewNavBar() {
                         setBigMenuToggle={setBigMenuToggle}
                       />
                     </div>
-                    <div className={`w-52 pr-2 ${BigMenuToggle && "w-full"}`}>
+                    {/* <div className={`w-52 pr-2 ${BigMenuToggle && "w-full"}`}>
                       <LinksList
                         title="Sustainable Development Goals (SDG's)"
                         links={
@@ -1468,7 +1468,7 @@ export default function NewNavBar() {
                         }
                         setBigMenuToggle={setBigMenuToggle}
                       />
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>

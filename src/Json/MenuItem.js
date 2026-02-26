@@ -104,15 +104,19 @@ export const Academics = {
   sublinks: {
     Schools: [
       {
-        name: "School of Computer Science Engineering & Technology",
+        name: "School of Computer Science",
         url: "/school-of-computer-science-engineering-and-technology",
       },
       {
         name: "School of Engineering & Technology",
         url: "/school-of-engineering-and-technology",
       },
+       {
+        name: "School of Computing",
+        url: "/department-of-computer-science-engineering",
+      },
       {
-        name: "School of Business Studies",
+        name: "School of Management",
         url: "/school-of-business-studies",
       },
     ],
@@ -121,6 +125,10 @@ export const Academics = {
       //     name: 'Exam Results',
       //     url: '/academics/exam-results'
       // },
+      {
+        name: "Academic Overview",
+        url: "/academics/academic-overview",
+      },
       {
         name: "Examination Schedule",
         url: "/academics/examination-schedule",
@@ -137,22 +145,22 @@ export const Academics = {
         name: "Academic Calendar",
         url: "/academics/academic-calendar",
       },
-      {
-        name: "System of Evaluation",
-        url: "/academics/system-of-evaluation",
-      },
+      // {
+      //   name: "System of Evaluation",
+      //   url: "/academics/system-of-evaluation",
+      // },
       // {
       //     name: 'Degree Verification',
       //     url: '/academics/degree-verification'
       // },
-      {
-        name: "National Academic Depository(NAD)",
-        url: "/academics/national-academic-depository",
-      },
-      {
-        name: "Academic Bank of Credits (ABC)",
-        url: "/academics/academic-bank-of-credits",
-      },
+      // {
+      //   name: "National Academic Depository(NAD)",
+      //   url: "/academics/national-academic-depository",
+      // },
+      // {
+      //   name: "Academic Bank of Credits (ABC)",
+      //   url: "/academics/academic-bank-of-credits",
+      // },
       {
         name: "Programme Curriculum",
         url: "/academics/programme-curriculum",
@@ -181,10 +189,10 @@ export const Academics = {
         name: "Teaching Practices",
         url: "/academics/teaching-practices",
       },
-      {
-        name: "Professional Bodies",
-        url: "/academics/professional-bodies",
-      },
+      // {
+      //   name: "Professional Bodies",
+      //   url: "/academics/professional-bodies",
+      // },
       // {
       //     name: 'Professors of Practice',
       //     url: '/academics/professors-of-practice'
@@ -721,31 +729,31 @@ export const ResearchInnovation = {
         name: "Centres of Excellence",
         url: "/skills-foundation",
       },
-      {
-        name: "Visiting Scholars",
-        url: "/research/visiting-scholars",
-      },
+      // {
+      //   name: "Visiting Scholars",
+      //   url: "/research/visiting-scholars",
+      // },
       // {
       //     name:"AKG Global Management Review",
       //     url:"/"
       // }
     ],
     "Entrepreneurship Cells": [
-      {
-        name: "Technology Business Incubator (TBI)",
-        url: "/research/technology-business-incubator",
-      },
+      // {
+      //   name: "Technology Business Incubator (TBI)",
+      //   url: "/research/technology-business-incubator",
+      // },
       {
         name: "Innovation & Entrepreneurship Development Cell (IEDC)",
-        url: "/research/entrepreneurship",
+        url: "/akgec-idea-lab",
       },
     ],
-    "Sustainable Development Goals (SDG's)": [
-      {
-        name: "Policies & Strategies",
-        url: "/research/policies-and-strategies",
-      },
-    ],
+    // "Sustainable Development Goals (SDG's)": [
+    //   {
+    //     name: "Policies & Strategies",
+    //     url: "/research/policies-and-strategies",
+    //   },
+    // ],
   },
 };
 

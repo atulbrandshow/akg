@@ -596,7 +596,7 @@ export default function LatestNavbar() {
                   } ${openMenu === 'research' && "absolute h-auto mt-0 w-full"} right-0 h-0 mt-2 overflow-hidden lg:group-hover:h-auto lg:group-hover:mt-0 transition-all bg-white
                                     text-black rounded-lg shadow-lg`}
               >
-                <div className="grid grid-cols-6">
+                {/* <div className="grid grid-cols-6">
                   <div className="col-span-2 max-md:hidden">
                     <div className="bg-Research bg-cover bg-black bg-blend-multiply bg-opacity-70">
                       <div className="flex flex-col justify-start items-start pt-8 px-6">
@@ -647,7 +647,7 @@ export default function LatestNavbar() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </li>
             <li className="relative group">

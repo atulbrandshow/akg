@@ -1,37 +1,25 @@
 "use client";
 
-import React, { useState } from "react";
-import { calendarEven, calendarOdd } from "@/Json/CalendarData";
+import React from "react";
 import Header from "@/Components/Header";
-import Calendar from "@/Components/Calendar";
-import AcademicCalendar from "../pagesComp/AcademicCalendar";
-
 
 const Home = () => {
-    const [currentSemester, setCurrentSemester] = useState('even');
-    
-    const calendarData = currentSemester === 'even' ? calendarEven : calendarOdd;
-
     return (
-        <>
-        <div className="bg-gray-100">
-        <Header
-            title={<>Academic <br /> Calendar 2024-25</>}
-            bgKey="BG11"
-            buttonText="Apply Now"
-            buttonType={"form"}
-            position="bottom"
-            gradient={"bg-gradient-to-r from-black to-slate-700/"}
-        />
-            <section className="w-full max-w-[1400px] mx-auto py-20 max-sm:py-5 px-6 max-sm:px-0">
-                <div className="w-full max-sm:px-2">
-                  <AcademicCalendar calendarData={calendarData} currentSemester={currentSemester}/>
+        <div className="bg-gray-100 min-h-screen">
+            <Header
+                title={<>Academic Calendar <br /> 2026-27</>}
+                bgKey="BG11"
+                gradient={"bg-gradient-to-r from-black to-slate-700/"}
+            />
+            <section className="w-full max-w-[1400px] mx-auto py-20 max-sm:py-10 px-6 max-sm:px-4 text-center">
+                <div className="bg-white p-8 md:p-12 shadow-sm rounded-lg border border-gray-100 mt-8">
+                    <p className="text-xl md:text-2xl font-novaSemi text-[#1c2b4d]">
+                        Academic Calendar (2026-27) ODD Semester - <span className="text-[#c1272d] font-novaBold">COMING SOON</span>
+                    </p>
                 </div>
             </section>
         </div>
-        </>
-    )
-}
-
+    );
+};
 
 export default Home;

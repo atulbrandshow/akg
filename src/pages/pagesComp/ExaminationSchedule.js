@@ -4,49 +4,19 @@ import { useState } from "react";
 import { ChevronDown, ChevronUp, FileText } from "lucide-react";
 
 const schedules = {
-    "2024-25": [
-        { "title": "Schedule of (AKG) MTech III Sem", "link": "#", "date": "2024-01-15" },
-        { "title": "Schedule of (AKG) MTech V Sem", "link": "#", "date": "2024-01-20" },
-        { "title": "Schedule of (AKG) BTech I Sem", "link": "#", "date": "2024-01-25" },
-        { "title": "Schedule of (AKG) BTech III Sem", "link": "#", "date": "2024-02-01" },
-        { "title": "Schedule of (AKG) BTech V Sem", "link": "#", "date": "2024-02-05" },
-        { "title": "Schedule of (AKG) MCA I Sem", "link": "#", "date": "2024-02-10" },
-        { "title": "Schedule of (AKG) MCA III Sem", "link": "#", "date": "2024-02-15" },
-        { "title": "Schedule of (AKG) MCA V Sem", "link": "#", "date": "2024-02-20" },
-        { "title": "Schedule of (AKG) BCA I Sem", "link": "#", "date": "2024-02-25" },
-        { "title": "Schedule of (AKG) BCA III Sem", "link": "#", "date": "2024-03-01" },
-    ],
-
-    "2023-24": [
-        { "title": "Schedule of (AKG) MTech III Sem", "link": "#", "date": "2023-01-15" },
-        { "title": "Schedule of (AKG) MTech V Sem", "link": "#", "date": "2023-01-20" },
-        { "title": "Schedule of (AKG) BTech I Sem", "link": "#", "date": "2023-01-25" },
-        { "title": "Schedule of (AKG) BTech III Sem", "link": "#", "date": "2023-02-01" },
-        { "title": "Schedule of (AKG) BTech V Sem", "link": "#", "date": "2023-02-05" },
-        { "title": "Schedule of (AKG) MCA I Sem", "link": "#", "date": "2023-02-10" },
-        { "title": "Schedule of (AKG) MCA III Sem", "link": "#", "date": "2023-02-15" },
-        { "title": "Schedule of (AKG) MCA V Sem", "link": "#", "date": "2023-02-20" },
-        { "title": "Schedule of (AKG) BCA I Sem", "link": "#", "date": "2023-02-25" },
-        { "title": "Schedule of (AKG) BCA III Sem", "link": "#", "date": "2023-03-01" },
-    ],
-
-    "2022-23": [
-        { "title": "Schedule of (AKG) MTech III Sem", "link": "#", "date": "2022-01-15" },
-        { "title": "Schedule of (AKG) MTech V Sem", "link": "#", "date": "2022-01-20" },
-        { "title": "Schedule of (AKG) BTech I Sem", "link": "#", "date": "2022-01-25" },
-        { "title": "Schedule of (AKG) BTech III Sem", "link": "#", "date": "2022-02-01" },
-        { "title": "Schedule of (AKG) BTech V Sem", "link": "#", "date": "2022-02-05" },
-        { "title": "Schedule of (AKG) MCA I Sem", "link": "#", "date": "2022-02-10" },
-        { "title": "Schedule of (AKG) MCA III Sem", "link": "#", "date": "2022-02-15" },
-        { "title": "Schedule of (AKG) MCA V Sem", "link": "#", "date": "2022-02-20" },
-        { "title": "Schedule of (AKG) BCA I Sem", "link": "#", "date": "2022-02-25" },
-        { "title": "Schedule of (AKG) BCA III Sem", "link": "#", "date": "2022-03-01" },
+    "2026-27": [
+        { "title": "Schedule of AKGU B.TECH I Sem", "link": "#" },
+        { "title": "Schedule of AKGU M.TECH I Sem", "link": "#" },
+        { "title": "Schedule of AKGU BCA I Sem", "link": "#" },
+        { "title": "Schedule of AKGU MCA I Sem", "link": "#" },
+        { "title": "Schedule of AKGU BBA I Sem", "link": "#" },
+        { "title": "Schedule of AKGU MBA I Sem", "link": "#" },
     ],
 };
 
 const ExaminationSchedule = () => {
     const [openIndices, setOpenIndices] = useState([0]);
-    const [activeTab, setActiveTab] = useState("2024-25");
+    const [activeTab, setActiveTab] = useState("2026-27");
 
     const toggleSchedule = (index) => {
         setOpenIndices((prev) =>
@@ -56,7 +26,7 @@ const ExaminationSchedule = () => {
 
     return (
         <section className="">
-                <h1 className="text-4xl font-novaBold tracking-tight mb-8 text-brand-blue">Examination Schedule</h1>
+            <h1 className="text-4xl font-novaBold tracking-tight mb-8 text-brand-blue">Examination Schedule</h1>
             <div className="bg-white shadow-md rounded-lg overflow-hidden border border-gray-100">
                 <div className="flex space-x-2 mb-6 w-fit pt-6 px-6 max-[400px]:mx-auto">
                     {Object.keys(schedules).map((year) => (
@@ -94,12 +64,13 @@ const ExaminationSchedule = () => {
                                 <div className="p-5 bg-white">
                                     <a
                                         href={schedule.link}
-                                        className="text-blue-600 hover:text-blue-800 font-novaSemi text-base flex items-center mb-2"
+                                        className="text-gray-400 font-novaSemi text-base flex items-center mb-0 pointer-events-none cursor-not-allowed"
+                                        aria-disabled="true"
+                                        tabIndex="-1"
                                     >
                                         <FileText className="w-4 h-4 mr-2" />
-                                        Download Schedule
+                                        Download Schedule (Coming Soon)
                                     </a>
-                                    <p className="text-sm text-gray-500 font-novaReg">{schedule.date}</p>
                                 </div>
                             )}
                         </div>

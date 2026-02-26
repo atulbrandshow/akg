@@ -1,20 +1,15 @@
 "use client";
 
-import { useState } from "react";
 import Header from "@/Components/Header";
-import { gazettedHolidays, restrictedHolidays } from "@/Json/HolidaysData";
+import { holidays2026 } from "@/Json/HolidaysData";
 import ListOfHolidays from "../pagesComp/ListOfHolidays";
 
-
 export const Home = () => {
-  const [activeTab, setActiveTab] = useState("gazetted");
-
-  const holidays = activeTab === "gazetted" ? gazettedHolidays : restrictedHolidays;
   return (
     <>
       <div className="bg-gray-100">
         <Header
-          title={<>List of Holidays <br /> 2024</>}
+          title={<>List of Holidays <br /> 2026</>}
           bgKey="BG13"
           buttonType={"link"}
           buttonText="Apply Now"
@@ -23,13 +18,12 @@ export const Home = () => {
         />
         <section className="w-full max-w-[1400px] mx-auto py-20 max-sm:py-5 px-2">
           <div className="w-full">
-            <ListOfHolidays holidays={holidays} activeTab={activeTab} />
+            <ListOfHolidays holidays={holidays2026} title="List of Holidays 2026" />
           </div>
         </section>
       </div>
     </>
   )
 }
-
 
 export default Home;

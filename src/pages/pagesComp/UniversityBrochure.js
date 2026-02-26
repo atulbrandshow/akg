@@ -9,25 +9,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 const brochures = [
   {
-    title: "Brochure 2020-21",
+    title: "Brochure 2026-27",
     link: "#",
-  },
-  {
-    title: "Brochure 2019-20",
-    link: "#",
-  },
-  {
-    title: "Brochure 2018-19",
-    link: "#",
-  },
-  {
-    title: "Brochure 2017-18",
-    link: "#",
-  },
-  {
-    title: "Brochure 2016-17",
-    link: "#",
-  },
+  }
 ];
 
 const UniversityBrochure = () => {
@@ -114,11 +98,10 @@ const UniversityBrochure = () => {
                     className="flex justify-between items-center w-full px-8 py-6 cursor-pointer"
                   >
                     <span
-                      className={`font-novaSemi text-2xl transition-colors ${
-                        openIndices.includes(index)
+                      className={`font-novaSemi text-2xl transition-colors ${openIndices.includes(index)
                           ? "text-brand-blue"
                           : "text-gray-800 group-hover:text-brand-blue"
-                      }`}
+                        }`}
                     >
                       {brochure.title}
                     </span>
@@ -132,10 +115,12 @@ const UniversityBrochure = () => {
                     <div className="px-8 pb-6 bg-white">
                       <a
                         href={brochure.link}
-                        className="inline-flex items-center bg-brand-blue text-white text-base font-novaSemi py-3 px-6 rounded-lg shadow-lg hover:bg-blue-800 transition-all duration-300"
+                        className="inline-flex items-center bg-gray-300 text-gray-500 text-base font-novaSemi py-3 px-6 rounded-lg shadow-sm pointer-events-none cursor-not-allowed"
+                        aria-disabled="true"
+                        tabIndex="-1"
                       >
                         <FileText className="w-5 h-5 mr-2" />
-                        Download {brochure.title}
+                        Download {brochure.title} (Coming Soon)
                       </a>
                     </div>
                   )}

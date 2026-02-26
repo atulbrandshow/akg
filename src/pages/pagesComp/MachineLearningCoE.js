@@ -90,7 +90,7 @@ const MachineLearningCoE = () => {
                                     <td className="px-6 py-4 text-sm whitespace-nowrap">{event.date}</td>
                                     <td className="px-6 py-4 text-sm">{event.name}</td>
                                     <td className="px-6 py-4 text-sm">
-                                        <a href={event.report} className="text-blue-600 hover:text-blue-800 font-medium">
+                                        <a href={event.report} target={event.target} rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 font-medium">
                                             View
                                         </a>
                                     </td>

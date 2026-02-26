@@ -55,11 +55,11 @@ const Research = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-BG45 bg-cover w-full h-[60vh] min-h-[500px] flex items-center">
+      <section className="relative bg-BG45 bg-cover w-full h-[60vh] min-h-[650px] flex items-center">
         <div className="absolute inset-0 bg-black/60 bg-gradient-to-t from-black/80 to-transparent" />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 w-full">
+        <div className="relative z-10 max-w-7xl mx-auto px-4  w-full">
           <div className="max-w-3xl pt-36">
-            <h5 className="text-[#f7a600] text-lg md:text-xl font-novaBold uppercase tracking-wider mb-3">
+            <h5 className="text-[#f7a600] text-lg md:text-xl font-novaBold uppercase tracking-wider mb-2">
               Research Overview
             </h5>
             <h1 className="text-4xl md:text-6xl text-white font-novaBold mb-6 leading-tight">

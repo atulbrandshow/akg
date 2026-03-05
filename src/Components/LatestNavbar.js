@@ -220,7 +220,7 @@ export default function LatestNavbar() {
                   <div className="col-span-2 max-md:col-span-3 p-5 transition-all">
                     <div className="flex max-md:flex-col max-md:gap-5 max-md:max-h-72 max-md:overflow-y-scroll">
                       <LinksList title="WHO WE ARE" links={About.sublinks["Who We Are"]} setBigMenuToggle={setBigMenuToggle} />
-                      <LinksList title="Related Links" links={About.sublinks["Related Links"]} setBigMenuToggle={setBigMenuToggle} />
+                      {/* <LinksList title="Related Links" links={About.sublinks["Related Links"]} setBigMenuToggle={setBigMenuToggle} /> */}
                     </div>
                   </div>
                   <div className="col-span-1 max-md:hidden">
@@ -314,10 +314,10 @@ export default function LatestNavbar() {
                       <div className="absolute inset-0 bg-black opacity-70 rounded-lg"></div>
                     </div>
                     <div className="relative z-10 p-6 text-white">
-                      <h3 className="text-xl font-novaLight">University of</h3>
+                      {/* <h3 className="text-xl font-novaLight">University of</h3>
                       <h2 className="text-3xl font-novaBold leading-none text-secondary">
                         Top Placements
-                      </h2>
+                      </h2> */}
                       <div className="mt-4">
                         <div className="bg-indigo-950 w-40 p-2 rounded-md">
                           <h3 className="text-3xl font-novaBold">1406</h3>

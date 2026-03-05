@@ -48,10 +48,10 @@ export const About = {
         name: "Institutional Social Responsibility",
         url: "/about/institution-social-responsibility",
       },
-      {
-        name: "University Handbooks",
-        url: "/about/university-handbooks",
-      },
+      // {
+      //   name: "University Handbooks",
+      //   url: "/about/university-handbooks",
+      // },
       {
         name: "University Calendar ",
         url: "/about/university-calendar",
@@ -65,36 +65,36 @@ export const About = {
       //     url: '/about/akg-edge'
       // },
     ],
-    "Related Links": [
-      {
-        name: "Admissions",
-        url: "/admissions",
-      },
-      {
-        name: "Scholarships",
-        url: "/admissions/scholarship",
-      },
-      {
-        name: "Governance",
-        url: "/about/governance",
-      },
-      // {
-      //     name: 'Functionaries',
-      //     url: '/about/important-functionaries'
-      // },
-      {
-        name: "Hostel Facility",
-        url: "/about/hostel",
-      },
-      {
-        name: "Student Services",
-        url: "/about/student-services",
-      },
-      {
-        name: "How to Reach Us?",
-        url: "/about/how-to-reach-us",
-      },
-    ],
+    // "Related Links": [
+    //   {
+    //     name: "Admissions",
+    //     url: "/admissions",
+    //   },
+    //   {
+    //     name: "Scholarships",
+    //     url: "/admissions/scholarship",
+    //   },
+    //   {
+    //     name: "Governance",
+    //     url: "/about/governance",
+    //   },
+    //   // {
+    //   //     name: 'Functionaries',
+    //   //     url: '/about/important-functionaries'
+    //   // },
+    //   {
+    //     name: "Hostel Facility",
+    //     url: "/about/hostel",
+    //   },
+    //   {
+    //     name: "Student Services",
+    //     url: "/about/student-services",
+    //   },
+    //   {
+    //     name: "How to Reach Us?",
+    //     url: "/about/how-to-reach-us",
+    //   },
+    // ],
   },
 };
 
@@ -111,7 +111,7 @@ export const Academics = {
         name: "School of Engineering & Technology",
         url: "/school-of-engineering-and-technology",
       },
-       {
+      {
         name: "School of Computing",
         url: "/department-of-computer-science-engineering",
       },
@@ -262,14 +262,14 @@ export const Programs = {
             name: "M.Tech in Computer Science Engineering",
             url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-computer-science-engineering",
             Specializations: [
-            { name: 'Artificial Intelligence', url: '/school-of-computer-science-engineering-and-technology/mtech-cse-in-artificial-intelligence' },
-            { name: 'Data Science', url: '/school-of-computer-science-engineering-and-technology/mtech-cse-in-data-science' },
-            { name: 'Information Technology', url: '/school-of-computer-science-engineering-and-technology/mtech-cse-in-information-technology' },
-            { name: 'Cyber Security', url: '/school-of-computer-science-engineering-and-technology/mtech-cse-in-cyber-security' },
-            { name: 'Cloud Technology', url: '/school-of-computer-science-engineering-and-technology/mtech-cse-in-cloud-technology' },
-            { name: 'AI & Machine Learning', url: '/school-of-computer-science-engineering-and-technology/mtech-cse-artificial-intelligence-machine-learning' },
-            { name: 'Blockchain', url: '/school-of-computer-science-engineering-and-technology/mtech-cse-blockchain' }
-          ],
+              { name: 'Artificial Intelligence', url: '/school-of-computer-science-engineering-and-technology/mtech-cse-in-artificial-intelligence' },
+              { name: 'Data Science', url: '/school-of-computer-science-engineering-and-technology/mtech-cse-in-data-science' },
+              { name: 'Information Technology', url: '/school-of-computer-science-engineering-and-technology/mtech-cse-in-information-technology' },
+              { name: 'Cyber Security', url: '/school-of-computer-science-engineering-and-technology/mtech-cse-in-cyber-security' },
+              { name: 'Cloud Technology', url: '/school-of-computer-science-engineering-and-technology/mtech-cse-in-cloud-technology' },
+              { name: 'AI & Machine Learning', url: '/school-of-computer-science-engineering-and-technology/mtech-cse-artificial-intelligence-machine-learning' },
+              { name: 'Blockchain', url: '/school-of-computer-science-engineering-and-technology/mtech-cse-blockchain' }
+            ],
           },
           // {
           //   name: "Master of Computer Applications (MCA)",
@@ -367,8 +367,8 @@ export const Programs = {
         ],
         "Doctorate Graduate Program": [
           {
-              name: 'PHD',
-              url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/phd'
+            name: 'PHD',
+            url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/phd'
           }
         ],
       },

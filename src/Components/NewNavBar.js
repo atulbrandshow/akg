@@ -576,11 +576,11 @@ export default function NewNavBar() {
                       links={About.sublinks["Who We Are"]}
                       setBigMenuToggle={setBigMenuToggle}
                     />
-                    <LinksList
+                    {/* <LinksList
                       title="Related Links"
                       links={About.sublinks["Related Links"]}
                       setBigMenuToggle={setBigMenuToggle}
-                    />
+                    /> */}
                   </div>
                 </div>
                 <div className="col-span-1 max-md:hidden">
@@ -796,10 +796,10 @@ export default function NewNavBar() {
                     <div className="absolute inset-0 bg-black opacity-70 rounded-lg"></div>
                   </div>
                   <div className="relative z-10 p-6 text-white">
-                    <h3 className="text-xl font-novaLight">University of</h3>
+                    {/* <h3 className="text-xl font-novaLight">University of</h3>
                     <h2 className="text-3xl font-novaBold leading-none text-secondary">
                       Top Placements
-                    </h2>
+                    </h2> */}
                     <div className="mt-4">
                       <div className="bg-brand-blue w-40 p-2 rounded-md">
                         <h3 className="text-3xl font-novaBold">1406</h3>
@@ -1414,7 +1414,7 @@ export default function NewNavBar() {
                           <div className="bg-indigo-950 w-36 px-5 py-4 rounded-md flex flex-col items-center text-center">
                             {/* <h3 className="text-3xl font-novaBold">8</h3> */}
                             <p className="text-xs font-novaLight">
-                             Innovation & Entrepreneurship
+                              Innovation & Entrepreneurship
                             </p>
                           </div>
                           <div className="bg-indigo-950 w-36 px-5 py-4 rounded-md flex flex-col items-center text-center">

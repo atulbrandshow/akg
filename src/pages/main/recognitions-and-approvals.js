@@ -258,7 +258,7 @@ const RecognitionApprovals = ({ data }) => {
 
             {/* Description */}
             <p className="naac-text text-lg md:text-xl text-gray-300 font-novaReg leading-relaxed max-w-2xl mb-10 drop-shadow-md">
-              AKG University is recognized by the{" "}
+              AKG is recognized by the{" "}
               <span className="text-brand-yellow font-bold">UGC</span> and holds
               the prestigious{" "}
               <span className="text-white font-bold">NAAC A++</span>{" "}

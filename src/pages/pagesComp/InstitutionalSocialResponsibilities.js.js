@@ -135,7 +135,7 @@ function InstitutionalSocialResponsibilities() {
             transition={{ delay: 0.2 }}
             className="text-gray-700 leading-relaxed text-lg text-justify"
           >
-            AKG University embraces Institutional Social Responsibility (ISR) as
+            AKG embraces Institutional Social Responsibility (ISR) as
             a vital part of its mission to nurture not only skilled
             professionals but also socially conscious citizens. The university
             actively engages students and faculty in initiatives that promote
@@ -179,7 +179,7 @@ function InstitutionalSocialResponsibilities() {
             <div className="absolute inset-0 bg-gradient-to-r from-secondary/10 to-yellow-600/10"></div>
             <div className="relative z-10">
               <p className="text-gray-800 text-lg lg:text-xl leading-relaxed font-semibold">
-            These initiatives demonstrate AKG University’s commitment to
+            These initiatives demonstrate AKG’s commitment to
             embedding social responsibility at the core of its educational
             environment and making a meaningful difference in society.
               </p>

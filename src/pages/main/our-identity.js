@@ -37,12 +37,12 @@ export const Home = ({ data }) => {
         {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}
       </section> */}
       <section className="w-full max-w-[1400px] mx-auto grid grid-cols-12 py-5 max-sm:py-5 gap-5 px-5 max-sm:px-2 max-sm:gap-0">
-        <div className="col-span-9 max-xl:col-span-8 max-lg:col-span-12">
+        <div className="col-span-12 max-xl:col-span-12 max-lg:col-span-12">
           <OurIdentity />
         </div>
-        <div className="col-span-3 max-xl:col-span-4 max-lg:col-span-12 sticky top-32 self-start">
+        {/* <div className="col-span-3 max-xl:col-span-4 max-lg:col-span-12 sticky top-32 self-start">
           <SideBar title={"About Us"} LinkList={SideBarLink} />
-        </div>
+        </div> */}
       </section>
     </div>
   );

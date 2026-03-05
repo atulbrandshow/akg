@@ -22,12 +22,12 @@ export const Home = ({ data }) => {
           gradient={"bg-gradient-to-r from-gray-900 to-transparent"}
         />
         <section className="w-full max-w-[1400px] max-lg:max-w-3xl max-md:max-w-xl max-sm:max-w-md mx-auto grid grid-cols-12  max-sm:py-2 gap-10 px-2 max-sm:gap-0">
-          <div className="col-span-9 max-xl:col-span-8 max-lg:col-span-12">
+          <div className="col-span-12 max-xl:col-span-12 max-lg:col-span-12">
             <LeaderShip />
           </div>
-          <div className="col-span-3 max-xl:col-span-4 max-lg:col-span-12 sticky top-32 self-start h-max">
+          {/* <div className="col-span-3 max-xl:col-span-4 max-lg:col-span-12 sticky top-32 self-start h-max">
             <SideBar title={"About Us"} LinkList={SideBarLink} />
-          </div>
+          </div> */}
         </section>
       </div>
     </>

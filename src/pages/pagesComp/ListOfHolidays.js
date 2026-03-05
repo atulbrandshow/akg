@@ -1,27 +1,4 @@
-"use client";
-
-import { useState, useEffect } from "react";
-
-const ListOfHolidays = ({ holidays = [], title = "List of Holidays", itemsPerPage = 10 }) => {
-    const [currentPage, setCurrentPage] = useState(1);
-
-    useEffect(() => {
-        setCurrentPage(1);
-    }, [holidays]);
-
-    const totalEntries = holidays?.length || 0;
-    const totalPages = Math.ceil(totalEntries / itemsPerPage);
-
-    const indexOfLastEntry = currentPage * itemsPerPage;
-    const indexOfFirstEntry = indexOfLastEntry - itemsPerPage;
-    const currentEntries = holidays?.slice(indexOfFirstEntry, indexOfLastEntry);
-
-    const handlePageChange = (pageNumber) => {
-        if (pageNumber > 0 && pageNumber <= totalPages) {
-            setCurrentPage(pageNumber);
-        }
-    };
-
+const ListOfHolidays = ({ holidays = [], title = "List of Holidays" }) => {
     return (
         <div className="container mx-auto">
             <h1 className="text-4xl max-lg:text-3xl max-md:text-2xl font-novaBold text-brand-blue mb-4 leading-tight">
@@ -46,7 +23,7 @@ const ListOfHolidays = ({ holidays = [], title = "List of Holidays", itemsPerPag
                         </tr>
                     </thead>
                     <tbody className="font-novaReg text-sm sm:text-base text-gray-800">
-                        {currentEntries?.map((entry, index) => (
+                        {holidays?.map((entry, index) => (
                             <tr
                                 key={entry.SNo}
                                 className={`${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-blue-50 transition-colors`}
@@ -67,39 +44,6 @@ const ListOfHolidays = ({ holidays = [], title = "List of Holidays", itemsPerPag
                         ))}
                     </tbody>
                 </table>
-
-                {totalEntries > itemsPerPage && (
-                    <div className="flex justify-between max-sm:flex-col text-base">
-                        <div className="text-base mb-2.5 mr-5 pt-3 text-gray-700">
-                            Showing {indexOfFirstEntry + 1} to {Math.min(indexOfLastEntry, totalEntries)} of {totalEntries} entries
-                        </div>
-                        <div className="text-base w-fit bg-brand-blue rounded-lg flex items-center">
-                            <button
-                                className={`text-white px-4 py-2.5 rounded ${currentPage === 1 ? 'bg-brand-blue cursor-not-allowed' : ''}`}
-                                disabled={currentPage === 1}
-                                onClick={() => handlePageChange(currentPage - 1)}
-                            >
-                                Previous
-                            </button>
-                            {[...Array(totalPages)]?.map((_, pageIndex) => (
-                                <button
-                                    key={pageIndex + 1}
-                                    className={`text-white px-4 py-2.5 rounded ${currentPage === pageIndex + 1 ? 'bg-[#3C567B]' : ''}`}
-                                    onClick={() => handlePageChange(pageIndex + 1)}
-                                >
-                                    {pageIndex + 1}
-                                </button>
-                            ))}
-                            <button
-                                className={`text-white px-3 py-2 rounded ${currentPage === totalPages ? 'bg-brand-blue cursor-not-allowed' : ''}`}
-                                disabled={currentPage === totalPages}
-                                onClick={() => handlePageChange(currentPage + 1)}
-                            >
-                                Next
-                            </button>
-                        </div>
-                    </div>
-                )}
             </div>
         </div>
     );

@@ -26,12 +26,12 @@ export const Home = ({ data }) => {
           {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}
         </section> */}
         <section className="w-full max-w-[1400px] mx-auto grid grid-cols-12 py-10 lg:py-20 gap-10 px-4">
-          <div className="col-span-12 lg:col-span-9">
+          <div className="col-span-12 lg:col-span-12">
             <VisionAndMission />
           </div>
-          <div className="col-span-12 lg:col-span-3 sticky top-32 self-start h-max">
+          {/* <div className="col-span-12 lg:col-span-3 sticky top-32 self-start h-max">
             <SideBar title={"Skills Foundation"} LinkList={SideBarLink} />
-          </div>
+          </div> */}
         </section>
       </div>
     </>

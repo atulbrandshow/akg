@@ -250,7 +250,7 @@ export default function NavBar() {
                     <div className="col-span-2 max-md:col-span-3 p-5 transition-all">
                       <div className="flex max-md:flex-col max-md:gap-5 max-md:max-h-72 max-md:overflow-y-scroll">
                         <LinksList title="WHO WE ARE" links={About.sublinks["Who We Are"]} setBigMenuToggle={setBigMenuToggle} />
-                        <LinksList title="Related Links" links={About.sublinks["Related Links"]} setBigMenuToggle={setBigMenuToggle} />
+                        {/* <LinksList title="Related Links" links={About.sublinks["Related Links"]} setBigMenuToggle={setBigMenuToggle} /> */}
                       </div>
                     </div>
                     <div className="col-span-1 max-md:hidden">

@@ -397,7 +397,7 @@ export const Programs = {
               { name: "AI-ML", url: "/department-of-computer-science-engineering/mca-artificial-intelligence-machine-learning" },
               { name: "Data Science", url: "/specialization-details?spec=data-science" },
               { name: "Cyber Security", url: "/department-of-computer-science-engineering/mca-cyber-security" },
-              { name: "Artificial Intelligence", url: "/specialization-details?spec=artificial-intelligence" }
+              { name: "Artificial Intelligence", url: "/department-of-computer-science-engineering/mca-artificial-intelligence" }
             ],
           },
         ],

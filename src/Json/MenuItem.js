@@ -350,10 +350,10 @@ export const Programs = {
             name: "M.Tech in Mechanical Engineering",
             url: "/school-of-engineering-and-technology/mtech-in-mechanical-engineering",
             Specializations: [
-              { name: "Mechatronics", url: "/specialization-details?spec=mechatronics" },
-              { name: "Robotics", url: "/specialization-details?spec=robotics" },
-              { name: "Artificial Intelligence", url: "/specialization-details?spec=artificial-intelligence" },
-              { name: "Additive Manufacturing", url: "/specialization-details?spec=additive-manufacturing" }
+              { name: "Mechatronics", url: "/school-of-engineering-and-technology/mtech-me-mechatronics" },
+              { name: "Robotics", url: "/school-of-engineering-and-technology/mtech-me-robotics" },
+              { name: "Artificial Intelligence", url: "/school-of-engineering-and-technology/mtech-me-artificial-intelligence" },
+              { name: "Additive Manufacturing", url: "/school-of-engineering-and-technology/mtech-me-additive-manufacturing" }
             ],
           },
           {
@@ -395,7 +395,7 @@ export const Programs = {
             url: "#",
             Specializations: [
               { name: "AI-ML", url: "/department-of-computer-science-engineering/mca-artificial-intelligence-machine-learning" },
-              { name: "Data Science", url: "/specialization-details?spec=data-science" },
+              { name: "Data Science", url: "/department-of-computer-science-engineering/mcadata-science" },
               { name: "Cyber Security", url: "/department-of-computer-science-engineering/mca-cyber-security" },
               { name: "Artificial Intelligence", url: "/department-of-computer-science-engineering/mca-artificial-intelligence" }
             ],

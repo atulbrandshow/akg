@@ -34,63 +34,51 @@ const slides = [
   {
     imgSrc: "/image/placement/1.png",
     heading: <>Accelerate your <br /> career at a global scale</>,
-    description: `Amazon is a global leader in innovation and technology, offering endless opportunities for growth and development. Thanks to AKG University’s excellent placement support, I’ve kick-started my career with one of the world's most impactful companies, Amazon. I’m excited to be a part of the future of technology.`,
+    description: `Joining Goldman Sachs has been a dream come true. The technical rigour and innovation-driven culture here are unparalleled. I am immensely grateful to Ajay Kumar Garg University for providing the foundation and placement support that helped me secure this incredible opportunity.`,
     degree: "B.TECH (CSE)",
-    batch: "(Batch 2017-2021)",
-    name: "NEHA SHARMA",
-    companyLogo: "/image/company-logos/AmozonIcon.webp",
-    company: "amazon",
+    batch: "(Batch 2021-2025)",
+    name: "ANSHUMAN NANDAN",
+    companyLogo: "/image/company-logos/goldman-sachs.webp",
+    company: "Goldman Sachs",
   },
   {
     imgSrc: "/image/placement/2.png",
     heading: <>Choose the jobs <br /> you love, not the ones you get</>,
-    description: `No doubt, AKG University is one of the best colleges in North India when it comes to education and placement. AKG University does everything possible to get its students placed in the best companies in the world. I would like to thank AKG University for giving me an opportunity to work at Wipro.`,
+    description: `Securing a position at Q Benefi Global Corp is a major milestone in my career. AKGU's emphasis on practical learning and industry readiness truly prepared me for the competitive landscape. I'm excited to contribute to global solutions in this new role.`,
     degree: "B.TECH (CSE)",
-    batch: "(Batch 2017-2021)",
-    name: "SAKSHI AGRAWAL",
-    companyLogo: "/image/company-logos/WIPRO.webp",
-    company: "wipro",
+    batch: "(Batch 2021-2025)",
+    name: "VIBHU DIXIT",
+    companyLogo: "/image/company-logos/q-benefi.webp",
+    company: "Q Benefi Global Corp",
   },
   {
     imgSrc: "/image/placement/4.png",
-    heading: <>Accelerate your <br /> career at a global scale</>,
-    description: `Amazon is a global leader in innovation and technology, offering endless opportunities for growth and development. Thanks to AKG University’s excellent placement support, I’ve kick-started my career with one of the world's most impactful companies, Amazon. I’m excited to be a part of the future of technology.`,
+    heading: <>Bridging the gap <br /> between campus and corporate</>,
+    description: `I am thrilled to start my journey with Amazon. The placement cell at AKGU was instrumental in guiding me through the intensive recruitment process. The skills I've gained here have equipped me with the confidence to succeed in a world-class organization like Amazon.`,
     degree: "B.TECH (CSE)",
-    batch: "(Batch 2017-2021)",
-    name: "SANJAY JAIN",
-    companyLogo: "/image/company-logos/AmozonIcon.webp",
-    company: "amazon",
-  },
-  {
-    imgSrc: "/image/placement/4.png",
-    heading: <>Choose the jobs <br /> you love, not the ones you get</>,
-    description: `No doubt, AKG University is one of the best colleges in North India when it comes to education and placement. AKG University does everything possible to get its students placed in the best companies in the world. I would like to thank AKG University for giving me an opportunity to work at Wipro.`,
-    degree: "B.TECH (CSE)",
-    batch: "(Batch 2017-2021)",
-    name: "AYUSH AGRAWAL",
-    companyLogo: "/image/company-logos/WIPRO.webp",
-    company: "wipro",
-  },
-  {
-    imgSrc: "/image/placement/4.png",
-    heading: <>Accelerate your <br /> career at a global scale</>,
-    description: `Amazon is a global leader in innovation and technology, offering endless opportunities for growth and development. Thanks to AKG University’s excellent placement support, I’ve kick-started my career with one of the world's most impactful companies, Amazon. I’m excited to be a part of the future of technology.`,
-    degree: "B.TECH (CSE)",
-    batch: "(Batch 2017-2021)",
-    name: "DEEPAK YADAV",
+    batch: "(Batch 2021-2025)",
+    name: "RANI",
     companyLogo: "/image/company-logos/AmozonIcon.webp",
     company: "amazon",
   },
   {
     imgSrc: "/image/placement/3.png",
-    heading: <>Choose the jobs <br /> you love, not the ones you get</>,
-    description: `No doubt, AKG University is one of the best colleges in North India when it comes to education and placement. AKG University does everything possible to get its students placed in the best companies in the world. I would like to thank AKG University for giving me an opportunity to work at Wipro.`,
+    heading: <>Excellence in every <br /> step of the journey</>,
+    description: `Getting placed at Google is a testament to the quality of education and support at AKGU. The university's commitment to bridging the gap between academia and industry has was pivotal in landing this role. I'm eager to join the team and make a global impact.`,
     degree: "B.TECH (CSE)",
-    batch: "(Batch 2017-2021)",
-    name: "AROHI PRAJAPAT",
-    companyLogo: "/image/company-logos/WIPRO.webp",
-    company: "wipro",
+    batch: "(Batch 2021-2025)",
+    name: "SOUMYA MAHESHWARI",
+    companyLogo: "/image/company-logos/google.webp",
+    company: "google",
   }
+];
+
+const highlightsData = [
+  { category: "No. of Companies Visited", y2021: "220", y2022: "225", y2023: "220", y2024: "235", y2025: "322" },
+  { category: "Total Students", y2021: "928", y2022: "973", y2023: "1205", y2024: "1110", y2025: "1152" },
+  { category: "Total Offers", y2021: "1329", y2022: "2008", y2023: "1406", y2024: "1727", y2025: "1509" },
+  { category: "Avg. Salary (LPA)", y2021: "4.67", y2022: "5.13", y2023: "5.22", y2024: "5.68", y2025: "6.09" },
+  { category: "Highest Package (LPA)", y2021: "30", y2022: "113", y2023: "33.8", y2024: "42.75", y2025: "30" },
 ];
 
 const awards = [
@@ -122,10 +110,10 @@ const awards = [
 ];
 
 const stats = [
-  { id: 1, name: 'Total no of Recruiters', value: '600+' },
-  { id: 2, name: 'Fortune 500 Companies', value: '30+' },
-  { id: 3, name: 'Highest Package', value: '1 Crore' },
-  { id: 4, name: 'MNCs', value: '150+' },
+  { id: 1, name: 'Total no of Recruiters (2025)', value: '322' },
+  { id: 2, name: 'Average Salary (LPA)', value: '6.09' },
+  { id: 3, name: 'Highest Package (LPA)', value: '30' },
+  { id: 4, name: 'Total Placement Offers', value: '1509' },
 ]
 
 const sections = [
@@ -379,6 +367,41 @@ const Placement = () => {
         </div>
       </section>
 
+      {/* Placement Highlights Table */}
+      <section className="py-20 bg-gray-50 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-4xl font-novaBold text-center text-indigo-900 mb-12">
+            Placement Highlights <span className="text-yellow-500">(2021 - 2025)</span>
+          </h2>
+          <div className="overflow-x-auto shadow-2xl rounded-2xl border border-gray-100 bg-white">
+            <table className="w-full text-left">
+              <thead>
+                <tr className="bg-indigo-900 text-white">
+                  <th className="py-5 px-6 font-novaBold">Category</th>
+                  <th className="py-5 px-6 font-novaBold">2021</th>
+                  <th className="py-5 px-6 font-novaBold">2022</th>
+                  <th className="py-5 px-6 font-novaBold">2023</th>
+                  <th className="py-5 px-6 font-novaBold">2024</th>
+                  <th className="py-5 px-6 font-novaBold">2025</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100 font-novaReg">
+                {highlightsData.map((row, idx) => (
+                  <tr key={idx} className="hover:bg-indigo-50/50 transition-colors">
+                    <td className="py-4 px-6 font-novaSemi text-indigo-800">{row.category}</td>
+                    <td className="py-4 px-6">{row.y2021}</td>
+                    <td className="py-4 px-6">{row.y2022}</td>
+                    <td className="py-4 px-6">{row.y2023}</td>
+                    <td className="py-4 px-6">{row.y2024}</td>
+                    <td className="py-4 px-6 font-novaBold text-yellow-600">{row.y2025}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-[#1c1f52] w-full ">
         <div className="max-w-6xl max-xl:max-w-4xl max-lg:max-w-3xl mx-auto h-full flex justify-start pt-10 items-center flex-col text-white bg-center bg-contain bg-world-map">
           <span className="text-[#d58544] text-3xl font-novaReg max-sm:text-2xl">Placement</span>
@@ -403,7 +426,7 @@ const Placement = () => {
                 <SwiperSlide key={index}>
                   <div className="my-10 text-center flex flex-col items-center mx-10 max-sm:mx-5">
                     <h2 className='text-2xl font-novaBold uppercase mb-4'>{student.heading}</h2>
-                    <p className="max-w-3xl max-md:text-sm font-novaReg">{student.description}</p>
+                    <p className="max-w-3xl max-md:text-sm font-novaReg text-justify leading-relaxed">{student.description}</p>
                     <div className="flex flex-col items-center mt-10">
                       <div className="border-[6px] border-[#e4e01327] rounded-full">
                         <img
@@ -415,7 +438,7 @@ const Placement = () => {
                       <div className="mt-4 uppercase text-center">
                         <h4 className="font-novaBold text-lg ">{student.name}</h4>
                         <p className='font-novaReg text-gray-300'>{student.degree} {student.batch}</p>
-                        <small className='font-novaSemi'>{student.company}</small>
+                        <small className='font-novaSemi text-yellow-400'>{student.company}</small>
                       </div>
                     </div>
                   </div>
@@ -601,33 +624,69 @@ const Placement = () => {
         </div>
       </section>
 
-      <section className='bg-BG45 h-full bg-cover bg-center cursor-pointer'>
-        <div className='max-w-full mx-auto'>
-          <div className='px-3 flex items-center max-lg:w-full justify-start h-full ml-auto bg-[#1f4171] w-1/2 opacity-90'>
-            <div className='p-20 max-w-2xl'>
-              <div className=''>
-                <h2 className='text-3xl font-novaBold text-white mb-4'>AKG <br />University<br />
-                  <span>Leader in Campus Placements</span>
-                </h2>
+      <section className='bg-BG45 min-h-[600px] bg-cover bg-center'>
+        <div className='max-w-full mx-auto h-full'>
+          <div className='px-3 flex items-center max-lg:w-full justify-start h-full ml-auto bg-brand-blue/90 w-1/2 min-h-[600px]'>
+            <div className='p-20 max-md:p-10 max-w-2xl'>
+              <h2 className='text-4xl font-novaBold text-white mb-6 leading-tight'>
+                Ajay Kumar Garg University <br />
+                <span className="text-brand-yellow">Empowering Careers</span>
+              </h2>
+              <div className="space-y-4 text-white font-novaReg leading-relaxed text-justify">
+                <p>
+                  Ajay Kumar Garg University (AKGU) maintains a strong focus on career development and industry engagement to ensure excellent placement opportunities for its students. The University’s Training and Placement Cell actively collaborates with leading national and multinational companies to facilitate campus recruitment across diverse disciplines.
+                </p>
+                <p>
+                  Through structured training programs, industry interactions, internships, workshops, and skill development initiatives, students are well-prepared to meet the evolving demands of the professional world. The placement process is supported by continuous aptitude training, technical skill enhancement, and personality development sessions.
+                </p>
+                <p>
+                  Over the years, AKGU has built strong relationships with reputed organizations across sectors such as information technology, consulting, finance, core engineering, and emerging technologies. The University consistently records commendable placement outcomes, with many students securing positions in prestigious companies with competitive salary packages.
+                </p>
+                <p>
+                  With a commitment to bridging academia and industry, AKG University strives to equip students with the knowledge, skills, and professional ethics required to succeed in a global career landscape.
+                </p>
               </div>
-              <p className='text-justify mb-4 leading-tight text-white'>Dreaming of securing a position with Fortune 500 or India's Top 100 Companies? Look no further than AKG University, your gateway to realizing those aspirations. With a robust Industry-Academic interface, AKG University is setting new standards in campus placements. Year after year, renowned companies like Microsoft, Amazon, and IBM actively recruit fresh talent from our campus.</p>
-              <p className='text-justify mb-4 leading-tight text-white'>For the Batch of 2023-24, AKG University has welcomed over 600 Multi-National Corporations, resulting in an impressive total of 7,500 placement offers. The highest package has seen a remarkable increase of 25%, reaching a new high of 1.5 CR for international placements, alongside 50 LPA for national placements.</p>
-              <p className='text-justify mb-4 leading-tight text-white'>Continuing the Tradition of Excellence, AKG University Registers 7,500 Placement Offers for Batch 2023-24 (Highest in the Region).</p>
-              <p className='text-justify mb-4 leading-tight text-white'>Over 40 MNCs have consistently recruited engineering students from AKG University, competing with IITs and NITs. Additionally, the University School of Business at AKG University has attracted more than 30 leading firms, including top names such as Deloitte, Ernst & Young, SAP Labs, and Hitachi.</p>
-              <p className='text-justify mb-4 leading-tight text-white'>Our Corporate Relations Office is located in Greater Noida, dedicated to connecting students with industry leaders. For any inquiries, please contact Mr. Ravi Sharma (Director of Corporate Relations & Placements) at 9812345678.</p>
-              <Button
-                text={"APPLY TODAY"}
-                className="bg-secondary text-white text-sm font-novaBold px-6 py-2 rounded-md hover:bg-[#3c5686] hover:border-b-4 hover:border-[#4070af] hover:transform hover:transition-transform hover:ease-in-out hover:duration-500 scale-y-105"
-              />
+              <div className="mt-8">
+                <Button
+                  text={"APPLY TODAY"}
+                  className="bg-brand-yellow text-brand-blue text-sm font-novaBold px-8 py-3 rounded-md hover:bg-yellow-500 transition-all transform hover:scale-105"
+                />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Top Recruiters showcase */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <h2 className="text-4xl font-novaBold text-brand-blue mb-12">
+            Our Top <span className="text-brand-yellow">Recruiters</span>
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
+            {[
+              "Accenture", "Adobe", "Amazon", "Capgemini", "Cognizant", "Deloitte",
+              "Goldman Sachs", "Google", "IBM", "Infosys", "Microsoft", "TCS"
+            ].map((company, idx) => (
+              <motion.div
+                key={idx}
+                whileHover={{ y: -5 }}
+                className="p-6 bg-gray-50 rounded-xl border border-gray-100 shadow-sm flex items-center justify-center"
+              >
+                <span className="font-novaBold text-gray-700 text-lg">{company}</span>
+              </motion.div>
+            ))}
+          </div>
+          <p className="mt-12 text-gray-500 font-novaReg italic">
+            Part of a global network of 300+ Industry Partners
+          </p>
+        </div>
+      </section>
+
       <section className='pt-20'>
         <div className="relative w-full max-w-7xl mx-auto px-3 overflow-hidden">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-novaBold text-center mb-4">Students Stories</h2>
-          <p className="text-center md:text-lg font-novaReg mx-36 text-gray-600">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-novaBold text-center mb-4">Student Stories</h2>
+          <p className="text-center md:text-lg font-novaReg mx-10 lg:mx-36 text-gray-600">
             At AKG University, we are committed to student success, empowering individuals to thrive academically, socially, and professionally. Through exceptional learning experiences and comprehensive support services, we inspire our students to reach their fullest potential.
           </p>
           <StudentStories />
@@ -637,14 +696,14 @@ const Placement = () => {
       <section className='max-w-7xl mx-auto px-3'>
         <div className="py-12">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-novaSemi text-center text-indigo-800 mb-8">University Placement Information</h2>
+            <h2 className="text-4xl font-novaSemi text-center text-brand-blue mb-8">University Placement Information</h2>
             <div className="bg-white rounded-xl shadow-xl overflow-hidden">
-              <div className="flex border-b border-gray-200">
+              <div className="flex flex-col md:flex-row border-b border-gray-200">
                 {sections.map((section, index) => (
                   <button
                     key={index}
                     onClick={() => setActiveTab(index)}
-                    className={`flex-1 py-4 px-6 text-lg font-novaSemi transition-colors duration-200 ${activeTab === index ? "bg-indigo-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                    className={`flex-1 py-4 px-6 text-lg font-novaSemi transition-colors duration-200 ${activeTab === index ? "bg-brand-blue text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                       }`}
                   >
                     {section.title}

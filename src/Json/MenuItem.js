@@ -645,10 +645,10 @@ export const Placements = {
         name: "Overview",
         url: "/placements",
       },
-      {
-        name: "Department of Career Planning & Development",
-        url: "/placements/department-of-career-development",
-      },
+      // {
+      //   name: "Department of Career Planning & Development",
+      //   url: "/placements/department-of-career-development",
+      // },
       {
         name: "Top Placement",
         url: "/placements/top-placement",
@@ -662,8 +662,16 @@ export const Placements = {
         url: "/placements/placement-policy",
       },
       {
+        name: "Internship Policy",
+        url: "/placements/internship-policy",
+      },
+      {
         name: "Our Leading Recruiters",
         url: "/placements/our-leading-recruiters",
+      },
+      {
+        name: "Student Testimonials",
+        url: "/placements/student-testimonials",
       },
       {
         name: "Contact Placement Cell",

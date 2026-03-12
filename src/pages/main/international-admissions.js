@@ -111,6 +111,7 @@ const InternationalAdmission = () => {
 
     return (
         <>
+        <div className="bg-gray-50 min-h-screen">
             <section className="h-screen w-full bg-BG50 bg-no-repeat bg-cover bg-top bg-gray-800 bg-blend-multiply bg-opacity-95">
                 <div className="flex px-4 sm:px-6 md:px-12 lg:px-24">
                     <div className="container max-w-7xl mx-auto flex justify-end max-xl:flex-col-reverse gap-10">
@@ -158,6 +159,19 @@ const InternationalAdmission = () => {
                 </div>
             </section>
 
+            <section className="max-w-[1400px] mx-auto py-24 px-6 md:px-12 lg:px-24">
+                <div className="bg-white p-12 md:p-16 rounded-3xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.07)] border border-gray-100">
+                    <h2 className="text-3xl md:text-4xl font-novaBold text-[#3c5686] mb-8 border-b-2 border-[#fecc00] pb-4 w-fit">
+                        International Admissions
+                    </h2>
+                    <p className="text-lg md:text-xl text-gray-700 leading-relaxed font-novaReg text-justify">
+                        Ajay Kumar Garg University (AKGU) welcomes students from across the globe who aspire to pursue quality higher education in a vibrant academic environment. The University offers a wide range of undergraduate, postgraduate, and doctoral programmes across disciplines such as engineering, management, computer applications, and applied sciences. International students are encouraged to apply through the University’s International Admissions process, which is designed to be transparent, supportive, and student-friendly. AKGU provides a multicultural learning atmosphere that promotes academic excellence, innovation, and global exposure. The University ensures that international students receive adequate academic guidance, mentoring, and administrative support throughout their academic journey. Modern infrastructure, well-equipped laboratories, experienced faculty, and industry-oriented curricula enable students to gain strong theoretical knowledge along with practical skills. In addition, the campus offers safe accommodation, recreational facilities, and opportunities for cultural interaction, helping international students adapt comfortably to campus life. The University also facilitates participation in research activities, workshops, and industry collaborations to enhance global competencies. Through its commitment to quality education and holistic development, Ajay Kumar Garg University aims to nurture globally responsible professionals and leaders who contribute meaningfully to society.
+                    </p>
+                </div>
+            </section>
+
+            {/* Hidden sections as per client request */}
+            {/* 
             <section
                 className="relative w-full h-full lg:h-48 lg:-mt-[150px] lg:bg-transparent bg-blue-500"
             >
@@ -253,6 +267,8 @@ const InternationalAdmission = () => {
             <OurOffice />
             <ResearchFacility />
             <SpotlightHighlight />
+            */}
+        </div>
         </>
     );
 };

@@ -145,9 +145,12 @@ const EducationLoan = () => {
             <h2 className="text-2xl sm:text-3xl lg:text-4xl text-gray-800 font-novaSemi mb-7 max-sm:text-2xl max-md:mb-3">
                 Financial Aid & Study Loans For AKG Students
             </h2>
-            <p className="text-sm text-gray-600 mb-4 max-md:mb-2 max-sm:mb-2">
+            <p className="text-lg text-gray-600 mb-8 leading-relaxed max-md:text-base">
                 Ajay Kumar Garg University (AKGU) serves as a vital launchpad for students eager to turn their aspirations into achievements. Recognizing the financial barriers many students face in pursuing higher education, numerous banks, NBFCs, EMI service providers, and state governments have stepped in to offer student loans. This financial support aims to empower students to pursue their academic goals and unlock their potential for a successful future.
             </p>
+
+            {/* Hidden sections as per client request */}
+            {/* 
             <p className="text-sm text-gray-600 mb-5 max-md:mb-3 max-sm:mb-2">
                 Ajay Kumar Garg University (AKGU) is committed to facilitating students in their pursuit of higher education. To aid students during the admission process—whether online or offline—the university has established a dedicated loan assistance cell. This initiative helps students secure financial support through loans from banks partnered with the university, ensuring they have the resources needed to achieve their academic ambitions.
             </p>
@@ -291,6 +294,7 @@ const EducationLoan = () => {
                     </table>
                 </div>
             </div>
+            */}
         </div>
     );
 };

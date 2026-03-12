@@ -2,27 +2,27 @@
 import { useState } from "react";
 import Link from "next/link";
 
-const Table = ({ tableHeadings, heading, paragraph, data }) => {
-    const [entries, setEntries] = useState(10);
+const Table = ({ tableHeadings, heading, paragraph, data, showPagination = true, primaryColor = "#3c5686", secondaryColor = "#fecc00" }) => {
+    const [entries, setEntries] = useState(showPagination ? 10 : data.length);
     const [currentPage, setCurrentPage] = useState(1);
-    const [searchTerm, setSearchTerm] = useState('');
+    const [searchTerm, setSearchTerm] = useState("");
 
     const handleSelectChange = (e) => {
         setEntries(parseInt(e.target.value));
-        setCurrentPage(1); // Reset to first page whenever entries per page change
+        setCurrentPage(1);
     };
 
     const handleInputChange = (e) => {
         setSearchTerm(e.target.value);
-        setCurrentPage(1); // Reset to first page whenever search term changes
+        setCurrentPage(1);
     };
 
-    const filteredCourses = data.filter(course =>
+    const filteredCourses = data.filter((course) =>
         course.courseName.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    const indexOfLastEntry = currentPage * entries;
-    const indexOfFirstEntry = indexOfLastEntry - entries;
+    const indexOfLastEntry = showPagination ? currentPage * entries : filteredCourses.length;
+    const indexOfFirstEntry = showPagination ? indexOfLastEntry - entries : 0;
     const currentEntries = filteredCourses.slice(indexOfFirstEntry, indexOfLastEntry);
 
     const totalPages = Math.ceil(filteredCourses.length / entries);
@@ -38,36 +38,40 @@ const Table = ({ tableHeadings, heading, paragraph, data }) => {
 
     return (
         <div className="container mx-auto">
-            <h1 className="text-[42px] font-novaReg leading-none mb-4">{heading}</h1>
+            <h1 className="text-[42px] font-novaReg leading-none mb-4" style={{ color: primaryColor }}>{heading}</h1>
             <p className="mb-6 text-md leading-5">{paragraph}</p>
 
-            <div className="flex justify-start max-sm:flex-col">
-                <div className="text-sm mb-2 mr-5">
-                    <label className="text-gray-700">
-                        Show
-                        <select
-                            name="example_length"
-                            aria-controls="example"
-                            className="ml-2 mr-2 border border-gray-300 rounded p-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            value={entries}
-                            onChange={handleSelectChange}
-                        >
-                            <option value="10">10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                        </select>
-                        entries
-                    </label>
+            <div className="flex justify-between items-center max-sm:flex-col mb-4">
+                <div className="flex items-center">
+                    {showPagination && (
+                        <div className="text-sm mr-5">
+                            <label className="text-gray-700">
+                                Show
+                                <select
+                                    name="example_length"
+                                    className="ml-2 mr-2 border border-gray-300 rounded p-1 focus:outline-none focus:ring-2"
+                                    style={{ focusRingColor: primaryColor }}
+                                    value={entries}
+                                    onChange={handleSelectChange}
+                                >
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                                entries
+                            </label>
+                        </div>
+                    )}
                 </div>
 
-                <div className="text-sm mb-2 mr-5">
+                <div className="text-sm">
                     <label className="text-gray-700">
                         Search:
                         <input
                             type="search"
-                            className="ml-2 border-2 border-primary rounded-lg p-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            aria-controls="example"
+                            className="ml-2 border-2 rounded-lg p-1 focus:outline-none focus:ring-2"
+                            style={{ borderColor: primaryColor, focusRingColor: primaryColor }}
                             value={searchTerm}
                             onChange={handleInputChange}
                         />
@@ -75,14 +79,11 @@ const Table = ({ tableHeadings, heading, paragraph, data }) => {
                 </div>
             </div>
 
-            <table className="min-w-full my-4 bg-white border border-gray-300">
+            <table className="min-w-full my-4 bg-white border" style={{ borderColor: primaryColor }}>
                 <thead>
-                    <tr className="bg-amber-500 border-inherit text-white h-[44px]">
+                    <tr className="border-inherit text-white h-[44px]" style={{ backgroundColor: secondaryColor }}>
                         {tableHeadings.map((heading, index) => (
-                            <th
-                                key={index}
-                                className="py-4 px-4 text-left text-sm"
-                            >
+                            <th key={index} className="py-4 px-4 text-left text-sm uppercase tracking-wider font-novaBold">
                                 {heading}
                             </th>
                         ))}
@@ -90,16 +91,16 @@ const Table = ({ tableHeadings, heading, paragraph, data }) => {
                 </thead>
                 <tbody>
                     {currentEntries?.map((course, index) => (
-                        <tr key={index} className="bg-blue-800 text-white border-inherit">
-                            <td className="py-4 px-4 text-sm border-b" style={{ borderColor: 'rgba(255, 255, 255, 0.2)' }}>
-                                <Link href={`/course/${course.id}`} passHref className="text-white hover:underline">
+                        <tr key={index} className="text-white border-inherit" style={{ backgroundColor: primaryColor }}>
+                            <td className="py-4 px-4 text-sm border-b" style={{ borderColor: "rgba(255, 255, 255, 0.2)" }}>
+                                <Link href={`/course/${course.id}`} passHref className="text-white hover:underline font-novaSemi">
                                     {course.courseName}
                                 </Link>
                             </td>
-                            <td className="py-4 px-4 text-sm border-b border-l" style={{ borderColor: 'rgba(255, 255, 255, 0.2)' }}>
+                            <td className="py-4 px-4 text-sm border-b border-l" style={{ borderColor: "rgba(255, 255, 255, 0.2)" }}>
                                 {course.head}
                             </td>
-                            <td className="py-4 px-4 text-sm border-b border-l" style={{ borderColor: 'rgba(255, 255, 255, 0.2)' }}>
+                            <td className="py-4 px-4 text-sm border-b border-l" style={{ borderColor: "rgba(255, 255, 255, 0.2)" }}>
                                 {course.description}
                             </td>
                         </tr>
@@ -107,36 +108,43 @@ const Table = ({ tableHeadings, heading, paragraph, data }) => {
                 </tbody>
             </table>
 
-            <div className="flex justify-between max-sm:flex-col">
-                <div className="text-sm mb-2.5 mr-5 pt-3 text-gray-700">
-                    Showing {indexOfFirstEntry + 1} to {Math.min(indexOfLastEntry, filteredCourses.length)} of {filteredCourses.length} entries
-                </div>
-                <div className="text-sm w-fit bg-blue-950 rounded-lg flex items-center">
-                    <button
-                        className="text-white px-4 py-2.5 cursor-pointer hover:bg-blue-900 hover:rounded-lg"
-                        disabled={isPreviousDisabled}
-                        onClick={() => handlePageChange(currentPage - 1)}
-                    >
-                        Previous
-                    </button>
-                    {[...Array(totalPages)]?.map((_, pageIndex) => (
+            {showPagination && (
+                <div className="flex justify-between items-center max-sm:flex-col mt-4">
+                    <div className="text-sm text-gray-700">
+                        Showing {indexOfFirstEntry + 1} to {Math.min(indexOfLastEntry, filteredCourses.length)} of {filteredCourses.length} entries
+                    </div>
+                    <div className="text-sm w-fit rounded-lg flex items-center overflow-hidden border" style={{ borderColor: primaryColor }}>
                         <button
-                            key={pageIndex + 1}
-                            className={`text-white px-4 py-2.5 hover:bg-blue-900 rounded ${currentPage === pageIndex + 1 ? 'bg-blue-900' : ''}`}
-                            onClick={() => handlePageChange(pageIndex + 1)}
+                            className="text-white px-4 py-2.5 disabled:opacity-50 transition-colors"
+                            style={{ backgroundColor: primaryColor }}
+                            disabled={isPreviousDisabled}
+                            onClick={() => handlePageChange(currentPage - 1)}
                         >
-                            {pageIndex + 1}
+                            Previous
                         </button>
-                    ))}
-                    <button
-                        className="text-white px-3 py-2 rounded hover:bg-blue-900"
-                        disabled={isNextDisabled}
-                        onClick={() => handlePageChange(currentPage + 1)}
-                    >
-                        Next
-                    </button>
+                        <div className="flex">
+                            {[...Array(totalPages)]?.map((_, pageIndex) => (
+                                <button
+                                    key={pageIndex + 1}
+                                    className={`px-4 py-2.5 transition-colors ${currentPage === pageIndex + 1 ? "text-white" : "bg-white text-gray-700 hover:bg-gray-100"}`}
+                                    style={{ backgroundColor: currentPage === pageIndex + 1 ? primaryColor : "" }}
+                                    onClick={() => handlePageChange(pageIndex + 1)}
+                                >
+                                    {pageIndex + 1}
+                                </button>
+                            ))}
+                        </div>
+                        <button
+                            className="text-white px-4 py-2.5 disabled:opacity-50 transition-colors"
+                            style={{ backgroundColor: primaryColor }}
+                            disabled={isNextDisabled}
+                            onClick={() => handlePageChange(currentPage + 1)}
+                        >
+                            Next
+                        </button>
+                    </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 };

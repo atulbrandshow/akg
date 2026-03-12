@@ -97,10 +97,18 @@ const admissionData = [
 
 const AdmissionCriteria = () => {
   const tableHeadings = ["Course Name", "Specialization", "Eligibility Criteria"];
-  const heading = "AKG University, Admission Criteria";
+  const heading = "Admission Criteria";
   const paragraph = "AKGU offers top-notch, industry-focused professional programs designed to meet global standards. Our diverse and innovative curriculum provides students with a wide array of options, allowing them to choose courses that align with their interests and career aspirations. Each program comes with its own unique specifications and specializations, enabling AKGU to implement distinct admission criteria tailored to each course.";
   return (
-    <Table heading={heading} paragraph={paragraph} tableHeadings={tableHeadings} data={admissionData} />
+    <Table 
+      heading={heading} 
+      paragraph={paragraph} 
+      tableHeadings={tableHeadings} 
+      data={admissionData} 
+      showPagination={false}
+      primaryColor="#3c5686"
+      secondaryColor="#fecc00"
+    />
   )
 }
 

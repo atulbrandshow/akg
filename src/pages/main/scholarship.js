@@ -340,7 +340,7 @@ const Scholarship = ({ data }) => {
           <div className="intro-content max-w-2xl">
             <div className="Cutout py-1.5 bg-primary mb-10">
               <h2 className="text-4xl font-novaReg text-white px-6">
-                Year 2024-2025
+                Year 2026-2027
               </h2>
             </div>
             <p className="font-novaLight text-lg leading-6">

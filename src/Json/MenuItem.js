@@ -534,14 +534,14 @@ export const Admissions = {
         name: "AKGU Scholarship",
         url: "/admissions/scholarship",
       },
-      {
-        name: "Hostel Fee",
-        url: "/about/hostel",
-      },
-      {
-        name: "Transportation Fee",
-        url: "/campus-life/transportation#transportation-fee",
-      },
+      // {
+      //   name: "Hostel Fee",
+      //   url: "/about/hostel",
+      // },
+      // {
+      //   name: "Transportation Fee",
+      //   url: "/campus-life/transportation#transportation-fee",
+      // },
       {
         name: "Education Loan Assistance",
         url: "/admissions/education-loan",
@@ -567,10 +567,10 @@ export const Admissions = {
         name: "Migration Policy",
         url: "/admissions/migration",
       },
-      {
-        name: "National Admissions",
-        url: "/admissions/national-admissions",
-      },
+      // {
+      //   name: "National Admissions",
+      //   url: "/admissions/national-admissions",
+      // },
       {
         name: "International Admissions",
         url: "/admissions/international-admissions",

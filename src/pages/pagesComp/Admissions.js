@@ -8,6 +8,181 @@ import { useRouter } from "next/router";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const COURSE_DATA = {
+  undergraduate: [
+    {
+      shortName: "B.Tech CSE",
+      fullName: "B.Tech in Computer Science Engineering",
+      eligibility: "10+2 (PCM) / JEE Mains / CUET",
+      duration: "4 years",
+      url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-computer-science-and-engineering",
+    },
+    {
+      shortName: "B.Tech ECE",
+      fullName: "B.Tech in Electronics and Communication Engineering",
+      eligibility: "10+2 (PCM) / JEE Mains / CUET",
+      duration: "4 years",
+      url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-electronics-and-communication-engineering",
+    },
+    {
+      shortName: "B.Tech EEE",
+      fullName: "B.Tech in Electrical & Electronics Engineering",
+      eligibility: "10+2 (PCM) / JEE Mains / CUET",
+      duration: "4 years",
+      url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-electrical-electronics-engineering",
+    },
+    {
+      shortName: "B.Tech ME",
+      fullName: "B.Tech in Mechanical Engineering",
+      eligibility: "10+2 (PCM) / JEE Mains / CUET",
+      duration: "4 years",
+      url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-mechanical-engineering",
+    },
+    {
+      shortName: "B.Tech CE",
+      fullName: "B.Tech in Civil Engineering",
+      eligibility: "10+2 (PCM) / JEE Mains / CUET",
+      duration: "4 years",
+      url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-civil-engineering",
+    },
+    {
+      shortName: "BCA",
+      fullName: "Bachelor of Computer Application",
+      eligibility: "10+2 with Mathematics",
+      duration: "3 years",
+      url: "/department-of-computer-science-engineering",
+    },
+    {
+      shortName: "BBA",
+      fullName: "Bachelor of Business Administration",
+      eligibility: "10+2 with 50% Marks",
+      duration: "3 years",
+      url: "/school-of-business-studies",
+    },
+  ],
+  postgraduate: [
+    {
+      shortName: "M.Tech CSE",
+      fullName: "M.Tech in Computer Science Engineering",
+      eligibility: "B.E./B.Tech in CSE/IT or M.Sc (CS/IT) or MCA",
+      duration: "2 years",
+      url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-computer-science-engineering",
+    },
+    {
+      shortName: "M.Tech ECE",
+      fullName: "M.Tech in Electronics and Communication Engineering",
+      eligibility: "B.E./B.Tech in ECE or equivalent",
+      duration: "2 years",
+      url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-electronics-and-communication-engineering",
+    },
+    {
+      shortName: "M.Tech EEE",
+      fullName: "M.Tech in Electrical & Electronics Engineering",
+      eligibility: "B.E./B.Tech in EEE or equivalent",
+      duration: "2 years",
+      url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-electrical-electronics-engineering",
+    },
+    {
+      shortName: "M.Tech ME",
+      fullName: "M.Tech in Mechanical Engineering",
+      eligibility: "B.E./B.Tech in ME or equivalent",
+      duration: "2 years",
+      url: "/school-of-engineering-and-technology/mtech-in-mechanical-engineering",
+    },
+    {
+      shortName: "MBA",
+      fullName: "Master of Business Administration",
+      eligibility: "Graduate with CAT/MAT/CUET-PG",
+      duration: "2 years",
+      url: "/school-of-business-studies",
+    },
+    {
+      shortName: "MCA",
+      fullName: "Master of Computer Applications",
+      eligibility: "BCA / BSc / BCom with Mathematics",
+      duration: "2 years",
+      url: "/department-of-computer-science-engineering",
+    },
+  ],
+  doctorate: [
+    {
+      shortName: "Ph.D. CSE",
+      fullName: "Ph.D. in Computer Science & Engineering",
+      eligibility: "Master's Degree in relevant field",
+      duration: "3-5 years",
+      url: "/school-of-computer-science-engineering-and-technology/phd-computer-science-and-engineering",
+    },
+    {
+      shortName: "Ph.D. Engg",
+      fullName: "Ph.D. in Engineering (ME/ECE/EEE)",
+      eligibility: "M.Tech / ME in relevant discipline",
+      duration: "3-5 years",
+      url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/phd",
+    },
+    {
+      shortName: "Ph.D. Mgmt",
+      fullName: "Ph.D. in Management",
+      eligibility: "MBA or equivalent",
+      duration: "3-5 years",
+      url: "/school-of-computer-science-engineering-and-technology/phd-computer-science-and-engineering",
+    },
+  ],
+};
+
+const CourseSection = ({ title, courses }) => {
+  const router = useRouter();
+  return (
+    <div className="course-section mb-20 last:mb-0">
+      <div className="section-header mb-10 text-center">
+        <h3 className="text-4xl max-sm:text-2xl font-novaReg text-[#3c5686] relative inline-block pb-4 after:content-[''] after:absolute after:bottom-0 after:left-1/4 after:right-1/4 after:h-0.5 after:bg-[#fecc00]">
+          {title}
+        </h3>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
+        {courses.map((course, index) => (
+          <div
+            key={index}
+            className="course-card group bg-white p-8 rounded-lg shadow-md hover:shadow-2xl transition-all duration-500 border-b-4 border-transparent hover:border-[#fecc00] flex flex-col justify-between"
+          >
+            <div>
+              <h4 className="text-4xl font-novaBold text-[#3c5686] mb-1 group-hover:translate-x-1 transition-transform uppercase">
+                {course.shortName}
+              </h4>
+              <p className="text-[#fecc00] font-novaSemi text-lg mb-6">
+                {course.fullName}
+              </p>
+              <div className="space-y-3 mb-8">
+                <div className="flex flex-col">
+                  <span className="text-xs uppercase tracking-wider text-gray-400 font-novaBold">
+                    Eligibility
+                  </span>
+                  <span className="text-gray-700 font-novaReg">
+                    {course.eligibility}
+                  </span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-xs uppercase tracking-wider text-gray-400 font-novaBold">
+                    Duration
+                  </span>
+                  <span className="text-gray-700 font-novaReg">
+                    {course.duration}
+                  </span>
+                </div>
+              </div>
+            </div>
+            <button
+              onClick={() => router.push(course.url)}
+              className="w-fit px-8 py-3 bg-[#3c5686] text-white font-novaBold rounded-md transform group-hover:scale-105 transition-all duration-300 shadow-md hover:bg-[#2a3f63]"
+            >
+              Know More
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const Admissions = ({ onApplyNow }) => {
   const router = useRouter();
   const [showUndergraduateCourses, setShowUndergraduateCourses] = useState(false);
@@ -56,26 +231,26 @@ const Admissions = ({ onApplyNow }) => {
       );
 
       // Program cards animation
-      const programCards = cardsRef.current.querySelectorAll(".program-card");
-      programCards.forEach((card, i) => {
-        gsap.fromTo(
-          card,
-          { y: 100, opacity: 0, scale: 0.8 },
-          {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            duration: 0.8,
-            delay: i * 0.2,
-            ease: "back.out(1.7)",
-            scrollTrigger: {
-              trigger: cardsRef.current,
-              start: "top 75%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
-      });
+      // const programCards = cardsRef.current.querySelectorAll(".program-card");
+      // programCards.forEach((card, i) => {
+      //   gsap.fromTo(
+      //     card,
+      //     { y: 100, opacity: 0, scale: 0.8 },
+      //     {
+      //       y: 0,
+      //       opacity: 1,
+      //       scale: 1,
+      //       duration: 0.8,
+      //       delay: i * 0.2,
+      //       ease: "back.out(1.7)",
+      //       scrollTrigger: {
+      //         trigger: cardsRef.current,
+      //         start: "top 75%",
+      //         toggleActions: "play none none reverse",
+      //       },
+      //     }
+      //   );
+      // });
 
       // Info cards animation
       const infoCards = infoCardsRef.current.querySelectorAll(".info-card");
@@ -117,6 +292,45 @@ const Admissions = ({ onApplyNow }) => {
           }
         );
       }
+
+      // New Course listing section animation
+      const courseSections = document.querySelectorAll(".course-section");
+      courseSections.forEach((section) => {
+        gsap.fromTo(
+          section.querySelector(".section-header"),
+          { y: 30, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: section,
+              start: "top 85%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+
+        const cards = section.querySelectorAll(".course-card");
+        gsap.fromTo(
+          cards,
+          { y: 50, opacity: 0, scale: 0.9 },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 0.6,
+            stagger: 0.15,
+            ease: "back.out(1.2)",
+            scrollTrigger: {
+              trigger: section,
+              start: "top 80%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      });
 
       // Floating background elements
       gsap.to(".float-element", {
@@ -186,204 +400,31 @@ const Admissions = ({ onApplyNow }) => {
         </div>
       </section>
 
-      {/* Program Cards Section */}
-      <section ref={cardsRef} className="w-full pb-16 flex justify-center mt-10 relative z-10">
-        <div className="max-w-full lg:max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-6 mx-10 max-sm:mx-5 relative">
-          {/* Undergraduate Programs */}
-          <div className="program-card relative w-full h-[342px] flex flex-col items-center justify-between">
-            <div className="group bg-white border-2 border-[#3c5686] rounded-xl shadow-xl w-full h-full flex flex-col items-center justify-center transition-all duration-300 ease-in-out hover:bg-gradient-to-br hover:from-[#3c5686] hover:to-[#2a4a6a] hover:scale-105 hover:shadow-2xl relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#fecc00] to-transparent opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-              <img
-                src="/image/admission/admission-icon-cap-black.webp"
-                alt="dynamic"
-                className="object-cover w-20 max-sm:w-16 max-sm:mb-20 mb-16 transition-opacity duration-300 ease-in-out group-hover:opacity-0 relative z-10"
-              />
-              <img
-                src="/image/admission/admission-icon-cap-white.webp"
-                alt="dynamic"
-                className="absolute w-20 max-sm:w-16 max-sm:mb-20 mb-16 inset-x-auto inset-y-auto object-cover opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100 z-10"
-              />
-              <h2 className="text-xl font-novaBold max-sm:font-novaSemi text-[#3c5686] group-hover:text-white absolute bottom-20 transition-colors duration-300 z-10">
-                Undergraduate Programs
-              </h2>
-              <p className="text-gray-600 max-sm:text-sm font-novaReg text-center group-hover:text-white absolute bottom-6 transition-colors duration-300 z-10">
-                Explore our
-                <br />
-                Undergraduate programs
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row justify-evenly mt-4 w-full relative">
-              <button
-                onClick={() => onApplyNow("undergraduate")}
-                className="flex-1 bg-gradient-to-r from-[#3c5686] to-[#4a6ba8] hover:from-[#2a4a6a] hover:to-[#3c5686] uppercase text-sm font-novaSemi w-full sm:w-48 text-center px-4 py-2.5 mb-2 sm:mb-0 sm:mr-2 rounded-md text-white cursor-pointer transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-              >
-                Apply Now
-              </button>
 
-              <div className="relative flex-1">
-                <a
-                  href="#"
-                  id="undergraduate-program"
-                  onMouseEnter={() => setShowUndergraduateCourses(true)}
-                  onMouseLeave={() => setShowUndergraduateCourses(false)}
-                  className="block bg-white uppercase text-sm font-novaReg border-2 border-[#3c5686] w-full sm:w-48 text-center text-[#3c5686] px-4 py-2 rounded-md hover:bg-[#3c5686] hover:text-white transition-all duration-300 shadow-md hover:shadow-lg"
-                >
-                  Our Program
-                </a>
-                {showUndergraduateCourses && (
-                  <div className="absolute bottom-full left-0 w-full min-w-[300px] bg-white border-2 border-[#3c5686] rounded-lg shadow-2xl p-4 z-50 mb-2">
-                    <h3 className="text-lg font-novaBold text-[#3c5686] mb-3 border-b-2 border-[#fecc00] pb-2">
-                      Undergraduate Courses
-                    </h3>
-                    <ul className="font-novaReg space-y-2">
-                      <li className="hover:text-[#fecc00] transition-colors cursor-pointer">
-                        • Bachelor of Technology
-                      </li>
-                      <li className="hover:text-[#fecc00] transition-colors cursor-pointer">
-                        • Bachelor of Business Administration
-                      </li>
-                      <li className="hover:text-[#fecc00] transition-colors cursor-pointer">
-                        • Bachelor of Computer Application
-                      </li>
-                    </ul>
-                  </div>
-                )}
-              </div>
-            </div>
+      {/* Course Listings Section */}
+      <section className="w-full py-16 bg-[#f8fafc] relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-novaBold text-[#3c5686] mb-4">
+              Explore Courses Across Diverse Disciplines
+            </h2>
+            <div className="w-24 h-1 bg-[#fecc00] mx-auto"></div>
           </div>
 
-          {/* Postgraduate Programs */}
-          <div className="program-card relative w-full h-[342px] flex flex-col items-center justify-between">
-            <div className="group bg-white border-2 border-[#3c5686] rounded-xl shadow-xl w-full h-full flex flex-col items-center justify-center transition-all duration-300 ease-in-out hover:bg-gradient-to-br hover:from-[#3c5686] hover:to-[#2a4a6a] hover:scale-105 hover:shadow-2xl relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#fecc00] to-transparent opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-              <img
-                src="/image/admission/admission-icon-cap-black.webp"
-                alt="dynamic"
-                className="object-cover w-20 max-sm:w-16 max-sm:mb-20 mb-16 transition-opacity duration-300 ease-in-out group-hover:opacity-0 relative z-10"
-              />
-              <img
-                src="/image/admission/admission-icon-cap-white.webp"
-                alt="dynamic"
-                className="absolute w-20 max-sm:w-16 max-sm:mb-20 mb-16 inset-x-auto inset-y-auto object-cover opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100 z-10"
-              />
-              <h2 className="text-xl font-novaBold max-sm:font-novaSemi text-[#3c5686] group-hover:text-white absolute bottom-20 transition-colors duration-300 z-10">
-                Postgraduate Programs
-              </h2>
-              <p className="text-gray-600 max-sm:text-sm text-center font-novaReg group-hover:text-white absolute bottom-6 transition-colors duration-300 z-10">
-                Explore our
-                <br />
-                Postgraduate programs
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row justify-evenly mt-4 w-full relative">
-              <button
-                onClick={() => onApplyNow("postgraduate")}
-                className="flex-1 bg-gradient-to-r from-[#3c5686] to-[#4a6ba8] hover:from-[#2a4a6a] hover:to-[#3c5686] uppercase text-sm font-novaSemi w-full sm:w-48 text-center px-4 py-2.5 mb-2 sm:mb-0 sm:mr-2 rounded-md text-white cursor-pointer transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-              >
-                Apply Now
-              </button>
-              <div className="relative flex-1">
-                <a
-                  href="#"
-                  id="postgraduate-program"
-                  onMouseEnter={() => setShowPostgraduateCourses(true)}
-                  onMouseLeave={() => setShowPostgraduateCourses(false)}
-                  className="block bg-white border-2 uppercase font-novaReg text-sm border-[#3c5686] w-full sm:w-48 text-center text-[#3c5686] py-2.5 rounded-md hover:bg-[#3c5686] hover:text-white transition-all duration-300 shadow-md hover:shadow-lg"
-                >
-                  Our Program
-                </a>
-                {showPostgraduateCourses && (
-                  <div className="absolute bottom-full left-0 w-full min-w-[300px] bg-white border-2 border-[#3c5686] rounded-lg shadow-2xl p-4 z-50 mb-2">
-                    <h3 className="text-lg font-novaBold text-[#3c5686] mb-3 border-b-2 border-[#fecc00] pb-2">
-                      Postgraduate Courses
-                    </h3>
-                    <ul className="font-novaReg space-y-2">
-                      <li className="hover:text-[#fecc00] transition-colors cursor-pointer">
-                        • Master of Business Administration
-                      </li>
-                      <li className="hover:text-[#fecc00] transition-colors cursor-pointer">
-                        • Master of Technology
-                      </li>
-                      <li className="hover:text-[#fecc00] transition-colors cursor-pointer">
-                        • Master of Computer Applications
-                      </li>
-                    </ul>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Doctoral Programs */}
-          <div className="program-card relative w-full h-[342px] flex flex-col items-center justify-between">
-            <div className="group bg-white border-2 border-[#3c5686] rounded-xl shadow-xl w-full h-full flex flex-col items-center justify-center transition-all duration-300 ease-in-out hover:bg-gradient-to-br hover:from-[#3c5686] hover:to-[#2a4a6a] hover:scale-105 hover:shadow-2xl relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#fecc00] to-transparent opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-              <img
-                src="/image/admission/admission-icon-cap-black.webp"
-                alt="dynamic"
-                className="object-cover w-20 max-sm:w-16 max-sm:mb-20 mb-16 transition-opacity duration-300 ease-in-out group-hover:opacity-0 relative z-10"
-              />
-              <img
-                src="/image/admission/admission-icon-cap-white.webp"
-                alt="dynamic"
-                className="absolute w-20 max-sm:w-16 max-sm:mb-20 mb-16 inset-x-auto inset-y-auto object-cover opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100 z-10"
-              />
-              <h2 className="text-xl font-novaBold max-sm:font-novaSemi text-[#3c5686] group-hover:text-white absolute bottom-20 transition-colors duration-300 z-10">
-                Doctoral Programs
-              </h2>
-              <p className="text-gray-600 max-sm:text-sm text-center font-novaReg group-hover:text-white absolute bottom-6 transition-colors duration-300 z-10">
-                Explore our
-                <br />
-                Doctoral programs
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row justify-evenly mt-4 w-full relative">
-              <button
-                onClick={() => onApplyNow("doctoral")}
-                className="flex-1 bg-gradient-to-r from-[#3c5686] to-[#4a6ba8] hover:from-[#2a4a6a] hover:to-[#3c5686] uppercase text-sm font-novaSemi w-full sm:w-48 text-center px-4 py-2.5 mb-2 sm:mb-0 sm:mr-2 rounded-md text-white cursor-pointer transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-              >
-                Apply Now
-              </button>
-              <div className="relative flex-1">
-                <a
-                  href="#"
-                  id="doctoral-program"
-                  onMouseEnter={() => setShowDoctoralCourses(true)}
-                  onMouseLeave={() => setShowDoctoralCourses(false)}
-                  className="block bg-white border-2 uppercase font-novaReg text-sm border-[#3c5686] w-full sm:w-48 text-center text-[#3c5686] py-2.5 rounded-md hover:bg-[#3c5686] hover:text-white transition-all duration-300 shadow-md hover:shadow-lg"
-                >
-                  Our Program
-                </a>
-                {showDoctoralCourses && (
-                  <div className="absolute bottom-full left-0 w-full min-w-[300px] bg-white border-2 border-[#3c5686] rounded-lg shadow-2xl p-4 z-50 mb-2">
-                    <h3 className="text-lg font-novaBold text-[#3c5686] mb-3 border-b-2 border-[#fecc00] pb-2">
-                      Doctoral Programs
-                    </h3>
-                    <ul className="font-novaReg space-y-2">
-                      <li className="hover:text-[#fecc00] transition-colors cursor-pointer">
-                        • Ph.D. in Engineering
-                      </li>
-                      <li className="hover:text-[#fecc00] transition-colors cursor-pointer">
-                        • Ph.D. in Management
-                      </li>
-                      <li className="hover:text-[#fecc00] transition-colors cursor-pointer">
-                        • Ph.D. in Computer Applications
-                      </li>
-                      <li className="hover:text-[#fecc00] transition-colors cursor-pointer">
-                        • Interdisciplinary Research
-                      </li>
-                    </ul>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
+          <CourseSection
+            title="Under Graduation Programs"
+            courses={COURSE_DATA.undergraduate}
+          />
+          <CourseSection
+            title="Post Graduation Programs"
+            courses={COURSE_DATA.postgraduate}
+          />
+          <CourseSection
+            title="Doctorate Programs"
+            courses={COURSE_DATA.doctorate}
+          />
         </div>
       </section>
-
-      <div ref={scholarshipRef}>
-        <ScholarshipHighlight heading={"Early Access Grant"} desc={"Higher Education Pathway 2025-2026"} />
-      </div>
 
       {/* Info Cards Section */}
       <section ref={infoCardsRef} className="max-w-7xl max-xl:max-w-5xl max-lg:max-w-2xl max-md:max-w-lg mx-auto py-10 relative z-10">

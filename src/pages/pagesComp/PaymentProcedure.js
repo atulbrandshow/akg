@@ -68,6 +68,15 @@ const PaymentProcedure = () => {
 
             {openIndices.includes(0) && (
                 <>
+                    <div className="p-8 my-6 bg-blue-50 border-l-4 border-[#3c5686] rounded-r-lg">
+                        <h4 className="text-xl font-novaSemi text-[#3c5686] mb-3">Bank Account Information</h4>
+                        <p className="text-lg text-gray-700 italic">
+                            The Account Number and IFSC Code will be shared later. Please contact the finance desk for any immediate queries.
+                        </p>
+                    </div>
+
+                    {/* Table hidden as per request */}
+                    {/* 
                     <div className="max-sm:overflow-x-auto ">
                         <table className="min-w-full border border-gray-300 mt-2">
                             <thead>
@@ -92,6 +101,8 @@ const PaymentProcedure = () => {
                             </tbody>
                         </table>
                     </div>
+                    */}
+                    
                     <div className="text-base mt-5 text-red-600 font-novaBold max-sm:text-sm">
                         <p>Note: If you are paying through ICICI bank (same bank), you still have to add the above details under "ICICI Bank Virtual Payee" beneficiary details. The payment will be done through NEFT/RTGS/IMPS and will not be processed through fund transfer as per the usual case of the same bank.</p>
                     </div>
@@ -103,14 +114,14 @@ const PaymentProcedure = () => {
                 </>
             )}
 
-            <div className="mb-4 cursor-pointer py-4 px-5 bg-gray-100 max-sm:py-2 max-sm:px-2.5" onClick={() => toggleTable(1)}>
+            {/* <div className="mb-4 cursor-pointer py-4 px-5 bg-gray-100 max-sm:py-2 max-sm:px-2.5" onClick={() => toggleTable(1)}>
                 <h3 className="flex justify-between items-center w-full transition-colors duration-200">
                     <span className="font-novaSemi text-lg max-sm:text-base">
                         2. Through Student Login:
                     </span>
                     {openIndices.includes(1) ? <ChevronUp className="w-6 h-6" /> : <ChevronDown className="w-6 h-6" />}
                 </h3>
-            </div>
+            </div> */}
 
             {openIndices.includes(1) && (
                 <>

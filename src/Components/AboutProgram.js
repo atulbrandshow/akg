@@ -48,6 +48,7 @@ const AboutProgram = ({ data }) => {
       });
     }
   }
+
   return (
     (d?.About_Title ||
       d?.About_Description ||

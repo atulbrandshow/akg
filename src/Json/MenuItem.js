@@ -278,7 +278,7 @@ export const Programs = {
         ],
         "Doctorate Graduate Program": [
           {
-            name: "Ph.D in Computer Science and Engineering",
+            name: "Ph.D",
             url: "/school-of-computer-science-engineering-and-technology/phd-computer-science-and-engineering",
           },
         ],
@@ -367,7 +367,7 @@ export const Programs = {
         ],
         "Doctorate Graduate Program": [
           {
-            name: 'PHD',
+            name: 'Ph.D',
             url: '/school-of-engineering-and-technology/department-of-computer-science-and-engineering/phd'
           }
         ],
@@ -403,7 +403,7 @@ export const Programs = {
         ],
         "Doctorate Graduate Program": [
           {
-            name: "Ph.D in Computer Science and Engineering",
+            name: "Ph.D",
             url: "/school-of-computer-science-engineering-and-technology/phd-computer-science-and-engineering",
           },
         ],
@@ -445,7 +445,7 @@ export const Programs = {
         ],
         "Doctorate Graduate Program": [
           {
-            name: "Ph.D in Computer Science and Engineering",
+            name: "Ph.D",
             url: "/school-of-computer-science-engineering-and-technology/phd-computer-science-and-engineering",
           },
         ],
@@ -642,7 +642,7 @@ export const Placements = {
   sublinks: {
     Placements: [
       {
-        name: "About Placements",
+        name: "Overview",
         url: "/placements",
       },
       {

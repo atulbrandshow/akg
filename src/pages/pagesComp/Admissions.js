@@ -106,23 +106,9 @@ const COURSE_DATA = {
   ],
   doctorate: [
     {
-      shortName: "Ph.D. CSE",
-      fullName: "Ph.D. in Computer Science & Engineering",
+      shortName: "Ph.D",
+      fullName: "Doctor of Philosophy",
       eligibility: "Master's Degree in relevant field",
-      duration: "3-5 years",
-      url: "/school-of-computer-science-engineering-and-technology/phd-computer-science-and-engineering",
-    },
-    {
-      shortName: "Ph.D. Engg",
-      fullName: "Ph.D. in Engineering (ME/ECE/EEE)",
-      eligibility: "M.Tech / ME in relevant discipline",
-      duration: "3-5 years",
-      url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/phd",
-    },
-    {
-      shortName: "Ph.D. Mgmt",
-      fullName: "Ph.D. in Management",
-      eligibility: "MBA or equivalent",
       duration: "3-5 years",
       url: "/school-of-computer-science-engineering-and-technology/phd-computer-science-and-engineering",
     },
@@ -138,7 +124,7 @@ const CourseSection = ({ title, courses }) => {
           {title}
         </h3>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
+      <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 ${courses.length === 1 ? 'lg:flex lg:justify-center' : ''}`}>
         {courses.map((course, index) => (
           <div
             key={index}

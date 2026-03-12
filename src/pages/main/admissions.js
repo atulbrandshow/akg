@@ -37,10 +37,7 @@ export default function Home({ data }) {
         ];
       case "doctoral":
         return [
-          "Ph.D. in Engineering",
-          "Ph.D. in Management",
-          "Ph.D. in Computer Applications",
-          "Interdisciplinary Research",
+          "Ph.D.",
         ];
       default:
         return [];

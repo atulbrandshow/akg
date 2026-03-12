@@ -40,13 +40,13 @@ const HomeTopCard = ({ data }) => {
                 <p className="max-w-3xl mx-auto text-xl font-novaReg text-center" dangerouslySetInnerHTML={{ __html: d?.Milestone_Desc }} />
                 <div className="mt-5 md:flex items-center justify-center">
                     <div className="flex flex-wrap justify-between gap-2">
-                        <div className="grid grid-cols-3">
+                        <div className="grid grid-cols-2">
                             {banners && banners.length > 0 && banners.map((banner, index) => (
                                 <img
                                     key={index}
                                     src={IMAGE_PATH + banner}
                                     alt="card-top"
-                                    className="object-contain transform hover:scale-105 focus:scale-105 transition duration-300 ease-in-out mx-auto"
+                                    className="object-contain transform hover:scale-105 focus:scale-105 transition duration-300 ease-in-out mx-auto "
                                 />
                             ))}
                         </div>

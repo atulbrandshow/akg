@@ -11,7 +11,7 @@ import CSEForm from "@/Components/CSEForm";
 import { ArrowRight, Check, MoveRight } from "lucide-react";
 import { GraduationCap, BookOpen, PiggyBank, Award, Send } from "lucide-react";
 import PlacementBanner from "@/Components/PlacementBanner";
-import HowToApply from "@/Components/HowToApply";
+import HowToApply from "@/Components/HowToApply";department-of-computer-science-engineering
 import IndustryPartnerSlider from "@/Components/IndustryPartnerSlider";
 import HighlightSlider from "@/Components/HighlightSlider";
 import Breadcrumb from "@/Components/Breadcrumb";

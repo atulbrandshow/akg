@@ -137,7 +137,7 @@ export default function LatestNavbar() {
               <Link href="/circulars" className={`hover:underline hover:text-gray-400 transition duration-500`}>Circulars</Link>
               {/* <Link href="/notice" className={`hover:underline hover:text-gray-400 transition duration-500`}>Notices</Link> */}
               {/* <Link href="/download-center" className={`hover:underline hover:text-gray-400 transition duration-500`}>Download Center</Link> */}
-              <Link href="tel:1800-200-0777" className=''>
+              <Link href="tel:8744052891-93" className=''>
                 <div className='h-6 w-12 flex items-center justify-center border-2 border-gray-300 rounded-full'>
                   <Phone size={15} className='text-white' />
                 </div>

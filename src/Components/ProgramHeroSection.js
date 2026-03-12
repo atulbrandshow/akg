@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Form from './Form';
 
 const ProgramHeroSection = ({ data }) => {
-    const [isModalOpen, setIsModalOpen] = useState(true)
+    const [isModalOpen, setIsModalOpen] = useState(false)
     console.log(data);
 
     const d = data?.pageData;

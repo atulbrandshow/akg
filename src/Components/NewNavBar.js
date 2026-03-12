@@ -480,7 +480,7 @@ export default function NewNavBar() {
                     Admission Helpline
                   </small>
                   <span className="font-novaBold whitespace-nowrap leading-none text-lg max-md:text-base">
-                    1800-200-0777
+                   8744052891-93
                   </span>
                 </div>
               </div>

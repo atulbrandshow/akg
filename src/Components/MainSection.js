@@ -76,9 +76,9 @@ const MainSection = ({ data }) => {
               />
             </div>
           </div>
-          {isModalOpen && (
+          {/* {isModalOpen && (
             <Form setIsModalOpen={setIsModalOpen} />
-          )}
+          )} */}
         </div>
       </div>
 

@@ -407,9 +407,9 @@ const SchoolDetails = ({ data }) => {
       <LargeHighlightBannerSlider
         banners={largeHighlightBanner}
       />
-      <div className="w-full bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-10 relative overflow-hidden">
+      {/* <div className="w-full bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-10 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Header Section */}
+         
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-novaBold text-gray-900 mb-4">
               {d?.Academic_Title}
@@ -419,7 +419,7 @@ const SchoolDetails = ({ data }) => {
             </p>
           </div>
 
-          {/* Toggle Buttons */}
+        
           <div className="flex justify-center mb-12">
             <div className="bg-white p-2 rounded-full shadow-xl border border-gray-100 backdrop-blur-sm">
               <div className="flex space-x-2">
@@ -457,7 +457,7 @@ const SchoolDetails = ({ data }) => {
             </div>
           </div>
 
-          {/* Departments View */}
+
           {activeView === "schools" && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {departments.map((dept, index) => (
@@ -473,12 +473,12 @@ const SchoolDetails = ({ data }) => {
                   onMouseEnter={() => setHoveredDepartment(index)}
                   onMouseLeave={() => setHoveredDepartment(null)}
                 >
-                  {/* Gradient overlay */}
+                  
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${dept.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
                   />
 
-                  {/* Content */}
+             
                   <div className="relative p-2 sm:p-4">
                     <div className="flex items-start space-x-3">
                       <div
@@ -502,7 +502,7 @@ const SchoolDetails = ({ data }) => {
                     </div>
                   </div>
 
-                  {/* Bottom accent */}
+            
                   <div
                     className={`h-1 bg-gradient-to-r ${dept.color} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`}
                   />
@@ -511,11 +511,11 @@ const SchoolDetails = ({ data }) => {
             </div>
           )}
 
-          {/* Programmes View */}
+      
           {activeView === "programmes" && (
             <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
               <div className="grid grid-cols-1 lg:grid-cols-4 min-h-[32rem]">
-                {/* Programme List */}
+              
                 <div className="lg:col-span-1 bg-gradient-to-b from-gray-50 to-white border-r border-gray-100">
                   <div className="p-6 border-b border-gray-100">
                     <h3 className="text-xl font-novaBold text-gray-900">Programme Types</h3>
@@ -566,7 +566,7 @@ const SchoolDetails = ({ data }) => {
                   </div>
                 </div>
 
-                {/* Content Area */}
+            
                 <div className="lg:col-span-3 relative">
                   <Image
                     src={IMAGE_PATH + d?.Academic_Banner}
@@ -576,10 +576,10 @@ const SchoolDetails = ({ data }) => {
                     className="w-full h-full object-cover"
                   />
 
-                  {/* Overlay gradient */}
+                  
                   <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent" />
 
-                  {/* Course Details Overlay */}
+                
                   {(hoveredProgramme === "Graduate" || hoveredProgramme === "Post Graduate" || hoveredProgramme === "Doctorate") && (
                     <div className="absolute inset-0 bg-white/95 backdrop-blur-sm">
                       <div className="h-full overflow-y-auto">
@@ -616,9 +616,9 @@ const SchoolDetails = ({ data }) => {
             </div>
           )}
         </div>
-      </div>
+      </div> */}
       <HighlightsSection data={d} />
-      <DirectorMessage data={d} />
+      {/* <DirectorMessage data={d} /> */}
       <AnnouncementSlider />
       {data?.studentReviews.length > 0 && <ReviewSlider data={data} />}
       {data?.faculties.length > 0 && <FacultySlider data={data} />}

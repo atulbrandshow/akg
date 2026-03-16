@@ -21,9 +21,9 @@ export const Home = () => {
                     <div className="col-span-9 max-xl:col-span-8 max-lg:col-span-12 max-sm:col-span-12">
                         <ContactPlacementCell />
                     </div>
-                    <div className="col-span-3 max-xl:col-span-4 max-lg:col-span-12 max-sm:col-span-12">
+                    {/* <div className="col-span-3 max-xl:col-span-4 max-lg:col-span-12 max-sm:col-span-12">
                         <SideBar title={"About Us"} LinkList={SideBarLink} />
-                    </div>
+                    </div> */}
                 </section>
             </div>
         </>

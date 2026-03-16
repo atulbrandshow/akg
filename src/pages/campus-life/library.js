@@ -1,17 +1,7 @@
 import Header from "@/Components/Header";
 import Library from "../pagesComp/Library";
-import SideBar from "@/Components/SideBar";
 
-const SideBarLink = [
-  { name: "Campus Facilities", link: "/campus-life/campus-facilities" },
-  { name: "Library", link: "/campus-life/library" },
-  { name: "Hostel", link: "/campus-life/hostel" },
-  { name: "Sports", link: "/campus-life/sports" },
-  { name: "Student Welfare", link: "/campus-life/student-welfare" },
-  { name: "Innovations & Events", link: "/campus-life/innovations-and-events" },
-];
-
-export const Home = () => {
+export const LibraryPage = () => {
     return (
         <div className="bg-gray-50 min-h-screen">
             <Header 
@@ -23,7 +13,6 @@ export const Home = () => {
             />
             <section className="w-full max-w-[1400px] mx-auto grid grid-cols-12 py-16 max-sm:py-8 gap-10 px-4 max-md:gap-0">
                 <div className="col-span-12">
-                     {/* The Library component itself now handles its own internal layout and sidebar-like navigation */}
                     <Library />
                 </div>
             </section>
@@ -31,4 +20,4 @@ export const Home = () => {
     );
 };
 
-export default Home;
+export default LibraryPage;

@@ -11,7 +11,7 @@ const SideBarLink = [
   { name: "Innovations & Events", link: "/campus-life/innovations-and-events" },
 ];
 
-export const Home = ({ data }) => {
+const HostelPage = () => {
   return (
     <>
       <div className="bg-gray-50 min-h-screen">
@@ -34,4 +34,4 @@ export const Home = ({ data }) => {
   );
 };
 
-export default Home;
+export default HostelPage;

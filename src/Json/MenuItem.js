@@ -602,30 +602,38 @@ export const CampusLife = {
       name: "Campus Facilities",
       url: "/campus-life/campus-facilities",
     },
-    {
-      name: "Transportation",
-      url: "/campus-life/transportation",
-    },
-    {
-      name: "Residential Facilities",
-      url: "/campus-life/residential-facilities",
-    },
+    // {
+    //   name: "Transportation",
+    //   url: "/campus-life/transportation",
+    // },
+    // {
+    //   name: "Residential Facilities",
+    //   url: "/campus-life/residential-facilities",
+    // },
     {
       name: "Library",
       url: "/campus-life/library",
     },
     {
-      name: "Auditorium",
-      url: "/campus-life/auditorium",
+      name: "Hostel",
+      url: "/campus-life/hostel",
     },
+    {
+      name: "Sports",
+      url: "/campus-life/sports",
+    },
+    // {
+    //   name: "Auditorium",
+    //   url: "/campus-life/auditorium",
+    // },
     {
       name: "Student Welfare",
       url: "/campus-life/student-welfare",
     },
-    {
-      name: "Convocations",
-      url: "/campus-life/convocations",
-    },
+    // {
+    //   name: "Convocations",
+    //   url: "/campus-life/convocations",
+    // },
     {
       name: "Innovations & Events",
       url: "/campus-life/innovations-and-events",

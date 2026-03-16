@@ -1,234 +1,108 @@
 'use client';
 
 import CubeSlider from "@/Components/CubeSlider";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, BookOpen, Clock, ShieldCheck, Download, Link2, Users, Mail, Phone, BookMarked, Globe, Monitor, Database } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const libraryTabs = [
-    "Home",
-    "About",
-    "Digital Library",
-    "Digital Repository",
-    "E-resources",
-    "KOHA OPAC (Search)",
-    "Useful Links",
-    "Library Team",
-    "Contact Us",
+    { id: "Home", name: "Overview", icon: BookOpen },
+    { id: "About", name: "About Library", icon: BookMarked },
+    { id: "Digital Library", name: "Digital Library", icon: Monitor },
+    { id: "Digital Repository", name: "Digital Repository", icon: Database },
+    { id: "E-resources", name: "E-resources", icon: Globe },
+    { id: "KOHA OPAC (Search)", name: "Search OPAC", icon: Link2 },
+    { id: "Useful Links", name: "Useful Links", icon: Link2 },
+    { id: "Library Team", name: "Library Team", icon: Users },
+    { id: "Contact Us", name: "Contact Us", icon: Mail },
 ];
 
-
-const data = [
+const eResourcesData = [
     {
         id: 1,
-        publication: "AKGEC through (Greenstone Digital Library Software)",
+        publication: "AKGEC (Greenstone)",
         subject: "Institutional Repository",
-        webAddress: (
-            <>
-                <a href="http://10.10.153.40:8080/jspui/" className="text-blue-600 underline">
-                    http://10.10.153.40:8080/jspui/
-                </a>
-                <br />
-                or Bytepad app installed thru Play Store
-            </>
-        ),
+        link: "http://10.10.153.40:8080/jspui/",
+        note: "Available via Bytepad app on Play Store"
     },
     {
         id: 2,
-        publication: "AKGEC Central Library",
-        subject: "Central Library web link",
-        webAddress: (
-            <a href="https://www.akgec.ac.in/central-library/" className="text-blue-600 underline">
-                https://www.akgec.ac.in/central-library/
-            </a>
-        ),
+        publication: "Central Library",
+        subject: "Central Library Portal",
+        link: "https://www.akgec.ac.in/central-library/"
     },
     {
         id: 3,
         publication: "Web OPAC",
-        subject: "Library Management System: KOHA",
-        webAddress: (
-            <a href="http://117.55.241.42/" className="text-blue-600 underline">
-                http://117.55.241.42/
-            </a>
-        ),
+        subject: "KOHA Management System",
+        link: "http://117.55.241.42/"
     },
     {
         id: 4,
         publication: "IEEE (ASPP)",
         subject: "CS+EC+EN Telecommunication",
-        webAddress: (
-            <a href="http://ieeexplore.ieee.org" className="text-blue-600 underline">
-                http://ieeexplore.ieee.org
-            </a>
-        ),
+        link: "http://ieeexplore.ieee.org"
     },
     {
         id: 5,
-        publication: "Elsevier e-Journals Package",
-        subject: "Engineering & Computer Science",
-        webAddress: (
-            <a href="http://www.sciencedirect.com/" className="text-blue-600 underline">
-                http://www.sciencedirect.com/
-            </a>
-        ),
+        publication: "Elsevier e-Journals",
+        subject: "Engineering & Comp Science",
+        link: "http://www.sciencedirect.com/"
     },
     {
         id: 6,
         publication: "DELNET",
-        subject: "General Engineering & Reference",
-        webAddress: (
-            <a href="http://www.delnet.in/" className="text-blue-600 underline">
-                http://www.delnet.in/
-            </a>
-        ),
+        subject: "General Engineering Reference",
+        link: "http://www.delnet.in/"
     },
     {
         id: 7,
         publication: "National Digital Library",
-        subject: "General Engineering & Reference",
-        webAddress: (
-            <a href="https://ndl.iitkgp.ac.in/" className="text-blue-600 underline">
-                https://ndl.iitkgp.ac.in/
-            </a>
-        ),
+        subject: "NDL Portal",
+        link: "https://ndl.iitkgp.ac.in/"
     },
     {
         id: 8,
         publication: "MyLOFT",
-        subject: "Access all Database through mobile / system",
-        webAddress: (
-            <a href="https://app.myloft.xyz/browse/home" className="text-blue-600 underline">
-                https://app.myloft.xyz/browse/home
-            </a>
-        ),
+        subject: "Mobile/System Database Access",
+        link: "https://app.myloft.xyz/browse/home"
     },
 ];
 
-const results = [
+const aboutSections = [
     {
         title: "About AKGEC Central Library",
-        desc: (
-            <>
-                The AKGEC Library System comprises of a Central Library, nine Departmental Libraries and five Hostel Libraries.<br />
-                The Central Library, housed in the Administrative Block of the College, consists of two sections spread over 1465 sq. m and with a seating capacity for 344 users. Comfortable study space is provided for faculty, staff and students in the form of reading hall, study cubicles, digital library and faculty reading room. <br />
-                The state-of-the-art facilities include KOHA Open Source Library Management Software, Web Based Online Public Access Catalogue (Web OPAC), Digital Library, DSpace Institutional Repository Server and Membership to DELNET and National Digital Library. <br />
-                The library system is very user friendly with sufficient resources to meet the requirements of the users. Addition of resources as per the requirements and norms is a regular feature. Sufficient number of qualified staff are employed to manage the activities of the library. <br />
-                The Departmental and Hostel libraries are managed and run by the respective departments and hostels with resources on loan from the Central Library. <br />
-                All students, faculty and staff of the College are entitled to make use of the library facilities on availing library membership. <br />
-                Admission to the Central Library is through Library cum Identity Card, which is scanned at the entrance, to keep record of the users. The library is under camera surveillance through ten cameras that have been installed at various locations. <br />
-                The library attracts an average of 350 users on a regular working day. <br />
-            </>
-        ),
-        width: "w-72",
-        slides: [
+        desc: "The AKGEC Library System comprises of a Central Library, nine Departmental Libraries and five Hostel Libraries. The Central Library, housed in the Administrative Block, spans 1465 sq. m with seats for 344 users. It features modern reading halls, study cubicles, and a dedicated digital library. Equipped with KOHA Open Source software and DSpace repository, the system provides seamless access to DELNET and National Digital Library resources.",
+        images: [
             { title: 'Library', img: "/image/library/Library_1.jpg" },
             { title: 'Library', img: "/image/library/Library_2.jpg" },
         ]
     },
     {
         title: "Library Timings",
-        desc: (
-            <>
-                <table className="w-full border border-gray-300">
-                    <tbody>
-                        <tr className="border border-gray-300">
-                            <td className="p-3 font-semibold">Library Timings in Normal Working Days:</td>
-                            <td className="p-3">8:30 AM – 9:00 PM</td>
-                        </tr>
-                        <tr className="border border-gray-300">
-                            <td className="p-3"> (Monday – Saturday)</td>
-                            <td></td>
-                        </tr>
-                        <tr className="border border-gray-300">
-                            <td className="p-3 font-semibold">Library Timings during University Exam:</td>
-                            <td className="p-3">8:30 AM – 12:01 AM</td>
-                        </tr>
-                        <tr className="border border-gray-300">
-                            <td className="p-3"> (Monday – Saturday)</td>
-                            <td></td>
-                        </tr>
-                        <tr className="border border-gray-300">
-                            <td className="p-3 font-semibold">Issue & Return of Books</td>
-                            <td className="p-3">8:40 AM – 3:45 PM</td>
-                        </tr>
-                        <tr className="border border-gray-300">
-                            <td className="p-3"> (Monday – Saturday)</td>
-                            <td></td>
-                        </tr>
-                        <tr className="border border-gray-300">
-                            <td className="p-3 font-semibold">Digital Library</td>
-                            <td className="p-3">8:30 AM – 9:00 PM</td>
-                        </tr>
-                        <tr className="border border-gray-300">
-                            <td className="p-3">(E-Journals, DELNET, CD’s Search)</td>
-                            <td></td>
-                        </tr>
-                        <tr className="border border-gray-300">
-                            <td className="p-3 font-semibold">Consultation of Examination Papers & Solution / Old Newspaper etc.</td>
-                            <td className="p-3">9:30 AM – 3:45 PM</td>
-                        </tr>
-                        <tr className="border border-gray-300">
-                            <td className="p-3 font-semibold">Reprographic Service</td>
-                            <td className="p-3">8:30 AM – 7:00 PM</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </>
-        ),
+        timings: [
+            { label: "Normal Working Days", time: "8:30 AM – 9:00 PM" },
+            { label: "During University Exams", time: "8:30 AM – 12:01 AM" },
+            { label: "Issue & Return of Books", time: "8:40 AM – 3:45 PM" },
+            { label: "Digital Library Access", time: "8:30 AM – 9:00 PM" },
+            { label: "Reprographic Services", time: "8:30 AM – 7:00 PM" }
+        ]
     },
     {
-        title: "Central Library Rules",
-        desc: (
-            <>
-                <ul className="list-disc pl-5 space-y-2">
-                    <li>Library users must show their Identity cum library card at the security point. Without it, entry is not permitted.</li>
-                    <li>Personal belongings like bags, books, etc., are not allowed inside the library.</li>
-                    <li>Identity cum library cards are non-transferable. Using someone else’s card is a punishable act for both the borrower and the cardholder.</li>
-                    <li>Library hours: 8:30 AM – 9:00 PM on working days. During exams, the library is open until 12:00 midnight.</li>
-                    <li>Books can be issued from 8:45 AM to 3:45 PM. Reservations are accepted between 8:45 AM and 3:30 PM.</li>
-                    <li>Returning books late incurs a fine of Rs.5/- per day per volume, up to a maximum of double the book's cost.</li>
-                    <li>Late collection of Book Bank Books results in a fine of Rs.5/- per day, limited to Rs.50/-. Defaulters are reported after one week.</li>
-                    <li>Reference books can be issued overnight with permission between 3:15 PM – 3:45 PM and must be returned by 10:00 AM the next day. Late returns attract a fine of Rs.20/- per day.</li>
-                    <li>Question papers, solutions, and other library materials are issued for Xerox for an hour. Late return incurs a fine of Rs.2/- per hour per document.</li>
-                    <li>Borrowers must check the book’s condition before borrowing. They are responsible for any damage noticed upon return.</li>
-                    <li>Leaving the circulation counter without confirming the return of books is punishable. A fine of Rs.50/- is imposed even if the book is later traced.</li>
-                    <li>No book is renewed or re-issued on the same day.</li>
-                    <li>A student cannot issue or reserve another copy of a book that is already issued to them.</li>
-                    <li>If a book is lost or damaged, only the latest edition is accepted as a replacement along with a Rs.50/- processing fee. If unavailable, double the book’s cost is charged.</li>
-                    <li>Misplacing, marking, or tearing books is punishable with a Rs.1000/- fine and may lead to withdrawal of library access.</li>
-                    <li>Stealing from the library results in a Rs.2000/- fine and disciplinary action.</li>
-                    <li>Disciplinary action is taken against users misbehaving with library staff.</li>
-                    <li>Loss of an Identity or Library membership card must be reported to the Senior Librarian immediately.</li>
-                    <li>A duplicate Identity card requires a written request to the Director, along with a Rs.300/- fine. A Rs.100/- processing fee applies for damaged or late Identity card replacements.</li>
-                    <li>Library service timings may change in the interest of users.</li>
-                    <li>Library users must ensure their activities do not disturb fellow users.</li>
-                </ul>
-            </>
-        ),
-    },
-    {
-        title: "User Manual",
-        desc: (
-            <>
-                <Link href="/pdf/library/User-Manual-AKGEC1.pdf" target="_blank" className="bg-blue-500 text-white rounded-2xl shadow-md px-5 py-2 hover:bg-blue-600">AKGEC User Manual</Link>
-            </>
-        ),
-    },
+        title: "Library Rules & Guidelines",
+        rules: [
+            "Mandatory scanning of ID-cum-Library card at entry.",
+            "Personal belongings are restricted inside library premises.",
+            "Late return fee: Rs. 5/- per day per volume.",
+            "Reference books: Overnight issue only (3:15 PM - 3:45 PM).",
+            "Silence and discipline are strictly enforced.",
+            "Loss of books: Replacement with latest edition required."
+        ]
+    }
 ];
 
-const resources = [
-    { name: "TURNITIN", url: "https://www.turnitin.com/" },
-    { name: "NDL", url: "https://ndl.iitkgp.ac.in/" },
-    { name: "NPTEL", url: "https://nptel.ac.in/" },
-    { name: "Coursera", url: "https://www.coursera.org/" },
-    { name: "edX", url: "https://www.edx.org/" },
-    { name: "IEI", url: "https://www.ieindia.org/webui/iei-home.aspx" },
-    { name: "E-Sodh Ganga", url: "https://shodhganga.inflibnet.ac.in/" },
-    { name: "E-Pathshala", url: "https://epgp.inflibnet.ac.in/" },
-];
-
-const staff = [
+const staffData = [
     { name: "Gp Capt I P Sharma (Retd)", position: "Dean Library" },
     { name: "Dr. Shiv Shankar Srivastava", position: "Senior Librarian" },
     { name: "Ms. Kavita Kulshreshtha", position: "Assistant Librarian" },
@@ -242,216 +116,248 @@ const staff = [
     { name: "Mr. Ritesh", position: "Library Attendant" },
 ];
 
-const LibraryAbout = () => {
-    const [openIndices, setOpenIndices] = useState([0]);
+const Library = () => {
+    const [activeTab, setActiveTab] = useState("Home");
+    const [openAboutIndex, setOpenAboutIndex] = useState(0);
 
-    const toggleDomain = (index) => {
-        setOpenIndices((prev) => {
-            if (prev.includes(index)) {
-                return []
-            } else {
-                return [index];
-            }
-        });
+    const renderContent = () => {
+        switch (activeTab) {
+            case "Home":
+                return (
+                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-8">
+                        <div className="relative group overflow-hidden rounded-3xl h-[450px] shadow-2xl">
+                            <img className="w-full h-full object-cover transition-transform duration-[5s] group-hover:scale-110" src="/image/building/central_Library.webp" alt="library" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#1c1f52]/90 to-transparent flex flex-col justify-end p-8">
+                                <h3 className="text-white text-3xl font-novaSemi mb-2">Central Resource Knowledge Hub</h3>
+                                <p className="text-gray-200 font-novaReg max-w-2xl">Ensuring seamless access to global knowledge with state-of-the-art facilities and a massive collection of academic resources.</p>
+                            </div>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="bg-indigo-50/50 p-8 rounded-3xl border border-indigo-100 hover:shadow-xl transition-all group">
+                                <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-6 shadow-sm group-hover:bg-[#1c1f52] transition-colors duration-300">
+                                    <Globe className="text-[#1c1f52] group-hover:text-white" />
+                                </div>
+                                <h2 className="font-novaSemi text-2xl mb-4 text-[#1c1f52]">Our Vision</h2>
+                                <p className="font-novaReg text-gray-700 leading-relaxed text-justify">To attain high standards of comprehensive services related to dissemination of required information by adoption of state-of-the-art technology thereby creating a welcoming and comfortable physical environment for the user.</p>
+                            </div>
+                            <div className="bg-orange-50/50 p-8 rounded-3xl border border-orange-100 hover:shadow-xl transition-all group">
+                                <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-6 shadow-sm group-hover:bg-[#df8934] transition-colors duration-300">
+                                    <BookOpen className="text-[#df8934] group-hover:text-white" />
+                                </div>
+                                <h2 className="font-novaSemi text-2xl mb-4 text-[#df8934]">Our Mission</h2>
+                                <p className="font-novaReg text-gray-700 leading-relaxed text-justify">We strive to provide and maintain state-of-the-art comprehensive resource center of books and journals and most efficient library service environment for dissemination of required knowledge to our faculty and students.</p>
+                            </div>
+                        </div>
+                    </motion.div>
+                );
+            case "About":
+                return (
+                    <div className="space-y-4">
+                        {aboutSections.map((section, idx) => (
+                            <div key={idx} className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+                                <button
+                                    onClick={() => setOpenAboutIndex(openAboutIndex === idx ? -1 : idx)}
+                                    className={`w-full flex items-center justify-between p-6 transition-colors ${openAboutIndex === idx ? 'bg-[#1c1f52] text-white' : 'hover:bg-gray-50'}`}
+                                >
+                                    <span className="font-novaSemi text-lg">{section.title}</span>
+                                    {openAboutIndex === idx ? <ChevronUp /> : <ChevronDown />}
+                                </button>
+                                <AnimatePresence>
+                                    {openAboutIndex === idx && (
+                                        <motion.div initial={{ height: 0 }} animate={{ height: 'auto' }} exit={{ height: 0 }} className="overflow-hidden">
+                                            <div className="p-8 bg-gray-50/50">
+                                                {section.desc && <p className="font-novaReg text-gray-700 leading-relaxed mb-8">{section.desc}</p>}
+                                                {section.timings && (
+                                                    <div className="grid gap-4">
+                                                        {section.timings.map((t, i) => (
+                                                            <div key={i} className="flex justify-between items-center p-4 bg-white rounded-xl border border-gray-100">
+                                                                <span className="font-novaSemi text-[#1c1f52] flex items-center gap-2"><Clock size={16} /> {t.label}</span>
+                                                                <span className="font-novaBold text-[#df8934]">{t.time}</span>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                )}
+                                                {section.rules && (
+                                                    <div className="grid sm:grid-cols-2 gap-4">
+                                                        {section.rules.map((rule, i) => (
+                                                            <div key={i} className="flex gap-3 p-4 bg-white rounded-xl border border-gray-100">
+                                                                <ShieldCheck className="text-green-500 shrink-0 mt-1" size={18} />
+                                                                <span className="text-sm font-novaReg">{rule}</span>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                )}
+                                                {section.images && <div className="mt-8"><CubeSlider width="w-full" slides={section.images} /></div>}
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
+                        ))}
+                    </div>
+                );
+            case "E-resources":
+                return (
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                        {eResourcesData.map((res) => (
+                            <motion.div key={res.id} whileHover={{ y: -5 }} className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all">
+                                <span className="text-[10px] uppercase tracking-widest font-novaBold text-[#df8934]">{res.subject}</span>
+                                <h4 className="text-xl font-novaSemi text-[#1c1f52] mt-2 group-hover:text-[#df8934] transition-colors">{res.publication}</h4>
+                                {res.note && <p className="text-xs text-gray-400 mt-2 mb-4 italic">{res.note}</p>}
+                                <Link target="_blank" href={res.link} className="inline-flex items-center gap-2 text-blue-600 font-novaReg text-sm mt-4 group">
+                                    Access Portal <Link2 size={14} className="group-hover:translate-x-1 transition-transform" />
+                                </Link>
+                                <div className="mt-4 w-12 h-0.5 bg-gray-100 group-hover:w-full transition-all duration-500" />
+                            </motion.div>
+                        ))}
+                    </div>
+                );
+            case "Library Team":
+                return (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {staffData.map((member, i) => (
+                            <div key={i} className="flex items-center gap-4 p-5 bg-white rounded-2xl border border-gray-100 hover:border-[#1c1f52]/30 transition-all">
+                                <div className="w-12 h-12 bg-[#1c1f52]/5 rounded-full flex items-center justify-center text-[#1c1f52]">
+                                    <Users size={20} />
+                                </div>
+                                <div>
+                                    <h5 className="font-novaSemi text-[#1c1f52] text-sm">{member.name}</h5>
+                                    <p className="text-xs text-gray-500 font-novaReg">{member.position}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                );
+            case "Contact Us":
+                return (
+                    <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="bg-gradient-to-br from-[#1c1f52] to-[#2a2e6e] p-10 rounded-3xl text-white relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
+                        <div className="relative z-10 flex flex-col md:flex-row gap-12 items-center">
+                            <div className="flex-1 space-y-6">
+                                <h3 className="text-3xl font-novaSemi text-[#df8934]">Reach Out to Us</h3>
+                                <p className="text-gray-300">Our librarians are available to assist you with research, resources, and any inquiries regarding the central library.</p>
+                                <div className="space-y-4">
+                                    <div className="flex items-center gap-4 group">
+                                        <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center group-hover:bg-[#df8934] transition-colors"><Mail size={20} /></div>
+                                        <div><p className="text-xs text-gray-400">Email Address</p><a href="mailto:srivastavass@akgec.ac.in" className="font-novaSemi">srivastavass@akgec.ac.in</a></div>
+                                    </div>
+                                    <div className="flex items-center gap-4 group">
+                                        <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center group-hover:bg-[#df8934] transition-colors"><Phone size={20} /></div>
+                                        <div><p className="text-xs text-gray-400">Mobile Number</p><p className="font-novaSemi">+91 9818590621</p></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="w-full md:w-auto text-center md:text-left bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/20">
+                                <h4 className="font-novaSemi mb-2">Dr. Shiv Shankar Srivastava</h4>
+                                <p className="text-sm text-gray-300 italic mb-4">Senior Librarian</p>
+                                <p className="text-xs text-gray-200">Central Library, Admin Block<br />Ajay Kumar Garg Engineering College<br />Ghaziabad, UP – 201015</p>
+                            </div>
+                        </div>
+                    </motion.div>
+                );
+            case "Digital Library":
+            case "Digital Repository":
+            case "Useful Links":
+            case "KOHA OPAC (Search)":
+                return (
+                    <div className="bg-gray-50 p-8 rounded-3xl border border-gray-100 flex flex-col items-center text-center">
+                        <Globe className="text-[#df8934] mb-6" size={48} />
+                        <h3 className="text-2xl font-novaSemi text-[#1c1f52] mb-4">External Portal Access</h3>
+                        <p className="text-gray-600 mb-8 max-w-lg">Click the button below to access the secure external portal for {activeTab}.</p>
+                        <motion.a
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            target="_blank"
+                            href={activeTab === "Digital Library" ? "https://app.myloft.xyz/user/login" : activeTab === "Useful Links" ? "https://nptel.ac.in/" : "http://117.55.241.42/"}
+                            className="px-10 py-4 bg-[#df8934] text-white font-novaSemi rounded-full shadow-lg shadow-[#df8934]/30 hover:bg-[#c6762a] transition-all flex items-center gap-3"
+                        >
+                            Open External Portal <Link2 size={18} />
+                        </motion.a>
+                    </div>
+                );
+            default:
+                return null;
+        }
     };
 
     return (
-        <div className="w-full text-black">
-            {results.map((result, index) => (
-                <div key={index} className="border-b border-gray-300">
-                    <a
-                        onClick={() => toggleDomain(index)}
-                        className={`flex justify-between items-center w-full px-5 py-6 ${openIndices.includes(index) ? 'text-white bg-indigo-950' : 'text-black'} cursor-pointer rounded-lg transition-colors duration-200 hover:bg-indigo-900 hover:text-white`}
-                    >
-                        <span className={`font-semibold`}>
-                            {result.title}
-                        </span>
-                        {openIndices.includes(index) ? (
-                            <ChevronUp className="w-6 h-6" />
-                        ) : (
-                            <ChevronDown className="w-6 h-6" />
-                        )}
-                    </a>
-                    {openIndices.includes(index) && (
-                        <div className="px-5 py-10 bg-gray-200">
-                            <span className="font-novaReg text-base mb-4 leading-snug text-justify">{result.desc}</span>
-                            {result.slides && <CubeSlider width={result.width} slides={result.slides} />}
+        <div className="relative font-novaReg">
+            {/* Main Container */}
+            <div className="bg-white rounded-[40px] shadow-2xl border border-gray-100 overflow-hidden min-h-[800px] flex flex-col lg:flex-row">
+                
+                {/* Lateral Sidebar Navigation */}
+                <div className="w-full lg:w-[320px] bg-gray-50/80 border-r border-gray-100 p-8 pt-12 flex flex-col gap-8">
+                    <div className="flex items-center gap-3 px-2">
+                        <div className="p-2 bg-[#1c1f52] rounded-lg">
+                            <BookOpen className="text-white" size={24} />
                         </div>
-                    )}
-                </div>
-            ))}
-        </div>
-    )
-}
-
-
-const libraryContent = {
-    "Home": <>
-        <div className="flex gap-5 px-3">
-            <img className="w-[60%] object-cover rounded-xl" src="/image/building/central_Library.webp" alt="library" />
-            <div>
-                <div className="bg-purple-100 rounded-xl p-5 hover:bg-purple-200 duration-300 transition-colors ease-linear">
-                    <h2 className="font-novaSemi text-2xl mb-1">Vision</h2>
-                    <p className="font-novaReg">To attain high standards of comprehensive services related to dissemination of required information by adoption of state-of-the-art technology thereby creating a welcoming and comfortable physical environment for the user.</p>
-                </div>
-                <div className="bg-blue-100 rounded-xl p-5 hover:bg-blue-200 duration-300 transition-colors ease-linear mt-5">
-                    <h2 className="font-novaSemi text-2xl mb-1">Mission</h2>
-                    <p className="font-novaReg">We strive to provide and maintain state-of-the-art comprehensive resource center of books and journals and most efficient library service environment for dissemination of required knowledge to our faculty and students.</p>
-                </div>
-            </div>
-        </div>
-    </>,
-    "About": <>
-        <LibraryAbout />
-    </>,
-    "Digital Library": <>
-        <div className="flex flex-col gap-y-8">
-            <span className="font-novaSemi text-lg">Myloft (e-books, e-journals) - <Link target="_blank" className="bg-blue-600 hover:underline duration-300 transition-all ease-linear text-white px-3 py-0.5 font-novaReg rounded-xl" href="https://app.myloft.xyz/user/login">https://app.myloft.xyz/user/login</Link></span>
-            <span className="font-novaSemi text-lg">Video Lectures - <Link target="_blank" className="bg-blue-600 hover:underline duration-300 transition-all ease-linear text-white px-3 py-0.5 font-novaReg rounded-xl" href="https://www.youtube.com/@AKGECDigitalSchool">https://www.youtube.com/@AKGECDigitalSchool</Link></span>
-            <span className="font-novaSemi text-lg">National Digital Library of India (NDL) - <Link target="_blank" className="bg-blue-600 hover:underline duration-300 transition-all ease-linear text-white px-3 py-0.5 font-novaReg rounded-xl" href="https://ndl.iitkgp.ac.in/">https://ndl.iitkgp.ac.in/</Link></span>
-            <span className="font-novaSemi text-lg">NDLI Club - <Link target="_blank" className="bg-blue-600 hover:underline duration-300 transition-all ease-linear text-white px-3 py-0.5 font-novaReg rounded-xl" href="https://club.ndl.iitkgp.ac.in/club-home">https://club.ndl.iitkgp.ac.in/club-home</Link></span>
-            <span className="font-novaSemi text-lg">DELNET - <Link target="_blank" className="bg-blue-600 hover:underline duration-300 transition-all ease-linear text-white px-3 py-0.5 font-novaReg rounded-xl" href="http://www.delnet.in/">http://www.delnet.in/</Link></span>
-            <span className="font-novaSemi text-lg">DOAJ - <Link target="_blank" className="bg-blue-600 hover:underline duration-300 transition-all ease-linear text-white px-3 py-0.5 font-novaReg rounded-xl" href="https://doaj.org/">https://doaj.org/</Link></span>
-            <span className="font-novaSemi text-lg">DOAB - <Link target="_blank" className="bg-blue-600 hover:underline duration-300 transition-all ease-linear text-white px-3 py-0.5 font-novaReg rounded-xl" href="https://doabooks.org/">https://doabooks.org/</Link></span>
-        </div>
-    </>,
-    "Digital Repository": <>
-        <div>
-            <h2 className="text-2xl font-novaSemi">Digital Repository</h2>
-            <p className="font-novaReg">AKGEC Central Library maintains a Question Papers & Model Solutions Bank consisting of previous question papers of Sessional, PUT (Pre-University Test), and University Examinations along with their model solutions prepared by the respective subject teachers. The collection is readily available for reference of students in electronic as well as print form in central library and also in electronic form in departmental and hostel libraries for benefit of faculty and students respectively users are allowed to take the documents for making photocopies at the photocopy. The collection is readily available for student reference through open source DSpace Institutional repository.</p>
-            <div className="flex flex-col gap-y-8 mt-5">
-                <span className="font-novaSemi text-lg">Previous Question Papers with Solutions - <Link target="_blank" className="bg-blue-600 hover:underline duration-300 transition-all ease-linear text-white px-3 py-0.5 font-novaReg rounded-xl" href="http://10.10.153.40:8080/jspui/">http://10.10.153.40:8080/jspui/</Link></span>
-                <span className="font-novaSemi text-lg">Book Requisition Form - <Link target="_blank" className="bg-blue-600 hover:underline duration-300 transition-all ease-linear text-white px-3 py-0.5 font-novaReg rounded-xl" href="/pdf/library/Book-Requisition-Form.pdf">Book-Requisition-Form.pdf</Link></span>
-                <span className="font-novaSemi text-lg">BB Requistion form - <Link target="_blank" className="bg-blue-600 hover:underline duration-300 transition-all ease-linear text-white px-3 py-0.5 font-novaReg rounded-xl" href="/pdf/library/BB-Requistion-form.pdf">BB-Requistion-form.pdf</Link></span>
-            </div>
-        </div>
-    </>,
-    "E-resources": <>
-        <div className="container mx-auto p-4">
-            <div className="overflow-x-auto">
-                <table className="min-w-full border border-gray-300">
-                    <thead>
-                        <tr className="bg-gray-200 text-left font-novaSemi">
-                            <th className="border px-4 py-2 whitespace-nowrap">S. No.</th>
-                            <th className="border px-4 py-2">Publication</th>
-                            <th className="border px-4 py-2">Subject Areas</th>
-                            <th className="border px-4 py-2">Web Address</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {data.map((item) => (
-                            <tr key={item.id} className="border hover:bg-gray-100 font-novaReg">
-                                <td className="border px-4 py-2">{item.id}</td>
-                                <td className="border px-4 py-2">{item.publication}</td>
-                                <td className="border px-4 py-2">{item.subject}</td>
-                                <td className="border px-4 py-2">{item.webAddress}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </>,
-    "KOHA OPAC (Search)": <>
-        <Link target="_blank" className="bg-blue-600 hover:underline duration-300 transition-all ease-linear text-white px-3 py-0.5 font-novaReg rounded-xl" href="http://117.55.241.42/">http://117.55.241.42/</Link>
-    </>,
-    "Useful Links": <>
-        <div className="space-y-6">
-            {resources.map((resource, index) => (
-                <span key={index} className="font-novaSemi text-lg block">
-                    {index + 1}. {resource.name} -{" "}
-                    <Link
-                        target="_blank"
-                        className="bg-blue-600 hover:underline duration-300 transition-all ease-linear text-white px-3 py-0.5 font-novaReg rounded-xl"
-                        href={resource.url}
-                    >
-                        {resource.url}
-                    </Link>
-                </span>
-            ))}
-        </div>
-    </>,
-    "Library Team": <>
-        <div className="container mx-auto p-4">
-            <div className="overflow-x-auto">
-                <table className="min-w-full border border-gray-300">
-                    <thead>
-                        <tr className="bg-gray-200 text-left font-novaSemi">
-                            <th className="border px-4 py-2">Name</th>
-                            <th className="border px-4 py-2">Position</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {staff.map((member, index) => (
-                            <tr key={index} className="border hover:bg-gray-100 font-novaReg">
-                                <td className="border px-4 py-2">{member.name}</td>
-                                <td className="border px-4 py-2">{member.position}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </>,
-    "Contact Us": <>
-        <div>
-            <ul className="mt-5 text-lg font-novaReg">
-                <li className="font-novaSemi">Dr. Shiv Shankar Srivastava</li>
-                <li>Senior Librarian</li>
-                <li>Ajay Kumar Garg Engineering College (AKGEC)</li>
-                <li>27th Km Stone, Delhi-Meerut Expressway,</li>
-                <li>Ghaziabad, Uttar Pradesh – 201015</li>
-                <li>
-                    Email:{" "}
-                    <a
-                        href="mailto:srivastavass@akgec.ac.in"
-                        className="text-blue-600 hover:underline"
-                    >
-                        srivastavass@akgec.ac.in
-                    </a>
-                </li>
-                <li>
-                    Mobile:{" "}
-                    <span className="text-blue-600">9818590621</span>
-                </li>
-            </ul>
-        </div>
-    </>,
-}
-
-
-const Library = () => {
-    const [activeTab, setActiveTab] = useState("Home")
-
-    return (
-        <>
-            <div className="grid grid-cols-8 bg-gray-100">
-                <div className="col-span-2 sticky top-24 h-fit bg-white shadow-md rounded-lg">
-                    <div className="p-4 border-b">
-                        <h2 className="text-lg font-novaBold uppercase">Library</h2>
+                        <h2 className="text-2xl font-novaSemi text-[#1c1f52]">Library <span className="text-[#df8934]">Hub</span></h2>
                     </div>
-                    <div className="p-4">
-                        <div className="flex flex-col space-y-2">
-                            {libraryTabs.map((tab) => (
-                                <ul key={tab}>
-                                    <li className={`px-4 py-2 rounded font-novaReg cursor-pointer ${activeTab === tab ? "bg-black text-white" : "bg-transparent text-gray-700 hover:bg-gray-100"} 
-                            justify-start`} onClick={() => setActiveTab(tab)}>{tab}</li>
-                                </ul>
-                            ))}
+
+                    <nav className="flex flex-col gap-2">
+                        {libraryTabs.map((tab) => (
+                            <button
+                                key={tab.id}
+                                onClick={() => setActiveTab(tab.id)}
+                                className={`flex items-center gap-4 px-6 py-4 rounded-2xl transition-all duration-300 group ${activeTab === tab.id ? 'bg-[#1c1f52] text-white shadow-xl shadow-indigo-900/20 translate-x-2' : 'hover:bg-white hover:shadow-md text-gray-600 hover:text-[#1c1f52]'}`}
+                            >
+                                <tab.icon size={20} className={`${activeTab === tab.id ? 'text-[#df8934]' : 'text-gray-400 group-hover:text-[#1c1f52]'}`} />
+                                <span className="font-novaSemi text-sm whitespace-nowrap">{tab.name}</span>
+                                {activeTab === tab.id && <motion.div layoutId="active" className="ml-auto w-1.5 h-1.5 bg-[#df8934] rounded-full" />}
+                            </button>
+                        ))}
+                    </nav>
+
+                    {/* Quick Access Manual Card */}
+                    <div className="mt-12 p-6 rounded-3xl bg-white border border-gray-100 shadow-xl relative group overflow-hidden">
+                        <div className="absolute -top-4 -right-4 w-20 h-20 bg-blue-50/50 rounded-full group-hover:scale-150 transition-transform duration-700" />
+                        <div className="relative z-10">
+                            <Download className="text-blue-500 mb-4" size={24} />
+                            <h5 className="font-novaSemi text-sm mb-2 text-[#1c1f52]">Central User Manual</h5>
+                            <p className="text-[10px] text-gray-500 mb-4">Complete guide for students and faculty members.</p>
+                            <Link href="/pdf/library/User-Manual-AKGEC1.pdf" target="_blank" className="text-xs text-blue-600 font-novaBold flex items-center gap-1 hover:gap-2 transition-all">
+                                Download PDF <Link2 size={12} />
+                            </Link>
                         </div>
                     </div>
                 </div>
-                <div className="col-span-6 flex-grow ml-2 overflow-auto bg-white shadow-md rounded-lg">
-                    <div className="p-4 border-b">
-                        <h2 className="text-lg font-novaBold uppercase">{activeTab}</h2>
-                    </div>
-                    <div className="p-4">
-                        <span className="whitespace-pre-wrap text-justify">{libraryContent[activeTab]}</span>
-                    </div>
+
+                {/* Main Dynamic Content Area */}
+                <div className="flex-1 bg-white p-8 lg:p-12 overflow-y-auto">
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={activeTab}
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -20 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <div className="flex justify-between items-end mb-12">
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <div className="w-8 h-[2px] bg-[#df8934]" />
+                                        <span className="text-xs uppercase tracking-[0.2em] font-novaBold text-[#df8934]">Section: {activeTab}</span>
+                                    </div>
+                                    <h2 className="text-4xl font-novaSemi text-[#1c1f52] tracking-tight">{libraryTabs.find(t => t.id === activeTab)?.name}</h2>
+                                </div>
+                                <div className="hidden sm:block">
+                                    <img src="/image/akgec-logo.svg" alt="Logo" className="w-16 opacity-10" />
+                                </div>
+                            </div>
+
+                            <div className="min-h-[500px]">
+                                {renderContent()}
+                            </div>
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
+
             </div>
-            {/* <JournalData tabs={libraryTabs} content={libraryContent} /> */}
-        </>
+            
+            {/* Atmospheric Background Blurs */}
+            <div className="fixed -top-40 -right-40 w-[600px] h-[600px] bg-blue-50/40 rounded-full blur-[100px] pointer-events-none -z-10" />
+            <div className="fixed -bottom-40 -left-40 w-[600px] h-[600px] bg-orange-50/30 rounded-full blur-[100px] pointer-events-none -z-10" />
+        </div>
     );
 };
 

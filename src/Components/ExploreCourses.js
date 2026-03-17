@@ -49,8 +49,8 @@ export default function ExploreCourses({ data }) {
                     {d?.Courses_Desc}
                 </p>
 
-                <div className="my-5 mx-auto max-w-6xl">
-                    <dl className="grid grid-cols-2 gap-4 text-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                <div className="my-5 mx-auto max-w-7xl">
+                    <dl className="grid grid-cols-2 gap-4 text-center sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4">
                         {stats?.map((stat, index) => (
                             <div key={index} className="mx-auto flex max-w-xs flex-col py-4">
                                 <dd className="order-first text-2xl sm:text-3xl md:text-4xl font-novaLight tracking-tight">
@@ -63,7 +63,7 @@ export default function ExploreCourses({ data }) {
                         ))}
                     </dl>
                 </div>
-                <div className="mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:gap-5 " >
+                <div className="mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 lg:gap-5 " >
                     {posts?.map((post, index) => (
                         <article key={index} className="relative bg-gray-900 rounded-lg shadow-md overflow-hidden">
                             <img

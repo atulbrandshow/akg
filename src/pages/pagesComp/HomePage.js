@@ -22,7 +22,7 @@ export default function HomePage({ data }) {
       {data && <StudentReviews data={data} />}
       {data && <NewsEvents data={data} />}
       {data && <FooterCard data={data} />}
-      {data && <ResearchEnvironment data={data} />}
+      {/* {data && <ResearchEnvironment data={data} />} */}
     </>
   );
 }

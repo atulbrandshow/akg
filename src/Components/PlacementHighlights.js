@@ -1,6 +1,7 @@
 'use client';
 
 import Button from "./Button";
+import Link from 'next/link';
 import PlacementSlider from "./PlacementSlider";
 
 export default function PlacementHighlights({ data }) {
@@ -61,7 +62,9 @@ export default function PlacementHighlights({ data }) {
                 </div>
                 <div className="flex justify-start space-x-4 mt-6 max-lg:justify-center">
                     <Button text={"REGISTER"} className="bg-btn-gradient tracking-wider text-white text-sm font-novaBold px-6 py-2 max-[360px]:text-[11px] rounded-md hover:bg-[#3c5686] hover:border-b-4 hover:border-[#ccce48] hover:transform hover:transition-transform hover:ease-in-out hover:duration-500 scale-y-105" />
-                    <Button text={"VIEW PLACEMENTS"} className="border border-white tracking-wider text-white text-sm font-novaBold px-4 py-2 max-[360px]:text-[11px] rounded-md hover:bg-white hover:text-black" />
+                    <Link href="/placements/top-placement">
+                        <Button text={"VIEW PLACEMENTS"} className="border border-white tracking-wider text-white text-sm font-novaBold px-4 py-2 max-[360px]:text-[11px] rounded-md hover:bg-white hover:text-black" />
+                    </Link>
                 </div>
             </div>
             <div className="flex flex-col justify-center my-auto">

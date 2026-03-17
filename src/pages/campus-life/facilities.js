@@ -1,30 +1,33 @@
 import Header from "@/Components/Header";
 import SideBar from "@/Components/SideBar";
-import Infrastructure from "../pagesComp/Infrastructure";
+import Facilities from "../pagesComp/Facilities";
 
 const SideBarLink = [
   { name: "Facilities", link: "/campus-life/facilities" },
   { name: "Library", link: "/campus-life/library" },
   { name: "Hostel", link: "/campus-life/hostel" },
   { name: "Sports", link: "/campus-life/sports" },
+  { name: "Infrastructure", link: "/campus-life/infrastructure" },
+  { name: "Technical Clubs", link: "/campus-life/technical-clubs" },
+  { name: "Extra-Curricular Societies", link: "/campus-life/extra-curricular-societies" },
   { name: "Student Welfare", link: "/campus-life/student-welfare" },
 ];
 
-const InfrastructurePage = () => {
+const FacilitiesPage = () => {
     return (
         <div className="bg-gray-50 min-h-screen">
             <Header 
-                title={"Campus Infrastructure"} 
-                subHeading={"Designed for Excellence, Built for the Future 🏛️✨"}
-                bg="/image/infrastructure/building-1.webp" 
-                gradient={"bg-gradient-to-r from-gray-900/80 to-transparent"} 
+                title={"Campus & Academic Facilities"} 
+                subHeading={"World-Class Infrastructure for a World-Class Experience 🏢🌟"}
+                bg="/image/campus-life/main-banner-1.jpg" 
+                gradient={"bg-gradient-to-r from-slate-900/90 to-transparent"} 
                 height="h-[600px]" 
             />
             <section className="w-full max-w-[1400px] mx-auto grid grid-cols-12 py-16 max-sm:py-8 gap-10 px-4 max-md:gap-0">
-                <div className="col-span-12 max-xl:col-span-12 max-lg:col-span-12">
-                    <Infrastructure />
+                <div className="col-span-12 lg:col-span-12">
+                    <Facilities />
                 </div>
-                {/* <div className="col-span-3 max-xl:col-span-4 max-lg:col-span-12">
+                {/* <div className="col-span-12 lg:col-span-3">
                      <SideBar title={"Campus Life"} LinkList={SideBarLink} />
                 </div> */}
             </section>
@@ -32,4 +35,4 @@ const InfrastructurePage = () => {
     );
 };
 
-export default InfrastructurePage;
+export default FacilitiesPage;

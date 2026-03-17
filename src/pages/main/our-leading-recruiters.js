@@ -203,7 +203,7 @@ const OurLeadingRecruiters = () => {
             <section className="max-w-[1400px] mx-auto px-3 pt-20 max-md:pt-10">
                 <div className="mb-6">
                     <div className="grid grid-cols-12 gap-8 max-sm:gap-0">
-                        <div className="col-span-9 max-xl:col-span-8 max-lg:col-span-12">
+                        <div className="col-span-12">
                             <div className="w-full mb-4">
                                 <h3 className="font-novaReg text-4xl max-md:text-2xl">AKG University: Placement Overview</h3>
                             </div>
@@ -216,9 +216,9 @@ const OurLeadingRecruiters = () => {
                                 </p>
                             ))}
                         </div>
-                        <div className="col-span-3 max-xl:col-span-4 max-lg:col-span-12">
+                        {/* <div className="col-span-3 max-xl:col-span-4 max-lg:col-span-12">
                             <SideBar title={"About Us"} LinkList={SideBarLink} />
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className="border mt-10">

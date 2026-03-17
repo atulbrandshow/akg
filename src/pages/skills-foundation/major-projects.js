@@ -59,7 +59,7 @@ const MajorProjects = () => {
                 gradient={"bg-gradient-to-r from-gray-900 to-gray-900/40"} 
             />
             <section className="w-full max-w-[1400px] mx-auto grid grid-cols-12 py-10 lg:py-20 gap-10 px-4">
-                <div className="col-span-12 lg:col-span-9">
+                <div className="col-span-12">
                     <div className="bg-white rounded-2xl shadow-sm p-6 md:p-10">
                         <h2 className="text-3xl font-novaBold text-indigo-950 mb-8 border-b pb-4">Major Projects @ ASF</h2>
                         <div className="grid grid-cols-1 gap-12">
@@ -82,9 +82,9 @@ const MajorProjects = () => {
                         </div>
                     </div>
                 </div>
-                <div className="col-span-12 lg:col-span-3 sticky top-32 self-start h-max">
+                {/* <div className="col-span-12 lg:col-span-3 sticky top-32 self-start h-max">
                     <SideBar title={"Skills Foundation"} LinkList={SideBarLink} />
-                </div>
+                </div> */}
             </section>
         </div>
     )

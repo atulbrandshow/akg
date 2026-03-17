@@ -595,17 +595,9 @@ export const CampusLife = {
       url: "/campus-life/infrastructure",
     },
     {
-      name: "Academic Facilities",
-      url: "/campus-life/academic-facilities",
+      name: "Academic & Campus Facilities",
+      url: "/campus-life/facilities",
     },
-    {
-      name: "Campus Facilities",
-      url: "/campus-life/campus-facilities",
-    },
-    // {
-    //   name: "Transportation",
-    //   url: "/campus-life/transportation",
-    // },
     // {
     //   name: "Residential Facilities",
     //   url: "/campus-life/residential-facilities",
@@ -626,10 +618,7 @@ export const CampusLife = {
     //   name: "Auditorium",
     //   url: "/campus-life/auditorium",
     // },
-    {
-      name: "Student Welfare",
-      url: "/campus-life/student-welfare",
-    },
+    
     // {
     //   name: "Convocations",
     //   url: "/campus-life/convocations",
@@ -641,6 +630,14 @@ export const CampusLife = {
     {
       name: "Extra-Curricular Societies",
       url: "/campus-life/extra-curricular-societies",
+    },
+    {
+      name: "Technical Clubs",
+      url: "/campus-life/technical-clubs",
+    },
+    {
+      name: "Student Welfare",
+      url: "/campus-life/student-welfare",
     },
   ],
 };

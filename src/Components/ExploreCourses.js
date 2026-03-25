@@ -49,7 +49,7 @@ export default function ExploreCourses({ data }) {
                     {d?.Courses_Desc}
                 </p>
 
-                <div className="my-5 mx-auto max-w-7xl">
+                {/* <div className="my-5 mx-auto max-w-7xl">
                     <dl className="grid grid-cols-2 gap-4 text-center sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4">
                         {stats?.map((stat, index) => (
                             <div key={index} className="mx-auto flex max-w-xs flex-col py-4">
@@ -62,8 +62,8 @@ export default function ExploreCourses({ data }) {
                             </div>
                         ))}
                     </dl>
-                </div>
-                <div className="mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 lg:gap-5 " >
+                </div> */}
+                <div className="mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 lg:gap-5 my-5" >
                     {posts?.map((post, index) => (
                         <article key={index} className="relative bg-gray-900 rounded-lg shadow-md overflow-hidden">
                             <img

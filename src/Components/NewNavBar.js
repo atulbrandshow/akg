@@ -345,7 +345,7 @@ export default function NewNavBar() {
       }`}
     >
       <div
-        className={`hidden md:flex overflow-hidden w-full transition-all duration-300 ease-in-out ${isScrolled ? "-mt-4" : "py-1.5"
+        className={`hidden md:flex overflow-hidden w-full transition-all duration-300 ease-in-out ${isScrolled ? "-mt-8" : "py-1.5"
           } justify-end items-center px-3 border-b border-gray-400/30`}
       >
         <div className="notification w-full">
@@ -360,11 +360,13 @@ export default function NewNavBar() {
             >
               {notifications.map((notification, index) => (
                 <SwiperSlide key={index}>
+                  <div className="flex justify-center items-center w-full">
                   <p
-                    className={`text-center text-white font-novaReg cursor-pointer text-xs`}
+                    className={`text-center text-white font-novaReg cursor-pointer text-xs py-2 px-3 bg-amber-600 rounded-3xl w-fit`}
                   >
                     {notification}
                   </p>
+                  </div>
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -472,43 +474,56 @@ export default function NewNavBar() {
           </div>
         </div>
         <div className="flex justify-end">
-          <div className="bg-white flex justify-between gap-8 items-center rounded-md p-1 sm:p-3">
-            <Link href="tel:1800-200-0777" className="hidden sm:block">
-              <div className="flex gap-2">
-                <div className="h-10 w-10 flex items-center justify-center rounded-full bg-brand-blue/10">
-                  <Phone size={20} className="text-brand-blue" />
-                </div>
-                <div className="flex flex-col justify-center leading-none text-brand-blue">
-                  <small className="font-novaReg text-xs">
-                    Admission Helpline
-                  </small>
-                  <span className="font-novaBold whitespace-nowrap leading-none text-lg max-md:text-base">
-                   8744052891-93
-                  </span>
-                </div>
-              </div>
-            </Link>
-            <button
-              onClick={() => setBigMenuToggle(!BigMenuToggle)}
-              className="block lg:hidden text-brand-blue"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.2}
-                stroke="currentColor"
-                className="size-8"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                />
-              </svg>
-            </button>
+  <div className="relative flex justify-between gap-8 items-center rounded-xl p-[2px] bg-gradient-to-r from-amber-400 via-orange-500 to-yellow-400 animate-glow">
+    
+    {/* Inner Content */}
+    <div className="flex justify-between gap-8 items-center rounded-xl bg-white px-3 py-1 sm:px-4 sm:py-2">
+      
+      <Link href="tel:1800-200-0777" className="hidden sm:block">
+        <div className="flex gap-3 items-center">
+          
+          {/* Icon with glow */}
+          <div className="h-10 w-10 flex items-center justify-center rounded-full bg-orange-100 shadow-[0_0_12px_rgba(255,140,0,0.6)]">
+            <Phone size={20} className="text-orange-600" />
           </div>
+
+          {/* Text */}
+          <div className="flex flex-col justify-center leading-none text-orange-600">
+            <small className="font-novaReg text-xs">
+              Admission Helpline
+            </small>
+            <span className="font-novaBold whitespace-nowrap leading-none text-lg max-md:text-base">
+              8744052891-93
+            </span>
+          </div>
+
         </div>
+      </Link>
+
+      {/* Mobile menu button */}
+      <button
+        onClick={() => setBigMenuToggle(!BigMenuToggle)}
+        className="block lg:hidden text-orange-600"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.2}
+          stroke="currentColor"
+          className="size-8"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+          />
+        </svg>
+      </button>
+
+    </div>
+  </div>
+</div>
       </div>
       <hr className="mt-2" />
       <div className="mt-3 px-3">

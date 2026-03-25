@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Building2, GraduationCap, Laptop, Book, Presentation, FlaskConical, Home, Trophy, Utensils, Building } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Building2, GraduationCap, Laptop, Book, Presentation, FlaskConical, Home, Trophy, Utensils, Building, X } from 'lucide-react';
 
 const infrastructureItems = [
     {
@@ -68,6 +68,8 @@ const infrastructureItems = [
 ];
 
 const Infrastructure = () => {
+    const [showVideo, setShowVideo] = useState(false);
+
     return (
         <div className="font-novaReg">
             {/* Header Content Section */}
@@ -152,12 +154,58 @@ const Infrastructure = () => {
                     <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
+                        onClick={() => setShowVideo(true)}
                         className="px-10 py-4 bg-[#df8934] text-white font-novaSemi rounded-full shadow-lg shadow-[#df8934]/30 hover:bg-[#c6762a] transition-all"
                     >
                         Start Virtual Tour
                     </motion.button>
                 </div>
             </motion.div>
+
+            {/* Video Modal */}
+            <AnimatePresence>
+                {showVideo && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm"
+                        onClick={() => setShowVideo(false)}
+                    >
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.9, opacity: 0 }}
+                            className="relative w-full max-w-5xl bg-black rounded-2xl overflow-hidden shadow-2xl border border-white/10"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            {/* Close Button */}
+                            <button
+                                onClick={() => setShowVideo(false)}
+                                className="absolute top-4 right-4 z-10 p-2 bg-black/50 text-white rounded-full hover:bg-[#df8934] transition-colors"
+                            >
+                                <X size={24} />
+                            </button>
+
+                            {/* Video Player */}
+                            <div className="aspect-video w-full">
+                                <video
+                                    src="/video/virtual-tour.mp4"
+                                    controls
+                                    autoPlay
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+
+                            {/* Modal Info */}
+                            <div className="p-6 bg-gradient-to-t from-black/80 to-transparent absolute bottom-0 left-0 right-0 pointer-events-none">
+                                <h4 className="text-white text-xl font-novaSemi mb-1">Campus Virtual Tour</h4>
+                                <p className="text-gray-300 text-sm italic font-novaReg">Experience AKG University's world-class infrastructure.</p>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 };

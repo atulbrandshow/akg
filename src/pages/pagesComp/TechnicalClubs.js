@@ -108,7 +108,7 @@ const TechnicalClubs = () => {
           Nurturing the <span className="text-orange-500">Tech Pioneers</span> of Tomorrow
         </h2>
         <p className="text-lg text-slate-600 font-novaReg leading-relaxed">
-          AKGEC's technical societies are more than just clubs—they are innovation hubs where students build real-world products, compete globally, and master cutting-edge technologies.
+          AKGU's technical societies are more than just clubs—they are innovation hubs where students build real-world products, compete globally, and master cutting-edge technologies.
         </p>
       </div>
 

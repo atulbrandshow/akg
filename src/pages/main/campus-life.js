@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Slider from "@/Components/Slider";
 import BannerSlider from "@/Components/BannerSlider";
+import Link from 'next/link';
 
 
 const slides = [
@@ -13,6 +14,7 @@ const slides = [
         description: "Maximizing Learning Outcomes Through Comprehensive Experiences and Support Services",
         buttonText: "VIDEO TOUR",
         image: "/image/campus-life/main-banner-1.jpg",
+        link: "/admissions/campus-virtual-tour"
     },
     {
         title: "Building",
@@ -21,6 +23,7 @@ const slides = [
         description: "Innovative Experiential Learning Through Advanced Technology and State-of-the-Art Labs",
         buttonText: "VIDEO TOUR",
         image: "/image/campus-life/main-banner-2.jpg",
+        link: "/admissions/campus-virtual-tour"
     },
     {
         title: "Cultivating",
@@ -29,6 +32,7 @@ const slides = [
         description: "Exceptional Mentorship, Cutting-Edge Sports Facilities, and Boundless Opportunities",
         buttonText: "VIDEO TOUR",
         image: "/image/campus-life/main-banner-3.jpg",
+        link: "/admissions/campus-virtual-tour"
     },
     // Add more slides here
 ]
@@ -174,9 +178,11 @@ const CampusLife = () => {
 
                                 {/* Hover overlay */}
                                 <div className="absolute inset-0 bg-indigo-900 bg-opacity-70 flex justify-center items-end translate-y-full group-hover:translate-y-0 transition-transform duration-200">
-                                    <button className="mb-10 px-6 py-3 uppercase tracking-wider bg-secondary font-novaBold text-black rounded-md">
-                                        View More
-                                    </button>
+                                    <Link href="/admissions/campus-virtual-tour">
+                                        <button className="mb-10 px-6 py-3 uppercase tracking-wider bg-secondary font-novaBold text-black rounded-md hover:bg-white transition-colors">
+                                            View More
+                                        </button>
+                                    </Link>
                                 </div>
                             </div>
 
@@ -186,9 +192,11 @@ const CampusLife = () => {
 
                                 {/* Hover overlay */}
                                 <div className="absolute inset-0 bg-indigo-900 bg-opacity-70 flex justify-center items-end translate-y-full group-hover:translate-y-0 transition-transform duration-200 rounded-xl">
-                                    <button className="mb-10 px-6 py-3 uppercase tracking-wider bg-secondary font-novaBold text-black rounded-md">
-                                        View More
-                                    </button>
+                                    <Link href="/admissions/campus-virtual-tour">
+                                        <button className="mb-10 px-6 py-3 uppercase tracking-wider bg-secondary font-novaBold text-black rounded-md hover:bg-white transition-colors">
+                                            View More
+                                        </button>
+                                    </Link>
                                 </div>
                             </div>
 
@@ -198,9 +206,11 @@ const CampusLife = () => {
 
                                 {/* Hover overlay */}
                                 <div className="absolute inset-0 bg-indigo-900 bg-opacity-70 flex justify-center items-end translate-y-full group-hover:translate-y-0 transition-transform duration-200 rounded-xl">
-                                    <button className="mb-10 px-6 py-3 uppercase tracking-wider bg-secondary font-novaBold text-black rounded-md">
-                                        View More
-                                    </button>
+                                    <Link href="/admissions/campus-virtual-tour">
+                                        <button className="mb-10 px-6 py-3 uppercase tracking-wider bg-secondary font-novaBold text-black rounded-md hover:bg-white transition-colors">
+                                            View More
+                                        </button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -215,10 +225,12 @@ const CampusLife = () => {
                                 <p className="mt-4 text-3xl leading-none font-novaReg">
                                     A Cosmopolitan Campus: Where Cultures Converge, <strong>Ideas Flourish, and Opportunities Abound</strong> </p>
                             </div>
-                            <button className="py-2.5 px-6 rounded-xl float-right bg-yellow-500 text-black font-novaBold tracking-wider text-sm hover:bg-orange-600 flex items-center gap-2">
-                                {slides[currentSlide].buttonText}
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#fff" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-play"><circle cx="12" cy="12" r="10" /><polygon points="10 8 16 12 10 16 10 8" /></svg>
-                            </button>
+                            <Link href="/admissions/campus-virtual-tour" className="flex justify-end">
+                                <button className="py-2.5 px-6 rounded-xl bg-yellow-500 text-black font-novaBold tracking-wider text-sm hover:bg-orange-600 flex items-center gap-2">
+                                    {slides[currentSlide].buttonText}
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#fff" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-play"><circle cx="12" cy="12" r="10" /><polygon points="10 8 16 12 10 16 10 8" /></svg>
+                                </button>
+                            </Link>
                         </div>
 
                         <div className="flex justify-end mt-32 max-xl:mt-10 max-lg:mt-20">
@@ -244,9 +256,11 @@ const CampusLife = () => {
 
                                 {/* Hover overlay */}
                                 <div className="absolute inset-0 bg-indigo-900 bg-opacity-70 flex justify-center items-end translate-y-full group-hover:translate-y-0 transition-transform duration-200">
-                                    <button className="mb-10 px-6 py-3 uppercase tracking-wider bg-secondary font-novaBold text-black rounded-md">
-                                        View More
-                                    </button>
+                                    <Link href="/admissions/campus-virtual-tour">
+                                        <button className="mb-10 px-6 py-3 uppercase tracking-wider bg-secondary font-novaBold text-black rounded-md hover:bg-white transition-colors">
+                                            View More
+                                        </button>
+                                    </Link>
                                 </div>
                             </div>
                             <div className="relative group overflow-hidden rounded-2xl h-[400px]">
@@ -255,9 +269,11 @@ const CampusLife = () => {
 
                                 {/* Hover overlay */}
                                 <div className="absolute inset-0 bg-indigo-900 bg-opacity-70 flex justify-center items-end translate-y-full group-hover:translate-y-0 transition-transform duration-200">
-                                    <button className="mb-10 px-6 py-3 uppercase tracking-wider bg-secondary font-novaBold text-black rounded-md">
-                                        View More
-                                    </button>
+                                    <Link href="/admissions/campus-virtual-tour">
+                                        <button className="mb-10 px-6 py-3 uppercase tracking-wider bg-secondary font-novaBold text-black rounded-md hover:bg-white transition-colors">
+                                            View More
+                                        </button>
+                                    </Link>
                                 </div>
                             </div>
                             <div className="relative group overflow-hidden rounded-2xl h-[400px]">
@@ -266,9 +282,11 @@ const CampusLife = () => {
 
                                 {/* Hover overlay */}
                                 <div className="absolute inset-0 bg-indigo-900 bg-opacity-70 flex justify-center items-end translate-y-full group-hover:translate-y-0 transition-transform duration-200">
-                                    <button className="mb-10 px-6 py-3 uppercase tracking-wider bg-secondary font-novaBold text-black rounded-md">
-                                        View More
-                                    </button>
+                                    <Link href="/admissions/campus-virtual-tour">
+                                        <button className="mb-10 px-6 py-3 uppercase tracking-wider bg-secondary font-novaBold text-black rounded-md hover:bg-white transition-colors">
+                                            View More
+                                        </button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -282,9 +300,11 @@ const CampusLife = () => {
 
                                 {/* Hover overlay */}
                                 <div className="absolute inset-0 bg-indigo-900 bg-opacity-70 flex justify-center items-end translate-y-full group-hover:translate-y-0 transition-transform duration-200">
-                                    <button className="mb-10 px-6 py-3 uppercase tracking-wider bg-secondary font-novaBold text-black rounded-md">
-                                        View More
-                                    </button>
+                                    <Link href="/admissions/campus-virtual-tour">
+                                        <button className="mb-10 px-6 py-3 uppercase tracking-wider bg-secondary font-novaBold text-black rounded-md hover:bg-white transition-colors">
+                                            View More
+                                        </button>
+                                    </Link>
                                 </div>
                             </div>
                             <div className="relative group overflow-hidden rounded-2xl h-[450px]">
@@ -293,9 +313,11 @@ const CampusLife = () => {
 
                                 {/* Hover overlay */}
                                 <div className="absolute inset-0 bg-indigo-900 bg-opacity-70 flex justify-center items-end translate-y-full group-hover:translate-y-0 transition-transform duration-200">
-                                    <button className="mb-10 px-6 py-3 uppercase tracking-wider bg-secondary font-novaBold text-black rounded-md">
-                                        View More
-                                    </button>
+                                    <Link href="/admissions/campus-virtual-tour">
+                                        <button className="mb-10 px-6 py-3 uppercase tracking-wider bg-secondary font-novaBold text-black rounded-md hover:bg-white transition-colors">
+                                            View More
+                                        </button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -308,9 +330,11 @@ const CampusLife = () => {
 
                         {/* Hover overlay */}
                         <div className="absolute inset-0 bg-indigo-900 bg-opacity-70 flex justify-center items-end translate-y-full group-hover:translate-y-0 transition-transform duration-200">
-                            <button className="mb-10 px-6 py-3 uppercase tracking-wider bg-secondary font-novaBold text-black rounded-md">
-                                View More
-                            </button>
+                            <Link href="/admissions/campus-virtual-tour">
+                                <button className="mb-10 px-6 py-3 uppercase tracking-wider bg-secondary font-novaBold text-black rounded-md hover:bg-white transition-colors">
+                                    View More
+                                </button>
+                            </Link>
                         </div>
                     </div>
                     <div className="relative group overflow-hidden rounded-2xl h-[300px]">
@@ -319,9 +343,11 @@ const CampusLife = () => {
 
                         {/* Hover overlay */}
                         <div className="absolute inset-0 bg-indigo-900 bg-opacity-70 flex justify-center items-end translate-y-full group-hover:translate-y-0 transition-transform duration-200">
-                            <button className="mb-10 px-6 py-3 uppercase tracking-wider bg-secondary font-novaBold text-black rounded-md">
-                                View More
-                            </button>
+                            <Link href="/admissions/campus-virtual-tour">
+                                <button className="mb-10 px-6 py-3 uppercase tracking-wider bg-secondary font-novaBold text-black rounded-md hover:bg-white transition-colors">
+                                    View More
+                                </button>
+                            </Link>
                         </div>
                     </div>
                     <div className="relative group overflow-hidden rounded-2xl h-[300px]">
@@ -330,9 +356,11 @@ const CampusLife = () => {
 
                         {/* Hover overlay */}
                         <div className="absolute inset-0 bg-indigo-900 bg-opacity-70 flex justify-center items-end translate-y-full group-hover:translate-y-0 transition-transform duration-200">
-                            <button className="mb-10 px-6 py-3 uppercase tracking-wider bg-secondary font-novaBold text-black rounded-md">
-                                View More
-                            </button>
+                            <Link href="/admissions/campus-virtual-tour">
+                                <button className="mb-10 px-6 py-3 uppercase tracking-wider bg-secondary font-novaBold text-black rounded-md hover:bg-white transition-colors">
+                                    View More
+                                </button>
+                            </Link>
                         </div>
                     </div>
                     <div className="relative group overflow-hidden rounded-2xl h-[300px]">
@@ -341,9 +369,11 @@ const CampusLife = () => {
 
                         {/* Hover overlay */}
                         <div className="absolute inset-0 bg-indigo-900 bg-opacity-70 flex justify-center items-end translate-y-full group-hover:translate-y-0 transition-transform duration-200">
-                            <button className="mb-10 px-6 py-3 uppercase tracking-wider bg-secondary font-novaBold text-black rounded-md">
-                                View More
-                            </button>
+                            <Link href="/admissions/campus-virtual-tour">
+                                <button className="mb-10 px-6 py-3 uppercase tracking-wider bg-secondary font-novaBold text-black rounded-md hover:bg-white transition-colors">
+                                    View More
+                                </button>
+                            </Link>
                         </div>
                     </div>
                     <div className="relative group overflow-hidden rounded-2xl h-[300px]">
@@ -363,9 +393,11 @@ const CampusLife = () => {
 
                         {/* Hover overlay */}
                         <div className="absolute inset-0 bg-indigo-900 bg-opacity-70 flex justify-center items-end translate-y-full group-hover:translate-y-0 transition-transform duration-200">
-                            <button className="mb-10 px-6 py-3 uppercase tracking-wider bg-secondary font-novaBold text-black rounded-md">
-                                View More
-                            </button>
+                            <Link href="/admissions/campus-virtual-tour">
+                                <button className="mb-10 px-6 py-3 uppercase tracking-wider bg-secondary font-novaBold text-black rounded-md hover:bg-white transition-colors">
+                                    View More
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </div>

@@ -300,7 +300,7 @@ const Placement = () => {
                               </h3>
                               <span className="text-white font-novaSemi">MBA</span>
                             </div>
-                            <div className="text-center py-6 px-12">
+                            {/* <div className="text-center py-6 px-12">
                               <h3 className="text-white text-5xl font-novaBold mb-2">
                                 <span className="inline-flex items-center">
                                   <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="yellow" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2">
@@ -314,7 +314,7 @@ const Placement = () => {
                                 </span>
                               </h3>
                               <span className="text-white font-novaSemi">HOTEL MANAGEMENT</span>
-                            </div>
+                            </div> */}
                           </div>
                         </div>
                       </div>

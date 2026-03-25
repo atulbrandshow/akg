@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@headlessui/react"
+import Link from "next/link"
 
 const BannerSlider = ({ slides }) => {
 
@@ -49,10 +50,12 @@ const BannerSlider = ({ slides }) => {
                             </div>
                             <div className="flex flex-col items-start max-w-full">
                                 <p className="text-3xl max-lg:text-xl font-novaReg leading-none max-w-lg pb-8 max-sm:text-base max-sm:leading-tight">{slides[currentSlide].description}</p>
-                                <button className="py-2.5 px-6 rounded-xl uppercase bg-secondary text-black font-novaBold tracking-wider text-sm hover:bg-orange-600 flex items-center gap-2 max-sm:px-3 max-sm:py-1.5 leading-tight">
-                                    {slides[currentSlide].buttonText}
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#fff" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-play"><circle cx="12" cy="12" r="10" /><polygon points="10 8 16 12 10 16 10 8" /></svg>
-                                </button>
+                                <Link href={slides[currentSlide].link || "#"}>
+                                    <button className="py-2.5 px-6 rounded-xl uppercase bg-secondary text-black font-novaBold tracking-wider text-sm hover:bg-orange-600 flex items-center gap-2 max-sm:px-3 max-sm:py-1.5 leading-tight">
+                                        {slides[currentSlide].buttonText}
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#fff" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-play"><circle cx="12" cy="12" r="10" /><polygon points="10 8 16 12 10 16 10 8" /></svg>
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                     </div>

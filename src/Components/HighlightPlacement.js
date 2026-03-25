@@ -50,11 +50,11 @@ const HighlightPlacement = () => {
                             <p className="text-2xl md:text-3xl lg:text-5xl font-novaThin mt-4">
                                 {highlight.value.includes("CR") ? (
                                     <>
-                                        {highlight.value.split(" ")[0]} <small className="font-novaLight -ml-1 text-lg">CR</small>
+                                        ₹ {highlight.value.split(" ")[0]} <small className="font-novaLight -ml-1 text-lg">CR</small>
                                     </>
                                 ) : (
                                     <>
-                                        {highlight.value.split(" ")[0]} <small className="font-novaLight -ml-1 text-lg">LPA</small>
+                                        ₹ {highlight.value.split(" ")[0]} <small className="font-novaLight -ml-1 text-lg">LPA</small>
                                     </>
                                 )}
                             </p>

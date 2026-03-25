@@ -51,7 +51,7 @@ const PlacementData = ({ data }) => {
                         </div>
                         <div className="flex-1 flex justify-center items-center flex-col bg-[#5c5c5c] py-5">
                             <span className="block text-center text-5xl max-sm:text-2xl font-novaBold">
-                                {placement.highestPackage.value} <span className="text-xl max-sm:text-base -ml-2">{placement.highestPackage.unit}</span>
+                                ₹ {placement.highestPackage.value} <span className="text-xl max-sm:text-base -ml-2">{placement.highestPackage.unit}</span>
                             </span>
                             <p className="text-center text-sm leading-none max-w-28">International Highest Package</p>
                         </div>

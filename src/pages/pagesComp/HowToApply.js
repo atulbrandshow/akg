@@ -40,13 +40,13 @@ const offlineFirstSteps = [
         content: "To download the admission form, please visit www.akguniversity.edu."
     },
     {
-        content: "Send the completed admission form along with a demand draft of $100 drawn in the name of 'AKG University', payable at City Name, to the following address:"
+        content: "Send the completed admission form along with a demand draft of ₹100 drawn in the name of 'AKG University', payable at City Name, to the following address:"
     },
 ];
 
 const secondSteps = [
     {
-        title: "Post-registration, download the e-Prospectus for $10 online",
+        title: "Post-registration, download the e-Prospectus for ₹10 online",
         content: "Following registration, candidates are required to download the e-Prospectus, which is accessible after successful registration. The e-Prospectus includes the application form for admission and details about the entrance exam."
     },
     {
@@ -57,7 +57,7 @@ const secondSteps = [
 
 const offlineSecondSteps = [
     {
-        main: "Submit the admission form and obtain the prospectus by paying $10 at AKG University Campus or any local admission office."
+        main: "Submit the admission form and obtain the prospectus by paying ₹10 at AKG University Campus or any local admission office."
     },
 ];
 

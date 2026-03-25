@@ -48,7 +48,7 @@ export const studentReviewsData = [
       With a focus on cutting-edge technologies like Artificial Intelligence, Machine Learning, Data Science, and Cloud Computing, 
       students have demonstrated exceptional skills and innovation, attracting some of the biggest IT firms in the country. 
       Renowned companies such as TCS, Infosys, Wipro, Capgemini, Cognizant, and Accenture visited the campus, offering lucrative packages 
-      to over 500 students. The highest international package reached Rs. 45 LPA, and the national package went up to Rs. 20 LPA.`,
+      to over 500 students. The highest international package reached ₹ 45 LPA, and the national package went up to ₹ 20 LPA.`,
       companies: 80,
       studentsSelected: 500,
       highestPackage: "45",
@@ -57,7 +57,7 @@ export const studentReviewsData = [
       title: "Mechanical, Mechatronics, and Automobile Engineering placements soar at AKGU",
       description: `The Mechanical, Mechatronics, and Automobile Engineering departments at AKGU have witnessed tremendous success in 
       placements this year, with over 40 companies hiring more than 200 students. Companies like Tata Motors, Hero MotoCorp, 
-      Mahindra & Mahindra, and Escorts visited the campus, offering packages as high as Rs. 12 LPA. These placements are a testament 
+      Mahindra & Mahindra, and Escorts visited the campus, offering packages as high as ₹ 12 LPA. These placements are a testament 
       to the college's state-of-the-art laboratories and industry-relevant curriculum, which enable students to gain practical 
       experience in areas such as robotics, automation, and advanced automotive systems.`,
       companies: 40,
@@ -70,7 +70,7 @@ export const studentReviewsData = [
       more than 50 top companies, including L&T, Shapoorji Pallonji, Siemens, and ABB, selecting over 150 students. Civil 
       Engineering students were particularly successful in securing roles in construction management, urban planning, and 
       structural engineering, while Electrical Engineering students were recruited for power generation, automation, and renewable 
-      energy projects. The highest package offered to students in these branches was Rs. 10 LPA, with multiple offers coming from 
+      energy projects. The highest package offered to students in these branches was ₹ 10 LPA, with multiple offers coming from 
       companies that are known for large-scale infrastructure projects both in India and abroad.`,
       companies: 50,
       studentsSelected: 150,

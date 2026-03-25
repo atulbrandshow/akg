@@ -338,8 +338,11 @@ export default function NewNavBar() {
 
   return (
     <header
-      className={`navbar z-[100] w-full fixed top-0 left-0 transition-all duration-200 ${isScrolled ? "bg-brand-blue" : "bg-white/0"
-        }`}
+      className={`navbar z-[100] w-full fixed top-0 left-0 transition-all duration-300 ${
+        isScrolled
+          ? "bg-brand-blue shadow-[0_2px_6px_rgba(0,0,0,0.4),0_12px_20px_rgba(0,0,0,0.25)]"
+          : "bg-white/0"
+      }`}
     >
       <div
         className={`hidden md:flex overflow-hidden w-full transition-all duration-300 ease-in-out ${isScrolled ? "-mt-4" : "py-1.5"

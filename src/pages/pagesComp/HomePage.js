@@ -3,6 +3,7 @@
 import { CampusSlider, FooterCard, MilestonesSection, NewsEvents, PlacementHighlights, ExploreCourses, ResearchEnvironment, SlickSlider, StudentReviews } from "@/Components";
 import HomeLogoSlider from "@/Components/HomeLogoSlider";
 import HomeTopCard from "@/Components/HomeTopCard";
+import IndustryPartnersSlider from "@/Components/IndustryPartnersSlider";
 import MainSection from "@/Components/MainSection";
 import NotificationSlider from "@/Components/NotificationSlider";
 
@@ -21,7 +22,8 @@ export default function HomePage({ data }) {
       {data && <CampusSlider data={data} />}
       {data && <StudentReviews data={data} />}
       {data && <NewsEvents data={data} />}
-      {data && <FooterCard data={data} />}
+      {/* {data && <FooterCard data={data} />} */}
+      {data && <IndustryPartnersSlider data={data} />}
       {/* {data && <ResearchEnvironment data={data} />} */} 
     </>
   );

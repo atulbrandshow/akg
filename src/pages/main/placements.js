@@ -14,19 +14,19 @@ import AdmissionsShowcase from '@/Components/AdmissionsShowcase';
 const topslides = [
   {
     id: 1,
-    image: "/image/placement/main-banner-1.jpg"
+    image: "/image/placement/placement-overview-1.webp"
   },
   {
     id: 2,
-    image: "/image/placement/main-banner-2.jpg"
+    image: "/image/placement/placement-overview-2.webp"
   },
   {
     id: 3,
-    image: "/image/placement/main-banner-3.jpg"
+    image: "/image/placement/placement-overview-3.webp"
   },
   {
     id: 4,
-    image: "/image/placement/main-banner-2.jpg"
+    image: "/image/placement/placement-overview-4.webp"
   }
 ];
 
@@ -243,7 +243,7 @@ const Placement = () => {
                   <img
                     src={topslides[currentTopSlide].image}
                     alt="Slide"
-                    className="w-full h-full object-cover max-md:w-full max-md:h-full"
+                    className="w-full h-full object-top max-md:w-full max-md:h-full"
                   />
                   <div className="absolute inset-0 bg-gray-900 bg-opacity-50" />
                   <section className='absolute inset-0 flex'>

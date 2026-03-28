@@ -14,19 +14,27 @@ import AdmissionsShowcase from '@/Components/AdmissionsShowcase';
 const topslides = [
   {
     id: 1,
-    image: "/image/placement/placement-overview-1.webp"
+    image: "/image/placement/placement-overview-1.webp",
+    title: "Industry Integration",
+    subtitle: "Connecting students with world-class recruiters."
   },
   {
     id: 2,
-    image: "/image/placement/placement-overview-2.webp"
+    image: "/image/placement/placement-overview-2.webp",
+    title: "Global Reach",
+    subtitle: "Placing our talented students in prestigious global organizations."
   },
   {
     id: 3,
-    image: "/image/placement/placement-overview-3.webp"
+    image: "/image/placement/placement-overview-3.webp",
+    title: "Future Ready",
+    subtitle: "Empowering students with skills that define the next generation."
   },
   {
     id: 4,
-    image: "/image/placement/placement-overview-4.webp"
+    image: "/image/placement/placement-overview-4.webp",
+    title: "Career Success",
+    subtitle: "A legacy of excellence in placement and professional growth."
   }
 ];
 
@@ -183,76 +191,116 @@ const PlacementSection = ({ title, items }) => (
 )
 
 const Placement = () => {
-  const [currentTopSlide, setCurrentTopSlide] = useState(0);
   const [activeTab, setActiveTab] = useState(0)
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const nextTopSlide = () => {
-    setCurrentTopSlide((prev) => (prev + 1) % topslides.length);
-  };
-
-  const prevTopSlide = () => {
-    setCurrentTopSlide((prev) => (prev - 1 + topslides.length) % topslides.length);
-  };
-
-  useEffect(() => {
-    const slideInterval = setInterval(() => {
-      nextTopSlide();
-    }, 3000);
-
-    return () => clearInterval(slideInterval);
-  }, [currentTopSlide]);
-
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  };
-
-  useEffect(() => {
-    const slideInterval = setInterval(nextSlide, 3000);
-    return () => clearInterval(slideInterval);
-  }, []);
-
+  const [activeTopSlide, setActiveTopSlide] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length)
-    }, 5000) // Change slide every 5 seconds
-
-    return () => clearInterval(timer)
-  }, [])
+      setActiveTopSlide((prev) => (prev + 1) % topslides.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
   return (
     <>
-      <div className="relative w-full h-[95vh] max-md:h-[80vh] max-sm:h-[50vh] overflow-hidden">
-        {topslides ?
-          <AnimatePresence initial={false}>
-            {topslides[currentTopSlide] && (
-              <motion.div
-                key={currentTopSlide}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-                className="absolute inset-0"
+      <section className="relative w-full h-[85vh] md:h-screen overflow-hidden bg-indigo-950">
+        <AnimatePresence initial={false}>
+          <motion.div
+            key={activeTopSlide}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+            className="absolute inset-0"
+          >
+            <motion.div 
+              initial={{ scale: 1.2 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 8, ease: "easeOut" }}
+              className="w-full h-full relative"
+            >
+              <img 
+                src={topslides[activeTopSlide].image} 
+                className="w-full h-full object-cover" 
+                alt={topslides[activeTopSlide].title}
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-950/90 via-indigo-950/40 to-transparent" />
+            </motion.div>
+          </motion.div>
+        </AnimatePresence>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
+          <div className="max-w-4xl">
+            <motion.div
+              key={`content-${activeTopSlide}`}
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <h1 className="text-5xl md:text-8xl font-novaBold text-white leading-tight mb-6">
+                Placement <br /> 
+                <span className="text-yellow-500">Excellence</span>
+              </h1>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="text-xl md:text-2xl text-gray-200 font-novaReg mb-10 leading-relaxed max-w-2xl"
               >
-                <div className="relative w-full h-full">
-                  <img
-                    src={topslides[currentTopSlide].image}
-                    alt="Slide"
-                    className="w-full h-full object-top max-md:w-full max-md:h-full"
-                  />
-                  <div className="absolute inset-0 bg-gray-900 bg-opacity-50" />
-                  <section className='absolute inset-0 flex'>
-                    <div className="w-full mt-auto">
-                      {/* <div className="text-center">
-                        <h2 className="text-white font-novaBold text-3xl mb-2">Highest Package</h2>
-                        <small className="text-white font-novaBold text-lg">Batch 2023-24</small>
-                      </div> */}
-                      <div className="bg-indigo-900 py-4">
+                {topslides[activeTopSlide].subtitle}
+              </motion.p>
+              <div className="flex flex-wrap gap-4">
+                <Button 
+                  text="EXPLORE DRIVES" 
+                  className="bg-yellow-500 text-indigo-950 font-novaBold px-10 py-4 rounded-full hover:bg-white transition-all shadow-xl !w-fit"
+                />
+                <Button 
+                  text="OUR RECRUITERS" 
+                  className="bg-transparent border-2 border-white text-white font-novaBold px-10 py-4 rounded-full hover:bg-white hover:text-indigo-950 transition-all !w-fit"
+                />
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Navigation Arrows */}
+        <div className="absolute inset-y-0 left-6 right-6 hidden md:flex items-center justify-between z-20 pointer-events-none">
+          <button
+            onClick={() => setActiveTopSlide((prev) => (prev - 1 + topslides.length) % topslides.length)}
+            className="w-14 h-14 rounded-full border border-white/20 bg-black/10 backdrop-blur-md flex items-center justify-center text-white hover:bg-yellow-500 hover:text-indigo-950 hover:border-yellow-500 transition-all pointer-events-auto group shadow-2xl"
+          >
+            <ChevronLeft size={32} className="group-hover:-translate-x-1 transition-transform" />
+          </button>
+          <button
+            onClick={() => setActiveTopSlide((prev) => (prev + 1) % topslides.length)}
+            className="w-14 h-14 rounded-full border border-white/20 bg-black/10 backdrop-blur-md flex items-center justify-center text-white hover:bg-yellow-500 hover:text-indigo-950 hover:border-yellow-500 transition-all pointer-events-auto group shadow-2xl"
+          >
+            <ChevronRight size={32} className="group-hover:translate-x-1 transition-transform" />
+          </button>
+        </div>
+
+        {/* Slide Indicators */}
+        <div className="absolute bottom-12 left-0 right-0 z-20">
+          <div className="max-w-7xl mx-auto px-6 flex items-center gap-4">
+            <div className="flex gap-2">
+              {topslides.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveTopSlide(idx)}
+                  className={`h-2 transition-all duration-500 rounded-full ${
+                    activeTopSlide === idx ? "bg-yellow-500 w-16" : "bg-white/30 w-8"
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
+            </div>
+            <div className="h-[1px] flex-1 bg-white/20 hidden md:block" />
+            <div className="text-white font-novaBold text-sm tracking-widest hidden md:block uppercase opacity-70">
+              0{activeTopSlide + 1} / 0{topslides.length}
+            </div>
+          </div>
+        </div>
+      </section>
+       <div className="bg-indigo-900 py-4">
                         <div className="container max-w-7xl mx-auto">
                           <div className="flex justify-around flex-wrap">
                             <div className="text-center py-6 px-5">
@@ -318,30 +366,6 @@ const Placement = () => {
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </section>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-          : null}
-        <button
-          variant="outline"
-          size="icon"
-          className="flex items-center justify-center absolute left-4 top-1/2 transform -translate-y-1/2 bg-white opacity-50 rounded-full hover:bg-opacity-75 w-4 h-4 lg:w-12 lg:h-12 max-md:w-6 max-md:h-6 "
-          onClick={prevTopSlide}
-        >
-          <ChevronLeft className="w-6 h-6" />
-        </button>
-        <button
-          variant="outline"
-          size="icon"
-          className="flex items-center justify-center absolute right-4 top-1/2 transform -translate-y-1/2 bg-white opacity-50 rounded-full hover:bg-opacity-75  w-4 h-4 lg:w-12 lg:h-12 max-md:w-6 max-md:h-6"
-          onClick={nextTopSlide}
-        >
-          <ChevronRight className="w-6 h-6" />
-        </button>
-      </div>
       <AdmissionsShowcase />
 
       <section className="bg-white py-24 sm:py-20">

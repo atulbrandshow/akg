@@ -248,16 +248,6 @@ const Placement = () => {
               >
                 {topslides[activeTopSlide].subtitle}
               </motion.p>
-              <div className="flex flex-wrap gap-4">
-                <Button 
-                  text="EXPLORE DRIVES" 
-                  className="bg-yellow-500 text-indigo-950 font-novaBold px-10 py-4 rounded-full hover:bg-white transition-all shadow-xl !w-fit"
-                />
-                <Button 
-                  text="OUR RECRUITERS" 
-                  className="bg-transparent border-2 border-white text-white font-novaBold px-10 py-4 rounded-full hover:bg-white hover:text-indigo-950 transition-all !w-fit"
-                />
-              </div>
             </motion.div>
           </div>
         </div>

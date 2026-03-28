@@ -394,11 +394,10 @@ const Scholarship = ({ data }) => {
                   <button
                     key={index}
                     onClick={() => setActiveScholarship(index)}
-                    className={`scholarship-card flex flex-row p-4 items-center transition-all duration-300 rounded-lg shadow-md ${
-                      activeScholarship === index
+                    className={`scholarship-card flex flex-row p-4 items-center transition-all duration-300 rounded-lg shadow-md ${activeScholarship === index
                         ? "bg-primary text-white transform scale-105"
                         : "text-gray-700 hover:bg-primary hover:shadow-lg"
-                    }`}
+                      }`}
                   >
                     <img
                       src={s.image}
@@ -442,7 +441,7 @@ const Scholarship = ({ data }) => {
                 {/* Background Elements */}
                 <div className="absolute -top-10 -right-10 w-24 h-24 bg-secondary/10 rounded-full"></div>
                 <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-primary/5 rounded-full"></div>
-                
+
                 {/* Vector Images */}
                 <div className="absolute top-0 left-0 opacity-10">
                   <img
@@ -507,9 +506,8 @@ const Scholarship = ({ data }) => {
                       {governmentScholarships.map((item, idx) => (
                         <tr
                           key={idx}
-                          className={`${
-                            idx % 2 === 0 ? "bg-gray-50" : "bg-white"
-                          } hover:bg-primary/5 transition-colors duration-300`}
+                          className={`${idx % 2 === 0 ? "bg-gray-50" : "bg-white"
+                            } hover:bg-primary/5 transition-colors duration-300`}
                         >
                           <td className="p-4 border-r border-gray-200">
                             {item.name}

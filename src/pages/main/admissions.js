@@ -48,7 +48,7 @@ export default function Home({ data }) {
     <>
       <Header
         Button={Button}
-        position="center"
+        position="top"
         title={
           <span className="text-4xl md:text-5xl lg:text-6xl pt-20">
             Discover First
@@ -70,6 +70,8 @@ export default function Home({ data }) {
         buttonType="form"
         buttonText="Apply Now"
         formKey="applyNow"
+        custom={true}
+        bgUrl="/image/about/over-view-1.webp"
       />
       {/* <section className="max-w-[1400px] mx-auto px-5 max-sm:px-2 py-5">
         {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}

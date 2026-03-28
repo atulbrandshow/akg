@@ -13,7 +13,7 @@ const slides = [
         subtitle: "University Focused on Student Success",
         description: "Maximizing Learning Outcomes Through Comprehensive Experiences and Support Services",
         buttonText: "VIDEO TOUR",
-        image: "/image/campus-life/main-banner-1.jpg",
+        image: "/image/campus-life/campus-life-banner-1.webp",
         link: "/admissions/campus-virtual-tour"
     },
     {
@@ -22,7 +22,7 @@ const slides = [
         subtitle: "Pioneering Research and Cutting-Edge Innovation",
         description: "Innovative Experiential Learning Through Advanced Technology and State-of-the-Art Labs",
         buttonText: "VIDEO TOUR",
-        image: "/image/campus-life/main-banner-2.jpg",
+        image: "/image/campus-life/campus-life-banner-2.webp",
         link: "/admissions/campus-virtual-tour"
     },
     {
@@ -31,7 +31,7 @@ const slides = [
         subtitle: "Elite Sports Facilities, Expert Mentorship, and Exceptional Opportunities",
         description: "Exceptional Mentorship, Cutting-Edge Sports Facilities, and Boundless Opportunities",
         buttonText: "VIDEO TOUR",
-        image: "/image/campus-life/main-banner-3.jpg",
+        image: "/image/campus-life/campus-life-banner-3.webp",
         link: "/admissions/campus-virtual-tour"
     },
     // Add more slides here
@@ -173,7 +173,7 @@ const CampusLife = () => {
                     <div className="col-span-3">
                         <div className="space-y-8">
                             <div className="relative group overflow-hidden rounded-2xl h-[400px]">
-                                <img src="/image/campus-life/convocation.jpg" alt="Ceremony" className="w-full h-full object-cover transition-transform duration-[5s] group-hover:scale-125" />
+                                <img src="/image/campus-life/convocation.jpg" alt="Ceremony" className="w-full h-full !bg-top object-cover transition-transform duration-[5s] group-hover:scale-125" />
                                 <h3 className="absolute z-10 top-5 left-1/2 -translate-x-1/2 text-4xl w-full text-center font-novaReg">Ceremony</h3>
 
                                 {/* Hover overlay */}

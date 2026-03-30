@@ -61,11 +61,11 @@ const Scholarship = ({ data }) => {
       image: "/image/scholarship/logo-4.jpg",
       content: `The scholarship is granted in accordance with the eligibility criteria prescribed by the University and applicable Government norms, ensuring that deserving students receive support to pursue their higher education without financial constraints.`,
       table: [
-        { 
-          sno: 1, 
-          category: "Economically Weaker Section (EWS)*", 
-          criteria: "Verified annual family income and excellent academic record (As per Govt. norms)", 
-          benefit: "Weightage of 5% in merit criteria will be provided for all courses OR 20% Tuition Fee waiver (in 1st year Fee)" 
+        {
+          sno: 1,
+          category: "Economically Weaker Section (EWS)*",
+          criteria: "Verified annual family income and excellent academic record (As per Govt. norms)",
+          benefit: "Weightage of 5% in merit criteria will be provided for all courses OR 20% Tuition Fee waiver (in 1st year Fee)"
         }
       ],
       footer: "* EWS certificate is required as per prescribed format of Govt. & with other relevant documents."
@@ -293,22 +293,23 @@ const Scholarship = ({ data }) => {
               </h2>
             </div>
             <p className="font-novaLight text-lg leading-6">
-              AKG University is committed to supporting talented and deserving
-              students through a range of scholarships designed to foster
-              academic excellence and provide financial assistance. These
-              scholarships aim to reward high achievers, encourage consistent
-              performance, and promote inclusivity by supporting students from
-              diverse backgrounds.
+              Ajay Kumar Garg University, Ghaziabad is committed to promoting access to quality education by supporting talented and deserving students.
+
             </p>
             <p className="mt-3 font-novaLight text-lg leading-6">
-              With structured criteria based on entrance ranks, academic
-              performance, and socio-economic factors, AKG Scholarships help
-              reduce financial barriers and motivate students towards their
-              educational and career goals.
+              The University believes that financial limitations should not prevent capable students from achieving their academic goals.
+
             </p>
-            <button className="mt-5 rounded-md uppercase bg-secondary px-5 py-3 text-base font-novaBold tracking-wider hover:text-white text-black shadow-sm hover:bg-primary duration-300">
+            <p className="font-novaLight text-lg leading-6 mt-3">
+              To encourage excellence, the University offers various scholarships and financial assistance schemes based on academic merit and notable achievements in sports and cultural activities.
+            </p>
+            <p className="mt-3 font-novaLight text-lg leading-6">
+              Depending on eligibility, students may receive full or partial tuition fee waivers, enabling them to pursue their education in a motivating and supportive environment.
+
+            </p>
+            {/* <button className="mt-5 rounded-md uppercase bg-secondary px-5 py-3 text-base font-novaBold tracking-wider hover:text-white text-black shadow-sm hover:bg-primary duration-300">
               Avail Scholarship ➜
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
@@ -344,8 +345,8 @@ const Scholarship = ({ data }) => {
                     key={index}
                     onClick={() => setActiveScholarship(index)}
                     className={`scholarship-card flex flex-row p-4 items-center transition-all duration-300 rounded-xl shadow-sm border-2 ${activeScholarship === index
-                        ? "bg-primary text-white border-primary transform scale-105 shadow-lg"
-                        : "bg-white text-gray-700 border-gray-100 hover:border-secondary hover:shadow-md"
+                      ? "bg-primary text-white border-primary transform scale-105 shadow-lg"
+                      : "bg-white text-gray-700 border-gray-100 hover:border-secondary hover:shadow-md"
                       }`}
                   >
                     <div className={`w-12 h-12 rounded-full overflow-hidden mr-4 border-2 ${activeScholarship === index ? "border-secondary" : "border-gray-200"}`}>
@@ -367,7 +368,7 @@ const Scholarship = ({ data }) => {
                 <h3 className="text-4xl font-novaReg mb-8 text-primary border-l-4 border-secondary pl-4">
                   {activeData.title}
                 </h3>
-                
+
                 <div className="p-8 shadow-xl bg-white rounded-xl border border-gray-100 relative overflow-hidden mb-8">
                   {/* Card Background Pattern */}
                   <div className="absolute top-0 right-0 w-32 h-32 opacity-10">

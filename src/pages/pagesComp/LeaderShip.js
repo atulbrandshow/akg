@@ -117,7 +117,7 @@ const LeaderShip = () => {
                                             </div>
                                             <div>
                                                 <p className="text-[10px] font-novaBold text-black uppercase tracking-widest opacity-80">Vice Chancellor, AKGU</p>
-                                                <p className="text-sm font-novaSemi text-black">Dr. Amita Dev</p>
+                                                <p className="text-sm font-novaSemi text-black">Prof. Amita Dev</p>
                                             </div>
                                         </div>
                                     </div>

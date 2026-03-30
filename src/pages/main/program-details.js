@@ -14,25 +14,27 @@ import FAQHolder from '@/Components/FAQHolder';
 import LabsNewsSection from '@/Components/LabsSection';
 import Breadcrumb from '@/Components/Breadcrumb';
 import AlumniSection from '@/Components/AlumniSection';
+import ProgramSpecializationCards from '@/Components/ProgramSpecializationCards';
 
 const ProgramDetails = ({ data }) => {
     return (
         <section className='bg-white'>
             <ProgramHeroSection data={data} />
-            <section className='max-w-[1400px] mx-auto px-5 max-sm:px-2 py-5'>
+            {/* <section className='max-w-[1400px] mx-auto px-5 max-sm:px-2 py-5'>
                 {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}
-            </section>
+            </section> */}
             <ProgramCarousel data={data} />
+            <ProgramSpecializationCards data={data} />
             <AboutProgram data={data} />
             <IndustryPartnerSliderDynamic data={data} />
-            <PlacementBannerDynamic data={data} />
-            <FeeStructure data={data} />
-            <LabsNewsSection data={data} />
+            {/* <PlacementBannerDynamic data={data} /> */}
+            {/* <FeeStructure data={data} /> */}
+            {/* <LabsNewsSection data={data} /> */}
             <InternationalTieUps data={data} />
-            <AlumniSection />
-            <EligibilityCriteriaUnique data={data} />
-            {data?.faculties.length > 0 && <ProgramFacultySlider data={data} />}
-            {data?.faq.length > 0 && <FAQHolder data={data} />}
+            {/* <AlumniSection /> */}
+            {/* <EligibilityCriteriaUnique data={data} /> */}
+            {/* {data?.faculties.length > 0 && <ProgramFacultySlider data={data} />} */}
+            {/* {data?.faq.length > 0 && <FAQHolder data={data} />} */}
         </section>
     )
 }

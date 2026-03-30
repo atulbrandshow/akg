@@ -250,17 +250,17 @@ const Scholarship = ({ data }) => {
         <div className="max-w-[1400px] mx-auto h-full px-3 items-end flex justify-start relative z-10">
           <div className="hero-title text-white">
             <h2 className="text-[42px] leading-none font-novaReg">
-              AKG <br /> University, <br />{" "}
+              AKG University <br />{" "}
               <span className="text-secondary">Scholarship</span>
             </h2>
           </div>
-          <div className="hero-image">
+          {/* <div className="hero-image">
             <img
               className="w-96 drop-shadow-2xl"
               src="/image/scholarship/worth-crore-bg.png"
               alt="Scholarship"
             />
-          </div>
+          </div> */}
         </div>
       </div>
       {/* <section className="max-w-[1400px] mx-auto px-5 max-sm:px-2 py-5">
@@ -400,7 +400,7 @@ const Scholarship = ({ data }) => {
                 {/* DYNAMIC DETAILS RENDERING */}
                 {activeData.details && activeData.details.map((detail, dIdx) => (
                   <div key={dIdx} className="mb-12">
-                    <h4 className="text-2xl font-novaReg mb-4 text-secondary underline decoration-secondary/30 underline-offset-8">
+                    <h4 className="text-2xl font-novaBold mb-4 border-l-4 border-[#FFC526] pl-4 text-slate-800">
                       {detail.course}
                     </h4>
                     <div className="overflow-x-auto rounded-xl shadow-lg border border-gray-100">

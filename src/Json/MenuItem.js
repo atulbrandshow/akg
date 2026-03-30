@@ -311,8 +311,8 @@ export const Programs = {
           name: "B.Tech in Mechanical Engineering",
           url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-mechanical-engineering",
           Specializations: [
-            { name: "Mechatronics", url: "/specialization-details?spec=mechatronics" },
-            { name: "Robotics", url: "/specialization-details?spec=robotics" },
+            { name: "Mechatronics", url: "/school-of-engineering-and-technology/btech-mechanical-engineering-mechatronics" },
+            { name: "Robotics", url: "/school-of-engineering-and-technology/btech-mechanical-engineering-robotics" },
             { name: "Artificial Intelligence", url: "/school-of-engineering-and-technology/btech-mechanical-engineering-artificial-intelligence" },
             { name: "Additive Manufacturing", url: "/school-of-engineering-and-technology/btech-mechanical-engineering-additive-manufacturing" }
           ],

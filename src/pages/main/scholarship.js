@@ -14,133 +14,116 @@ const Scholarship = ({ data }) => {
   const heroRef = useRef(null);
   const introRef = useRef(null);
   const scholarshipRef = useRef(null);
-  const tableRef = useRef(null);
-  const migrationRef = useRef(null);
 
   const scholarships = [
     {
-      title: "Merit-Based Scholarships",
-      description: `Awarded to students securing top ranks in JEE Main (for B.Tech) or other entrance exams, 
-      with tuition fee waivers ranging from 25% to 100% based on rank.`,
+      title: "Merit Based Scholarship",
+      description: `Ajay Kumar Garg University offers various merit-based scholarships for technical and management programs based on academic performance and entrance examination ranks.`,
       image: "/image/scholarship/logo-1.jpg",
+      details: [
+        {
+          course: "For B.Tech CSE and Specializations",
+          table: [
+            { sno: 1, category: "Class 10+2 Board Merit Holders", criteria: "98% or above in PCM", benefit: "25% Tuition Fee Waiver" },
+            { sno: 2, category: "JEE Main Rank Holders", criteria: "97 Percentile and above", benefit: "100% Tuition Fee Waiver" },
+            { sno: "", category: "", criteria: "95 – 96.99 Percentile", benefit: "50% Tuition Fee Waiver" },
+            { sno: "", category: "", criteria: "90 – 94.99 Percentile", benefit: "10% Tuition Fee Waiver" },
+          ]
+        },
+        {
+          course: "For B.Tech ECE, EE, ME, CE and Specializations",
+          table: [
+            { sno: 1, category: "Class 10+2 Board Merit Holders", criteria: "90% or above in PCM", benefit: "20% Tuition Fee Waiver" },
+            { sno: 2, category: "JEE Main Rank Holders", criteria: "90 Percentile and above", benefit: "20% Tuition Fee Waiver" },
+          ]
+        },
+        {
+          course: "For MBA",
+          table: [
+            { sno: 1, category: "Graduation", criteria: "90% or above in PCM", benefit: "10% Tuition Fee Waiver" },
+            { sno: 2, category: "CAT / XAT", criteria: "75 Percentile and above", benefit: "10% Tuition Fee Waiver" },
+            { sno: "", category: "CMAT / NMAT / SNAP", criteria: "80 Percentile and above", benefit: "10% Tuition Fee Waiver" },
+            { sno: "", category: "CUET-PG / MAT", criteria: "Rank 3000 or below", benefit: "10% Tuition Fee Waiver" },
+          ]
+        },
+        {
+          course: "For MCA",
+          table: [
+            { sno: 1, category: "Graduation", criteria: "90% or above in PCM", benefit: "10% Tuition Fee Waiver" },
+            { sno: 2, category: "CUET-PG", criteria: "Rank 1500 or below", benefit: "10% Tuition Fee Waiver" },
+          ]
+        }
+      ]
     },
     {
-      title: "Academic Excellence Scholarships",
-      description: `For students scoring above 65% in qualifying exams, 
-      with incremental fee waivers (25%, 50%, 75%, 100%) based on marks percentage.`,
-      image: "/image/scholarship/logo-2.jpg",
-    },
-    {
-      title: "Merit cum Means Scholarship",
-      description: `For meritorious students from economically weaker sections, 
-      providing up to 50% tuition fee waiver.`,
-      image: "/image/scholarship/logo-3.jpg",
-    },
-    {
-      title: "Sports Scholarships",
-      description: `For students excelling at state, national, or international sports events, 
-      offering fee support and incentives.`,
+      title: "Socio-Economic Assistance Scholarship",
+      description: `Scholarships provided to meritorious students belonging to the Economically Weaker Section (EWS).`,
       image: "/image/scholarship/logo-4.jpg",
+      content: `The scholarship is granted in accordance with the eligibility criteria prescribed by the University and applicable Government norms, ensuring that deserving students receive support to pursue their higher education without financial constraints.`,
+      table: [
+        { 
+          sno: 1, 
+          category: "Economically Weaker Section (EWS)*", 
+          criteria: "Verified annual family income and excellent academic record (As per Govt. norms)", 
+          benefit: "Weightage of 5% in merit criteria will be provided for all courses OR 20% Tuition Fee waiver (in 1st year Fee)" 
+        }
+      ],
+      footer: "* EWS certificate is required as per prescribed format of Govt. & with other relevant documents."
     },
     {
-      title: "Category-Based Government Scholarships",
-      description: `Scholarships for SC/ST/OBC/Minority categories based on family income criteria, 
-      supported by state government schemes.`,
+      title: "Relaxation for exemplary achievements in Sports, Cultural & Arts",
+      description: `Providing special weightage to students who have demonstrated excellence in sports, cultural, and arts activities at various competitive levels.`,
       image: "/image/scholarship/logo-5.jpg",
+      sections: [
+        {
+          name: "Sports, Cultural & Arts",
+          table: [
+            { sno: 1, level: "International level competitions", criteria: "Winner", relaxation: "Relaxation of 10% in admission merit criteria will be provided for all courses." },
+            { sno: 2, level: "National level competitions", criteria: "Winner", relaxation: "Relaxation of 5% in admission merit criteria will be provided for all courses." },
+            { sno: 3, level: "State level competitions", criteria: "Winner", relaxation: "Relaxation of 3% in admission merit criteria will be provided for all courses." },
+          ]
+        }
+      ]
     },
     {
-      title: "Alumni and Special Scholarships",
-      description: `Loan facilities, fee waivers, and financial aid driven by alumni donations 
-      and special institutional provisions for deserving candidates.`,
+      title: "Relaxation for Defence Personnel, Martyrs & All Girls",
+      description: `Financial assistance and merit relaxations for children of defence personnel, martyrs, and to promote female education.`,
+      image: "/image/scholarship/logo-5.jpg",
+      sections: [
+        {
+          name: "Defence Personnel & All Girls",
+          table: [
+            { sno: 1, category: "Children of Defence Personnel, Martyrs", relaxation: "(a) Students who are dependents of serving or retired defence personnel, as well as children of martyrs who have laid down their lives in the line of duty, shall be eligible for an additional 5% relaxation in the admission merit criteria, based on the verified service category and case status. (b) The extent of the waiver shall be determined in accordance with the University's approved guidelines and upon submission of valid supporting documents issued by competent defence authorities." },
+            { sno: 2, category: "All Girls Students", relaxation: "To promote and encourage girls’ participation in higher education, an additional 5% relaxation shall be provided in the admission merit criteria." },
+          ]
+        }
+      ]
+    },
+    {
+      title: "Additional Institutional Scholarships",
+      description: `Special provisions for wards of alumni, siblings of currently enrolled students, and wards of employees of AKGU.`,
       image: "/image/scholarship/logo-6.jpg",
+      provisions: [
+        { name: "Scholarships for Wards of Alumni of AKGU", provision: "Students who are wards of alumni of Ajay Kumar Garg University shall be eligible for an additional 10% relaxation in the admission merit criteria or a 10% tuition fee waiver in the first-year fee , subject to verification of alumni records." },
+        { name: "Scholarships for Siblings of Currently Enrolled Students of AKGU", provision: "Students who are siblings of currently enrolled students at Ajay Kumar Garg University shall be eligible for an additional 5% relaxation in the admission merit criteria or a 5% tuition fee waiver in the first-year fee , as per the University guidelines." },
+        { name: "Scholarships for Wards of Employees of AKGU", provision: "Students who are wards of employees of Ajay Kumar Garg University shall be eligible for an additional 10% relaxation in the admission merit criteria or a 5% tuition fee waiver in each year of study , subject to verification of employment records and University policies." },
+      ]
+    },
+    {
+      title: "Application & Approval Process",
+      description: `The formal process for the submission, verification, and approval of scholarship applications at the University.`,
+      image: "/image/scholarship/logo-1.jpg",
+      steps: [
+        { title: "Submission of Application", content: "Students shall submit the scholarship application at the time of admission through the prescribed online or offline application process of Ajay Kumar Garg University." },
+        { title: "Document Verification", content: "All supporting documents shall be verified by the Admission Cell in coordination with the Scholarship Committee to confirm the eligibility of the applicant." },
+        { title: "Committee Recommendation", content: "The Scholarship Committee shall review the applications based on the prescribed eligibility criteria and availability of scholarships, and thereafter submit its recommendations." },
+        { title: "Administrative Approval", content: "Final approval of the recommended candidates shall be granted by the competent authority of the University as per the applicable rules and regulations." },
+      ]
     },
   ];
 
-  const governmentScholarships = [
-    {
-      name: "Central Sector Scheme of Scholarships",
-      provider: "Government of India",
-      programs: "Graduate & Postgraduate",
-      criteria: "≥80% in Class 12, pursuing UG/PG courses",
-      benefits: "Up to ₹1 lakh per year",
-      deadline: "Varies",
-      website: "https://scholarships.gov.in",
-    },
-    {
-      name: "National Scholarship Portal (NSP) Scholarships",
-      provider: "Government of India",
-      programs: "UG, PG, Ph.D.",
-      criteria: "Varies by scheme, generally for economically weaker sections",
-      benefits: "Tuition fee, maintenance allowance",
-      deadline: "Rolling",
-      website: "https://scholarships.gov.in",
-    },
-    {
-      name: "Post Matric Scholarship for Minorities",
-      provider: "Ministry of Minority Affairs",
-      programs: "Graduate & Postgraduate",
-      criteria: "Minority candidates, family income ≤ ₹2 lakh/yr",
-      benefits: "Tuition & maintenance allowance",
-      deadline: "December 31, 2025",
-      website: "https://scholarships.gov.in",
-    },
-    {
-      name: "Rajiv Gandhi National Fellowship for SC/ST",
-      provider: "Government of India",
-      programs: "Ph.D.",
-      criteria: "SC/ST candidates enrolled in M.Phil/Ph.D.",
-      benefits: "Research fellowship stipend",
-      deadline: "Varies",
-      website: "https://scholarships.gov.in",
-    },
-    {
-      name: "Prime Minister’s Research Fellowship (PMRF)",
-      provider: "Government of India",
-      programs: "Ph.D. (STEM fields)",
-      criteria: "Excellent academic record, research potential",
-      benefits: "Full funding + stipend",
-      deadline: "Varies",
-      website: "https://pmrf.in",
-    },
-    {
-      name: "UP Pre & Post Matric Scholarship",
-      provider: "Government of Uttar Pradesh",
-      programs: "Graduate & Postgraduate",
-      criteria: "Resident students, income and category-based",
-      benefits: "Tuition fee & maintenance",
-      deadline: "Varies",
-      website: "https://upscholarship.gov.in",
-    },
-    {
-      name: "UP Scholarship for Professional & Technical Courses",
-      provider: "Government of Uttar Pradesh",
-      programs: "Graduate & Postgraduate",
-      criteria: "Reserved category candidates, income criteria",
-      benefits: "Tuition fee, exam fee reimbursement",
-      deadline: "Varies",
-      website: "https://upscholarship.gov.in",
-    },
-    {
-      name: "Maulana Azad National Fellowship",
-      provider: "Government of India",
-      programs: "M.Phil & Ph.D.",
-      criteria: "Minority candidates",
-      benefits: "Fellowship plus contingency grant",
-      deadline: "Varies",
-      website: "https://scholarships.gov.in",
-    },
-    {
-      name: "Central Sector Scheme for SC Students",
-      provider: "Government of India",
-      programs: "Graduate & Postgraduate",
-      criteria: "SC category students with ≥50% in Class 12",
-      benefits: "₹50,000 per year",
-      deadline: "September 30, 2025",
-      website: "https://scholarships.gov.in",
-    },
-  ];
+  const activeData = scholarships[activeScholarship];
 
-  // GSAP Animations
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Hero section animations
@@ -225,40 +208,6 @@ const Scholarship = ({ data }) => {
             trigger: scholarshipRef.current,
             start: "top 70%",
             end: "bottom 30%",
-            toggleActions: "play reverse play reverse",
-          },
-        }
-      );
-
-      // Table animation
-      gsap.fromTo(
-        tableRef.current,
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          scrollTrigger: {
-            trigger: tableRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play reverse play reverse",
-          },
-        }
-      );
-
-      // Migration section animation
-      gsap.fromTo(
-        migrationRef.current,
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          scrollTrigger: {
-            trigger: migrationRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
             toggleActions: "play reverse play reverse",
           },
         }
@@ -384,289 +333,199 @@ const Scholarship = ({ data }) => {
 
         <div className="max-w-[1400px] mx-auto py-12 px-3 relative z-10">
           <div className="grid grid-cols-1 w-full gap-6 md:grid-cols-12">
-            {/* LEFT SIDE */}
-            <div className="col-span-1 md:col-span-3 sticky top-20">
-              <h3 className="text-2xl font-novaReg mb-6 text-primary">
-                Click below to view other Scholarships
+            {/* LEFT SIDE - Sidebar Navigation */}
+            <div className="col-span-1 md:col-span-3 sticky top-24 h-fit">
+              <h3 className="text-xl font-novaReg mb-6 text-primary">
+                Scholarship Categories
               </h3>
-              <div className="flex flex-col space-y-2">
+              <div className="flex flex-col space-y-3">
                 {scholarships.map((s, index) => (
                   <button
                     key={index}
                     onClick={() => setActiveScholarship(index)}
-                    className={`scholarship-card flex flex-row p-4 items-center transition-all duration-300 rounded-lg shadow-md ${activeScholarship === index
-                        ? "bg-primary text-white transform scale-105"
-                        : "text-gray-700 hover:bg-primary hover:shadow-lg"
+                    className={`scholarship-card flex flex-row p-4 items-center transition-all duration-300 rounded-xl shadow-sm border-2 ${activeScholarship === index
+                        ? "bg-primary text-white border-primary transform scale-105 shadow-lg"
+                        : "bg-white text-gray-700 border-gray-100 hover:border-secondary hover:shadow-md"
                       }`}
                   >
-                    <img
-                      src={s.image}
-                      className="mr-4 rounded-full w-12 h-12 object-cover border-2 border-secondary"
-                      alt={s.title}
-                    />
-                    <p className="text-sm font-novaReg text-left">{s.title}</p>
+                    <div className={`w-12 h-12 rounded-full overflow-hidden mr-4 border-2 ${activeScholarship === index ? "border-secondary" : "border-gray-200"}`}>
+                      <img
+                        src={s.image}
+                        className="w-full h-full object-cover"
+                        alt={s.title}
+                      />
+                    </div>
+                    <p className="text-sm font-novaBold text-left leading-tight">{s.title}</p>
                   </button>
                 ))}
               </div>
             </div>
 
-            {/* RIGHT SIDE */}
+            {/* RIGHT SIDE - Active Content */}
             <div className="scholarship-content px-3 col-span-1 md:col-span-9">
-              <h3 className="text-4xl font-novaReg mb-6 text-primary border-l-4 border-secondary pl-4">
-                {scholarships[activeScholarship].title}
-              </h3>
-              <div className="p-8 shadow-xl bg-white rounded-xl border border-gray-100 relative overflow-hidden">
-                {/* Card Background Pattern */}
-                <div className="absolute top-0 right-0 w-32 h-32 opacity-10">
-                  <img
-                    src="/image/akgec-logo.svg"
-                    alt="AKG Logo"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-
-                <p className="text-lg font-novaLight leading-8 text-gray-700 relative z-10">
-                  {scholarships[activeScholarship].description}
-                </p>
-
-                <p className="mt-6 text-lg font-novaLight leading-8 text-gray-700 relative z-10">
-                  These scholarships are subject to maintaining defined academic
-                  performance and attendance criteria, helping students sustain
-                  their focus on learning while easing financial commitments.
-                </p>
-              </div>
-
-              {/* GOVERNMENT SCHOLARSHIPS TABLE */}
-              <div ref={tableRef} className="mt-16 relative">
-                {/* Background Elements */}
-                <div className="absolute -top-10 -right-10 w-24 h-24 bg-secondary/10 rounded-full"></div>
-                <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-primary/5 rounded-full"></div>
-
-                {/* Vector Images */}
-                <div className="absolute top-0 left-0 opacity-10">
-                  <img
-                    src="/image/akgec-logo.svg"
-                    alt="AKG Logo"
-                    className="w-40 h-40 object-contain"
-                  />
-                </div>
-                <div className="absolute bottom-0 right-0 opacity-10">
-                  <img
-                    src="/image/akgec-logo.svg"
-                    alt="AKG Logo"
-                    className="w-48 h-48 object-contain rotate-45"
-                  />
-                </div>
-
-                <h3 className="text-3xl font-novaReg mb-6 border-l-4 border-secondary pl-4 text-primary relative z-10">
-                  Government & National Scholarships
+              <div className="mb-12">
+                <h3 className="text-4xl font-novaReg mb-8 text-primary border-l-4 border-secondary pl-4">
+                  {activeData.title}
                 </h3>
-                <div className="overflow-x-auto rounded-xl shadow-2xl relative">
-                  {/* Table Background Pattern */}
-                  <div className="absolute top-4 right-4 w-16 h-16 opacity-10">
+                
+                <div className="p-8 shadow-xl bg-white rounded-xl border border-gray-100 relative overflow-hidden mb-8">
+                  {/* Card Background Pattern */}
+                  <div className="absolute top-0 right-0 w-32 h-32 opacity-10">
                     <img
                       src="/image/akgec-logo.svg"
                       alt="AKG Logo"
                       className="w-full h-full object-contain"
                     />
                   </div>
-                  <div className="absolute bottom-4 left-4 w-20 h-20 opacity-10">
-                    <img
-                      src="/image/akgec-logo.svg"
-                      alt="AKG Logo"
-                      className="w-full h-full object-contain rotate-12"
-                    />
-                  </div>
 
-                  <table className="w-full border border-gray-200 text-left text-[15px] relative z-10">
-                    <thead className="bg-primary text-white">
-                      <tr>
-                        <th className="p-4 border-r border-primary/80 font-semibold">
-                          Scholarship Name
-                        </th>
-                        <th className="p-4 border-r border-primary/80 font-semibold">
-                          Provider
-                        </th>
-                        <th className="p-4 border-r border-primary/80 font-semibold">
-                          Eligible Programs
-                        </th>
-                        <th className="p-4 border-r border-primary/80 font-semibold">
-                          Eligibility Criteria
-                        </th>
-                        <th className="p-4 border-r border-primary/80 font-semibold">
-                          Benefits
-                        </th>
-                        <th className="p-4 border-r border-primary/80 font-semibold">
-                          Application Deadline
-                        </th>
-                        <th className="p-4 font-semibold">Official Website</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {governmentScholarships.map((item, idx) => (
-                        <tr
-                          key={idx}
-                          className={`${idx % 2 === 0 ? "bg-gray-50" : "bg-white"
-                            } hover:bg-primary/5 transition-colors duration-300`}
-                        >
-                          <td className="p-4 border-r border-gray-200">
-                            {item.name}
-                          </td>
-                          <td className="p-4 border-r border-gray-200">
-                            {item.provider}
-                          </td>
-                          <td className="p-4 border-r border-gray-200">
-                            {item.programs}
-                          </td>
-                          <td className="p-4 border-r border-gray-200">
-                            {item.criteria}
-                          </td>
-                          <td className="p-4 border-r border-gray-200">
-                            {item.benefits}
-                          </td>
-                          <td className="p-4 border-r border-gray-200">
-                            {item.deadline}
-                          </td>
-                          <td className="p-4 text-primary underline font-medium hover:text-secondary transition-colors">
-                            <a
-                              href={item.website}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              Visit Site
-                            </a>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+                  <p className="text-lg font-novaLight leading-8 text-gray-700 relative z-10">
+                    {activeData.description}
+                  </p>
 
-              {/* MIGRATION POLICY */}
-              <div
-                ref={migrationRef}
-                className="mt-20 relative overflow-hidden"
-              >
-                {/* Background Layers */}
-                <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-primary/5 rounded-xl"></div>
-                <div className="absolute top-0 right-0 w-40 h-40 bg-secondary/10 rounded-full -translate-y-10 translate-x-10"></div>
-                <div className="absolute bottom-0 left-0 w-32 h-32 bg-primary/10 rounded-full translate-y-10 -translate-x-10"></div>
-
-                {/* AKG Logo Vector Background */}
-                <div className="absolute bottom-4 right-4 opacity-10">
-                  <img
-                    src="/image/akgec-logo.svg"
-                    alt="AKG Logo"
-                    className="w-32 h-32 object-contain"
-                  />
-                </div>
-                <div className="absolute top-4 left-4 opacity-10">
-                  <img
-                    src="/image/akgec-logo.svg"
-                    alt="AKG Logo"
-                    className="w-28 h-28 object-contain rotate-180"
-                  />
-                </div>
-                <div className="absolute top-1/2 right-1/4 opacity-10">
-                  <img
-                    src="/image/akgec-logo.svg"
-                    alt="AKG Logo"
-                    className="w-36 h-36 object-contain rotate-90"
-                  />
-                </div>
-
-                <div className="relative z-10 rounded-xl p-8 shadow-xl border border-gray-100">
-                  <h3 className="text-3xl font-novaReg mb-6 border-l-4 border-secondary pl-4 text-primary">
-                    Migration Policy
-                  </h3>
-                  <div className="space-y-6 text-[16px] leading-8 text-gray-700">
-                    <p className="bg-white/70 p-4 rounded-lg border-l-4 border-primary/20">
-                      Migration is permitted for students from recognized Indian
-                      or foreign universities, subject to regulatory compliance
-                      and seat availability within the desired discipline and
-                      year.
+                  {activeData.content && (
+                    <p className="mt-4 text-gray-600 italic relative z-10">
+                      {activeData.content}
                     </p>
-                    <p className="bg-white/70 p-4 rounded-lg border-l-4 border-primary/20">
-                      Typically, migration is allowed after successful
-                      completion of the first year (before or into the third
-                      semester), and is not permitted into the final
-                      year/semester.
-                    </p>
-                    <p className="bg-white/70 p-4 rounded-lg border-l-4 border-primary/20">
-                      Applicants must have a minimum of{" "}
-                      <strong className="text-primary">60% aggregate</strong>{" "}
-                      (or equivalent CGPA) with no backlogs, and course
-                      compatibility is verified before approval.
-                    </p>
+                  )}
 
-                    <div className="mt-10 bg-white/50 p-6 rounded-lg">
-                      <h4 className="font-novaBold text-xl text-primary mb-4 flex items-center">
-                        <span className="w-2 h-2 bg-secondary rounded-full mr-3"></span>
-                        Application and Documentation
-                      </h4>
-                      <ul className="list-disc pl-6 space-y-2 text-gray-700">
-                        <li>
-                          Duly filled migration application form with a written
-                          request.
-                        </li>
-                        <li>
-                          NOC from the current institution/university and
-                          migration certificate.
-                        </li>
-                        <li>
-                          Transcripts, ID proof, and character certificate.
-                        </li>
-                        <li>
-                          Credit transfer details for academic equivalence.
-                        </li>
-                      </ul>
+                  {activeData.benefit && !activeData.table && (
+                    <div className="mt-6 p-4 bg-primary/5 border-l-4 border-primary rounded-r-lg relative z-10">
+                      <p className="font-novaBold text-primary">Benefit:</p>
+                      <p className="text-gray-700">{activeData.benefit}</p>
                     </div>
+                  )}
+                </div>
 
-                    <div className="mt-8 bg-white/50 p-6 rounded-lg">
-                      <h4 className="font-novaBold text-xl text-primary mb-4 flex items-center">
-                        <span className="w-2 h-2 bg-secondary rounded-full mr-3"></span>
-                        Process and Regulations
-                      </h4>
-                      <ul className="list-disc pl-6 space-y-2 text-gray-700">
-                        <li>
-                          Applications considered only against vacant seats.
-                        </li>
-                        <li>
-                          Migration does not allow a change in discipline or
-                          branch.
-                        </li>
-                        <li>
-                          Applicants may be interviewed or evaluated
-                          academically.
-                        </li>
-                        <li>
-                          Students must have no disciplinary record or backlogs.
-                        </li>
-                      </ul>
-                    </div>
-
-                    <div className="mt-8 bg-white/50 p-6 rounded-lg">
-                      <h4 className="font-novaBold text-xl text-primary mb-4 flex items-center">
-                        <span className="w-2 h-2 bg-secondary rounded-full mr-3"></span>
-                        Special Considerations
-                      </h4>
-                      <ul className="list-disc pl-6 space-y-2 text-gray-700">
-                        <li>
-                          International students follow national equivalence
-                          norms.
-                        </li>
-                        <li>
-                          No dual enrollment in other universities is allowed.
-                        </li>
-                        <li>
-                          Fee and refund follow AKG University policies at the
-                          time of migration.
-                        </li>
-                      </ul>
+                {/* DYNAMIC DETAILS RENDERING */}
+                {activeData.details && activeData.details.map((detail, dIdx) => (
+                  <div key={dIdx} className="mb-12">
+                    <h4 className="text-2xl font-novaReg mb-4 text-secondary underline decoration-secondary/30 underline-offset-8">
+                      {detail.course}
+                    </h4>
+                    <div className="overflow-x-auto rounded-xl shadow-lg border border-gray-100">
+                      <table className="w-full text-left border-collapse">
+                        <thead className="bg-primary text-white text-[16px]">
+                          <tr>
+                            <th className="p-4 border-r border-white/10">S.No.</th>
+                            <th className="p-4 border-r border-white/10">Admission Category</th>
+                            <th className="p-4 border-r border-white/10">Eligibility Criteria</th>
+                            <th className="p-4">Benefit</th>
+                          </tr>
+                        </thead>
+                        <tbody className="text-[15px]">
+                          {detail.table.map((row, rIdx) => (
+                            <tr key={rIdx} className={rIdx % 2 === 0 ? "bg-gray-50" : "bg-white"}>
+                              <td className="p-4 border-r border-gray-100 font-novaBold text-center">{row.sno}</td>
+                              <td className="p-4 border-r border-gray-100">{row.category}</td>
+                              <td className="p-4 border-r border-gray-100">{row.criteria}</td>
+                              <td className="p-4">{row.benefit}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
                     </div>
                   </div>
-                </div>
+                ))}
+
+                {activeData.table && (
+                  <div className="mb-12">
+                    <div className="overflow-x-auto rounded-xl shadow-lg border border-gray-100">
+                      <table className="w-full text-left border-collapse">
+                        <thead className="bg-primary text-white text-[16px]">
+                          <tr>
+                            <th className="p-4 border-r border-white/10">S.No.</th>
+                            <th className="p-4 border-r border-white/10">Admission Category</th>
+                            <th className="p-4 border-r border-white/10">Eligibility Criteria</th>
+                            <th className="p-4">Benefit</th>
+                          </tr>
+                        </thead>
+                        <tbody className="text-[15px]">
+                          {activeData.table.map((row, rIdx) => (
+                            <tr key={rIdx} className={rIdx % 2 === 0 ? "bg-gray-50" : "bg-white"}>
+                              <td className="p-4 border-r border-gray-100 font-novaBold text-center">{row.sno}</td>
+                              <td className="p-4 border-r border-gray-100">{row.category}</td>
+                              <td className="p-4 border-r border-gray-100">{row.criteria}</td>
+                              <td className="p-4">{row.benefit}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                    {activeData.footer && (
+                      <p className="mt-4 text-sm text-gray-500 italic font-novaLight">
+                        {activeData.footer}
+                      </p>
+                    )}
+                  </div>
+                )}
+
+                {activeData.sections && activeData.sections.map((subSection, sIdx) => (
+                  <div key={sIdx} className="mb-12">
+                    <h4 className="text-2xl font-novaReg mb-4 text-secondary underline decoration-secondary/30 underline-offset-8">
+                      {subSection.name}
+                    </h4>
+                    <div className="overflow-x-auto rounded-xl shadow-lg border border-gray-100">
+                      <table className="w-full text-left border-collapse">
+                        <thead className="bg-primary text-white text-[16px]">
+                          <tr>
+                            <th className="p-4 border-r border-white/10">S.No.</th>
+                            <th className="p-4 border-r border-white/10">{subSection.name === "Sports, Cultural & Arts" ? "Level" : "Category"}</th>
+                            {subSection.name === "Sports, Cultural & Arts" && <th className="p-4 border-r border-white/10">Criteria</th>}
+                            <th className="p-4">Relaxation / Benefit</th>
+                          </tr>
+                        </thead>
+                        <tbody className="text-[15px]">
+                          {subSection.table.map((row, rIdx) => (
+                            <tr key={rIdx} className={rIdx % 2 === 0 ? "bg-gray-50" : "bg-white"}>
+                              <td className="p-4 border-r border-gray-100 font-novaBold text-center">{row.sno}</td>
+                              <td className="p-4 border-r border-gray-100 font-novaBold">{row.level || row.category}</td>
+                              {subSection.name === "Sports, Cultural & Arts" && <td className="p-4 border-r border-gray-100">{row.criteria}</td>}
+                              <td className="p-4 leading-relaxed">{row.relaxation}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                ))}
+
+                {activeData.provisions && (
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                    {activeData.provisions.map((prov, pIdx) => (
+                      <div key={pIdx} className="p-8 bg-white shadow-lg rounded-2xl border border-gray-100 hover:border-secondary transition-all hover:shadow-xl group">
+                        <div className="w-12 h-12 bg-primary/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-secondary/10 transition-colors">
+                          <i className="ri-award-line text-2xl text-primary group-hover:text-secondary"></i>
+                        </div>
+                        <h5 className="font-novaBold text-xl text-primary mb-4">
+                          {prov.name}
+                        </h5>
+                        <p className="text-gray-600 leading-relaxed text-[15px] font-novaLight">
+                          {prov.provision}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {activeData.steps && (
+                  <div className="space-y-8 mb-12">
+                    {activeData.steps.map((step, stIdx) => (
+                      <div key={stIdx} className="flex gap-8 items-start p-8 bg-white rounded-2xl shadow-md border border-gray-100 hover:border-secondary/30 transition-all">
+                        <div className="flex-shrink-0 w-16 h-16 bg-secondary text-white rounded-full flex items-center justify-center font-novaBold text-2xl shadow-lg">
+                          {stIdx + 1}
+                        </div>
+                        <div>
+                          <h5 className="font-novaBold text-2xl text-primary mb-3">
+                            {step.title}
+                          </h5>
+                          <p className="text-gray-600 leading-relaxed text-[16px] font-novaLight">
+                            {step.content}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           </div>

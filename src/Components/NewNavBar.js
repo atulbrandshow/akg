@@ -1066,7 +1066,7 @@ export default function NewNavBar() {
                 >
                   <div className="absolute inset-0 bg-indigo-950 opacity-70 rounded-lg"></div>
                 </div>
-                <div className="relative bg-indigo-950">
+                <div className="relative bg-brand-blue">
                   <div className="relative h-1/2 z-10 text-white">
                     <h3 className="text-xl py-2 text-center font-novaLight">
                       Open Doors to Your Future
@@ -1202,7 +1202,7 @@ export default function NewNavBar() {
                     >
                       <div className="absolute inset-0 bg-black opacity-70 rounded-lg"></div>
                     </div>
-                    <div className="relative bg-indigo-950">
+                    <div className="relative bg-brand-blue">
                       <div className="relative h-1/2 z-10 text-white">
                         <h3 className="text-xl py-2 text-center font-novaLight">
                           Place Like Home
@@ -1343,7 +1343,7 @@ export default function NewNavBar() {
                         </span>
                       </p>
                     </div>
-                    <div className="grid grid-cols-2 bg-indigo-950">
+                    <div className="grid grid-cols-2 bg-brand-blue">
                       <div className="flex flex-col items-center text-white border-r border-b border-t-white/50 p-7">
                         <img src="/image/navbar/Google-logo.png" alt="google" />
                         <span className="mt-2 text-xs text-white font-novaSemi">
@@ -1423,25 +1423,25 @@ export default function NewNavBar() {
                     <div className="h-full">
                       <div className="relative z-10 p-6 text-white">
                         <div className="grid grid-cols-2 gap-4 mt-3">
-                          <div className="bg-indigo-950 w-36 px-10 py-4 rounded-md flex flex-col items-center text-center">
+                          <div className="bg-brand-blue w-36 px-10 py-4 rounded-md flex flex-col items-center text-center">
                             {/* <h3 className="text-3xl font-novaBold">19K+</h3> */}
                             <p className="text-xs font-novaLight">
                               Research Excellence
                             </p>
                           </div>
-                          <div className="bg-indigo-950 w-36 px-5 py-4 rounded-md flex flex-col items-center text-center">
+                          <div className="bg-brand-blue w-36 px-5 py-4 rounded-md flex flex-col items-center text-center">
                             {/* <h3 className="text-3xl font-novaBold">8</h3> */}
                             <p className="text-xs font-novaLight">
                               Innovation & Entrepreneurship
                             </p>
                           </div>
-                          <div className="bg-indigo-950 w-36 px-5 py-4 rounded-md flex flex-col items-center text-center">
+                          <div className="bg-brand-blue w-36 px-5 py-4 rounded-md flex flex-col items-center text-center">
                             {/* <h3 className="text-3xl font-novaBold">213</h3> */}
                             <p className="text-xs font-novaLight">
                               Industry Collaboration
                             </p>
                           </div>
-                          <div className="bg-indigo-950 w-36 px-5 py-4 rounded-md flex flex-col items-center text-center">
+                          <div className="bg-brand-blue w-36 px-5 py-4 rounded-md flex flex-col items-center text-center">
                             {/* <h3 className="text-3xl font-novaBold">2000+</h3> */}
                             <p className="text-xs font-novaLight">
                               Interdisciplinary & Collaborative Research

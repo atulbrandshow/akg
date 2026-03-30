@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const leaders = [
   {
-    name: "Dr. Amita Dev",
+    name: "Prof. Amita Dev",
     role: "Vice Chancellor, AKGU",
     image: "/image/leadership/director-2.png",
     quote: "Prof. Amita Dev is a distinguished Academician, Engineer, and Visionary leader with over 40 years of rich experience in Academia, Research, Industry, and Higher Education Administration.",

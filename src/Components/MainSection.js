@@ -15,7 +15,8 @@ const MainSection = ({ data }) => {
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const buildingImages = d?.Hero_Banners
+  const buildingImages = d?.Hero_Banner_New
+  console.log("Building Images:", buildingImages) // Debug log to check the images array
 
   useGSAP(() => {
     gsap.from(".slide", { x: -1000, duration: 0.7, ease: easeIn })

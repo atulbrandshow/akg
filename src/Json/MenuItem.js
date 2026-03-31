@@ -375,17 +375,17 @@ export const Programs = {
     },
     "School of Computing": {
       title: "School of Computing",
-      link: "department-of-computer-science-engineering",
+      link: "school-of-computer-science-engineering",
       Program: {
         "Graduate Program": [
           {
             name: "BCA",
             url: "#",
             Specializations: [
-              { name: "AI-ML", url: "/department-of-computer-science-engineering/bca-ai-ml" },
-              { name: "Data Science", url: "/department-of-computer-science-engineering/bca-data-science" },
-              { name: "Cyber Security", url: "/department-of-computer-science-engineering/bca-cyber-security" },
-              { name: "Artificial Intelligence", url: "/department-of-computer-science-engineering/bca-artificial-intelligence" }
+              { name: "AI-ML", url: "/school-of-computer-science-engineering/bca-ai-ml" },
+              { name: "Data Science", url: "/school-of-computer-science-engineering/bca-data-science" },
+              { name: "Cyber Security", url: "/school-of-computer-science-engineering/bca-cyber-security" },
+              { name: "Artificial Intelligence", url: "/school-of-computer-science-engineering/bca-artificial-intelligence" }
             ],
           },
         ],
@@ -394,10 +394,10 @@ export const Programs = {
             name: "MCA",
             url: "#",
             Specializations: [
-              { name: "AI-ML", url: "/department-of-computer-science-engineering/mca-artificial-intelligence-machine-learning" },
-              { name: "Data Science", url: "/department-of-computer-science-engineering/mcadata-science" },
-              { name: "Cyber Security", url: "/department-of-computer-science-engineering/mca-cyber-security" },
-              { name: "Artificial Intelligence", url: "/department-of-computer-science-engineering/mca-artificial-intelligence" }
+              { name: "AI-ML", url: "/school-of-computer-science-engineering/mca-artificial-intelligence-machine-learning" },
+              { name: "Data Science", url: "/school-of-computer-science-engineering/mcadata-science" },
+              { name: "Cyber Security", url: "/school-of-computer-science-engineering/mca-cyber-security" },
+              { name: "Artificial Intelligence", url: "/school-of-computer-science-engineering/mca-artificial-intelligence" }
             ],
           },
         ],

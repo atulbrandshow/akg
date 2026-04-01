@@ -124,12 +124,53 @@ const navigation2 = [
     },
 ]
 
+const navigationNew = [
+    {
+        name: "School",
+        links: [
+            { name: "School of Computer Science", href: "/school-of-computer-science-engineering-and-technology" },
+            { name: "School of Engineering and Technology", href: "/school-of-engineering-and-technology" },
+            { name: "School of Computing", href: "/school-of-computer-science-engineering" },
+            { name: "School of Management", href: "/school-of-business-studies" },
+        ],
+    },
+    {
+        name: "About Us",
+        links: [
+            { name: "Overview", href: "/about" },
+            { name: "Legacy", href: "/about/our-identity" },
+            { name: "Leadership", href: "/about/leadership" },
+            { name: "Awards & Ranking", href: "/about/awards-and-rankings" },
+            { name: "Recognition and Approvals", href: "/about/recognitions-and-approvals" },
+        ],
+    },
+    {
+        name: "Placement",
+        links: [
+            { name: "Overview", href: "/placement" },
+            { name: "Top Placement", href: "/placement/top-placement" },
+            { name: "Placement Highlights", href: "/placement/placement-highlights" },
+            { name: "Our Leading Recruiters", href: "/placement/our-leading-recruiters" },
+        ],
+    },
+    {
+        name: "Others",
+        links: [
+            { name: "Academic Calendar", href: "/academics/academic-calendar" },
+            { name: "AKGU Scholarship", href: "/admissions/scholarship" },
+            { name: "Academic and Campus Facilities", href: "/campus-life/facilities" },
+            { name: "Center for Research", href: "/research/centres-of-research" },
+            { name: "Patents and Publications", href: "/patent" },
+        ],
+    },
+];
+
 export default function Footer() {
     return (
         <footer className="bg-brand-blue text-white py-20">
             <div className="mx-auto max-w-[1400px] max-[1400px]:max-w-7xl max-[1300px]:max-w-6xl max-[1160px]:max-w-5xl px-4">
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-                    {navigation?.map((section, index) => (
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                    {navigationNew?.map((section, index) => (
                         <div key={index} className="w-full mb-6">
                             <h3 className="font-novaSemi mb-4 text-brand-yellow">{section.name}</h3>
                             <ul className='space-y-3'>

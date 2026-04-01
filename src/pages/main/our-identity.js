@@ -29,7 +29,9 @@ export const Home = ({ data }) => {
       <Header
         title={"Our Legacy: The Legacy of AKG University"}
         Button={Button}
-        bgKey="BG-Building-2"
+        // bgKey="BG-Building-2"
+        bgUrl={"/image/about/over-view-latest-identity.webp"}
+        custom={true}
         gradient={"bg-gradient-to-r from-gray-900 to-transparent"}
         height="!py-14 sm:!py-20 xl:!py-24"
       />

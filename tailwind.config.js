@@ -104,6 +104,8 @@ module.exports = {
         'BG-Building-12': "url('/image/building/building-22.webp')",
         'BG-Building-13': "url('/image/building/building-23.webp')",
         'BG-Building-14': "url('/image/building/building-24.webp')",
+        'BG-Identity': "url('/image/about/over-view-latest-identity.webp')",
+        'BG-Identity': "url('/image/about/vision-mission-banner.webp')",
 
       },
       boxShadow: {

@@ -123,10 +123,11 @@ export default function About({ data }) {
     <div className="about-page-container">
       <Header
         title={"Overview"}
-        gradient={"bg-gradient-to-r from-gray-900 to-transparent"}
+        gradient={"bg-gradient-to-r from-brand-blue/60 via-brand-blue/40 to-brand-blue/20"}
         custom={true}
         bgUrl="/image/about/over-view.webp"
-        height="!py-14 sm:!py-20 xl:!py-24"
+        position="center"
+        height="!h-[85vh] !justify-center"
       />
       
       {/* <section className="max-w-[1400px] mx-auto px-5 max-sm:px-2 py-5">

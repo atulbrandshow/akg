@@ -77,11 +77,12 @@ export default function Header({
   position = "center",
   bgKey = "BG3",
   bgUrl,
+  bg,
   custom = false,
   titleColor = "text-white",
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const bg = custom ? bgUrl : bgImages[bgKey] || "/image/header-image.jpg";
+  const bg_url = custom ? bgUrl : bgImages[bgKey] || "/image/header-image.jpg";
   const formConfig = formConfigs[formKey];
 
   return (
@@ -89,11 +90,15 @@ export default function Header({
       className={`relative isolate overflow-hidden flex flex-col justify-end pt-24 pb-12 sm:pt-32 xl:pt-48 max-[400px]:py-12 ${height}`}
     >
       <div className="absolute inset-0 -z-10 h-full w-full">
-        <img
-          alt=""
-          src={bg}
-          className={`h-full w-full object-${position} object-cover`}
-        />
+        {bg ? (
+          <div className={`h-full w-full bg-cover bg-no-repeat bg-${position} ${bg}`} />
+        ) : (
+          <img
+            alt=""
+            src={bg_url}
+            className={`h-full w-full object-${position} object-cover`}
+          />
+        )}
         {gradient && (
           <div
             className={`absolute inset-0 ${typeof gradient === "string"

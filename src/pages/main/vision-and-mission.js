@@ -13,14 +13,16 @@ const SideBarLink = [
   { name: "Consultancy", link: "/skills-foundation/consultancy" },
 ];
 
-export const Home = ({ data }) => {
+export const Home = ({ title, bg, gradient }) => {
   return (
     <>
       <div className="bg-gray-100 min-h-screen pb-10">
         <Header
-          title={"Vision and Mission"}
-          bg="/image/lab/User-Manual-AKGEC 5.webp"
-          gradient={"bg-gradient-to-r from-gray-900 to-transparent"}
+          title={title}
+          bg="bg-BG-Identity animate-zoomInOut"
+          height="!h-[85vh] !justify-center"
+          gradient={"bg-gradient-to-r from-brand-blue/30 via-brand-blue/20 to-brand-blue/30"}
+          position="center"
         />
         {/* <section className="max-w-[1400px] mx-auto px-5 max-sm:px-2 py-5">
           {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}

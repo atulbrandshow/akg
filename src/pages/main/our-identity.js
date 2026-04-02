@@ -32,8 +32,9 @@ export const Home = ({ data }) => {
         // bgKey="BG-Building-2"
         bgUrl={"/image/about/over-view-latest-identity.webp"}
         custom={true}
-        gradient={"bg-gradient-to-r from-gray-900 to-transparent"}
-        height="!py-14 sm:!py-20 xl:!py-24"
+        height="!h-[85vh] !justify-center"
+        gradient={"bg-gradient-to-r from-brand-blue/60 via-brand-blue/40 to-brand-blue/20"}
+        position="center"
       />
       {/* <section className="max-w-[1400px] mx-auto px-5 max-sm:px-2 py-5">
         {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}

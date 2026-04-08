@@ -380,24 +380,24 @@ export const Programs = {
         "Graduate Program": [
           {
             name: "BCA",
-            url: "#",
+            url: "/school-of-computing/department-of-computer-science-and-engineering/bachelor-of-computer-applications",
             Specializations: [
-              { name: "AI-ML", url: "/school-of-computer-science-engineering/bca-ai-ml" },
-              { name: "Data Science", url: "/school-of-computer-science-engineering/bca-data-science" },
-              { name: "Cyber Security", url: "/school-of-computer-science-engineering/bca-cyber-security" },
-              { name: "Artificial Intelligence", url: "/school-of-computer-science-engineering/bca-artificial-intelligence" }
+              { name: "AI-ML", url: "/school-of-computing/bca-ai-ml" },
+              { name: "Data Science", url: "/school-of-computing/bca-data-science" },
+              { name: "Cyber Security", url: "/school-of-computing/bca-cyber-security" },
+              { name: "Artificial Intelligence", url: "/school-of-computing/bca-artificial-intelligence" }
             ],
           },
         ],
         "Post Graduate Program": [
           {
             name: "MCA",
-            url: "#",
+            url: "/school-of-computing/department-of-computer-science-and-engineering/master-of-computer-applications",
             Specializations: [
-              { name: "AI-ML", url: "/school-of-computer-science-engineering/mca-artificial-intelligence-machine-learning" },
-              { name: "Data Science", url: "/school-of-computer-science-engineering/mcadata-science" },
-              { name: "Cyber Security", url: "/school-of-computer-science-engineering/mca-cyber-security" },
-              { name: "Artificial Intelligence", url: "/school-of-computer-science-engineering/mca-artificial-intelligence" }
+              { name: "AI-ML", url: "/school-of-computing/mca-artificial-intelligence-machine-learning" },
+              { name: "Data Science", url: "/school-of-computing/mcadata-science" },
+              { name: "Cyber Security", url: "/school-of-computing/mca-cyber-security" },
+              { name: "Artificial Intelligence", url: "/school-of-computing/mca-artificial-intelligence" }
             ],
           },
         ],
@@ -416,7 +416,7 @@ export const Programs = {
         "Graduate Program": [
           {
             name: "BBA",
-            url: "#",
+            url: "/school-of-business-studies/department-of-management/bachelor-of-business-administration",
             Specializations: [
               { name: "Artificial Intelligence", url: "/school-of-business-studies/bba-artificial-intelligence" },
               { name: "Generative AI & Business Intelligence", url: "/school-of-business-studies/bba-generative-ai-business-intelligence" },
@@ -431,7 +431,7 @@ export const Programs = {
         "Post Graduate Program": [
           {
             name: "MBA",
-            url: "#",
+            url: "/school-of-business-studies/department-of-management/master-of-business-administration",
             Specializations: [
               { name: "Artificial Intelligence", url: "/school-of-business-studies/mba-artificial-intelligence" },
               { name: "Generative AI & Business Intelligence", url: "/school-of-business-studies/mba-generative-ai-business-intelligence" },

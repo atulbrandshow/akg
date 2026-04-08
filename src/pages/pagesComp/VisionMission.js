@@ -118,7 +118,7 @@ const SkillsVisionMission = () => {
         <div className="space-y-16 max-w-6xl mx-auto">
           {/* Vision Section */}
           <div ref={el => cardsRef.current[0] = el} className="bg-white rounded-2xl shadow-xl overflow-hidden border-t-2 border-l-2 border-brand-blue">
-            <div className="grid grid-cols-1 md:grid-cols-2 min-h-[400px]">
+            <div className="grid grid-cols-1 md:grid-cols-2 min-h-[250px]">
               {/* Vision Image/Icon Side */}
               <div className="bg-brand-blue/5 flex items-center justify-center p-12 relative overflow-hidden group">
                 <div className="absolute inset-0 bg-brand-blue/10 transform rotate-12 scale-150 transition-transform duration-700 group-hover:rotate-45"></div>
@@ -141,16 +141,16 @@ const SkillsVisionMission = () => {
 
           {/* Mission Section */}
           <div ref={el => cardsRef.current[1] = el} className="bg-white rounded-2xl shadow-xl overflow-hidden border-t-2 border-l-2 border-brand-yellow">
-            <div className="grid grid-cols-1 md:grid-cols-2 min-h-[400px]">
+            <div className="grid grid-cols-1 md:grid-cols-2 min-h-[300px]">
               {/* Mission Content Side */}
               <div className="p-12 flex flex-col justify-center order-2 md:order-1">
                 <div className="flex items-center gap-4 mb-6">
                   <span className="w-12 h-1 bg-brand-yellow rounded-full"></span>
                   <h2 className="text-3xl font-bold text-gray-800">OUR MISSION</h2>
                 </div>
-                <ul className="space-y-4 text-gray-700">
+                <ul className="space-y-2 text-gray-700">
                   {MISSION_POINTS.map((point, i) => (
-                    <li key={i} className="flex items-start gap-3">
+                    <li key={i} className="flex items-start gap-1">
                       <span className="w-2 h-2 rounded-full bg-brand-yellow shrink-0 mt-4"></span>
                       <span className="text-lg leading-relaxed">
                         <span className="text-4xl text-brand-yellow font-bold leading-none">{point.charAt(0)}</span>

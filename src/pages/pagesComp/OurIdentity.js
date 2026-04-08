@@ -251,21 +251,21 @@ const OurIdentity = () => {
                   College, established in 1998 by visionary Dr. Ajay Kumar Garg.
                 </p>
 
-                <p className="mb-6">
+                <p className="mb-6 text-lg">
                   From its inception, AKG University has been dedicated to
                   transforming education through innovation, professional rigor,
                   and a deep commitment to social responsibility.
                 </p>
 
-                <p className="mb-6">
+                <p className="mb-6 text-lg">
                   Our journey is one of relentless growth—growing from a
                   specialized engineering college into a multidisciplinary
                   institution that shapes future leaders, technologists, and
                   change-makers.
                 </p>
 
-                <p>
-                  <strong className="text-primary">
+                <p className="text-lg">
+                  <strong className="text-primary text-lg">
                     AKG University is not just an Institution;
                   </strong>{" "}
                   it's a movement toward{" "}
@@ -293,7 +293,7 @@ const OurIdentity = () => {
                   Legacy Since 1998
                 </h3>
               </div>
-              <p className="text-gray-600">
+              <p className="text-gray-600 text-lg">
                 25+ years of academic excellence and innovation in education.
               </p>
             </div>
@@ -311,7 +311,7 @@ const OurIdentity = () => {
                   Multidisciplinary
                 </h3>
               </div>
-              <p className="text-gray-600">
+              <p className="text-gray-600 text-lg">
                 Diverse programs across engineering, computer applications and
                 management.
               </p>
@@ -330,7 +330,7 @@ const OurIdentity = () => {
                   Global Partnerships
                 </h3>
               </div>
-              <p className="text-gray-600">
+              <p className="text-gray-600 text-lg">
                 Strong collaborations with industry leaders and international
                 institutions.
               </p>
@@ -349,7 +349,7 @@ const OurIdentity = () => {
                   Innovation Focus
                 </h3>
               </div>
-              <p className="text-gray-600">
+              <p className="text-gray-600 text-lg">
                 Cutting-edge research centers and commitment to technological
                 advancement.
               </p>

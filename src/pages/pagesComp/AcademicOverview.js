@@ -15,7 +15,7 @@ const AcademicOverview = () => {
     const coreFunctions = [
         {
             title: "Academic Policy and Regulatory Framework",
-            description: "The Office of the Director (Academics) provides strategic academic leadership by formulating comprehensive academic regulations, policies, and quality frameworks aligned with the National Education Policy (NEP), UGC guidelines, and other statutory and regulatory bodies.",
+            description: "The Office of the Dean (Academics) provides strategic academic leadership by formulating comprehensive academic regulations, policies, and quality frameworks aligned with the National Education Policy (NEP), UGC guidelines, and other statutory and regulatory bodies.",
             icon: <ShieldCheck className="w-6 h-6" />
         },
         {
@@ -81,15 +81,15 @@ const AcademicOverview = () => {
                 transition={{ duration: 0.6 }}
                 className="relative mb-16"
             >
-                <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-brand-yellow rounded-full hidden md:block" />
+                <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#1c4ed9] rounded-full hidden md:block" />
                 <div className="md:pl-10">
-                    <h2 className="text-4xl md:text-5xl font-novaBold text-brand-blue mb-8 leading-tight">
-                        Office of the <span className="text-brand-yellow">Director (Academics)</span>
+                    <h2 className="text-4xl md:text-5xl font-novaBold text-brand-blue mb-6 leading-tight">
+                        Office of the <span className="text-[#1c4ed9]">Dean (Academics)</span>
                     </h2>
 
-                    <div className="space-y-6 text-gray-700 leading-relaxed text-lg text-justify md:max-w-4xl">
+                    <div className="space-y-2 text-gray-700 leading-relaxed text-lg text-justify md:max-w-4xl">
                         <p>
-                            The Office of the Director (Academics) at AKG University functions as the apex academic body responsible for providing strategic direction in academic governance, policy formulation, curriculum design, innovation, and quality assurance. The office plays a pivotal role in strengthening the academic framework of the University by fostering a learner-centric, outcome-based, and research-driven ecosystem aligned with national education priorities and global standards.
+                            The Office of the Dean (Academics) at AKG University functions as the apex academic body responsible for providing strategic direction in academic governance, policy formulation, curriculum design, innovation, and quality assurance. The office plays a pivotal role in strengthening the academic framework of the University by fostering a learner-centric, outcome-based, and research-driven ecosystem aligned with national education priorities and global standards.
                         </p>
                         <p>
                             With a strong commitment to academic excellence, the Office ensures systematic planning, effective implementation, and continuous review of all academic processes, ensuring Outcome-Based Education (OBE), industry integration, and interdisciplinary learning to enhance graduate attributes and employability.
@@ -140,7 +140,7 @@ const AcademicOverview = () => {
                         <div className="relative z-10">
                             <h4 className="text-2xl font-novaBold mb-6 text-brand-yellow">Our Commitment</h4>
                             <p className="text-gray-200 text-lg leading-relaxed italic">
-                                "The Office of the Director (Academics) is committed to ensuring a robust, learner-centric, and quality-driven academic ecosystem. Through strong academic governance, outcome-based education, and continuous quality assurance, we strive to nurture competent professionals and ethical leaders."
+                                "The Office of the Dean (Academics) is committed to ensuring a robust, learner-centric, and quality-driven academic ecosystem. Through strong academic governance, outcome-based education, and continuous quality assurance, we strive to nurture competent professionals and ethical leaders."
                             </p>
                         </div>
                     </motion.div>

@@ -139,7 +139,7 @@ const TiltCard = ({ item, index }) => {
           <h3 className="text-2xl font-novaBold text-gray-900 mb-2 group-hover:text-brand-blue transition-colors">
             {item.title}
           </h3>
-          <p className="text-lg font-novaSemi text-brand-yellow uppercase tracking-wider mb-4">
+          <p className="text-lg font-novaSemi text-[#1c4ed9] uppercase tracking-wider mb-4">
             {item.subtitle}
           </p>
           <p className="text-gray-600 font-novaReg text-lg leading-relaxed">

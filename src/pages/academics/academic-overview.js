@@ -10,6 +10,7 @@ export const Home = () => {
                     title={"Academic Overview"}
                     bgKey="BG3"
                     gradient={"bg-gradient-to-r from-gray-900 to-transparent"}
+                    showButton={false}
                 />
                 <section className="w-full max-w-[1400px] mx-auto py-20 max-sm:py-10 px-6 max-sm:px-4">
                     <div className="w-full max-w-7xl mx-auto">

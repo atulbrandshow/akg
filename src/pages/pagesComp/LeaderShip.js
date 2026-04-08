@@ -110,7 +110,7 @@ const LeaderShip = () => {
                                 />
                                 {/* Bottom Floating Info on Image */}
                                 <div className="absolute bottom-6 left-6 right-6">
-                                    <div className="bg-white/10 backdrop-blur-xl border border-white/20 p-4 rounded-2xl shadow-2xl">
+                                    <div className="bg-white backdrop-blur-xl border border-white/20 p-4 rounded-2xl shadow-2xl">
                                         <div className="flex items-center gap-3">
                                             <div className="w-10 h-10 bg-[#df8934] rounded-xl flex items-center justify-center text-white">
                                                 <GraduationCap size={20} />
@@ -164,7 +164,7 @@ const LeaderShip = () => {
               <div className="w-full">
                 <div className="grid lg:grid-cols-12 gap-16">
                     <div className="lg:col-span-8">
-                        <div className="prose prose-lg text-gray-600 font-novaReg leading-relaxed space-y-8 text-justify max-w-none">
+                        <div className="prose prose-lg text-gray-600 font-novaReg leading-relaxed space-y-2 text-justify max-w-none">
                             {leader.content.slice(1).map((paragraph, pIndex) => (
                                 <p key={pIndex + 1}>{paragraph}</p>
                             ))}

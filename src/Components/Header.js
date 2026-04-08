@@ -80,6 +80,7 @@ export default function Header({
   bg,
   custom = false,
   titleColor = "text-white",
+  showButton = true,
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const bg_url = custom ? bgUrl : bgImages[bgKey] || "/image/header-image.jpg";
@@ -117,14 +118,16 @@ export default function Header({
           <p className="mt-2 text-white font-novaReg max-w-xl text-lg lg:text-xl">
             {subHeading}
           </p>
-          <div className="mt-4">
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="rounded-md uppercase bg-brand-yellow px-5 py-3 max-sm:py-2 max-sm:text-sm text-base font-novaBold tracking-wider text-brand-blue hover:pl-8 shadow-sm duration-500"
-            >
-              Apply Now ➜
-            </button>
-          </div>
+          {showButton && (
+            <div className="mt-4">
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="rounded-md uppercase bg-brand-yellow px-5 py-3 max-sm:py-2 max-sm:text-sm text-base font-novaBold tracking-wider text-brand-blue hover:pl-8 shadow-sm duration-500"
+              >
+                Apply Now ➜
+              </button>
+            </div>
+          )}
         </div>
       </div>
 

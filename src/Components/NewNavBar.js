@@ -3,14 +3,14 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect, useRef, useContext } from "react";
 import { Bars2Icon } from "@heroicons/react/20/solid";
 import {
-  About,
-  Academics,
-  Admissions,
-  CampusLife,
-  ResearchInnovation,
-  Placements,
-  Programs,
-  SkillsFoundation,
+    About,
+    Academics,
+    Admissions,
+    CampusLife,
+    ResearchInnovation,
+    Placements,
+    Programs,
+    SkillsFoundation,
 } from "../Json/MenuItem";
 import Form from "./Form";
 import Link from "next/link";
@@ -24,194 +24,193 @@ import Image from "next/image";
 import { Phone } from "lucide-react";
 
 const socialLinks = [
-  {
-    name: "Facebook",
-    url: "https://www.facebook.com/Official.AKGU",
-    svg: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="lucide lucide-facebook"
-      >
-        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-      </svg>
-    ),
-  },
-  {
-    name: "Instagram",
-    url: "https://www.instagram.com/official.akgec/",
-    svg: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="lucide lucide-instagram"
-      >
-        <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-      </svg>
-    ),
-  },
-  {
-    name: "LinkedIn",
-    url: "https://www.linkedin.com/school/officialakgec",
-    svg: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="lucide lucide-linkedin"
-      >
-        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-        <rect width="4" height="12" x="2" y="9" />
-        <circle cx="4" cy="4" r="2" />
-      </svg>
-    ),
-  },
-  {
-    name: "Twitter",
-    url: "https://x.com/official_akgec",
-    svg: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="lucide lucide-twitter"
-      >
-        <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
-      </svg>
-    ),
-  },
+    {
+        name: "Facebook",
+        url: "https://www.facebook.com/Official.AKGU",
+        svg: (
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-facebook"
+            >
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+            </svg>
+        ),
+    },
+    {
+        name: "Instagram",
+        url: "https://www.instagram.com/official.akgec/",
+        svg: (
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-instagram"
+            >
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            </svg>
+        ),
+    },
+    {
+        name: "LinkedIn",
+        url: "https://www.linkedin.com/school/officialakgec",
+        svg: (
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-linkedin"
+            >
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                <rect width="4" height="12" x="2" y="9" />
+                <circle cx="4" cy="4" r="2" />
+            </svg>
+        ),
+    },
+    {
+        name: "Twitter",
+        url: "https://x.com/official_akgec",
+        svg: (
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-twitter"
+            >
+                <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+            </svg>
+        ),
+    },
 ];
 
 // Notifications are now fetched from the database inside the component
 
 export default function NewNavBar() {
-  const router = useRouter();
-  const [notifications, setNotifications] = useState([]);
+    const router = useRouter();
+    const [notifications, setNotifications] = useState([]);
 
-  // Fetch notifications/announcements from the database
-  useEffect(() => {
-    const fetchNotifications = async () => {
-      try {
-        const response = await fetch(`${API_NODE_URL}announcement/all`, {
-          method: "GET",
-          credentials: "include",
-        });
-        const data = await response.json();
-        if (data.status && data.data) {
-          // Filter only active announcements and extract their titles
-          const activeNotifications = data.data
-            .filter((item) => item.status !== false)
-            .map((item) => item.title || item.name || item.message);
-          setNotifications(activeNotifications);
+    // Fetch notifications/announcements from the database
+    useEffect(() => {
+        const fetchNotifications = async () => {
+            try {
+                const response = await fetch(`${API_NODE_URL}announcement/all`, {
+                    method: "GET",
+                    credentials: "include",
+                });
+                const data = await response.json();
+                if (data.status && data.data) {
+                    // Filter only active announcements and extract their titles
+                    const activeNotifications = data.data
+                        .filter((item) => item.status !== false)
+                        .map((item) => item.title || item.name || item.message);
+                    setNotifications(activeNotifications);
+                }
+            } catch (err) {
+                console.error("Failed to fetch notifications:", err);
+            }
+        };
+        fetchNotifications();
+    }, []);
+    const [openMenu, setOpenMenu] = useState(null);
+    const [isBelowLg, setIsBelowLg] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+    const [BigMenuToggle, setBigMenuToggle] = useState(false);
+    const [activeTab, setActiveTab] = useState("School of Computer Science Engineering & Technology");
+    const menuRef = useRef(null);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollY = window.scrollY;
+            setIsScrolled(scrollY > 20);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        handleScroll();
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (typeof window !== "undefined") {
+                setIsBelowLg(window.innerWidth < 1024);
+            }
+        };
+
+        window.addEventListener("resize", handleResize);
+        handleResize();
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (menuRef.current && !menuRef.current.contains(event.target)) {
+                if (BigMenuToggle) {
+                    setBigMenuToggle(false);
+                }
+                if (openMenu) {
+                    setOpenMenu(null);
+                }
+                setHoveredItem(null);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [BigMenuToggle, openMenu]);
+
+    const toggleMenu = (menu) => {
+        if (isBelowLg) {
+            setOpenMenu((prevMenu) => (prevMenu === menu ? null : menu));
+        } else {
+            setOpenMenu((prevMenu) => (prevMenu === menu ? null : menu));
         }
-      } catch (err) {
-        console.error("Failed to fetch notifications:", err);
-      }
-    };
-    fetchNotifications();
-  }, []);
-  const [openMenu, setOpenMenu] = useState(null);
-  const [isBelowLg, setIsBelowLg] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [BigMenuToggle, setBigMenuToggle] = useState(false);
-  const [activeTab, setActiveTab] = useState(
-    "School of Computer Science Engineering & Technology"
-  );
-  const menuRef = useRef(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setIsScrolled(scrollY > 20);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+    const [hoveredItem, setHoveredItem] = useState(null);
+    const [activeSpec, setActiveSpec] = useState(null);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (typeof window !== "undefined") {
-        setIsBelowLg(window.innerWidth < 1024);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-    handleResize();
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        if (BigMenuToggle) {
-          setBigMenuToggle(false);
-        }
-        if (openMenu) {
-          setOpenMenu(null);
-        }
-        setHoveredItem(null);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [BigMenuToggle, openMenu]);
-
-  const toggleMenu = (menu) => {
-    if (isBelowLg) {
-      setOpenMenu((prevMenu) => (prevMenu === menu ? null : menu));
-    } else {
-      setOpenMenu((prevMenu) => (prevMenu === menu ? null : menu));
-    }
-  };
-
-  const [hoveredItem, setHoveredItem] = useState(null);
-
-  // Prevent body scroll when dropdown is open
-  useEffect(() => {
-    if (hoveredItem) {
-      document.body.style.overflow = 'hidden';
-      // Add fadeIn animation class to document
-      const style = document.createElement('style');
-      style.textContent = `
+    // Prevent body scroll when dropdown is open
+    useEffect(() => {
+        if (hoveredItem) {
+            document.body.style.overflow = "hidden";
+            // Add fadeIn animation class to document
+            const style = document.createElement("style");
+            style.textContent = `
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(-10px); }
           to { opacity: 1; transform: translateY(0); }
@@ -236,1247 +235,1211 @@ export default function NewNavBar() {
           display: none;
         }
       `;
-      document.head.appendChild(style);
-      return () => {
-        document.head.removeChild(style);
-      };
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [hoveredItem]);
+            document.head.appendChild(style);
+            return () => {
+                document.head.removeChild(style);
+            };
+        } else {
+            document.body.style.overflow = "unset";
+        }
+        return () => {
+            document.body.style.overflow = "unset";
+        };
+    }, [hoveredItem]);
 
-  const LinksList = ({
-    title,
-    links,
-    titleClassName,
-    ulClassName,
-    setBigMenuToggle,
-  }) => (
-    <div className="w-fit max-lg:mb-5 lg:mr-10 max-md:w-full">
-      {title && (
-        <h3
-          className={`font-novaBold text-base text-brand-blue leading-none mb-3 ${titleClassName}`}
-        >
-          {title}
-        </h3>
-      )}
-      <ul className={`space-y-2 lg:space-y-3 ${ulClassName}`}>
-        {links?.map((link, index) => (
-          <li
-            key={index}
-            className="leading-none"
-            onMouseEnter={() => link.Specializations && setHoveredItem(`${title}-${index}`)}
-            onMouseLeave={() => setHoveredItem(null)}
-          >
-            <div className="">
-              <Link
-                href={link?.url || "/"}
-                target={link?.target || "_self"}
-                className="hover:underline cursor-pointer text-left font-novaReg text-sm flex items-center justify-between group"
-                onClick={() => {
-                  setBigMenuToggle(false);
-                  setOpenMenu(null);
-                  setHoveredItem(null);
-                }}
-              >
-                <span className="text-gray-700 hover:text-brand-blue transition-colors">{link.name}</span>
-                {/* {link.Specializations && (
-                  <svg 
-                    className="w-4 h-4 text-gray-400 group-hover:text-brand-blue transition-all duration-200" 
-                    fill="currentColor" 
-                    viewBox="0 0 20 20"
-                  >
-                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                  </svg>
-                )} */}
-              </Link>
+    const LinksList = ({ title, links, titleClassName, ulClassName, setBigMenuToggle }) => (
+        <div className="w-fit max-lg:mb-5 lg:mr-10 max-md:w-full">
+            {title && (
+                <h3 className={`font-novaBold text-base text-brand-blue leading-none mb-3 ${titleClassName}`}>
+                    {title}
+                </h3>
+            )}
+            <ul className={`space-y-2 lg:space-y-3 ${ulClassName}`}>
+                {links?.map((link, index) => (
+                    <li
+                        key={index}
+                        className="leading-none"
+                        onMouseEnter={() => {
+                            if (!isBelowLg && link.Specializations) {
+                                setHoveredItem(`${title}-${index}`);
+                            }
+                        }}
+                        onMouseLeave={() => {
+                            if (!isBelowLg) {
+                                setHoveredItem(null);
+                            }
+                        }}
+                        onClick={() => {
+                            if (isBelowLg && link.Specializations) {
+                                setActiveSpec(activeSpec === `${title}-${index}` ? null : `${title}-${index}`);
+                            }
+                        }}
+                    >
+                        <div className="">
+                            <div className="flex items-center justify-between group">
+                                {/* ✅ TEXT → NAVIGATION */}
+                                <span
+                                    className="flex-1 cursor-pointer text-gray-700 hover:text-brand-blue"
+                                    onClick={() => {
+                                        setBigMenuToggle(false);
+                                        setOpenMenu(null);
+                                        setHoveredItem(null);
+                                        router.push(link?.url || "/");
+                                    }}
+                                >
+                                    {link.name}
+                                </span>
 
-              {/* Professional Accordion Style Specializations */}
-              {link.Specializations && hoveredItem === `${title}-${index}` && (
-                <div className="mt-2 ml-4 border-l-2 border-brand-blue/40 pl-4 animate-fadeIn transition-all duration-300 ease-out">
-                  <div className="mb-2">
-                    <span className="text-xs font-novaBold text-brand-blue uppercase tracking-wide opacity-80">Specializations:</span>
-                  </div>
-                  <div className="max-h-48 overflow-y-auto scrollbar-hidden">
-                    <ul className="space-y-1.5 pr-2">
-                      {link.Specializations.map((spec, specIndex) => (
-                        <li key={specIndex} className="transform transition-all duration-200 hover:translate-x-1">
-                          <Link
-                            href={typeof spec === 'object' ? spec.url : "/specialization-details"}
-                            className="text-sm text-gray-600 font-novaReg hover:text-brand-blue cursor-pointer block py-1.5 px-2 rounded-md hover:bg-blue-50/50 hover:underline transition-all duration-200 group"
-                            onClick={() => {
-                              setBigMenuToggle(false);
-                              setOpenMenu(null);
-                              setHoveredItem(null);
-                            }}
-                          >
-                            <div className="flex items-center gap-2">
-                              <div className="w-1 h-1 bg-brand-blue/60 rounded-full group-hover:bg-brand-blue transition-colors"></div>
-                              <span>{typeof spec === 'object' ? spec.name : spec}</span>
+                                {/* ✅ ARROW → TOGGLE SUBMENU */}
+                                {link.Specializations && (
+                                    <span
+                                        className="ml-2 text-xs cursor-pointer"
+                                        onClick={(e) => {
+                                            e.stopPropagation(); // VERY IMPORTANT
+                                            setActiveSpec(
+                                                activeSpec === `${title}-${index}` ? null : `${title}-${index}`
+                                            );
+                                        }}
+                                    >
+                                        ▶
+                                    </span>
+                                )}
                             </div>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+
+                            {/* Professional Accordion Style Specializations */}
+                            {link.Specializations &&
+                                (isBelowLg
+                                    ? activeSpec === `${title}-${index}`
+                                    : hoveredItem === `${title}-${index}`) && (
+                                    <div className="mt-2 ml-4 border-l-2 border-brand-blue/40 pl-4 animate-fadeIn transition-all duration-300 ease-out">
+                                        <div className="mb-2">
+                                            <span className="text-xs font-novaBold text-brand-blue uppercase tracking-wide opacity-80">
+                                                Specializations:
+                                            </span>
+                                        </div>
+                                        <div className="max-h-48 overflow-y-auto scrollbar-hidden">
+                                            <ul className="space-y-1.5 pr-2">
+                                                {link.Specializations.map((spec, specIndex) => (
+                                                    <li
+                                                        key={specIndex}
+                                                        className="transform transition-all duration-200 hover:translate-x-1"
+                                                    >
+                                                        <Link
+                                                            href={
+                                                                typeof spec === "object"
+                                                                    ? spec.url
+                                                                    : "/specialization-details"
+                                                            }
+                                                            className="text-sm text-gray-600 font-novaReg hover:text-brand-blue cursor-pointer block py-1.5 px-2 rounded-md hover:bg-blue-50/50 hover:underline transition-all duration-200 group"
+                                                            onClick={() => {
+                                                                setBigMenuToggle(false);
+                                                                setOpenMenu(null);
+                                                                setHoveredItem(null);
+                                                            }}
+                                                        >
+                                                            <div className="flex items-center gap-2">
+                                                                <div className="w-1 h-1 bg-brand-blue/60 rounded-full group-hover:bg-brand-blue transition-colors"></div>
+                                                                <span>
+                                                                    {typeof spec === "object" ? spec.name : spec}
+                                                                </span>
+                                                            </div>
+                                                        </Link>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                )}
+                        </div>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+
+    useGSAP(() => {
+        gsap.from(".logo", { scale: 0, duration: 0.5, ease: easeIn });
+        gsap.from(".notification", { y: -30, duration: 0.5, ease: easeIn });
+    });
+
+    return (
+        <header
+            className={`navbar z-[100] w-full fixed top-0 left-0 transition-all duration-300 ${
+                isScrolled
+                    ? "bg-brand-blue shadow-[0_2px_6px_rgba(0,0,0,0.4),0_12px_20px_rgba(0,0,0,0.25)]"
+                    : "bg-white/0"
+            }`}
+        >
+            <div
+                className={`hidden md:flex overflow-hidden w-full transition-all duration-300 ease-in-out ${
+                    isScrolled ? "-mt-8" : "py-1.5"
+                } justify-end items-center px-3 border-b border-gray-400/30`}
+            >
+                <div className="notification w-full">
+                    {notifications.length > 0 && (
+                        <Swiper
+                            modules={[Pagination, Autoplay]}
+                            spaceBetween={50}
+                            slidesPerView={1}
+                            autoplay={{ delay: 3000, disableOnInteraction: false }}
+                            loop={notifications.length >= 2}
+                            className="w-full"
+                        >
+                            {notifications.map((notification, index) => (
+                                <SwiperSlide key={index}>
+                                    <div className="flex justify-center items-center w-full">
+                                        <p
+                                            className={`text-center text-white font-novaReg cursor-pointer text-xs py-2 px-3 bg-amber-600 rounded-3xl w-fit`}
+                                        >
+                                            {notification}
+                                        </p>
+                                    </div>
+                                </SwiperSlide>
+                            ))}
+                        </Swiper>
+                    )}
                 </div>
-              )}
+                <div className="flex gap-10">
+                    {socialLinks?.map((item, index) => (
+                        <Link
+                            href={item.url}
+                            target="_blank"
+                            key={index}
+                            className="text-xs text-center flex flex-col justify-start items-center text-white"
+                        >
+                            {item.svg}
+                        </Link>
+                    ))}
+                </div>
             </div>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-
-  useGSAP(() => {
-    gsap.from(".logo", { scale: 0, duration: 0.5, ease: easeIn });
-    gsap.from(".notification", { y: -30, duration: 0.5, ease: easeIn });
-  });
-
-  return (
-    <header
-      className={`navbar z-[100] w-full fixed top-0 left-0 transition-all duration-300 ${
-        isScrolled
-          ? "bg-brand-blue shadow-[0_2px_6px_rgba(0,0,0,0.4),0_12px_20px_rgba(0,0,0,0.25)]"
-          : "bg-white/0"
-      }`}
-    >
-      <div
-        className={`hidden md:flex overflow-hidden w-full transition-all duration-300 ease-in-out ${isScrolled ? "-mt-8" : "py-1.5"
-          } justify-end items-center px-3 border-b border-gray-400/30`}
-      >
-        <div className="notification w-full">
-          {notifications.length > 0 && (
-            <Swiper
-              modules={[Pagination, Autoplay]}
-              spaceBetween={50}
-              slidesPerView={1}
-              autoplay={{ delay: 3000, disableOnInteraction: false }}
-              loop={notifications.length >= 2}
-              className="w-full"
-            >
-              {notifications.map((notification, index) => (
-                <SwiperSlide key={index}>
-                  <div className="flex justify-center items-center w-full">
-                  <p
-                    className={`text-center text-white font-novaReg cursor-pointer text-xs py-2 px-3 bg-amber-600 rounded-3xl w-fit`}
-                  >
-                    {notification}
-                  </p>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          )}
-        </div>
-        <div className="flex gap-10">
-          {socialLinks?.map((item, index) => (
-            <Link
-              href={item.url}
-              target="_blank"
-              key={index}
-              className="text-xs text-center flex flex-col justify-start items-center text-white"
-            >
-              {item.svg}
-            </Link>
-          ))}
-        </div>
-      </div>
-      <div className="flex justify-between items-center px-3 pt-1.5">
-        <div className="flex">
-          <div className={`text-white flex `}>
-            <div
-              className={`flex justify-start items-center gap-2 ${BigMenuToggle && "relative z-[20] shadow-lg w-screen pb-1.5"
-                }`}
-            >
-              <div className="flex justify-center">
-                <Link href="/">
-                  <Image
-                    src="/image/akg-logo.webp"
-                    alt="AKG University Logo"
-                    height={300}
-                    width={800}
-                    className={`logo h-12 lg:h-16 w-fit rounded-md object-contain bg-blend-color-dodge cursor-pointer`}
-                  />
-                </Link>
-              </div>
-              {BigMenuToggle && (
-                <button
-                  onClick={() => setBigMenuToggle(!BigMenuToggle)}
-                  className="absolute right-5 top-3 text-black"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="32"
-                    height="32"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="lucide lucide-x"
-                  >
-                    <path d="M18 6 6 18" />
-                    <path d="m6 6 12 12" />
-                  </svg>
-                </button>
-              )}
-            </div>
-          </div>
-        </div>
-        <div className="hidden lg:flex justify-end items-center px-2">
-          <div className={`flex gap-x-6 justify-end items-center`}>
-            <div className="flex gap-10 text-sm uppercase font-novaSemi tracking-wider whitespace-nowrap text-white max-lg:gap-4 max-xl:gap-6">
-              <Link
-                href="#"
-                className={`hover:underline hover:text-gray-400 transition duration-500`}
-              >
-                Campus
-              </Link>
-              <Link
-                href="/campus-life/library"
-                className={`hover:underline hover:text-gray-400 transition duration-500`}
-              >
-                Library
-              </Link>
-              <Link
-                href="#"
-                className={`hover:underline hover:text-gray-400 transition duration-500`}
-              >
-                Student Services
-              </Link>
-              <Link
-                href="/news"
-                className={`hover:underline hover:text-gray-400 transition duration-500`}
-              >
-                News
-              </Link>
-              <Link
-                href="/events"
-                className={`hover:underline hover:text-gray-400 transition duration-500`}
-              >
-                Event
-              </Link>
-              {/* <Link href="/articles" className={`hover:underline hover:text-gray-400 transition duration-500`}>Article</Link> */}
-              <Link
-                href="/circulars"
-                className={`hover:underline hover:text-gray-400 transition duration-500`}
-              >
-                Circulars
-              </Link>
-              {/* <Link href="/notice" className={`hover:underline hover:text-gray-400 transition duration-500`}>Notices</Link>
+            <div className="flex justify-between items-center px-3 pt-1.5">
+                <div className="flex">
+                    <div className={`text-white flex `}>
+                        <div
+                            className={`flex justify-start items-center gap-2 ${
+                                BigMenuToggle && "relative z-[20] shadow-lg w-screen pb-1.5"
+                            }`}
+                        >
+                            <div className="flex justify-center">
+                                <Link href="/">
+                                    <Image
+                                        src="/image/akg-logo.webp"
+                                        alt="AKG University Logo"
+                                        height={300}
+                                        width={800}
+                                        className={`logo h-12 lg:h-16 w-fit rounded-md object-contain bg-blend-color-dodge cursor-pointer`}
+                                    />
+                                </Link>
+                            </div>
+                            {BigMenuToggle && (
+                                <button
+                                    onClick={() => setBigMenuToggle(!BigMenuToggle)}
+                                    className="absolute right-5 top-3 text-black"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="32"
+                                        height="32"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        className="lucide lucide-x"
+                                    >
+                                        <path d="M18 6 6 18" />
+                                        <path d="m6 6 12 12" />
+                                    </svg>
+                                </button>
+                            )}
+                        </div>
+                    </div>
+                </div>
+                <div className="hidden lg:flex justify-end items-center px-2">
+                    <div className={`flex gap-x-6 justify-end items-center`}>
+                        <div className="flex gap-10 text-sm uppercase font-novaSemi tracking-wider whitespace-nowrap text-white max-lg:gap-4 max-xl:gap-6">
+                            <Link href="#" className={`hover:underline hover:text-gray-400 transition duration-500`}>
+                                Campus
+                            </Link>
+                            <Link
+                                href="/campus-life/library"
+                                className={`hover:underline hover:text-gray-400 transition duration-500`}
+                            >
+                                Library
+                            </Link>
+                            <Link href="#" className={`hover:underline hover:text-gray-400 transition duration-500`}>
+                                Student Services
+                            </Link>
+                            <Link
+                                href="/news"
+                                className={`hover:underline hover:text-gray-400 transition duration-500`}
+                            >
+                                News
+                            </Link>
+                            <Link
+                                href="/events"
+                                className={`hover:underline hover:text-gray-400 transition duration-500`}
+                            >
+                                Event
+                            </Link>
+                            {/* <Link href="/articles" className={`hover:underline hover:text-gray-400 transition duration-500`}>Article</Link> */}
+                            <Link
+                                href="/circulars"
+                                className={`hover:underline hover:text-gray-400 transition duration-500`}
+                            >
+                                Circulars
+                            </Link>
+                            {/* <Link href="/notice" className={`hover:underline hover:text-gray-400 transition duration-500`}>Notices</Link>
               <Link href="/download-center" className={`hover:underline hover:text-gray-400 transition duration-500`}>Download Center</Link> */}
+                        </div>
+                    </div>
+                </div>
+                <div className="flex justify-end">
+                    <div className="relative flex justify-between gap-8 items-center rounded-xl p-[2px] bg-gradient-to-r from-amber-400 via-orange-500 to-yellow-400 animate-glow">
+                        {/* Inner Content */}
+                        <div className="flex justify-between gap-8 items-center rounded-xl bg-white px-3 py-1 sm:px-4 sm:py-2">
+                            <Link href="tel:1800-200-0777" className="hidden sm:block">
+                                <div className="flex gap-3 items-center">
+                                    {/* Icon with glow */}
+                                    <div className="h-10 w-10 flex items-center justify-center rounded-full bg-orange-100 shadow-[0_0_12px_rgba(255,140,0,0.6)]">
+                                        <Phone size={20} className="text-orange-600" />
+                                    </div>
+
+                                    {/* Text */}
+                                    <div className="flex flex-col justify-center leading-none text-orange-600">
+                                        <small className="font-novaReg text-xs">Admission Helpline</small>
+                                        <span className="font-novaBold whitespace-nowrap leading-none text-lg max-md:text-base">
+                                            8744052891-93
+                                        </span>
+                                    </div>
+                                </div>
+                            </Link>
+
+                            {/* Mobile menu button */}
+                            <button
+                                onClick={() => setBigMenuToggle(!BigMenuToggle)}
+                                className="block lg:hidden text-orange-600"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    strokeWidth={1.2}
+                                    stroke="currentColor"
+                                    className="size-8"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                                    />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <div className="flex justify-end">
-  <div className="relative flex justify-between gap-8 items-center rounded-xl p-[2px] bg-gradient-to-r from-amber-400 via-orange-500 to-yellow-400 animate-glow">
-    
-    {/* Inner Content */}
-    <div className="flex justify-between gap-8 items-center rounded-xl bg-white px-3 py-1 sm:px-4 sm:py-2">
-      
-      <Link href="tel:1800-200-0777" className="hidden sm:block">
-        <div className="flex gap-3 items-center">
-          
-          {/* Icon with glow */}
-          <div className="h-10 w-10 flex items-center justify-center rounded-full bg-orange-100 shadow-[0_0_12px_rgba(255,140,0,0.6)]">
-            <Phone size={20} className="text-orange-600" />
-          </div>
-
-          {/* Text */}
-          <div className="flex flex-col justify-center leading-none text-orange-600">
-            <small className="font-novaReg text-xs">
-              Admission Helpline
-            </small>
-            <span className="font-novaBold whitespace-nowrap leading-none text-lg max-md:text-base">
-              8744052891-93
-            </span>
-          </div>
-
-        </div>
-      </Link>
-
-      {/* Mobile menu button */}
-      <button
-        onClick={() => setBigMenuToggle(!BigMenuToggle)}
-        className="block lg:hidden text-orange-600"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.2}
-          stroke="currentColor"
-          className="size-8"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-          />
-        </svg>
-      </button>
-
-    </div>
-  </div>
-</div>
-      </div>
-      <hr className="mt-2" />
-      <div className="mt-3 px-3">
-        <ul
-          ref={menuRef}
-          className={`${BigMenuToggle
-            ? "fixed w-full h-full left-0 top-0 py-20 overflow-y-auto backdrop-blur-lg"
-            : `hidden relative`
-            } bg-brand-blue lg:pt-2 rounded-xl lg:flex items-center justify-between max-lg:space-y-3 gap-2 text-white font-novaSemi px-4 lg:px-8 text-sm 2xl:text-base xl:px-6 2xl:px-20`}
-        >
-          {BigMenuToggle && (
-            <>
-              <div className="my-10">
-                <h2 className="text-center text-black text-sm font-novaSemi mb-1 uppercase">
-                  Notifications
-                </h2>
-                <Swiper
-                  modules={[Pagination, Autoplay]}
-                  spaceBetween={50}
-                  slidesPerView={1}
-                  autoplay={{ delay: 3000, disableOnInteraction: false }}
-                  loop={notifications.length >= 2}
-                  className="w-full"
+            <hr className="mt-2" />
+            <div className="mt-3 px-3">
+                <ul
+                    ref={menuRef}
+                    className={`${
+                        BigMenuToggle
+                            ? "fixed w-full h-full left-0 top-0 py-20 overflow-y-auto backdrop-blur-lg"
+                            : `hidden relative`
+                    } bg-brand-blue lg:pt-2 rounded-xl lg:flex items-center justify-between max-lg:space-y-3 gap-2 text-white font-novaSemi px-4 lg:px-8 text-sm 2xl:text-base xl:px-6 2xl:px-20`}
                 >
-                  {notifications.map((notification, index) => (
-                    <SwiperSlide key={index}>
-                      <p className="text-center text-gray-800 font-novaReg cursor-grab text-sm">
-                        {notification}
-                      </p>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-              </div>
-            </>
-          )}
-          <li className="relative group">
-            <button
-              onClick={() => toggleMenu("about")}
-              className={` relative focus:outline-none font-novaBold flex lg:pb-2 items-center gap-1 tracking-widest`}
-            >
-              About{" "}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="12"
-                height="12"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-chevron-down"
-              >
-                <path d="m6 9 6 6 6-6" />
-              </svg>
-              <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
-            </button>
-            <div
-              className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-max"
-                } ${openMenu === "about" ? "h-auto mt-0" : "h-0 mt-5 overflow-hidden"
-                } left-0 transition-all bg-white text-black rounded-lg shadow-lg`}
-            >
-              <div className="grid grid-cols-3">
-                <div className="col-span-2 max-md:col-span-3 p-5 transition-all">
-                  <div className="flex max-md:flex-col max-md:gap-5 max-md:max-h-72 max-md:overflow-y-scroll">
-                    <LinksList
-                      title="WHO WE ARE"
-                      links={About.sublinks["Who We Are"]}
-                      setBigMenuToggle={setBigMenuToggle}
-                    />
-                    {/* <LinksList
+                    {BigMenuToggle && (
+                        <>
+                            <div className="my-10">
+                                <h2 className="text-center text-black text-sm font-novaSemi mb-1 uppercase">
+                                    Notifications
+                                </h2>
+                                <Swiper
+                                    modules={[Pagination, Autoplay]}
+                                    spaceBetween={50}
+                                    slidesPerView={1}
+                                    autoplay={{ delay: 3000, disableOnInteraction: false }}
+                                    loop={notifications.length >= 2}
+                                    className="w-full"
+                                >
+                                    {notifications.map((notification, index) => (
+                                        <SwiperSlide key={index}>
+                                            <p className="text-center text-gray-800 font-novaReg cursor-grab text-sm">
+                                                {notification}
+                                            </p>
+                                        </SwiperSlide>
+                                    ))}
+                                </Swiper>
+                            </div>
+                        </>
+                    )}
+                    <li className="relative group">
+                        <button
+                            onClick={() => toggleMenu("about")}
+                            className={` relative focus:outline-none font-novaBold flex lg:pb-2 items-center gap-1 tracking-widest`}
+                        >
+                            About{" "}
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="12"
+                                height="12"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="3"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="lucide lucide-chevron-down"
+                            >
+                                <path d="m6 9 6 6 6-6" />
+                            </svg>
+                            <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
+                        </button>
+                        <div
+                            className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-max"} ${
+                                openMenu === "about" ? "h-auto mt-0" : "h-0 mt-5 overflow-hidden"
+                            } left-0 transition-all bg-white text-black rounded-lg shadow-lg`}
+                        >
+                            <div className="grid grid-cols-3">
+                                <div className="col-span-2 max-md:col-span-3 p-5 transition-all">
+                                    <div className="flex max-md:flex-col max-md:gap-5 max-md:max-h-72 max-md:overflow-y-scroll">
+                                        <LinksList
+                                            title="WHO WE ARE"
+                                            links={About.sublinks["Who We Are"]}
+                                            setBigMenuToggle={setBigMenuToggle}
+                                        />
+                                        {/* <LinksList
                       title="Related Links"
                       links={About.sublinks["Related Links"]}
                       setBigMenuToggle={setBigMenuToggle}
                     /> */}
-                  </div>
-                </div>
-                <div className="col-span-1 max-md:hidden">
-                  <div className="bg-About bg-cover bg-center bg-black bg-blend-darken bg-opacity-80">
-                    <div className="flex flex-col items-center p-5">
-                      <p className="flex flex-col">
-                        <span className="text-center font-normal text-xl font-novaLight text-white">
-                          AKG University
-                        </span>
-                        <span className="text-center font-novaBold text-3xl text-secondary leading-none">
-                          of Excellence
-                        </span>
-                      </p>
-                    </div>
-                    <div className="grid grid-cols-2 bg-brand-blue mt-5">
-                      <div className="flex flex-col items-center text-white border-r border-b border-t-white/50 p-7">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth="1.5"
-                          stroke="currentColor"
-                          className="sm:h-10 h-20"
+                                    </div>
+                                </div>
+                                <div className="col-span-1 max-md:hidden">
+                                    <div className="bg-About bg-cover bg-center bg-black bg-blend-darken bg-opacity-80">
+                                        <div className="flex flex-col items-center p-5">
+                                            <p className="flex flex-col">
+                                                <span className="text-center font-normal text-xl font-novaLight text-white">
+                                                    AKG University
+                                                </span>
+                                                <span className="text-center font-novaBold text-3xl text-secondary leading-none">
+                                                    of Excellence
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <div className="grid grid-cols-2 bg-brand-blue mt-5">
+                                            <div className="flex flex-col items-center text-white border-r border-b border-t-white/50 p-7">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    strokeWidth="1.5"
+                                                    stroke="currentColor"
+                                                    className="sm:h-10 h-20"
+                                                >
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"
+                                                    />
+                                                </svg>
+                                                <span className="mt-2 text-xs text-white font-novaLight">
+                                                    Human Dignity
+                                                </span>
+                                            </div>
+                                            <div className="flex flex-col items-center text-white border-b border-t-white/50 p-7">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="40"
+                                                    height="40"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    strokeWidth="1.5"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    className="lucide lucide-hand-heart"
+                                                >
+                                                    <path d="M11 14h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 16" />
+                                                    <path d="m7 20 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9" />
+                                                    <path d="m2 15 6 6" />
+                                                    <path d="M19.5 8.5c.7-.7 1.5-1.6 1.5-2.7A2.73 2.73 0 0 0 16 4a2.78 2.78 0 0 0-5 1.8c0 1.2.8 2 1.5 2.8L16 12Z" />
+                                                </svg>
+                                                <span className="mt-2 text-xs text-white font-novaLight">Empathy</span>
+                                            </div>
+                                            <div className="flex flex-col items-center text-white border-r border-t-white/50 p-7">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="40"
+                                                    height="40"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    strokeWidth="1.5"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    className="lucide lucide-hand-coins"
+                                                >
+                                                    <path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17" />
+                                                    <path d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9" />
+                                                    <path d="m2 16 6 6" />
+                                                    <circle cx="16" cy="9" r="2.9" />
+                                                    <circle cx="6" cy="5" r="3" />
+                                                </svg>
+                                                <span className="mt-2 text-xs text-white font-novaLight">Humility</span>
+                                            </div>
+                                            <div className="flex flex-col items-center text-white border-t-white/50 p-7">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="40"
+                                                    height="40"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    strokeWidth="1.5"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    className="lucide lucide-message-circle-heart"
+                                                >
+                                                    <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+                                                    <path d="M15.8 9.2a2.5 2.5 0 0 0-3.5 0l-.3.4-.35-.3a2.42 2.42 0 1 0-3.2 3.6l3.6 3.5 3.6-3.5c1.2-1.2 1.1-2.7.2-3.7" />
+                                                </svg>
+                                                <span className="mt-2 text-xs text-white font-novaLight">Giving</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li className="group">
+                        <button
+                            onClick={() => toggleMenu("programs")}
+                            className={` relative  focus:outline-none font-novaBold flex pb-2 items-center gap-1 tracking-widest`}
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"
-                          />
-                        </svg>
-                        <span className="mt-2 text-xs text-white font-novaLight">
-                          Human Dignity
-                        </span>
-                      </div>
-                      <div className="flex flex-col items-center text-white border-b border-t-white/50 p-7">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="40"
-                          height="40"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="lucide lucide-hand-heart"
+                            Programs{" "}
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="12"
+                                height="12"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="3"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="lucide lucide-chevron-down"
+                            >
+                                <path d="m6 9 6 6 6-6" />
+                            </svg>
+                            <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
+                        </button>
+                        <div
+                            className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-[1100px]"} ${
+                                openMenu === "programs" ? "h-auto mt-0" : "h-0 mt-5 overflow-hidden"
+                            } left-0 transition-all bg-white text-black rounded-lg shadow-lg`}
                         >
-                          <path d="M11 14h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 16" />
-                          <path d="m7 20 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9" />
-                          <path d="m2 15 6 6" />
-                          <path d="M19.5 8.5c.7-.7 1.5-1.6 1.5-2.7A2.73 2.73 0 0 0 16 4a2.78 2.78 0 0 0-5 1.8c0 1.2.8 2 1.5 2.8L16 12Z" />
-                        </svg>
-                        <span className="mt-2 text-xs text-white font-novaLight">
-                          Empathy
-                        </span>
-                      </div>
-                      <div className="flex flex-col items-center text-white border-r border-t-white/50 p-7">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="40"
-                          height="40"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="lucide lucide-hand-coins"
-                        >
-                          <path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17" />
-                          <path d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9" />
-                          <path d="m2 16 6 6" />
-                          <circle cx="16" cy="9" r="2.9" />
-                          <circle cx="6" cy="5" r="3" />
-                        </svg>
-                        <span className="mt-2 text-xs text-white font-novaLight">
-                          Humility
-                        </span>
-                      </div>
-                      <div className="flex flex-col items-center text-white border-t-white/50 p-7">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="40"
-                          height="40"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="lucide lucide-message-circle-heart"
-                        >
-                          <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
-                          <path d="M15.8 9.2a2.5 2.5 0 0 0-3.5 0l-.3.4-.35-.3a2.42 2.42 0 1 0-3.2 3.6l3.6 3.5 3.6-3.5c1.2-1.2 1.1-2.7.2-3.7" />
-                        </svg>
-                        <span className="mt-2 text-xs text-white font-novaLight">
-                          Giving
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li className="group">
-            <button
-              onClick={() => toggleMenu("programs")}
-              className={` relative  focus:outline-none font-novaBold flex pb-2 items-center gap-1 tracking-widest`}
-            >
-              Programs{" "}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="12"
-                height="12"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-chevron-down"
-              >
-                <path d="m6 9 6 6 6-6" />
-              </svg>
-              <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
-            </button>
-            <div
-              className={`${BigMenuToggle
-                ? "relative w-full bg-white/40"
-                : "absolute w-[1100px]"
-                } ${openMenu === "programs" ? "h-auto mt-0" : "h-0 mt-5 overflow-hidden"
-                } left-0 transition-all bg-white text-black rounded-lg shadow-lg`}
-            >
-              <div className="grid grid-cols-12">
-                <div className="col-span-9 max-lg:col-span-12 p-0 transition-all">
-                  <div className=" w-full h-16 flex justify-center items-center">
-                    {Object.keys(Programs.sublinks)?.map((key, index) => (
-                      <button
-                        onClick={() => {
-                          setActiveTab(key);
-                        }}
-                        key={index}
-                        className={`h-full w-full border-r border-r-gray-200 text-sm font-novaLight ${key === activeTab ? "bg-gray-300/50" : "bg-white"
-                          }`}
-                      >
-                        {Programs.sublinks[key]?.title || key}
-                      </button>
-                    ))}
-                  </div>
-                  {/* School Title Link as Heading */}
-                  {Programs.sublinks[activeTab]?.title && Programs.sublinks[activeTab]?.link && (
-                    <div className="w-full px-2 py-3 border-b border-gray-200">
-                      <Link
-                        href={Programs.sublinks[activeTab].link}
-                        className="font-novaBold text-lg text-brand-blue hover:underline cursor-pointer"
-                        onClick={() => {
-                          setBigMenuToggle(false);
-                          setOpenMenu(null);
-                        }}
-                      >
-                        {Programs.sublinks[activeTab].title}
-                      </Link>
-                    </div>
-                  )}
+                            <div className="grid grid-cols-12">
+                                <div className="col-span-9 max-lg:col-span-12 p-0 transition-all">
+                                    <div className=" w-full h-16 flex justify-center items-center">
+                                        {Object.keys(Programs.sublinks)?.map((key, index) => (
+                                            <button
+                                                onClick={() => {
+                                                    setActiveTab(key);
+                                                }}
+                                                key={index}
+                                                className={`h-full w-full border-r border-r-gray-200 text-sm font-novaLight ${
+                                                    key === activeTab ? "bg-gray-300/50" : "bg-white"
+                                                }`}
+                                            >
+                                                {Programs.sublinks[key]?.title || key}
+                                            </button>
+                                        ))}
+                                    </div>
+                                    {/* School Title Link as Heading */}
+                                    {Programs.sublinks[activeTab]?.title && Programs.sublinks[activeTab]?.link && (
+                                        <div className="w-full px-2 py-3 border-b border-gray-200">
+                                            <Link
+                                                href={Programs.sublinks[activeTab].link}
+                                                className="font-novaBold text-lg text-brand-blue hover:underline cursor-pointer"
+                                                onClick={() => {
+                                                    setBigMenuToggle(false);
+                                                    setOpenMenu(null);
+                                                }}
+                                            >
+                                                {Programs.sublinks[activeTab].title}
+                                            </Link>
+                                        </div>
+                                    )}
 
-                  <div className="grid grid-cols-3 gap-4 p-4">
-                    {Object.keys(Programs.sublinks[activeTab])?.map(
-                      (key, index) => {
-                        // console.log("Rendering key:", Programs.sublinks[activeTab][key]);
-                        if (key === "Graduate Program") {
-                          return (
-                            <LinksList
-                              key={index}
-                              title={key}
-                              links={Programs.sublinks[activeTab][key]}
-                              setBigMenuToggle={setBigMenuToggle}
-                            />
-                          );
-                        }
-                        if (key === "Program") {
-                          return Object.keys(
-                            Programs.sublinks[activeTab][key]
-                          )?.map((key1, index) => {
-                            return (
-                              <LinksList
-                                key={index}
-                                title={key1}
-                                links={Programs.sublinks[activeTab][key][key1]}
-                                setBigMenuToggle={setBigMenuToggle}
-                              />
-                            );
-                          });
-                        }
-                        // Skip title and link keys as they're handled above
-                        if (key === "title" || key === "link") {
-                          return null;
-                        }
-                        return null;
-                      }
-                    )}
-                  </div>
-                </div>
+                                    <div className="grid grid-cols-3 gap-4 p-4">
+                                        {Object.keys(Programs.sublinks[activeTab])?.map((key, index) => {
+                                            // console.log("Rendering key:", Programs.sublinks[activeTab][key]);
+                                            if (key === "Graduate Program") {
+                                                return (
+                                                    <LinksList
+                                                        key={index}
+                                                        title={key}
+                                                        links={Programs.sublinks[activeTab][key]}
+                                                        setBigMenuToggle={setBigMenuToggle}
+                                                    />
+                                                );
+                                            }
+                                            if (key === "Program") {
+                                                return Object.keys(Programs.sublinks[activeTab][key])?.map(
+                                                    (key1, index) => {
+                                                        return (
+                                                            <LinksList
+                                                                key={index}
+                                                                title={key1}
+                                                                links={Programs.sublinks[activeTab][key][key1]}
+                                                                setBigMenuToggle={setBigMenuToggle}
+                                                            />
+                                                        );
+                                                    }
+                                                );
+                                            }
+                                            // Skip title and link keys as they're handled above
+                                            if (key === "title" || key === "link") {
+                                                return null;
+                                            }
+                                            return null;
+                                        })}
+                                    </div>
+                                </div>
 
-                <div className="col-span-3 w-full relative max-lg:hidden">
-                  <div
-                    className="absolute inset-0 bg-cover bg-center rounded-lg shadow-md"
-                    style={{
-                      backgroundImage: "url('/image/lab/ece-lab.webp')",
-                      backgroundPosition: "left",
-                    }}
-                  >
-                    <div className="absolute inset-0 bg-black opacity-70 rounded-lg"></div>
-                  </div>
-                  <div className="relative z-10 p-6 text-white">
-                    {/* <h3 className="text-xl font-novaLight">University of</h3>
+                                <div className="col-span-3 w-full relative max-lg:hidden">
+                                    <div
+                                        className="absolute inset-0 bg-cover bg-center rounded-lg shadow-md"
+                                        style={{
+                                            backgroundImage: "url('/image/lab/ece-lab.webp')",
+                                            backgroundPosition: "left",
+                                        }}
+                                    >
+                                        <div className="absolute inset-0 bg-black opacity-70 rounded-lg"></div>
+                                    </div>
+                                    <div className="relative z-10 p-6 text-white">
+                                        {/* <h3 className="text-xl font-novaLight">University of</h3>
                     <h2 className="text-3xl font-novaBold leading-none text-secondary">
                       Top Placements
                     </h2> */}
-                    <div className="mt-4">
-                      <div className="bg-brand-blue w-40 p-2 rounded-md">
-                        <h3 className="text-3xl font-novaBold">1406</h3>
-                        <p className="text-xs font-novaLight">PLACEMENTS</p>
-                      </div>
-                      <p className="text-xs font-novaLight mb-2">
-                        Offered in Batch 2023-24
-                      </p>
-                      <div className="bg-brand-blue w-40 p-2 rounded-md">
-                        <h3 className="text-3xl font-novaBold">
-                          1.13 <small className="-ml-1 text-lg">CR</small>
-                        </h3>
-                        <p className="text-xs font-novaLight">INTERNATIONAL</p>
-                      </div>
-                      <p className="text-xs font-novaLight mb-2">
-                        Highest Package Offered
-                      </p>
-                      <div className="bg-brand-blue p-2 w-40 rounded-md">
-                        <h3 className="text-3xl font-novaBold">
-                          33.80 <small className="-ml-1 text-lg">LPA</small>
-                        </h3>
-                        <p className="text-xs font-novaLight">NATIONAL</p>
-                      </div>
-                      <p className="text-xs font-novaLight">
-                        Highest Package Offered
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li className="relative group">
-            <button
-              onClick={() => toggleMenu("academics")}
-              className={` relative  focus:outline-none font-novaBold flex pb-2 items-center gap-1 tracking-widest`}
-            >
-              Academics{" "}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="12"
-                height="12"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-chevron-down"
-              >
-                <path d="m6 9 6 6 6-6" />
-              </svg>
-              <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
-            </button>
-            <div
-              className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-max"
-                } ${openMenu === "academics" ? "h-auto mt-0" : "h-0 mt-5 overflow-hidden"
-                } -left-52 max-lg:left-0 transition-all bg-white text-black rounded-lg shadow-lg`}
-            >
-              <div className="grid grid-cols-12">
-                <div className="col-span-8 max-md:col-span-12 p-5 transition-all">
-                  <div className="flex max-md:flex-col max-md:gap-5 max-md:max-h-72 max-md:overflow-y-scroll">
-                    <LinksList
-                      title="ACADEMICS"
-                      links={Academics.sublinks["Academics"]}
-                      setBigMenuToggle={setBigMenuToggle}
-                    />
-                    <LinksList
-                      title="SCHOOLS"
-                      links={Academics.sublinks["Schools"]}
-                      setBigMenuToggle={setBigMenuToggle}
-                    />
-                  </div>
-                </div>
-                <div className="col-span-4 max-md:hidden h-full">
-                  <div className="bg-Academics bg-cover bg-black bg-blend-multiply bg-opacity-70 h-full flex flex-col justify-between">
-                    <div className="flex flex-col items-center mt-20">
-                      <span className="text-center text-lg font-novaLight text-white">
-                        Milestones in
-                      </span>
-                      <span className="text-center text-2xl font-novaBold leading-none text-secondary">
-                        Educational Achievement
-                      </span>
-                    </div>
-                    <div className="grid grid-cols-2 bg-brand-blue">
-                      <div className="flex flex-col items-center text-white border-r border-t-white/50 p-7">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="40"
-                          height="40"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="lucide lucide-boxes"
-                        >
-                          <path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z" />
-                          <path d="m7 16.5-4.74-2.85" />
-                          <path d="m7 16.5 5-3" />
-                          <path d="M7 16.5v5.17" />
-                          <path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z" />
-                          <path d="m17 16.5-5-3" />
-                          <path d="m17 16.5 4.74-2.85" />
-                          <path d="M17 16.5v5.17" />
-                          <path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z" />
-                          <path d="M12 8 7.26 5.15" />
-                          <path d="m12 8 4.74-2.85" />
-                          <path d="M12 13.5V8" />
-                        </svg>
-                        <span className="mt-2 text-xs text-white font-novaLight">
-                          Flexible Choice
-                        </span>
-                      </div>
-                      <div className="flex flex-col items-center text-white border-t-white/50 p-7">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="40"
-                          height="40"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="lucide lucide-notebook-pen"
-                        >
-                          <path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4" />
-                          <path d="M2 6h4" />
-                          <path d="M2 10h4" />
-                          <path d="M2 14h4" />
-                          <path d="M2 18h4" />
-                          <path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" />
-                        </svg>
-                        <span className="mt-2 text-xs text-white font-novaLight">
-                          Electives
-                        </span>
-                      </div>
-                      <div className="flex flex-col items-center text-white border-t border-r border-t-white/50 p-7">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="40"
-                          height="40"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="lucide lucide-monitor-dot"
-                        >
-                          <circle cx="19" cy="6" r="3" />
-                          <path d="M22 12v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9" />
-                          <path d="M12 17v4" />
-                          <path d="M8 21h8" />
-                        </svg>
-                        <span className="mt-2 text-xs text-white font-novaLight">
-                          Technologies
-                        </span>
-                      </div>
-                      <div className="flex flex-col items-center text-white border-t border-t-white/50 p-7">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="40"
-                          height="40"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="lucide lucide-folder-git-2"
-                        >
-                          <path d="M9 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v5" />
-                          <circle cx="13" cy="12" r="2" />
-                          <path d="M18 19c-2.8 0-5-2.2-5-5v8" />
-                          <circle cx="20" cy="19" r="2" />
-                        </svg>
-                        <span className="mt-2 text-xs text-center text-white font-novaLight">
-                          Experiential Learning
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li className="relative group">
-            <button
-              onClick={() => toggleMenu("admissions")}
-              className={` relative  focus:outline-none font-novaBold flex pb-2 items-center gap-1 tracking-widest`}
-            >
-              Admissions{" "}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="12"
-                height="12"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-chevron-down"
-              >
-                <path d="m6 9 6 6 6-6" />
-              </svg>
-              <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
-            </button>
-            <div
-              className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute"
-                } ${openMenu === "admissions" ? "h-auto mt-0" : "h-0 mt-5 overflow-hidden"
-                } left-0 transition-all bg-white text-black rounded-lg shadow-lg`}
-            >
-              <div className="flex p-5 w-max transition-all max-md:max-h-72 max-md:overflow-y-scroll max-md:flex-col max-md:gap-5 max-md:w-full">
-                <div className="w-52">
-                  <LinksList
-                    title="ADMISSIONS"
-                    links={Admissions?.sublinks["Admission"].slice(
-                      0,
-                      Math.ceil(Admissions?.sublinks["Admission"].length / 2)
-                    )}
-                    setBigMenuToggle={setBigMenuToggle}
-                  />
-                </div>
-                <div className="w-52">
-                  <LinksList
-                    title="  "
-                    titleClassName="mt-4"
-                    links={Admissions?.sublinks["Admission"].slice(
-                      Math.ceil(Admissions?.sublinks["Admission"].length / 2)
-                    )}
-                    setBigMenuToggle={setBigMenuToggle}
-                  />
-                </div>
-              </div>
-              <div className="w-full relative max-md:hidden ">
-                <div
-                  className="absolute inset-0 bg-cover bg-center rounded-lg shadow-md"
-                  style={{
-                    backgroundImage:
-                      "url('/image/lab/User-Manual-AKGEC 2.jpg')",
-                  }}
-                >
-                  <div className="absolute inset-0 bg-indigo-950 opacity-70 rounded-lg"></div>
-                </div>
-                <div className="relative bg-brand-blue">
-                  <div className="relative h-1/2 z-10 text-white">
-                    <h3 className="text-xl py-2 text-center font-novaLight">
-                      Open Doors to Your Future
-                    </h3>
-                  </div>
-                  <div className="flex justify-evenly">
-                    <div className="flex flex-col items-center text-white p-7">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="40"
-                        height="40"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="lucide lucide-graduation-cap"
-                      >
-                        <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" />
-                        <path d="M22 10v6" />
-                        <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" />
-                      </svg>
-                      <span className="mt-2 text-xs text-white font-novaLight">
-                        Scholarships
-                      </span>
-                    </div>
-                    <div className="flex flex-col items-center text-white p-7">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="40"
-                        height="40"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="lucide lucide-handshake"
-                      >
-                        <path d="m11 17 2 2a1 1 0 1 0 3-3" />
-                        <path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" />
-                        <path d="m21 3 1 11h-2" />
-                        <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" />
-                        <path d="M3 4h8" />
-                      </svg>
-                      <span className="mt-2 text-xs text-white font-novaLight">
-                        Education Loan
-                      </span>
-                    </div>
-                    <div className="flex flex-col items-center text-white p-7">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="40"
-                        height="40"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="lucide lucide-chart-spline"
-                      >
-                        <path d="M3 3v16a2 2 0 0 0 2 2h16" />
-                        <path d="M7 16c.5-2 1.5-7 4-7 2 0 2 3 4 3 2.5 0 4.5-5 5-7" />
-                      </svg>
-                      <span className="mt-2 text-xs text-white font-novaLight">
-                        Futuristic
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li className="relative group">
-            <button
-              onClick={() => toggleMenu("campus-life")}
-              className={` relative  focus:outline-none font-novaBold flex pb-2 items-center gap-1 whitespace-nowrap tracking-widest`}
-            >
-              Campus Life{" "}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="12"
-                height="12"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-chevron-down"
-              >
-                <path d="m6 9 6 6 6-6" />
-              </svg>
-              <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
-            </button>
-            <div
-              className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-max"
-                } ${openMenu === "campus-life" ? "h-auto mt-0" : "h-0 mt-5 overflow-hidden"
-                } left-0 transition-all bg-white text-black rounded-lg shadow-lg`}
-            >
-              <div className="grid grid-cols-2">
-                <div className="col-span-2 transition-all">
-                  <div className="flex p-5 group-hover:p-5 transition-all max-md:max-h-72 max-md:overflow-y-scroll max-md:flex-col">
-                    <div className="w-52 ">
-                      <LinksList
-                        title="CAMPUS LIFE"
-                        links={CampusLife.sublinks.slice(
-                          0,
-                          Math.ceil(CampusLife?.sublinks.length / 2)
-                        )}
-                        setBigMenuToggle={setBigMenuToggle}
-                      />
-                    </div>
-                    <div className="w-52 ">
-                      <LinksList
-                        title=""
-                        links={CampusLife.sublinks.slice(
-                          Math.ceil(CampusLife?.sublinks.length / 2)
-                        )}
-                        setBigMenuToggle={setBigMenuToggle}
-                      />
-                    </div>
-                  </div>
-                  <div className="w-full relative max-md:hidden">
-                    <div
-                      className="absolute inset-0 bg-cover bg-center rounded-lg shadow-md"
-                      style={{
-                        backgroundImage:
-                          "url('/image/lab/User-Manual-AKGEC 4.webp')",
-                      }}
-                    >
-                      <div className="absolute inset-0 bg-black opacity-70 rounded-lg"></div>
-                    </div>
-                    <div className="relative bg-brand-blue">
-                      <div className="relative h-1/2 z-10 text-white">
-                        <h3 className="text-xl py-2 text-center font-novaLight">
-                          Place Like Home
-                        </h3>
-                      </div>
-                      <div className="flex justify-evenly text-center">
-                        <div className="flex flex-col items-center text-white p-7">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="40"
-                            height="40"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="lucide lucide-ferris-wheel"
-                          >
-                            <circle cx="12" cy="12" r="2" />
-                            <path d="M12 2v4" />
-                            <path d="m6.8 15-3.5 2" />
-                            <path d="m20.7 7-3.5 2" />
-                            <path d="M6.8 9 3.3 7" />
-                            <path d="m20.7 17-3.5-2" />
-                            <path d="m9 22 3-8 3 8" />
-                            <path d="M8 22h8" />
-                            <path d="M18 18.7a9 9 0 1 0-12 0" />
-                          </svg>
-                          <span className="mt-2 text-xs text-white font-novaLight">
-                            Technology Infusion
-                          </span>
+                                        <div className="mt-4">
+                                            <div className="bg-brand-blue w-40 p-2 rounded-md">
+                                                <h3 className="text-3xl font-novaBold">1406</h3>
+                                                <p className="text-xs font-novaLight">PLACEMENTS</p>
+                                            </div>
+                                            <p className="text-xs font-novaLight mb-2">Offered in Batch 2023-24</p>
+                                            <div className="bg-brand-blue w-40 p-2 rounded-md">
+                                                <h3 className="text-3xl font-novaBold">
+                                                    1.13 <small className="-ml-1 text-lg">CR</small>
+                                                </h3>
+                                                <p className="text-xs font-novaLight">INTERNATIONAL</p>
+                                            </div>
+                                            <p className="text-xs font-novaLight mb-2">Highest Package Offered</p>
+                                            <div className="bg-brand-blue p-2 w-40 rounded-md">
+                                                <h3 className="text-3xl font-novaBold">
+                                                    33.80 <small className="-ml-1 text-lg">LPA</small>
+                                                </h3>
+                                                <p className="text-xs font-novaLight">NATIONAL</p>
+                                            </div>
+                                            <p className="text-xs font-novaLight">Highest Package Offered</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div className="flex flex-col items-center text-white p-7">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="40"
-                            height="40"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="lucide lucide-hand-coins"
-                          >
-                            <path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17" />
-                            <path d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9" />
-                            <path d="m2 16 6 6" />
-                            <circle cx="16" cy="9" r="2.9" />
-                            <circle cx="6" cy="5" r="3" />
-                          </svg>
-                          <span className="mt-2 text-xs text-white font-novaLight">
-                            Student centered
-                          </span>
+                    </li>
+                    <li className="relative group">
+                        <button
+                            onClick={() => toggleMenu("academics")}
+                            className={` relative  focus:outline-none font-novaBold flex pb-2 items-center gap-1 tracking-widest`}
+                        >
+                            Academics{" "}
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="12"
+                                height="12"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="3"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="lucide lucide-chevron-down"
+                            >
+                                <path d="m6 9 6 6 6-6" />
+                            </svg>
+                            <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
+                        </button>
+                        <div
+                            className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-max"} ${
+                                openMenu === "academics" ? "h-auto mt-0" : "h-0 mt-5 overflow-hidden"
+                            } -left-52 max-lg:left-0 transition-all bg-white text-black rounded-lg shadow-lg`}
+                        >
+                            <div className="grid grid-cols-12">
+                                <div className="col-span-8 max-md:col-span-12 p-5 transition-all">
+                                    <div className="flex max-md:flex-col max-md:gap-5 max-md:max-h-72 max-md:overflow-y-scroll">
+                                        <LinksList
+                                            title="ACADEMICS"
+                                            links={Academics.sublinks["Academics"]}
+                                            setBigMenuToggle={setBigMenuToggle}
+                                        />
+                                        <LinksList
+                                            title="SCHOOLS"
+                                            links={Academics.sublinks["Schools"]}
+                                            setBigMenuToggle={setBigMenuToggle}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="col-span-4 max-md:hidden h-full">
+                                    <div className="bg-Academics bg-cover bg-black bg-blend-multiply bg-opacity-70 h-full flex flex-col justify-between">
+                                        <div className="flex flex-col items-center mt-20">
+                                            <span className="text-center text-lg font-novaLight text-white">
+                                                Milestones in
+                                            </span>
+                                            <span className="text-center text-2xl font-novaBold leading-none text-secondary">
+                                                Educational Achievement
+                                            </span>
+                                        </div>
+                                        <div className="grid grid-cols-2 bg-brand-blue">
+                                            <div className="flex flex-col items-center text-white border-r border-t-white/50 p-7">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="40"
+                                                    height="40"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    strokeWidth="1.5"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    className="lucide lucide-boxes"
+                                                >
+                                                    <path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z" />
+                                                    <path d="m7 16.5-4.74-2.85" />
+                                                    <path d="m7 16.5 5-3" />
+                                                    <path d="M7 16.5v5.17" />
+                                                    <path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z" />
+                                                    <path d="m17 16.5-5-3" />
+                                                    <path d="m17 16.5 4.74-2.85" />
+                                                    <path d="M17 16.5v5.17" />
+                                                    <path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z" />
+                                                    <path d="M12 8 7.26 5.15" />
+                                                    <path d="m12 8 4.74-2.85" />
+                                                    <path d="M12 13.5V8" />
+                                                </svg>
+                                                <span className="mt-2 text-xs text-white font-novaLight">
+                                                    Flexible Choice
+                                                </span>
+                                            </div>
+                                            <div className="flex flex-col items-center text-white border-t-white/50 p-7">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="40"
+                                                    height="40"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    strokeWidth="1.5"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    className="lucide lucide-notebook-pen"
+                                                >
+                                                    <path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4" />
+                                                    <path d="M2 6h4" />
+                                                    <path d="M2 10h4" />
+                                                    <path d="M2 14h4" />
+                                                    <path d="M2 18h4" />
+                                                    <path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" />
+                                                </svg>
+                                                <span className="mt-2 text-xs text-white font-novaLight">
+                                                    Electives
+                                                </span>
+                                            </div>
+                                            <div className="flex flex-col items-center text-white border-t border-r border-t-white/50 p-7">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="40"
+                                                    height="40"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    strokeWidth="1.5"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    className="lucide lucide-monitor-dot"
+                                                >
+                                                    <circle cx="19" cy="6" r="3" />
+                                                    <path d="M22 12v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9" />
+                                                    <path d="M12 17v4" />
+                                                    <path d="M8 21h8" />
+                                                </svg>
+                                                <span className="mt-2 text-xs text-white font-novaLight">
+                                                    Technologies
+                                                </span>
+                                            </div>
+                                            <div className="flex flex-col items-center text-white border-t border-t-white/50 p-7">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="40"
+                                                    height="40"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    strokeWidth="1.5"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    className="lucide lucide-folder-git-2"
+                                                >
+                                                    <path d="M9 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v5" />
+                                                    <circle cx="13" cy="12" r="2" />
+                                                    <path d="M18 19c-2.8 0-5-2.2-5-5v8" />
+                                                    <circle cx="20" cy="19" r="2" />
+                                                </svg>
+                                                <span className="mt-2 text-xs text-center text-white font-novaLight">
+                                                    Experiential Learning
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div className="flex flex-col items-center text-white p-7">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="40"
-                            height="40"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="lucide lucide-handshake"
-                          >
-                            <path d="m11 17 2 2a1 1 0 1 0 3-3" />
-                            <path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" />
-                            <path d="m21 3 1 11h-2" />
-                            <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" />
-                            <path d="M3 4h8" />
-                          </svg>
-                          <span className="mt-2 text-xs text-white font-novaLight">
-                            Supportive Environment
-                          </span>
+                    </li>
+                    <li className="relative group">
+                        <button
+                            onClick={() => toggleMenu("admissions")}
+                            className={` relative  focus:outline-none font-novaBold flex pb-2 items-center gap-1 tracking-widest`}
+                        >
+                            Admissions{" "}
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="12"
+                                height="12"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="3"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="lucide lucide-chevron-down"
+                            >
+                                <path d="m6 9 6 6 6-6" />
+                            </svg>
+                            <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
+                        </button>
+                        <div
+                            className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute"} ${
+                                openMenu === "admissions" ? "h-auto mt-0" : "h-0 mt-5 overflow-hidden"
+                            } left-0 transition-all bg-white text-black rounded-lg shadow-lg`}
+                        >
+                            <div className="flex p-5 w-max transition-all max-md:max-h-72 max-md:overflow-y-scroll max-md:flex-col max-md:gap-5 max-md:w-full">
+                                <div className="w-52">
+                                    <LinksList
+                                        title="ADMISSIONS"
+                                        links={Admissions?.sublinks["Admission"].slice(
+                                            0,
+                                            Math.ceil(Admissions?.sublinks["Admission"].length / 2)
+                                        )}
+                                        setBigMenuToggle={setBigMenuToggle}
+                                    />
+                                </div>
+                                <div className="w-52">
+                                    <LinksList
+                                        title="  "
+                                        titleClassName="mt-4"
+                                        links={Admissions?.sublinks["Admission"].slice(
+                                            Math.ceil(Admissions?.sublinks["Admission"].length / 2)
+                                        )}
+                                        setBigMenuToggle={setBigMenuToggle}
+                                    />
+                                </div>
+                            </div>
+                            <div className="w-full relative max-md:hidden ">
+                                <div
+                                    className="absolute inset-0 bg-cover bg-center rounded-lg shadow-md"
+                                    style={{
+                                        backgroundImage: "url('/image/lab/User-Manual-AKGEC 2.jpg')",
+                                    }}
+                                >
+                                    <div className="absolute inset-0 bg-indigo-950 opacity-70 rounded-lg"></div>
+                                </div>
+                                <div className="relative bg-brand-blue">
+                                    <div className="relative h-1/2 z-10 text-white">
+                                        <h3 className="text-xl py-2 text-center font-novaLight">
+                                            Open Doors to Your Future
+                                        </h3>
+                                    </div>
+                                    <div className="flex justify-evenly">
+                                        <div className="flex flex-col items-center text-white p-7">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="40"
+                                                height="40"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeWidth="1.5"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                className="lucide lucide-graduation-cap"
+                                            >
+                                                <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" />
+                                                <path d="M22 10v6" />
+                                                <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" />
+                                            </svg>
+                                            <span className="mt-2 text-xs text-white font-novaLight">Scholarships</span>
+                                        </div>
+                                        <div className="flex flex-col items-center text-white p-7">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="40"
+                                                height="40"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeWidth="1.5"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                className="lucide lucide-handshake"
+                                            >
+                                                <path d="m11 17 2 2a1 1 0 1 0 3-3" />
+                                                <path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" />
+                                                <path d="m21 3 1 11h-2" />
+                                                <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" />
+                                                <path d="M3 4h8" />
+                                            </svg>
+                                            <span className="mt-2 text-xs text-white font-novaLight">
+                                                Education Loan
+                                            </span>
+                                        </div>
+                                        <div className="flex flex-col items-center text-white p-7">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="40"
+                                                height="40"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeWidth="1.5"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                className="lucide lucide-chart-spline"
+                                            >
+                                                <path d="M3 3v16a2 2 0 0 0 2 2h16" />
+                                                <path d="M7 16c.5-2 1.5-7 4-7 2 0 2 3 4 3 2.5 0 4.5-5 5-7" />
+                                            </svg>
+                                            <span className="mt-2 text-xs text-white font-novaLight">Futuristic</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li className="group">
-            <button
-              onClick={() => toggleMenu("placements")}
-              className={` relative  focus:outline-none font-novaBold flex pb-2 items-center gap-1 tracking-widest`}
-            >
-              Placements{" "}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="12"
-                height="12"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-chevron-down"
-              >
-                <path d="m6 9 6 6 6-6" />
-              </svg>
-              <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
-            </button>
-            <div
-              className={`${BigMenuToggle
-                ? "relative w-full bg-white/40"
-                : "absolute w-[650px]"
-                } ${openMenu === "placements" ? "h-auto mt-0" : "h-0 mt-5 overflow-hidden"
-                } right-0 transition-all bg-white text-black rounded-lg shadow-lg`}
-            >
-              <div className="grid grid-cols-9">
-                <div className="col-span-5 w-max p-5 transition-all max-md:col-span-2 max-md:max-h-72 max-md:overflow-y-scroll max-md:flex-col">
-                  <div className="w-max pr-5">
-                    <LinksList
-                      title="PLACEMENTS"
-                      links={Placements.sublinks["Placements"]}
-                      setBigMenuToggle={setBigMenuToggle}
-                    />
-                  </div>
-                </div>
-                <div className="col-span-4 max-md:hidden">
-                  <div className="bg-Placement bg-cover bg-black bg-blend-multiply bg-opacity-50">
-                    <div className="flex flex-col items-center p-4">
-                      <p className="flex flex-col">
-                        <span className="text-center font-novaLight text-base text-white">
-                          Corporate Ties
-                        </span>
-                        <span className="text-center font-novaBold text-2xl text-secondary">
-                          &
-                        </span>
-                        <span className="text-center font-novaLight text-base text-white">
-                          Career Opportunities
-                        </span>
-                      </p>
-                    </div>
-                    <div className="grid grid-cols-2 bg-brand-blue">
-                      <div className="flex flex-col items-center text-white border-r border-b border-t-white/50 p-7">
-                        <img src="/image/navbar/Google-logo.png" alt="google" />
-                        <span className="mt-2 text-xs text-white font-novaSemi">
-                          Google
-                        </span>
-                      </div>
-                      <div className="mt-3 flex flex-col items-center text-white border-b border-t-white/50 p-7">
-                        <img src="/image/navbar/Amazon-Logo.png" alt="Amazon" />
-                        <span className="mt-2 text-xs text-white font-novaSemi">
-                          Amazon
-                        </span>
-                      </div>
-                      <div className="flex flex-col items-center text-white border-r border-t-white/50 p-7">
-                        <img
-                          src="/image/navbar/infosys-logo-png.png"
-                          alt="Infosys"
-                        />
-                        <span className="mt-2 text-xs text-white font-novaSemi">
-                          Microsoft
-                        </span>
-                      </div>
-                      <div className="flex flex-col items-center text-white border-t-white/50 p-7">
-                        <img src="/image/navbar/TCS.NS_BIG.png" alt="TCS" />
-                        <span className="mt-4 text-xs text-white font-novaSemi">
-                          TCS
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li className="group">
-            <button
-              onClick={() => toggleMenu("research")}
-              className={` relative  focus:outline-none font-novaBold flex pb-2 items-center gap-1 whitespace-nowrap tracking-widest`}
-            >
-              Research & Innovation{" "}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="12"
-                height="12"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-chevron-down"
-              >
-                <path d="m6 9 6 6 6-6" />
-              </svg>
-              <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
-            </button>
-            <div
-              className={`${BigMenuToggle
-                ? "relative w-full bg-white/40"
-                : "absolute w-[1050px]"
-                } ${openMenu === "research" ? "h-auto mt-0" : "h-0 mt-5 overflow-hidden"
-                } right-0 transition-all bg-white text-black rounded-lg shadow-lg`}
-            >
-              <div className="grid grid-cols-6">
-                <div className="col-span-2 max-md:hidden">
-                  <div className="bg-Research bg-cover bg-black bg-blend-multiply bg-opacity-70">
-                    <div className="flex flex-col justify-start items-start pt-5 px-6">
-                      <p className="flex flex-col pb-10">
-                        <span className="font-novaLight text-xl text-white">
-                          {" "}
-                          Our Academic
-                        </span>
-                        <span className="font-novaLight text-xl text-white">
-                          Ambitions
-                        </span>
-                      </p>
-                    </div>
-                    <div className="h-full">
-                      <div className="relative z-10 p-6 text-white">
-                        <div className="grid grid-cols-2 gap-4 mt-3">
-                          <div className="bg-brand-blue w-36 px-10 py-4 rounded-md flex flex-col items-center text-center">
-                            {/* <h3 className="text-3xl font-novaBold">19K+</h3> */}
-                            <p className="text-xs font-novaLight">
-                              Research Excellence
-                            </p>
-                          </div>
-                          <div className="bg-brand-blue w-36 px-5 py-4 rounded-md flex flex-col items-center text-center">
-                            {/* <h3 className="text-3xl font-novaBold">8</h3> */}
-                            <p className="text-xs font-novaLight">
-                              Innovation & Entrepreneurship
-                            </p>
-                          </div>
-                          <div className="bg-brand-blue w-36 px-5 py-4 rounded-md flex flex-col items-center text-center">
-                            {/* <h3 className="text-3xl font-novaBold">213</h3> */}
-                            <p className="text-xs font-novaLight">
-                              Industry Collaboration
-                            </p>
-                          </div>
-                          <div className="bg-brand-blue w-36 px-5 py-4 rounded-md flex flex-col items-center text-center">
-                            {/* <h3 className="text-3xl font-novaBold">2000+</h3> */}
-                            <p className="text-xs font-novaLight">
-                              Interdisciplinary & Collaborative Research
-                            </p>
-                          </div>
+                    </li>
+                    <li className="relative group">
+                        <button
+                            onClick={() => toggleMenu("campus-life")}
+                            className={` relative  focus:outline-none font-novaBold flex pb-2 items-center gap-1 whitespace-nowrap tracking-widest`}
+                        >
+                            Campus Life{" "}
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="12"
+                                height="12"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="3"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="lucide lucide-chevron-down"
+                            >
+                                <path d="m6 9 6 6 6-6" />
+                            </svg>
+                            <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
+                        </button>
+                        <div
+                            className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-max"} ${
+                                openMenu === "campus-life" ? "h-auto mt-0" : "h-0 mt-5 overflow-hidden"
+                            } left-0 transition-all bg-white text-black rounded-lg shadow-lg`}
+                        >
+                            <div className="grid grid-cols-2">
+                                <div className="col-span-2 transition-all">
+                                    <div className="flex p-5 group-hover:p-5 transition-all max-md:max-h-72 max-md:overflow-y-scroll max-md:flex-col">
+                                        <div className="w-52 ">
+                                            <LinksList
+                                                title="CAMPUS LIFE"
+                                                links={CampusLife.sublinks.slice(
+                                                    0,
+                                                    Math.ceil(CampusLife?.sublinks.length / 2)
+                                                )}
+                                                setBigMenuToggle={setBigMenuToggle}
+                                            />
+                                        </div>
+                                        <div className="w-52 ">
+                                            <LinksList
+                                                title=""
+                                                links={CampusLife.sublinks.slice(
+                                                    Math.ceil(CampusLife?.sublinks.length / 2)
+                                                )}
+                                                setBigMenuToggle={setBigMenuToggle}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="w-full relative max-md:hidden">
+                                        <div
+                                            className="absolute inset-0 bg-cover bg-center rounded-lg shadow-md"
+                                            style={{
+                                                backgroundImage: "url('/image/lab/User-Manual-AKGEC 4.webp')",
+                                            }}
+                                        >
+                                            <div className="absolute inset-0 bg-black opacity-70 rounded-lg"></div>
+                                        </div>
+                                        <div className="relative bg-brand-blue">
+                                            <div className="relative h-1/2 z-10 text-white">
+                                                <h3 className="text-xl py-2 text-center font-novaLight">
+                                                    Place Like Home
+                                                </h3>
+                                            </div>
+                                            <div className="flex justify-evenly text-center">
+                                                <div className="flex flex-col items-center text-white p-7">
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        width="40"
+                                                        height="40"
+                                                        viewBox="0 0 24 24"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        strokeWidth="1.5"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        className="lucide lucide-ferris-wheel"
+                                                    >
+                                                        <circle cx="12" cy="12" r="2" />
+                                                        <path d="M12 2v4" />
+                                                        <path d="m6.8 15-3.5 2" />
+                                                        <path d="m20.7 7-3.5 2" />
+                                                        <path d="M6.8 9 3.3 7" />
+                                                        <path d="m20.7 17-3.5-2" />
+                                                        <path d="m9 22 3-8 3 8" />
+                                                        <path d="M8 22h8" />
+                                                        <path d="M18 18.7a9 9 0 1 0-12 0" />
+                                                    </svg>
+                                                    <span className="mt-2 text-xs text-white font-novaLight">
+                                                        Technology Infusion
+                                                    </span>
+                                                </div>
+                                                <div className="flex flex-col items-center text-white p-7">
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        width="40"
+                                                        height="40"
+                                                        viewBox="0 0 24 24"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        strokeWidth="1.5"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        className="lucide lucide-hand-coins"
+                                                    >
+                                                        <path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17" />
+                                                        <path d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9" />
+                                                        <path d="m2 16 6 6" />
+                                                        <circle cx="16" cy="9" r="2.9" />
+                                                        <circle cx="6" cy="5" r="3" />
+                                                    </svg>
+                                                    <span className="mt-2 text-xs text-white font-novaLight">
+                                                        Student centered
+                                                    </span>
+                                                </div>
+                                                <div className="flex flex-col items-center text-white p-7">
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        width="40"
+                                                        height="40"
+                                                        viewBox="0 0 24 24"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        strokeWidth="1.5"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        className="lucide lucide-handshake"
+                                                    >
+                                                        <path d="m11 17 2 2a1 1 0 1 0 3-3" />
+                                                        <path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" />
+                                                        <path d="m21 3 1 11h-2" />
+                                                        <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" />
+                                                        <path d="M3 4h8" />
+                                                    </svg>
+                                                    <span className="mt-2 text-xs text-white font-novaLight">
+                                                        Supportive Environment
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-span-4 max-md:col-span-4 p-5 transition-all max-md:max-h-72 max-md:overflow-y-scroll max-md:flex-col">
-                  <div
-                    className={`flex ${BigMenuToggle && "flex-col gap-y-5"}`}
-                  >
-                    <div className={`w-52 pr-2 ${BigMenuToggle && "w-full"}`}>
-                      <LinksList
-                        title="Research Intensive University"
-                        links={
-                          ResearchInnovation.sublinks[
-                          "Research Intensive University"
-                          ]
-                        }
-                        setBigMenuToggle={setBigMenuToggle}
-                      />
-                    </div>
-                    <div className={`w-52 pr-2 ${BigMenuToggle && "w-full"}`}>
-                      <LinksList
-                        title="Entrepreneurship Cells"
-                        links={
-                          ResearchInnovation.sublinks["Entrepreneurship Cells"]
-                        }
-                        setBigMenuToggle={setBigMenuToggle}
-                      />
-                    </div>
-                    {/* <div className={`w-52 pr-2 ${BigMenuToggle && "w-full"}`}>
+                    </li>
+                    <li className="group">
+                        <button
+                            onClick={() => toggleMenu("placements")}
+                            className={` relative  focus:outline-none font-novaBold flex pb-2 items-center gap-1 tracking-widest`}
+                        >
+                            Placements{" "}
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="12"
+                                height="12"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="3"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="lucide lucide-chevron-down"
+                            >
+                                <path d="m6 9 6 6 6-6" />
+                            </svg>
+                            <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
+                        </button>
+                        <div
+                            className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-[650px]"} ${
+                                openMenu === "placements" ? "h-auto mt-0" : "h-0 mt-5 overflow-hidden"
+                            } right-0 transition-all bg-white text-black rounded-lg shadow-lg`}
+                        >
+                            <div className="grid grid-cols-9">
+                                <div className="col-span-5 w-max p-5 transition-all max-md:col-span-2 max-md:max-h-72 max-md:overflow-y-scroll max-md:flex-col">
+                                    <div className="w-max pr-5">
+                                        <LinksList
+                                            title="PLACEMENTS"
+                                            links={Placements.sublinks["Placements"]}
+                                            setBigMenuToggle={setBigMenuToggle}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="col-span-4 max-md:hidden">
+                                    <div className="bg-Placement bg-cover bg-black bg-blend-multiply bg-opacity-50">
+                                        <div className="flex flex-col items-center p-4">
+                                            <p className="flex flex-col">
+                                                <span className="text-center font-novaLight text-base text-white">
+                                                    Corporate Ties
+                                                </span>
+                                                <span className="text-center font-novaBold text-2xl text-secondary">
+                                                    &
+                                                </span>
+                                                <span className="text-center font-novaLight text-base text-white">
+                                                    Career Opportunities
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <div className="grid grid-cols-2 bg-brand-blue">
+                                            <div className="flex flex-col items-center text-white border-r border-b border-t-white/50 p-7">
+                                                <img src="/image/navbar/Google-logo.png" alt="google" />
+                                                <span className="mt-2 text-xs text-white font-novaSemi">Google</span>
+                                            </div>
+                                            <div className="mt-3 flex flex-col items-center text-white border-b border-t-white/50 p-7">
+                                                <img src="/image/navbar/Amazon-Logo.png" alt="Amazon" />
+                                                <span className="mt-2 text-xs text-white font-novaSemi">Amazon</span>
+                                            </div>
+                                            <div className="flex flex-col items-center text-white border-r border-t-white/50 p-7">
+                                                <img src="/image/navbar/infosys-logo-png.png" alt="Infosys" />
+                                                <span className="mt-2 text-xs text-white font-novaSemi">Microsoft</span>
+                                            </div>
+                                            <div className="flex flex-col items-center text-white border-t-white/50 p-7">
+                                                <img src="/image/navbar/TCS.NS_BIG.png" alt="TCS" />
+                                                <span className="mt-4 text-xs text-white font-novaSemi">TCS</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li className="group">
+                        <button
+                            onClick={() => toggleMenu("research")}
+                            className={` relative  focus:outline-none font-novaBold flex pb-2 items-center gap-1 whitespace-nowrap tracking-widest`}
+                        >
+                            Research & Innovation{" "}
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="12"
+                                height="12"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="3"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="lucide lucide-chevron-down"
+                            >
+                                <path d="m6 9 6 6 6-6" />
+                            </svg>
+                            <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
+                        </button>
+                        <div
+                            className={`${BigMenuToggle ? "relative w-full bg-white/40" : "absolute w-[1050px]"} ${
+                                openMenu === "research" ? "h-auto mt-0" : "h-0 mt-5 overflow-hidden"
+                            } right-0 transition-all bg-white text-black rounded-lg shadow-lg`}
+                        >
+                            <div className="grid grid-cols-6">
+                                <div className="col-span-2 max-md:hidden">
+                                    <div className="bg-Research bg-cover bg-black bg-blend-multiply bg-opacity-70">
+                                        <div className="flex flex-col justify-start items-start pt-5 px-6">
+                                            <p className="flex flex-col pb-10">
+                                                <span className="font-novaLight text-xl text-white"> Our Academic</span>
+                                                <span className="font-novaLight text-xl text-white">Ambitions</span>
+                                            </p>
+                                        </div>
+                                        <div className="h-full">
+                                            <div className="relative z-10 p-6 text-white">
+                                                <div className="grid grid-cols-2 gap-4 mt-3">
+                                                    <div className="bg-brand-blue w-36 px-10 py-4 rounded-md flex flex-col items-center text-center">
+                                                        {/* <h3 className="text-3xl font-novaBold">19K+</h3> */}
+                                                        <p className="text-xs font-novaLight">Research Excellence</p>
+                                                    </div>
+                                                    <div className="bg-brand-blue w-36 px-5 py-4 rounded-md flex flex-col items-center text-center">
+                                                        {/* <h3 className="text-3xl font-novaBold">8</h3> */}
+                                                        <p className="text-xs font-novaLight">
+                                                            Innovation & Entrepreneurship
+                                                        </p>
+                                                    </div>
+                                                    <div className="bg-brand-blue w-36 px-5 py-4 rounded-md flex flex-col items-center text-center">
+                                                        {/* <h3 className="text-3xl font-novaBold">213</h3> */}
+                                                        <p className="text-xs font-novaLight">Industry Collaboration</p>
+                                                    </div>
+                                                    <div className="bg-brand-blue w-36 px-5 py-4 rounded-md flex flex-col items-center text-center">
+                                                        {/* <h3 className="text-3xl font-novaBold">2000+</h3> */}
+                                                        <p className="text-xs font-novaLight">
+                                                            Interdisciplinary & Collaborative Research
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-span-4 max-md:col-span-4 p-5 transition-all max-md:max-h-72 max-md:overflow-y-scroll max-md:flex-col">
+                                    <div className={`flex ${BigMenuToggle && "flex-col gap-y-5"}`}>
+                                        <div className={`w-52 pr-2 ${BigMenuToggle && "w-full"}`}>
+                                            <LinksList
+                                                title="Research Intensive University"
+                                                links={ResearchInnovation.sublinks["Research Intensive University"]}
+                                                setBigMenuToggle={setBigMenuToggle}
+                                            />
+                                        </div>
+                                        <div className={`w-52 pr-2 ${BigMenuToggle && "w-full"}`}>
+                                            <LinksList
+                                                title="Entrepreneurship Cells"
+                                                links={ResearchInnovation.sublinks["Entrepreneurship Cells"]}
+                                                setBigMenuToggle={setBigMenuToggle}
+                                            />
+                                        </div>
+                                        {/* <div className={`w-52 pr-2 ${BigMenuToggle && "w-full"}`}>
                       <LinksList
                         title="Sustainable Development Goals (SDG's)"
                         links={
@@ -1487,26 +1450,26 @@ export default function NewNavBar() {
                         setBigMenuToggle={setBigMenuToggle}
                       />
                     </div> */}
-                  </div>
-                </div>
-              </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li className="relative group">
+                        <div className="flex items-center gap-1">
+                            <Link
+                                href="https://akgec.almaconnect.com/"
+                                className={` relative focus:outline-none font-novaBold flex pb-2 items-center gap-1 whitespace-nowrap tracking-widest`}
+                                onClick={() => setBigMenuToggle(false)}
+                                target="_blank"
+                            >
+                                Alumni
+                            </Link>
+                        </div>
+                        <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
+                    </li>
+                </ul>
             </div>
-          </li>
-          <li className="relative group">
-            <div className="flex items-center gap-1">
-              <Link
-                href="https://akgec.almaconnect.com/"
-                className={` relative focus:outline-none font-novaBold flex pb-2 items-center gap-1 whitespace-nowrap tracking-widest`}
-                onClick={() => setBigMenuToggle(false)}
-                target="_blank"
-              >
-                Alumni
-              </Link>
-            </div>
-            <span className="absolute inset-x-0 -top-2 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 origin-bottom" />
-          </li>
-        </ul>
-      </div>
-    </header>
-  );
+        </header>
+    );
 }

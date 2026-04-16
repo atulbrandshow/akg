@@ -40,7 +40,7 @@ const Scholarship = ({ data }) => {
         {
           course: "For MBA",
           table: [
-            { sno: 1, category: "Graduation", criteria: "90% or above in PCM", benefit: "10% Tuition Fee Waiver" },
+            { sno: 1, category: "Graduation", criteria: "90% or above", benefit: "10% Tuition Fee Waiver" },
             { sno: 2, category: "CAT / XAT", criteria: "75 Percentile and above", benefit: "10% Tuition Fee Waiver" },
             { sno: "", category: "CMAT / NMAT / SNAP", criteria: "80 Percentile and above", benefit: "10% Tuition Fee Waiver" },
             { sno: "", category: "CUET-PG / MAT", criteria: "Rank 3000 or below", benefit: "10% Tuition Fee Waiver" },
@@ -49,8 +49,23 @@ const Scholarship = ({ data }) => {
         {
           course: "For MCA",
           table: [
-            { sno: 1, category: "Graduation", criteria: "90% or above in PCM", benefit: "10% Tuition Fee Waiver" },
+            { sno: 1, category: "Graduation", criteria: "90% or above", benefit: "10% Tuition Fee Waiver" },
             { sno: 2, category: "CUET-PG", criteria: "Rank 1500 or below", benefit: "10% Tuition Fee Waiver" },
+          ]
+        },
+        {
+          course: "For BCA",
+          table: [
+            { sno: 1, category: "Class 10+2 Board Merit Holders", criteria: "90% or above in Class 12 (any stream)", benefit: "10% Tuition Fee Waiver" },
+            { sno: 2, category: "Entrance / Merit Based Admission", criteria: "As per university admission criteria", benefit: "10% Tuition Fee Waiver" },
+          ]
+        },
+        {
+          course: "For BBA",
+          table: [
+            { sno: 1, category: "Class 10+2 Board Merit Holders", criteria: "90% or above in Class 12 (any stream)", benefit: "10% Tuition Fee Waiver" },
+            { sno: "", category: "", criteria: "80% – 89.99% in Class 12 (any stream)", benefit: "" },
+            { sno: 2, category: "Entrance / Merit Based Admission", criteria: "As per university admission criteria", benefit: "10% – 20% Tuition Fee Waiver (as applicable)" },
           ]
         }
       ]

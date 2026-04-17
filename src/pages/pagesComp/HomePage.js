@@ -1,6 +1,7 @@
 "use client";
 
 import { CampusSlider, FooterCard, MilestonesSection, NewsEvents, PlacementHighlights, ExploreCourses, ResearchEnvironment, SlickSlider, StudentReviews } from "@/Components";
+import HomeGallery from "@/Components/HomeGallery";
 import HomeLogoSlider from "@/Components/HomeLogoSlider";
 import HomeTopCard from "@/Components/HomeTopCard";
 import IndustryPartnersSlider from "@/Components/IndustryPartnersSlider";
@@ -24,6 +25,7 @@ export default function HomePage({ data }) {
       {data && <NewsEvents data={data} />}
       {/* {data && <FooterCard data={data} />} */}
       {data && <IndustryPartnersSlider data={data} />}
+      {data && <HomeGallery data={data} />}
       {/* {data && <ResearchEnvironment data={data} />} */} 
     </>
   );

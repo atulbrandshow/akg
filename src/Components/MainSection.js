@@ -116,7 +116,7 @@ const MainSection = ({ data }) => {
 
                         return (
                             tagline && (
-                                <div className="absolute bottom-10 left-10 z-20 text-white text-xl font-novaSemi bg-black/50 px-5 py-3 rounded-lg backdrop-blur-sm">
+                                <div className="absolute bottom-10 left-10 z-20 text-white text-xl font-novaSemi bg-black px-5 py-3 rounded-lg backdrop-blur-sm">
                                     {tagline}
                                 </div>
                             )

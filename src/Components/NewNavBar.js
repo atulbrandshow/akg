@@ -317,7 +317,7 @@ export default function NewNavBar() {
                                                 Specializations:
                                             </span>
                                         </div>
-                                        <div className="max-h-48 overflow-y-auto scrollbar-hidden">
+                                        <div className="max-h-72 scrollbar-hidden">
                                             <ul className="space-y-1.5 pr-2">
                                                 {link.Specializations.map((spec, specIndex) => (
                                                     <li

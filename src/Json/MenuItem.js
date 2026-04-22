@@ -317,14 +317,14 @@ export const Programs = {
             { name: "Additive Manufacturing", url: "/school-of-engineering-and-technology/btech-mechanical-engineering-additive-manufacturing" }
           ],
         },
-        {
-          name: "B.Tech in Civil Engineering",
-          url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-civil-engineering",
-          Specializations: [
-            { name: "Environment Engineering", url: "/school-of-engineering-and-technology/environmental-engineering" },
-            { name: "Structural Engineering", url: "/school-of-engineering-and-technology/btech-civil-engineering-structural-engineering" }
-          ],
-        },
+        // {
+        //   name: "B.Tech in Civil Engineering",
+        //   url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-civil-engineering",
+        //   Specializations: [
+        //     { name: "Environment Engineering", url: "/school-of-engineering-and-technology/environmental-engineering" },
+        //     { name: "Structural Engineering", url: "/school-of-engineering-and-technology/btech-civil-engineering-structural-engineering" }
+        //   ],
+        // },
       ],
       Program: {
         "Post Graduate Program": [
@@ -356,14 +356,14 @@ export const Programs = {
               { name: "Additive Manufacturing", url: "/school-of-engineering-and-technology/mtech-me-additive-manufacturing" }
             ],
           },
-          {
-            name: "M.Tech in Civil Engineering",
-            url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-civil-engineering",
-            Specializations: [
-              { name: "Environment Engineering", url: "/specialization-details?spec=environment-engineering" },
-              { name: "Structural Engineering", url: "/specialization-details?spec=structural-engineering" }
-            ],
-          },
+          // {
+          //   name: "M.Tech in Civil Engineering",
+          //   url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-civil-engineering",
+          //   Specializations: [
+          //     { name: "Environment Engineering", url: "/specialization-details?spec=environment-engineering" },
+          //     { name: "Structural Engineering", url: "/specialization-details?spec=structural-engineering" }
+          //   ],
+          // },
         ],
         "Doctorate Graduate Program": [
           {

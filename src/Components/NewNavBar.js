@@ -742,7 +742,7 @@ export default function NewNavBar() {
                             } left-0 transition-all bg-white text-black rounded-lg shadow-lg`}
                         >
                             <div className="grid grid-cols-12">
-                                <div className="col-span-9 max-lg:col-span-12 p-0 transition-all">
+                                <div className="col-span-12 p-0 transition-all">
                                     <div className=" w-full h-16 flex justify-center items-center">
                                         {Object.keys(Programs.sublinks)?.map((key, index) => (
                                             <button
@@ -810,7 +810,7 @@ export default function NewNavBar() {
                                     </div>
                                 </div>
 
-                                <div className="col-span-3 w-full relative max-lg:hidden">
+                                {/* <div className="col-span-3 w-full relative max-lg:hidden">
                                     <div
                                         className="absolute inset-0 bg-cover bg-center rounded-lg shadow-md"
                                         style={{
@@ -821,10 +821,6 @@ export default function NewNavBar() {
                                         <div className="absolute inset-0 bg-black opacity-70 rounded-lg"></div>
                                     </div>
                                     <div className="relative z-10 p-6 text-white">
-                                        {/* <h3 className="text-xl font-novaLight">University of</h3>
-                    <h2 className="text-3xl font-novaBold leading-none text-secondary">
-                      Top Placements
-                    </h2> */}
                                         <div className="mt-4">
                                             <div className="bg-brand-blue w-40 p-2 rounded-md">
                                                 <h3 className="text-3xl font-novaBold">1406</h3>
@@ -847,7 +843,7 @@ export default function NewNavBar() {
                                             <p className="text-xs font-novaLight">Highest Package Offered</p>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </li>

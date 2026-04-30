@@ -39,7 +39,7 @@ const Table = ({ tableHeadings, heading, paragraph, data, showPagination = true,
     return (
         <div className="container mx-auto">
             <h1 className="text-[42px] font-novaReg leading-none mb-4" style={{ color: primaryColor }}>{heading}</h1>
-            <p className="mb-6 text-md leading-5">{paragraph}</p>
+            <p className="mb-6 text-lg md:text-xl leading-relaxed">{paragraph}</p>
 
             <div className="flex justify-between items-center max-sm:flex-col mb-4">
                 <div className="flex items-center">
@@ -83,7 +83,7 @@ const Table = ({ tableHeadings, heading, paragraph, data, showPagination = true,
                 <thead>
                     <tr className="border-inherit h-[44px]" style={{ backgroundColor: secondaryColor, color: headerTextColor }}>
                         {tableHeadings.map((heading, index) => (
-                            <th key={index} className="py-4 px-4 text-left text-sm uppercase tracking-wider font-novaBold whitespace-nowrap">
+                            <th key={index} className="py-4 px-4 text-left text-base uppercase tracking-wider font-novaBold whitespace-nowrap">
                                 {heading}
                             </th>
                         ))}
@@ -92,15 +92,15 @@ const Table = ({ tableHeadings, heading, paragraph, data, showPagination = true,
                 <tbody>
                     {currentEntries?.map((course, index) => (
                         <tr key={index} className="text-white border-inherit" style={{ backgroundColor: primaryColor }}>
-                            <td className="py-4 px-4 text-sm border-b" style={{ borderColor: "rgba(255, 255, 255, 0.2)" }}>
+                            <td className="py-4 px-4 text-base border-b" style={{ borderColor: "rgba(255, 255, 255, 0.2)" }}>
                                 <Link href={`/course/${course.id}`} passHref className="text-white hover:underline font-novaSemi">
                                     {course.courseName}
                                 </Link>
                             </td>
-                            <td className="py-4 px-4 text-sm border-b border-l" style={{ borderColor: "rgba(255, 255, 255, 0.2)" }}>
+                            <td className="py-4 px-4 text-base border-b border-l" style={{ borderColor: "rgba(255, 255, 255, 0.2)" }}>
                                 {course.head}
                             </td>
-                            <td className="py-4 px-4 text-sm border-b border-l whitespace-pre-line" style={{ borderColor: "rgba(255, 255, 255, 0.2)" }}>
+                            <td className="py-4 px-4 text-base border-b border-l whitespace-pre-line" style={{ borderColor: "rgba(255, 255, 255, 0.2)" }}>
                                 {course.description}
                             </td>
                         </tr>

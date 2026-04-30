@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 
-const Table = ({ tableHeadings, heading, paragraph, data, showPagination = true, primaryColor = "#3c5686", secondaryColor = "#fecc00" }) => {
+const Table = ({ tableHeadings, heading, paragraph, data, showPagination = true, primaryColor = "#3c5686", secondaryColor = "#fecc00", headerTextColor = "white" }) => {
     const [entries, setEntries] = useState(showPagination ? 10 : data.length);
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState("");
@@ -81,9 +81,9 @@ const Table = ({ tableHeadings, heading, paragraph, data, showPagination = true,
 
             <table className="min-w-full my-4 bg-white border" style={{ borderColor: primaryColor }}>
                 <thead>
-                    <tr className="border-inherit text-white h-[44px]" style={{ backgroundColor: secondaryColor }}>
+                    <tr className="border-inherit h-[44px]" style={{ backgroundColor: secondaryColor, color: headerTextColor }}>
                         {tableHeadings.map((heading, index) => (
-                            <th key={index} className="py-4 px-4 text-left text-sm uppercase tracking-wider font-novaBold">
+                            <th key={index} className="py-4 px-4 text-left text-sm uppercase tracking-wider font-novaBold whitespace-nowrap">
                                 {heading}
                             </th>
                         ))}
@@ -100,7 +100,7 @@ const Table = ({ tableHeadings, heading, paragraph, data, showPagination = true,
                             <td className="py-4 px-4 text-sm border-b border-l" style={{ borderColor: "rgba(255, 255, 255, 0.2)" }}>
                                 {course.head}
                             </td>
-                            <td className="py-4 px-4 text-sm border-b border-l" style={{ borderColor: "rgba(255, 255, 255, 0.2)" }}>
+                            <td className="py-4 px-4 text-sm border-b border-l whitespace-pre-line" style={{ borderColor: "rgba(255, 255, 255, 0.2)" }}>
                                 {course.description}
                             </td>
                         </tr>

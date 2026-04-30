@@ -3,94 +3,39 @@ import React from 'react'
 
 const admissionData = [
   {
-    courseName: "B.Tech (All Branches)",
+    courseName: "B.Tech",
     head: "UG",
-    description: "10+2 with Physics, Chemistry, Mathematics. Minimum 50% aggregate (varies by program). Entrance: JEE Main / Merit-Based / Personal Interview.",
+    description: "Minimum 60% marks in Physics, Mathematics and Chemistry/Computer Science/Information Technology/Informatics Practices/Electronics/Engineering Graphics/Technical Vocational Subjects in Class XIIth.\n\nStudents with a JEE-Mains / JEE-Advance / AKGUEE score will be given preference in the merit list",
   },
   {
-    courseName: "B.Tech in Computer Science Engineering",
+    courseName: "BCA",
     head: "UG",
-    description: "10+2 with Physics, Chemistry, Mathematics. Minimum 50% aggregate (varies by program). Entrance: JEE Main / Merit-Based / Personal Interview.",
+    description: "Minimum 50% marks aggregate at XII level (Including English & Maths / Computer Science / Informatics Practice / Computer Applications / Multimedia & Web)\n\n(for students having NO Mathematics background compulsory bridge course will be framed by the University)\n\nStudents with a good CUET / AKGUEE score will be given preference in the merit list.",
   },
   {
-    courseName: "B.Tech in Data Science",
+    courseName: "BBA",
     head: "UG",
-    description: "10+2 with Physics, Chemistry, Mathematics. Minimum 50% aggregate (varies by program). Entrance: JEE Main / Merit-Based / Personal Interview.",
+    description: "XII with minimum 50% Marks\n\nStudents with a good CUET / AKGUEE score will be given preference in the merit list.",
   },
   {
-    courseName: "B.Tech in AI & Machine Learning",
-    head: "UG",
-    description: "10+2 with Physics, Chemistry, Mathematics. Minimum 50% aggregate (varies by program). Entrance: JEE Main / Merit-Based / Personal Interview.",
-  },
-  {
-    courseName: "B.Tech in Information Technology",
-    head: "UG",
-    description: "10+2 with Physics, Chemistry, Mathematics. Minimum 50% aggregate (varies by program). Entrance: JEE Main / Merit-Based / Personal Interview.",
-  },
-  {
-    courseName: "B.Tech in Electronics & Communication Engineering",
-    head: "UG",
-    description: "10+2 with Physics, Chemistry, Mathematics. Minimum 50% aggregate (varies by program). Entrance: JEE Main / Merit-Based / Personal Interview.",
-  },
-  {
-    courseName: "B.Tech in Electrical & Electronics Engineering",
-    head: "UG",
-    description: "10+2 with Physics, Chemistry, Mathematics. Minimum 50% aggregate (varies by program). Entrance: JEE Main / Merit-Based / Personal Interview.",
-  },
-  {
-    courseName: "B.Tech in Mechanical Engineering",
-    head: "UG",
-    description: "10+2 with Physics, Chemistry, Mathematics. Minimum 50% aggregate (varies by program). Entrance: JEE Main / Merit-Based / Personal Interview.",
-  },
-  {
-    courseName: "B.Tech in Civil Engineering",
-    head: "UG",
-    description: "10+2 with Physics, Chemistry, Mathematics. Minimum 50% aggregate (varies by program). Entrance: JEE Main / Merit-Based / Personal Interview.",
-  },
-  {
-    courseName: "BBA (Bachelor of Business Administration)",
-    head: "UG",
-    description: "10+2 in any stream with minimum 50% aggregate. Entrance: JEE Main / Merit-Based / Personal Interview.",
-  },
-  {
-    courseName: "BCA (Bachelor of Computer Applications)",
-    head: "UG",
-    description: "10+2 with Mathematics/Computer Science as one subject. Entrance: JEE Main / Merit-Based / Personal Interview.",
-  },
-  {
-    courseName: "M.Tech in Computer Science Engineering",
+    courseName: "M.Tech",
     head: "PG",
-    description: "B.Tech in relevant discipline with minimum 55% marks. Entrance: JEE Main / Merit-Based / Personal Interview.",
+    description: "B.E/B.Tech with minimum 50% marks or equivalent in CGPA in relevant stream or MCA/M.Sc Computer Science/IT\n\nStudents with a CUET / GATE / AKGUEE score will be given preference in the merit list.",
   },
   {
-    courseName: "M.Tech in Electronics & Communication Engineering",
+    courseName: "MCA",
     head: "PG",
-    description: "B.Tech in relevant discipline with minimum 55% marks. Entrance: JEE Main / Merit-Based / Personal Interview.",
+    description: "Minimum 50% marks in graduation degree (e.g.: B.E. / B.Tech./ B.Sc / B.Com. / B.A./ B.Voc. / BCA etc.,) preferably with Mathematics at 10+2 level or at Graduation level.\n\n(for students having NO Mathematics background compulsory bridge course will be framed by the University)\n\nStudents with a good CUET / AKGUEE score will be given preference in the merit list.",
   },
   {
-    courseName: "M.Tech in Electrical & Electronics Engineering",
+    courseName: "MBA",
     head: "PG",
-    description: "B.Tech in relevant discipline with minimum 55% marks. Entrance: JEE Main / Merit-Based / Personal Interview.",
+    description: "Bachelor Degree with Minimum 50% aggregate marks\n\nStudents having MAT / XAT / CMAT / NMAT / GMAT/ CUET/ AKGUEE Score will be given preference in merit list.",
   },
   {
-    courseName: "M.Tech in Mechanical Engineering",
-    head: "PG",
-    description: "B.Tech in relevant discipline with minimum 55% marks. Entrance: JEE Main / Merit-Based / Personal Interview.",
-  },
-  {
-    courseName: "MCA (Master of Computer Applications)",
-    head: "PG",
-    description: "BCA/B.Sc (CS/IT) with minimum 50% marks and Mathematics at 10+2 or UG level. Entrance: JEE Main / Merit-Based / Personal Interview.",
-  },
-  {
-    courseName: "MBA (Master of Business Administration)",
-    head: "PG",
-    description: "Graduation in any stream with minimum 50% marks. Entrance: JEE Main / Merit-Based / Personal Interview.",
-  },
-  {
-    courseName: "Ph.D. Programs",
-    head: "Doctoral",
-    description: "Master’s degree in relevant field with minimum 55% marks. Entrance: JEE Main / Merit-Based / Personal Interview.",
+    courseName: "Ph.D",
+    head: "Doctoral Programme",
+    description: "1. A candidate seeking admission after a 2-year (4-semester) master’s degree should have at least an aggregate of 55% marks or its equivalent grade ‘B’ on the UGC 10-point scale.\n\n2. A candidate seeking admission after a 4-year (8-semester) bachelor’s degree in research should have a minimum CGPA of 7.5/10 with DBT-BET/ ICMR-JRF/ GATE/ UGC-NET/ CSIR-JRF/ ARS-NET/ GPAT qualifications.\n\n3. Candidates who have secured their master’s degree under (10+2)+3+2 or (10+2)+4+2 or (10+2)+4 patterns of study are eligible to enroll in the PhD programmes as per NEP 2020.\n\n4. A 1-year (2-semester) master’s degree after 4-year undergraduate degree/ 5 years integrated master’s degree with at least an aggregate 55% marks or its equivalent grade ‘B’ in the UGC 10-point scale or an equivalent grade on a point scale wherever grading system is followed or an equivalent degree from a foreign educational institution accredited by approved, recognized by an authority, and established or incorporated under a law in its home country or any other statutory authority in that country to assess, accredit or assure quality and standards of educational institutions.",
   }
 ];
 
@@ -108,6 +53,7 @@ const AdmissionCriteria = () => {
       showPagination={false}
       primaryColor="#3c5686"
       secondaryColor="#fecc00"
+      headerTextColor="black"
     />
   )
 }

@@ -56,7 +56,7 @@ const AdmissionCriteria = () => {
         secondaryColor="#fecc00"
         headerTextColor="black"
       />
-      <p className="mt-10 text-xl font-novaBold text-[#3c5686]">
+      <p className="mt-4 text-lg font-novaBold text-[#3c5686]">
         <span className="text-black">*Note:</span> 5% relaxation in marks for reserved categories.
       </p>
     </>

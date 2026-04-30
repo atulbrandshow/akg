@@ -48,14 +48,14 @@ const COURSE_DATA = {
     {
       shortName: "BCA",
       fullName: "Bachelor of Computer Application",
-      eligibility: "50% Marks in 12th and CUTE / AKGUEE",
+      eligibility: "50% Marks in 12th and CUET / AKGUEE",
       duration: "3 years",
       url: "/department-of-computer-science-engineering",
     },
     {
       shortName: "BBA",
       fullName: "Bachelor of Business Administration",
-      eligibility: "50% Marks in 12th and CUTE / AKGUEE",
+      eligibility: "50% Marks in 12th and CUET / AKGUEE",
       duration: "3 years",
       url: "/school-of-business-studies",
     },
@@ -64,42 +64,42 @@ const COURSE_DATA = {
     {
       shortName: "M.Tech CSE",
       fullName: "M.Tech in Computer Science Engineering",
-      eligibility: "50% Marks in B.Tech / BE or MCA / MSC(CS/IT) and CUTE / GATE / AKGUEE",
+      eligibility: "50% Marks in B.Tech / BE or MCA / MSC(CS/IT) and CUET / GATE / AKGUEE",
       duration: "2 years",
       url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-computer-science-engineering",
     },
     {
       shortName: "M.Tech ECE",
       fullName: "M.Tech in Electronics and Communication Engineering",
-      eligibility: "50% Marks in B.Tech / BE or MCA / MSC(CS/IT) and CUTE / GATE / AKGUEE",
+      eligibility: "50% Marks in B.Tech / BE or MCA / MSC(CS/IT) and CUET / GATE / AKGUEE",
       duration: "2 years",
       url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-electronics-and-communication-engineering",
     },
     {
       shortName: "M.Tech EEE",
       fullName: "M.Tech in Electrical & Electronics Engineering",
-      eligibility: "50% Marks in B.Tech / BE or MCA / MSC(CS/IT) and CUTE / GATE / AKGUEE",
+      eligibility: "50% Marks in B.Tech / BE or MCA / MSC(CS/IT) and CUET / GATE / AKGUEE",
       duration: "2 years",
       url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-electrical-electronics-engineering",
     },
     {
       shortName: "M.Tech ME",
       fullName: "M.Tech in Mechanical Engineering",
-      eligibility: "50% Marks in B.Tech / BE or MCA / MSC(CS/IT) and CUTE / GATE / AKGUEE",
+      eligibility: "50% Marks in B.Tech / BE or MCA / MSC(CS/IT) and CUET / GATE / AKGUEE",
       duration: "2 years",
       url: "/school-of-engineering-and-technology/mtech-in-mechanical-engineering",
     },
     {
       shortName: "MBA",
       fullName: "Master of Business Administration",
-      eligibility: "50% Marks in Graduation and MAT / XAT / CMAT / NMAT / GMAT /CUTE / AKGUEE",
+      eligibility: "50% Marks in Graduation and MAT / XAT / CMAT / NMAT / GMAT /CUET / AKGUEE",
       duration: "2 years",
       url: "/school-of-business-studies",
     },
     {
       shortName: "MCA",
       fullName: "Master of Computer Applications",
-      eligibility: "50% Marks in Graduation and CUTE / AKGUEE",
+      eligibility: "50% Marks in Graduation and CUET / AKGUEE",
       duration: "2 years",
       url: "/department-of-computer-science-engineering",
     },
@@ -353,7 +353,7 @@ const Admissions = ({ onApplyNow }) => {
       </div>
 
       {/* Hero Section */}
-      <section ref={heroRef} className="py-12 w-full relative z-10">
+      <section ref={heroRef} className="py-12 w-full relative z-10 bg-gradient-to-br from-white via-[#f8fafc] to-[#eef2f7]">
         <div className="relative flex justify-center px-1 md:px-12 lg:px-24">
           <div className="container max-w-full lg:max-w-[1400px] flex max-xl:flex-col-reverse gap-10">
             <div className="max-w-3xl max-2xl:max-w-xl max-xl:w-full px-2">
@@ -372,11 +372,11 @@ const Admissions = ({ onApplyNow }) => {
                 </p>
               </div>
               <div className="hero-content">
-                <p className="pb-4 max-sm:leading-none font-novaReg text-justify text-gray-700">
+                <p className="pb-4 max-sm:leading-none font-novaReg text-justify text-gray-700 text-xl">
                   AKG University offers admissions to a comprehensive range of academic programs spanning undergraduate, postgraduate, and doctoral levels, all designed to foster innovation, critical thinking, and career readiness.
                 </p>
                 <div className="border-l-4 border-[#fecc00] pl-5 max-w-full lg:max-w-[420px] mt-5 bg-gradient-to-r from-blue-50 to-transparent py-3">
-                  <p className="mb-4 font-novaReg text-[18px] leading-[24px] italic text-[#3c5686]">
+                  <p className="mb-4 font-novaReg text-[22px] leading-[28px] italic text-[#3c5686]">
                     Choose the program that interests you and make a wise decision in your life
                   </p>
                 </div>

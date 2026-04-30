@@ -51,9 +51,9 @@ export default function Home({ data }) {
         position="top"
         title={
           <span className="text-4xl md:text-5xl lg:text-6xl pt-20">
-            Discover First
+            From Dreams To Reality :
             <br />
-            Decide Later
+            We Walk With You
           </span>
         }
         subHeading={

@@ -13,49 +13,49 @@ const COURSE_DATA = {
     {
       shortName: "B.Tech CSE",
       fullName: "B.Tech in Computer Science Engineering",
-      eligibility: "10+2 (PCM) / JEE Mains / CUET",
+      eligibility: "10+2 (PCM) / JEE Mains / AKGUEE",
       duration: "4 years",
       url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-computer-science-and-engineering",
     },
     {
       shortName: "B.Tech ECE",
       fullName: "B.Tech in Electronics and Communication Engineering",
-      eligibility: "10+2 (PCM) / JEE Mains / CUET",
+      eligibility: "10+2 (PCM) / JEE Mains / AKGUEE",
       duration: "4 years",
       url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-electronics-and-communication-engineering",
     },
     {
       shortName: "B.Tech EEE",
       fullName: "B.Tech in Electrical & Electronics Engineering",
-      eligibility: "10+2 (PCM) / JEE Mains / CUET",
+      eligibility: "10+2 (PCM) / JEE Mains / AKGUEE",
       duration: "4 years",
       url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-electrical-electronics-engineering",
     },
     {
       shortName: "B.Tech ME",
       fullName: "B.Tech in Mechanical Engineering",
-      eligibility: "10+2 (PCM) / JEE Mains / CUET",
+      eligibility: "10+2 (PCM) / JEE Mains / AKGUEE",
       duration: "4 years",
       url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-mechanical-engineering",
     },
-    {
-      shortName: "B.Tech CE",
-      fullName: "B.Tech in Civil Engineering",
-      eligibility: "10+2 (PCM) / JEE Mains / CUET",
-      duration: "4 years",
-      url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-civil-engineering",
-    },
+    // {
+    //   shortName: "B.Tech CE",
+    //   fullName: "B.Tech in Civil Engineering",
+    //   eligibility: "10+2 (PCM) / JEE Mains / CUET",
+    //   duration: "4 years",
+    //   url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/btech-civil-engineering",
+    // },
     {
       shortName: "BCA",
       fullName: "Bachelor of Computer Application",
-      eligibility: "10+2 with Mathematics",
+      eligibility: "50% Marks in 12th and CUTE / AKGUEE",
       duration: "3 years",
       url: "/department-of-computer-science-engineering",
     },
     {
       shortName: "BBA",
       fullName: "Bachelor of Business Administration",
-      eligibility: "10+2 with 50% Marks",
+      eligibility: "50% Marks in 12th and CUTE / AKGUEE",
       duration: "3 years",
       url: "/school-of-business-studies",
     },
@@ -64,42 +64,42 @@ const COURSE_DATA = {
     {
       shortName: "M.Tech CSE",
       fullName: "M.Tech in Computer Science Engineering",
-      eligibility: "B.E./B.Tech in CSE/IT or M.Sc (CS/IT) or MCA",
+      eligibility: "50% Marks in B.Tech / BE or MCA / MSC(CS/IT) and CUTE / GATE / AKGUEE",
       duration: "2 years",
       url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-computer-science-engineering",
     },
     {
       shortName: "M.Tech ECE",
       fullName: "M.Tech in Electronics and Communication Engineering",
-      eligibility: "B.E./B.Tech in ECE or equivalent",
+      eligibility: "50% Marks in B.Tech / BE or MCA / MSC(CS/IT) and CUTE / GATE / AKGUEE",
       duration: "2 years",
       url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-electronics-and-communication-engineering",
     },
     {
       shortName: "M.Tech EEE",
       fullName: "M.Tech in Electrical & Electronics Engineering",
-      eligibility: "B.E./B.Tech in EEE or equivalent",
+      eligibility: "50% Marks in B.Tech / BE or MCA / MSC(CS/IT) and CUTE / GATE / AKGUEE",
       duration: "2 years",
       url: "/school-of-engineering-and-technology/department-of-computer-science-and-engineering/mtech-electrical-electronics-engineering",
     },
     {
       shortName: "M.Tech ME",
       fullName: "M.Tech in Mechanical Engineering",
-      eligibility: "B.E./B.Tech in ME or equivalent",
+      eligibility: "50% Marks in B.Tech / BE or MCA / MSC(CS/IT) and CUTE / GATE / AKGUEE",
       duration: "2 years",
       url: "/school-of-engineering-and-technology/mtech-in-mechanical-engineering",
     },
     {
       shortName: "MBA",
       fullName: "Master of Business Administration",
-      eligibility: "Graduate with CAT/MAT/CUET-PG",
+      eligibility: "50% Marks in Graduation and MAT / XAT / CMAT / NMAT / GMAT /CUTE / AKGUEE",
       duration: "2 years",
       url: "/school-of-business-studies",
     },
     {
       shortName: "MCA",
       fullName: "Master of Computer Applications",
-      eligibility: "BCA / BSc / BCom with Mathematics",
+      eligibility: "50% Marks in Graduation and CUTE / AKGUEE",
       duration: "2 years",
       url: "/department-of-computer-science-engineering",
     },
@@ -134,7 +134,7 @@ const CourseSection = ({ title, courses }) => {
               <h4 className="text-4xl font-novaBold text-[#3c5686] mb-1 group-hover:translate-x-1 transition-transform uppercase">
                 {course.shortName}
               </h4>
-              <p className="text-[#fecc00] font-novaSemi text-lg mb-6">
+              <p className="text-[#002147] font-novaSemi text-lg mb-6">
                 {course.fullName}
               </p>
               <div className="space-y-3 mb-8">
@@ -442,13 +442,13 @@ const Admissions = ({ onApplyNow }) => {
           <div className="info-card min-h-52 flex flex-col group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:border-[#3c5686]">
             <div className="p-5">
               <h4 className="text-xl sm:text-2xl font-novaReg text-[#3c5686] group-hover:text-[#fecc00] transition-colors duration-300 ease-in-out">
-                AKG Advantages
+                AKG Scholarship
               </h4>
               <p className="pt-2 max-sm:leading-none text-base font-novaReg line-clamp-2 text-gray-700">
                 Industry-Institute Interface: Bridging Academics with Transparent Learning and Objective Assessment
               </p>
               <button
-                onClick={() => router.push("/about/core-values")}
+                onClick={() => router.push("/admissions/scholarship")}
                 className="my-3 w-fit px-5 py-2.5 font-novaReg border-2 border-[#3c5686] rounded-md uppercase text-sm tracking-widest text-[#3c5686] hover:bg-[#3c5686] hover:text-white transition-all duration-300 ease-in-out shadow-md hover:shadow-lg"
               >
                 View More Details
@@ -466,13 +466,13 @@ const Admissions = ({ onApplyNow }) => {
           <div className="info-card min-h-52 flex flex-col group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:border-[#3c5686]">
             <div className="p-5">
               <h4 className="text-xl sm:text-2xl font-novaReg text-[#3c5686] group-hover:text-[#fecc00] transition-colors duration-300 ease-in-out">
-                Why AKGU ?
+                Campus Virtual Tour
               </h4>
               <p className="pt-2 max-sm:leading-none text-base font-novaReg line-clamp-2 text-gray-700">
                 History, Culture, Innovation, Technology, and more—AKG University provides a diverse array of opportunities.
               </p>
               <button
-                onClick={() => router.push("/about/vision-and-mission")}
+                onClick={() => router.push("/admissions/campus-virtual-tour")}
                 className="my-3 w-fit px-5 py-2.5 font-novaReg border-2 border-[#3c5686] rounded-md uppercase text-sm tracking-widest text-[#3c5686] hover:bg-[#3c5686] hover:text-white transition-all duration-300 ease-in-out shadow-md hover:shadow-lg"
               >
                 View More Details

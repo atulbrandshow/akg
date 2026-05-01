@@ -515,7 +515,7 @@ export const Admissions = {
         url: "/admissions",
       },
       {
-        name: "Programme Fee",
+        name: "Program Fee",
         url: "/admissions/course-fee",
       },
       {

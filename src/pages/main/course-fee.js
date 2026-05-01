@@ -17,7 +17,7 @@ export const Home = () => {
         <>
             <div className="bg-gray-100">
                 <Header
-                    title={<span className="leading-[45px]">Ajay Kumar Garg University <br />Course Fee 2024 </span>}
+                    title={<span className="leading-[45px]">Ajay Kumar Garg University <br />Course Fee </span>}
                     buttonType={"link"}
                     buttonText="Apply Now"
                     buttonLink="/"

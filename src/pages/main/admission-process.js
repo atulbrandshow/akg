@@ -61,7 +61,7 @@ export const Home = () => {
                                 <div>
                                     <p className="font-novaBold text-black mb-2">How to Apply:</p>
                                     <ul className="list-disc ml-6 space-y-1">
-                                        <li><strong>Online:</strong> Visit official admission portal <Link href="/" className="text-[#3c5686] font-novaBold hover:underline">Click Here</Link></li>
+                                        <li><strong>Online:</strong> Visit official admission portal <Link href="/admissions" className="text-[#3c5686] font-novaBold hover:underline">Click Here</Link></li>
                                         <li><strong>Offline:</strong> Visit University Admission Office</li>
                                     </ul>
                                 </div>
@@ -175,4 +175,4 @@ export const Home = () => {
     )
 }
 
-export default Home;
+export default Home;

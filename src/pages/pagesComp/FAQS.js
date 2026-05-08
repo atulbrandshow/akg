@@ -7,7 +7,7 @@ const faqItems = {
     generalInformation: [
         {
             question: "When was AKG University Established?",
-            answer: "AKG University was established in 2000 and has since become a prominent educational institution in Uttar Pradesh."
+            answer: "Ajay Kumar Garg University was established in 2026 and is emerging as a leading educational institution in Uttar Pradesh."
         },
         {
             question: "Is AKG University recognized by any educational bodies?",
@@ -15,7 +15,7 @@ const faqItems = {
         },
         {
             question: "What programs are offered at AKG University?",
-            answer: "AKG University offers a variety of programs across multiple disciplines, including engineering, management, sciences, arts, and humanities."
+            answer: "AKG University offers a variety of programs across multiple disciplines, including engineering, management, computer science etc."
         },
         {
             question: "What are the campus facilities available at AKG University?",
@@ -33,10 +33,10 @@ const faqItems = {
             question: "What is the student-to-faculty ratio at AKG University?",
             answer: "The student-to-faculty ratio is designed to ensure personalized attention for students."
         },
-        {
-            question: "Are there any international collaborations for student exchange?",
-            answer: "Yes, AKG University has established collaborations with various international institutions."
-        },
+        // {
+        //     question: "Are there any international collaborations for student exchange?",
+        //     answer: "Yes, AKG University has established collaborations with various international institutions."
+        // },
         {
             question: "What is the university's commitment to sustainability?",
             answer: "AKG University is committed to sustainability through initiatives such as green campus practices."

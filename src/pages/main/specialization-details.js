@@ -10,7 +10,9 @@ import {
   GraduationCap,
   Send,
   Briefcase,
+  ArrowRight,
 } from "lucide-react";
+import Link from "next/link";
 
 const SpecializationDetails = ({ data }) => {
   const pageData = data?.pageData || data;
@@ -90,13 +92,26 @@ const SpecializationDetails = ({ data }) => {
                 Fee Structure
               </h2>
             </div>
-            {pageData?.["Fee-Structure-Title"] && (
+
+            <Link
+              href="/admissions/course-fee"
+              className="inline-flex items-center gap-4 px-6 py-3.5 bg-indigo-50 text-indigo-700 rounded-2xl hover:bg-indigo-600 hover:text-white border border-indigo-100 hover:border-indigo-600 font-novaSemi text-[15px] mb-8 group transition-all duration-300 shadow-sm hover:shadow-lg hover:-translate-y-0.5"
+            >
+              <div className="flex flex-col items-start leading-tight">
+                <span className="text-[11px] uppercase tracking-wider opacity-70 font-novaBold">View Details</span>
+                <span>Full Fee Structure Breakdown</span>
+              </div>
+              <div className="flex items-center justify-center w-8 h-8 bg-white/50 group-hover:bg-white/20 rounded-full transition-colors">
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+            {/* {pageData?.["Fee-Structure-Title"] && (
               <p className="text-gray-600 mb-6 font-novaReg text-sm">
                 {pageData["Fee-Structure-Title"]}
               </p>
-            )}
+            )} */}
 
-            <div className="space-y-6">
+            {/* <div className="space-y-6">
               <div>
                 <h3 className="text-lg font-novaSemi text-blue-800 mb-3 flex items-center gap-2">
                   <IndianRupee className="w-4 h-4" /> National Students
@@ -160,7 +175,7 @@ const SpecializationDetails = ({ data }) => {
                   </table>
                 </div>
               </div>
-            </div>
+            </div> */}
           </section>
 
           {/* 1.3 Eligibility Criteria */}
@@ -173,8 +188,19 @@ const SpecializationDetails = ({ data }) => {
                 Eligibility Criteria
               </h2>
             </div>
-
-            <div className="space-y-6">
+            <Link
+              href="/admissions/admission-criteria"
+              className="inline-flex items-center gap-4 px-6 py-3.5 bg-indigo-50 text-indigo-700 rounded-2xl hover:bg-indigo-600 hover:text-white border border-indigo-100 hover:border-indigo-600 font-novaSemi text-[15px] mb-8 group transition-all duration-300 shadow-sm hover:shadow-lg hover:-translate-y-0.5"
+            >
+              <div className="flex flex-col items-start leading-tight">
+                <span className="text-[11px] uppercase tracking-wider opacity-70 font-novaBold">View Details</span>
+                <span>View Eligibility Criteria</span>
+              </div>
+              <div className="flex items-center justify-center w-8 h-8 bg-white/50 group-hover:bg-white/20 rounded-full transition-colors">
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+            {/* <div className="space-y-6">
               <div className="p-5 bg-blue-50 rounded-2xl border border-blue-100">
                 <h3 className="font-novaSemi text-blue-900 mb-2">
                   Indian / National Students
@@ -201,7 +227,7 @@ const SpecializationDetails = ({ data }) => {
                   )}
                 </ul>
               </div>
-            </div>
+            </div> */}
           </section>
         </div>
 

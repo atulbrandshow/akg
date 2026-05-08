@@ -24,7 +24,7 @@ const ProgramDetails = ({ data }) => {
                 {data?.breadCrumb && <Breadcrumb data={data?.breadCrumb} />}
             </section> */}
             <ProgramCarousel data={data} />
-            <ProgramSpecializationCards data={data} />
+            {/* <ProgramSpecializationCards data={data} /> */}
             <AboutProgram data={data} />
             <IndustryPartnerSliderDynamic data={data} />
             {/* <PlacementBannerDynamic data={data} /> */}

@@ -98,7 +98,7 @@ const CentreOfResearch = () => {
                                     INNOVATIONS IN SPACE SCIENCE & TECHNOLOGY
                                 </h2>
                                 <p className="mb-6 text-white text-lg font-novaLight">
-                                    The establishment of the Ajay K. Gupta Centre for Research in Space Science & Technology represents a groundbreaking advancement for students at
+                                    The establishment of the Ajay Kumar Garg University Centre for Research in Space Science & Technology represents a groundbreaking advancement for students at
                                     AKG University. This centre aims to foster intellectual growth and enhance the nation's capabilities in space exploration and technology.
                                 </p>
                                 <h3 className="text-xl font-bold mb-4 text-white">

@@ -550,9 +550,9 @@ export const Admissions = {
         name: "Payment Procedure",
         url: "/admissions/payment-procedure",
       },
-      {
+     {
         name: "Refund Policy",
-        url: "/pdf/refund-policy.pdf",
+        url: "https://csip-image.blr1.digitaloceanspaces.com/csip-image/akg/Fee%20Refund%20Policy.pdf",
         target: "_blank",
       },
       // {

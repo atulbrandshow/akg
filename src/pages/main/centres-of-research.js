@@ -68,30 +68,34 @@ const CentreOfResearch = () => {
     return (
         <>
             {/* ----------------- First Section (KEPT AS REQUESTED) ----------------- */}
-            <section className="bg-BG33 bg-no-repeat bg-top bg-cover pt-40 pb-20">
-                <div className="max-w-7xl mx-auto px-3">
+            <section className="relative bg-[url('/image/res.jpeg')] bg-no-repeat bg-top bg-cover pt-40 pb-20">
+                <div className="absolute inset-0 bg-black/60"></div>
+                <div className="max-w-7xl mx-auto px-3 relative z-10">
                     <div className="w-full">
                         <div className="w-full lg:w-3/5">
-                            <a href="/apply" className="p-4 mb-2 inline-block">
+                            {/* <a href="/apply" className="p-4 mb-2 inline-block">
                                 <img
                                     src="/image/center-of-research/space-x.jpg"
                                     alt="AKG Project Logo"
                                     className="w-40 lg:w-56 rounded-full"
                                 />
-                            </a>
-                            <p className="text-2xl lg:text-3xl font-novaLight mt-5 text-white">
+                            </a> */}
+                            {/* <p className="text-2xl lg:text-3xl font-novaLight mt-5 text-white">
                                 Leading Innovations in Space Science<br /> at AKG University
-                            </p>
-                            <h3 className="text-3xl lg:text-5xl font-novaBold uppercase text-white mt-5 leading-tight">
-                                Ajay Kumar Garg University Centre for Research in Space Science & Technology
+                            </p> */}
+                            <h3 className="text-3xl max-w-lg mt-20 font-novaReg tracking-tight text-white sm:text-[40px]">
+                                Research and Development
                             </h3>
+                            <h5 className="mt-2 text-white font-novaReg max-w-xl text-lg lg:text-xl">
+                                Pioneering Research for Global Progress
+                            </h5>
                             <a href="/apply" className="flex mt-5 w-fit text-black py-3 px-9 bg-[#f7a600] rounded-3xl items-center gap-2 hover:bg-yellow-500 transition">
                                 Apply Now
                                 <ArrowRight className="w-5 h-5" />
                             </a>
                         </div>
                     </div>
-                    <div className="mt-16 lg:mt-24 w-full">
+                    {/* <div className="mt-16 lg:mt-24 w-full">
                         <div className="flex flex-col lg:flex-row items-start gap-8 w-full">
                             <div className="w-full lg:w-6/12">
                                 <h2 className="text-3xl lg:text-4xl font-bold mb-6 text-white">
@@ -130,7 +134,7 @@ const CentreOfResearch = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </section>
 

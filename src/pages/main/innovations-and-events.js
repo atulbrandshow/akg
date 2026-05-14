@@ -59,7 +59,7 @@ const InnovationsAndEvents = () => {
                         <div className="block w-1/2 h-full max-sm:hidden"></div>
                         <div className="w-1/2 bg-orange-300 opacity-90 h-full flex items-center justify-center flex-col max-sm:w-full">
                             <div className="max-w-xl px-4 text-center">
-                                <h2 className="text-6xl font-novaReg uppercase mb-3 max-lg:text-5xl max-md:text-4xl max-sm:text-3xl mr-0 md:mr-4 lg:mr-0">Unleash <span className="font-semibold text-white">Innovation at</span> Tech Invent 2024</h2>
+                                <h2 className="text-6xl font-novaReg uppercase mb-3 max-lg:text-5xl max-md:text-4xl max-sm:text-3xl mr-0 md:mr-4 lg:mr-0">Unleash <span className="font-semibold text-white">Innovation at</span> Tech Invent 2026</h2>
                                 <h6 className="font-novaReg text-2xl border-y py-3 border-gray-600 text-center max-md:text-xl max-sm:text-lg">Where Ideas Meet, and Futures are Created</h6>
                                 <p className="text-base mt-3 font-novaSemi text-center max-sm:text-sm">Experience groundbreaking inventions and cutting-edge technologies.</p>
                             </div>

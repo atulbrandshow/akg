@@ -202,7 +202,7 @@ const OurLeadingRecruiters = () => {
             <Header title={"Our Leading Recruiter"} subHeading={"Partnering with the best to shape bright futures! 🤝✨"} bg="/image/building/building5.webp" gradient={"bg-gradient-to-r from-gray-900 to-transparent"} />
             <section className="max-w-[1400px] mx-auto px-3 pt-20 max-md:pt-10">
                 <div className="mb-6">
-                    <div className="grid grid-cols-12 gap-8 max-sm:gap-0">
+                    {/* <div className="grid grid-cols-12 gap-8 max-sm:gap-0">
                         <div className="col-span-12">
                             <div className="w-full mb-4">
                                 <h3 className="font-novaReg text-4xl max-md:text-2xl">AKG University: Placement Overview</h3>
@@ -216,10 +216,10 @@ const OurLeadingRecruiters = () => {
                                 </p>
                             ))}
                         </div>
-                        {/* <div className="col-span-3 max-xl:col-span-4 max-lg:col-span-12">
+                        <div className="col-span-3 max-xl:col-span-4 max-lg:col-span-12">
                             <SideBar title={"About Us"} LinkList={SideBarLink} />
-                        </div> */}
-                    </div>
+                        </div>
+                    </div> */}
 
                     <div className="border mt-10">
                         <div className="mb-4 bg-gray-100 p-6 max-sm:p-2 border-b">

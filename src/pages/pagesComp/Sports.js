@@ -83,7 +83,7 @@ export default function SportsFacility() {
           <h2 className="text-4xl font-novaSemi text-[#1c1f52] mb-4 max-sm:text-3xl leading-tight">
             Nurturing <span className="text-[#df8934]">Champions</span> Within
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl leading-relaxed">
+          <p className="text-lg text-gray-600 leading-relaxed">
             At AKG University, we believe that a healthy mind resides in a healthy body. Our world-class sports infrastructure is designed to foster teamwork, discipline, and physical excellence among our students.
           </p>
         </motion.div>

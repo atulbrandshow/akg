@@ -122,11 +122,11 @@ const Facilities = () => {
             <span className="w-12 h-1.5 bg-blue-600 rounded-full" />
             Academic Infrastructure
           </h2>
-          <p className="text-slate-600 font-novaReg leading-relaxed">
+        </div>
+        <p className="text-slate-600 font-novaReg leading-relaxed">
             AKG University offers a wide range of top-notch academic facilities to support both teaching and research. 
             Our classrooms and labs are equipped with modern technology designed to enhance interactive learning.
-          </p>
-        </div>
+        </p>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
           {facilitiesData.academic.map((f, i) => (
             <FacilityCard key={i} facility={f} index={i} />
@@ -141,11 +141,11 @@ const Facilities = () => {
             <span className="w-12 h-1.5 bg-emerald-500 rounded-full" />
             Campus Life & Amenities
           </h2>
-          <p className="text-slate-600 font-novaReg leading-relaxed">
+        </div>
+         <p className="text-slate-600 font-novaReg leading-relaxed">
             Beyond academics, we provide exceptional facilities designed to foster an environment where students can shape their future. 
             From nutritious dining to 24/7 medical support, we ensure a comfortable and safe staying experience.
-          </p>
-        </div>
+        </p>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
           {facilitiesData.campus.map((f, i) => (
             <FacilityCard key={i} facility={f} index={i} />

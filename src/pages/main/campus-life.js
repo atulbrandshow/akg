@@ -22,7 +22,7 @@ const slides = [
         subtitle: "Pioneering Research and Cutting-Edge Innovation",
         description: "Innovative Experiential Learning Through Advanced Technology and State-of-the-Art Labs",
         buttonText: "VIDEO TOUR",
-        image: "/image/campus-life/campus-life-banner-2.webp",
+        image: "/image/campus-life/cultural.jpg",
         link: "/admissions/campus-virtual-tour"
     },
     {

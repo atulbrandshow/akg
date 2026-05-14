@@ -113,7 +113,7 @@ export const Academics = {
       },
       {
         name: "School of Computing",
-        url: "/department-of-computer-science-engineering",
+        url: "/school-of-computer-science-engineering",
       },
       {
         name: "School of Management",

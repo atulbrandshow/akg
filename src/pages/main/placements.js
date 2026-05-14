@@ -32,7 +32,7 @@ const topslides = [
   },
   {
     id: 4,
-    image: "/image/placement/placement-overview-4.webp",
+    image: "/image/placements/students.webp",
     title: "Career Success",
     subtitle: "A legacy of excellence in placement and professional growth."
   }
@@ -599,7 +599,7 @@ const Placement = () => {
       </section>
       <HighlightPlacement />
 
-      <section className='py-16'>
+      {/* <section className='py-16'>
         <div className='px-3 max-w-7xl mx-auto'>
           <div className='flex max-md:flex-col'>
             <div className='flex-1'>
@@ -636,7 +636,7 @@ const Placement = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section className='bg-BG45 min-h-[600px] bg-cover bg-center'>
         <div className='max-w-full mx-auto h-full'>

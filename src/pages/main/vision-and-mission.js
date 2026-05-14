@@ -19,7 +19,7 @@ export const Home = ({ title, bg, gradient }) => {
       <div className="bg-gray-100 min-h-screen pb-10">
         <Header
           title={title}
-          bg="bg-BG-Identity animate-zoomInOut"
+          bg="bg-BG-Building-10 animate-zoomInOut"
           height="!h-[85vh] !justify-center"
           gradient={"bg-gradient-to-r from-brand-blue/30 via-brand-blue/20 to-brand-blue/30"}
           position="center"

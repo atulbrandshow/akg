@@ -423,7 +423,7 @@ export default function NewNavBar() {
                             <div className="flex justify-center">
                                 <Link href="/">
                                     <Image
-                                        src="/image/akg-logo.webp"
+                                        src="/image/akg-logo-new.webp"
                                         alt="AKG University Logo"
                                         height={300}
                                         width={800}

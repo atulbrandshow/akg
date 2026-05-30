@@ -42,140 +42,140 @@ const studentSpeaks = [
         description: "Being a graduate of AKGEC, I truly appreciate the strong academic base the institution helped me build. The well-planned infrastructure, serene green surroundings, and modern facilities created a comfortable and motivating atmosphere for growth, both academically and personally. Supportive faculty members and accessible learning resources played a key role in guiding us throughout our journey. Apart from academics, the campus experience at AKGEC was dynamic and engaging, with numerous cultural and technical communities to be part of. Among them, the Software Incubator stood out as a particularly enriching experience. These platforms gave me the opportunity to collaborate with peers, explore new ideas, and develop practical and leadership skills. Altogether, AKGEC offered a balanced and enriching environment that made my college life memorable and rewarding.",
         name: "Ankit Mishra",
         title: "Btach 2019-2023",
-        img: "/image/student/1.png",
+        img: "/image/student/ankit-mishra.webp",
         rating: 5
     },
     {
         description: "As a former student of AKGEC, I found the institution to be a well-rounded place that balances academics with overall development. The campus features updated laboratories, comfortable classrooms, and ample greenery, which together create a positive and focused learning environment. The teaching staff is experienced and approachable, emphasizing hands-on learning and preparing students for real industry challenges. Student involvement is strongly encouraged through various technical and interest-based clubs. Platforms such as the Software Incubator provide exposure to innovation, project development, and entrepreneurial thinking, while other technical societies organize events, workshops, and contests that keep learning interactive. Although large-scale cultural events are few, the enthusiasm of student-led groups builds a close and energetic campus culture. Overall, AKGEC plays an important role in shaping students with both technical competence and essential life skills for their future careers.",
         name: "Ritik Gupta",
         title: "Batch 2018-2022",
-        img: "/image/student/1.png",
+        img: "/image/student/ritik-gupta.webp",
         rating: 5
     },
     {
         description: "AKGEC played a significant role in shaping me not just academically, but also as a professional. The environment pushed me to take responsibility for my work, think critically, and confidently handle real-world challenges in software development. Over time, I noticed a clear difference in both technical competence and overall confidence when compared to peers from other institutions. The CSE faculty during my time was highly supportive and motivating. They constantly encouraged participation in hackathons, hands-on project development, and meaningful interactions with people in the tech community. This guidance helped me build practical skills, improve collaboration, and develop a mindset that has been extremely valuable in my career journey.",
         name: "Rishabh Tyagi",
         title: "Batch 2018-2022",
-        img: "/image/student/1.png",
+        img: "/image/student/rishabh-tyagi.webp",
         rating: 5
     },
     {
         description: "To be honest, AKGEC has been a crucial part of my personal and professional growth. It offered much more than a theoretical engineering education, focusing strongly on practical exposure and preparing students to handle real-world challenges with confidence. The guidance and support from experienced faculty members played a major role in helping me continuously improve my technical knowledge and adapt to new technologies. In addition to academics, the institute encouraged active participation in various extracurricular activities and campus events, which contributed greatly to my overall development. These experiences helped me grow not only as a professional but also as an individual, shaping my mindset, values, and approach toward teamwork and responsibility.",
         name: "Prabhanshu Chauhan",
         title: "Batch 2016-2020",
-        img: "/image/student/1.png",
+        img: "/image/student/prabhanshu-chauhan.webp",
         rating: 5
     },
     {
         description: "My time at Ajay Kumar Garg Engineering College was a transformative experience that shaped both my ambitions and outlook. It was a place where my interests gradually turned into purpose, and I became more aware of my abilities by learning alongside motivated and creative peers. The campus brought together students from varied backgrounds, creating an environment rich in ideas, collaboration, and healthy competition. Learning extended far beyond lectures and practical sessions, as teamwork, problem-solving, and innovation became part of everyday life. Whether through intense problem-solving sessions, collaborative assignments, or long hours spent refining projects, I was constantly challenged to grow. The guidance and encouragement from faculty and mentors made the journey even more meaningful. AKGEC didn’t just equip me with technical knowledge; it connected me to a driven community that inspired me to think bigger and continually push my limits.",
         name: "Garima Pandey",
         title: "Batch 2019-2023",
-        img: "/image/student/1.png",
+        img: "/image/student/garima-pandey.webp",
         rating: 5
     },
     {
         description: "AKGEC was far more than an educational institution for me; it was a space where I truly evolved as a person. The years spent there were filled with learning, emotions, and experiences that went well beyond textbooks and classrooms. Surrounded by an energetic campus environment and supportive mentors, I found the encouragement needed to grow both intellectually and personally. What I value most are the moments shared with friends—long discussions, group study sessions, shared struggles, and small joys that strengthened our bonds. The faculty members were not only teachers but guides who consistently motivated us and believed in our potential. Over time, the campus became a close-knit ecosystem where friendships turned into lifelong connections. AKGEC is not just an institution I studied at; it represents memories, growth, and a sense of belonging that will always remain a part of me.",
-        name: "SUHAIL AHMAD",
+        name: "Suhail Ahmad",
         title: "Batch 2021-2025",
-        img: "/image/student/1.png",
+        img: "/image/student/suhail-ahmad.webp",
         rating: 5
     },
     {
         description: "My experience at AKGEC stands out as a defining phase of my development, as the institution continuously encouraged growth, learning, and self-discovery. It offered a strong blend of structured academics and experiential learning, enabling students to convert concepts into practical outcomes. The campus environment itself promoted learning everywhere—from advanced labs and collaborative spaces to calm areas meant for reflection and focus. What truly set the experience apart was the role of the faculty, who went beyond conventional teaching to encourage analytical thinking and creativity. Alongside academics, various student-led initiatives and societies created opportunities to take initiative, collaborate, and contribute meaningfully. AKGEC provided more than technical expertise; it instilled confidence, adaptability, and a growth-oriented mindset that continues to guide me well beyond my college years.",
         name: "Ayush Raghuwanshi",
         title: "Batch 2021-2025",
-        img: "/image/student/1.png",
+        img: "/image/student/ayush-raghuwanshi.webp",
         rating: 5
     },
     {
         description: "Looking back, the college played a meaningful role in shaping both my professional journey and personal outlook. It offered far more than classroom instruction by creating an environment that encouraged questioning, creativity, and initiative. Through thoughtfully designed coursework, practical lab work, workshops, and exposure to industry practices, I was able to understand how theoretical concepts translate into real-world solutions. The faculty members were not limited to teaching subjects; they acted as mentors who consistently pushed me to improve and believe in my abilities. Equally important was the vibrant student culture, enriched by active clubs and societies that allowed me to explore my interests beyond academics. My involvement in the Software Incubator was particularly impactful, as it helped me collaborate with peers, work on meaningful projects, and develop a strong sense of teamwork and leadership. The values I gained during my time at AKGEC—perseverance, integrity, and responsibility—continue to guide the way I approach challenges and opportunities today.",
         name: "Ayush Jain",
         title: "Batch 2020-2024",
-        img: "/image/student/1.png",
+        img: "/image/student/ayush-jain.webp",
         rating: 5
     },
     {
         description: "Reflecting on my college years, I realize how deeply they influenced both my career path and personal growth. The institution provided much more than academic knowledge; it fostered a culture that encouraged independent thinking, innovation, and proactive learning. A well-balanced mix of structured academics, hands-on laboratory sessions, workshops, and industry exposure helped me bridge the gap between theory and practical application. The faculty played a crucial role in this journey, not just as educators but as mentors who motivated me to push boundaries and continuously evolve. Alongside academics, the dynamic campus life greatly enriched my experience. Active student groups and societies offered opportunities to explore interests beyond the classroom and develop essential life skills. My time with the Software Incubator proved especially valuable, as it allowed me to collaborate closely with peers, build impactful projects, and strengthen my leadership and teamwork abilities. The principles and values I developed during my time at AKGEC—such as resilience, honesty, and accountability—remain integral to how I approach both professional and personal challenges today.",
         name: "Himanshu Sachan",
         title: "Batch 2019-2023",
-        img: "/image/student/1.png",
+        img: "/image/student/himanshu-sachan.webp",
         rating: 5
     },
     {
         description: "When I look back on my college journey, it’s clear that those years played a significant role in shaping who I am today, both professionally and personally. The institution went beyond delivering coursework by creating an environment that promoted curiosity, creativity, and self-driven learning. Through a thoughtful combination of academic rigor, practical lab work, workshops, and exposure to industry-oriented practices, I learned how to apply theoretical concepts to real-world situations. The guidance of faculty members was instrumental, as they consistently encouraged growth, confidence, and continuous improvement. Beyond academics, campus life added immense value to my overall experience. Student-led clubs and societies provided a platform to discover new interests, collaborate with others, and develop crucial soft skills. My involvement with the Software Incubator was particularly impactful, offering opportunities to work on meaningful projects, learn collaboration firsthand, and grow as a leader. The lessons and values I gained at AKGEC—such as perseverance, integrity, and responsibility—continue to influence the way I handle challenges and opportunities in every aspect of my life.",
         name: "Akshay Agarwal",
         title: "Batch 2017-2021",
-        img: "/image/student/1.png",
+        img: "/image/student/akshay-agarwal.webp",
         rating: 5
     },
     {
         description: "Thinking back on my time in college, I can clearly see how it helped shape both my professional outlook and personal development. The experience extended far beyond academics, offering an atmosphere that encouraged exploration, original thinking, and taking initiative. A strong blend of structured learning, practical laboratory exposure, workshops, and industry-focused activities helped me understand how classroom concepts translate into practical solutions. Throughout this journey, the faculty played an essential role by offering constant support, motivation, and guidance that pushed me to grow with confidence. Equally meaningful was the vibrant student environment, which played a major part in my growth outside the classroom. Involvement in various clubs and societies allowed me to explore my interests, work closely with peers, and strengthen important interpersonal skills. Being part of the Software Incubator was especially enriching, as it gave me the chance to contribute to real projects, learn the value of teamwork, and develop leadership qualities. The values instilled during my time at AKGEC—such as resilience, ethics, and accountability—continue to guide my approach to both professional challenges and personal goals.",
         name: "Kavi Kumar",
         title: "Batch 2018-2022",
-        img: "/image/student/1.png",
+        img: "/image/student/kavi-kumar.webp",
         rating: 5
     },
     {
         description: "Looking back at my college years, I realize how influential they were in shaping my career direction and overall personality. The institution offered much more than formal education by cultivating an environment that inspired curiosity, independent thought, and proactive learning. A balanced mix of academic structure, hands-on laboratory work, workshops, and exposure to industry practices helped me bridge the gap between theory and real-world application. The faculty members were a constant source of encouragement, providing mentorship and guidance that helped me build confidence and grow steadily. Outside the academic framework, campus life played a vital role in my personal development. Active participation in student groups and societies allowed me to explore new interests, collaborate with diverse individuals, and refine essential communication and teamwork skills. My experience with the Software Incubator stood out, as it offered practical exposure through project-based work and opportunities to develop leadership abilities. The principles I carried forward from AKGEC—such as perseverance, integrity, and a strong sense of responsibility—continue to shape how I approach challenges and opportunities in my professional and personal life.",
         name: "Deepanshu Jain",
         title: "Batch 2016-2020",
-        img: "/image/student/1.png",
+        img: "/image/student/deepanshu-jain.webp",
         rating: 5
     },
     {
         description: "As an alumnus of AKGEC, I’m thankful for the solid foundation it provided. The college’s excellent infrastructure, green campus, and well-equipped facilities created an environment that supported both learning and personal growth. The dedicated faculty, along with abundant resources, ensured that we had the support needed to succeed. Beyond studies, AKGEC offered a vibrant campus life with a mix of cultural and technical societies, with the Software Incubator holding a special place in my heart. These groups allowed me to explore different interests, work on team projects, and meet students with similar passions. Being part of these societies helped me build leadership skills and broaden my perspective. Overall, AKGEC provided a great mix of learning and activities that made my time there truly meaningful.",
-        name: "SIMRANPREET KAUR",
+        name: "Simranpreet Kaur",
         title: "Batch 2015-2019",
-        img: "/image/student/1.png",
+        img: "/image/student/simranpreet-kaur.webp",
         rating: 5
     },
     {
         description: "As an alum of AKGEC, I can genuinely say the college offers a solid blend of academics, infrastructure, and extracurriculars. The campus is well-equipped with modern labs, spacious classrooms, and green spaces, creating an excellent atmosphere for learning. The faculty is knowledgeable and supportive, with a strong focus on practical skills and industry relevance. Societies like the Software Incubator allow students to gain real-world experience through projects and startups, while other clubs, like robotics and coding, provide workshops and competitions that keep students engaged beyond regular studies. Though large cultural fests are limited, the active student clubs foster a tight-knit community and make campus life lively. AKGEC genuinely supports a well-rounded education, helping students gain both technical and personal skills for future success",
         name: "Pranat Sharma",
         title: "Batch 2018-2022",
-        img: "/image/student/1.png",
+        img: "/image/student/pranat-sharma.webp",
         rating: 5
     },
     {
         description: "Akgec gave me an overall personality development platform which helped me in my current career. It helped me in understanding the ownership of my work learning handling challenges in the software development. I could spot great difference technically as well as overall personality development wise....... between akgec students and others. The faculty of CSE was wery good at my time . they encouraged me to go to hackathons , try to build different projects and how to network with people.",
         name: "Aditya Gupta",
         title: "Batch 2017-2021",
-        img: "/image/student/1.png",
+        img: "/image/student/aditya-gupta.webp",
         rating: 5
     },
     {
         description: "Frankly speaking, AKGEC has played a very vital role in my journey. It was not just an engineering college with just academic foundation but also quite practical and hand-on about the teaching me to face the challenges that come my way. I must say that this helped me a lot by being supported by excellent faculty that helped me to learn new things and update my technical skills. Beyond that , extra curricular activities and events like saksham ( and my favourite football club) , overall shaped me as a better human being too",
         name: "Arnav Jain",
         title: "Batch 2018-2022",
-        img: "/image/student/1.png",
+        img: "/image/student/arnav-jain.webp",
         rating: 5
     },
     {
         description: "My journey at Ajay Kumar Garg Engineering College was more than just a chapter in my academic life; it was where I found my passion, discovered my strengths, and connected with incredible, like-minded people who inspired me daily. Beyond the classrooms and labs, the college became a platform that brought together talented individuals from diverse backgrounds, each with their own unique ideas and skills. Being around such driven people, whether it was in coding contests, group projects, or late-night hackathons, gave me new perspectives and pushed me to up my game. I still remember the adrenaline of coding challenges, the thrill of collaborative projects, and the constant encouragement from professors and mentors who genuinely wanted us to succeed. The college didn’t just provide an education—it gave me a community and a network of talented peers who motivated me to aim higher, solve harder problems, and keep striving.",
         name: "Suyash Singh",
         title: "Batch 2020-2024",
-        img: "/image/student/1.png",
+        img: "/image/student/suyash-singh.webp",
         rating: 5
     },
     {
         description: "AKGEC wasn't just a college; it was a second home. It was a place where I spent countless hours, not just studying, but also laughing, crying, and growing. The campus, with its vibrant atmosphere and dedicated faculty, was the perfect setting for intellectual and personal development. I'll always cherish the memories of late-night study sessions, heated debates, and the camaraderie we shared. The professors, with their passion for teaching and their unwavering support, were instrumental in shaping me into the engineer I am today. And mechanical engineering canteen ke iconic chola samosa , chai auir baate . It was a network jungle where we forged lifelong friendships and connections. AKGEC is more than a name; it's a feeling. It's a feeling of belonging, of aspiration, and of limitless possibilities. A feeling that will stay with me forever.",
         name: "Vinayak Gupta",
         title: "Batch 2017-2021",
-        img: "/image/student/1.png",
+        img: "/image/student/vinayak-gupta.webp",
         rating: 5
     },
     {
         description: "I distinctly remember that the college role played in both my career and character. Here, I not only received technical education but also the ecosystem to foster curiosity, innovation, and leadership. Structured academic programs provided real-world experiences ranging from hands-on labs, workshops, and industry collaborations that bridged theory and practice. They were more than instructors of themselves; they were mentors who guided and inspired me to reach my potential. The college community was full of lively clubs and societies where I could pursue my passions, particularly in the Software Incubator, where I got friends, built projects, and learned the nuance of teamwork and leadership. AKGEC has taught me tenacity and honesty, the attributes I utilize in any project I take up at this point in time.",
         name: "Ayush Verma",
         title: "Batch 2019-2023",
-        img: "/image/student/1.png",
+        img: "/image/student/ayush-verma.webp",
         rating: 5
     },
     {
         description: "My time at AKGEC is really special because this college was a dynamic space for growth, nurturing and shaping aspirations and the skills in students. Rigorous academics and hands-on exploration together formed a powerful balance that students were able to use for turning ideas into real achievements. The campus was not just a place to study, but rather a vibrant center where learning permeated into every nook and corner—be it in well-equipped laboratories, bustling student centers, or quiet retreats. It was from the faculty that one acquired this experience, which teaches one not just knowledge but provokes a critical and innovative mind. Societies and initiatives by AKGEC provided the student beyond their regular curriculum: to lead, innovate, and build a community. AKGEC has given me much more than just the academic skills needed to go through it; it gave me the mind-set that would support my growth, resilience, and community for long even after graduation.",
         name: "Alok Ranjan",
         title: "Batch 2017-2021",
-        img: "/image/student/1.png",
+        img: "/image/student/alok-ranjan.webp",
         rating: 5
     },
     {

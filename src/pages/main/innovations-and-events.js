@@ -69,7 +69,7 @@ const InnovationsAndEvents = () => {
             </section>
             <section className="bg-white">
                 <div className="max-w-[1400px] mx-auto px-3 py-10 max-md:py-8 max-sm:py-6">
-                    <EventTabs />
+                    {/* <EventTabs /> */}
                     <div className='max-w-[1400px] max-2xl:max-w-6xl max-xl:max-w-5xl max-lg:max-w-3xl mx-auto grid grid-cols-12 gap-8 py-10 max-md:py-8 max-sm:py-6 max-sm:gap-0'>
                         {eventsData?.map((event, index) => (
                             <Card key={index} img={event.img} title={event.title} desc={event.desc} />

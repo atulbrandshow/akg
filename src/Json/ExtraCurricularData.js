@@ -1,3 +1,39 @@
+export const eventVibrations2026Data = [
+    {
+        img: [
+            '/image/extra-curricular-socities/vibrations-2026/vibrations-2026.webp',
+            '/image/extra-curricular-socities/vibrations-2026/vibrations-2026-1.webp',
+            '/image/extra-curricular-socities/vibrations-2026/vibrations-2026-2.webp',
+            '/image/extra-curricular-socities/vibrations-2026/vibrations-2026-3.webp',
+        ],
+        title: 'VIBRATIONS 2026 Celebration at AKGEC',
+        desc: 'VIBRATIONS 2026 was celebrated on 10th April 2026 at Ajay Kumar Garg Engineering College with great enthusiasm and vibrant energy. The event began with the ceremonial lamp lighting and inaugural address by Prof. Amita Dev, Advisor, AKGEC. The evening featured captivating performances by student groups like Euphony, Goonj, Taal, Footprints, and Verve, along with Poster Making Competition and prize distribution ceremony.'
+    },
+];
+
+export const stateChampionSportsData = [
+    {
+        img: '/image/extra-curricular-socities/state-champion-sports/state-champion-sports.webp',
+        title: 'AKGEC Crowned State Champions at AKTU Sports Fest',
+        desc: 'State Champion in Sports: AKGEC’s Dominance in AKTU State Level Sports Fest'
+    },
+    {
+        img: '/image/extra-curricular-socities/state-champion-sports/state-champion-sports-1.webp',
+        title: 'Victory Celebration at AKTU State Level Sports Fest',
+        desc: 'State Champion in Sports: AKGEC’s Dominance in AKTU State Level Sports Fest'
+    },
+    {
+        img: '/image/extra-curricular-socities/state-champion-sports/state-champion-sports-2.webp',
+        title: 'Women Athletes Shine at AKTU State Sports Championship',
+        desc: 'State Champion in Sports: AKGEC’s Dominance in AKTU State Level Sports Fest'
+    },
+    {
+        img: '/image/extra-curricular-socities/state-champion-sports/state-champion-sports-3.webp',
+        title: 'AKGEC Teams Showcase Excellence in State-Level Sports',
+        desc: 'State Champion in Sports: AKGEC’s Dominance in AKTU State Level Sports Fest'
+    },
+];
+
 export const euphonyData = [
     {
         img: '/image/extra-curricular-socities/euphony/Bandish_1.jpg',

@@ -1,7 +1,7 @@
 'use client';
 
 import Card from '@/Components/Card';
-import { euphonyData, footprintsData, goonjData, horizonData, photoClubData, renaissanceData, taalData, verveData } from '@/Json/ExtraCurricularData';
+import { eventVibrations2026Data, stateChampionSportsData, euphonyData, footprintsData, goonjData, horizonData, photoClubData, renaissanceData, taalData, verveData } from '@/Json/ExtraCurricularData';
 import React, { useState } from 'react';
 
 const eventTabs = [
@@ -13,6 +13,8 @@ const eventTabs = [
     { label: 'Taal', data: taalData },
     { label: 'Verve', data: verveData },
     { label: 'Photography and Media Club', data: photoClubData },
+    { label: 'State Champion Sports', data: stateChampionSportsData },
+    { label: 'VIBRATIONS 2026', data: eventVibrations2026Data },
 ];
 
 const ExtraCurricularSocieties = () => {
